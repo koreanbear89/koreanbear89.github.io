@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ecology on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/ecology/</link>
+    <description>Recent content in Ecology on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+        <atom:link href="https://koreanbear89.github.io/ecology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2020 | CVPR</title>
+      <link>https://koreanbear89.github.io/engineering/9.-others/2020-06-17-2020-cvpr/</link>
+      <pubDate>Wed, 17 Jun 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-others/2020-06-17-2020-cvpr/</guid>
+      <description>Overview New Topics : Explainable AI, Fairness, Accountability, Transparency and Ethics in Vision Recognition &amp;gt; Learning Methods &amp;gt; Face, Gesture, Body Pose &amp;gt; Img and Video Synthesis &amp;hellip; Young Researcher Award : Jon Barron and Deqing Sun Best Paper Award : Unsupervised Learning of Probably Symmetric Deformable 3D Objects from Images in the wild Best Studen Paper Award : BSP-Net: Generating Compact Meshes via Binary Space Partitioning Best Stud Honorable</description>
+    </item>
+    
+    <item>
+      <title>Bayesian statistics #1 | Bayes&#39; Rule</title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200609-bayes1-bayes-rule/</link>
+      <pubDate>Tue, 09 Jun 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200609-bayes1-bayes-rule/</guid>
+      <description>1. Introduction 연역적 추론(Freq) 에서 귀납적 추론(Bayes) 으로의 확률론 패러다임의 전환 Frequentist View : 확률을 &amp;lsquo;발생하는 현상의 빈도수&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Python Basic</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/160601-cheatsheet-python-basic/</link>
+      <pubDate>Sat, 30 May 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/160601-cheatsheet-python-basic/</guid>
+      <description>1. Python Data Type 1. Number a**b # 제곱 a//b # 몫 a%b # 나머지 2. String &amp;gt;&amp;gt;&amp;gt; y = 3.42134234 &amp;gt;&amp;gt;&amp;gt; &amp;quot;{0:0.4f}&amp;quot;.format(y) # 문자열포맷 &#39;3.4213&#39; 3. List a = [1,2,3] b = [4,5,6] # 1. 리스트 더하기 &amp;gt;&amp;gt;&amp;gt; a + b : [1,2,3,4,5,6] # 2. 리스트 반복 &amp;gt;&amp;gt;&amp;gt; a*3 : [1,2,3,1,2,3,1,2,3] 4. Tuple 튜플</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jekyll</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/200418-cheatsheet-jekyll/</link>
+      <pubDate>Sat, 18 Apr 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/200418-cheatsheet-jekyll/</guid>
+      <description>0. Install RVM &amp;amp; Ruby $ sudo apt-get update $ sudo apt-get install -y curl gnupg build-essential $ sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 $ curl -sSL https://get.rvm.io | sudo bash -s stable $ sudo usermod -a -G rvm `whoami` $ rvm install ruby-X.X.X $ rvm --default use ruby-X.X.X $ gem install bundler --no-rdoc --no-ri # If bash cannot find ruby, $ source /etc/profile  
+1. Install MathJax   Problem: MathJax does not work</description>
+    </item>
+    
+    <item>
+      <title>Object Tracking</title>
+      <link>https://koreanbear89.github.io/research/4.-image-processing/2020-04-01-object-tracking/</link>
+      <pubDate>Wed, 01 Apr 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/4.-image-processing/2020-04-01-object-tracking/</guid>
+      <description>0. Introduction   Locating an object in successive frames of a video.
+  Personal suggestion is to use CSRT when you need higher object tracking accuracy and can tolerate slower FPS. Use KCF when you need faster FPS but can handle slightly lower object tracking accuracy. Use MOSSE when you need pure speed.
+  1. Boosting Tracker   Based on online version of AdaBoost- the algorithm that the Haar Cascade based face detector uses internally.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #8 | Covariance and Correlation</title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200227-all-of-stats8_covariance/</link>
+      <pubDate>Thu, 27 Feb 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200227-all-of-stats8_covariance/</guid>
+      <description>1. Covariance 두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도. 이때의 관계성은 일반적으로 선형 관계성만을 의</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200202-all-of-statistics-ch6/</link>
+      <pubDate>Sun, 02 Feb 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200202-all-of-statistics-ch6/</guid>
+      <description>6.1 Introduction  Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data.  6.2 Parametric and Nonparametric Models   A statistical model $\Im$ is a set of distributions (or densities or regression functions)
+  Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
+  If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200130-all-of-statistics-ch5/</link>
+      <pubDate>Thu, 30 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200130-all-of-statistics-ch5/</guid>
+      <description>5.1 Introduction   The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
+  The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
+  5.2 Types of Convergence  $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$  $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #4 | Probability Inequalities </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200129-all-of-statistics-ch4/</link>
+      <pubDate>Wed, 29 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200129-all-of-statistics-ch4/</guid>
+      <description>4.1 Probability Inequalities   Inequalities are useful for bounding quantities that might otherwise be hard to compute.
+  Markov&amp;rsquo;s inequality : Let $X$ be a non-negative random variable and suppose that $\mathbb{E}(X)$ exists. For any $t&amp;gt;0$,
+  $$\mathbb{P}(X&amp;gt;t) \leq \frac{\mathbb{E}(X)}{t}$$
+ Chebyshev&amp;rsquo;s inequality : Let $\mu = \mathbb{E}(X)$ and $\sigma^2 = \mathbb{V}(X)$  $$ \mathbb{P}(| X-\mu| \geq t) \leq \frac{\sigma^2}{t^2} \ \text{and} \mathbb{P}(|Z| \geq k) \leq \frac{1}{k^2}$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200128-all-of-statistics-ch3/</link>
+      <pubDate>Tue, 28 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200128-all-of-statistics-ch3/</guid>
+      <description>3.1 Expectation of a Random Variable  The expected value, or mean, or first moment of $X$ is defined to be  $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
+3.3 Variance and Covariance  The variance measures the spread of a distribution  $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
+ The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$  $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200120-all-of-statistics-ch2/</link>
+      <pubDate>Mon, 20 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200120-all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction   How do we link sample spaces and events to data? Random Variable!
+  A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+  2.2 Distribuition Functions and Probability Functions  Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by  $$F_X(x) = \mathbb{P}(X \leq x)$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #1 | Probability </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200116-all-of-statistics-ch1/</link>
+      <pubDate>Thu, 16 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200116-all-of-statistics-ch1/</guid>
+      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2019-12-11_9-neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2019-12-11_9-neural-architecture-search/</guid>
+      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+    </item>
+    
+    <item>
+      <title>MLCV #8 | Pose Estimation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/190807-cv08-pose-estimation/</link>
+      <pubDate>Wed, 07 Aug 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/190807-cv08-pose-estimation/</guid>
+      <description>0. Introduction Pose Estimation : The task aims to detect the locations of human anatomical keypoints (e.g., elbow, wrist, etc) 1. Deep Pose (2014) Introduction : The first major paper that applied Deep Learning to Human pose estimation Method : DNN-based regression : Alexnet backend (7 layers) with an extra final layer that outputs 2k joint coordinates (where $k$ is the number of joints). Cascade of pose regressors : refinement</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-29-linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-29-linear-algebra-for-ml-lec5/</guid>
+      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-07-linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-07-linear-algebra-for-ml-lec4/</guid>
+      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/</guid>
+      <description>Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&amp;gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&amp;gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&amp;gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&amp;gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&amp;gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&amp;gt; On</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #8 | Graph Neural Nets</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2019-06-27-_8-graph-neural-networks/</link>
+      <pubDate>Wed, 26 Jun 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2019-06-27-_8-graph-neural-networks/</guid>
+      <description>0. Introduction   What is a graph?
+  A graph is a data structure consisting of two components : vertices and edges.
+  Typically, a graph is defined as $G = (V,E)$, where $V$ is a set of nodes and $E$ is the edges between them.
+  A graph is often represented by an Adjacency matrix, $A \in \mathbb{R}^{N \times N}$ and feature matrix $X \in \mathbb{R}^{N \times F}$ to describe the nodes in the graph.</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-08-linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-08-linear-algebra-for-ml-lec2/</guid>
+      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations # 일종의 연립방정식 몸무게(60,65,5</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-07-linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-07-linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase) Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase) Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase) Tensors : an array of numbers arranged on a regular grid with</description>
+    </item>
+    
+  </channel>
+</rss>

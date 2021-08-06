@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Data Science with pySpark #1 | Data Exploration - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. Data Exploration is about describing the data by means of statistical and visualization techniques. We explore data in order to understand the features and bring important features to our models.
+1.1 Univariate Analysis  univariate : data has only one variable. central tendency : mean, mode, median dispersion : range, variance, maximum, minimum, quartiles  1." />
+    <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+    <title>Data Science with pySpark #1 | Data Exploration - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.5272b2825e842e311ed5b4d82eafbeec49d02add54936949557aa64b7534ff88.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Data Science with pySpark #1 | Data Exploration" />
+<meta property="og:description" content="Introduction Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. Data Exploration is about describing the data by means of statistical and visualization techniques. We explore data in order to understand the features and bring important features to our models.
+1.1 Univariate Analysis  univariate : data has only one variable. central tendency : mean, mode, median dispersion : range, variance, maximum, minimum, quartiles  1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/__documents/_old/2.6-data-science/201223-1_datascience/" /><meta property="article:section" content="__Documents" />
+<meta property="article:published_time" content="2020-12-23T09:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-23T09:00:00+00:00" />
+
+<meta itemprop="name" content="Data Science with pySpark #1 | Data Exploration">
+<meta itemprop="description" content="Introduction Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. Data Exploration is about describing the data by means of statistical and visualization techniques. We explore data in order to understand the features and bring important features to our models.
+1.1 Univariate Analysis  univariate : data has only one variable. central tendency : mean, mode, median dispersion : range, variance, maximum, minimum, quartiles  1."><meta itemprop="datePublished" content="2020-12-23T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-23T09:00:00+00:00" />
+<meta itemprop="wordCount" content="591">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Science with pySpark #1 | Data Exploration"/>
+<meta name="twitter:description" content="Introduction Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. Data Exploration is about describing the data by means of statistical and visualization techniques. We explore data in order to understand the features and bring important features to our models.
+1.1 Univariate Analysis  univariate : data has only one variable. central tendency : mean, mode, median dispersion : range, variance, maximum, minimum, quartiles  1."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-right theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-ecology">
+                <a href="/ecology/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-globe-americas"></i>
+                  <span class="menu-title">Ecology</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-economics">
+                <a href="/economics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-chart-line"></i>
+                  <span class="menu-title">Economics</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">7</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Economics</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/analysis">Analysis</a>
+                  <span class="category-list-count">3</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/economics">Economics</a>
+                  <span class="category-list-count">2</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/industry">Industry</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/real-estate">Real Estate</a>
+                  <span class="category-list-count">4</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/stock">Stock</a>
+                  <span class="category-list-count">2</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Ecology</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/coral-reef">Coral Reef</a>
+                  <span class="category-list-count">2</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/__documents/_old/2.6-data-science/201223-1_datascience/"
+    >Data Science with pySpark #1 | Data Exploration</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/__documents/_old/2.6-data-science/201223-1_datascience/" class="article-date">
+  <time datetime="2020-12-23 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-12-23</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.6-data-science/"> 2.6 Data Science </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/__documents/_old/2.6-data-science/201223-1_datascience/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+<p>Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. <strong>Data Exploration is about describing the data by means of statistical and visualization techniques.</strong> We explore data in order to understand the features and bring important features to our models.</p>
+<br>
+<h2 id="11-univariate-analysis">1.1 Univariate Analysis</h2>
+<ul>
+<li>univariate : data has only one variable.</li>
+<li>central tendency : mean, mode, median</li>
+<li>dispersion : range, variance, maximum, minimum, quartiles</li>
+</ul>
+<h4 id="111-numerical-variables">1.1.1 Numerical Variables</h4>
+<p><strong>Statistical Techniques</strong></p>
+<ul>
+<li><strong>Describe</strong> : The <code>df.describe()</code> function in pandas and spark will give us most of the statistical results, such as min, median, max, quartiles and stddev.</li>
+<li><strong>Skewness</strong> : is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean.</li>
+<li><strong>Kurtosis</strong> : is a measure of the “tailedness” of the probability distribution.</li>
+</ul>
+<p><strong>Visualization Techniques</strong></p>
+<ul>
+<li><strong>Histogram</strong> : is an approximate representation of the distribution of numerical data. <strong>The x- axis of histogram is the range of numerical variable, while the x-axis of Bar Plot is class of categorial data</strong></li>
+<li><strong>Box Plot</strong> : is a method for graphically depicting groups of numerical data through their quartiles</li>
+<li><strong>Violin Plot</strong> : Violin plots are similar to box plots, except that they also show the probability  density of the data at different values, usually smoothed by a kernel density estimator.</li>
+</ul>
+<center>
+<img class="post-fig" width="30%"  align="center" src='  https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Travel_time_histogram_total_n_Stata.png/700px-Travel_time_histogram_total_n_Stata.png'>
+<img class="post-fig" width="23%"  align="center" src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Michelsonmorley-boxplot.svg/600px-Michelsonmorley-boxplot.svg.png'>
+<img class="post-fig" width="30%" align="center"
+ src ='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Violin_plot.gif/640px-Violin_plot.gif'> 
+  <center><i> (L) histogram,  (M) Box plot,  (R) Violin Plot</i></center>
+</center>
+<br>
+<h4 id="112-categorical-variables">1.1.2 Categorical Variables</h4>
+<ul>
+<li>
+<p><strong>Frequency Table</strong> : is a table that lists items and shows the number of times the items occur.</p>
+</li>
+<li>
+<p><strong>Pie Plot</strong> (chart) : is a circular statistical graphic , which is divided into slices to illustrate numerical proportion.</p>
+</li>
+<li>
+<p><strong>Bar Plot</strong> (chart) : is a chart or graph that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="12-multivariate-analysis">1.2 Multivariate Analysis</h2>
+<h4 id="121-numerical-vs-numerical">1.2.1 Numerical vs Numerical</h4>
+<ul>
+<li><strong>Correlation Matrix</strong> : Correlation is assumed to be linear. and is positive when the values increase together, is negative when one value decreases as the other increases.</li>
+<li><strong>Scatter Plot</strong> : is a type of plot or mathematical diagram using Cartesian coordinates to display values for typically two variables</li>
+</ul>
+<h4 id="122-categorical-vs-categorical">1.2.2 Categorical vs Categorical</h4>
+<ul>
+<li><strong>Chi-squared test</strong> : is a statistical hypothesis test that is valid to perfrom when the test statistic is chi-squared distributed under the null hypothesis</li>
+<li><strong>Cross table</strong> : a pair-wise frequency table of the given variables. Also known as contingency table.</li>
+<li><strong>Stacked plot</strong> : The stacked bar chart stacks bars that represent different groups on top of each other.</li>
+</ul>
+<pre><code class="language-python"># chi-squared test in pyspark
+from pyspark.ml.linalg import Vectors
+from pyspark.ml.stat import ChiSquareTest
+
+data = [(0.0, Vectors.dense(0.5, 10.0)),
+        (0.0, Vectors.dense(1.5, 20.0)),
+        (1.0, Vectors.dense(1.5, 30.0)),
+        (0.0, Vectors.dense(3.5, 30.0))]
+        
+df = spark.createDataFrame(data, [&quot;label&quot;, &quot;features&quot;])
+
+r = ChiSquareTest.test(df, &quot;features&quot;, &quot;label&quot;).head()
+print(&quot;pValues: &quot; + str(r.pValues))
+print(&quot;degreesOfFreedom: &quot; + str(r.degreesOfFreedom))
+print(&quot;statistics: &quot; + str(r.statistics))
+</code></pre>
+<pre><code class="language-python">## Stacked plot in python 
+import numpy as np 
+import matplotlib.pyplot as plt
+
+labels = ['missing', '&lt;25', '25-34', '35-44', '45-54','55-64','65+']
+missing = np.array([0.000095, 0.024830, 0.028665, 0.029477, 0.031918,0.037073,0.026699])
+man = np.array([0.000147, 0.036311, 0.038684, 0.044761, 0.051269, 0.059542, 0.054259])
+women = np.array([0.004035, 0.032935, 0.035351, 0.041778, 0.048437, 0.056236,0.048091])
+ind = [x for x, _ in enumerate(labels)]
+
+plt.bar(ind, women, width=0.8, label='women', color='gold', bottom=man+missing)
+plt.bar(ind, man, width=0.8, label='man', color='silver', bottom=missing)
+plt.bar(ind, missing, width=0.8, label='missing', color='#CD853F')
+plt.show()
+</code></pre>
+<h4 id="123-numerical-vs-categorical">1.2.3 Numerical vs Categorical</h4>
+<ul>
+<li><strong>Line Chart with Error Bars</strong> : simply add error bars to line chart</li>
+<li><strong>Combination Chart</strong> : is a visualization that combines the features of the bar chart and the line chart. The combination chart displays the data using a number of bars and lines, each of which represent a particular category.</li>
+</ul>
+<center>
+<img class="post-fig" width="30%"  align="center" src=' https://support.content.office.net/en-us/media/68efe29e-f30c-4c6f-95cf-9cff7dde1131.jpg'>
+<img class="post-fig" width="34%"  align="center" src='https://www.excel-easy.com/examples/images/combination-chart/combination-chart.png'>
+<center><i> (L) Line Chart with Error Bars, (R)Violin Plot</i></center>
+</center>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+  </body>
+</html>

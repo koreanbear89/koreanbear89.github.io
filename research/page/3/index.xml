@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Research on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/research/</link>
+    <description>Recent content in Research on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 01 Aug 2021 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/research/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ML Basic #7 | Sequential Modeling</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2019-03-22-_7-sequential-models/</link>
+      <pubDate>Fri, 22 Mar 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2019-03-22-_7-sequential-models/</guid>
+      <description>0. Introduction one to one : Vanilla mode of processing without RNN, from fixed sized input to fixed-sized output one to many : Sequence output (e.g. image captioning) many to one : Sequence input (e.g. sentiment analysis) many to many : Sequence input and sequence output (e.g. Machine Translation) Figure 1. Overview of Sequence Processing 1. Recurrent Neural Networks Introduction : Imagine you want to classify what kind of action</description>
+    </item>
+    
+    <item>
+      <title>How to set up an NFS mount on Ubuntu 16.04</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</link>
+      <pubDate>Thu, 21 Mar 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</guid>
+      <description>1. Introduction   NFS, Network File System, is a distributed file system protocol that allows you to mount remote directories on your server.
+  In situation that you have big data in PC-1 and need to process them with PC-2
+  
+2. Methods   On the host (192.168.205.183)
+# install nfs-kernel-server $ sudo apt update $ sudo apt install nfs-kernel-server # configure the NFS Exports on the Host Server $ sudo vi /etc/exports # add line in this format : directory_to_share client(share_option1, .</description>
+    </item>
+    
+    <item>
+      <title>MLCV #7 | Action Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/181103-cv07-action-classification/</link>
+      <pubDate>Sat, 03 Nov 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/181103-cv07-action-classification/</guid>
+      <description>0. Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. CNN + RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs for 112x112x16 Two Stream Network (RGB + Optical Flow) Two Stream 3D ConvNets Feature Engineering with pre-extracted frame-level featue using CNN Skeleton Based Recognition using GCN ST-GCN : 16 GFLOPs for one action sample 1. LRCN : Long-term Recurrent Convolutional Networks (2014) Introduction</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Conventional Models</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2018-06-22-_6-conventional-models/</link>
+      <pubDate>Fri, 22 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2018-06-22-_6-conventional-models/</guid>
+      <description>1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #5 | Training Techniques</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2018-06-15-_5-training-techniques/</link>
+      <pubDate>Fri, 15 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2018-06-15-_5-training-techniques/</guid>
+      <description>1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면</description>
+    </item>
+    
+    <item>
+      <title>MLCV #6 | Image Retrieval</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/180614-cv06-image-retrieval/</link>
+      <pubDate>Thu, 14 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/180614-cv06-image-retrieval/</guid>
+      <description>0. Introduction Image Retrieval : aims to find similar images to a query image among an image dataset. Tech Trend : Conventional Methods relying on local descriptor matching (scale invariant features - local image descriptors - reranking with spatial verifications) using FC layers after several conv layers as global descriptors [A Babenko et al, A Gordo et al.] using global pooling methods from the activations of conv layers. boost the</description>
+    </item>
+    
+    <item>
+      <title>Data Structure and Algorithm</title>
+      <link>https://koreanbear89.github.io/research/1.-computer-science/180610-ds-and-algorithm/</link>
+      <pubDate>Sat, 09 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/1.-computer-science/180610-ds-and-algorithm/</guid>
+      <description>3. Time Complexity n&amp;lt;1,000,000, the expected time complexity is $O(n)$ or $O(nlogn)$ n&amp;lt;10,000, the expected time complexity is $O(n^2)$ n&amp;lt;500, the expected time complexity is $O(n^3)$ 5. Prefix sums There is a simple yet powerful technique that allows for the fast calculation of sums of elements in given slice. Its main idea uses prefix sums which are defined as the consecutive totals of the first 0,1,2, &amp;hellip; n elements of</description>
+    </item>
+    
+    <item>
+      <title>MLCV #5 | Image Style Transfer</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/180426-cv05-image-style-transfer/</link>
+      <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/180426-cv05-image-style-transfer/</guid>
+      <description>0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to</description>
+    </item>
+    
+    <item>
+      <title>MLCV #4 | Image Synthesis</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/170725-cv04-image-synthesis/</link>
+      <pubDate>Tue, 25 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/170725-cv04-image-synthesis/</guid>
+      <description>0. Introduction  Image Synthesis : The task of creating new images from some form of image description.  
+1. GAN (2014)   Introduction : A new framework for estimating generative models via an adversarial process
+  Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #3 | Semantic Segmentation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/170723-cv03-image-segmentation/</link>
+      <pubDate>Sun, 23 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/170723-cv03-image-segmentation/</guid>
+      <description>0. Introduction Image Segmentation : The process of assigning a label to every pixel in the image. Semantic Segmentation : treats multiple objects of the same class as a single entity. Instance Segmentation : treats multiple objects of the same class as distinct individual objects. 1. FCN (2015) Introduction : The first end-to-end pixel-wise prediction model based only on convolutional layers. Method: Feature Extraction : using convolution layers like conventional</description>
+    </item>
+    
+    <item>
+      <title>MLCV #2 | Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/170722-cv02-object-detection/</link>
+      <pubDate>Sat, 22 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/170722-cv02-object-detection/</guid>
+      <description>0. Introduction Object Detection : The task of finding the different objects in an image and classifying them AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) : 하나의 사물에 대하여 여러개의 bbox를 그려낸 경우, 가장 confide</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2017-01-03-_4-evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2017-01-03-_4-evalutaion-metrics/</guid>
+      <description>0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #3 | Optimization</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-03-_3-optimization/</link>
+      <pubDate>Sat, 03 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-03-_3-optimization/</guid>
+      <description>0. Introduction Optimizer : updates the weight parameters to minimize the loss function. 1. Gradient Descent Introduction : calculate the gradient $\frac{\partial c}{\partial w} $ of cost function for weight w, and update the weights using calcuated gradient $$ \theta_{new} = \theta - \eta \bigtriangledown J (\theta;x,y)$$ Batch Gradient Descent : use the entire dataset to compute gradient of the cost function for each iteration Stochastic Gradient Descent : use</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #2 | Loss Functions</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-02-_2-loss-funtions/</link>
+      <pubDate>Fri, 02 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-02-_2-loss-funtions/</guid>
+      <description>0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-01-_1-activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/2016-12-01-_1-activation-funtions/</guid>
+      <description>0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #0 | Terminology</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/161201_0-terminologies/</link>
+      <pubDate>Tue, 01 Nov 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/161201_0-terminologies/</guid>
+      <description>0. Introduction Generative Model: likelihood를 활용하거나 Posterior 를 활용하여 Data Distribution을 Modeling 하여 Decision Boundary를 찾고자 하는 방법론, 오박사스타일. GMM</description>
+    </item>
+    
+    <item>
+      <title>MLCV #1 | Image Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/170702-cv01-image-classification/</link>
+      <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/170702-cv01-image-classification/</guid>
+      <description>0. Introduction Image Classification : The task of classifying an image according to its visual content. 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out)) out = MP(relu(conv3x3(out))) out = FC(relu(FC(relu(FC(out))))) return out 2. VGG Net (2014) Introduction : come</description>
+    </item>
+    
+    <item>
+      <title>How to set up Ubuntu 16.04 for ML </title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-ubuntu-16.04-for-ml/</link>
+      <pubDate>Mon, 20 Jun 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-ubuntu-16.04-for-ml/</guid>
+      <description>1. Windows와 Ubuntu에 사용할 파티션 나누기 컴퓨터관리 - 저장 - 디스크관리 2. 멀티부팅을 위한 윈도우의 빠른시작기능 해제 제어판 - 전원옵션 - 전원</description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet | Linux Commands</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-linux-commands/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-linux-commands/</guid>
+      <description>1. Check the number of files in directory. # the number of directories in working directory $ ls -l | grep ^d | wc -l # the number of files in working directory $ ls -l | grep ^- | wc -l # the number of files in working directory $ ls ./ | wc -l # print all the files in dir ls | gawk &amp;quot;BEGIN {\&amp;quot;pwd\&amp;quot; | getline</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Python Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/170102-cheatsheet-python-snippet/</link>
+      <pubDate>Sat, 02 Jan 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/170102-cheatsheet-python-snippet/</guid>
+      <description>1. Pickle import pickle # load or save object using pickle try: with open(path_pkl, &#39;rb&#39;) as f: obj_pkl = pickle.load(f) except: obj_pkl = [] with open(path_pkl, &#39;wb&#39;) as f: pickle.dump(obj_pkl, f) 2. Requests import requests # GET url = &#39;http://localhost/test&#39; params = {&#39;arg1&#39;:&#39;1&#39;, &#39;arg2&#39;:&#39;2&#39;} response = requests.get(url=url, params=params).json() # POST response = requests.post(url=url, data=json.dumps(params)) 3. argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args</description>
+    </item>
+    
+  </channel>
+</rss>

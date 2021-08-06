@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineering on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/engineering/</link>
+    <description>Recent content in Engineering on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Aug 2021 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/engineering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | LaTeX Math Symbol</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/160101-cheatsheet-latex-math-symbol/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/160101-cheatsheet-latex-math-symbol/</guid>
+      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}$$
+\begin{pmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\ 4 &amp;amp; 5 &amp;amp; 6 \\ 7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \\ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2017_ad-diagnosis/2017-09-01-ad-diagnosis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2017_ad-diagnosis/2017-09-01-ad-diagnosis/</guid>
+      <description>1. Introduction   In the case of medical images, the variation of the acquired image is largely depend on the acquisition environment for various reasons, such as the dosing amount of radioactive substances being adjusted by the radiologist depending on the target patient.
+  Therefore, there are difficulties in reading and diagnosing the image taken at the other hospitals without a background on the acquisition environment.
+  That&amp;rsquo;s why even if you&amp;rsquo;ve got examined with medical images(MR,CT,PET,&amp;hellip;) in one hospital, they shold be taken again when transferred to another hospital.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2018_swingerrordetection/2018-09-01-multitask-swing-analyzer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2018_swingerrordetection/2018-09-01-multitask-swing-analyzer/</guid>
+      <description>1. Introduction Most golfers want to receive professional coaching to improve their golf skills. However, more than 80% of golfers are not taking a lesson. That&amp;rsquo;s because of several practical reasons, such as lack of time, distance to the field, high cost, etc. For these reasons, we are developing the AI lesson pro through applying recent AI technologies such as Deep Learning.
+ Dataset : 100k Video clips with 320x240 resolution and 30fps  #Object Detection # Pose Estimation # Action Classification # Temporal Action Localization</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2020_shoppinglive/2020-10-16-shoppinglive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2020_shoppinglive/2020-10-16-shoppinglive/</guid>
+      <description>1. Introduction 쇼핑라이브 서비스 연동작업 진행예정 영상 카테고리별 모델링 개요 패션의류/패션상품 : time series clustering 후, top n개 interval을 text로 re-rank하</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2020_shoppinglive/2020-10-21-celery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/1.-projects/2020_shoppinglive/2020-10-21-celery/</guid>
+      <description>1. Introduction to Celery About Celery 2. First Steps with Celery 2.1 Choosing a Broker run RabbitMQ : $ docker run -d -p 5672:5672 rabbitmq run Redis : $ docker run -d -p 6379:6379 redis 2.2 Running the Celery worker server run Celery Application Instance : $ celery -A &#39;FILE_NAME&#39; worker --loglevel=INFO run async task (Calling a task) 2.3 Keeping Results 3. Next Steps 3.1 Running the Celery worker in</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/2.-finance/2020-04-19-finance-study-#0-terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/2.-finance/2020-04-19-finance-study-#0-terms/</guid>
+      <description>1. Stats EPS (Earning Per Share, 순이익/총발행주식): 주당순이익, 즉 기업의 순이익을 발행주식수로 나눈 값 PER (Price Earning Ratio, 시가총액/순이익) : 주가수익률, 즉 이 기업을 시총주고 사</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/2.-finance/2020-07-07-finance-study-#1-energy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/2.-finance/2020-07-07-finance-study-#1-energy/</guid>
+      <description>1. 유가 흐름 기록 미국은 자국 에너지 정책을 원유 수입국에서 수출국으로 전환. 이로인해 폭락한 유가를 사우디(목표:80$)와 러시아(50$)가 자국의 원유 생</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/_old/_private/3.-interview/2020-05-31-interview-naver/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/_private/3.-interview/2020-05-31-interview-naver/</guid>
+      <description>0. Job Description Vision 팀에서는 image classification, object detection, image retrieval, semantic segmentation 등의 일반적인 computer vision 기술뿐만 아니라 multi-modal image search, graph neural networks, image synthesis 등의 분야에서 최신 기술을 연구 / 개발하고 있습니다. Vision 팀은 네이버의 스</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/annual-diary/2020/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/annual-diary/2020/</guid>
+      <description>2020을 마무리하며 28번째 해. 12년도에 대학에 입학했고, 16년도에는 석사를 시작했다. 마음은 그 무렵, 20대 중반의 어딘가에 멈춰있는데 끝나지 않을</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/english/modernfamily_s01e01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/english/modernfamily_s01e01/</guid>
+      <description>Modern Famaily S01E01  That&amp;rsquo;s when my dad&amp;rsquo;s picking me up.  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/others/%EC%97%B0%EB%A7%90%EC%A0%95%EC%82%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/others/%EC%97%B0%EB%A7%90%EC%A0%95%EC%82%B0/</guid>
+      <description>연말정산 과정 아래 과정에 따라 기타공제 와 특별세액공제 만 신경쓰면 됨, 다른 부분은 내가 어떻게 할 수 없음 [ + ] 총급여 : 연봉 (급여+상여+수당+..) - 비과</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/210219/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/210219/</guid>
+      <description>PLTR &amp;lt; 25 OPEN &amp;lt; 30 WIMI &amp;lt; 10 AFRM &amp;lt;110 AI &amp;lt;130 SNOW &amp;lt;275 APPS, 60일 이평선과 만날때 SOXL - 15일 내려오면 매수 AMD</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/_index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/_index/</guid>
+      <description>Index 관련 cheat sheet rsi &amp;lt; 60 MACD Money Flow Index : 80이 넘으면 주의 =&amp;gt; 증시로 자금유입이 많음 미국채금리 미국도 경제주체의 하나로서 돈을 빌리고 갚음 → 이 때 미국이 제시하는 이율 (Fed 에</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/amzn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/amzn/</guid>
+      <description>AMZN 4Q20 : 실적이 상당히 좋지만 CEO가 바뀔거라 주가가 주춤함. CEO가 바뀌면 split 가능성이 있음</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/appl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/appl/</guid>
+      <description>NYSE : APPL 1. 잠재력, 뭘보고 투자할건데? =&amp;gt; 애플의 과거와 현재로부터 애플이 그리는 미래를 예측해보자 2. 재무상태</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/long/pltr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/long/pltr/</guid>
+      <description>NYSE : PLTR Own Summary 목표는 기업가치 1000억 달러 2025 까지 일단 보자. 내가 하는 일과 완전히 일맥상통하므로 꾸준히 F/U 할 수 있지 않을까 전통적 데이터 기업인 IBM의 기업가</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/snow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/snow/</guid>
+      <description>NYSE : SNOW  270~280 buy   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/soxl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/soxl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/sq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/sq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__documents/finance/stock/t/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/finance/stock/t/</guid>
+      <description>NYSE : T Summary Position : 가치주, 고배당주로 안전자산의 개념으로 투자 =&amp;gt; 배당의 안전성을 매 분기별로 파악하고 기록 Attracts Risk Quarter Report 4Q20 : -200714- 올해까지는 들고있어도 괜찮을 것 같으나,</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineering on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/engineering/</link>
+    <description>Recent content in Engineering on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Aug 2021 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/engineering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | Regex</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/210802-cheatsheet-regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/210802-cheatsheet-regex/</guid>
+      <description>0. Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf Quick Example : 한/영/숫자/- 를 포함하려면 &#39;[가-힣|a-z|0-9|\-]+&#39; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ |</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #10 | Learning</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/210801_10-learning/</link>
+      <pubDate>Sun, 01 Aug 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/210801_10-learning/</guid>
+      <description>0. Introduction Curriculum Learning  Introduction : Humans and animals learn much better when the examples are not randomly presented but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones. Methods : In the context of recent research studying the difficulty of training in the presence of non-convex training criteria (for deep deterministic and stochastic neural networks), we explore curriculum learning in various set ups.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Pandas</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/210610-cheatsheet-pandas/</link>
+      <pubDate>Thu, 10 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/210610-cheatsheet-pandas/</guid>
+      <description>Groupby agg_functions = {&#39;col1&#39;:&#39;first&#39;, &#39;col2&#39; : &#39;sum&#39;, &#39;col3&#39; : lambda col: &#39; &amp;amp;&amp;amp; &#39;.join(col), } df_new = df.groupby(df[&#39;id&#39;]).aggregate(agg_functions)  Filter df.iloc[[0,1,2,3,4,5]] # get rows by indices # Filtering rows that contain either sub_str1 or sub_str2 df_new = df.loc[df[&#39;Column&#39;].str.contains(&amp;quot;sub_str1|sub_str2&amp;quot;, case=False)]  Manipulate Row df.drop(i) # remove i-th row  </description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | HTML</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/210609-cheatsheet-html/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/210609-cheatsheet-html/</guid>
+      <description>ajax HTTP request &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;http://cgpu018-cvision:20012/vidcls?title=&amp;quot;+searchTitle, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Strategy #2021</title>
+      <link>https://koreanbear89.github.io/economics/stock/strategy-2021/</link>
+      <pubDate>Thu, 01 Apr 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/economics/stock/strategy-2021/</guid>
+      <description>Strategy. 통화정책에 대한 시장 컨센서스 : 테이퍼링발표(3Q21) -&amp;gt; 테이퍼링진행(1Q22) -&amp;gt; 금리인상(1Q23) 유동성으로 인한 프리미엄이 붙은 자산은 위험</description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet | VIM</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-vi/</link>
+      <pubDate>Tue, 26 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-vi/</guid>
+      <description>Frequently used vim shortcuts Basic commands
+- a # write text to the cursor - A # write text at the end of the current line - i # write text to the cursor - I # write text to the front of the current line - ^ # move cursor to the front of the line - $ # move cursor to the back of the line - ESC # shift to command mode - x # in command mode, remove the text - u # in command mode, undo - :w # in command mode, save (write on the disk) - :q # in command mode, quit  - y # copy in visual mode - p # paste in visual mode  Commands for multiple windows</description>
+    </item>
+    
+    <item>
+      <title>Web Development | #2 HTTP</title>
+      <link>https://koreanbear89.github.io/research/1.-computer-science/210126-web_http/</link>
+      <pubDate>Tue, 26 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/1.-computer-science/210126-web_http/</guid>
+      <description>Introduction HTTP는 Web상에서 정보를 주고받기위한 프로토콜로, Client 와 Server 사이에서 이루어지는 요청/응답(request/response) 규약이다. 주로 HTML</description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet | CURL</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-curl/</link>
+      <pubDate>Mon, 25 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-curl/</guid>
+      <description>Frequently Used Options # -s, --silent $ curl -s URL # -X, --request &amp;lt;command&amp;gt; Specify request command to use $ curl -X GET URL $ curl -X POST URL  </description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Matplotlib</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/210112-cheatsheet-matplotlib/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/210112-cheatsheet-matplotlib/</guid>
+      <description>0. Interface pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface) object-oriented interface : Explicitly create figures and axes, and call methods on them import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) # x = np.linspace(0,2,100) # plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax</description>
+    </item>
+    
+    <item>
+      <title>NLP #1 | Text Preprocessing</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-1-text-preprocessing/</link>
+      <pubDate>Tue, 05 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-1-text-preprocessing/</guid>
+      <description>0. Introduction 일반적으로 NLP modeling 은 다음과 같은 방식으로 진행 Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization Text Representation : Word Embedding 과 같은 방법을 활용하여 자연</description>
+    </item>
+    
+    <item>
+      <title>Data Science with pySpark #1 | Data Exploration</title>
+      <link>https://koreanbear89.github.io/__documents/_old/2.6-data-science/201223-1_datascience/</link>
+      <pubDate>Wed, 23 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/__documents/_old/2.6-data-science/201223-1_datascience/</guid>
+      <description>Introduction Understanding your dataset is the most difficult thing in data science, but it is really important and time-consuming. Data Exploration is about describing the data by means of statistical and visualization techniques. We explore data in order to understand the features and bring important features to our models.
+1.1 Univariate Analysis  univariate : data has only one variable. central tendency : mean, mode, median dispersion : range, variance, maximum, minimum, quartiles  1.</description>
+    </item>
+    
+    <item>
+      <title>DataBase</title>
+      <link>https://koreanbear89.github.io/research/1.-computer-science/201224-database/</link>
+      <pubDate>Wed, 23 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/1.-computer-science/201224-database/</guid>
+      <description>1. Relational Database  RDB is a digital database based on the relational model of data. RDBMS : A software system used to maintain relational databases is a relational DB management system : &amp;ldquo;software system that enables users to define, create, maintain and control access to the database&amp;rdquo; Many relational database systems have an option of using the SQL (Structured Query Language) for querying and maintaining the database.  Figure 1.</description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet | Spark</title>
+      <link>https://koreanbear89.github.io/engineering/3.-spark/201211-cheatsheet-spark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/3.-spark/201211-cheatsheet-spark/</guid>
+      <description>1. Initialization &amp;amp; Configuration SparkContext : provides connection to Spark with the ability to create RDDs SQLContext : procides connection to Spark with the ability to run SQL queries on data SparkSession : all encompassing context which includes coverage for SparkContext, SQLContext and HiveContext import pyspark from pyspark import SparkContext from pyspark.sql import SparkSession from pyspark.sql import SQLContext # create a SparkSession instance with the name &#39;appname&#39; spark = SparkSession.builder.appName(&amp;quot;appname&amp;quot;).getOrCreate()</description>
+    </item>
+    
+    <item>
+      <title>How to install pySpark locally</title>
+      <link>https://koreanbear89.github.io/engineering/3.-spark/201209-install-spark-locally/</link>
+      <pubDate>Wed, 09 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/3.-spark/201209-install-spark-locally/</guid>
+      <description>1. Prerequisite   Check java version first
+  Then, just install miniconda3 and create virtual environment based on python 3.6
+java -version # The command above might show something like below &amp;gt;&amp;gt; openjdk version &amp;quot;1.8.0_262&amp;quot; &amp;gt;&amp;gt; OpenJDK Runtime Environment (build 1.8.0_262-b10) &amp;gt;&amp;gt; OpenJDK 64-Bit Server VM (build 25.262-b10, mixed mode)    2. Download Spark # Download spark wget https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz # unzip tar -xvzf spark-3.0.1-bin-hadoop2.7.tgz # move to home and rename mv spark-3.</description>
+    </item>
+    
+    <item>
+      <title>How to setup vim</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-vim/</link>
+      <pubDate>Tue, 08 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-vim/</guid>
+      <description>1. Install Vundle $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2. color scheme setup Jellybean color scheme official install And simply add line color jellybean in .vimrc mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim 3. write .vimrc wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc 로 preset을 받음 Added Plugin &#39;preservim/nerdcommenter&#39; 4. vimrc에 설정한 플러그인 설치 :PluginInstall 로 설</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | SQL basic</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/201207-cheatsheet-sql-basic/</link>
+      <pubDate>Sun, 06 Dec 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/201207-cheatsheet-sql-basic/</guid>
+      <description>Introduction Structured Query Language, SQL 은 관계형 데이터베이스 관리 시스템(RDBMS)의 데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어이다. Commands SELECT : 데이터베이스에서 데이터</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Docker Commands</title>
+      <link>https://koreanbear89.github.io/engineering/1.-tools/201113-cheatsheet-docker-commands/</link>
+      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-tools/201113-cheatsheet-docker-commands/</guid>
+      <description>1. Docker Commands Dockerize an SSH service # docker 버전확인하기 $ docker --version # 현재위치의 Dockerfile로 build 하기 $ docker build -t [TAG] . # 등록된 docker 이미지 확인하기 $ docker images # 실행중인 도커 머신 정보</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #6 | PCA </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/</link>
+      <pubDate>Sat, 27 Jun 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/</guid>
+      <description>6.1 Principal Component Analysis Principal component analysis (PCA) : is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest. Principal components : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best</description>
+    </item>
+    
+    <item>
+      <title>Bayesian statistics #2 | MLE and MAP</title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200623-bayes2-mle-and-map/</link>
+      <pubDate>Tue, 23 Jun 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200623-bayes2-mle-and-map/</guid>
+      <description>1. Introduction 앞서 Bayes&#39; Rule을 이용한 방식의 단점은 likelihood의 probability distribution을 알고있어야 한다는 점인데, 관찰을 통해 likelihoo</description>
+    </item>
+    
+  </channel>
+</rss>
