@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Data Intensive App #12 | The Future of Data Systems - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="The Future of Data Systems In this final chapter, we will shift our perspective toward the future and discuss how things should be: propose some ideas and approaches that may fundamentally improve the ways we design and build applications. The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable. In this chapter we will bring" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Data Intensive App #12 | The Future of Data Systems - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Data Intensive App #12 | The Future of Data Systems" />
+<meta property="og:description" content="The Future of Data Systems In this final chapter, we will shift our perspective toward the future and discuss how things should be: propose some ideas and approaches that may fundamentally improve the ways we design and build applications. The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable. In this chapter we will bring" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-12/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2021-10-26T09:00:13+00:00" />
+<meta property="article:modified_time" content="2021-10-26T09:00:13+00:00" />
+
+<meta itemprop="name" content="Data Intensive App #12 | The Future of Data Systems">
+<meta itemprop="description" content="The Future of Data Systems In this final chapter, we will shift our perspective toward the future and discuss how things should be: propose some ideas and approaches that may fundamentally improve the ways we design and build applications. The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable. In this chapter we will bring"><meta itemprop="datePublished" content="2021-10-26T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2021-10-26T09:00:13+00:00" />
+<meta itemprop="wordCount" content="2556">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Intensive App #12 | The Future of Data Systems"/>
+<meta name="twitter:description" content="The Future of Data Systems In this final chapter, we will shift our perspective toward the future and discuss how things should be: propose some ideas and approaches that may fundamentally improve the ways we design and build applications. The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable. In this chapter we will bring"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/5.-study/data-intensive-app-12/"
+    >Data Intensive App #12 | The Future of Data Systems</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-12/" class="article-date">
+  <time datetime="2021-10-26 09:00:13 &#43;0000 UTC" itemprop="datePublished">2021-10-26</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-study/"> 5. Study </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/5.-study/data-intensive-app-12/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h4 id="heading"></h4>
+<h2 id="the-future-of-data-systems">The Future of Data Systems</h2>
+<ul>
+<li>
+<p>In this final chapter,</p>
+<ul>
+<li>we will shift our perspective toward the future and discuss how things should be:</li>
+<li>propose some ideas and approaches that may fundamentally improve the ways we design and build applications.</li>
+</ul>
+</li>
+<li>
+<p>The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable.</p>
+</li>
+<li>
+<p>In this chapter we will bring all of these ideas together, and build on them to envisage the future.</p>
+</li>
+</ul>
+<h3 id="heading-1"></h3>
+<h3 id="heading-2"></h3>
+<h3 id="heading-3"></h3>
+<h2 id="121-data-integration">12.1 Data Integration</h2>
+<ul>
+<li>A recurring theme has been that for any <strong>given problem</strong>, there are <strong>several solutions</strong>, all of which have <strong>different pros, cons, and trade-offs</strong>.</li>
+<li>So you inevitably end up <strong>having to cobble together</strong> several different pieces of software in order to provide your application’s functionality.</li>
+</ul>
+<h3 id="1211-combining-specialized-tools-by-deriving-data">12.1.1 Combining Specialized Tools by Deriving Data</h3>
+<ul>
+<li>
+<p><strong>Derived data (log-based) vs distributed transactions</strong></p>
+<ul>
+<li>In the absence of widespread support for a good distributed transaction protocol, I believe that log-based derived data is the most promising approach for integrating different data systems.</li>
+</ul>
+</li>
+<li>
+<p><strong>The limits of total ordering</strong> :</p>
+<ul>
+<li>With small systems, constructing a totally ordered event log is entirely feasible.</li>
+<li>However, as systems are scaled toward bigger and more complex workloads, limitations begin to emerge : (p.446, 168, 131, 170)</li>
+</ul>
+</li>
+<li>
+<p><strong>Ordering events to capture causality</strong></p>
+<ul>
+<li>Unfortunately, there does not seem to be a simple answer to this problem</li>
+<li>Perhaps, over time, patterns for application development <strong>will emerge</strong> that allow <strong>causal dependencies to be captured efficiently</strong>, and <strong>derived state to be maintained correctly</strong>, without forcing all events to go through the <strong>bottleneck</strong> of total order broadcast.</li>
+</ul>
+</li>
+</ul>
+<h3 id="1212-batch-and-stream-processing">12.1.2 Batch and Stream Processing</h3>
+<ul>
+<li>The goal of data integration is to make sure that <strong>data ends up in the right form</strong> in all the right places</li>
+<li>Doing so requires consuming inputs, transforming, joining, filtering, aggregating, training models, evaluating, and eventually writing to the appropriate outputs.</li>
+<li>Batch and stream processors are the tools for achieving this goal.
+<ul>
+<li>the main fundamental difference is that stream processors operate on <strong>unbounded datasets</strong> whereas batch process inputs are <strong>of a known, finite size.</strong></li>
+<li>but these distinctions are beginning to blur</li>
+<li>Spark performs stream processing on top of a batch processing engine by <strong>breaking the stream into microbatches</strong>, whereas Apache Flink performs batch processing on top of a stream processing engine</li>
+</ul>
+</li>
+<li><strong>Maintaining derived state</strong> :
+<ul>
+<li>maintaining derived data =&gt; batch processing (determministic) =&gt; well-defined inputs and outputs =&gt; good for <strong>fault tolerance</strong> and <strong>reasoning</strong> about the dataflows</li>
+</ul>
+</li>
+<li><strong>Reprocessing data for application evolution</strong> :
+<ul>
+<li>batch processing allows large amounts of accumulated historical data to be <strong>reprocessed</strong> in order to derive new views onto an existing dataset</li>
+<li><strong>gradul evolution of application</strong></li>
+</ul>
+</li>
+<li><strong>The lambda architecture</strong> : how to combine batch process &amp; stream processing
+<ul>
+<li>batch processing is used to reprocess historical data,</li>
+<li>stream processing is used to process recent updates,</li>
+<li>incoming data should be recorded by appending immutable events to an always-growing dataset, similarly to event sourcing (p.457)</li>
+<li>the stream processor consumes the events and quickly produces an approximate update to the view;</li>
+<li>the batch processor later consumes the same set of events and produces a corrected version of the derived view.</li>
+</ul>
+</li>
+<li><strong>Unifying batch and stream processing</strong> : More recent work has enabled the benefits of the lambda architecture to be enjoyed without its downsides, by allowing both batch computations (reprocessing historical data) and stream computations (processing events as they arrive) to be implemented in the same system</li>
+</ul>
+<h3 id="heading-4"></h3>
+<h3 id="heading-5"></h3>
+<h3 id="heading-6"></h3>
+<h2 id="122-unbundling-databases-done">12.2 Unbundling Databases (Done)</h2>
+<ul>
+<li>At a most abstract level, databases and operating systems all perform the same functions: they store some data, and they allow you to process and query that data.</li>
+<li>Unix and relational databases have approached the information management problem with very different philosophies.
+<ul>
+<li>Unix is simpler in the sense that it is a fairly thin wrapper around hardware resources</li>
+<li>relational data‐bases are simpler in the sense that a short declarative query can draw on a lot of powerful infrastructure</li>
+</ul>
+</li>
+<li>In this section I will attempt to reconcile the two philosophies, in the hope that we can combine the best of both worlds.</li>
+</ul>
+<h3 id="1221-composing-data-storage-technologies">12.2.1 Composing Data Storage Technologies</h3>
+<ul>
+<li>
+<p>We have discussed various features provided by databases and how they work,</p>
+</li>
+<li>
+<p><strong>The meta-database of everything</strong> :</p>
+<ul>
+<li>the dataflow across an entire organization starts looking like one huge database</li>
+<li>Recently, they are provided by various different pieces of software, different machines, different teams. (instead of a single integrated database product,)</li>
+<li>Where will these developments take us in the future?
+<ul>
+<li><strong>Federated databases</strong> (unifying reads) : provide a unified query interface to a wide variety of underlying storage engines and processing methods. (PostgreSQL&rsquo;s foreign data wrapper)</li>
+<li><strong>Unbundled databases</strong> (unifying writes) : is like unbundling a database’s index-maintenance features  that can synchronize writes across disparate technologies</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Making unbundling work</strong> : keeping the writes to several storage systems in sync</p>
+<ul>
+<li>traditional approach :  distributed transaction =&gt;  the lack of a standardized transaction protocol makes integration much harder.</li>
+<li>log-based integration : An ordered log of events with idempotent consumers =&gt; loose coupling between the various components,</li>
+</ul>
+</li>
+</ul>
+<h3 id="1222-designing-applications-around-dataflow">12.2.2 Designing Applications Around Dataflow</h3>
+<ul>
+<li>In this section, I will explore some <strong>ways of building applications</strong> around the ideas of unbundled databases and dataflow</li>
+<li><strong>Application code as a derivation function</strong> :
+<ul>
+<li>When the function that creates a derived dataset is not a standard cookie-cutter function (like ML, feature extraction) =&gt; custom code is required =&gt;  where many databases struggle.</li>
+</ul>
+</li>
+<li><strong>Separation of application code state</strong> :
+<ul>
+<li>Databases could be deployment environments =&gt; poorly suited</li>
+<li>it makes sense to have some parts of a system that specialize in <strong>durable data storage</strong>, and other parts that specialize in <strong>running application code</strong>.</li>
+<li>YARN, Docker, Kubernetes</li>
+</ul>
+</li>
+<li><strong>Dataflow: Interplay between state changes and application code</strong> :
+<ul>
+<li>Stable <strong>message ordering</strong> and fault-tolerant <strong>message processing</strong> are quite stringent demands, but they are much less expensive and more operationally robust than distributed transactions.</li>
+<li>Instead of treating a database as a passive variable that is manipulated by the application, we think much more about the interplay and collaboration between state, state changes, and code that processes them.</li>
+<li>Unbundling the database means taking this idea and applying it to the creation of derived datasets outside of the primary database: caches, full-text search indexes, machine learning, or analytics systems. We can use stream processing and messaging systems for this purpose.</li>
+</ul>
+</li>
+<li><strong>Stream processors and services</strong>
+<ul>
+<li>The currently trendy style of application development involves breaking down functionality into a set of services that communicate via synchronous network requests such as REST APIs : Microservices</li>
+<li>Not only is the dataflow approach faster, but it is also more robust to the failure of another service.</li>
+</ul>
+</li>
+</ul>
+<h3 id="1223-observing-derived-state">12.2.3 Observing Derived State</h3>
+<ul>
+<li>The derived dataset is the place where the write path and the read path meet,</li>
+<li>It represents a trade-off between the amount of work that needs to be done at write time and the amount that needs to be done at read time.</li>
+<li><strong>Materialized views and caching (fig12-1)</strong>
+<ul>
+<li>ex1) If you didn’t have an index, a search query would have to scan over all documents (like grep), which would get very expensive =&gt; No index means less work on the write path (no index to update), but a lot more work on the read path.</li>
+<li>ex2) precomputing the search results for all possible queries =&gt; less work to do on the read path</li>
+<li>Usually) precompute the search results for only a fixed set of the most common queries, (cache, materialized view)</li>
+<li>Viewed like this, the role of caches, indexes, and materialized views is simple: they shift the boundary between the read path and the write path</li>
+</ul>
+</li>
+<li><strong>Stateful, offline-capable clients</strong> (뒤랑 연결안되면 빼도될듯)
+<ul>
+<li>Let&rsquo;s look at the idea in different context</li>
+<li>changing capabilities have led to a renewed interest in offline-first applications</li>
+<li>we can think of the on-device state as a cache of state on the server.</li>
+</ul>
+</li>
+<li><strong>Pushing state changes to clients</strong>
+<ul>
+<li>Typical web page : The state on the device is a stale cache that is not updated unless you explicitly poll for changes.</li>
+<li>Recent protocols : the server can actively push messages to the browser as long as it remains connected. (subscribe)</li>
+<li>The same technique works for individual users, where each device is a small subscriber to a small stream of events</li>
+</ul>
+</li>
+<li><strong>End-to-end event streams</strong>
+<ul>
+<li>Recent tools for developing stateful clients and user interfaces, (Facebook’s toolchain of React, Flux, and Redux) already manage internal client-side state <strong>by subscribing to a stream of events</strong> representing user input or responses from a server, structured similarly to <strong>event sourcing</strong></li>
+<li>In order to extend the write path all the way to the end user, we would need to fundamentally rethink the way we build many of these systems</li>
+<li>I think that the advantages of more responsive user interfaces and better offline support would make it worth the effort. If you are designing data systems, I hope that you will keep inmind the option of subscribing to changes, not just querying the current state.</li>
+</ul>
+</li>
+</ul>
+<h3 id="heading-7"></h3>
+<h3 id="heading-8"></h3>
+<h3 id="heading-9"></h3>
+<h2 id="123-aiming-for-correctness-done">12.3 Aiming for Correctness (Done)</h2>
+<ul>
+<li>In this section I will suggest some ways of thinking about correctness in the context of dataflow architectures.</li>
+</ul>
+<h3 id="1231-the-end-to-end-argument-for-databases">12.3.1 The End-to-End Argument for Databases</h3>
+<ul>
+<li>Let’s look at a more subtle example of data corruption that can occur.</li>
+<li><strong>Exactly-once execution of an operation</strong>
+<ul>
+<li>If something goes wrong while processing a message, you can either give up or try again.</li>
+<li>If you try again =&gt; there is the risk that the message ends up being processed twice (charge a customer twice) =&gt; idempotence (478p) =&gt;  the final effect is the same as if no faults had occurred, even if the operation actually was retried due to some fault</li>
+</ul>
+</li>
+<li><strong>Duplicate suppression</strong>
+<ul>
+<li>The same pattern of duplicates occurs in many other places besides stream processing.</li>
+</ul>
+</li>
+<li><strong>Operation identifiers</strong>
+<ul>
+<li>To make the operation idempotent, it is not sufficient to rely just on a transaction mechanism</li>
+<li>you need to consider the end-to-end flow of the request.
+<ul>
+<li>For example, you could generate a unique identifier for an operation (such as a UUID)</li>
+<li>client reques twice =&gt; have the same operation ID</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>The end-to-end argument</strong>
+<ul>
+<li>This scenario of suppressing duplicate transactions is just one example of a more general principle called the end-to-end argument</li>
+</ul>
+</li>
+<li><strong>Applying end-to-end thinking in data systems</strong>
+<ul>
+<li>It would be really nice to wrap up the remaining high-level fault-tolerance machinery in an abstraction so that application code needn’t worry about it</li>
+<li>But we have not yet found the right abstraction</li>
+<li>I think it is worth exploring fault-tolerance abstractions that make it easy to provide application-specific end-to-end correctness properties,</li>
+</ul>
+</li>
+</ul>
+<h3 id="1232-enforcing-constraints">12.3.2 Enforcing Constraints</h3>
+<ul>
+<li>Techniques that enforce uniqueness can often be used for these kinds of <strong>constraints</strong> as well
+<ul>
+<li>Uniqueness constraints (user name, email address, book&hellip;)</li>
+<li>Account balance never goes negative,</li>
+</ul>
+</li>
+<li><strong>Uniqueness constraints require consensus</strong> : there are several concurrent requests with the same value, the system somehow <strong>needs to decide</strong> which one of the conflicting operations is <strong>accepted</strong>, and <strong>reject the others</strong> as violations of the constraint (Chapter9)</li>
+<li><strong>Uniqueness in log-based messaging</strong> :  In the unbundled database approach with log-based messaging, we can use a very similar approach to enforce uniqueness constraints : <strong>Total Order Broadcast. (p.348)</strong></li>
+</ul>
+<h3 id="1233-timeliness-and-integrity">12.3.3 Timeliness and Integrity</h3>
+<ul>
+<li>consistency : conflates two different requirements that are worth considering separately
+<ul>
+<li>Timelineness : means ensuring that <strong>users observe</strong> the system in an <strong>up-to-date state</strong></li>
+<li>Integrity : means absence of corruption; i.e., no data loss, and no contradictory orfalse data</li>
+</ul>
+</li>
+<li>In most applications, integrity (error in sum) is much more important than timeliness (not yet appear). : credit card statement</li>
+<li><strong>Loosely interpreted constraints</strong> :
+<ul>
+<li>many real applications can actually get away with much weaker notions of uniqueness (overbook)</li>
+<li>In many business contexts, it is actually acceptable to temporarily violate a constraintand fix it up later by apologizing</li>
+<li>These applications do require integrity: you would not want to lose a reservation, or have money disappear due to mismatched credits and debits.</li>
+</ul>
+</li>
+<li><strong>Coordination-avoiding data systems</strong>
+<ul>
+<li>You cannot reduce the number of apologies to zero, but you can aim to find the best trade-off for your needs—the sweet spot where there are neither too many inconsistencies nor too many availability problems.</li>
+</ul>
+</li>
+</ul>
+<h3 id="1234-trust-but-verify">12.3.4 Trust, but Verify</h3>
+<ul>
+<li>
+<p>All of our discussion of correctness, integrity, and fault-tolerance has been under the assumption that <strong>certain things might go wrong,</strong></p>
+</li>
+<li>
+<p>But we might also assume that data written to disk is not lost after fsync, that data in memory is not corrupted, and that the multiplication instruction of our CPU always returns the correct result.</p>
+</li>
+<li>
+<p>They are  still very rare on modern hardware. I just wantt o point out that they are not beyond the realm of possibility, and so they deserve some attention.</p>
+</li>
+<li>
+<p><strong>Maintaining integrity in the face of software bugs</strong> : Despite considerable efforts in careful design, testing, and review, bugs still creep in.</p>
+</li>
+<li>
+<p><strong>Don’t just blindly trust what they promise</strong> : Thus, we should at least have a way of finding out if data has been corrupted so that we can fix it and try to track down the source of the error. Don’t just blindly trust that it is all working</p>
+</li>
+<li>
+<p><strong>A culture of verification</strong> :</p>
+<ul>
+<li>Systems like HDFS and S3 still have to assume that disks work correctly most of the time—which is a reasonable assumption, but not the same as assuming that they always work correctly.</li>
+<li>self-validating or self-auditing systems : read back files, compare them to other replicas, and move files from one disk toanother, in order to mitigate the risk of silent corruption</li>
+</ul>
+</li>
+<li>
+<p><strong>Tools for auditable data systems</strong></p>
+<ul>
+<li>distributed ledger technologies : Bitcoin, Ethereum, Ripple,&hellip;</li>
+<li>I could imagine integrity-checking and auditing algorithms, like those of certificate transparency and distributed ledgers, becoming more widely used in data systems ingeneral.</li>
+</ul>
+</li>
+</ul>
+<h3 id="heading-10"></h3>
+<h3 id="heading-11"></h3>
+<h2 id="124-doing-the-right-thing-done">12.4 Doing the Right Thing (Done)</h2>
+<ul>
+<li>Throughout this book we have examined a wide range of different architectures for data systems,</li>
+<li>Finally, Let&rsquo;s take a step back and examine some ethical aspects of building data intensive applications.</li>
+</ul>
+<h3 id="1241-predictive-analytics">12.4.1 Predictive Analytics</h3>
+<ul>
+<li>Algorithmic prison : As algorithmic decision-making becomes more widespread, someone who has been labeled as risky by some algorithm may suffer a large number of those “no” decisions (jobs, insurance coverage, rental, ..)</li>
+<li><strong>Bias and discrimination</strong> : If there is a systematic bias in the input to an algorithm, the system will most likely learn and amplify that bias in its output</li>
+<li><strong>Responsibility and accountability</strong> : When a self-driving car causes an accident, who is responsible?</li>
+<li><strong>Feedback loops</strong> : When services become good at predicting what content users want to see, they may end up showing people only opinions they already agree with, leading to echochambers in which stereotypes, misinformation, and polarization can breed.</li>
+</ul>
+<h3 id="1242-privacy-and-tracking">12.4.2 Privacy and Tracking</h3>
+<ul>
+<li>
+<p>Besides the problems of predictive analytics, there are ethical problems with data collection itself. =&gt; surveillance, privacy, etc.</p>
+</li>
+<li>
+<p>As software and data are having such a large impact on the world, we engineers must remember that we carry a responsibility to work toward the kind of world that we want to live in: a world that treats people with humanity and respect.</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

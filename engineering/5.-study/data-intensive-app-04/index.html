@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Data Intensive App #4 | Encoding And Evolution - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="4.0 Introduction Applications inevitably change over time. (Features are added or modified as new products are launched) A change to an app&amp;rsquo;s features also requires a change to data that it stores. This means that old and new versions of the code, and old and new data formats may potentially all coexists in the system at the same time. Backward Compatibility : Newer code can read data written by older" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Data Intensive App #4 | Encoding And Evolution - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Data Intensive App #4 | Encoding And Evolution" />
+<meta property="og:description" content="4.0 Introduction Applications inevitably change over time. (Features are added or modified as new products are launched) A change to an app&rsquo;s features also requires a change to data that it stores. This means that old and new versions of the code, and old and new data formats may potentially all coexists in the system at the same time. Backward Compatibility : Newer code can read data written by older" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-04/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2021-09-28T09:00:13+00:00" />
+<meta property="article:modified_time" content="2021-09-28T09:00:13+00:00" />
+
+<meta itemprop="name" content="Data Intensive App #4 | Encoding And Evolution">
+<meta itemprop="description" content="4.0 Introduction Applications inevitably change over time. (Features are added or modified as new products are launched) A change to an app&rsquo;s features also requires a change to data that it stores. This means that old and new versions of the code, and old and new data formats may potentially all coexists in the system at the same time. Backward Compatibility : Newer code can read data written by older"><meta itemprop="datePublished" content="2021-09-28T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2021-09-28T09:00:13+00:00" />
+<meta itemprop="wordCount" content="2014">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Intensive App #4 | Encoding And Evolution"/>
+<meta name="twitter:description" content="4.0 Introduction Applications inevitably change over time. (Features are added or modified as new products are launched) A change to an app&rsquo;s features also requires a change to data that it stores. This means that old and new versions of the code, and old and new data formats may potentially all coexists in the system at the same time. Backward Compatibility : Newer code can read data written by older"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/5.-study/data-intensive-app-04/"
+    >Data Intensive App #4 | Encoding And Evolution</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-04/" class="article-date">
+  <time datetime="2021-09-28 09:00:13 &#43;0000 UTC" itemprop="datePublished">2021-09-28</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-study/"> 5. Study </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/5.-study/data-intensive-app-04/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="40-introduction">4.0 Introduction</h2>
+<ul>
+<li>Applications <strong>inevitably change over time.</strong> (Features are added or modified as new products are launched)</li>
+<li>A change to an app&rsquo;s features also requires <strong>a change to data</strong> that it stores.</li>
+<li>This means that old and new versions of the code, and old and new data formats may potentially <strong>all coexists</strong> in the system at the same time.
+<ul>
+<li>Backward Compatibility : Newer code can read data written by older code =&gt; <strong>Easy</strong></li>
+<li>Forward Compatibility : Older code can read data written by newer code =&gt; <strong>can be tricker</strong> =&gt; requires older code to ignore additions made by newer code</li>
+</ul>
+</li>
+<li>In this chapter,
+<ul>
+<li>We will look at several formats for encoding data</li>
+<li>We will then discuss how those formats are used for data storage and for communication</li>
+</ul>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="41-formats-for-encoding-data">4.1 Formats for Encoding Data</h2>
+<ul>
+<li>
+<p>Programs usually work with data at least <strong>two differenct representations</strong> :</p>
+<ul>
+<li>In memory data : is kept in object, structs, lists, array, hash tables, trees, and so on.</li>
+<li>Encoded data : When you want to <strong>write data to a file</strong> or <strong>send it over the network</strong>, you have to encode it as some kind of self-contained sequence of bytes (e.g. JSON)</li>
+</ul>
+</li>
+<li>
+<p>Thus, we need some kind of translation between the two representations</p>
+<ul>
+<li><strong>Encoding (Serialization or Marshalling)</strong> : translation from the in-memory representation to a byte sequence
+<ul>
+<li>Language Specific Formats</li>
+<li>JSON, XML</li>
+<li>Binary Variants</li>
+</ul>
+</li>
+<li><strong>Decoding (Parsing, Deserialization, unmarshalling)</strong> : translation from a byte sequence to in-memory representation</li>
+</ul>
+</li>
+</ul>
+<h3 id="411-language-specific-formats">4.1.1 Language Specific Formats</h3>
+<ul>
+<li>
+<p>Many programming language come with built-in support for encoding in-memory objects into byte sequences (java.io.Serializable, Ruby Marshal, Python Pickle)</p>
+</li>
+<li>
+<p>These are <strong>very convenient</strong>. However they also have a number of deep problems :</p>
+<ol>
+<li>
+<p>The encoding is often tied to a <strong>particular programming language</strong>, and reading the data in another language is very difficult.</p>
+</li>
+<li>
+<p>In order to restore data in the same object types, the decoding process needs to be able to instantiate arbitrary classes : <strong>Security Problem</strong></p>
+<blockquote>
+<p>Pickle docs : The pickle module is not secure. It&rsquo;s possible to construct malicious pickle data which will execute arbitrary code during unpickling.  <a href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Versioning data</strong> is often an afterthought in these libraries : as they ared intended for quick and easy encoding of data =&gt; neglect the inconvinient problems of forward and backward compatibility</p>
+</li>
+<li>
+<p><strong>Efficiency</strong> is also often an afterthought (CPU time taken to encode or decode, and the size of the encoded structure)</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>여기까지는 language specific formate 에 대하여 알아보았고 아래부터는 다양한 language에서 사용가능한 format인 json과 xml에 대하여 볼 예정</p>
+</blockquote>
+<h3 id="412--textual-formats--json-xml--and-csv">4.1.2  Textual Formats : JSON, XML  and CSV</h3>
+<ul>
+<li>standardized encodings that can be written and read by many programming languages</li>
+<li>Widely known, widely supported, and alomst as wideley disliked
+<ul>
+<li>XML : is often criticized for being too verbose and unnecessarily complicated</li>
+<li>JSON : &rsquo;s popularity is mainly due to its built-in support in web browsers</li>
+<li>CSV : is another popular language-independent format, albeitless powerful</li>
+</ul>
+</li>
+<li>JSON, XML, CSV are textual format, human-readable, but also have some subtle problems
+<ul>
+<li><strong>ambiguity around the encoding of numbers</strong> : XML and CSV cannot distinguish between a number and a string, JSON distinguishes strings and numbers but it doesn&rsquo;t distinguish integers and floating-point numbers =&gt; source of a problem when dealing with large numbers</li>
+<li>JSON and XML have good support for Unicode character strings (i.e., human readable text), but <strong>they don&rsquo;t support binary strings</strong> (ssequences of bytes without a character encoding). : so people get aroung this limitation by encoding the binary data as text using Base64 =&gt; This works, but it&rsquo;s somwhat hacky and increases the data size by 33%</li>
+<li>There is optional schema support for both XML[11] and JSON[12]. These schema languages are quite powerful and thus <strong>quite complicated</strong> to learn and implement.</li>
+<li>CSV does not have any schema, so it&rsquo;s up to the application to define the meaning of each row and column.</li>
+</ul>
+</li>
+<li>Despite these flaws, JSON, XML, and CSV are good enough for many purposes.</li>
+<li>The difficulty of getting different organizations to agree on anything outweighs most other concerns =&gt; It often doen&rsquo;t matter how pretty or efficient the format is.</li>
+</ul>
+<h3 id="413-binary-variants--thrift-protocol-buffers-and-avro">4.1.3. Binary Variants : Thrift, Protocol Buffers and Avro</h3>
+<ul>
+<li>
+<p>For data that is used only internally within yout organization, there is less pressure to use a lowest-common-denominator encoding format =&gt; more compact or faster to parse</p>
+</li>
+<li>
+<p>Apache Thrift and Protocol Buffers (google) are binary encoding libraries on the same principle</p>
+<ol>
+<li><strong>Define Schema</strong> : Both Thrift and Protocol Buffers require a schema for any data that is encoded.</li>
+<li>schema =&gt; <strong>code generation tool</strong> =&gt; produces classes that implement the schema in various programming language</li>
+<li>call this generated code to encode or decode records of the schema</li>
+</ol>
+<pre><code class="language-c">// in Thrift, you would descirbe the schema in the Thrift interface definition language
+struct Person {  
+	1: required string       userName,  
+	2: optional i64          favoriteNumber,  
+	3: optional list&lt;string&gt; interests
+	}
+</code></pre>
+</li>
+<li>
+<p>Binary Variants can handle schema changes (Schema Evolution) while keeping backward and forward compatibility</p>
+</li>
+<li>
+<p><strong>Avro</strong> :  is another binary encoding format that is interestingly differenct from Protocol Buffers and Thrift =&gt; started as a subproject of Hadoop, as a result of Thrift noy being a good fit for Hadoon&rsquo;s use cases [21]</p>
+</li>
+<li>
+<p><strong>The Merits of Schemes</strong> : although textual data formats such as JSON, XML, and CSV are widespread, binary encodings based on schemas are also a viable option</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="42-modes-of-dataflow-p128">4.2 Modes of DataFlow (p.128)</h2>
+<ul>
+<li>We said that whenever you want to send some data to another process with which you don&rsquo;t share memory, you <strong>need to encode it</strong> as a sequence of bytes.</li>
+<li>We then discussed a variety of <strong>different encodings</strong> for doing this.</li>
+<li>In the rest of this chapter, we will explore <strong>some of the most common ways</strong> how data flows between processes :
+<ul>
+<li>Via database</li>
+<li>Via service calls</li>
+<li>Via asynchronous message passing</li>
+</ul>
+</li>
+</ul>
+<h3 id="421-dataflow-through-database">4.2.1 Dataflow Through Database</h3>
+<ul>
+<li>
+<p>In a database, the process that writes to the database encodes the data, and the process that reads from the database deocdes it</p>
+</li>
+<li>
+<p>**Backward Compatibility **: storing something in the DB =&gt; should be readable in the future</p>
+</li>
+<li>
+<p><strong>Forward Compatibility</strong> : It&rsquo;s common for several different processes to be accessing a DB at the same time</p>
+<ul>
+<li>A value in the DB may be written by a newer version of the code, and subsequently read by an older version of the code</li>
+<li>Be careful not to update data written by a newer version of the application : Figure 4-7</li>
+</ul>
+</li>
+<li>
+<p><strong>Different values written at different times</strong></p>
+<ul>
+<li>application은 new-version으로 entire replace가 쉽지만 DB는 아님,</li>
+<li>물론 rewriting data into a new schema 가 가능할수도있지만 expensive하고 이에따라 대다수 DB들은 null을 default로 새 column을 추가하는등의 schema change를 지원한다</li>
+<li>결국 schema evolution이 5년전에 생성된 데이터든 신규 데이터든 single schema로 만들어진것처럼 하게한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="422-dataflow-through-services--rest-and-rpc">4.2.2 Dataflow Through Services : REST and RPC</h3>
+<ul>
+<li>
+<p>In some ways, services are similar to DB, they typically allow clients to submit and query data. However, these two are different in :</p>
+<ul>
+<li>DB allow arbitrary queries using the query language,</li>
+<li>Services expose an application-specific API that only allows inputs and outputs that are predetermined by the business logic of the service</li>
+</ul>
+</li>
+<li>
+<p>A key design goal of a service-oritented/microservices architecture is to make the application easier to change and maintain by making services independently deployable and evolvable.</p>
+<ul>
+<li>=&gt; we should expect old and new version of servers and clients to be running at the same time</li>
+<li>=&gt; <strong>so the data encoding used by servers and clients must be compatible across versions of the service API</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>web service</strong> : when HTTP is used as the underlying protocol for talking to the service, it is called a web service. Two popular apporaches are: REST and SOAP</p>
+<ul>
+<li>REST : emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication =&gt; has been gaining popularity</li>
+<li>SOAP : aims to be independent from HTTP and avoids using most HTTP features, comes withs a sprawling and complex multitude of related standards =&gt; has fallen out of favor in most companies.</li>
+</ul>
+</li>
+<li>
+<p><strong>The problems with RPCs (Remote Procedure Calls)</strong></p>
+<ul>
+<li>
+<p>Technologies for making API requests over network : Web, <del>EJB</del>, <del>RMI</del>, <del>DCOM</del></p>
+</li>
+<li>
+<p>All of these are based on the idea of RPC</p>
+</li>
+<li>
+<p>Although RPC seems convenient at first, the aproach is fundamentaly flawed.</p>
+<ol>
+<li>A local function call is predictable. A network request is unpredictable : the request or response may be lost due to a network problem.</li>
+<li>iIt normally takes about the same time to execute a local function. But a latency of network request is wildly variable</li>
+<li>You can efficiently pass references (pointers) of objects in local memory to a locla funcion. But for a network request, all those parameters need to be encoded into a sequence of bytes</li>
+<li>The client and the service may be implemented in different programming languages, so the RPC framework must translate datatypes from one language into another</li>
+</ol>
+</li>
+<li>
+<p>Despite all these problems, RPC isn&rsquo;t going away. =&gt; Various RPC frameworks have been built on top of all the encodings, mentioned in this chapter.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data encoding and evolution for RPC</strong></p>
+<ul>
+<li>For evolvability, it is important that RPC clients and servers can be changed and deployed independently.</li>
+<li>The backward and forward compatibility properties of an RPC scheme are inherited from whatever encoding it uses:
+<ul>
+<li>Thrift, gRPC (Protocol Buffer), and Avro RPC can be evolved according to the compatibility rules of the respective encoding format</li>
+<li>In SOAP, requests and responses are specified with XML schemas.</li>
+<li>RESTful APIs most commonly use JSON (w/o a formally specified schema). Adding &lsquo;optional&rsquo; request parameters and adding new fields to respone objects are usually considered.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="423-message-passing-dataflow">4.2.3 Message-Passing Dataflow</h3>
+<ul>
+<li>
+<p>We will briefly look at asynchronous message-passing systems</p>
+<ul>
+<li>similar to RPC in that a client&rsquo;s request is delivered to another process with low latency.</li>
+<li>the message is not sent via a direct network connection, but goes via an intermediary called a message broker (also called message queue)</li>
+</ul>
+</li>
+<li>
+<p>Using a message broker has several advantages compared to direct RPC:</p>
+<ol>
+<li>
+<p>can act as a buffer if the recipient is unavailable or overloaded</p>
+</li>
+<li>
+<p>can automatically redeliver messages to a process that has crashed =&gt; prevent messages from being lost</p>
+</li>
+<li>
+<p>avoids the sender needing to know the IP address and port number of the recipient</p>
+</li>
+<li>
+<p>allows one message to be sent to several recipients</p>
+</li>
+<li>
+<p>logically decouples the sender from the recipient (the sender just publishes messages and doesn&rsquo;t care who consumes them).</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Message Brokers</strong> : RabbitMQ, ActiveMQ, HornetQ, Apache Kafka =&gt; compare them in more detail in Chapter11</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="43-summary">4.3 Summary</h2>
+<ul>
+<li>
+<p>We discussed several data encoding formats and their compatibiliry properties :</p>
+<ul>
+<li>Programming language specific encodings</li>
+<li>Textual formats like JSON, XML, and CSV</li>
+<li>Binary schema-driven formats like Thrift, Protocol Buffers, and Avro</li>
+</ul>
+</li>
+<li>
+<p>We also discussed several modes of data flow</p>
+<ul>
+<li>Databases : the process writing to the database encodes the data and the process reading from the database decodes it</li>
+<li>RPC and REST APIs : the client encodes a request, the server decodes the request and encodes a response, and the client finally decodes the response</li>
+<li>Asynchronous message passing :  communicate by sending each other messages that are encoded by sender and decoded by the recipient</li>
+</ul>
+</li>
+<li>
+<p>We can conclue that with a bit of care, backward/forward compatibility and rolling upgrades are quite achievable.</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

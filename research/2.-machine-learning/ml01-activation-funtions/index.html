@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        ML Basic #1 | Activation Functions - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>ML Basic #1 | Activation Functions - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="ML Basic #1 | Activation Functions" />
+<meta property="og:description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2016-12-01T09:00:13+00:00" />
+<meta property="article:modified_time" content="2016-12-01T09:00:13+00:00" />
+
+<meta itemprop="name" content="ML Basic #1 | Activation Functions">
+<meta itemprop="description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를"><meta itemprop="datePublished" content="2016-12-01T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2016-12-01T09:00:13+00:00" />
+<meta itemprop="wordCount" content="893">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ML Basic #1 | Activation Functions"/>
+<meta name="twitter:description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/2.-machine-learning/ml01-activation-funtions/"
+    >ML Basic #1 | Activation Functions</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/" class="article-date">
+  <time datetime="2016-12-01 09:00:13 &#43;0000 UTC" itemprop="datePublished">2016-12-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-machine-learning/"> 2. Machine Learning </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/2.-machine-learning/ml01-activation-funtions/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>
+<p>Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.</p>
+</li>
+<li>
+<p>Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$</p>
+</li>
+<li>
+<p>왜 비선형함수를 사용하는가 : $y = wx+b$ 형태로 선형 output을 낸다면 layer의 깊이가 깊어진다한들, 결국 $w_2x +b_2$ 의 또다른 선형 함수를 모델링할 뿐이기 때문. (becaues composites of linear functions are again linear)</p>
+</li>
+<li>
+<p>bias 의 역할 : activation 함수의 x축 평행이동을 위하여. 가령 어떤 feature x가 2보다 작을때 Relu output을 0으로 만들고 싶은데, weight만으로는 이게 불가함. (It&rsquo;s similar to the constant b of a linear function y=ax+b. It allow you to move the line up and down to fit the prediction with the data better. Without b, the line always goes through the origin (0,0) and you may get a poorer fit.)</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="1-sigmoid--logistic">1. Sigmoid / Logistic</h2>
+<ul>
+<li>
+<p>Advantages :</p>
+<ol>
+<li>
+<p><strong>Smooth gradient</strong> : preventing &ldquo;jumps&rdquo; in output values</p>
+</li>
+<li>
+<p><strong>Clear predictions</strong> : for $x$ above 2 or below -2, output tends to be at the edge of the curve, very close to 0 or 1.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Disadvantage:</p>
+<ol>
+<li>
+<p><strong>Vanishing gradient</strong> : for very high or low values of X, there&rsquo;s no change to the prediction, causing a vanishing gradient problem. This can result in the network being too slow to reach an accurate prediction.</p>
+</li>
+<li>
+<p><strong>Outputs not zero centered</strong></p>
+</li>
+<li>
+<p><strong>Computationally expensive</strong></p>
+</li>
+</ol>
+<p>$$ \sigma (x) = (1+e^{-x})^{-1} \  \sigma&rsquo;(x) = \sigma(x) (1-\sigma(x)) $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="2-tan-h">2. Tan H</h2>
+<ul>
+<li>
+<p>Properties :</p>
+<ol>
+<li>
+<p><strong>Zero Centered</strong> : make it easier to model inputs that have strongly negative,neutral, and strongly positive values</p>
+</li>
+<li>
+<p>Same with Sigmoid funtion</p>
+</li>
+</ol>
+<p>$$ tanh(x) = \frac{sinh(x)}{cosh(x)}=\frac{e^x-e^{-x}}{e^x+e^{-x}} \ tanh&rsquo;(x) = 1 - tanh^2(x) $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="3-relu-rectified-linear-unit">3. ReLU (Rectified Linear Unit)</h2>
+<ul>
+<li>
+<p>Advantages :</p>
+<ol>
+<li>
+<p><strong>Computationally efficient</strong> : allows the network to converge very quickly</p>
+</li>
+<li>
+<p><strong>Non-Linearity</strong>: although it looks like a linear function, ReLU has a derivate fuction and allows for backpropagation.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Disadvantage:</p>
+<ol>
+<li><strong>Dying ReLU</strong> : when inputs approach zero, or are negative, the gradient of the function becomes zero, the network cannot perform backpropagation and cannot learn.</li>
+</ol>
+<p>$$ ReLU = \begin{cases} :x :: (x&gt;0)  \\ 0 :: (x&lt;0)  \end{cases} $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="4-leaky-relu">4. Leaky ReLU</h2>
+<ul>
+<li>
+<p>Properties :</p>
+<ol>
+<li><strong>alleviate Dying ReLU</strong> : To resolve dying ReLU problem, leaky ReLU has non zero outputs with negative input, thus the gradient does not become zero.</li>
+</ol>
+<p>$$ \text{Leaky ReLU} = \begin{cases} :x :: (x&gt;0)  \\ 0.01x :: (x&lt;0)  \end{cases} $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="5-elu-exponential-linear-units">5. ELU (Exponential Linear Units)</h2>
+<ul>
+<li>
+<p>Properties :</p>
+<ol>
+<li>
+<p><strong>alleviate Dying ReLU</strong> : To resolve dying ReLU problem, ELU has non zero outputs with negative input, thus the gradient does not become zero.</p>
+</li>
+<li>
+<p><strong>more computation</strong> : ELU has exponential function that ReLU doesn&rsquo;t have, thus it costs bit more than ReLU.</p>
+</li>
+</ol>
+<p>$$ \text{Leaky ReLU} = \begin{cases} :x :: (x&gt;0)  \\ \alpha(e^x -1) :: (x&lt;0)  \end{cases} $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="6-swish-scaled-exponential-linear-units">6. Swish (Scaled Exponential Linear Units)</h2>
+<ul>
+<li>
+<p>Properties :</p>
+<ol>
+<li>
+<p><strong>Unboundeness</strong> : Unlike sigmoid and Tanh functions, Swish is unbounded above which makes it useful near the gradients with values near to zero. This feature avoids saturation as training becomes slow near zero gradient value.</p>
+</li>
+<li>
+<p><strong>Smoothness of the curve</strong> : plays an important role in generalization and optimization. Unlike ReLU, Swish is a smooth function which makes it less sensitive to initializeing weights and learning rate.</p>
+</li>
+<li>
+<p><strong>Bounded Below</strong> : Like most of the activation functions out there, Swish is also bounded below which helps in strong regularization effects. Like ReLU and softplus, Swish produces negative outputs for small negative inputs due to its non-monotonicity. The non-monotonicity of Swish increases expressivity and importves gradient flow, Which is important considering that many preactivation fall into this range.</p>
+</li>
+</ol>
+<p>$$ Swish =  x * sigmoid(x) = x * (1+e^{-x})^{-1} $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="6-selu-scaled-exponential-linear-units">6. SELU (Scaled Exponential Linear Units)</h2>
+<ul>
+<li>
+<p>Properties :</p>
+<ol>
+<li>
+<p>Similar to ReLUs, SELUs enable deep neural networks since there is no problem with vanishing gradients.</p>
+</li>
+<li>
+<p>In contrast to ReLUs, SELUs <strong>cannot die</strong></p>
+</li>
+<li>
+<p>SELUs on their own <strong>learn faster and better</strong> than other activation functions, even if they are combined with batch normalization</p>
+</li>
+</ol>
+<p>$$ selu = \lambda \begin{cases}x :: (x&gt;0)  \ \alpha(e^x-1) :: (x&lt;0)  \end{cases} $$</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="6-soft-argmax">6. Soft-argmax</h2>
+<ul>
+<li>
+<p>To get the position where the intensity is maximal in a vector, we usually use an argmax func. But the problem is, this func has no derivative.</p>
+<p>$$ Softmax(x) = \frac{e^{x_i}}{\sum_j e^{x_j}} $$</p>
+</li>
+<li>
+<p>Using Sofmax, we get normalized probabilities for each $x_i$, and the expectation of this is the sum of the indices multiplied by their respective probabilities</p>
+<p>$$ \mathbb{E[x]} = \sum_i  \frac{e^{x_i}}{\sum_j e^{x_j}} i  $$</p>
+</li>
+<li>
+<p>However, this mean value is weak if there&rsquo;s multiple modes. To raise the max and lower the others, we can multiply $x$ by an arbitrarily big $\beta$.</p>
+<p>$$ \mathbb{E[x]} = \sum_i  \frac{e^{\beta x_i}}{\sum_j e^{\beta x_j}} i  $$</p>
+</li>
+</ul>
+<pre><code class="language-python">def soft_arg_max_khw(A, dim=1):
+    A_softmax = torch.softmax(A, dim=dim).cuda()
+    indices = torch.arange(start=0, end=A.size()[dim]).float().cuda()
+    return torch.matmul(A_softmax, indices).cuda()
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

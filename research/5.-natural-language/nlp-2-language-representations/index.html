@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        NLP #2 | Language Representation  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Conventional Encoding : Integer encoding, Sparse Representation : One-hot encoding, Document Term Matrix Word Embedding (Dense Representation): Word2Vec, Glove, FastText Pretraind Word Embedding : ELMo, GPT, BERT 1. Conventional Encoding Integer Encoding : 단어를 빈도수 순으로 정렬한 단어 집합을 만들고, 빈도수가 높은 순서대로정수를 부" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>NLP #2 | Language Representation  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="NLP #2 | Language Representation " />
+<meta property="og:description" content="0. Introduction Conventional Encoding : Integer encoding, Sparse Representation : One-hot encoding, Document Term Matrix Word Embedding (Dense Representation): Word2Vec, Glove, FastText Pretraind Word Embedding : ELMo, GPT, BERT 1. Conventional Encoding Integer Encoding : 단어를 빈도수 순으로 정렬한 단어 집합을 만들고, 빈도수가 높은 순서대로정수를 부" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-representations/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2021-01-13T09:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-13T09:00:00+00:00" />
+
+<meta itemprop="name" content="NLP #2 | Language Representation ">
+<meta itemprop="description" content="0. Introduction Conventional Encoding : Integer encoding, Sparse Representation : One-hot encoding, Document Term Matrix Word Embedding (Dense Representation): Word2Vec, Glove, FastText Pretraind Word Embedding : ELMo, GPT, BERT 1. Conventional Encoding Integer Encoding : 단어를 빈도수 순으로 정렬한 단어 집합을 만들고, 빈도수가 높은 순서대로정수를 부"><meta itemprop="datePublished" content="2021-01-13T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-13T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1903">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NLP #2 | Language Representation "/>
+<meta name="twitter:description" content="0. Introduction Conventional Encoding : Integer encoding, Sparse Representation : One-hot encoding, Document Term Matrix Word Embedding (Dense Representation): Word2Vec, Glove, FastText Pretraind Word Embedding : ELMo, GPT, BERT 1. Conventional Encoding Integer Encoding : 단어를 빈도수 순으로 정렬한 단어 집합을 만들고, 빈도수가 높은 순서대로정수를 부"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/5.-natural-language/nlp-2-language-representations/"
+    >NLP #2 | Language Representation </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-representations/" class="article-date">
+  <time datetime="2021-01-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-01-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-natural-language/"> 5. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/5.-natural-language/nlp-2-language-representations/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>Conventional Encoding : Integer encoding,</li>
+<li>Sparse Representation : One-hot encoding, Document Term Matrix</li>
+<li>Word Embedding (Dense Representation): <strong>Word2Vec</strong>, Glove, FastText</li>
+<li>Pretraind Word Embedding : ELMo, GPT, <strong>BERT</strong></li>
+</ul>
+<h3 id="heading"></h3>
+<hr>
+<h2 id="1-conventional-encoding">1. Conventional Encoding</h2>
+<ul>
+<li>Integer Encoding :  단어를 빈도수 순으로 정렬한 단어 집합을 만들고, 빈도수가 높은 순서대로정수를 부여하여 encoding 하는 방법</li>
+<li>Sparse Representation : 주어진 text를 대부분의 값이 0인 벡터로 표현하는 방법 (One-hot Encoding)</li>
+<li>Dense Representation (Word Embedding) : one-hot vector와 달리 벡터의 차원을 사용자가 지정하여, 다양한 값으로 이루어진 정해진 차원의 벡터로 표현하는 방법</li>
+</ul>
+<h3 id="heading-1"></h3>
+<hr>
+<h2 id="2-bag-of-words">2. Bag of Words</h2>
+<ul>
+<li>
+<p>Introduction :  단어들의 순서는 전혀 고려하지 않고, 단어들의 출현 빈도(frequency)에만 집중하는 텍스트 데이터의 수치화 표현 방법입니다.</p>
+</li>
+<li>
+<p>Methods :</p>
+<ol>
+<li>우선, 각 단어에 고유한 정수 인덱스를 부여합니다.</li>
+<li>각 인덱스의 위치에 단어 토큰의 등장 횟수를 기록한 벡터를 만듭니다.</li>
+</ol>
+</li>
+<li>
+<p><strong>DTM</strong> (Document-Term Matrix) : 다수의 문서에서 등장하는 각 단어들의 빈도를 행렬로 표현한 것을 말합니다. 쉽게 생각하면 각 문서에 대한 BoW를 하나의 행렬로 만든 것</p>
+</li>
+<li>
+<p><strong>TF-IDF</strong> (Term Frequency Inverse Doc Frequency) : 단어의 빈도와 역 문서 빈도(문서의 빈도에 특정 식을 취함)를 사용하여 DTM 내의 각 단어들마다 중요한 정도를 가중치로 주는 방법입니다. 사용 방법은 우선 DTM을 만든 후, 각 element에 IDF를 곱해 가중치를 부여합니다</p>
+<ol>
+<li>
+<p>TF : 특정 문서에서 특정단어의 등장횟수로 DTM과 동일</p>
+</li>
+<li>
+<p>IDF : &lsquo;특정 단어가 등장한 문서의 수 $(t)$ &rsquo; 의 역수, 다만 총 문서의 수 $(n)$ 가 커질수록 IDF가 기하급수로 커지기에 log를 취해줌 , 각 문서에서 몇번씩 등장했는지는 관심 없고</p>
+<p>​    $$IDF = log(\frac{n}{1+df(t)})$$</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Class-based TF-IDF</strong></p>
+<ul>
+<li>The goal of the class-based TF-IDF is to supply all documents within a single class with the same <strong>class vector</strong></li>
+<li>If documents are not individuals but part of a larger collective, then it might be interesting to actually regard them as such by joining all docs in a class together</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">  doc1 = &quot;정부가 발표하는 물가상승률과 소비자가 느끼는 물가상승률은 다르다.&quot;
+  doc2 = &quot;소비자는 주로 소비하는 상품을 기준으로 물가상승률을 느낀다.&quot;
+  doc3 = &quot;정부가 발표하는 물가상승률과 소비자가 느끼는 물가상승률은 다르다. 소비자는 주로 소비하는 상품을 기준으로 물가상승률을 느낀다.&quot;
+
+  # (1) 각 단어에 고유한 정수 인덱스를 부여하면
+  ('정부': 0, '가': 1, '발표': 2, '하는': 3, '물가상승률': 4, '과': 5, '소비자': 6, '느끼는': 7, '은': 8, '다르다': 9, '는': 10, '주로': 11, '소비': 12, '상품': 13, '을': 14, '기준': 15, '으로': 16, '느낀다': 17)  
+
+  # (2) 각 인덱스의 위치에 단어 토큰의 등장 횟루를 기록
+  BoW1 &gt;&gt; [1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]  
+  BoW2 &gt;&gt; [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1]  
+  BoW3 &gt;&gt; [1, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1]  
+
+  # (3) DTM
+  DTM &gt;&gt; [[1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],  
+          [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1],  
+          [1, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1] ]
+</code></pre>
+<pre><code>~~~python
+from sklearn.feature_extraction.text import CountVectorizer # Convert a collection of text documents to a matrix of token counts
+
+vectorizer = CountVectorizer(
+    min_df=0.1, # 10% 아래의 문서에서 출현한 단어 제외
+    max_df=0.9, # 90% 이상의 문서에서 출현한 단어 제외
+    ngram_range=(1,1),
+    lowercase=True,
+    tokenizer=lambda x:x.split())
+
+corpus.iter_sent=False
+X = vectorizer.fit_transform(corpus)
+print(X.shape) 
+~~~
+</code></pre>
+<h3 id="heading-2"></h3>
+<hr>
+<h2 id="2-word2vec">2. Word2Vec</h2>
+<ul>
+<li>Introduction : 위의  One-hot vector와 같은 sparse vector로는 각 단어의 유사성을 표현할 수 없는 한계가 존재, 이에 따라 단어간 유사성을 표현하기 위해 하나의 차원이 아닌 여러 차원에 단어의 의미를 분산하여 표현하는 대표적인 방법</li>
+<li>Methods :
+<ul>
+<li><strong>CBOW (Continuous Bag of Words)</strong>: Simple Neural Net에 context word를 one-hot vector형태로 넣으면 center word 를 출력하도록 학습,</li>
+<li><strong>Skip-Gram</strong> : CBOW와 반대로 작동 즉, center word로 나올 수 있는 context word를 추론.</li>
+</ul>
+</li>
+</ul>
+<br>
+<center><img width=40% src='https://wikidocs.net/images/page/22660/word2vec_renew_1.PNG'>
+<img width=40% src='https://wikidocs.net/images/page/22660/word2vec_renew_6.PNG'>
+<p> CBOW(T) , Skip-Gram (B) </p>
+</center>
+<h3 id="heading-3"></h3>
+<hr>
+<h2 id="3-elmo-embeddings-from-language-model-2018">3. ELMo (Embeddings from Language Model, 2018)</h2>
+<ul>
+<li>
+<p><strong>Introduction</strong> : 기존의 임베딩 방법들은 학습할 때만 주변 맥락을 고려함. 즉, 학습이 끝난 뒤에는 단어와 임베딩 벡터가 1:1로 매칭되어 변하지 않음. 따라서 &ldquo;River Bank&rdquo; 와 &ldquo;Bank Account&rdquo; 의 bank는 전혀다른 의미를 갖고 있음에도 동일한 벡터로 임베딩되는 문제가 발생.</p>
+</li>
+<li>
+<p><strong>Method</strong>:</p>
+<ol>
+<li>Contextualized Word Embedding : ELMo는 학습과정 뿐 아니라 prediction(embedding) 을 할때도 맥락을 반영할 수 있도록 만들어짐</li>
+<li>Bidirectional-LSTM : n개의 단어를 보고 n+1을 예측하는 순방향 LSTM 기반의 언어 모델과,  n개의 단어를 보고 n-1번째 단어를 예측하는 역방향 LSTM에 기존의 embedding vector를 입력하여 맥락을 고려한 임베딩벡터를 새로 만듦</li>
+</ol>
+</li>
+</ul>
+<h3 id="heading-4"></h3>
+<hr>
+<h2 id="4-bert-bidirectional-encoder-representations-from-transformers-2018">4. BERT (Bidirectional Encoder Representations from Transformers, 2018)</h2>
+<ul>
+<li>
+<p><strong>Introduction</strong> : introduce a new language representation model called BERT, that is designed to pre-train deep bi-directional  representations from unlabeled text by jointly conditioning on both left and right context in all layers.</p>
+</li>
+<li>
+<p><strong>Method</strong>:</p>
+<ol>
+<li>
+<p>Input Representation = Token Embeddings + Segment Embeddings + Position Embeddings</p>
+<ul>
+<li>[CLS] : 모든 sentence 의 첫번째 토큰은 [CLS]로 이 토큰은 전체 레이어를 다 거치고나면 token sequence의 결합된 의미를 함축, 여기에 간단한 classifier를 붙이면 classification task 해결가능, 분류문제 이외에는 무시
+<ul>
+<li>output을 다시 agg 해서 MLP에 붙이는 방법도 있겠으나 그 과정이 번거로우니 그냥 처음부터 [cls] 라는 토큰을 하나 같이 붙여놓고, MLP에는 얘만 붙어있으니 BackProp하는 과정에서 얘만  분류문제에 최적화되도록 학습되게 만들어둠</li>
+</ul>
+</li>
+<li>[SEP] : 후술할 Pretrain Task#2 와 같이 두개의 문장을 분리하기 위한 토큰</li>
+<li>(Learnable Positional Embeddings) :</li>
+</ul>
+</li>
+<li>
+<p>Architecture : BERT’s model architecture is a multi-layer bidirectional Transformer encoder (Only encoder part)</p>
+</li>
+<li>
+<p>Pretrain :  pre-train BERT using two unsupervised tasks</p>
+<ul>
+<li>
+<p>Task #1  Masked LM : 단어 중 일부를 (15%) [Mask] 토큰으로 바꾼뒤 [Mask] 토큰을 predict 하는 pretraining task를 수행</p>
+</li>
+<li>
+<p>Task #2  Next Sentence Prediction : 단순히 두개 문장을 주고 연속된 문장인지 판단하도록 하는 Binarized Next Sentence Prediction Task</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Finetune :  For each sub-task, simply plug in the task-specific inputs and outputs into BERT and fine-tune all the parameters  end-to-end</p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="https://mino-park7.github.io/nlp/2018/12/12/bert-%EB%85%BC%EB%AC%B8%EC%A0%95%EB%A6%AC/?fbclid=IwAR3S-8iLWEVG6FGUVxoYdwQyA-zG0GpOUzVEsFBd0ARFg4eFXqCyGLznu7w">Reference</a></p>
+</li>
+</ul>
+<h3 id="heading-5"></h3>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

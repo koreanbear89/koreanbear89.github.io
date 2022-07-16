@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        NLP #1 | Text Preprocessing - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction 일반적으로 NLP modeling 은 다음과 같은 방식으로 진행 Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization Text Representation : Word Embedding 과 같은 방법을 활용하여 자연" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>NLP #1 | Text Preprocessing - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="NLP #1 | Text Preprocessing" />
+<meta property="og:description" content="0. Introduction 일반적으로 NLP modeling 은 다음과 같은 방식으로 진행 Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization Text Representation : Word Embedding 과 같은 방법을 활용하여 자연" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/5.-natural-language/nlp-1-text-preprocessing/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2021-01-05T09:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-05T09:00:00+00:00" />
+
+<meta itemprop="name" content="NLP #1 | Text Preprocessing">
+<meta itemprop="description" content="0. Introduction 일반적으로 NLP modeling 은 다음과 같은 방식으로 진행 Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization Text Representation : Word Embedding 과 같은 방법을 활용하여 자연"><meta itemprop="datePublished" content="2021-01-05T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-05T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1157">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NLP #1 | Text Preprocessing"/>
+<meta name="twitter:description" content="0. Introduction 일반적으로 NLP modeling 은 다음과 같은 방식으로 진행 Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization Text Representation : Word Embedding 과 같은 방법을 활용하여 자연"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/5.-natural-language/nlp-1-text-preprocessing/"
+    >NLP #1 | Text Preprocessing</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/5.-natural-language/nlp-1-text-preprocessing/" class="article-date">
+  <time datetime="2021-01-05 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-01-05</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-natural-language/"> 5. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/5.-natural-language/nlp-1-text-preprocessing/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>일반적으로 NLP modeling 은 다음과 같은 방식으로 진행
+<ol>
+<li>Text Processing : 주어진 데이터 (Corpus) 를 필요에 따라 전처리하고 적합한 (단어) 단위로 Tokenization</li>
+<li>Text Representation : Word Embedding 과 같은 방법을 활용하여 자연어를 숫자형태로 바꾸어 표현</li>
+<li>Modeling : 목적에 따라 ML Modeling</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="1-tokenization">1. Tokenization</h2>
+<ul>
+<li>
+<p><strong>Tokenization</strong> : 주어진 corpus를 특정한 목적에 따라 정의한 단위인 token으로 나누는 작업.</p>
+</li>
+<li>
+<p><strong>Sentence Tokenization</strong> : 토큰의 단위가 문장인 경우. 온점(.) 는 일반적으로 문장의 boundary 역할을 하지만 &lsquo;Ph.D.&rsquo; 와 같이 abbreivation으로 사용되는 경우도 많음. 따라서 이를 구분하기 위한 binary classifier를 사용하기도 함.</p>
+</li>
+<li>
+<p><strong>Word Tokenization</strong> : 토큰의 기준이 단어인 경우. 영어는 띄어쓰기 단위로 자르면 단어토큰을 구분할 수 있으나 한국어의 경우 그렇지 않음.</p>
+</li>
+<li>
+<p><strong>Morpheme Tokenization</strong> : 토큰의 기준이 형태소인 경우. 한국어의 경우 다음과 같은 이유로 형태소 토큰화를 수행</p>
+<ol>
+<li>조사의 존재 : 영어로는 &lsquo;he&rsquo; 라는 동일한 단어이나 국어에는 &lsquo;그가&rsquo; &lsquo;그는&rsquo; 과 같이 다양한 조사가 띄어쓰기 없이 바로 붙어 서로 다른 단어로 인식되기 쉬움. 따라서 한국어에서는 형태소 tokenization을 수행하기도 함.</li>
+<li>띄어쓰기 부정확 : 영어와 비교하여 띄어쓰기가 잘 지켜지지 않는 경향이 있다. 띄어쓰기를 제대로 하지 않아도 이해하기 쉽고 띄어쓰기가 상대적으로 어렵기 때문.</li>
+</ol>
+</li>
+<li>
+<p>Python Packages</p>
+<ol>
+<li>NLTK : 영어 토큰화 패키지</li>
+<li>KoNLPY : 한국어 토큰화 패키지로 Okt, Mecal, Komoran, Hannanum, Kkma 와 같은 형태소 분석기를 제공.</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-python">from konlpy.tag import Okt
+okt = Okt()
+target = &quot;오늘 아침 서울 기온 영하 12도로 어제보다 무려 6도나 낮았는데요&quot;
+print(okt.morphs()) # &gt;&gt; ['오늘', '아침', '서울', '기온', '영하', '12', '도로', ...
+print(okt.pos()) # &gt;&gt; [('오늘', 'Noun'), ('아침', 'Noun'), ('서울', 'Noun') ...
+print(okt.nouns()) # &gt;&gt; ['오늘', '아침', '서울', '기온', '영하', '도로', ...
+</code></pre>
+<p><br><br><br></p>
+<h2 id="11-word-piece-tokenization">1.1 Word Piece Tokenization</h2>
+<ul>
+<li>TODO</li>
+</ul>
+<h2 id="2-lemmatization-and-stemming">2. Lemmatization and Stemming</h2>
+<ul>
+<li><strong>Lemmatization</strong> (표제어 추출) : 서로 다른 형태를 갖는 단어들의 뿌리가 되는 단어를 찾아가 corpus 를 구성하는 단어의 개수를 줄임. e.g. &ldquo;am&rdquo;, &ldquo;are&rdquo;, &ldquo;is&rdquo; 의 표제어는 &ldquo;be&rdquo;.</li>
+<li><strong>Stemming</strong> (어간 추출) : 정해진 규칙에 따라 (rule-based) 주어진 단어의 어미를 자름. 대표적으로는 poter algorithm이 있으며 <code>nltk.stem.PorterStemmer</code> 에 제공.</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="3-stopword">3. Stopword</h2>
+<ul>
+<li><strong>Stopword</strong> (불용어) : I, my me , the, a 와 같이 자주 사용되지만 실제 의미 분석에는 큰 도움이 되지 않는 단어들로 직접 정의할 수도 있음</li>
+</ul>
+<pre><code class="language-python">from nltk.corpus import stopwords
+print(stopwords.words('english')[:10]) # &gt;&gt; ['i', 'me', 'my', 'myself' ... 
+</code></pre>
+<p><br><br><br></p>
+<h2 id="4-regular-expression">4. Regular Expression</h2>
+<ul>
+<li>Regular Expression : 특정 규칙을 갖는 문자열을 나타내기 위해 사용되는 일종의 패턴</li>
+<li>파이썬에서는 re module 을 통해 아래와 같이 정규표현식 사용 가능.</li>
+</ul>
+<pre><code class="language-python">import re
+text = &quot;&quot;&quot;100 John  PROF
+                    101 James STUD
+                    102 Mac   STUD&quot;&quot;&quot;
+# '\s'는 공백을 나타내며 +는 하나 이상의 패턴을 의미. 
+re.split('\s+', text) # &gt;&gt; ['100', 'John', 'PROF', '101', 'James', 'STUD'..
+</code></pre>
+<ul>
+<li>RegexpTokenizer : <code>nltk.tokenize.RegexpTokenizer</code> 혹은  <code>pyspark.ml.feature.RegexTokenizer</code> 를 활용하여 정규표현식을 활용한 토큰화도 가능</li>
+</ul>
+<pre><code class="language-python">from nltk.tokenize import RegexpTokenizer
+tokenizer=RegexpTokenizer(&quot;[\s]+&quot;, gaps=True)
+print(tokenizer.tokenize(&quot;Don't be fooled by the dark sounding name&quot;)
+# &gt;&gt; [&quot;Don't&quot;, 'be', 'fooled', 'by', 'the', 'dark', ...
+</code></pre>
+<p><br><br><br></p>
+<h2 id="6-text-preprocessing-tools-for-korean-text">6. Text Preprocessing Tools for Korean Text</h2>
+<ul>
+<li>PyKoSpacing (pykospacing) : 띄어쓰기 관련 패키지</li>
+<li>Py-Hanspell (hanspell) : 한글 맞춤법 검사 관련 패키지</li>
+<li>SOYNLP (soynlp) : 품사태깅, 비지도학습 기반의 단어 토큰화를 바탕으로 신조어 혹은 형태소 분석기에 등록되지 않은 단어 토큰화에 유리</li>
+<li>Customized KoNLPy : 형태소 분석기에 사용자 정의 단어를 추가하여 konlpy를 사용가능.</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

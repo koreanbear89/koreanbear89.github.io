@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1. Linear Algebra on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/1.-linear-algebra/</link>
+    <description>Recent content in 1. Linear Algebra on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 27 Jun 2020 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/1.-linear-algebra/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200120-all-of-statistics-ch2/</link>
+      <pubDate>Mon, 20 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200120-all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction   How do we link sample spaces and events to data? Random Variable!
+  A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+  2.2 Distribuition Functions and Probability Functions  Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by  $$F_X(x) = \mathbb{P}(X \leq x)$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #1 | Probability </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/200116-all-of-statistics-ch1/</link>
+      <pubDate>Thu, 16 Jan 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/200116-all-of-statistics-ch1/</guid>
+      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
+      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+    </item>
+    
+    <item>
+      <title>MLCV #8 | Pose Estimation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</link>
+      <pubDate>Wed, 07 Aug 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</guid>
+      <description>0. Introduction Pose Estimation : The task aims to detect the locations of human anatomical keypoints (e.g., elbow, wrist, etc) 1. Deep Pose (2014) Introduction : The first major paper that applied Deep Learning to Human pose estimation Method : DNN-based regression : Alexnet backend (7 layers) with an extra final layer that outputs 2k joint coordinates (where $k$ is the number of joints). Cascade of pose regressors : refinement</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-29-linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-29-linear-algebra-for-ml-lec5/</guid>
+      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-07-linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-07-linear-algebra-for-ml-lec4/</guid>
+      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/</guid>
+      <description>Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&amp;gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&amp;gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&amp;gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&amp;gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&amp;gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&amp;gt; On</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #8 | Graph Neural Nets</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml08-graph-neural-networks/</link>
+      <pubDate>Wed, 26 Jun 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml08-graph-neural-networks/</guid>
+      <description>0. Introduction   What is a graph?
+  A graph is a data structure consisting of two components : vertices and edges.
+  Typically, a graph is defined as $G = (V,E)$, where $V$ is a set of nodes and $E$ is the edges between them.
+  A graph is often represented by an Adjacency matrix, $A \in \mathbb{R}^{N \times N}$ and feature matrix $X \in \mathbb{R}^{N \times F}$ to describe the nodes in the graph.</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-08-linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-08-linear-algebra-for-ml-lec2/</guid>
+      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations # 일종의 연립방정식 몸무게(60,65,5</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-07-linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-05-07-linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase) Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase) Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase) Tensors : an array of numbers arranged on a regular grid with</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #7 | Sequential Modeling</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml07-sequential-models/</link>
+      <pubDate>Fri, 22 Mar 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml07-sequential-models/</guid>
+      <description>0. Introduction one to one : Vanilla mode of processing without RNN, from fixed sized input to fixed-sized output one to many : Sequence output (e.g. image captioning) many to one : Sequence input (e.g. sentiment analysis) many to many : Sequence input and sequence output (e.g. Machine Translation) Figure 1. Overview of Sequence Processing 1. Recurrent Neural Networks Introduction : Imagine you want to classify what kind of action</description>
+    </item>
+    
+    <item>
+      <title>How to set up an NFS mount on Ubuntu 16.04</title>
+      <link>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</link>
+      <pubDate>Thu, 21 Mar 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</guid>
+      <description>1. Introduction   NFS, Network File System, is a distributed file system protocol that allows you to mount remote directories on your server.
+  In situation that you have big data in PC-1 and need to process them with PC-2
+  
+2. Methods   On the host (192.168.205.183)
+# install nfs-kernel-server $ sudo apt update $ sudo apt install nfs-kernel-server # configure the NFS Exports on the Host Server $ sudo vi /etc/exports # add line in this format : directory_to_share client(share_option1, .</description>
+    </item>
+    
+    <item>
+      <title>MLCV #7 | Action Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</link>
+      <pubDate>Sat, 03 Nov 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</guid>
+      <description>Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN + RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Conventional Models</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-conventional-models/</link>
+      <pubDate>Fri, 22 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-conventional-models/</guid>
+      <description>1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #5 | Training Techniques</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml05-training-techniques/</link>
+      <pubDate>Fri, 15 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml05-training-techniques/</guid>
+      <description>1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면</description>
+    </item>
+    
+    <item>
+      <title>MLCV #6 | Image Retrieval</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</link>
+      <pubDate>Thu, 14 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</guid>
+      <description>0. Introduction Image Retrieval : aims to find similar images to a query image among an image dataset. Tech Trend : Conventional Methods relying on local descriptor matching (scale invariant features - local image descriptors - reranking with spatial verifications) using FC layers after several conv layers as global descriptors [A Babenko et al, A Gordo et al.] using global pooling methods from the activations of conv layers. boost the</description>
+    </item>
+    
+    <item>
+      <title>MLCV #5 | Image Style Transfer</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</link>
+      <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</guid>
+      <description>0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to</description>
+    </item>
+    
+    <item>
+      <title>MLCV #3 | Semantic Segmentation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</link>
+      <pubDate>Sun, 23 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</guid>
+      <description>0. Introduction Image Segmentation : The process of assigning a label to every pixel in the image. Semantic Segmentation : treats multiple objects of the same class as a single entity. Instance Segmentation : treats multiple objects of the same class as distinct individual objects. 1. FCN (2015) Introduction : The first end-to-end pixel-wise prediction model based only on convolutional layers. Method: Feature Extraction : using convolution layers like conventional</description>
+    </item>
+    
+    <item>
+      <title>MLCV #2 | Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
+      <pubDate>Sat, 22 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</guid>
+      <description>0. Introduction Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) :</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</guid>
+      <description>0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne</description>
+    </item>
+    
+  </channel>
+</rss>

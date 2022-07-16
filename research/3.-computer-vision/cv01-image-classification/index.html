@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #1 | Image Classification - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>MLCV #1 | Image Classification - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #1 | Image Classification" />
+<meta property="og:description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2016-07-02T09:00:13+00:00" />
+<meta property="article:modified_time" content="2016-07-02T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #1 | Image Classification">
+<meta itemprop="description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training"><meta itemprop="datePublished" content="2016-07-02T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2016-07-02T09:00:13+00:00" />
+<meta itemprop="wordCount" content="883">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #1 | Image Classification"/>
+<meta name="twitter:description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv01-image-classification/"
+    >MLCV #1 | Image Classification</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/" class="article-date">
+  <time datetime="2016-07-02 09:00:13 &#43;0000 UTC" itemprop="datePublished">2016-07-02</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv01-image-classification/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+<ul>
+<li>Image Classification : The task of classifying an image according to its visual content.</li>
+</ul>
+<blockquote>
+<p>(2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding)</p>
+</blockquote>
+<h3 id="heading"></h3>
+<hr>
+<h2 id="alexnet-2012httpspapersnipsccpaper4824-imagenet-classification-with-deep-convolutional-neural-networkspdf"><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet (2012)</a></h2>
+<ul>
+<li>Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images.</li>
+<li>Method : Training on Multiple GPUs</li>
+</ul>
+<pre><code class="language-python">def AlexNet(x):
+  out = MP(relu(conv11x11(x)))
+  out = MP(relu(conv5x5(out)))
+  out = relu(conv3x3(out))
+  out = relu(conv3x3(out))
+  out = MP(relu(conv3x3(out)))
+  out = FC(relu(FC(relu(FC(out)))))
+  return out
+</code></pre>
+<h3 id="heading-1"></h3>
+<hr>
+<h2 id="vgg-net-2014httpsarxivorgpdf14091556v6pdf"><a href="https://arxiv.org/pdf/1409.1556v6.pdf">VGG Net (2014)</a></h2>
+<ul>
+<li>Introduction : come up with significantly more accurate ConvNet</li>
+<li>Method : deeper ConvNet</li>
+</ul>
+<pre><code class="language-python">def VGG16(x):
+  out = MP(conv3x3(conv3x3(x)))
+  out = MP(conv3x3(conv3x3(out)))
+  for i in range(3):
+    out = MP(conv3x3(conv3x3(conv3x3(out))))
+  out = softmax(FC(FC(FC(out))))
+  return out
+</code></pre>
+<h3 id="heading-2"></h3>
+<hr>
+<h2 id="googlenet-2015httpswwwcv-foundationorgopenaccesscontent_cvpr_2015papersszegedy_going_deeper_with_2015_cvpr_paperpdf"><a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf">GoogleNet (2015)</a></h2>
+<ul>
+<li>Introduction : efficient deeper networks (with fewer params than AlexNet)</li>
+<li>Method : inception module(NIN, Bottleneck)</li>
+</ul>
+<pre><code class="language-python">def inception_block(x):
+  branch_1x1 = conv1x1(x)
+  branch_3x3 = conv3x3(conv1x1(x))
+  branch_5x5 = conv5x5(conv1x1(x))
+  branch_pool = conv1x1(MP3x3(x,same))
+  out = concat([branch_1x1,branch_3x3,branch_5x5,branch_pool])
+  return out
+</code></pre>
+<h3 id="heading-3"></h3>
+<hr>
+<h2 id="resnet-microsoft-2015httpsarxivorgpdf151203385v1pdf"><a href="https://arxiv.org/pdf/1512.03385v1.pdf">ResNet (Microsoft, 2015)</a></h2>
+<ul>
+<li>Introduction : to solve the degradation problem caused by deeper layer.</li>
+<li>Method : Residual Block with shortcut(skip) connection defined as :</li>
+</ul>
+<p>$$ \mathbf{x}_{l+1} = \mathbf{x}_l + F(\mathbf{x}_l,{W_i})  $$</p>
+<pre><code class="language-python">def residual_block(x):
+  out = relu(bn1(conv3x3(x)))
+  out = relu(bn2(conv3x3(out)) + x)
+  return out
+</code></pre>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-07-03-figure1.png">
+</p>
+<h3 id="heading-4"></h3>
+<hr>
+<h2 id="densenet-2016httpsarxivorgpdf160806993pdf"><a href="https://arxiv.org/pdf/1608.06993.pdf">DenseNet (2016)</a></h2>
+<ul>
+<li>Introduction : information about the input or gradient can vanish and wash out as CNNs become deep</li>
+<li>Method : Dense Connectivity (not sum, just concat)</li>
+<li>Result : 77.85% of top-1 accuracy in ImageNet</li>
+</ul>
+<p>$$ x_l = H_l([x_0, x_1, &hellip; , x_{l-1} ]) $$</p>
+<p>$[x_0, x_1, &hellip; , x_{l-1}]$ means concatenation of the features-maps produced in previous layers.</p>
+<pre><code class="language-python">def dense_block(x):
+  out = conv1x1(relu(bn1(x)))  # Bottleneck for comput. efficiency
+  out = conv3x3(relu(bn2(out)))
+  out = concat([x, out])
+  return out
+</code></pre>
+<h3 id="heading-5"></h3>
+<hr>
+<h2 id="resnext-2016httpsarxivorgabs161105431"><a href="https://arxiv.org/abs/1611.05431">ResNeXt (2016)</a></h2>
+<ul>
+<li>Introduction : present a improved architecture that adopts ResNets strategy of repeating layers.</li>
+<li>Method :  split-transform-merge strategy (cardinality)</li>
+<li>Result : 80.9% of top-1 accuracy in ImageNet with 83.6M params</li>
+</ul>
+<p>$$
+\mathbf{x}_{l+1} = \mathbf{x}<em>l + \sum</em>{i=1}^{cardin} F_i(\mathbf{x}_l)
+$$</p>
+<pre><code class="language-python">def residual_block(x):
+  out = relu(bn1(conv3x3(x, groups=cardinality)))
+  out = relu(bn2(conv3x3(out, groups=cardinality)) + x)
+  return out
+</code></pre>
+<h3 id="heading-6"></h3>
+<hr>
+<h2 id="shufflenet2017httpsarxivorgpdf170701083pdf"><a href="https://arxiv.org/pdf/1707.01083.pdf">ShuffleNet(2017)</a></h2>
+<ul>
+<li>
+<p>Introduction : extremely computation-efficient CNN architecture named ShuffleNet, designed specially for mobile devices with very limited computing power.</p>
+</li>
+<li>
+<p>Methods : utilizes two new operations, <strong>pointwise group convolution</strong> and <strong>channel shuffle</strong></p>
+<ol>
+<li>
+<p>divide the channels in each group into several subgroups</p>
+</li>
+<li>
+<p>feed each group in the next layer with difference subgroup</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2016-07-02-fig2.png ">
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<!-- 단순하게 생각하면 Conv f-map을 depth축으로 분할하여 계산하되 이 분할된 channel sub group들을 중간중간 shuffle 해줌. -->
+<h3 id="heading-7"></h3>
+<hr>
+<h2 id="fixresnext-2019httpsarxivorgpdf190606423v3pdf"><a href="https://arxiv.org/pdf/1906.06423v3.pdf">FixResNeXt (2019)</a></h2>
+<ul>
+<li>Introduction : Existing augmentations induce a significant discrepancy between the size of the objects seen by the classifier at train and test time.</li>
+<li>Method : Simple strategy to optimize the classifier performance, that employs  different train and test resolution : in face, a lower train resolution improves the classification at test time.</li>
+<li>Result : 86.4% of top-1 accuracy in ImageNet with 83.6M params</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2017-07-02-fig1.png ">
+</p>
+<center>(L) conventional augmentation method   (R) proposed augmentation method</center>
+<h3 id="heading-8"></h3>
+<hr>
+<h2 id="vit--an-image-is-worth-16x16-words-2020-googreshttpsarxivorgpdf201011929pdf"><a href="https://arxiv.org/pdf/2010.11929.pdf">ViT : An Image is Worth 16x16 Words (2020, GoogRes)</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>Transformer architecture has become the de-facto standard for natural language processing tasks</li>
+<li>In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place</li>
+<li>We show that this reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks.</li>
+</ul>
+</li>
+<li>
+<p>Methods : applying a standard Transformer directly to images</p>
+<ul>
+<li>
+<p>Patch Embedding $x_i$ : extracts N non-overlapping image patches, performs a linear projection ($E$, is equivalent to a 2D conv) and then rasterises them into 1D token.</p>
+</li>
+<li>
+<p>learnable embedding $z_{cls}$ : an optional learned clasification token (Similar to BERT&rsquo;s [cls])  is prepended to the sequene of embedded patches</p>
+</li>
+<li>
+<p>learnable position embedding $p$ : added to the tokens to retain positional information,</p>
+<p>=&gt; When you have no idea about how to hand-craft positional encoding for your data</p>
+<p>=&gt; Let the transformer figure out for itself what it needs as positional embeddings</p>
+<p>=&gt; simply train the vectors in table of figure at  &ldquo;NLP3 &gt; Transformer &gt; Binarized Indexing&rdquo;</p>
+</li>
+</ul>
+<p>$$
+\mathbf{z} = [z_{cls}, E_{x_1}, E_{x_1}, &hellip;, E_{x_1}] + \mathbf{p}<br>
+$$</p>
+</li>
+<li>
+<p>Result:</p>
+<ul>
+<li>When trained on mid-sized datasets such as ImageNet(1.3M) without strong regularization, these models yield modest accuracies of a few percentage points below ResNets of comparable size</li>
+<li>However, the picture changes if the models are trained on larger datasets (JFT-300M, Figure3)</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="virtex--learning-visual-representations-from-textual-annotationshttpsarxivorgpdf200606666pdf"><a href="https://arxiv.org/pdf/2006.06666.pdf">VirTex : Learning Visual Representations from Textual Annotations</a></h2>
+<ul>
+<li>introduction : revisit supervised pretraining, and seek data-efficient alternatives to classification-based pretraining.
+<ul>
+<li>(1) Semantic density : Captions provide a semantically denser learning signal than unsupervised contrastive methods and supervised classification.</li>
+<li>(2) simplified data collection : natural language descriptions do not require an explicit ontology and can easily be written by non-expert workers,</li>
+</ul>
+</li>
+<li>VirTex : a pretraining approach using semantically dense captions to learn visual representations
+<ul>
+<li>(1) jointly train a ConvNet and Transformer from scratch to generate natural language captions for images
+<ul>
+<li>Visual Backbone : a convolutional network which computes visual features of image</li>
+<li>Textual Head : receives features from thevisual backbone and predicts captions for images</li>
+</ul>
+</li>
+<li>(2) transfer the learned features to downstream visual recognition tasks</li>
+</ul>
+</li>
+<li>Result
+<ul>
+<li>show that natural language can provide supervision for learning transferable visual representations with better data-efficiency than other approaches.</li>
+<li>VirTex matches or exceeds the performance of existing methods for supervised or unsupervised pre-training on ImageNet, despite using up to 10×fewer images</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

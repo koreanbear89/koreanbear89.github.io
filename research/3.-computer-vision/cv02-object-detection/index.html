@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #2 | Object Detection - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) :" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>MLCV #2 | Object Detection - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #2 | Object Detection" />
+<meta property="og:description" content="0. Introduction Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) :" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2017-07-22T09:00:13+00:00" />
+<meta property="article:modified_time" content="2017-07-22T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #2 | Object Detection">
+<meta itemprop="description" content="0. Introduction Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) :"><meta itemprop="datePublished" content="2017-07-22T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2017-07-22T09:00:13+00:00" />
+<meta itemprop="wordCount" content="850">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #2 | Object Detection"/>
+<meta name="twitter:description" content="0. Introduction Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. AP or mAP is generally used as the primary metrics metric.click here for details Non Maximum Suppression (NMS) :"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv02-object-detection/"
+    >MLCV #2 | Object Detection</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/" class="article-date">
+  <time datetime="2017-07-22 09:00:13 &#43;0000 UTC" itemprop="datePublished">2017-07-22</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv02-object-detection/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>Object Detection : a task of finding the different objects in an image and classifying them</li>
+<li>Salient Object Detection :  a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images.</li>
+<li>AP or mAP is generally used as the primary metrics metric.<a href="/archivers/Archive/2016-01-03">click here for details</a></li>
+<li>Non Maximum Suppression (NMS) : 하나의 사물에 대하여 여러개의 bbox를 그려낸 경우, 가장 confidence가 높은 bbox만 놔두고, 이와 IoU가 높은 다른 bbox들을 제거함.</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="1-r-cnn-2013httpsarxivorgabs13112524">1. <a href="https://arxiv.org/abs/1311.2524">R-CNN (2013)</a></h2>
+<ul>
+<li>
+<p>Introduction : An early application of CNNs to Object Detection tasks</p>
+</li>
+<li>
+<p>Method</p>
+<ol>
+<li>
+<p><strong>Region Proposals</strong> : Generate a set of proposals ($n=2000$) for bounding boxes using <strong>selective search</strong> algorithm.</p>
+</li>
+<li>
+<p><strong>Resize Regions</strong> : resize ROI patches to 224x224 for pretrained AlexNet</p>
+</li>
+<li>
+<p><strong>Classification</strong> : Run the images in b-boxes through a pre-trained AlexNet and SVM to see what object the image in the box is.</p>
+</li>
+<li>
+<p><strong>b-box regressor</strong> : Run the b-box through a linear regression model to output tighter coordinates</p>
+</li>
+</ol>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2018-07-22-fig1.png">
+</p>
+</li>
+</ul>
+<blockquote>
+<p>cf. Selective search looks at the images through windows of different sizes and for each window, tries to group together adjacent pixels by texture, color, or intensity to identify objects</p>
+</blockquote>
+<!-- ```python
+def RCNN(input=image):
+  # extract region proposals using sel_search algorithm
+  region_proposals = selective_search(input)
+  # resize to a standard square sizes for pretrained AlexNet
+  region_proposals = warp(region_proposals)
+  # extract features using pretrained Alexnet
+  feature_maps = pretrained_AlexNet(region_proposals)
+  # simply classifies whether this is an object, and if so what object.
+  pred = SVM(feature_maps)
+  # to generate tighter bounding box coordinates
+  bbox = linear_regression(region_proposals)
+  return pred,bbox
+
+``` -->
+<br>
+<br>
+<br>
+<h2 id="2-fast-r-cnn-2015httpsarxivorgabs150408083">2. <a href="https://arxiv.org/abs/1504.08083">Fast R-CNN (2015)</a></h2>
+<ul>
+<li>
+<p>Introduction : RCNN was quite slow because of 2000 (number of Region patches) forward passes per image (for all proposed regions). And also it need to train three different models separately (CNN, SVM, regression). Fast-RCNN tried to solve these problems.</p>
+</li>
+<li>
+<p>Method</p>
+<ol>
+<li>
+<p><strong>pretrained CNN</strong> : get top-conv feature map using pretrained CNN</p>
+</li>
+<li>
+<p><strong>Region Proposal</strong> : just get ROI coordinates from input image using selective search, and <strong>does not make image patches</strong>.</p>
+</li>
+<li>
+<p><strong>ROI pooling</strong> : conv-features for each proposed ROI are obtained by selecting a corresponding region from the feature map of input image <strong>instead of running CNN for every ROI patches</strong>.  Then, these conv-features are pooled adaptively.</p>
+</li>
+<li>
+<p><strong>Classification &amp; B-Box regressor</strong></p>
+</li>
+</ol>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2018-07-22-fig.2.png">
+</p>
+</li>
+</ul>
+<!-- > 쉽게 말하면, 일단 input image를 CNN에 넣고 feature map을 얻은 다음에 이 feature map에서 proposed b-box 와 matching 되는 부분만 따로 떼어내면 CNN 을 2000번 돌리지 않고도 2000개 proposal의 top-conv feature를 얻어낼 수 있음. -->
+<!-- ```python
+
+def ROI_poolling(feature_map, rois, size=(7,7)):
+  """
+  :param feature_map: (1,C,H,W)
+  :param rois: (N,4), N refers to number of bbox, 4 represent (ltx, lty, w, h)
+  :param size: output size
+  : return: (1, C, size[0], size[1])
+  """
+
+  for i in range(rois.size(0)):
+    x, y, w, h = rois[i]
+    # return specific size for any input size
+    output.append(F.adaptive_max_pool2d(feature_map[:,:,y:y+h, x:x+w], size))
+
+  return torch,cat(output)
+​``` -->
+<br>
+<br>
+<br>
+<h2 id="3-faster-r-cnn-2016httpsarxivorgabs150601497">3. <a href="https://arxiv.org/abs/1506.01497">Faster R-CNN (2016)</a></h2>
+<ul>
+<li>
+<p>Introduction : There was still one remaining bottleneck in the Fast R-CNN : the region proposer based on selective search.</p>
+</li>
+<li>
+<p>Method : adds a Fully Convolutional Network which is called <strong>Region Proposal Network</strong> between the top-conv feature map and ROI pooling. The RPN slides a window over the top-conv features. At each window location, the network ouputs a score and a bbox per anchor.</p>
+<ol>
+<li>
+<p><strong>Pretrained CNN</strong> : Run the image through a CNN to get a (top-conv) feature-map. <em>(returns 14x14x512)</em></p>
+</li>
+<li>
+<p><strong>Region Proposal Network</strong>: slide a small conv-net over the extracted feature-map which maps the input window to lower-dimensional feature (256-dim). Then this lower-dim feature is fed into two sibling FC layers, one for box-classification and the other for box-regression.</p>
+<ul>
+<li>
+<p>2.1 Classifier : returns 14x14x9x2 (9 for anchor and 2 for object/background)</p>
+</li>
+<li>
+<p>2.2 Box Regressor : returns 14x14x9x4 (9 for anchor and 4 for dx, dy, w, h)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ROI Pooling &amp; Classification</strong> : same as faster RCNN</p>
+</li>
+</ol>
+</li>
+</ul>
+<p style="text-align: center;">
+  <img class="post-fig" width="40%" align="center" src="/figures/2018-07-22-fig3.png ">
+  </p>
+<center> Figure 3. Architecture of Region Proposal Network (RPN) </center>
+<!-- ```python
+
+def faster_RCNN(input=image)
+
+  feature_map = CNN_top_conv(image)
+  object_like_ROIs = RPN(feature_map)
+  regularized_ROIs = ROI_pooling(object_like_ROIs)
+
+  ROI_feature = FC(regularized_ROIs)
+  pred = softmax(ROI_feature)
+  bbox_coord = bbox_regresser(ROI_feature)
+
+  return pred, bbox_coord
+
+​``` -->
+<br>
+<br>
+<br>
+<h2 id="4-mask-r-cnn-2017httpsarxivorgabs170306870">4. <a href="https://arxiv.org/abs/1703.06870">Mask R-CNN (2017)</a></h2>
+<ul>
+<li>
+<p>Introduction : to detects objects in an image while simultaneously generating a high-quality segmentation mask for each instance.</p>
+</li>
+<li>
+<p>Method : just add a third branch that outputs the object mask.</p>
+<ol>
+<li>
+<p><strong>Feature Extraction</strong> is same as Faster RCNN</p>
+</li>
+<li>
+<p><strong>RPN</strong> is same as Faster RCNN</p>
+</li>
+<li>
+<p><strong>The 3rd tails</strong> outputs (class + box offset + a binary mask) for each ROI in parallel.</p>
+<ul>
+<li>3.1 : Class labels are collapsed into a short output vectors by FC layers, same as Faster RCNN</li>
+<li>3.2 : Box offset is collapsed into a short output vectors by FV layers, same as Faster faster_RCNN</li>
+<li>3.3 : $m \times m $ masks are predicted for each ROI using an FCN</li>
+</ul>
+</li>
+<li>
+<p><strong>ROI Align</strong> : If we use ROI pool at the above process, there would be small difference between the real ROI and extracted feature map. It does not matter in classification task, but does in segmentation. To address this problem, authors proposed ROI Align.</p>
+</li>
+</ol>
+<!-- 3. 과정에서 ROI Pool 을 하면 실제 ROI와 이를 바탕으로 뽑아낸 small feature map 사이에 약간의 오차가 생긴다. classification을 할때는 이게 크게 영향이 없지만 segmentation을 하려니 문제가 되는거같아 ROI Align 이란애들 추가로 제안한다.  -->
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2018-07-22-fig4.png  ">
+</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="5-spinenet-2020httpsarxivorgpdf191205027v2pdf">5. <a href="https://arxiv.org/pdf/1912.05027v2.pdf">SpineNet (2020)</a></h2>
+<ul>
+<li>
+<p>Introduction : In past few years, most networks follow the design that encodes input image into intermediate features with monotonically decreased resolutions. Most improvements of network architecture design are in adding network depth and connections within features resolution group.</p>
+</li>
+<li>
+<p>Authors demonstrate that SpineNet can also be used as backbone model in Mask-RCNN Detector and improve both box detection and instance segmentation</p>
+</li>
+</ul>
+<!-- todo -->
+<!-- ## 5. Cascade RCNN  -->
+<!-- 이후는 Cascade RCNN 정도 모델 개선? 시간 남으면 RetinaNet, 그 외 SpineNet, CBNet등 BackBone의 구조나 Like-Ensemble 로 성능향상이 되고 있는중인듯  -->
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

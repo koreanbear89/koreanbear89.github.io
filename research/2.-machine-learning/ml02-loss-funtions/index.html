@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        ML Basic #2 | Loss Functions - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다." />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>ML Basic #2 | Loss Functions - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="ML Basic #2 | Loss Functions" />
+<meta property="og:description" content="0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml02-loss-funtions/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2016-12-02T09:00:13+00:00" />
+<meta property="article:modified_time" content="2016-12-02T09:00:13+00:00" />
+
+<meta itemprop="name" content="ML Basic #2 | Loss Functions">
+<meta itemprop="description" content="0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다."><meta itemprop="datePublished" content="2016-12-02T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2016-12-02T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1174">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ML Basic #2 | Loss Functions"/>
+<meta name="twitter:description" content="0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/2.-machine-learning/ml02-loss-funtions/"
+    >ML Basic #2 | Loss Functions</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/2.-machine-learning/ml02-loss-funtions/" class="article-date">
+  <time datetime="2016-12-02 09:00:13 &#43;0000 UTC" itemprop="datePublished">2016-12-02</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-machine-learning/"> 2. Machine Learning </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/2.-machine-learning/ml02-loss-funtions/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>
+<p>Loss Function : is a function that evaluate how well the algorithm models the target dataset</p>
+</li>
+<li>
+<p>MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.</p>
+</li>
+<li>
+<p>Cross Entropy : 확률론적 관점에서 CE는 Multinomial Distrib 의 negative log-likelihood와 같다. 즉, CE는 Multinomial Distrib. 의 MLE와 같다.</p>
+</li>
+<li>
+<p>MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-mean-squared-error-mse">1. Mean Squared Error (MSE)</h2>
+<ul>
+<li>
+<p>introduction : easily computable quantity that measures the average of the squares of the errors.</p>
+<p>$$ MSE =  \frac{1}{n} \sum_{i=1}^n (y_i - t_i)^2 $$</p>
+</li>
+<li>
+<p>L1 Loss (LAD : Least Absolute Deviation), L2 Loss (LSE : Least Square Error)</p>
+<p>$$ L_{L1} =  \sum_{i=1}^n | y_i - t_i |$$</p>
+<p>$$ L_{L1} = LSE = \sum_{i=1}^n (y_i - t_i)^2$$</p>
+</li>
+<li>
+<p><strong>확률론적 관점</strong> 에서 MSE 는 Gaussian Distribution의 Negative log likelihood와 같다. (모델의 예측결과를 $y_i = \theta^T x_i= \mu$로 하는 정규분포라 가정)</p>
+</li>
+</ul>
+<p>$$ \text{log likelihood} , logP(t|x;\theta) = log \prod_i P(t_i | x_i;\theta) = \sum_i log  \frac{1}{\sqrt{2\pi \sigma}} e^{- \frac{(t_i - \theta^T x_i)^2}{2\sigma^2} } \ =  \sum_i \frac{1}{\sqrt{2 \pi \sigma}} + \sum_i (- \frac{(t_i - \theta^T x_i)^2}{2\sigma^2} ) \ = C_1 - C_2 \sum_i (t_i - \theta^T x_i)^2$$</p>
+<br>
+<hr>
+<h2 id="2-cross-entropy-loss">2. Cross Entropy Loss</h2>
+<ul>
+<li>
+<p>정보이론의 관점에서 : Cross Entropy 는 학습데이터의 정보량의 평균값인 Entropy와 모델의 예측값의 Entropy 사이의 KLD</p>
+<ol>
+<li>
+<p><strong>Information content</strong> : surprisal of a random variable or signal is the amount of information</p>
+<ul>
+<li>
+<p>동전을 던져 앞면이 나오는 사건의 정보량 : $ -log_2 (0.5) = 1$</p>
+</li>
+<li>
+<p>주사위를 던져 눈이 1이 나오는 사건의 정보량 : $ -log_2 (1/6) = 2.5849$</p>
+</li>
+<li>
+<p>정보량 = 놀람의 정도 : 즉, 발생확률이 더 낮은 사건이 더 높은 정보량을 보인다.</p>
+</li>
+<li>
+<p>그렇다면 단순히 이를 확률의 역수인 $\frac{1}{p(x)}$가 아니라 log를 취하는 이유는 무엇일까, log를 취함으로서 놀람의 정보를 표현하는데 필요한 최소한의 자원을 나타낼 수 있게된다. 예로 1/8로 발생하는 어떤사건을 2진수로 표현한다면 밑이 2인 로그함수를 이용하여 $log2(8)$ 최소 3개의 비트가 필요함을 알 수 있다.</p>
+<p>$$ I(E) = -log P(E)$$</p>
+<ol start="2">
+<li>
+<p><strong>Entropy (Shannon Entropy)</strong> : average(expectation) information content of discrete random variable X</p>
+<ul>
+<li>
+<p>즉 엔트로피는 이러한 정보량의 평균이며, 동시에 사건을 표현하기 위해 요구되는 리소스의 평균이라고도 할 수 있다.</p>
+<p>$$ Entropy = -\sum_{i=1}^{N} p_i log{p_i} $$</p>
+<!-- 주로 전체 사건의 확룰분포의 불확실성을 나타낼때 쓰며 모든 사건의 정보량의 기댓값을 의미한다. -->
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Relative Entropy (Kullback-Leibler Divergence)</strong> : measure of how one probability distribution is different from second, reference probability distribution.</p>
+<p>$$ KL(p|q) =   \sum_i p_i log(\frac{p_i}{q_i}) = \sum_i (p_i log p_i - p_i log q_i)  = (-\sum_{i=1}^{N} p_i log{q_i}) - (-\sum_{i=1}^{N} p_i log{p_i})$$</p>
+<!-- 주어진 distrib 이 reference와 얼마나 다른지를 계산, 교환법칙이 성립하지 않고 따라서 거리로 사용할 수 없다-->
+</li>
+<li>
+<p><strong>Cross-Entropy</strong>: To minimize the dissimilarity of distributions, we should find the $q$ that minimize the first term (second term is independent to the distrib. $q$). From this we can get cross entropy error.</p>
+<p>$$ CE = -\sum_{i=1}^{N} p_i log{q_i} $$</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>확률론적 관점에서</strong> : Multinomial Distrib 의 Negative Log likelihood</p>
+<p>$$ \text{log likelihood} , logP(t|x;\theta) =  log \prod_i \prod_k \pi_k^{t_k} = \sum_i \sum_k t_k log \pi_k$$</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="3-binary-cross-entropy">3. Binary Cross Entropy</h2>
+<ul>
+<li>위의 Cross Entropy 식에서 단순하게 $N=2$, Binary classification이므로 $p_2 = 1-p_1$</li>
+</ul>
+<p>$$BCE = -(p_1 logq_1 + p_2 logq_2) = - (p_1 log q_1 + (1-p_1) log (1-q_1))$$</p>
+<ul>
+<li><strong>확률론적 관점에서</strong> : binomial distrib 의 log likelihood 는 BCE와 같다</li>
+</ul>
+<p>$$ \text{log likelihood} , logP(y|x;\theta) = log \prod_i p_i^{y_i} (1-p_i)^{1-y_i} \ = \sum_i  log( p_i^{y_i} (1-p_i)^{1-y_i}) \  = \sum_i ( y_i log p_i + (1-y_i)log(1-p_i)  ) $$</p>
+<br>
+<hr>
+<h2 id="4-dice-coefficient-loss">4. Dice-Coefficient Loss</h2>
+<p>$$\text{Dice Coefficient} = \frac{2*|X \cap Y|}{|X| + |Y|} $$</p>
+<ul>
+<li>
+<p>Where $ |X| $ is the cardinality (i.e. the number of elements in each set) of the set $X$.</p>
+</li>
+<li>
+<p>It  has been used as a metric in the field of image segmentation. And sometimes it can be used as a loss function.</p>
+</li>
+<li>
+<p>In the field of image segmentation, Dice Loss can be used as a loss function when the foreground is smaller than the background, causing imbalance problem</p>
+<pre><code class="language-python">def dice_loss(pred, target):
+smooth = 1.
+# have to use contiguous since they may from a torch.view op
+iflat, tflat = pred.contiguous().view(-1).cuda(), target.contiguous().view(-1).cuda()
+intersection = (iflat * tflat).sum()
+A_sum, B_sum = torch.sum(iflat * iflat), torch.sum(tflat * tflat)
+return 1 - ((2. * intersection + smooth) / (A_sum + B_sum + smooth)
+</code></pre>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="5-noise-contrastive-learning">5. Noise Contrastive Learning</h2>
+<ul>
+<li>Intuitive explanation :
+<ol>
+<li>If we want to find the next words (<code>you</code>) appropriate for a given context (<code>[Nice, to, meet]</code>) .</li>
+<li>We can train the network with the softmax CE loss function, which it will return the probabilities for all candidate words.</li>
+<li>This means that the output &ldquo;scores&rdquo; for each class have to be normalized, converted into actual probabilities for each class. =&gt; computationally expensive</li>
+<li>Let&rsquo;s simplify this multinomial classification problem to binary classification (logistic regression) by transformation inputs with &ldquo;set of words and answer&rdquo; to positive and negative pairs.</li>
+<li>So the model only needs to predict whether a pair is positive or negative rather than find which word would be the answer</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

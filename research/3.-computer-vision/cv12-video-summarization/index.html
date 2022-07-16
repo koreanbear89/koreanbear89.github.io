@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #12 | Video Summarization - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction   Video summarization : is the process of distilling a raw video into a more compact form without losing much information.
+  Can be categorized into two forms :
+  Static Video Summarization (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video
+ storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes    Dynamic Video Summarization (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots." />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>MLCV #12 | Video Summarization - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #12 | Video Summarization" />
+<meta property="og:description" content="Introduction   Video summarization : is the process of distilling a raw video into a more compact form without losing much information.
+  Can be categorized into two forms :
+  Static Video Summarization (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video
+ storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes    Dynamic Video Summarization (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv12-video-summarization/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2021-07-29T09:00:13+00:00" />
+<meta property="article:modified_time" content="2021-07-29T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #12 | Video Summarization">
+<meta itemprop="description" content="Introduction   Video summarization : is the process of distilling a raw video into a more compact form without losing much information.
+  Can be categorized into two forms :
+  Static Video Summarization (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video
+ storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes    Dynamic Video Summarization (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots."><meta itemprop="datePublished" content="2021-07-29T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2021-07-29T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1278">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #12 | Video Summarization"/>
+<meta name="twitter:description" content="Introduction   Video summarization : is the process of distilling a raw video into a more compact form without losing much information.
+  Can be categorized into two forms :
+  Static Video Summarization (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video
+ storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes    Dynamic Video Summarization (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv12-video-summarization/"
+    >MLCV #12 | Video Summarization</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv12-video-summarization/" class="article-date">
+  <time datetime="2021-07-29 09:00:13 &#43;0000 UTC" itemprop="datePublished">2021-07-29</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv12-video-summarization/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>Video summarization : is the process of distilling a raw video into a more compact form without losing much information.</p>
+</li>
+<li>
+<p>Can be categorized into two forms :</p>
+<ul>
+<li>
+<p><strong>Static Video Summarization</strong> (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video</p>
+<ul>
+<li>storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes</li>
+</ul>
+</li>
+<li>
+<p><strong>Dynamic Video Summarization</strong> (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots.</p>
+<ul>
+<li>the ability to include audio and motion elements that offer a more natural story narration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Can be categorized :</p>
+<ul>
+<li>
+<p>Feature-based Methods  : Feature-based video summarization techniques are classified on the basis of motion, color, dynamic contents, gesture, audio-visual, speech transcripts, objects, etc. These techniques work well if a user wants to focus on the features of the video.</p>
+</li>
+<li>
+<p>Clustering-based Methods : Clustering is the most frequently used technique when we encounter similar characteristics or activities within a frame. It also helps to eliminate those frames that have irregular trends. Other methods for video summarization enable a more efficient way of browsing video but also create summaries that are either too long or confusing. Video summarization based on clustering is classified into similar activities, K-means, partitioned clustering, and spectral clustering.</p>
+</li>
+<li>
+<p>Bag of Importance Model : A video can be viewed as a collection of weighted features instead of equally-important ones. The BoI model provides a mechanism to exploit both inter-frame and intra-frame properties by quantifying the importance of the individual features representing the whole video. The representative frames hence can be identified by aggregating the weighted features. It’s very reasonable to assume that a video sequence in its raw feature space is a dense manifold. In order to remove redundant visual features, a video sequence needs to be projected to a low-dimensional sparse space. The locality-constrained linear coding method provides such a mechanism, which can take advantage of the manifold geometric structure to learn a nonlinear function in a high dimensional space/manifold, and locally embed the points on the manifold in a lower-dimensional space, expressed as the coordinates with respect to a set of anchor points.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Benchmark</p>
+<ul>
+<li>SumMe : The SumMe dataset is a collection of 25 videos that cover a variety of events (e.g. sports, holidays, etc.) The videos in SumMe are 1.5 to 6.5 minutes in length.</li>
+<li>TVSum : The TVSum dataset contains 50 YouTube videos of 10 different categories. The videos in this dataset are typically 1 to 5 minutes in length.</li>
+</ul>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="conventional-approaches">Conventional Approaches</h2>
+<h3 id="vsumm-2011">VSUMM (2011)</h3>
+<ul>
+<li>
+<p>Introduction : Video SUMMarization, a methodology for the production of static video summaries</p>
+</li>
+<li>
+<p>Methods : based on color feature extraction from video frames and k-means clustering algorithm</p>
+<ol>
+<li>The original video is split into frames (sampling rate is fixed on 1frame/sec)</li>
+<li>Color features are extracted to form a color histogram in HSV color space</li>
+<li>The frames are grouped by k-means clustering algorithm and one frame per cluster is selected (key-frame)</li>
+<li>The key frames that are too similiar are eliminated</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="supervised-learning">Supervised Learning</h2>
+<h3 id="learning-frame-importance-by-modeling-the-temporal-dependency-among-frames">Learning frame importance by modeling the temporal dependency among frames</h3>
+<ul>
+<li>
+<p>Introduction : Early DL-based approaches cast summarization as a structured prediction problem and try to make estimates about the frames’ importance by modeling their temporal dependency. =&gt; Simply extract visual features from each frame and model the temporal relation between them using LSTM.</p>
+</li>
+<li>
+<p>Methods</p>
+<ol>
+<li>
+<p>During the training phase, the Summarizer gets the sequence of the video frames (visual features extracted from each frame) and the available ground-truth data that indicate the importance of each frame according to the users’ preferences.</p>
+</li>
+<li>
+<p>These data are then used to model the dependencies among the video frames in time and estimate the frames’ importance</p>
+</li>
+<li>
+<p>uses LSTM-like units to model variable range temporal dependency among video frames.</p>
+</li>
+<li>
+<p>Frames’ importance is estimated using a multi-layer perceptron (MLP),</p>
+</li>
+</ol>
+</li>
+<li>
+<p>References</p>
+<ul>
+<li><em>(2016) Video Summarization with LSTM</em> : The first proposed approach to this direction using LSTM</li>
+<li><em>(2018) Summarizing Videos with Attention</em> :  proposes a seq2seq network for video summarization.</li>
+<li><em>(2019) Learning Hierarchical Self-Attention for Video Summarization</em></li>
+<li><em>(2018) Video Summarization Using Fully Convolutional Sequence Networks</em> :  tackles video summarization as a semantic segmentation task where the input video is seen as a 1D-image (of size equal to the number of video frames) with K-channels that correspond to the K dimensions of the frames’representation vectors</li>
+<li><em>(2018) Extractive VideoSummarizerwith Memory Augmented Neural Networks</em> :  stores information about the entire video in an external memory and predicts each shot’s importance by learning an embedding space that enables matching of each shot with the entire memory information.</li>
+</ul>
+</li>
+<li>
+<p>TODO : Pretrained Models, Benchmark Set</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="learn-frame-importance-by-modeling-the-spatio-temporal-structure-of-the-video">Learn frame importance by modeling the spatio-temporal structure of the video.</h3>
+<ul>
+<li>
+<p>Introduction : To make better estimates for the importance of video frames/fragments, some techniques pay attention to both the spatial and temporal structure of the video.</p>
+</li>
+<li>
+<p>Methods : Again, the Summarizer gets the sequence of the video frames and the available ground-truth data that indicate the importance of each frame according to the users’ preferences. But, extending the analysis pipeline of the previously described group of methods, it then also models the spatiotemporal dependencies among frames.</p>
+</li>
+<li>
+<p>References</p>
+<ul>
+<li><em>(2019) Online video summarization : Predicting future to better summarize present</em></li>
+<li><em>(2019) Spatiotemporal Modeling and Label Dis-tribution Learning for Video Summarization</em></li>
+<li><em>(2019) Video Summarization Via Actionness Ranking</em></li>
+<li><em>(2020) A Novel Key-Frames Selection Framework for Comprehensive Video Summarization</em> : CapsulesNet for Motion extraction &amp; attention mechanism</li>
+</ul>
+<p><br><br><br></p>
+</li>
+</ul>
+<h3 id="learn-summarization-by-fooling-a-discriminator-adversarial-learning">Learn summarization by fooling a discriminator (Adversarial Learning).</h3>
+<ul>
+<li>Introduction : Minimizing the distance between the machine-generated and the ground-truth summaries, using GANs</li>
+<li>Methods : The Summarizer (which acts as the Generator of the GAN) gets the sequence of the video frames and generates a summary by computing frame-level importance scores.</li>
+<li>Reference
+<ul>
+<li><em>(2019) DTR-GAN : Dilated Temporal Relational Adversarial Network for Video Summarization</em></li>
+</ul>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="unsupervised-learning">Unsupervised Learning</h2>
+<h3 id="learn-summarization-by-fooling-a-discriminator-when-trying-to-discriminate-the-original-video-or-set-of-key-frames-from-a-summary-based-reconstruction-of-it">Learn Summarization by Fooling a Discriminator when trying to discriminate the original video (or set of key-frames) from a summary-based reconstruction of it.</h3>
+<ul>
+<li>Introduction : Due to the lack of GT for learning video summarization, most existing unsupervised approaches rely on the rule that a representative summary ought to assist the viewer to infer the original video content.</li>
+<li>Methods : utilize GANs to learn how to create a video summary that allows a good reconstruction of the original video
+<ul>
+<li>Summarizer : simply summarize input video by estimating the importance of each frame</li>
+<li>Reconstructor : reconstruct original video from summarized one</li>
+<li>Discriminator : outputs a score that quantifies the similarity between the original video and reconstructed one.</li>
+</ul>
+</li>
+<li>Reference
+<ul>
+<li><em>(2017) Unsupervised VideoSummarization with Adversarial LSTM Networks</em></li>
+<li>(2019) A stepwise, label-based approach for improving the adversarialtraining in unsupervised video summarization</li>
+<li>(2019) Cycle-SUM : Cycle-Consistent Adversarial LSTM Networks for Unsupervised VideoSummarization</li>
+<li>(2019) Discriminativefeature learning for unsupervised video summarization,</li>
+<li>(2020) Unsupervised Video Summarization via Attention-Driven Adversarial Learning,</li>
+<li>(2019) Unsupervised Video Summarization with AttentiveConditional Generative Adversarial Networks,</li>
+<li>(2019) Video Summarization by LearningFromUnpaired Data</li>
+</ul>
+</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="learn-summarization-by-reinforcement-learning-based-on-hand-crafted-rewords">Learn Summarization by reinforcement learning based on hand-crafted rewords</h3>
+<ul>
+<li>
+<p>Introduction : Aiming to deal with the unstable training and the restricted evaluation criteria of GAN-based methods. Some unsupervised approaches perform summarization by targeting specific properties of an optimal video summary.</p>
+</li>
+<li>
+<p>Methods : utilize the principles of reinforcement learning in combination with hand-crafted reward functions that quantify the existence of desired characteristics in the generated summary</p>
+<ul>
+<li>Summarizer : gets the sequence of the video frames and creates a summary by predicting frame-level importance scores</li>
+<li>Evaluator : is responsible to quantify the existence of specific desired characteristics with the help of hand-crafted reward functions</li>
+</ul>
+</li>
+<li>
+<p><em>(2018) <strong>Deep Reinforcement Learning for Unsupervised Video Summarization with Diversity-Representativeness Reward</strong></em></p>
+</li>
+<li>
+<p><em>(2019) Enhanced Deep Video Summarization Network</em></p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

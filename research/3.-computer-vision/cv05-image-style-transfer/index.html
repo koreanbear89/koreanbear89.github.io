@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #5 | Image Style Transfer - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>MLCV #5 | Image Style Transfer - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #5 | Image Style Transfer" />
+<meta property="og:description" content="0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2018-04-26T09:00:13+00:00" />
+<meta property="article:modified_time" content="2018-04-26T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #5 | Image Style Transfer">
+<meta itemprop="description" content="0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to"><meta itemprop="datePublished" content="2018-04-26T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2018-04-26T09:00:13+00:00" />
+<meta itemprop="wordCount" content="668">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #5 | Image Style Transfer"/>
+<meta name="twitter:description" content="0. Introduction Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv05-image-style-transfer/"
+    >MLCV #5 | Image Style Transfer</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/" class="article-date">
+  <time datetime="2018-04-26 09:00:13 &#43;0000 UTC" itemprop="datePublished">2018-04-26</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv05-image-style-transfer/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image).</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-image-style-transfer-using-cnns-2016httpswwwcv-foundationorgopenaccesscontent_cvpr_2016papersgatys_image_style_transfer_cvpr_2016_paperpdf">1. <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf">Image Style Transfer using CNNs (2016)</a></h2>
+<ul>
+<li>
+<p>Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images.</p>
+</li>
+<li>
+<p>Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to have similar contents with $I_{content}$ and similar style with $I_{style}$.</p>
+<ol>
+<li>
+<p>The <strong>content loss</strong> between $I_{content}$ and $I_{output}$ is calculated using Frobenius norm at $l_{th}$ layer :</p>
+<p>$$L_{content} = \Sigma(F_{output} - F_{content})^2$$</p>
+</li>
+<li>
+<p>The <strong>style loss</strong> between $I_{style}$ and $I_{output}$ at $l_{th}$ layer is calculated using Frob. norm and Gram matrix. The style loss is defined by weighted sum of $L_{style}^l$ :</p>
+<p>$$L_{style} = \sum w_l \cdot L_{style}^l = \sum w_l (\sum(Gram(F_{output}) - Gram(F_{style})))$$</p>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p>The final obejective function is defined as :</p>
+<p>$$ L_{total} = \alpha L_{content} + \beta L_{style}$$</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="2-pix2pix-2016httpsarxivorgabs161107004">2. <a href="https://arxiv.org/abs/1611.07004">pix2pix (2016)</a></h2>
+<ul>
+<li>Introduction : Conditional adversarial networks as a general-purpose solution to image-to-image translation problems.</li>
+</ul>
+<!-- CNN(U-Net) 구조만을 갖고 이미지를 합성하면 그럴듯하지만 un-realistic한 이미지가 생성됨. 이는 합성된 이미지와 실제 이미지의 difference 만을 갖고 모델을 합성하기 때문이며 이를 개선하기위해 Discriminator를 추가하고 loss에 관련항을 추가한다. -->
+<ul>
+<li>Method : The generator translate the input image (gray-scale) to target domain(color). And, the discrimator distinguishes between the converted image and real image.</li>
+</ul>
+<p>$$ \text{GAN objective} = arg \min_G \max_D L_{cGAN}(G,D) + \lambda L_{L1}(G) $$</p>
+<ol>
+<li>
+<p><strong>Adversarial Loss</strong> , the first term, is from cGAN loss :</p>
+<p>$$ L_{cGAN}(G,D) = \mathbb{E}_y[log(D(x,y))] + \mathbb{E}_x[log(1-D(G(x)))]$$</p>
+</li>
+<li>
+<p><strong>Reconstruction Loss</strong>, the second term,  is from traditional CNN based loss, which means pixel-wise differences between $y$ and $G(x)$.</p>
+<p>$$ L_{L1}(G) = \mathbb{E}_{x,y}[| y-G(x) |] $$</p>
+</li>
+<li>
+<p>Generator architecture is based on <strong>U-Net</strong> and discriminator architecture is based on <strong>PatchGAN</strong>(Markovian discrimator).</p>
+</li>
+<li>
+<p>Generator is fed on real satellite image instead of latent vector and the pair of images are fed into the discriminator.</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2018-04-26-fig1.png">
+</p>
+<center>Figure. Overview of pix2pix Architecture</center>
+</li>
+</ol>
+<!--
+> 기존의 방법대로 CNN (U-Net)이 합성한 칼라이미지와 실제 칼라이미지의 L1 distance 정도만을 loss로 network을 학습시켜보면 대충 blur된? 얼버무려진? (un-realistic한 ) 영상) 나옴. 이를 보완하기 위해 Discriminator를 추가하고  loss function에 discriminator 관련 항을 추가하여 generator가 더 realistic한 영상을 합성하는 방향으로 학습하게 함.
+-->
+<br>
+<hr>
+<h2 id="3-cyclegan-2017httpsarxivorgabs170310593">3. <a href="https://arxiv.org/abs/1703.10593">cycleGAN (2017)</a></h2>
+<ul>
+<li>
+<p>Introduction : For many tasks, paired training data will not be available. Authors present an approach for learning to translate an image from a source domain $X$ to a target domain $Y$ in the absence of paired examples.</p>
+</li>
+<li>
+<p>Method : using <strong>two discriminator</strong> (one for discriminating real $y$ and synthesized $G(x)$, the other for real $x$ and synthetic $F(y)$ ). And additional <strong>cycle consistency</strong> loss for preventing <strong>mode collapse</strong> that always return same output but very realistic.</p>
+</li>
+</ul>
+<!-- Mode collapse : Generator가 Discriminator를 가장 잘 속이는 데이터 하나만 만들어내는 현상 즉, MNIST에서 숫자하나만 계속 생성 -->
+<p>$$
+L(G,F,D_X,D_Y) = L_{GAN}(G,D_Y,X,Y) + L_{GAN}(F,D_X,Y,X) + \lambda L_{cyc}(G,F)
+$$</p>
+<ol>
+<li>
+<p><strong>Adversarial Loss</strong> : For the mapping function $G: X \rightarrow Y $ and its discrimator $D_Y$, we express the objective as :</p>
+<p>$$
+L_{GAN} (G,D_Y,X,Y) = \mathbb{E}<em>{y~p</em>{data}(y)}[(logD_Y(y))] +
+\mathbb{E}<em>{x~p</em>{data}(x)}[(1-logD_Y(G(x)))]
+$$</p>
+<p>$$
+L_{GAN} (F,D_X,Y,X) = \mathbb{E}<em>{x~p</em>{data}(x)}[(logD_X(x))] +
+\mathbb{E}<em>{y~p</em>{data}(y)}[(1-logD_X(F(y)))]
+$$</p>
+</li>
+<li>
+<p><strong>Cycle Consistency Loss</strong> : Adversarial Losses alone cannot guarantee that the learned function can map an individual input $x_i$ to a desired output $y_i$. So authors argue that the learned mapping functions should be cycle-Consistent :</p>
+<p>$$
+\text{Forward cycle consistency} = \mathbb{E}<em>{x~p</em>{data}(x)}[| F(G(x))-x |_1 ]
+$$</p>
+<p>$$
+\text{Backward cycle consistency} = \mathbb{E}<em>{y~p</em>{data}(y)}[| G(F(y))-y | _ {1} ]
+$$</p>
+<p>$$
+L_{cyc} (G,F) = \text{forward} + \text{backward}
+$$</p>
+</li>
+</ol>
+<p style="text-align: center;">
+      <img class="post-fig" width="60%" align="center" src="/figures/2018-04-26-fig2.png  ">
+      </p>
+<center>Figure. Overview of cycleGAN Architecture</center>
+<br>
+<!--  
+GAN을 두개 사용한다고 보면 됨
+GAN1 은 X 에서 Y 를 만들고 discriminate,  GAN 2는 Y에서 X를 만들고 discriminate
+따라서 objective 는 GAN1 + GAN2
+
+여기에 cycle consistency를 추가하는데 x → G(x) → F(G(x)) 즉 gen 1 로 합성한걸 다시 gen2 로 합성해서 F(G(x))를 만든뒤 이게 x 랑 얼마나 차이가 나는지 봄 (forward), 마찬가지로 y랑 G(F(y))랑 얼마나 차이가 나는지도 봄 (backward)
+-->
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

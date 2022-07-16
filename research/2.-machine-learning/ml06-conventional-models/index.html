@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        ML Basic #6 | Conventional Models - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>ML Basic #6 | Conventional Models - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="ML Basic #6 | Conventional Models" />
+<meta property="og:description" content="1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml06-conventional-models/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2018-06-22T09:00:13+00:00" />
+<meta property="article:modified_time" content="2018-06-22T09:00:13+00:00" />
+
+<meta itemprop="name" content="ML Basic #6 | Conventional Models">
+<meta itemprop="description" content="1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear"><meta itemprop="datePublished" content="2018-06-22T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2018-06-22T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1357">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ML Basic #6 | Conventional Models"/>
+<meta name="twitter:description" content="1. K-Nearest Neighbors Introduction : a method that predicts a given data based on the nearest K neigbors in existing data. Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors , Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean) 2. Linear Regression Introduction : Linear"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/2.-machine-learning/ml06-conventional-models/"
+    >ML Basic #6 | Conventional Models</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/2.-machine-learning/ml06-conventional-models/" class="article-date">
+  <time datetime="2018-06-22 09:00:13 &#43;0000 UTC" itemprop="datePublished">2018-06-22</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-machine-learning/"> 2. Machine Learning </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/2.-machine-learning/ml06-conventional-models/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="1-k-nearest-neighbors">1. K-Nearest Neighbors</h2>
+<ul>
+<li>
+<p>Introduction : a method that predicts a given data based on the nearest K neigbors in existing data.</p>
+</li>
+<li>
+<p>Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors ,</p>
+</li>
+<li>
+<p>Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean)</p>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="40%" align="center" src="/figures/2018-06-22-fig1.png">
+</p>
+<p><br><br><br></p>
+<h2 id="2-linear-regression">2. Linear Regression</h2>
+<ul>
+<li>
+<p>Introduction : Linear regression attempts to model the relationship between two variables by fitting a linear equation to observed data.</p>
+</li>
+<li>
+<p>Methods : The most common method fitting a regression line is least squares. This method calculates the best-fitting line for the observed data by minimizing the sum of the squares of the vertical deviations from each data point to the line. And then we can optimize the squared error using gradient descent.</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="3-logistic-regression">3. Logistic regression</h2>
+<ul>
+<li>
+<p>Introduction : Linear Regression과 달리 입력데이터가 범주형(categorical) 데이터가 되면 문제가 발생, Logistic Regression은 regression 문제를 풀기보다 classification 문제를 풀기 위함이라고 봐야함.</p>
+</li>
+<li>
+<p>Methods : Logistic Regression의 경우 sigmoid를 이용하기에 mse를 사용하면 우리가 생각하는 2차함수의 convex 형태가 아닌 여러 local minimum을 갖게됨. 따라서 Logistic Regression에 대하여는 Cross Entropy 를 사용하고, Gradient Descent를 사용함.</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<!-- ## 4. Support Vector Machine (SVM)
+
+
+<br><br><br> -->
+<h2 id="4-rbm--restricted-boltzmann-machine-rbm">4. RBM : Restricted Boltzmann Machine (RBM)</h2>
+<ul>
+<li>
+<p>Introduction : RBMs are two layered NN with generative capabilities, that have the ability to learn a prob dist over its input. RBMs can be used for dimensionality reduction, classification, regression, and so on.</p>
+</li>
+<li>
+<p>Architecture : input layer, hidden layer 각 한층씩, 전체 두개 층으로 이루어져있으며, Boltzmann Machine이 같은 층의 unit끼리도 연결되어있는 반면 같은층의 unit과는 연결 되어있지않음.</p>
+</li>
+<li>
+<p>Training : 두개 이상의 확률 변수의 결합 확률 분포로부터 일련의 표본을 생성하는 확률적 알고리즘인 Gibbs Sampling을 이용해 학습 (Unsupervised Learning)</p>
+</li>
+<li>
+<p>입력을 넣어주고 그대로 다시 backward 하여 recon한 결과가 (마치 autoencoder 처럼) 입력과 같아지도록 학습하는듯</p>
+<ol>
+<li>
+<p>forward : $ y_{out} = \sigma (wx + b)$</p>
+</li>
+<li>
+<p>backward (reconstruct the input) : $ y_{recon} = y_{out} x + b$</p>
+</li>
+<li>
+<p>KL Divergence can be considered as the reconstruction error: $ KL(x|y_{recon}) $</p>
+</li>
+<li>
+<p>Reduce KLD in iterative manner : common training algorithms for RBMs approximate the log-likelihood gradient given some data and perform gradient ascest on these approximations.(Gibbs Sampling)</p>
+<!-- 1. https://towardsdatascience.com/restricted-boltzmann-machines-simplified-eab1e5878976 -->
+</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="5-dbn--deep-belief-network">5. DBN : Deep Belief Network</h2>
+<ul>
+<li>
+<p>Architecture : Multiple RBMs can also be stacked and can be fine tuned through the process of gradient descent and backpropagation.</p>
+</li>
+<li>
+<p>Train : 첫번째 RBM의 학습이 완료되면 첫번째 RBM의 parameter를 고정하고, 첫번쨰 RBM의 hidden unit을 입력으로 하는 다음 RBM을 학습한다. 이렇게 쌓인 DBN을 gradient descent 와 backpropagation으로 finetune 할 수 있는듯.</p>
+</li>
+<li>
+<p>joint probability 를 잘 표현해서라기 보다는, 이 모델로 다른 DNN을 pretrain 하고 학습했을때, Overfit이 완화되어 성능향상을 보였기때문에 당시 주목을 받음</p>
+</li>
+<li>
+<p>그러나, 데이터가 충분한 경우 위 DBN을 이용한 Weight Init 보다 Random Init의 성능이 좋다고 알려지며 Practical 한 목적으로는 거의 사용하지 않음.</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="6-hdbscan-hierarchical-dbscan-2013">6. HDBSCAN (Hierarchical DBSCAN, 2013)</h2>
+<ul>
+<li>
+<p>Introduction : HDBSCAN extends DBSCAN by converting it into a hierarchical clustering algorithm, and then using a technique to extract a flat clustering based in the stability of clusters.</p>
+</li>
+<li>
+<p>Methods :</p>
+<ol>
+<li>
+<p>Transform the space according to the density/sparsity.</p>
+<ul>
+<li>
+<p>clustering의 core인 single linkage algorithm 은 noise에 굉장히 민감한데, 이는 잘못된 위치에 있는 노이즈가 cluster들 사이를 연결하여 둘을 하나의 cluster로 묶어버리는 경우가 많기 때문. 따라서 좀 더 robust한 distance가 필요</p>
+</li>
+<li>
+<p>Mutual Reachability Distance : a 와 b의 MRD 는 { distance(a, k-nearest neighbor of a), distance(b, knn of b), distance (a,b) }  중 가장 큰 값 으로 정의. 이로써 Dense한 지점에서는 a,b 사이의 거리를 metric으로 사용하고 Sparse한 지점에서는 a,b 각각의 k 이웃까지의 거리를 사용하여 robust 하게 적용가능 [<a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html">참고</a>]</p>
+<p>$$ MRD = max[core_k(a), core_k(b), d(a,b)] $$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Build the minimum spanning tree of the distance weighted graph : 이제 각 데이터들을 node로 하고 데이터들 사이의 MR_distance 를 score로 marking한 (weighted) edge(선) 로 데이터들을 이은 그래프를 만듦. 어느 점에서 시작하든 distance는 변하지 않으므로 최종적으로는 동일한 그래프가 만들어짐 (fig1)</p>
+</li>
+<li>
+<p>Construct a cluster hierarchy of connected components. : 이제 앞서 marking한 distance가 먼 edge부터 threshold를 낮춰가며 연결을 끊어줌</p>
+</li>
+<li>
+<p>Condense the cluster hierarchy based on minimum cluster size : minimum cluster size에 근거하여 적당한 부분에서 잘라주고</p>
+</li>
+<li>
+<p>Extract the stable clusters from the condensed tree : we want the choose clusters that persist and have a longer lifetime;</p>
+</li>
+</ol>
+</li>
+</ul>
+<center>
+  <image width=30% src='https://hdbscan.readthedocs.io/en/latest/_images/how_hdbscan_works_10_1.png'>
+    &nbsp &nbsp
+  <image width=30% src='https://hdbscan.readthedocs.io/en/latest/_images/how_hdbscan_works_12_1.png'>
+    &nbsp &nbsp
+  <image width=30% src='https://hdbscan.readthedocs.io/en/latest/_images/how_hdbscan_works_18_1.png'>
+</center>
+<!--
+## Linear Discriminant Analysis (LDA)
+
+- Introduction : LDA는 data 분포를 바탕으로 Decision Boundary를 만들어 데이터를 분류하는 모델로, 아래 그림처럼 주어진 데이터를 특정한 직선위에 projection 하여 각 class를 잘 구분할 수 있는 직선을 찾는것을 목적으로 한다. 이를 위하여는 projection 후 **각 class의 평균은 서로 멀고 분산은 작을수록** 좋다.
+
+- Methods:  
+
+  1. eigen-decomposition을 이용한 방법
+
+  2. Bayes' Rule을 이용한 확률 모델로 부터의 도출
+
+- QDA, RDA 등의 유사한 방식도 있음
+
+<br><br><br>
+
+
+
+## Gaussian Mixture Model (GMM)
+
+- Introduction : 주어진 데이터가 $k$ 개의 정규분포로부터 생성되었다고 가정하면, 각 $k$개의 정규분포에 대한 $\pi_k, \mu,\sigma $ 의 세가지 parameter를 추정하여 데이터분포를 모델링 할 수 있다. 여기서 $\pi_k$ 는 $k$번째 정규분포가 선택될 확률 즉, $k$번째 정규분포에 대한 가중치로 생각해 볼 수 있고 이는 다음을 만족한다.
+
+$$ \sum_{k} \pi_k = 1  \quad \text{and}  \quad 0 \leq \pi_k \leq 1$$
+
+
+
+<br><br><br>
+
+
+
+## Support Vector Machine (SVM)
+
+<br><br><br> -->
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Statistics #8 | Covariance and Correlation - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="1. Covariance 두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도. 이때의 관계성은 일반적으로 선형 관계성만을 의" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Statistics #8 | Covariance and Correlation - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Statistics #8 | Covariance and Correlation" />
+<meta property="og:description" content="1. Covariance 두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도. 이때의 관계성은 일반적으로 선형 관계성만을 의" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/2.-statistics/200227-all-of-stats8_covariance/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2020-02-27T09:00:13+00:00" />
+<meta property="article:modified_time" content="2020-02-27T09:00:13+00:00" />
+
+<meta itemprop="name" content="Statistics #8 | Covariance and Correlation">
+<meta itemprop="description" content="1. Covariance 두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도. 이때의 관계성은 일반적으로 선형 관계성만을 의"><meta itemprop="datePublished" content="2020-02-27T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2020-02-27T09:00:13+00:00" />
+<meta itemprop="wordCount" content="683">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Statistics #8 | Covariance and Correlation"/>
+<meta name="twitter:description" content="1. Covariance 두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도. 이때의 관계성은 일반적으로 선형 관계성만을 의"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/2.-statistics/200227-all-of-stats8_covariance/"
+    >Statistics #8 | Covariance and Correlation</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/2.-statistics/200227-all-of-stats8_covariance/" class="article-date">
+  <time datetime="2020-02-27 09:00:13 &#43;0000 UTC" itemprop="datePublished">2020-02-27</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-statistics/"> 2. Statistics </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/2.-statistics/200227-all-of-stats8_covariance/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="1-covariance">1. Covariance</h2>
+<ul>
+<li>
+<p>두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도.</p>
+</li>
+<li>
+<p>이때의 관계성은 일반적으로 선형 관계성만을 의미하며 아래와 같이 $X$ 편차와 $Y$ 편차의 곱의 평균으로 계산</p>
+</li>
+<li>
+<p>즉 $y=x^2$ 과 같은 관계성은 Covariance로 확인할 수 없다.</p>
+</li>
+</ul>
+<p>$$ Cov(X,Y) = E((X-\mu_x)(Y-\mu_y)) $$</p>
+<ul>
+<li>
+<p>다시말해, 주어진 2차원 데이터를 x, y축으로 각 축의 평균만큼 shift 함으로써 편차를 구하고 각 데이터샘플의 x,y 값의 곱을 구해 전부 더함</p>
+</li>
+<li>
+<p>구해진 Covriance에 따라 아래와 같은 관계성을 유추해볼 수 있음</p>
+<ol>
+<li>$Cov(X,Y) &gt; 0$ : Positive Relationship, X가 증가할 때 Y도 증가한다</li>
+<li>$Cov(X,Y) = 0$ : No Relation ship, 특별한 선형관계가 없다</li>
+<li>$Cov(X,Y) &lt; 0$ : Negative Relationship, X가 증가할 때 Y는 감소한다.</li>
+</ol>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2020-06-28-fig1.png ">
+</p>
+<center>
+(L) positive relationship, (R) Negative Relatioship, projected to each axis
+</center>
+<p><br><br><br></p>
+<h2 id="2-covariance-matrix">2. Covariance Matrix</h2>
+<ol>
+<li>
+<p>선형변환 관점에서의 Covariance Matrix : CovMat 또한 $n \times n$ 의 정방행렬로 선형변환의 하나로 볼 수 있으며, $i,j$축의 방향으로 $a_{i,j}$ 만큼 shearing 하는 선형변환으로 볼 수 있다.</p>
+</li>
+<li>
+<p>Cov Matrix의 수학적 의미 : 일반적으로 $n$ dimension의 feature를 갖고있는 Data에 대하여 CovMat $\Sigma$ 는 $n \times n$ 행렬로 나타내어지며, $a_{i,j} = Cov(X_i, X_j)$와 같다</p>
+</li>
+</ol>
+<p>$$
+\Sigma = \frac{X^T X}{n-1}, \quad
+X =
+\begin{pmatrix}
+&amp; X_1 &amp;  X_2 &amp; X_3 &amp; &hellip;  \\
+S_1 &amp; 90 &amp; 85  &amp; 95 &amp; &hellip;\\
+S_2 &amp; 80 &amp; 80 &amp; 85 &amp; &hellip;\\
+S_3 &amp; 75 &amp; 75 &amp; 70 &amp; &hellip;\\
+\end{pmatrix},
+\quad
+X^TX =
+\begin{pmatrix}
+dot(X_1, X_1) &amp; dot(X_1, X_2) &amp; &hellip; &amp; dot(X_1, X_d) \\
+dot(X_2, X_1) &amp; dot(X_2, X_2) &amp; &hellip; &amp; dot(X_2, X_d) \\
+&hellip;           &amp; &hellip;           &amp; &hellip; &amp; &hellip;           \\
+dot(X_d, X_1) &amp; dot(X_d, X_2) &amp; &hellip; &amp; dot(X_d, X_d)
+\end{pmatrix}
+$$</p>
+<p><br><br><br></p>
+<h2 id="3-correlation">3. Correlation</h2>
+<ul>
+<li>
+<p>위의 Covariance 는 $X,Y$ 의 단위와 크기에 영향을 받는다는 문제가 있다.</p>
+</li>
+<li>
+<p>가령, 100점 만점인 언어와 수학의 공분산에 비해 50점 만점인 생물1과 생물2의 공분산이 더 적게 나올 수 있다.</p>
+</li>
+<li>
+<p>상관계수 Correlation은 이를 보완하기 위한 방법으로 확률변수의 절대적 크기에 영향을 받지 않도록 Covariance를 분산의 크기로 나누어준다</p>
+</li>
+</ul>
+<p>$$ \text{Correlation} \quad \rho  = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}} , \quad -1 \leq \rho \leq 1$$</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2020-06-28-fig2.svg">
+</p>
+<center>Visualization of relation between X, Y according to $\rho$ value</center>
+<p><br><br><br></p>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

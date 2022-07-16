@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        ML Basic #5 | Training Techniques - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>ML Basic #5 | Training Techniques - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="ML Basic #5 | Training Techniques" />
+<meta property="og:description" content="1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml05-training-techniques/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2018-06-15T09:00:13+00:00" />
+<meta property="article:modified_time" content="2018-06-15T09:00:13+00:00" />
+
+<meta itemprop="name" content="ML Basic #5 | Training Techniques">
+<meta itemprop="description" content="1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면"><meta itemprop="datePublished" content="2018-06-15T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2018-06-15T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1070">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ML Basic #5 | Training Techniques"/>
+<meta name="twitter:description" content="1. How to tune Batch Size Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음 Large Batch를 사용하면"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/2.-machine-learning/ml05-training-techniques/"
+    >ML Basic #5 | Training Techniques</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/2.-machine-learning/ml05-training-techniques/" class="article-date">
+  <time datetime="2018-06-15 09:00:13 &#43;0000 UTC" itemprop="datePublished">2018-06-15</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-machine-learning/"> 2. Machine Learning </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/2.-machine-learning/ml05-training-techniques/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="1-how-to-tune-batch-size">1. How to tune Batch Size</h2>
+<ul>
+<li>
+<p>Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음</p>
+</li>
+<li>
+<p>Large Batch를 사용하면 학습과정에서의 loss, train_acc 등의 fluctuation을 줄일 수 있고, gpu를 활용한 parallel computation resource 를 줄일 수 있어 더 빠르게 학습이 가능함. 즉 1개 데이터의 loss로 100번 backprop 하는 것 보다 100개 data의 loss로 1번 backprop 하는게 계산효율이 좋다.</p>
+</li>
+<li>
+<p>일반화 성능이 떨어지는 large batch size는  32-512 개의 일반적인 batch size에 비해 훨씬 높아야하기에 대부분의 경우 그냥 gpu에 올라가는 최대한의 batch size를 사용해도 일반화 성능이 떨어질 걱정을 크게하지는 않아도 됨</p>
+</li>
+<li>
+<p>Revisiting Small Batch Training for DNNS (2017)</p>
+</li>
+<li>
+<p>On Large-Batch Training for DL : Generalizaiton Gap and Sharp Minima (2017)</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="2-regularization">2. Regularization</h2>
+<ul>
+<li>
+<p>L1, L2 모두 cost function의 크기를 키워 점진적으로 parameter의 크기가 커지는것을 방지함.</p>
+</li>
+<li>
+<p>w가 작아지도록 학습을 한다는 것은 local noise가 학습에 큰 영향을 끼치지 않는다는 것을 의미한다, 이로인해 outlier의 영향을 적게 받도록 함.</p>
+</li>
+<li>
+<p>L1 norm은 경우에 따라 특정 feature를 0으로 처리해버리는 feature selection의 기능을 갖는다고도 함.</p>
+</li>
+<li>
+<p>Dropout, EarlyStopping</p>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="3-batch-normalization">3. Batch Normalization</h2>
+<ul>
+<li>
+<p>Introduction : DL 학습과정에서 $\frac{x-\mu}{\sigma}$ 형태의 Normalization은 다음과 같은 이점을 갖는다. <a href="https://www.quora.com/Why-do-we-normalize-the-data">[참고]</a></p>
+<ol>
+<li>Make training process less senstive to scale of features.</li>
+<li>Regularization behaves differently for different scaling.</li>
+<li>Makes optimization well-conditioned</li>
+</ol>
+</li>
+<li>
+<p>Methods:</p>
+<ol>
+<li>주어진 Batch에 대하여 평균을 뺴고 분산으로 나누어 정규화하고</li>
+<li>학습가능한 parameter인 $\gamma$ 를 곱하고 $\beta$를 더함 : scale and shift (기울기와 평행이동을 통해 표현력을 늘림)</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="4-weight-initialization">4. Weight Initialization</h2>
+<ul>
+<li>
+<p>Introduction : DL Model의 초기 가중치 설정 방법</p>
+<ol>
+<li>
+<p>Xavier Initialization : 이전 layer와 다음 layer의 node 개수에 따라 Normal Distribution의 분산을 조절, Sigmoid, TanH 와 같은 비선형 activation function에서 효과적인 결과를 보여줌, ReLU와 같이 사용하면 출력값이 0으로 수렴하는 문제가 있다고는 함.</p>
+<p>$$ W \sim N(0, Var(W)), \quad Var(W)=\sqrt{\frac{2}{n_{in} + n_{out}}}$$</p>
+</li>
+<li>
+<p>He Initialization : Xavier 가 ReLU와 함께 사용되면 비효율적인 결과가 나타남.</p>
+<p>$$ W \sim N(0, Var(W)), \quad Var(W)=\sqrt{\frac{2}{n_{in}}}$$</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="5-multitask-learning">5. Multitask Learning</h2>
+<ul>
+<li>
+<p>Introduction : is a subfield of ML in which multiple tasks are simultaneously learned by a shared model. Such approaches offer advantages like improved data efficiency, reduced overfitting through shared representations, and fast learning by leveraging auxiliary information. However, the simultaneous learning of multiple tasks presents new design and optimization challenges, and choosing which tasks should be learned jointly is in itself a non-trivial problem.</p>
+</li>
+<li>
+<p>Methods:</p>
+<ol>
+<li>Hard Parameter Sharing : is generally applied by sharing the hidden layers between all tasks, whilekeeping several task-specific output layers</li>
+<li>Soft Parameter Sharing : each task has its own model with its own parameters.The distance between the parameters of the model is then regularized in order to encourage theparameters to be similar</li>
+</ol>
+</li>
+<li>
+<p>References</p>
+<ol>
+<li><a href="https://arxiv.org/pdf/1706.05098.pdf">An Overview of Multitask Learning in Deep Neural Nets</a></li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>일반적으로는 하나의 모델로 여러가지 task를 동시에 수행한 뒤 sum of weighted loss로 다시 이 모델을 학습</li>
+</ul>
+</blockquote>
+<!-- Group Normalization -->
+<!-- Test Time Augmentation -->
+<!-- ## temperature Scaling -->
+<!-- ## Label smoothing -->
+<h2 id="imbalanced-dataset">Imbalanced Dataset</h2>
+<ul>
+<li>Introduction : An imbalanced classification problem is an example of a classification problem where the distribution of examples across the known classes is biased or skewed. The distribution can vary from a slight bias to a severe imbalance where there is one example in the minority class for hundreds, thousands, or millions of examples in the majority class or classes.</li>
+<li>Methods :
+<ol>
+<li>Data Replication : Replicate the available data until the number of samples are comparable</li>
+<li>Synthetic Data: Images: Rotate, dilate, crop, add noise to existing input images and create new data</li>
+<li>Modified Loss: Modify the loss to reflect greater error when misclassifying smaller sample set</li>
+<li>Change the algorithm: Increase the model/algorithm complexity so that the two classes are perfectly separable (Con: Overfitting)ML</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+         - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title> - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="" />
+<meta property="og:description" content="title: &quot;MLCV #13 | Multimodal Representation&quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/" /><meta property="article:section" content="Research" />
+
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="title: &quot;MLCV #13 | Multimodal Representation&quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much">
+
+<meta itemprop="wordCount" content="1499">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="title: &quot;MLCV #13 | Multimodal Representation&quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/2.-machine-learning/ml11-multimodal-representation/"
+    ></a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/2.-machine-learning/ml11-multimodal-representation/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <pre><code class="language-yaml">title: &quot;MLCV #13 | Multimodal Representation&quot;
+date: 2021-12-07 09:00:13
+categories: [2. Machine Learning]
+</code></pre>
+<br>
+<h2 id="learing-transferable-visual-models-clip-contrastive-language-image-pretraininghttpsarxivorgabs210300020"><a href="https://arxiv.org/abs/2103.00020">Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining</a></h2>
+<ul>
+<li>Introduction
+<ul>
+<li>Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept.</li>
+<li>Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision.</li>
+</ul>
+</li>
+<li>Methods
+<ol>
+<li>Extract feature representations of each modality (image, text)</li>
+<li>Joint multi-modal embedding</li>
+<li>Scaled pair-wise cosine similarities</li>
+<li>Symmetric loss function</li>
+</ol>
+</li>
+<li>Conclusion
+<ul>
+<li>We have investigated whether it is possible to transfer the success of task-agnostic web-scale pre-training in NLP to another domain.</li>
+</ul>
+</li>
+<li>Reference
+<ul>
+<li><a href="https://www.youtube.com/watch?v=T9XSU0pKX2E">OpenAI CLIP: ConnectingText and Images (Paper Explained) - YouTube</a> , [14:40~]</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>CLIP 은 pretrain 방법의 하나로 NLP 분야에서 BERT 등이 자연어로 pretrain 하여 성능을 대폭 향상시킨 방식으로부터 insight를 얻음</li>
+<li>이미지+자연어 데이터셋으로 특정 이미지의 feature $I_f$ 와 대응되는 텍스트의 feature $T_f$ 의 inner product $I_f \cdot T_f$ 가 최대가 되도록 미리 학습해둔뒤
+<ul>
+<li>Inference 할 떄는 추가적인 fine-tuning 없이 test-set의 label들 중에 Inner product가 최대가 되는 label을 선택</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code class="language-python"># extract feature representations of each modality
+I_f = image_encoder(I) #[n, d_i]
+T_f = text_encoder(T)  #[n, d_t]
+
+# Joint multimodal embedding [n, d_e]
+    # 아래의 inner-product가 최대가 되도록 W_i, W_t를 학습  
+I_e = np.dot(I_f, W_i) 
+T_e = np.dot(T_f, W_t)
+
+# Scaled pairwise cosine similarities [n,n]
+logits = np.dot(I_e, T_e.T)
+
+# Symmetric loss function
+loss_i = cross_entropy(Logits, labels, axis=0)
+loss_t = cross_entropy(logits, labels, axis=1)
+
+</code></pre>
+<br>
+<hr>
+<h2 id="a-local-to-global-approach-to-multi-modal-movie-scene-segmentationhttpsanyiraocomfilespaperscvpr2020scenepdf"><a href="https://anyirao.com/files/papers/cvpr2020scene.pdf">A Local-to-Global Approach to Multi-modal Movie Scene Segmentation</a></h2>
+<ul>
+<li>
+<p>Introduction : Recognizing the movie scenes, including <strong>the detection of scene boundaries</strong> and <strong>the understanding of the scene content</strong>, facilitates a wide-range of movie understanding tasks such as <strong>scene classification</strong>, <strong>cross movie scene retrieval</strong>, <strong>human interaction graph</strong> and <strong>human-centric storyline construction</strong></p>
+</li>
+<li>
+<p>Terminologies :</p>
+<ul>
+<li>shots : captured by a camera that operates for an uninterrupted period of time and thus is visually continuous</li>
+<li>super-shots : collection of shots, roghly segmented from local (adjacent) features</li>
+<li>scene : comprises a sequence of shots to present a semantically coherent part of the story
+<ul>
+<li>a plot-based semantic unit, where a certain activ-ity takes place among a certain group of character</li>
+<li>often happens in a fixed place, it is also possi-ble that a scene traverses between multiple places continually</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods: solve a binary classification problem to determine whether a shot boundary is a scene boundary, by designing a three-level model to incorporate different levels of contextual information based on the shot representation</p>
+<ol>
+<li>Shot Representation, $s_i$
+<ul>
+<li>place : ResNet50 pretrained on &ldquo;Places&rdquo; dataset</li>
+<li>cast : Faster-RCNN pretrained on CIM dataset to detect cast instances and ResNet50 pretrained on PIPA dataset to extract cast features</li>
+<li>action : TSN pretrained on AVA dataset to get action features</li>
+<li>audio : NaverNet pretrained on AVA-ActiveSpeaker Dataset to separate speech and background sound and stft</li>
+</ul>
+</li>
+<li>Shot Boundary Representation : propose a Boundary Network to model the shot boundary, $b_i = \Beta(S_{i-w_b}, &hellip; S_{i+w_b})$
+<ul>
+<li>BNet takes a clip of the movie with $2w_b$ shots as input and outputs a boundary representation $b_i$</li>
+<li>BNet consists of two branches, namely $B_d$ and $B_r$, that calculate differences and relations betweent adjacent shots</li>
+</ul>
+</li>
+<li>Coarse Prediction at Segment Level : $\Tau([b_1, &hellip;, b_{n-1}]) = [p_1, &hellip;, p_{n-1}] $
+<ul>
+<li>Bi-LSTM predicts a sequence of coarse score $[p_i,&hellip;]$ from sequence of representatives $[b_i,&hellip;]$</li>
+<li>with a threshold, we get roughly classified super-shot boundaries $[\hat{o_i},&hellip;]$</li>
+</ul>
+</li>
+<li>Global Optimal Grouping : $ \Gamma([\hat{o_1},&hellip;,\hat{o_i}]) = [o_1,&hellip;,o_i] $
+<ul>
+<li>rmfdabove local segmentation gives us an initial rough scene cut set. Our goal is to merge these super-shots into scenes</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Conclusion : this framework is very effective and achieves much better performance than existing methods</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="multimodal-transformer-for-unaligned-multimodal-language-sequences-2019httpsarxivorgabs190600295"><a href="https://arxiv.org/abs/1906.00295">Multimodal Transformer for Unaligned Multimodal Language Sequences (2019)</a></h2>
+<ul>
+<li>
+<p>Introduction : two major challenges in modeling multimodal human language time-series data</p>
+<ul>
+<li>(1) inherent data non-alignment due to variable sampling rates for the sequences from each modality;</li>
+<li>(2) long-range dependencies between elements across modalities.</li>
+</ul>
+</li>
+<li>
+<p>Methods : Multimodal Transformer (MulT) for modeling unaligned multimodal language sequences.</p>
+<ul>
+<li>
+<p>Overall Architecture</p>
+<ul>
+<li>Temporal Convolutions $\hat{X}$ : pass the input seq through 1D Conv layer, project the features of different modalities to the same dimension $d$</li>
+<li>Positional Embeddings $Z$ : enable the sequences to carry temporal information, add PE to $\hat{X}$</li>
+<li>Crossmodal Transformers :  enables one modality for receiving information from another modality, based on the cross-modal attention blocks</li>
+</ul>
+</li>
+<li>
+<p>Crossmodal Attention : consider two modalities $\alpha, \beta$,  calculate attention score using Query from $\alpha$ and Key from $\beta$</p>
+<p>$$
+\text{softmax}(\frac{Q_\alpha K^T_\beta}{\sqrt{d_k}}) V_\beta
+$$</p>
+</li>
+<li>
+<p>Result : show that MulT exhibits the best performance when compared to prior methods (Multimodal sentiment analysis, CMU-MOSI &amp; MOSEI)</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="self-supervised-multimodal-versatile-network-2020-deepmindhttpsarxivorgpdf200616228pdf"><a href="https://arxiv.org/pdf/2006.16228.pdf">Self-Supervised MultiModal Versatile Network (2020, Deepmind)</a></h2>
+<ul>
+<li>Introduction :  learn representations using self-supervision by leveraging three modalities naturally present in videos: visual, audio and language streams</li>
+<li>Methods : multimodal versatile network
+<ul>
+<li>Input : unlabelled videos containing different modalities : RGB stream, audio track, linguistic narrations (Automatic Speech Recognition)</li>
+<li>MultiModal Versatile Networks :
+<ul>
+<li>Shared space : all modalities are embedded into a single shared vector space $S_{vat}⊂R^{d_s}$</li>
+<li>Disjoint spaces : have different visual-audio $S_{va}$ and visual-text $S_{vt}$ spaces</li>
+<li>Fine and coarse spaces (FAC) :
+<ul>
+<li>visual and the audio (fine-grained) domains are different from the language domain (semantically coarse-grained) in terms of their granularities
+<ul>
+<li>fine-grained : there are many visual or sounds of guitars that might be really different to each other</li>
+<li>coarse-grained : while the textual domain is more coarse as its goal is to abstract away details (e.g. a single “guitar” word)</li>
+</ul>
+</li>
+<li>vision and audio are compared in the fine-grained space ($S_{va}$), while text is compared with vision and audio in the lower dimensional coarse-grained space ($S_{vat}$).</li>
+</ul>
+</li>
+<li>since the text modality is directly obtained from the audio track using ASR, we do not construct the audio-text space nor the loss that puts them in alignment explicitly</li>
+</ul>
+</li>
+<li>Multimodal Contrastive Loss : we construct self-supervised tasks which aim to align pairs of modalities.
+<ul>
+<li>positive training pairs across two modalities are constructed by sampling the two streams from the same location of a video.</li>
+<li>negative training pairs are created by sampling streams from different videos.</li>
+</ul>
+</li>
+<li>Video to image network deflation</li>
+</ul>
+</li>
+<li>Results : exceeds the state-of-the-art for action and audio classification on five challenging benchmarks: HMDB51, UCF101, Kinetics600, ESC-50 and AudioSet</li>
+</ul>
+<br>
+<hr>
+<h2 id="vatt--transformers-for-multimodal-self-supervised-learning-from-raw-video-audio-and-text-2021httpsarxivorgpdf210411178pdf"><a href="https://arxiv.org/pdf/2104.11178.pdf">VATT : Transformers for Multimodal Self-Supervised Learning from Raw Video, Audio and Text (2021)</a></h2>
+<ul>
+<li>
+<p>introduction : present a framework for learning multimodal representations from unlabeled data using convolution-free Transformer architectures</p>
+</li>
+<li>
+<p>Methods :</p>
+<ul>
+<li>
+<p>(1) Tokenization and Positional Encoding : define a modality-specific tokenization layer</p>
+<ul>
+<li>video : 3D extension of the patching machanism, linear projection on the entire voxels.</li>
+<li>audio : the raw audio waveform is a 1D input with length $T&rsquo;$, and we partition it to $[T&rsquo;/t&rsquo;]$ segments each containing $t&rsquo;$ waveform amplitudes and then apply a linear projection with a learnable weight $W\in\mathbb{R^{t&rsquo; \times d}}$ to get a $d$ dimensional vector representation.</li>
+<li>text : construct a vocabulary of size $v$ and map each word to a $v$-dimensional one-hot vetor followed by a linear projection with a learnable weight $W \in \mathbb{R}^{v \times d}$</li>
+<li>Drop Token : a simple and yet effective strategy to reduce the computational complexity during training.</li>
+</ul>
+</li>
+<li>
+<p>The Transformer Architecture :  we do not tweak the architecture</p>
+</li>
+<li>
+<p>Common Space Projection</p>
+<ul>
+<li>Video-audio : maps the video and audio Transformers’ outputs to the video-audio common space $S_{va}$ using Linear Projection</li>
+<li>video-text : the text Transformer’s outputs and the video embedding in the $S_{va}$ space to video-text common space $S_{vt}$ using Linear Projection</li>
+</ul>
+</li>
+<li>
+<p>Multimodal Contrastive Learning</p>
+<ul>
+<li>
+<p>video-audio : Noise Contrastive Estimaiton to align video-audio pairs.</p>
+</li>
+<li>
+<p>video-text : Multiple Instance Learning NCE to align to video-text pairs.</p>
+</li>
+<li>
+<p>overall per-sample objective : for training the entire model end-to-end is as follows:</p>
+<p>$$
+L=NCE(z_{v,va},z_{a,va}) +λ MILNCE(z_{v,vt},[z_{t,vt}]),</p>
+<p>$$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Results :</p>
+<ul>
+<li>suggests that Transformers are effective for learning semantic video/audio/text representations even if one model is shared across modalities and multi-modal self-supervised pre-training is promising for reducing their dependency on large-scale labeleddata.
+<ul>
+<li>Video Action recognition (UCF101, HMDB, Kinetics)</li>
+<li>Audio Event Classification (ESC50, AudioSet)</li>
+<li>text to video retrieval (MSR-VTT)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="clipbert-for-video-and-language-learning-via-sparse-samplinghttpsarxivorgabs210206183"><a href="https://arxiv.org/abs/2102.06183">CLIPBERT for Video-and-Language Learning via Sparse Sampling</a></h2>
+<ul>
+<li>Introduction</li>
+<li>CLIPBERT : enables end-to-end learning for video-and-language tasks, by employing sparse sampling</li>
+<li></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

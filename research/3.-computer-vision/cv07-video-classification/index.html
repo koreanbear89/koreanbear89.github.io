@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #7 | Action Classification - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN &#43; RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>MLCV #7 | Action Classification - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #7 | Action Classification" />
+<meta property="og:description" content="Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN &#43; RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2018-11-03T09:00:13+00:00" />
+<meta property="article:modified_time" content="2018-11-03T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #7 | Action Classification">
+<meta itemprop="description" content="Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN &#43; RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs"><meta itemprop="datePublished" content="2018-11-03T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2018-11-03T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1797">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #7 | Action Classification"/>
+<meta name="twitter:description" content="Introduction Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN &#43; RNNs 3D Convolutional Networks ResNeXt-101 : 6GFLOPs"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv07-video-classification/"
+    >MLCV #7 | Action Classification</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/" class="article-date">
+  <time datetime="2018-11-03 09:00:13 &#43;0000 UTC" itemprop="datePublished">2018-11-03</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv07-video-classification/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>Action Classification : The task classfying an action in video sequences according to its spatio-temporal content.</p>
+</li>
+<li>
+<p>Benchmark Set</p>
+<ul>
+<li>UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories.</li>
+<li>HMDB-51</li>
+<li>Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video.</li>
+</ul>
+</li>
+<li>
+<p>Methods</p>
+<ol>
+<li>
+<p><strong>CNN + RNNs</strong></p>
+</li>
+<li>
+<p><strong>3D Convolutional Networks</strong></p>
+<ul>
+<li>ResNeXt-101 : 6GFLOPs for 112x112x16</li>
+</ul>
+</li>
+<li>
+<p><strong>Two Stream Network (RGB + Optical Flow)</strong></p>
+</li>
+<li>
+<p><strong>Two Stream 3D ConvNets</strong></p>
+</li>
+<li>
+<p><strong>Feature Engineering with pre-extracted frame-level featue using CNN</strong></p>
+</li>
+<li>
+<p><strong>Skeleton Based Recognition using GCN</strong></p>
+<ul>
+<li>ST-GCN : 16 GFLOPs for one action sample</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="heading"></h3>
+<hr>
+<h2 id="2014-lrcn--long-term-recurrent-convolutional-networks-httpsarxivorgpdf14114389pdf"><a href="https://arxiv.org/pdf/1411.4389.pdf">(2014) LRCN : Long-term Recurrent Convolutional Networks </a></h2>
+<ul>
+<li>
+<p>Introduction : previous models assume a fixed visual representation or perform simple temporal averaging for sequential processing (such as action recog, image captioning, or etc).</p>
+</li>
+<li>
+<p>Method : Long-term Recurrent Convolutional Networks that can learn compositional representations in space and time.</p>
+</li>
+</ul>
+<h3 id="heading-1"></h3>
+<hr>
+<h2 id="2014-c3d-httpsarxivorgpdf14120767pdf"><a href="https://arxiv.org/pdf/1412.0767.pdf">(2014) C3D </a></h2>
+<ul>
+<li>
+<p>Introduction : 3D Convolutional Network for learning spatiotemporal feature from a large scale video dataset</p>
+</li>
+<li>
+<p>Method : 3D ConvNets are just like standard convolutional networks, but with spatio-temporal filters (3x3x3)</p>
+</li>
+</ul>
+<h3 id="heading-2"></h3>
+<hr>
+<h2 id="2014-two-stream-network-httpsarxivorgabs14062199"><a href="https://arxiv.org/abs/1406.2199">(2014) Two Stream Network </a></h2>
+<ul>
+<li>
+<p>Introduction : investigate architectures to capture the complementary information on appearance from still frames and motion between frames (optical flow).</p>
+</li>
+<li>
+<p>Method : averaging the predictions from a single RGB frame and a stack of 10 externally computed optical flow frames, after passing them through two replicas of an ImageNet pre-trained ConvNet.</p>
+</li>
+</ul>
+<h3 id="heading-3"></h3>
+<hr>
+<h2 id="2017-i3dhttpsarxivorgabs170507750"><a href="https://arxiv.org/abs/1705.07750">(2017) I3D</a></h2>
+<ul>
+<li>
+<p>Introduction : A number of successful image classification architectures have been developed over the years through painstaking trial and error. Instead of repeating the process for spatio-temporal models, authors propose to simply convert successful image(2D) classification models into 3D ConvNets.</p>
+</li>
+<li>
+<p>Method : Two-Stream Infalted 3D ConvNet (I3D) that is based on 2D ConvNet inflation</p>
+<ol>
+<li>
+<p><strong>Inflating 2D into 3D</strong> : filters and pooling kernels of 2D ConvNets for image classification are just expanded into 3D.</p>
+</li>
+<li>
+<p><strong>Two 3D Streams</strong> : with one I3D network trained on RGB inputs and another on optical flow inputs. Authors trained two networks separately and averaged their predictions at test time.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="heading-4"></h3>
+<hr>
+<h2 id="2017-actionvlad-httpsarxivorgabs170402895"><a href="https://arxiv.org/abs/1704.02895">(2017) ActionVLAD </a></h2>
+<ul>
+<li>
+<p>Introduction : 3D CNN or two stream architectures disregard the long-term temporal structure of video. For example, a basketball shoot, can be confused with other actions such as running, dribbling, jumping, throwing, with only few consecutive frames. So we need a global descriptor for the entire video.</p>
+</li>
+<li>
+<p>Methods:</p>
+<ol>
+<li>
+<p>sample frames from the entire video and get top-conv features using a pretrained CNN from RGB and flow each.</p>
+</li>
+<li>
+<p>ActionVLAD : is a learnable spatio temporal aggregation layers. While max or average pooling are good for similar features, actionVLAD aggregates their residuals from nearest cluster centers.</p>
+<p>$$ V = \sum_{t=1}^{T} \sum_{i=1}^{N} {\frac{e^{-\alpha || x_{it}-c_k||^2}}{ \sum_{k&rsquo;} {e^{-\alpha || x_{it} - c_{k&rsquo;}||^2}}}} (x_{it}[j] - c_k[j]) $$</p>
+</li>
+<li>
+<p>combine VLADs from each stream (get video-level fixed length vector) and pass it through a classifier that outputs the final classification scores.</p>
+</li>
+</ol>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2018-11-03-fig2.png ">
+</p>
+<center>Different pooling strategies for a collection of diverse features. Points correspond to features from a video and colors correspond to different sub-actions in the video.</center>
+</li>
+</ul>
+<!--(1) 주어진 RGB와 Flow에서 top-conv 추출, (2) topconv 바탕으로 VLAD 학습, 여기서 학습은 각 cluster를 만들고 cluster의 center인 c_k를 확립해가는 과정이라고 볼 수 있을지도, (3) 이렇게 만들어진 VLAD를 concat하여? classification  -->
+<h3 id="heading-5"></h3>
+<hr>
+<h2 id="2017-loupe--1st-place-at-2017-youtube-8m-httpsarxivorgabs170606905"><a href="https://arxiv.org/abs/1706.06905">(2017) LOUPE : 1st place at 2017 Youtube-8M </a></h2>
+<ul>
+<li>
+<p>Introduction : Current method for video analysis often extract frame-level features using pre-trained CNNs. Such features are then aggregated over time e.g., by <strong>simple temporal averaging</strong> or more sophisticated <strong>recurrent neural networks</strong> such as LSTM or GRU. <strong>This work first explore clustering-based aggregation layers.</strong></p>
+</li>
+<li>
+<p>Method :</p>
+<ol>
+<li>
+<p><strong>CNN Feature Extraction:</strong> The input features (frame-level) are extracted from video and audio signals.</p>
+</li>
+<li>
+<p><strong>Create Local feature:</strong> The pooling module (e.g. netVLAD) aggregates the extracted features into a single compact (e.g. 1024 dim) representation for the entire video.</p>
+</li>
+<li>
+<p><strong>Feature Enhancing:</strong> The aggregated representation is then enhanced by the Context Gating Layer.</p>
+</li>
+<li>
+<p><strong>Classification:</strong> Classification module takes the resulting representation as input and output scores for a pre-defined set of labels.</p>
+</li>
+</ol>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2018-11-03-fig1.png ">
+</p>
+<!-- The competition provides the frame-level feature extracted from each frames of video. We need to aggregate these frame-level features to classify the video and Learnable Pooling (netvlad, nextvlad, etc.) became the major approache. -->
+</li>
+</ul>
+<h3 id="heading-6"></h3>
+<hr>
+<h2 id="2017-3d-resnext-httpsarxivorgpdf171109577pdf"><a href="https://arxiv.org/pdf/1711.09577.pdf">(2017) 3D ResNext </a></h2>
+<ul>
+<li>
+<p>Introduction : Conventional research has only explored relatively shallow 3D architectures. Authors examine the architectures of various 3D CNNs from relatively shallow to very deep ones on current video datasets.</p>
+</li>
+<li>
+<p>Method : training 3D CNNs such as ResNet, ResNext, DenseNet on UCF101, HMDB-51 and so on.</p>
+</li>
+</ul>
+<h3 id="heading-7"></h3>
+<hr>
+<h2 id="2018-slowfast-networkshttpsarxivorgpdf181203982pdf"><a href="https://arxiv.org/pdf/1812.03982.pdf">(2018) SlowFast Networks</a></h2>
+<ul>
+<li>
+<p>Introduction : The recognition of the categorical semantics (colors, textures, lighting etc.) can be refreshed relatively slowly. On the other hand, the motion being performed can evolve much faster. So authors present a two-pathway SlowFast model for video recognition</p>
+</li>
+<li>
+<p>Method : simply can be described as a single stream architecture that operates at two different framerates.</p>
+<ol>
+<li>
+<p>Slow pathway : can be any spatiotemporal conv model. key concept is a large temporal stride τ (typically 16) on input frames, i.e., it processes only one out of τ frames.</p>
+</li>
+<li>
+<p>Fast pathway : another conv model which have a small temporal stride</p>
+</li>
+<li>
+<p>Lateral Connections : The information of the two pathways is fused by lateral connections which have been used to fuse optical flow based, two-stream networks.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="heading-8"></h3>
+<hr>
+<h2 id="2018-st-gcnhttpsarxivorgpdf180107455pdf"><a href="https://arxiv.org/pdf/1801.07455.pdf">(2018) ST GCN</a></h2>
+<ul>
+<li>
+<p>Introduction : propose a novel model of dynamic skeletons called ST-GCN</p>
+</li>
+<li>
+<p>Methods:</p>
+<ol>
+<li>
+<p>Pose Estimation : construct a spatiotemporal graph with the joints as graph nodes and natural connectivities in both human structures and times as graph edges.</p>
+</li>
+<li>
+<p>Skeleton Graph Construntion : The <strong>node set</strong> $V$ has all the joints in a sequence including estimated coordinates and estimation confidence. The <strong>edge set</strong> $E$ is composed of two subset, that depicts the intra skeleton connetcion and inter-frame edges.</p>
+</li>
+<li>
+<p>Spatial GCN : The feature map $f^t_{in} : V_t \rightarrow R^c $ has a vector on each node of the graph.</p>
+<ul>
+<li>
+<p>on image, convolution opertion can be written as below with sampling function $p$ and weight function $w$.</p>
+<p>$$ f_{out}(\mathbb{x}) = \sum_h \sum_w f_{in} (p(\mathbb{x},h,w)) \cdot w(h,w) $$</p>
+</li>
+<li>
+<p>sampling function : On image, neigboring pixels are defined by x as center using kernel size. On graph, neighbor nodes are defined by the minimum length of path from x.</p>
+<!-- 즉 이미지에서 3x3 kernel을 사용하면 중심 좌표와 인접한 애들을 neighbor로 하듯, graph에서는 한 node에서 다른 node로 갈 수 있는 최단거리를 바탕으로 neighbor로 지정함  -->
+</li>
+<li>
+<p>weight function : is similart to the kernel of 2d convolution. But we have a mapper</p>
+<!-- Image에서는 이미 좌표가 지정되어있기에 9개 pixel을 3x3 kernel에 대해 conv 하는게 아무런 문제가 되지 않는데, graph는 그게 아니라서 neighbor node들이 3x3 kernel의 어떤 weight와 곱해질지를 따로 정해줘야함. 이를 맵핑하는 함수가 l,  논문에서는 spatial Configuring partitioning 이라는 방식으로 이야기 하고 있음.   -->
+<p>$$ f_{out}(v_{ti}) = \sum_{v_{tj} \in B(v_{ti})}  \frac{1}{Z_{ti}(v_{tj})} f_{in}(v_{tj}) \cdot \mathbb{w}(l_{ti}(v_{tj})) $$</p>
+<!--  B(x)는 x의 neighbor node라고 보면 됨, 이미지에서는 kernel size 안의 pixel들. -->
+<!-- 단순하게 생각하면 영상에서 convolution 연산이 kernel size에 따라 x 주변의 pixel들과 weight를 곱하고 sum하듯, D에 따라 x주변의 node들과 weight를 곱하고 sum 하는듯   -->
+</li>
+<li>
+<p>spatiotemporal modeling : Until now, we formulated spatial GCN, this can be expanded in temporal dimension simply. By extending the concept of neighborhood to also include temporally connected joints</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Partition strategies : design a partitioning strategy to implement the label map $l$.</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2018-11-03-fig3.png ">
+</p>
+<center>(d) spatial configuration partitioning. The nodes are labeled according to their distances to the skeleton gravity center (black cross), root(green), near(blue), longer(yellow)</center>
+</li>
+</ol>
+</li>
+<li>
+<p>Limitations : cannot model the correlation between the joints that located further away than the maximum distance D. (left hand and right foot) : resolved by  Actional Structural GCN</p>
+</li>
+</ul>
+<h3 id="heading-9"></h3>
+<hr>
+<h2 id="2020-shift-gcnhttpsgithubcomkchengivashift-gcn"><a href="https://github.com/kchengiva/Shift-GCN">(2020) Shift GCN</a></h2>
+<ul>
+<li>
+<p>Introduction : propose a novel shift graph convolutional network to overcome conventional shortcomings</p>
+<ol>
+<li>
+<p>Computational complexity of GCN based methods are pretty heavy.</p>
+</li>
+<li>
+<p>The receptive fields of both spatial graph and temporal graph are inflexible</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="heading-10"></h3>
+<hr>
+<h2 id="2021-goog-res-vivit--a-video-vision-transformer-httpsarxivorgpdf210315691pdf"><a href="https://arxiv.org/pdf/2103.15691.pdf">(2021, Goog Res) ViViT : A Video Vision Transformer </a></h2>
+<ul>
+<li>
+<p>Introduction : We propose a pure-transformer architecture for video classification, inspired by the recent success of such models for images like ViT.</p>
+</li>
+<li>
+<p>Methods :</p>
+<ul>
+<li>
+<p>Embedding video clips : two simple methods for mapping a video to a sequence of tokens $\hat{z}$ (Uniform, Tubelet) and then add the positional embedding and reshape into $z$, the input to the transformer</p>
+<p>$$
+\mathbf{V} \in \mathbb{R}^{T\times H\times W \times C}
+\mapsto \hat{z} \in \mathbb{R}^{n_t \times n_h \times n_w \times n_d}
+\rightarrow z \in \mathbb{R}^{N \times d}
+$$</p>
+<ul>
+<li>
+<p>Uniform frame sampling (Figure2) : simply sample $n_t$ frames, and embed each 2D frame independently following ViT (Conv2D + Concat)</p>
+</li>
+<li>
+<p>Tubelet Embedding (Figure3) : extension of ViT&rsquo;s embedding to 3D and corresponds to a 3D convolution.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Transformer Models for VIdeo</p>
+<ul>
+<li>
+<p>Model 1) Spatio-temporal attention : simply forwards all spatio-temporal tokens extracted from the video</p>
+<ul>
+<li>
+<p>As it models all pairwise interactions, Multi-Headed Self Attention has quadratic complexity with respect to the number of tokens.</p>
+</li>
+<li>
+<p>motivates the development of more efficient architectures</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Model 2) Factorised encoder : consists of two separate transformer encoders</p>
+<ul>
+<li>
+<p>spatial encoder : only models interactions between tokens extracted from the same temporal index.</p>
+</li>
+<li>
+<p>temporal encoder: consisting ofLttransformer layers to model in-teractions between tokens from different temporal indices.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Results</p>
+<ul>
+<li>
+<p>Input Encoding : tubelet embedding initialised using the “central frame” method (Eq. 9) performs well, outperforming the others (Table1)</p>
+</li>
+<li>
+<p>Model Variants : The unfactorised model (Model 1) performs the best on Kinetics 400. However, it can also overfit on smaller datasets such as Epic Kitchens, where we find our “Factorised Encoder” (Model 2) to perform the best</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="heading-11"></h3>
+<hr>
+<h3 id="2021-timesformer--is-space-time-attention-all-you-need-for-video-understandinghttpsarxivorgabs210205095"><a href="https://arxiv.org/abs/2102.05095">(2021) TimeSformer : Is Space-Time Attention All You Need for Video Understanding?</a></h3>
+<ul>
+<li>
+<p>Introduction : We present a convolution-free approach to video classification</p>
+</li>
+<li>
+<p>Methods : TimeSformer (Time-Space Transformer)</p>
+<ul>
+<li>
+<p>Preprocessing</p>
+<ul>
+<li>
+<p>Input Clip : TimeSformer takes input clip $X \in \mathbb{R}^{H \times W \times 3 \times F}$</p>
+</li>
+<li>
+<p>Decomposition into patches ; each frame is decomposed into $N$ non-overlapping patches of $\mathbf{x_{(p,t)}} \in \mathbb{R}^{3P^2}$</p>
+</li>
+<li>
+<p>Linear embedding : embedding vector $\mathbb{z}<em>{(p,t)} \in \mathbb{R}^D$ by means of a learnable matrix $E \in \mathbb{R}^{D \times 3P^2}$ with trainable positional embedding $e^{pos}</em>{(p,t)} \in \mathbb{R}^D$ : $\mathbf{z}<em>{(p,t)} = E\mathbf{x}</em>{(p,t)} + e^{pos}_{(p,t)}$</p>
+</li>
+<li>
+<p>Classification Embedding : The final clip embedding is obtained from the final block for the classification token, On top of this representation we append a 1-hidden-layer MLP, which is used to predict the final video classes.</p>
+<ul>
+<li>output을 다시 aggregation 해서</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Modelling</p>
+<ul>
+<li>
+<p>Query Key Value computation : At each block $l$, a query/key/value vector is computed for each patch from the representation $z^{(l−1)}_{(p,t)}$encoded by the preceding block</p>
+</li>
+<li>
+<p>Self-attention computation : via dot-product of query and key vector</p>
+</li>
+<li>
+<p>Encoding : The encoding is obtained by computing the weighted sum of value vectors using self-attention coefficients from each attention head</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Space-Time Self Attention Models : temporal attention and spatial attention are separately applied one after the other</p>
+<ul>
+<li>we first compute temporal attention by comparing each patch(p,t) with all the patches at the same spatial location in the other frames</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion : conceptually simple, achieves state of the art results on major action recognition tasks, has low training and inference cost, adn can be applied to clips of over one minute, thus enabling long-term video modeling.</p>
+</li>
+</ul>
+<pre><code class="language-python">class PatchEmbed(nn.Module):
+    self.patch_embed = nn.Conv2d(in_chans, embed_dim, kernel_size=patch_size, stride=patch_size)
+    self.cls_token = nn.Parameter(torch.zeros(1, 1, embed_dim))
+    self.pos_embed = nn.Parameter(torch.zeros(1, num_patches+1, embed_dim))
+     ...
+
+    def forward_features(self, x):
+        x, T, W = self.patch_embed(x)
+        cls_tokens = self.cls_token.expand(x.size(0), -1, -1)
+        x = torch.cat((cls_tokens, x), dim=1)
+        x = x + self.pos_embed
+       ...
+
+
+class Attention(nn.Module):
+    self.qkv = nn.Linear(dim, dim * 3)
+    self.norm1 = norm_layer(dim)
+    ...
+
+    def forward(self, x):
+        q, k, v = qkv[0], qkv[1], qkv[2]
+        attn = (q @ k.transpose(-2, -1)) * self.scale
+        attn = softmax(dim=-1)
+        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+
+
+
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

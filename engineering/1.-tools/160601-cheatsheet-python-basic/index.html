@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CheatSheet | Python Basic - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="1. Python Basic Data Type 1.1 Number a**b # 제곱 a//b # 몫 a%b # 나머지 1.2 String &amp;gt;&amp;gt;&amp;gt; y = 3.42134234 &amp;gt;&amp;gt;&amp;gt; &amp;quot;{0:0.4f}&amp;quot;.format(y) # 문자열포맷 &#39;3.4213&#39; 1.3 List a = [1,2,3] b = [4,5,6] # 1. 리스트 더하기 &amp;gt;&amp;gt;&amp;gt; a &#43; b : [1,2,3,4,5,6] # 2. 리스트 반복 &amp;gt;&amp;gt;&amp;gt; a*3 : [1,2,3,1,2,3,1,2,3] 1.4 Tuple 튜" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>CheatSheet | Python Basic - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="CheatSheet | Python Basic" />
+<meta property="og:description" content="1. Python Basic Data Type 1.1 Number a**b # 제곱 a//b # 몫 a%b # 나머지 1.2 String &gt;&gt;&gt; y = 3.42134234 &gt;&gt;&gt; &quot;{0:0.4f}&quot;.format(y) # 문자열포맷 &#39;3.4213&#39; 1.3 List a = [1,2,3] b = [4,5,6] # 1. 리스트 더하기 &gt;&gt;&gt; a &#43; b : [1,2,3,4,5,6] # 2. 리스트 반복 &gt;&gt;&gt; a*3 : [1,2,3,1,2,3,1,2,3] 1.4 Tuple 튜" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/1.-tools/160601-cheatsheet-python-basic/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2020-05-30T09:00:13+00:00" />
+<meta property="article:modified_time" content="2020-05-30T09:00:13+00:00" />
+
+<meta itemprop="name" content="CheatSheet | Python Basic">
+<meta itemprop="description" content="1. Python Basic Data Type 1.1 Number a**b # 제곱 a//b # 몫 a%b # 나머지 1.2 String &gt;&gt;&gt; y = 3.42134234 &gt;&gt;&gt; &quot;{0:0.4f}&quot;.format(y) # 문자열포맷 &#39;3.4213&#39; 1.3 List a = [1,2,3] b = [4,5,6] # 1. 리스트 더하기 &gt;&gt;&gt; a &#43; b : [1,2,3,4,5,6] # 2. 리스트 반복 &gt;&gt;&gt; a*3 : [1,2,3,1,2,3,1,2,3] 1.4 Tuple 튜"><meta itemprop="datePublished" content="2020-05-30T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2020-05-30T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1047">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CheatSheet | Python Basic"/>
+<meta name="twitter:description" content="1. Python Basic Data Type 1.1 Number a**b # 제곱 a//b # 몫 a%b # 나머지 1.2 String &gt;&gt;&gt; y = 3.42134234 &gt;&gt;&gt; &quot;{0:0.4f}&quot;.format(y) # 문자열포맷 &#39;3.4213&#39; 1.3 List a = [1,2,3] b = [4,5,6] # 1. 리스트 더하기 &gt;&gt;&gt; a &#43; b : [1,2,3,4,5,6] # 2. 리스트 반복 &gt;&gt;&gt; a*3 : [1,2,3,1,2,3,1,2,3] 1.4 Tuple 튜"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/1.-tools/160601-cheatsheet-python-basic/"
+    >CheatSheet | Python Basic</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/1.-tools/160601-cheatsheet-python-basic/" class="article-date">
+  <time datetime="2020-05-30 09:00:13 &#43;0000 UTC" itemprop="datePublished">2020-05-30</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-tools/"> 1. Tools </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/1.-tools/160601-cheatsheet-python-basic/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="1-python-basic-data-type">1. Python Basic Data Type</h2>
+<h3 id="11-number">1.1 Number</h3>
+<pre><code class="language-python">  a**b # 제곱
+  a//b # 몫
+  a%b  # 나머지
+</code></pre>
+<h3 id="12-string">1.2 String</h3>
+<pre><code class="language-python">  &gt;&gt;&gt; y = 3.42134234
+  &gt;&gt;&gt; &quot;{0:0.4f}&quot;.format(y) # 문자열포맷
+  '3.4213'
+</code></pre>
+<h3 id="13-list">1.3 List</h3>
+<pre><code class="language-python">  a = [1,2,3]
+  b = [4,5,6]
+
+  # 1. 리스트 더하기
+  &gt;&gt;&gt; a + b : [1,2,3,4,5,6]  
+  # 2. 리스트 반복
+  &gt;&gt;&gt; a*3 : [1,2,3,1,2,3,1,2,3]
+</code></pre>
+<h3 id="14-tuple">1.4 Tuple</h3>
+<ul>
+<li>
+<p>튜플은 리스트와 달리 값을 변화시킬 수가 없다.</p>
+</li>
+<li>
+<p>값이 바뀌지 않았으면 할때 리스트 대신 튜플사용</p>
+<pre><code class="language-python">t1 = (1,) # ele가 하나일때는 ,붙여야함
+t2 = 1,2,3  # 괄호 생략 가능
+</code></pre>
+</li>
+</ul>
+<h3 id="15-dict">1.5 Dict</h3>
+<ul>
+<li>
+<p>Hash 자료구조로 되어있어 리스트나 튜플처럼 순차적으로 해당 요솟값을 구하지 않고 Key를 통해 Value를 얻는다.</p>
+<pre><code class="language-python">dic = {'name':'pey', 'phone':'0119993323', 'birth': '1118'}
+</code></pre>
+</li>
+</ul>
+<h3 id="16-set">1.6 Set</h3>
+<ul>
+<li>
+<p>중복을 허용하지 않는다</p>
+</li>
+<li>
+<p>순서가 없다. 따라서 인덱싱으로 set 안의 element 를</p>
+<pre><code class="language-python"># generate set 
+A = set([1,2,2,3]) # &gt;&gt; {1, 2, 3}
+B = set([1,3,4])
+# indexing 
+A[2] # &gt;&gt; TypeError: set object does not support indexing
+
+# operation
+A&amp;B, A|B, A-B
+
+# methods
+A.remove(1)
+A.add('b')
+A.update(['a','b'])
+</code></pre>
+</li>
+</ul>
+<h3 id="17-bool">1.7 Bool</h3>
+<ul>
+<li>True/False 의 두가지 값만을 가질 수 있다.</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="2-lambda">2. Lambda</h2>
+<ul>
+<li>
+<p>쓰고 버리는 일회용 함수로 간단한 기능을 일반적인 함수와 같이 정의해두고 쓰는게 아니라 필요한 곳에서 즉시 사용하고 버림</p>
+</li>
+<li>
+<p>map(func, iterable), filter(func, iterable) 함수와 주로 함께 쓰임, map은 func를 iterable에 모두 적용한 결과를 리턴하고, filter는 iterable중 func를 만족하는 ele만 리턴함</p>
+</li>
+</ul>
+<pre><code class="language-python"># lambda arg리스트:표현식 으로 정의하여 사용
+&gt;&gt; g = lambda x:x**2
+&gt;&gt; g(8)
+64
+
+# map(func, iterable) 과 함께 쓰일 때
+&gt;&gt;&gt; list(map(lambda x:x+3, [1,2,3,4]))
+[4, 5, 6, 7]
+
+# filter(func, iterable)와 함께 쓰일 때
+&gt;&gt;&gt; list(filter(lambda x:x&gt;0, range(-5,5)))
+[1, 2, 3, 4]
+</code></pre>
+<p><br><br><br></p>
+<h2 id="3-init-call">3. init, call</h2>
+<ul>
+<li>Class는 객체를 만들어내기 위한 설계도(틀)로서 연관된 변수와 메서드의 집합</li>
+<li>Object(객체) 는 클래스타입으로 선언되었을 때, Instance 는 그 객체가 메모리에 할당되어 실제 사용될 때</li>
+</ul>
+<pre><code class="language-python">class A:
+    def __init__(self): # 객체를 생성할때 사용
+        print('init')
+    def __call__(self): # 마치 함수를 호출하는 것처럼 인스턴스를 호출할 수 있도록 만듦
+        print('call')
+
+&gt;&gt;&gt; a = A()
+init
+&gt;&gt;&gt; a()
+call
+</code></pre>
+<p><br><br><br></p>
+<h2 id="4-decorator">4. Decorator</h2>
+<ul>
+<li>
+<p>함수를 arg로 받아서, 원본함수를 변경하지 않고 앞 뒤에 새로운 로직을 추가하는 경우가 자주 있음,</p>
+</li>
+<li>
+<p>가령 아래와 같이 함수를 입력으로 받아 함수의 실행시간을 출력해주는 로직을 추가해서 사용할 수 있음</p>
+</li>
+</ul>
+<pre><code class="language-python">def time_check(func):
+  def new_func(*args, **kwargs):
+    start_time = time.time()
+    result = func(*args, **kwargs)
+    end_time = time.time()
+    print('실행시간:', end_time-start_time)
+    return result
+  return new_func
+
+def big_number(n):
+  return n**n**n
+
+new_func = time_checker(big_number)
+new_func(6)  
+</code></pre>
+<ul>
+<li>Decorator를 적용하여 이를 아래와 같이 바꿀 수 있다.</li>
+</ul>
+<pre><code class="language-python">def time_check(func):
+  def new_func(*args, **kwargs):
+    start_time = time.time()
+    result = func(*args, **kwargs)
+    end_time = time.time()
+    print('실행시간:', end_time-start_time)
+    return result
+  return new_func
+
+@time_check
+def big_number(n):
+  return n**n**n
+
+big_number(6)
+
+</code></pre>
+<p><br><br><br></p>
+<h2 id="5-method">5. Method</h2>
+<ul>
+<li>
+<p><strong>instance method</strong> : 가장 흔히 쓰이는 메서드로 인스턴스 변수에 엑세스 할 수 있도록 첫번째 파라미터에 항상 self 를 갖는다.</p>
+</li>
+<li>
+<p><strong>static method</strong> : 정적 메서드는 이러한 self 파라미터를 갖지 않고 인스턴스 변수에 엑세스 할 수 없다. 따라서 보통 객체 필드와 독립적이지만 로직상 클래스내에 포함되는 메서드에 사용한다. 클래스 안에 있지만 일반 함수와 다를게 없이 그냥 클래스 인스턴스에서 호출할 수 있음. 인스턴스 메소드는 인스턴스 안의 멤버 변수의 값을 바꾸거나 하지만 정적 메서드는 그러지 못함.</p>
+</li>
+<li>
+<p><strong>class method</strong> : self 대신 클래스를 cls 라는 파라미터로 전달받아 클래스 변수에 엑세스 [<a href="https://medium.com/@hckcksrl/python-%EC%A0%95%EC%A0%81%EB%A9%94%EC%86%8C%EB%93%9C-staticmethod-%EC%99%80-classmethod-6721b0977372">참고</a>]</p>
+</li>
+</ul>
+<h2 id="6-path">6. Path</h2>
+<pre><code class="language-python">os.chdir('/opt/vidClassifier/classifier/')
+sys.path.append('/opt/vidClassifier/classifier')
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

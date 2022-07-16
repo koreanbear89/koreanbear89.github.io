@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Data Intensive App #8 | The trouble with distributed system - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="8.0 Introduction In the last few chapters =&amp;gt; how systems handle things going wrong However, even though we have talked a lot about faults, the last few chapters have still been too optimistic The reality is even darker we will now turn our pessimism to the maximum and assume that anything that can go wrong will go wrong In this chapter we will get a taste of the problems that" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Data Intensive App #8 | The trouble with distributed system - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Data Intensive App #8 | The trouble with distributed system" />
+<meta property="og:description" content="8.0 Introduction In the last few chapters =&gt; how systems handle things going wrong However, even though we have talked a lot about faults, the last few chapters have still been too optimistic The reality is even darker we will now turn our pessimism to the maximum and assume that anything that can go wrong will go wrong In this chapter we will get a taste of the problems that" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-08/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2021-10-26T09:00:13+00:00" />
+<meta property="article:modified_time" content="2021-10-26T09:00:13+00:00" />
+
+<meta itemprop="name" content="Data Intensive App #8 | The trouble with distributed system">
+<meta itemprop="description" content="8.0 Introduction In the last few chapters =&gt; how systems handle things going wrong However, even though we have talked a lot about faults, the last few chapters have still been too optimistic The reality is even darker we will now turn our pessimism to the maximum and assume that anything that can go wrong will go wrong In this chapter we will get a taste of the problems that"><meta itemprop="datePublished" content="2021-10-26T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2021-10-26T09:00:13+00:00" />
+<meta itemprop="wordCount" content="2912">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Intensive App #8 | The trouble with distributed system"/>
+<meta name="twitter:description" content="8.0 Introduction In the last few chapters =&gt; how systems handle things going wrong However, even though we have talked a lot about faults, the last few chapters have still been too optimistic The reality is even darker we will now turn our pessimism to the maximum and assume that anything that can go wrong will go wrong In this chapter we will get a taste of the problems that"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/5.-study/data-intensive-app-08/"
+    >Data Intensive App #8 | The trouble with distributed system</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-08/" class="article-date">
+  <time datetime="2021-10-26 09:00:13 &#43;0000 UTC" itemprop="datePublished">2021-10-26</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-study/"> 5. Study </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/5.-study/data-intensive-app-08/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="heading"></h2>
+<h2 id="80-introduction">8.0 Introduction</h2>
+<ul>
+<li>In the last few chapters =&gt; how systems handle things going wrong</li>
+<li>However, even though we have talked a lot about faults, the last few chapters have still been too <strong>optimistic</strong>
+<ul>
+<li>The reality is <strong>even darker</strong></li>
+<li>we will now turn our <strong>pessimism</strong> to the maximum and assume that anything that can go wrong will go wrong</li>
+</ul>
+</li>
+<li>In this chapter
+<ul>
+<li>we will get a taste of the problems that arise in practice</li>
+<li>and understanding of the things we can and cannot rely on</li>
+<li>we must understand what challenges we are up against</li>
+</ul>
+</li>
+<li>Next chapter,
+<ul>
+<li>In spite of everthing going wrong, our task as engineers is to build systems that do their job (i.e, meet the guarantees that users are expecting)</li>
+<li>We will look at some examples of algorithms that can provide such guarantees in a distributed systems</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="81-faults-and-partial-failures">8.1 Faults and Partial Failures</h2>
+<ul>
+<li>When you are writing a program on a <strong>single computer, it normally behaves in a fairly predictable way</strong> : either it works or it doesn’t</li>
+<li>When you are writing software that runs on <strong>several computers</strong>, connected by a network, the situation is <strong>fundamentally different</strong>.</li>
+<li><strong>Partial failure</strong> : In a distributed system, there may well be some parts of the system that are <strong>broken</strong> in some unpredictable way, even though <strong>other parts of the system are working fine</strong>
+<ul>
+<li><strong>Nondeterministic</strong> : if you try to do anything involving multiple nodes and the network, it may <strong>sometimes work</strong> and <strong>sometimes unpredictably fail</strong>.</li>
+</ul>
+</li>
+<li>This non-determinism and possibility of partial failures is what makes <strong>distributed systems hard to work with</strong>.</li>
+</ul>
+<h3 id="811-cloud-computing-and-supercomputing">8.1.1 Cloud Computing and Supercomputing</h3>
+<ul>
+<li>philosophies on how to build large-scale computing systems:
+<ol>
+<li><strong>Cloud Computing</strong> : commodity computers connected with and IP network</li>
+<li>HPC (high-performance computing) : super computers with thousands of CPUs</li>
+</ol>
+</li>
+<li>In a super-computer : If one node fails, a common solution is to simply <strong>stop the entire cluster</strong> workload. After the faulty node is repaired, the computation is restarted from  the  last  checkpoint.  =&gt; <strong>A supercomputer is more like a single-node computer than a distributed system.</strong></li>
+<li>we must accept the possibility of partial failure and <strong>build fault-tolerance mechanisms</strong> into the software. In other words, we need to build a reliable system from <strong>unreliable components.</strong></li>
+</ul>
+<p><br><br></p>
+<h2 id="82-unreliable-networks">8.2 Unreliable Networks</h2>
+<ul>
+<li>
+<p>The distributed systems we focus on in this book are <strong>shared-nothing systems</strong>: i.e.,  a  bunch of machines connected by a network</p>
+</li>
+<li>
+<p>The internet and most internal networks in datacenters are asynchronous packet networks.</p>
+<p>=&gt; one node can <strong>send a message</strong> (a packet) to another node, but the network gives <strong>no guarantees</strong> as to when it will arrive or whether it will arrive at all.</p>
+<p>=&gt; If you send a request and expect a response, <strong>many things could go wrong</strong>.</p>
+</li>
+<li>
+<p>The sender can’t even tell whether the packet was delivered: <strong>the only option is for the recipient to send a response message</strong>, which may in turn be lost or delayed.</p>
+</li>
+<li>
+<p>The usual way of handling this issue is a <strong>timeout</strong>: after some time you give up waiting and assume that the response is not going to arrive.</p>
+</li>
+</ul>
+<h3 id="821-network-faults-in-practice">8.2.1 Network Faults in Practice</h3>
+<ul>
+<li>We have been building computer networks <strong>for decades</strong>—one might hope that by now we would have figured out how to <strong>make them reliable</strong>. =&gt; <strong>However, it seems that we have not yet succeeded.</strong></li>
+<li>network problems can be <strong>surprisingly common</strong> =&gt; medium-sized datacenter found about 12 faults/month</li>
+<li>Even if network faults are rare in your environment, the fact that faults can occur means that <strong>your software needs to be able to handle them</strong></li>
+</ul>
+<h3 id="822-detecting-faults">8.2.2 Detecting Faults</h3>
+<ul>
+<li>Many systems <strong>need to automatically detect</strong> faulty nodes
+<ul>
+<li>ex) In a distributed DB with single-leader replication, if the leader fails, one of the followers needs to be promoted to be the new leader</li>
+</ul>
+</li>
+<li>the <strong>uncertainty</strong> about the network <strong>makes it difficult</strong> to tell <strong>whether a node is working or not</strong></li>
+</ul>
+<h3 id="823-timeouts-and-unbounded-delays">8.2.3 Timeouts and Unbounded Delays</h3>
+<ul>
+<li>
+<p>If a <strong>timeout</strong> is the only sure way of detecting a fault, then how long should the time‐out be? : &ldquo;Failure detection delay&rdquo; vs &ldquo;risk of premature timeouts&rdquo;</p>
+<ul>
+<li>A long timeout : a long wait until a node is <strong>declared dead</strong></li>
+<li>A short timeout : detects faults faster, but carries a <strong>higher risk</strong> of incorrectly declaring a node dead
+<ul>
+<li>When a node is declared dead, its responsibilities need to be  transferred to other nodes,</li>
+<li>=&gt; places additional load on other nodes and the network.</li>
+<li>=&gt; If the system is already struggling with high load, declaring nodes dead prematurely can make the problem worse.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>A fictious system with maximum delay $d$, guarantee that a non-failed node always handles a request within some time $r$, =&gt; $2d+r$ would be a reasonable timeout to use</p>
+</li>
+<li>
+<p>Unfortunately, <strong>most systems we work with have neither of those guarantees</strong>: asynchronous networks have unbounded delays (that is, they try to deliver packets as quickly as possible, but there is no upper limit on the time it may take for a packet to arrive),</p>
+</li>
+<li>
+<p>rather than using configured <strong>constant timeouts</strong>, systems can continually measure response times and their variability (jitter), and <strong>automatically adjust time‐outs</strong> according to the observed response time distribution. (Phi Accural failure detector used in Akka and Cassandra)</p>
+</li>
+</ul>
+<p><br><br></p>
+<hr>
+<h2 id="83-unreliable-clocks-287p">8.3 Unreliable Clocks (287p)</h2>
+<ul>
+<li>
+<p>Clocks and time are important. Applications depend on clocks in various ways <strong>to answer questions like the following</strong>:</p>
+<ol>
+<li>
+<p>Has this request timed out yet?</p>
+</li>
+<li>
+<p>What’s the 99th percentile response time of this service?</p>
+</li>
+<li>
+<p>How many queries per second did this service handle on average in the last fiveminutes?</p>
+</li>
+<li>
+<p>How long did the user spend on our site?</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Each machine on the network has its own clock, which is an actual hardware device: usually a quartz crystal oscillator. <strong>These devices are not perfectly accurate,</strong> so each machine has its own notion of time, which may be slightly faster or slower than on other machines.</p>
+</li>
+</ul>
+<h3 id="831-time-of-day-clocks-vs-monotonic">8.3.1 Time-of-Day Clocks vs Monotonic</h3>
+<ul>
+<li>
+<p>Time of Day clocks : does what you intuitively expect of a clock: it <strong>returns the current date and time</strong> according to some calendar</p>
+<ul>
+<li>clock_gettime(CLOCK_REALTIME) on Linux System.currentTimeMillis() in  Java</li>
+<li>return the number of seconds since the epoch: midnight UTC on January 1, 1970</li>
+<li>usually <strong>synchronized with NTP</strong> (<strong>Network Time Protocol</strong>), which means that a time‐stamp from one machine (ideally) means the same as a timestamp on another machine.</li>
+<li>if the local clock is too far ahead of the NTP server, it maybe <strong>forcibly reset</strong> and appear to <strong>jump back</strong> to a previous point in time =&gt;  <strong>make time-of-day clocks unsuitable for measuring elapsed time</strong></li>
+</ul>
+</li>
+<li>
+<p>Monotonic clocks : are guaranteed to always <strong>move forward</strong></p>
+<ul>
+<li>A monotonic clock is <strong>suitable for measuring a duration, such as a timeout or a  service’s response time</strong></li>
+<li>clock_gettime(CLOCK_MONOTONIC) on Linux and System.nanoTime() in Java time.monotonic() in python</li>
+<li>By default, NTP allows the clock rate to be <strong>speeded up</strong> or <strong>slowed down</strong> by up to 0.05%, but NTP cannot cause the monotonic clock to jump forward or backward.</li>
+</ul>
+</li>
+</ul>
+<h3 id="832-clock-synchronization-and-accuracy">8.3.2 Clock Synchronization and Accuracy</h3>
+<ul>
+<li>Monotonic clocks don’t need synchronization, but <strong>time-of-day clocks</strong> need to be set according to an <strong>NTP server</strong></li>
+<li>Unfortunately, our methods for getting a clock to tell the correct time aren’t <strong>nearly as reliable or accurate as you might hope</strong></li>
+<li>It is <strong>possible to achieve</strong> very good clock accuracy if you care about it sufficiently to <strong>invest significant resources.</strong> (e.g. financial institutions, trading funds)</li>
+<li>Such accuracy can be achieved using <strong>GPS receivers</strong>, and careful deployment and monitoring. However, it requires significant effort and expertise, and there are <strong>plenty of ways clock synchronization can go wrong</strong>.</li>
+</ul>
+<h3 id="833-relying-on-synchronized-clocks">8.3.3 Relying on Synchronized Clocks</h3>
+<ul>
+<li>Although clocks work quite well most of the time, robust software <strong>needs to be prepared to deal with incorrect clocks</strong></li>
+<li>However incorrect clockes easily go <strong>unnoticed.</strong> If its quartz clock is defective or its NTP client is misconfigured, most things will seem to work fine, even though its clock gradually drifts further and further away from reality.</li>
+<li>Timestamps for ordering events : (Figure 8-3)</li>
+<li>Clock readings have a confidence interval
+<ul>
+<li>Thus, it doesn’t make sense to think of a clock reading as a point in time - it is more like a <strong>range</strong> of times,</li>
+<li>Google’s TrueTime API (Spanner) explicitly reports the confidence <strong>interval</strong> on the local clock. =&gt; returns [earliest, latest]</li>
+</ul>
+</li>
+</ul>
+<h3 id="834-process-pauses">8.3.4 Process Pauses</h3>
+<ul>
+<li>Let’s consider <strong>another example</strong> of dangerous clock use in a distributed system.</li>
+<li>What if there is an <strong>unexpected pause</strong> in the execution of the program?
+<ul>
+<li>leader paused =&gt; another leader take over =&gt; previous leader resumed</li>
+</ul>
+</li>
+<li>Is it crazy to assume that a thread might be paused for so long? Unfortunately not. There are various reasons why this could happen:
+<ul>
+<li><strong>Garbage collector (GC)</strong> that  occasionally needs to stop all running threads.</li>
+<li>In virtualized environments, a <strong>virtual machine</strong> can be suspended and resumed</li>
+<li>If the application performs synchronous disk access, a thread may be paused waiting for a slow disk I/O operation to complete</li>
+<li>A Unix process can be paused by sending it the SIGSTOP signal, for example <strong>bypressing Ctrl-Z</strong> in a shell</li>
+</ul>
+</li>
+<li>When writing multi-threaded code on a <strong>single machine,</strong> we have fairly <strong>good tools</strong> for making it <strong>thread-safe</strong>: mutexes, semaphores, atomic counters, lock-free data structures, blocking queues, and so on. Unfortunately, <strong>these tools don’t directly translate to  distributed systems</strong></li>
+<li>A node in a distributed system <strong>must assume</strong> that its execution <strong>can be paused</strong> for a significant length of time at any point, even in the middle of a function. During the pause, the <strong>rest of the world keeps moving</strong> and may even declare the paused node dead because it’s not responding.</li>
+<li><strong>Response time guarantees</strong> : requires a large amount of <strong>additional work</strong> and <strong>severely restricts</strong> the range of programming languages, libraries, and tools that can be used</li>
+<li><strong>Limiting the impact of garbage collection</strong> : The negative effects of process pauses can be mitigated without resorting to expensive real-time scheduling guarantees.</li>
+</ul>
+<blockquote>
+<p>GC 같은 이유로 process가 멈추면 문제가 될 수 있다.  이를 해결하기 위해, response time 을 guarantee 하도록 개발하는것은 expensive 하고 restrict도 많아 비현실적이고, 대신 memory 사용률을 체크하는 것만으로도 GC로 인한 pause를 예방할 수 있다.</p>
+</blockquote>
+<p><br><br><br></p>
+<h2 id="84-knowledge-truth-and-lies">8.4 Knowledge, Truth, and Lies</h2>
+<ul>
+<li>In the rest of this chapter, we will further explore the notions of knowledge and truth in distributed systems, which will help us think about the kinds of assumptions we can make and the guarantees we may want to provide.</li>
+</ul>
+<h3 id="841-the-truth-is-defined-by-the-majority">8.4.1 The Truth is Defined by the Majority</h3>
+<ul>
+<li>
+<p>Imagine a network with an <strong>asymmetric fault</strong>:</p>
+<ol>
+<li>a node is <strong>able to receive all messages</strong> sent to it, but any <strong>outgoing messages</strong> are dropped or delayed</li>
+<li>After some <strong>timeout</strong>, the other nodes <strong>declare it dead</strong>,</li>
+<li>the <strong>semi-disconnected node</strong> is dragged to the graveyard, kicking and screaming “I’m not dead!”— but since nobody can hear its screaming, the <strong>funeral procession continues</strong> with stoic determination.</li>
+</ol>
+</li>
+<li>
+<p>The moral of these stories is that <strong>a node</strong> cannot necessarily trust <strong>its own judgment</strong> of a  situation. =&gt; Instead, many distributed algorithms rely on a quorum, that is, <strong>voting among the nodes</strong></p>
+</li>
+<li>
+<p><strong>The leader and the lock</strong> : Frequently, a system requires there to be only one of some thing. (one node is allowed to be the leader)</p>
+<ul>
+<li>Implementing this in a distributed system requires care:</li>
+<li>even if a node believes that it is  “the chosen one”  that doesn’t necessarily mean a quorum of nodes agrees!</li>
+<li>A node may have formerly been the leader, but if the other nodes declared it dead in the meantime it may have been demoted and another leader may have already been elected. (Fig8-4)</li>
+</ul>
+</li>
+<li>
+<p><strong>Fencing tokens</strong> : When using a lock or lease to protect access to some resource, such as the file storage in Figure 8-4, we need to ensure that a node that is under a false belief of being “the chosen one” cannot disrupt the rest of the system. A fairly simple technique that achieves this goal is called fencing, and is illustrated in Figure 8-5.</p>
+<blockquote>
+<p>어떠한 이유로 죽은 older token 의 소지자가 storage에 접근할 수 없도록 lease 를 몇번이나 해줬는지 알 수 있도록 기록</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="842-byzantine-faults">8.4.2 Byzantine Faults</h3>
+<ul>
+<li>Fencing tokens <strong>can detect and block a node that is inadvertently acting in error</strong>.</li>
+<li>However, if the node deliberately wanted to subvert the <strong>system’s guarantees</strong>, it could easily do so by <strong>sending messages with a fake fencing token</strong>.</li>
+<li>Byzantine fault : <strong>nodes may lie</strong>
+<ul>
+<li>if a node may claim to have received a particular message when in fact it didn’t.</li>
+</ul>
+</li>
+<li>This concern is relevant in certain specific circumstances. For example:
+<ul>
+<li>in <strong>aerospace environments</strong>, the data in a computer’s memory or CPU register could become <strong>corrupted by radiation</strong>,</li>
+<li><strong>multiple participating organizations</strong>, some participants  may attempt to cheat or defraud others.</li>
+</ul>
+</li>
+<li><strong>Weak forms of lying</strong> : it can be worth adding mechanisms to guard against weak forms of lying</li>
+</ul>
+<h3 id="843-system-model-and-reality">8.4.3 System Model and Reality</h3>
+<ul>
+<li>
+<p>Many algorithms have been designed <strong>to solve distributed systems problems</strong>—in Chapter 9.</p>
+</li>
+<li>
+<p>We somehow <strong>formalize the kinds of faults</strong> that we expect to happen in a system. We do this  by defining a <strong>system model</strong>, which is an abstraction that describes what things an algorithm may assume.</p>
+</li>
+<li>
+<p>With regard to <strong>timing assumptions</strong>, three system models are in common use</p>
+<ul>
+<li>Synchronous model : assumes bounded network delay, bounded process pau‐ses, and bounded clock error</li>
+<li>Partially synchronous model : behaves like a synchronous system most ofthe time, but it sometimes exceeds the bounds for network delay, process pauses,and clock drift : realistic model</li>
+<li>Asynchronous model : is not allowed to make any timing assumptions</li>
+</ul>
+</li>
+<li>
+<p>Consider node failures.</p>
+<ul>
+<li>Crash-stop faults : node may suddenly stop responding at any moment, and  thereafter that node is <strong>gone forever</strong></li>
+<li>Crash-recovery faults : nodes may crash at any moment, and perhaps <strong>start responding again</strong> after some unknown time.</li>
+<li>Byzantine (arbitrary) faults : Nodes may do absolutely anything, including trying to trick and deceive other nodes,</li>
+</ul>
+</li>
+<li>
+<p><strong>Correctness</strong> : An algorithm is correct in some system model if <strong>it always satisfies its properties</strong> in all situations that we assume may occur in that system model.</p>
+</li>
+<li>
+<p>If we are generating fencing tokens for a lock we may require the algorithm to have the following properties:</p>
+<ul>
+<li>Uniqueness: No two requests for a fencing token return the same value.</li>
+<li>Monotonic sequence : If request x returned token  tx,  and  request  y  returned  token ty,  and x completed before y began, then tx &lt; ty.</li>
+<li>Availability: A node that requests a fencing token and does not crash eventually receives a response.</li>
+</ul>
+</li>
+<li>
+<p><strong>Safety and liveness</strong> : uniqueness and monotonic sequence are safety properties, but availability is a liveness property</p>
+</li>
+<li>
+<p><strong>Mapping system models to the real world</strong> :  when implementing an algorithm in  practice,  the messy facts of reality come back to bite you again,  and it becomes clear that the system model is a simplified abstraction of reality.</p>
+</li>
+</ul>
+<blockquote>
+<p>이러한 property들을 바탕으로 system model 의 correctness를 판단 =&gt; 현실적으로는 어렵지만, 놓치기 쉬운 문제들을 찾아내는데 도움.</p>
+</blockquote>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p>In this chapter, we have discussed a wide range of problems that can occur in distributed systems, including:</p>
+<ul>
+<li>Sended packet over the network, may be lost or delayed.</li>
+<li>A node’s clock may be significantly out of sync with other node</li>
+<li>A process may pause for a substantial amount of time at any  point in its execution</li>
+</ul>
+</li>
+<li>
+<p>we try to build tolerance of partial failures into software, so that  the  system as a whole may continue functioning even when some of its constituent parts are broken.</p>
+</li>
+<li>
+<p>To tolerate faults, the first step is to detect them,</p>
+<ul>
+<li>most distributed algorithms rely on timeouts to determine  whether a remote node is still available.</li>
+</ul>
+</li>
+<li>
+<p>Once a fault is detected, making a system tolerate is not easy  either: no global variable,  no shared memory,  no common  knowledge</p>
+</li>
+<li>
+<p>This chapter has been all about problems, and has given us a bleak  outlook.  In the next chapter we will move on to solutions, and discuss some algorithms that have been designed to cope with all the problems in distributed systems.</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Linear Algebra for ML #3 | Least Square  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&amp;gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&amp;gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&amp;gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&amp;gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&amp;gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&amp;gt; On" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Linear Algebra for ML #3 | Least Square  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Linear Algebra for ML #3 | Least Square " />
+<meta property="og:description" content="Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&gt; On" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2019-07-01T09:00:13+00:00" />
+<meta property="article:modified_time" content="2019-07-01T09:00:13+00:00" />
+
+<meta itemprop="name" content="Linear Algebra for ML #3 | Least Square ">
+<meta itemprop="description" content="Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&gt; On"><meta itemprop="datePublished" content="2019-07-01T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2019-07-01T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1590">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Algebra for ML #3 | Least Square "/>
+<meta name="twitter:description" content="Summary Least Square Problem : No solution exists for the linear equation $Ax=b$ =&gt; Approximate the solution $\hat{x}$ minimizes $ b - A \hat{x}$. =&gt; And $ b - A \hat{x}$ should be orthogonal to Column Space =&gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$ =&gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$ =&gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$ =&gt; On"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/"
+    >Linear Algebra for ML #3 | Least Square </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/" class="article-date">
+  <time datetime="2019-07-01 09:00:13 &#43;0000 UTC" itemprop="datePublished">2019-07-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-linear-algebra/"> 1. Linear Algebra </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/1.-linear-algebra/2019-07-01-linear-algebra-for-ml-lec3/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p>Least Square Problem : No solution exists for the linear equation $Ax=b$</p>
+<p>=&gt; Approximate the solution $\hat{x}$ minimizes  $ b - A \hat{x}$.</p>
+<p>=&gt; And $ b - A \hat{x}$ should be orthogonal to Column Space  =&gt; $ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$</p>
+<p>=&gt; From this equation, We get the normal equation $A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$</p>
+<p>=&gt; And if $A^T A$ is invertible, the solution $\hat{\mathbf{x}}= (A^T A)^{-1}A^T\mathbf{b}$</p>
+<p>=&gt; On the other view,  $\hat{b}$ is the orthogonal projection of $b$</p>
+<p>=&gt; Now, we can find orthogonal projection of a vector</p>
+<p>=&gt; we can find orthogonal vector set using given linearly independ vectors (in that vector space)</p>
+</li>
+</ul>
+<h2 id="30-least-square">3.0 Least Square</h2>
+<ul>
+<li>
+<p><strong>Inner Product</strong> : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $.</p>
+</li>
+<li>
+<p><strong>Vector Norm</strong> : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$</p>
+</li>
+<li>
+<p><strong>$L_p$ Norm</strong> : $ \Vert \mathbf{x} \Vert_p = ( \Sigma_{i=1}^n \vert x_i \vert^p)^{1/p}$</p>
+</li>
+<li>
+<p><strong>Euclidean Norm</strong> : $L_2$ norm</p>
+</li>
+<li>
+<p><strong>Frobenius Norm</strong> : can be seen as an expansion of $L_2$ norm to apply to the matrix : $ \Vert A \Vert_F = \sqrt{\Sigma_{i=1}^m \Sigma_{j=1}^n} \vert a_{ij}\vert^2$</p>
+</li>
+<li>
+<p><strong>Unit Vector</strong> : A vector whose length is 1</p>
+</li>
+<li>
+<p><strong>Normalizing</strong> : Given a nonzero vector $\mathbf{v}$, if we divide it by its length, we obtain a unit vector.</p>
+</li>
+<li>
+<p><strong>Distance between vectors</strong> :  dist($\mathbf{u,v}$) = norm($\mathbf{u-v}$) = $\Vert \mathbf{u-v} \Vert$</p>
+</li>
+<li>
+<p><strong>Inner Product and Angle Between Vectors</strong> : $\mathbf{u \cdot v} = \mathbf{\Vert u \Vert  \Vert v \Vert} cos \theta $</p>
+</li>
+<li>
+<p><strong>Orthogonal Vectors</strong> : $\mathbf{u \cdot v} = \mathbf{\Vert u \Vert  \Vert v \Vert} cos \theta = 0$. That is $ (\mathbf{u \perp v})$</p>
+</li>
+</ul>
+<br>
+<h2 id="31-introduction-to-least-squares-problem">3.1 Introduction to Least Squares Problem</h2>
+<ul>
+<li>
+<p><strong>Over-Determined</strong> : number of equations &gt; number of variables (we have much more data examples), usually no solution exists</p>
+</li>
+<li>
+<p><strong>Motivation for Least Squares</strong> : Even if no solution exists, we want to approximately obtain the solution for an over-determined system.</p>
+</li>
+</ul>
+<blockquote>
+<p>일반적으로 n개 변수의 해를 구하려면 n개 방정식이 필요하다. 이때 방정식의 개수가 변수의 개수보다 많아지는 경우를 Over-determined 라고 한다. 일반적으로 이런경우 해가 존재하지 않으나, 해가 없다라고 끝내지 않고 근사적으로 best approximate solution을 찾아보자.</p>
+</blockquote>
+<ul>
+<li>The example below shows how to determine which solution is better between $\begin{bmatrix} -0.12 \\ 16 \\ -9.5 \end{bmatrix}$ and $\begin{bmatrix} -0.4 \\ 20 \\ -20 \end{bmatrix}$ for given Over-Determined System.</li>
+</ul>
+<br>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-07-01-fig1.png">
+</p>
+<br>
+<ul>
+<li><strong>Least Squares Problem</strong> : Given an over-determined system, $A \mathbf{x \simeq b}$, a least squares solution $\hat{x}$ is defined as</li>
+</ul>
+<p>$$\mathbf{\hat{x}} = argmin_x | \mathbf{b} - A \mathbf{x} | $$</p>
+<ul>
+<li>
+<p>The most important aspect of the least-squares problem is that no matter what $\mathbf{x}$ we select, the vector $A \mathbf{x}$ will necessarily be in the column space Col $A$</p>
+</li>
+<li>
+<p>Thus, we seek for $\mathbf{x}$ that makes $A \mathbf{x}$ as the closest point in Col $A$ to $\mathbf{b}$</p>
+</li>
+</ul>
+<br>
+<h2 id="32-geometric-interpretation-of-least-squares">3.2 Geometric Interpretation of Least squares</h2>
+<ul>
+<li>
+<p>Consider $ \mathbf{\hat{x}} $ such that $ \hat{b} = A\mathbf{\hat{x}} $ is the closest point to $\mathbf{b}$ among all points in Column Space of $A$.</p>
+</li>
+<li>
+<p>That is, $\mathbf{b}$ is closer to $\mathbf{\hat{b}}$ than to $A \mathbf{x}$ for any other $\mathbf{x}$.</p>
+</li>
+<li>
+<p>To satisfy this, the vector $\mathbf{b}- A\mathbf{\hat{x}}$ should be orthogonal to Col $A$</p>
+</li>
+<li>
+<p>This means $\mathbf{b} - A \mathbf{\hat{x}}$ should be orthogonal to any vector in Col A:</p>
+</li>
+</ul>
+<p>$$ \mathbf{b} - A\mathbf{\hat{x}} \perp (x_1\mathbf{a}_1 + &hellip;. x_p\mathbf{a}_n)$$</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-07-01-fig2.png">
+</p>
+<ul>
+<li>Or equivalently,</li>
+</ul>
+<p>$$ A^T(\mathbf{b} - A\hat{\mathbf{x}}) = 0$$</p>
+<blockquote>
+<p>$\mathbf{b} - A \mathbf{\hat{x}} \perp  \mathbf{a_1} \rightarrow &gt;\mathbf{a}_1^T(\mathbf{b} - A \mathbf{\hat{x}})=0 $<br>
+$\mathbf{b} - A \mathbf{\hat{x}} \perp  \mathbf{a_2} \rightarrow &gt;\mathbf{a}_2^T(\mathbf{b} - A \mathbf{\hat{x}})=0 $
+&hellip;<br>
+$\mathbf{b} - A \mathbf{\hat{x}} \perp  \mathbf{a_m} \rightarrow &gt;\mathbf{a}_m^T(\mathbf{b} - A \mathbf{\hat{x}})=0 $</p>
+</blockquote>
+<ul>
+<li>same with the equation below which is called a normal equation</li>
+</ul>
+<p>$$A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$$</p>
+<br>
+<h2 id="33-normal-equation">3.3 Normal Equation</h2>
+<ul>
+<li>given a least squares problem, $Ax \simeq \mathbf{b}$ , we obtain normal equation</li>
+</ul>
+<p>$$A^T A\hat{\mathbf{x}}= A^T\mathbf{b}$$</p>
+<ul>
+<li>if $A^T A$ is invertible, then the solution is computed as</li>
+</ul>
+<p>$$\hat{\mathbf{x}}= (A^T A)^{-1} A^T\mathbf{b} $$</p>
+<ul>
+<li>
+<p>If $A^T A$  is not invertible, the system has either no solution or infinitely many solutions. However, the solution always exist for this &ldquo;normal&rdquo; equation, and thus infinitely many solutions exist.</p>
+</li>
+<li>
+<p>If and only if the columns of $A$ are linearly dependent, $A^TA $ is not invertible. However, $A^T A$ is usually invertible.</p>
+</li>
+</ul>
+<br>
+<h2 id="34-orthogonal-projection">3.4 Orthogonal Projection</h2>
+<p>consider the orthogonal projection of $\mathbf{b}$ onto Col $A$  as</p>
+<p>$$  \mathbf{\hat{b}} = f(\mathbf{b})= A{\mathbf{\hat{x}}} = A(A^TA)^{-1}A^T\mathbf{b} $$</p>
+<ul>
+<li>
+<p><strong>Orthogonal set</strong> : A set of vectors {$ \mathbf{u_1, &hellip; u_p}$} in $\mathbb{R^n}$ if each pair of distinct vectors from the set is orthogonal. That is, if $\mathbf{u_i \cdot u_j}=0$ whenever $i \neq j$. So, All vectors in the orthogonal set are orthogonal to each other.</p>
+</li>
+<li>
+<p><strong>Orthonormal set</strong> : A set of vectors {$ \mathbf{u_1, &hellip; u_p}$} in $\mathbb{R^n}$ if it is an orthogonal set of unit vectors (norm=1) .</p>
+</li>
+<li>
+<p><strong>Orthogonal and Orthonormal Basis</strong> : Consider basis {$\mathbf{v_1, &hellip; , v_p}$} of a p-dimensional subspace $W $ in $\mathbb{R}^n$. We can make it as an orthogonal(or orthonormal) basis using Gram-Schmidt process.</p>
+</li>
+</ul>
+<br>
+<p style="text-align: center;">
+<img class="post-fig" width="30%" align="center" src="/figures/2019-07-01-fig3.jpeg">                     
+<img class="post-fig" width="20%" align="center" src=" /figures/2019-07-01-fig4.png ">
+</p>
+<ul>
+<li><strong>Orthogonal Projection $\hat{\mathbf{y}}$ of $\mathbf{y}$ onto Line</strong> : Consider the orthogonal projection $\hat{\mathbf{y}}$ of $\mathbf{y}$ onto Line (1D subspace $L$). From the above picture, $\hat{\mathbf{y}}$ can be represented by multiplication of the norm (length) for $\hat{\mathbf{y}}$ (=$ | | \hat{\mathbf{y}} | |$) and the unit vector of $\mathbf{u}$ ( = $\mathbf{\frac{u}{||u||}} $ ). And we can calculate $\hat{\mathbf{y}}$ from the inner product of $\mathbf{y} \text{ and } \mathbf{u}$</li>
+</ul>
+<p>$$ \hat{\mathbf{y}} = proj_L(\mathbf{y})$$</p>
+<p>$$ =  | | \hat{\mathbf{y}} | | \cdot  \mathbf{\frac{u}{||u||}} = \mathbf{\frac{y \cdot u}{||u||}} \cdot \mathbf{\frac{u}{||u||}} $$</p>
+<p>$$= \mathbf{\frac{y \cdot u}{u \cdot u}} \cdot \mathbf{u}, ( \because \mathbf{||u||}^2 = \mathbf{u \cdot u})$$</p>
+<ul>
+<li><strong>Orthogonal Projection $\hat{\mathbf{y}}$ of $\mathbf{y}$ onto Plane</strong> : Consider the orthogonal projection  $\hat{\mathbf{y}}$ of $\mathbf{y}$ onto two-dimensional subspace $W$</li>
+</ul>
+<p>$$ W = span ( \mathbf{u_1, u_2} ) $$</p>
+<p>$$ \hat{\mathbf{y}} = proj_L(\mathbf{y}) = \mathbf{\frac{y \cdot u_1}{u_1 \cdot u_1}} \cdot \mathbf{u_1} +\mathbf{\frac{y \cdot u_2}{u_2 \cdot u_2}} \cdot \mathbf{u_2}  $$</p>
+<ul>
+<li><strong>Orthogonal Projection as a Linear Transformation</strong> : Consider a transformation of orthogonal projection $\mathbf{\hat{b}}$ of $\mathbf{b}$. If orthonormal basis {$\mathbf{u_1, u_2}$}  of a subspace $W$ is given, both $\mathbf{u_1, u_2}$ are unit vector and we can get following equation :</li>
+</ul>
+<p>$$ \mathbf{\hat{b}} = f(\mathbf{b}) = \mathbf{ (b \cdot u_1)u_1 + (b \cdot u_2 )u_2 } $$</p>
+<p>$$ \mathbf{ = (u_1^Tb)u_1 + (u_2^T b)u_2 = (u_1u_1^T + u_2 u_2^T)b  = \begin{bmatrix} u_1^T \\ u_2^T \end{bmatrix}  \begin{bmatrix} u_1 \ u_2 \end{bmatrix} = UU^T b } $$</p>
+<br>
+<h2 id="35-gram-schmidt-orthonomalization">3.5 Gram-Schmidt Orthonomalization</h2>
+<ol>
+<li>If two (or more) vectors are linearly independent, these vectors create an vector space. And we want to represent this vector space using  a orthogonal (or orthonormal) set in many cases.</li>
+<li>In the previous chapter, we&rsquo;ve learned orthogonal projection of one vector to the other.</li>
+<li>From this we can represent a given vector space (linearly independent vector set) with a orthogonal vector set : Gram-Schmidt</li>
+</ol>
+<blockquote>
+<p>Gram-schmidt Orthogonalization : 추출하고자 하는 Feature의 방향성들이 서로 수직이 되지 않으면 중복이 되는 정보들을 추출하게 됨. 이 경우 후처리를 통해 linearly-independent 한 feature들을 수직인 형태의 vector들로 바꾸어 orthogonal vector set으로 만드는 과정</p>
+</blockquote>
+<blockquote>
+<p><strong>Example</strong>: Let $W=span( \mathbf{x_1, x_2})$, where $\mathbf{x_1} = \begin{bmatrix}  3\\ 6\\ 0\end{bmatrix}$,  $\mathbf{x_2} = \begin{bmatrix}  1\\ 2\\ 2\end{bmatrix}$. Construct an orthogonal basis {$\mathbf{v_1, v_2}$} for $W$</p>
+<p><strong>Solution</strong>:</p>
+<ol>
+<li>Let $\mathbf{v_1} = \mathbf{x_1}$. And, let $\mathbf{v_2}$ the component of $\mathbf{x_2}$ is orthogonal to $\mathbf{x_1}$, i.e.
+$$ \mathbf{v_2 = x_2 - proj_{v1}(x2) =  x_2 - \frac{x_2 \cdot x_1}{x_1 \cdot x_1} x_1 }=  \begin{bmatrix} 1 \\ 2 \\ 2 \end{bmatrix} - \frac{15}{45}\begin{bmatrix} 3 \\ 6 \\ 0 \end{bmatrix}  = \begin{bmatrix} 0 \\ 0 \\ 2 \end{bmatrix} $$</li>
+<li>Now, we get orthogonal basis for $W$.  That is,
+$$\mathbf{v_1} = \begin{bmatrix}  3\\ 6\\ 0\end{bmatrix}, \mathbf{v_2} = \begin{bmatrix}  0\\ 0\\ 2\end{bmatrix}$$</li>
+<li>We can get the orthonormal set $\mathbf{(u_1,u_2)}$ of these vectors by dividing the norm of each vectors
+$$\mathbf{u_1} = \frac{1}{\sqrt{45}} \begin{bmatrix}  3\\ 6\\ 0\end{bmatrix}, \mathbf{u_2} = \begin{bmatrix}  0\\ 0\\ 1 \end{bmatrix}$$</li>
+</ol>
+</blockquote>
+<br>
+<h2 id="36-qr-factorization-qr-decomposition">3.6 QR Factorization (QR Decomposition)</h2>
+<ul>
+<li>QR Decomposition : is a decomposition of a matrix $A$ into a <strong>orthogonal matrix</strong> $Q$ (with Gram-Schmidt) and <strong>upper triangular matrix</strong> $R$ .
+<ol>
+<li>For a given lineary independent matrix,  we can find orthogonal basis of the vector space using Gram-Schumidt.</li>
+<li>There should be another matrix that undo the above orthogonalization tranfrom</li>
+<li>Here, the orthogonalized matrix is represented as $Q$ and the &lsquo;un-doing&rsquo; matrix is represented as $R$.</li>
+</ol>
+</li>
+</ul>
+<p>$$A \rightarrow \text{Gram-Schumidt} \rightarrow Q \rightarrow \times R \rightarrow A $$</p>
+<blockquote>
+<p><strong>Example</strong> : Consider the decomposition of linearly independeny matrix $A =  \begin{bmatrix}  12&amp;-51&amp;4\\ 6&amp;167 &amp;-68\\ -4&amp;24&amp;-41\end{bmatrix}$</p>
+<p><strong>Solution</strong> :</p>
+<p>Then, we can calculate $Q$ by means of Gram-Schmidt as follows:</p>
+<p>$$U = [\mathbf{u1, u2, u3}] = \begin{bmatrix}  12&amp;-69&amp;-58/5\\ 6&amp;158 &amp;-6/5\\ -4&amp;30&amp;-33\end{bmatrix}$$</p>
+<p>$$ Q = [\mathbf{\frac{u_1}{|u_1|}, \frac{u_2}{|u_2|}, \frac{u_3}{|u_3|}}] = \begin{bmatrix}  6/7&amp;-69/175&amp;-58/175\\ 3/7&amp;158/175 &amp;-6/175\\ -2/7&amp;30/175&amp;-33/35\end{bmatrix} $$</p>
+<p>Thus, we have</p>
+<p>$$R = Q^TA = \begin{bmatrix}  14&amp;21&amp;-14\\ 0&amp;175 &amp;-70\\ 0&amp;0&amp;35\end{bmatrix}$$</p>
+</blockquote>
+<br>
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

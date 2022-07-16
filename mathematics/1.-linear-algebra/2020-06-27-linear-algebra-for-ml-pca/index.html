@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Linear Algebra for ML #6 | PCA  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="6.1 Principal Component Analysis Principal component analysis (PCA) : is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest. Principal components : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best" />
+    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <title>Linear Algebra for ML #6 | PCA  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Linear Algebra for ML #6 | PCA " />
+<meta property="og:description" content="6.1 Principal Component Analysis Principal component analysis (PCA) : is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest. Principal components : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2020-06-27T09:00:13+00:00" />
+<meta property="article:modified_time" content="2020-06-27T09:00:13+00:00" />
+
+<meta itemprop="name" content="Linear Algebra for ML #6 | PCA ">
+<meta itemprop="description" content="6.1 Principal Component Analysis Principal component analysis (PCA) : is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest. Principal components : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best"><meta itemprop="datePublished" content="2020-06-27T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2020-06-27T09:00:13+00:00" />
+<meta itemprop="wordCount" content="2328">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Algebra for ML #6 | PCA "/>
+<meta name="twitter:description" content="6.1 Principal Component Analysis Principal component analysis (PCA) : is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest. Principal components : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/"
+    >Linear Algebra for ML #6 | PCA </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/" class="article-date">
+  <time datetime="2020-06-27 09:00:13 &#43;0000 UTC" itemprop="datePublished">2020-06-27</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-linear-algebra/"> 1. Linear Algebra </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/1.-linear-algebra/2020-06-27-linear-algebra-for-ml-pca/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="61-principal-component-analysis">6.1 Principal Component Analysis</h2>
+<ul>
+<li><strong>Principal component analysis (PCA)</strong> :  is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest.</li>
+<li><strong>Principal components</strong> : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best fits the data while being orthogonal to the previous $i-1$ vectors. Here, a best-fitting line is defined as one that minimizes the average squared distance from the points to the line.</li>
+<li><strong>Methods</strong>
+<ol>
+<li>가장 직관적으로 PC를 찾는 방법은 위와 같이 각 데이터로부터 거리가 가장 짧은 축 (벡터) 을 찾고 이를 반복하는 방법</li>
+<li>일반적으로는 주어진 데이터셋의 covariance matrix를 eigendecomposion 하여 얻어낸 eigenvector를 eigenvalue가 큰 순서대로 정렬하여 PC 얻는 방법</li>
+</ol>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2020-06-27-fig3.png ">
+</p>
+<center>C1축으로 투영한 데이터가 분산을 최대로 보존하는것을 알 수 있다.</center>
+<br>
+<blockquote>
+<ul>
+<li>PCA는 주어진 n-dim 데이터들을 가장 잘 나타낼수 있는 n개의 벡터 (축) 를 찾는 방법.</li>
+<li>이 과정에서 찾아낸 벡터들을 principal component라 부르며 이 principal component (축, 벡터) 위로 데이터를 투영시켜 (projection) 데이터들의 차원을 낮추는데 자주 활용</li>
+<li>즉, Principal Components는 주어진 데이터를 가장 잘 나타낼 수 있는 적절한 축 (초평면, 벡터) 이며 이는 곧 원본 데이터의 분산을 최대한 유지 할 수 있는 축이된다. (각 데이터를 구분하는데 필요없는 feature 축을 제거해야 데이터 특성이 유지됨).</li>
+</ul>
+</blockquote>
+<p><br><br><br></p>
+<h2 id="2-covariance-matrix">2. Covariance Matrix</h2>
+<ul>
+<li>
+<p>주어진 데이터셋에서 분산이 최대인 축을 (Principal Components) 찾기위해 앞서 언급했듯 원본 데이터셋과 투영된 데이터셋의 거리가 최소가 되는 축을 찾는 방법도 있겠으나,  Covariance Matrix를 선형변환의 하나로 보아 이를 해결하는게 일반적이다.</p>
+</li>
+<li>
+<p><strong>Covariance Matrix</strong> : 각 원소 $a_{i,j}$ 가 $i$ 와 $j$ 번째 feature의 covariance로 구성되어 있는 행렬로 x,y 축의 2차원 공분산 행렬의 원소들은 다음의 의미를 갖는다.</p>
+<ul>
+<li>$a_{11}$ 은 x축 방향으로 퍼진정도, 이 경우 $a_{11}$ 값은 $Cov(X,X) = \sigma_X^2 , \text{  (=variance) }$</li>
+<li>$a_{22}$ 는 y축 방향으로 퍼진정도, 마찬가지로 값은 $Cov(Y,Y) = \sigma_Y^2$</li>
+<li>$a_{12} = a_{21}$ 은 x,y축 방향으로 함께 퍼진 정도로 $Cov(X,Y) = E((X-\mu)(Y-v))$</li>
+</ul>
+</li>
+<li>
+<p>Covariance Matrix 를 선형변환으로 보고 아래와 같이 Principal Components 를 얻을 수 있다.</p>
+<ol>
+<li>어떠한 행렬은 선형변환 으로도 볼 수 있으며, 이를 주어진 벡터공간에 곱하여 다른벡터공간으로 mapping 할 수 있다.</li>
+<li>각 feature들이 선형 독립인, Covariance가 없는 데이터 분포를 가정해보자 (Figure.A below)</li>
+<li>이 데이터 분포에 아래 행렬들을 각각 곱하여 선형변환한 결과는 그림과 같다.</li>
+<li>즉, 선형독립인 데이터분포를 Covariance Mat로 선형변환하면 Covariance Mat의 성분에 따라 X,Y 축으로 Shearing 된 분포를 얻을 수 있다.</li>
+<li>반대로 말하면 우리가 관측을 통해 갖고있는 데이터는 그 데이터의 CovMat에 의해 선형변환된 분포로 볼 수 있으며</li>
+<li>이는 곧, 그  CovMat의 Eigenvector가 선형변환을 통해 방향이 변치 않는 벡터들이고 Eigenvalue가 이 벡터들의 scale된 크기임을 의미한다.</li>
+<li>따라서 우리는 어떤 데이터의 CovMat을 구하고 이 CovMat을 Eigendecomposition하여 Principal Components를 찾을 수 있다</li>
+<li>고유값은 고유벡터의 방향으로 벡터공간이 얼마나 확장될지를 이야기한다. 따라서 Eigendecomposition을 한 이후에 고유값의 크기에 따라 고유벡터를 정렬하면 중요한 순서대로 주성분을 구할 수 있다.</li>
+</ol>
+</li>
+</ul>
+<p>$$ B = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 5  \end{pmatrix}. \quad  C = \begin{pmatrix} 5 &amp; 0 \\ 0 &amp; 1  \end{pmatrix} , \quad  D = \begin{pmatrix} 3 &amp; 2 \\ 2 &amp; 4  \end{pmatrix}  $$</p>
+<br>
+<p style="text-align: center;">
+  <img class="post-fig" width="50%" align="center" src="/figures/2020-06-27-fig4.png">
+  </p>
+  <center>(A) original data dist, (B), (C), (D) linearly transformed by matrix B, C, D</center>
+<p><br><br><br></p>
+<h2 id="3-implementation">3. Implementation</h2>
+<ol>
+<li>
+<p>주어진 데이터의 공분산행렬 Covariance Matrix 를 구하고 이를 eigendecomposition 하여 Eigenvalue와 EigenVector를 구하는방법. 즉 공분산행렬의 고유벡터들이 Principal Component가 되며 이 고유벡터로의 projection (내적) 을 통해 차원축소가 가능하다.</p>
+</li>
+<li>
+<p>이미지와 같이 data-dim이 과도하게 커지는 경우 (100x100 이미지의 공분산행렬의 크기는 10000x10000) 공분산행렬을 구하는데 어려움이 있다. 이를 위해 굳이 공분산행렬을 구하지 않고 centerized 데이터를 SVD 하여 Singular Value 와 Singular Vector를 구하는 방법</p>
+</li>
+</ol>
+<pre><code class="language-python"># (1) Covariance Matrix 의 Eigenvalue 와 Eigenvector를 계산
+X_cen = X - X.mean(axis=0)  # 평균을 0으로
+X_cov = np.dot(X_cet.T, X_cen) / (N-1)
+w, v = np.linalg.eig(X_cov)
+
+# (2) SVD를 이용한 방법
+U, D, V_t = np.linalg.svd(x_cen)
+</code></pre>
+<p><br><br><br></p>
+<h2 id="4-applications">4. Applications</h2>
+<ul>
+<li>
+<p>Dimensionality Reduction : PCA를 통해 PC를 찾고나서 Variance가 큰 순서대로 n개의 basis를 골라 (Eigenvalue가 큰 Eigenvector들) 만든 벡터공간 (hyperplane, 초평면) 위로 데이터를 projection하면 차원축소가 가능하다.  일반적으로 차원을 축소하는 방법은 이러한 Projection을 이용한 방법과 manifold learning 의 두가지 방법론이 있다.</p>
+<blockquote>
+<ul>
+<li>데이터를 표현하는 feature가 증가 → 데이터의 차원이 증가 → 벡터공간에서 부피의 증가 → 데이터의 밀도는 차원이 증가할수록 감소 → 데이터간의 거리 증가  → 고차원, 저밀도의 데이터를 모델링하기 위해 모델이 복잡해짐 → Overfit</li>
+<li>예로 어떠한 위치를 표현하기 위하여 X,Y 좌표의 두개 feature를 사용하다가 Z축을 추가하면 2차원에서 3차원이 된다. 그러나 네비게이션과 같이 특정 목적에 따라 굳이 Z축 정보가 필요하지 않을 수도 있다.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>A <strong>hyperplane</strong> is a subspace whose dimension is one less than that of its ambient space. If a space is 3-dimensional then its hyperplanes are the 2-dimensional planes, while if the space is 2-dimensional, its hyperplanes are the 1-dimensional lines. This notion can be used in any general space in which the concept of the dimension of a subspace is defined.</p>
+</blockquote>
+</li>
+<li>
+<p>Eigenface: 분산이 큰 순서대로 (Principal Component) 일수록 얼굴의 전반적인 형태를 나타내고, 뒤로갈수록 세부적인 차이를 반영하고 더 뒤로가면 노이즈정보를 나타냄.</p>
+</li>
+<li>
+<p>Noise Reduction : PCA로 얻어진 주성분벡터들은 서로 Orthogonal 이므로 주성분 벡터들이 n차원 공간을 생성하는 basis의 역할도 할 수 있다. 즉 PCA로 얻은 주성분 벡터들을 $e_1, e_2, &hellip; e_n$ 이라 하면, 임의의 n차원 데이터 x는 $x = c_1e_1 + c_2e_2 + , &hellip; c_ne_n$ 과 같이 나타낼 수 있으며 이와같이 어떤 데이터집합의 데이터들을 그 주성분벡터들의 일차결합으로 표현하는 것을 <strong>Karhunen-Loeve Transform</strong> 이라한다. 이 때 뒷 부분의 주성분 벡터들은 noise성 정보를 나타내므로 이부분을 제하고 전반부 k개의 벡터들만으로 원래 데이터를 표현하면 노이즈가 제거된 데이터를 얻을 수 있다.</p>
+</li>
+<li>
+<p>Background Subtraction in surveillance camera : 마찬가지로 각 프레임을 데이터 샘플로 보고 PCA를 수행하면 변화가 없는 배경부분이 PC에 해당하므로 이부분을 제거하여 배경제거에도 사용할 수 있다.</p>
+</li>
+<li>
+<p>Whitening : 이상적으로 모든 픽셀이 서로 독립이라면 공분산행렬이 단위행렬이 된다. 즉 위의 그림 (a) 와 같은 형태로 데이터를 변형한다.즉 mean 과 variance를 각각 0과 1로 만드는 작업이라고 볼 수 있을듯.</p>
+</li>
+</ul>
+<!--
+
+<p style="text-align: center;">
+<img class="post-fig" width="0%" align="center" src=" /figures/2020-06-27-fig2.png">
+</p>
+<center>Figure . Differences between projection and manifold learning*</center>
+
+-->
+<p><br><br><br></p>
+<h2 id="5-reference">5. Reference</h2>
+<ul>
+<li><a href="https://angeloyeo.github.io/2019/07/27/PCA.html">https://angeloyeo.github.io/2019/07/27/PCA.html</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>
