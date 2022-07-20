@@ -39,7 +39,7 @@
 <meta itemprop="name" content="CheatSheet | Git">
 <meta itemprop="description" content="Summary - PR # 1. Fork repo to your own repo # 2. clone, set remote $ git remote # 현재 프로젝트에 등록된 리모트 저장소를 확인 $ git remote add &lt;remote_name&gt; &lt;URL&gt; # fork 해온 원래의 remote 추가 # 3. branch 생성 $ git checkout -b &lt;feature/issue_number&gt; # create new branch $"><meta itemprop="datePublished" content="2021-09-29T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-09-29T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1682">
+<meta itemprop="wordCount" content="1719">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Git"/>
 <meta name="twitter:description" content="Summary - PR # 1. Fork repo to your own repo # 2. clone, set remote $ git remote # 현재 프로젝트에 등록된 리모트 저장소를 확인 $ git remote add &lt;remote_name&gt; &lt;URL&gt; # fork 해온 원래의 remote 추가 # 3. branch 생성 $ git checkout -b &lt;feature/issue_number&gt; # create new branch $"/>
@@ -433,6 +433,14 @@ $ git push &lt;remote_name&gt; &lt;branch_name&gt; # push to own remote repo # g
 <pre><code class="language-bash"># git user check
 $ git config --list
 $ git config --global --list
+
+# Add user only for this project
+$ git config user.name &quot;Your Name&quot;
+$ git config user.email you@example.com
+
+# Add user for global usage
+$ git config --global user.name &quot;Your Name&quot;
+$ git config --global user.email you@example.com
 </code></pre>
 <br>
 <h2 id="1-create-new-git">1. Create new git</h2>

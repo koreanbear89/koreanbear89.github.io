@@ -39,7 +39,7 @@
 <meta itemprop="name" content="CheatSheet | Docker">
 <meta itemprop="description" content="Introduction docker docker compose Glossary swarm : cluster 와 동일한 개념 node (manager/worker) : 클러스터에 속한 서버의 단위. 스웜 명령어는 매니저 노드에서만 실행된다 service : 각 프로젝트를 구성하고 있는 서비스 단위 정도,"><meta itemprop="datePublished" content="2020-11-10T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2020-11-10T09:00:13+00:00" />
-<meta itemprop="wordCount" content="1672">
+<meta itemprop="wordCount" content="1759">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Docker"/>
 <meta name="twitter:description" content="Introduction docker docker compose Glossary swarm : cluster 와 동일한 개념 node (manager/worker) : 클러스터에 속한 서버의 단위. 스웜 명령어는 매니저 노드에서만 실행된다 service : 각 프로젝트를 구성하고 있는 서비스 단위 정도,"/>
@@ -559,10 +559,8 @@ $ docker-compose down
 $ docker-compose stop [컨테이너]
 
 $ docker-compose ps
-
 </code></pre>
-<pre><code class="language-yaml">
-version: '3.7'
+<pre><code class="language-yaml">version: '3.7'
 services:
 
   my_service1:
@@ -629,10 +627,29 @@ $ docker stack ls # show all stacks in current node (manager)
 $ docker service ls # show all services (including worker nodes) managed by current node 
 
 $ docker service ps &lt;SERVICE_NAME&gt;
-
-
 </code></pre>
 <hr>
+<h2 id="6-file-sharing-in-docker-container">6. File sharing in docker container</h2>
+<ul>
+<li>
+<p>Bind-mount : are files mounted from your host machine (the one that runs your docker daemon) onto your container.</p>
+</li>
+<li>
+<p>Volume : are like storage spaces totally managed by docker. In fact, volumes are managed in the hidden(?) path of host machine such as &lsquo;/var/lib/docker/volumes/VOLUME_NAME&rsquo;</p>
+<ul>
+<li>
+<p>named volumes : you provide the name of it</p>
+</li>
+<li>
+<p>anonymous volumes : usual UUID names from docker, like you can find them on container or untagged images</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">docker volume ls
+docker volume rm
+docker volume inspect VOLUME_NAME
+</code></pre>
 
     </div>
     <div class="article-footer">
