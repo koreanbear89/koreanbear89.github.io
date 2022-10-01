@@ -5,28 +5,10 @@
     <link>https://koreanbear89.github.io/</link>
     <description>Recent content on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 18 Apr 2022 09:00:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Sep 2022 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Leet Code</title>
-      <link>https://koreanbear89.github.io/engineering/8.-leet-code/leet-code/</link>
-      <pubDate>Mon, 18 Apr 2022 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/8.-leet-code/leet-code/</guid>
-      <description>Two Sum Hash map class Solution: def twoSum(self, nums: List[int], target: int) -&amp;gt; List[int]: # (1) generate empty hash map hash_map = {} # (2) iterate along the num in nums for i,num in enumerate(nums): # (2.1) get required number for each given num req = target - num # (2.2) if req in hash_map, return if req in hash_map: return [i, hash_map[req]] # (2.3) else, add number in hash</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | GlusterFS</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-glusterfs/</link>
-      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-glusterfs/</guid>
-      <description>1. GlusterFS  GlusterFS : is a Scalable Network Filesystem  Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks.  Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage     References  Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack    # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 pgsca2x0350:/home1/irteam/whome/__oss/gs_pvs pgsca2x0351:/home1/irteam/whome/__oss/gs_pvs pgsca2x0352:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
-    </item>
     
     <item>
       <title>Mathematics for ML #1 | Introduction Part.I </title>
@@ -34,127 +16,175 @@
       <pubDate>Tue, 18 Jan 2022 09:00:00 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml01-introduction/</guid>
-      <description>1. Introduction and Motivation  Machine learning is about designing algorithms that automatically extract valuable information from data. There are three concepts that are at the core of machine learning : data, a model, and learning.  Data : Since machine learning is inherently data driven, data is at the core of machine learning. Model : would describe a function that maps inputs to real-valued outputs. Learning : can be understood as a way to automatically find patterns and structure in data by optimizing the parameters of the model</description>
+      <description>1. Introduction and Motivation Machine learning is about designing algorithms that automatically extract valuable information from data. There are three concepts that are at the core of machine learning : data, a model, and learning. Data : Since machine learning is inherently data driven, data is at the core of machine learning. Model : would describe a function that maps inputs to real-valued outputs. Learning : can be understood as a way to automatically find patterns and structure in data by optimizing the parameters of the model 1.</description>
     </item>
     
     <item>
-      <title>CheatSheet | Django</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-django/</link>
-      <pubDate>Wed, 01 Dec 2021 09:00:13 +0000</pubDate>
+      <title>MLCV #1 | Image Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</link>
+      <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-django/</guid>
-      <description>Django # set Django project with config folder django-admin startproject config . # start Django Server python manage.py runserver 127.0.0.1:8080  </description>
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</guid>
+      <description>Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))</description>
     </item>
     
     <item>
-      <title>Cheat Sheet | Shell Script </title>
-      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-shell/</link>
-      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      <title>MLCV #2 | Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
+      <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-shell/</guid>
-      <description>Introduction &amp;ldquo;#!&amp;ldquo;는, 스크립트를 실행할 쉘을 지정하는 선언문으로 #!/bin/sh를 주로 볼 수 있음 그리고 우분투 6.06이후 /bin/sh 는 더이</description>
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</guid>
+      <description>Introduction Tasks Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. Metrics: AP or mAP is generally used as the primary metrics metric.click here for details Othres Non Maximum Suppression</description>
     </item>
     
     <item>
-      <title>Data Intensive App #12 | The Future of Data Systems</title>
-      <link>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-12/</link>
-      <pubDate>Tue, 26 Oct 2021 09:00:13 +0000</pubDate>
+      <title>MLCV #3 | Semantic Segmentation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</link>
+      <pubDate>Sun, 23 Jul 2017 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-12/</guid>
-      <description>The Future of Data Systems In this final chapter, we will shift our perspective toward the future and discuss how things should be: propose some ideas and approaches that may fundamentally improve the ways we design and build applications. The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable. In this chapter we will bring</description>
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</guid>
+      <description>Introduction Tasks: Image Segmentation : The process of assigning a label to every pixel in the image. Semantic Segmentation : treats multiple objects of the same class as a single entity. Instance Segmentation : treats multiple objects of the same class as distinct individual objects. 1. FCN (2015) Introduction : The first end-to-end pixel-wise prediction model based only on convolutional layers. Method: Feature Extraction : using convolution layers like conventional</description>
     </item>
     
     <item>
-      <title>Data Intensive App #8 | The trouble with distributed system</title>
-      <link>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-08/</link>
-      <pubDate>Tue, 26 Oct 2021 09:00:13 +0000</pubDate>
+      <title>MLCV #4 | Image Synthesis</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/</link>
+      <pubDate>Tue, 25 Jul 2017 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-08/</guid>
-      <description>8.0 Introduction In the last few chapters =&amp;gt; how systems handle things going wrong However, even though we have talked a lot about faults, the last few chapters have still been too optimistic The reality is even darker we will now turn our pessimism to the maximum and assume that anything that can go wrong will go wrong In this chapter we will get a taste of the problems that</description>
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/</guid>
+      <description>0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #5 | Image Style Transfer</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</link>
+      <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</guid>
+      <description>0. Introduction Tasks : Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize</description>
+    </item>
+    
+    <item>
+      <title>MLCV #6 | Image Retrieval</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</link>
+      <pubDate>Thu, 14 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</guid>
+      <description>Introduction Tasks: Image Retrieval : aims to find similar images to a query image among an image dataset. Tech Trend : Conventional Methods : relying on local descriptor matching (scale invariant features - local image descriptors - reranking with spatial verifications) using FC layers : after several conv layers as global descriptors [A Babenko et al, A Gordo et al.] using global pooling methods : from the activations of conv</description>
+    </item>
+    
+    <item>
+      <title>MLCV #7 | Action Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</link>
+      <pubDate>Sat, 03 Nov 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</guid>
+      <description>Introduction Tasks: Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN + RNNs 3D Convolutional Networks ResNeXt-101 :</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #8 | Introduction Part.II</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08-when-models-meet-data/</link>
+      <pubDate>Sat, 13 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08-when-models-meet-data/</guid>
+      <description>8. When Models Meet Data In the first part of the book, we introduced the mathematics that form the foundations of many machine learning methods
+The second part of the book introduces four pillars of machine learning:
+Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation (Chapter 11) Classification (Chapter 12) 8.1 Data, Models, and Learning Three major components of a machine learning system: data, models, and learning. Good models : should perform well on unseen data.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #8 | Pose Estimation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</link>
+      <pubDate>Wed, 07 Aug 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</guid>
+      <description>Introduction Tasks : Pose Estimation : The task aims to detect the locations of human anatomical keypoints (e.g., elbow, wrist, etc) 1. Deep Pose (2014) Introduction : The first major paper that applied Deep Learning to Human pose estimation Method : DNN-based regression : Alexnet backend (7 layers) with an extra final layer that outputs 2k joint coordinates (where $k$ is the number of joints). Cascade of pose regressors :</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #9 | Linear Regression</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/</link>
+      <pubDate>Tue, 13 Sep 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/</guid>
+      <description>9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter)</description>
+    </item>
+    
+    <item>
+      <title>MLCV #9 | 3D Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</link>
+      <pubDate>Tue, 06 Oct 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</guid>
+      <description>Introduction Tasks : 3D object detection : classifies the object category and estimates oriented 3D bounding boxes of physical objects from 3D sensor data. Applications : By extending prediction to 3D, one can capture an object’s size, position and orientation in the world, leading to a variety of applications in robotics, self-driving vehicles, image retrieval, and augmented reality Benchmarks KITTI (car, cyclist, pedestrian</description>
+    </item>
+    
+    <item>
+      <title>Networks #1 | API, HTTP, REST</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/web-server/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/web-server/</guid>
+      <description>Introduction API (Application Programming Interface) interface : a connection between two pieces of electronic equipment, or between a person and a computer
+API : an application interface made for easy use in another application
+ex) Weather App =&amp;gt; call API from weather station server =&amp;gt; Get weather condition =&amp;gt; User HTTP (HyperText Transfer Protocol) Non HTTP : MQTT, CoAP (low-level, low-energy protocol) REST (Representational State Transfer) </description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
+      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 pgsca2x0350:/home1/irteam/whome/__oss/gs_pvs pgsca2x0351:/home1/irteam/whome/__oss/gs_pvs pgsca2x0352:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
     </item>
     
     <item>
       <title>CheatSheet | Jupyter</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-jupyter/</link>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
       <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-jupyter/</guid>
-      <description>Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json pip install jupyterlab-unfold $ pip install jupyterlab-unfold # theme $ pip install theme-darcular $ jupyter labextension install @arbennett/base16-nord # theme    </description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Git</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-git/</link>
-      <pubDate>Wed, 29 Sep 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-git/</guid>
-      <description>Summary - PR # 1. Fork repo to your own repo # 2. clone, set remote $ git remote # 현재 프로젝트에 등록된 리모트 저장소를 확인 $ git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; # fork 해온 원래의 remote 추가 # 3. branch 생성 $ git checkout -b &amp;lt;feature/issue_number&amp;gt; # create new branch $</description>
-    </item>
-    
-    <item>
-      <title>Data Intensive App #4 | Encoding And Evolution</title>
-      <link>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-04/</link>
-      <pubDate>Tue, 28 Sep 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-04/</guid>
-      <description>4.0 Introduction Applications inevitably change over time. (Features are added or modified as new products are launched) A change to an app&amp;rsquo;s features also requires a change to data that it stores. This means that old and new versions of the code, and old and new data formats may potentially all coexists in the system at the same time. Backward Compatibility : Newer code can read data written by older</description>
-    </item>
-    
-    <item>
-      <title>Data Intensive App #3 | Storage and Retrieval</title>
-      <link>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-03/</link>
-      <pubDate>Mon, 27 Sep 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-03/</guid>
-      <description>3.0 Storage and Retrieval 색인의 방식에 따라 다음 두가지로 나뉨 log structured storage engine Page-oriented storage engine Other indexing structures 3.1 Data Structures That Power your Database db_set Db_get : full table scan O(n) =&amp;gt; 색인의 필요성 색인 (index) 3.1.1 Hash Indexes conventional 한 느낌? 3.1.2 Log Structured Storage Engine : SSTables and</description>
-    </item>
-    
-    <item>
-      <title>Data Intensive App #1 | Reliable, Scalable, Maintainable Applications</title>
-      <link>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-01/</link>
-      <pubDate>Sat, 25 Sep 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/5.-study/data-intensive-app-01/</guid>
-      <description>1.0 Introduction Data-intensive (vs compute-intensive) : raw CPU power is out of interest, bigger problems are usually the amount of data, the complexity of data, and the speed at which it is changing Database : store data so that they, or another application, can find it again later Caches : Remember the result of an expensive operation, to speed up reads Search Indexes : Allow users to search data by</description>
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
+      <description>
+1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme </description>
     </item>
     
     <item>
       <title>CheatSheet | Regex</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/210802-cheatsheet-regex/</link>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
       <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/210802-cheatsheet-regex/</guid>
-      <description>0. Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf Quick Example : 한/영/숫자/- 를 포함하려면 &#39;[가-힣|a-z|0-9|\-]+&#39; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ |</description>
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
+      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
     </item>
     
     <item>
-      <title>MLCV #12 | Video Summarization</title>
-      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv12-video-summarization/</link>
-      <pubDate>Thu, 29 Jul 2021 09:00:13 +0000</pubDate>
+      <title>System Design #1.1 | Nginx</title>
+      <link>https://koreanbear89.github.io/engineering/3.-system-design/system-design-#1.1-nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv12-video-summarization/</guid>
-      <description>Introduction   Video summarization : is the process of distilling a raw video into a more compact form without losing much information.
-  Can be categorized into two forms :
-  Static Video Summarization (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video
- storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes    Dynamic Video Summarization (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots.</description>
+      <guid>https://koreanbear89.github.io/engineering/3.-system-design/system-design-#1.1-nginx/</guid>
+      <description>Introduction Nginx : light-weight Web server
+generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
+Proxy server : is a server that acts as an intermediary between a client and the server
+Load balancing : Proxies distribute requests to a group of servers,
+Encryption : Proxies encrypt the data to keep it from being read during transfer.
+Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
     </item>
     
     <item>
-      <title>CheatSheet | Pandas</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/210610-cheatsheet-pandas/</link>
-      <pubDate>Thu, 10 Jun 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/210610-cheatsheet-pandas/</guid>
-      <description>Groupby agg_functions = {&#39;col1&#39;:&#39;first&#39;, &#39;col2&#39; : &#39;sum&#39;, &#39;col3&#39; : lambda col: &#39; &amp;amp;&amp;amp; &#39;.join(col), } df_new = df.groupby(df[&#39;id&#39;]).aggregate(agg_functions)  Filter df.iloc[[0,1,2,3,4,5]] # get rows by indices # not iloc() =&amp;gt; iloc[] # Filtering rows that contain either sub_str1 or sub_str2 df_new = df.loc[df[&#39;Column&#39;].str.contains(&amp;quot;sub_str1|sub_str2&amp;quot;, case=False)]  Manipulate Row df.drop(i) # remove i-th row df.sort_values(by, ascending=True) # sort  </description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | HTML</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/210609-cheatsheet-html/</link>
+      <title>HTML | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
       <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/210609-cheatsheet-html/</guid>
-      <description>ajax HTTP request &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;http://cgpu018-cvision:20012/vidcls?title=&amp;quot;+searchTitle, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt;  </description>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
+      <description>
+HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
     </item>
     
     <item>
@@ -167,31 +197,15 @@
     </item>
     
     <item>
-      <title>NLP #3 | Language Modeling </title>
-      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</link>
-      <pubDate>Tue, 13 Apr 2021 09:00:00 +0000</pubDate>
+      <title>Python | Matplotlib</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-matplotlib/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</guid>
-      <description>0. Introduction Language Modeling : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델 Machine Translation (기계 번역) : 언어 모델로 두 문장을 비교하여</description>
-    </item>
-    
-    <item>
-      <title>Cheat Sheet | VIM</title>
-      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-vi/</link>
-      <pubDate>Tue, 26 Jan 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-vi/</guid>
-      <description>Frequently used vim shortcuts Basic commands
-- a # write text to the cursor - A # write text at the end of the current line - i # write text to the cursor - I # write text to the front of the current line - ^ # move cursor to the front of the line - $ # move cursor to the back of the line - ESC # shift to command mode - x # in command mode, remove the text - u # in command mode, undo - :w # in command mode, save (write on the disk) - :q # in command mode, quit  - y # copy in visual mode - p # paste in visual mode  Commands for multiple windows</description>
-    </item>
-    
-    <item>
-      <title>Cheat Sheet | CURL</title>
-      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-curl/</link>
-      <pubDate>Mon, 25 Jan 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-curl/</guid>
-      <description>Frequently Used Options # -s, --silent $ curl -s URL # -X, --request &amp;lt;command&amp;gt; Specify request command to use $ curl -X GET URL $ curl -X POST URL  </description>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-matplotlib/</guid>
+      <description>Introduction Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
     </item>
     
   </channel>

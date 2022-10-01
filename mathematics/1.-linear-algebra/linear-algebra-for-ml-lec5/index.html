@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Linear Algebra for ML #5 | Singular Value Decomposition - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Linear Algebra for ML #5 | Singular Value Decomposition - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Linear Algebra for ML #5 | Singular Value Decomposition" />
+<meta property="og:description" content="5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2019-07-29T09:00:13+00:00" />
+<meta property="article:modified_time" content="2019-07-29T09:00:13+00:00" />
+
+<meta itemprop="name" content="Linear Algebra for ML #5 | Singular Value Decomposition">
+<meta itemprop="description" content="5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an"><meta itemprop="datePublished" content="2019-07-29T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2019-07-29T09:00:13+00:00" />
+<meta itemprop="wordCount" content="697">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Algebra for ML #5 | Singular Value Decomposition"/>
+<meta name="twitter:description" content="5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/"
+    >Linear Algebra for ML #5 | Singular Value Decomposition</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/" class="article-date">
+  <time datetime="2019-07-29 09:00:13 &#43;0000 UTC" itemprop="datePublished">2019-07-29</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-linear-algebra/"> 1. Linear Algebra </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="51-singular-value-decomposition-svd">5.1 Singular Value decomposition (SVD)</h2>
+<ul>
+<li>
+<p><strong>singular value decomposition</strong> (<strong>SVD</strong>) : is a factorization of a real or complex matrix that <mark>generalizes the eigendecomposition (EVD)  of a square normal matrix to any $m \times n$ matrix </mark>via an extension of the polar decomposition.</p>
+<center>$$ A = U \Sigma V^T$$</center>
+<ol>
+<li>$A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix</li>
+<li>$U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an orthonormal basis of $Col(A)$</li>
+<li>$V \in \mathbb{R}^{n \times n}$ : matrices with orthonormal columns, providing an orthonormal basis of $Row(A)$</li>
+<li>$\Sigma \in \mathbb{R}^{m \times n}$ : a diagonal matrix whose entries are in a decreasing order, i.e., $\sigma_1 \geq \sigma_2 \geq &hellip; \geq \sigma_{min(m,n)}$</li>
+</ol>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2019-07-29-fig1.png ">
+</p>
+<br>
+<hr>
+<h2 id="52-svd-as-sum-of-outer-products">5.2 SVD as Sum of Outer Products</h2>
+<ul>
+<li><strong>SVD as Sum of Outer Products</strong> : $A$ can also be represented as the sum of outer products</li>
+</ul>
+<p>$$ A = U \Sigma V^T = \Sigma_{i=1}^n \sigma_i \mathbf{u_j v_i^T}$$</p>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2019-07-29-fig2.png ">
+</p>
+<br>
+<ul>
+<li>
+<p><mark>From now on, we just want to show the equation below is true in this chapter (5.2) for the next chapter (5.3)</mark></p>
+<p>$$AV = U\Sigma  \Longleftrightarrow A=U \Sigma V^T$$</p>
+</li>
+<li>
+<p><strong>Another Perspective of SVD</strong> : We can easily find two orthonormal basis sets, {$u_1, &hellip; , u_n$} for $Col(A)$ and {$v_1, &hellip; v_n$} for $Row (A)$, by using, Gram-Schmidt orthogonalization.</p>
+</li>
+<li>
+<p>Are these unique orthonormal basis sets? No, then can we jointly find them such that</p>
+</li>
+</ul>
+<p>$$ A \mathbf{v_i} = \sigma_i \mathbf{u_i}$$</p>
+<ul>
+<li>
+<p>Let us denote $ U = \begin{bmatrix} \mathbf{u_1 \ u_2 \ &hellip; \ u_m} \end{bmatrix} \in \mathbb{R}^{m\times n}$,
+$ V = \begin{bmatrix} \mathbf{v_1 \  v_2 \ &hellip; \ v_n} \end{bmatrix} \in \mathbb{R}^{n \times n}$ and $ \Sigma = diag(\sigma_n) \in \mathbb{R}^{n \times n}$</p>
+</li>
+<li>
+<p>$AV = U\Sigma \Longleftrightarrow \begin{bmatrix} A\mathbf{v_1} \ A\mathbf{v_2} \ &hellip; \ A\mathbf{v_n} \end{bmatrix} = \begin{bmatrix} \ \sigma_1 \mathbf{u_1} \ \sigma_2 \mathbf{u_2} \ &hellip; \ \sigma_n \mathbf{u_n} \end{bmatrix}$</p>
+</li>
+<li>
+<p>$V^{-1} = V^T $ since $\mathbb{R}^{n \times n}$ has orthonormal columns.</p>
+</li>
+<li>
+<p>Thus $AV = U\Sigma  \Longleftrightarrow A=U \Sigma V^T$</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="53-geometrical-interpretation-of-svd">5.3 Geometrical Interpretation of SVD</h2>
+<ul>
+<li><strong>Geometrical Interpretation</strong> : For every linear transformation (rectangular matrix) $A$ , <mark> one can find $n$ dimensional  orthonormal basis of $V$ and transformed orthonormal basis $U$ </mark></li>
+</ul>
+<p>$$A = U \Sigma V^T \Longleftrightarrow   AV = U\Sigma$$</p>
+<!--
+> 즉, 임의의 rectangular matrix $A$ 에 대하여, 선형변환 후에 그 크기는 ($\Sigma$에 따라) 변하지만 각 column vector들은 여전히 직교하는 ($U$) 어떤 orthogonal vector set $V$ 를 찾을 수 있다. 
+-->
+<ul>
+<li>
+<p>Furthermore : The figure below shows the orthogonal vector set $x, y$ and the linearly transformed one $Ax, Ay$.</p>
+</li>
+<li>
+<p>And you can see two geometrical features :</p>
+<ol>
+<li>There could be one or more sets of orthogonal {$Ax, Ay$}.</li>
+<li>After transformed by matrix $A$, the lengths of $x,y$ are scaled by scaling factor. It is called singular value (like eigenvalue at EVD) and represented as  $\sigma_1, \sigma_2, \sigma_3, &hellip;$  starting with the larger value.</li>
+</ol>
+</li>
+</ul>
+<p style="text-align: center;">
+    <image width=40%  src='https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic2.gif'>
+    </image>
+  </p>
+<center>Figure. the orthogonal vector set $x, y$ 
+  and the linearly transformed one $Ax, Ay$.  <a href='https://angeloyeo.github.io/2019/08/01/SVD.html'>[reference]</a> </center>
+<br>
+<hr>
+<h2 id="54-computing-svd">5.4 Computing SVD</h2>
+<ul>
+<li>First, we form $AA^T$ , $A^T A$ and then get SVD of each as followings  :</li>
+</ul>
+<p>$$ AA^T = U \Sigma V^T V \Sigma^T U^T = U \Sigma \Sigma^T U^T = U \Sigma^2 U^T$$</p>
+<p>$$ A^T A = V \Sigma^T U^T U \Sigma V^T = V \Sigma^T \Sigma U^T = V \Sigma^2 V^T$$</p>
+<ul>
+<li>From the above, you can see the form of result equation is very similar to EVD:
+<ol>
+<li>$U$ Is a orthogonal matrix which is from the eigen-decomposition of $AA^T$, and it is called left singular vector.</li>
+<li>$\Sigma$ is a diagonal matrix whose diagonal entries are equal to the square root of the eigenvalues from $AA^T$.</li>
+<li>$V$ is a orthogonal matrix which is from the eigen-decomposition of $A^TA$, and it is called right singular vector.</li>
+</ol>
+</li>
+</ul>
+<!--
+> 즉 주어진 행렬 $A$ 의 SVD를 구하기 위해서는 $AA^T$ 를 EVD 하여 $U$ 를 얻고,  $A^TA$ 를 EVD하여 $V$ 를 얻고, 이 과정에서 얻어진 eigenvalue를 square-root 하여 diagonal entries 로 채워넣어 $\Sigma$ 를 얻어야한다.
+-->
+<!--
+
+    1. orthogonal eigenvector matrices $U$ and $V$
+    2. Eigenvalues in $\Sigma^2$ that are all positive
+    3. Eigenvalues in $\Sigma^2$ that are shared by $AA^T$ and $A^TA$
+
+<br>
+
+- In general, $A \in \mathbb{R}^{n \times n}$ is diagonalizable if and only if $n$ linearly independent eigenvectors exist.
+
+- How about a symmetric matrix $S \in \mathbb{R}^{n \times n}$, where $S^T = S$?
+
+- $S$ is always diagonalizable.
+
+- Furthermore, S is ortogonally diagnoalizable, meaning that their eigenvectors are not only linearly independent but also orthogonal to each other.
+
+<br>
+
+- Spectral Theorem of Symmetric matrices : Consider a symmetric matrix $S \in \mathbb{R}^{n \times n}$, where $S^T=S$.
+
+  1. $A$ has $n$ real eigenvalues, counting multiplicities.
+  2. The dimension of the eigenspace for each eigenvalue equals the multiplicity of $\lambda$ as a root of the characteristic equation
+  3. The eigenspaces are mutually orthogonal. That is, eigenvectors corresponding to different eigenvalues are orthogonal.
+  4. To sum up, $A$ is orthogonally diagonalizable
+
+<br>
+
+- Spectral decomposition : eigendecomposition of a symmetric matrix, also known as spectral decomposition, is represented as
+
+$$ S = UDU^{-1} = UDU^T = \lambda_1 \mathbf{u_1 u_1^T} + \lambda_2 \mathbf{u_2 u_2^T} + ... + \lambda_n \mathbf{u_n u_n^T}$$
+
+- Each term, $\lambda_i \mathbf{u_j u_j^T}$ can be viewed as a projection matrix onto the subspace spanned by $\mathbf{u_j}$, scaled by its eigenvalue $\lambda_i$
+
+<br>
+
+- Positive Definite Matrices : $A \in \mathbb{R}^{n \times n }$ is positive definite if $\mathbf{x}^T A \mathbf{x} > 0 $
+
+- Positive Semi-Definite Matrices : $A \in \mathbb{R}^{n \times n}$ is positive semi-definited if  $\mathbf{x}^T A \mathbf{x} \geq 0 $
+
+- $A$ is positive definite if and only if the eigenvalues of $A$ are all postive.
+
+<br>
+
+- If, $S$ is symmetric and positive-definite, then the spectral decomposition will have all positive eigenvalues:
+
+
+$$ S = UDU^T = \lambda_1 \mathbf{u_1 u_1^T} + \lambda_2 \mathbf{u_2 u_2^T} + ... + \lambda_n \mathbf{u_n u_n^T}$$
+
+<br>
+
+In the following,
+
+$$ AA^T = U \Sigma V^T V \Sigma^T Y^T = U \Sigma^2 U^T$$
+
+$$ A^T A = V \Sigma^T U^T U \Sigma V^T = V \Sigma^T \Sigma U^T = V \Sigma^2 V^T$$
+
+- Can we prove that both $AA^T$ and $A^TA$ are symmetric positive-(semi-)definite?
+
+- Symmetric : $(AA^T)^T = AA^T$ and $(A^T A)^T = A^TA$
+
+- Positive-(semi-)definited
+
+$$\mathbf{x}^TAA^T\mathbf{x} = (A^T\mathbf{x})^T(A^T\mathbf{x}) = \| A^T\mathbf{x}\|^2 \geq 0$$
+
+$$\mathbf{x}^TA^TA\mathbf{x} = (A \mathbf{x})^T(A \mathbf{x}) = \| A \mathbf{x}\|^2 \geq 0$$
+
+
+- Thus we can find
+
+  1. Orthogonal eigenvector matrices $U$ and $V$
+  2. Eigenvalues in $\Sigma ^2$ that are all Positive
+
+- Things to Note
+
+  1. Given any rectangula matrix $A \in \mathbb{R}^{m \times n}$, its SVD always exists
+  2. Given a square matrix $A \in \mathbb{R}^{n \times n}$, its eigendecomposition does not always exists, but its SVD always exists.
+  3. Given a square, symmetric positive (semi-)definite matrix $S \in \mathbb{R}^{n \times n}$, its eigendecomposition always exists, and it is actually the sane as its SVD.
+
+-->
+<br>
+<hr>
+<h2 id="55-application-of-svd">5.5 Application of SVD</h2>
+<ul>
+<li>Recall <strong>SVD as Sum of Outer Products</strong> : matrix $A$ can also be represented as the sum of outer products</li>
+</ul>
+<p>$$ A = U \Sigma V^T = \Sigma_{i=1}^n \sigma_i \mathbf{u_j v_i^T} = \sigma_1 \mathbf{u_1 v_1^T} + \sigma_2 \mathbf{u_2 v_2^T} + \sigma_3 \mathbf{u_3 v_3^T}  &hellip;$$</p>
+<ul>
+<li>
+<p>Here, $\mathbf{u_j v_i^T} $  is  $m \times n$ matrix and we can see matrix $A$ as a sum of multiple layers via SVD.</p>
+</li>
+<li>
+<p>That is, we can <mark>reconstruct $A$ with only a few singular values rather than using all of them ($\Sigma$). </mark></p>
+</li>
+<li>
+<p>And this can be used for dimensionality reduction like task such as image compression.</p>
+</li>
+</ul>
+<!--
+  > SVD 는 분해되는 과정보다는 분해된 행렬을 다시 조합하는 과정에서 그 응용력이 빛을 발한다. 기존의 $U,\Sigma, V^T$ 로 분해되어 있던 행렬 $A$ 를  $p$개 의 특이값만을 이용해 $A’$라는 행렬로 ‘부분 복원’ 할 수 있는데,   이 때  singular value 의 크기에 따라 $A$의 정보량이 결정되기 때문에 값이 큰 몇 개의 singular value만을  가지고도 충분히 유용한 정보를 유지할 수 있다. 
+-->
+<p style="text-align: center;">
+    <img width="70%" src="https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png">
+  </p>
+<center> Figure. Partial reconstruction of matrix using SVD <a href="https://angeloyeo.github.io/2019/08/01/SVD.html">[reference]</a></center>
+<br>
+<p style="text-align: center;">
+    <img width="20%" src="https://t1.daumcdn.net/cfile/tistory/2777A333526623231F">
+      <img width="20%" src="https://t1.daumcdn.net/cfile/tistory/262FD8375266294925">
+    <img width="20%" src="https://t1.daumcdn.net/cfile/tistory/2742B8355266291133">
+        <img width="20%" src="https://t1.daumcdn.net/cfile/tistory/2332E333526628B904">
+</p>
+<center>Figure. image compression using SVD (original, p=20, p=50, p=100) <a href="https://darkpgmr.tistory.com/106">[reference]</a></center></center>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

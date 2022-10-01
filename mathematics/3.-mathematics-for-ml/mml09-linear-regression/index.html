@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Mathematics for ML #9 | Linear Regression - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter)" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Mathematics for ML #9 | Linear Regression - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Mathematics for ML #9 | Linear Regression" />
+<meta property="og:description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2022-09-13T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-13T09:00:00+00:00" />
+
+<meta itemprop="name" content="Mathematics for ML #9 | Linear Regression">
+<meta itemprop="description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)"><meta itemprop="datePublished" content="2022-09-13T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-09-13T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1685">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mathematics for ML #9 | Linear Regression"/>
+<meta name="twitter:description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/3.-mathematics-for-ml/mml09-linear-regression/"
+    >Mathematics for ML #9 | Linear Regression</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/" class="article-date">
+  <time datetime="2022-09-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2022-09-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-mathematics-for-ml/"> 3. Mathematics for ML </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/3.-mathematics-for-ml/mml09-linear-regression/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="9-linear-regression">9. Linear Regression</h2>
+<ul>
+<li>
+<p>In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.</p>
+</li>
+<li>
+<p>In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$</p>
+<ul>
+<li>
+<p>We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,</p>
+</li>
+<li>
+<p>where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Solving a regression function requires a variety of problems:</p>
+<ul>
+<li>
+<p>(1) Choice of the model (type) and the parametrization of the regression function.</p>
+</li>
+<li>
+<p>(2) Finding good parameters.</p>
+</li>
+<li>
+<p>(3) Overfitting and model selection.</p>
+</li>
+<li>
+<p>(4) Relationship between loss functions and parameter priors.</p>
+</li>
+<li>
+<p>(5) Uncertainty modeling</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="91-problem-formulation">9.1 Problem Formulation</h3>
+<ul>
+<li>
+<p><strong>Objective</strong> : is to find a function that is close to the unknown function $f$ that generated the observed data (and that generalizes well).</p>
+</li>
+<li>
+<p><strong>Observation Noise</strong></p>
+<ul>
+<li>The functional relationship between input x and y is given as below.</li>
+<li>Noise $ε∼N(0, σ^2)$ is independent, identically distributed (i.i.d.) Gaussian measurement noise with zero-mean and variance of $σ^2$.</li>
+</ul>
+<p>$$
+y = f (x) + ε
+$$</p>
+</li>
+<li>
+<p><strong>Define Likelihood function</strong> :</p>
+<ul>
+<li>
+<p>Because of the presence of observation noise, we will adopt a probabilistic approach and explicitly model the noise using a likelihood function.</p>
+</li>
+<li>
+<p>Likelihood function would be Gaussian with mean, $y|f(x)$ and variance, $\sigma^2$ :</p>
+</li>
+</ul>
+<p>$$
+p(y|x) = N(y|f(x), σ^2)
+$$</p>
+</li>
+<li>
+<p><strong>Parametrization</strong> :</p>
+<ul>
+<li>We consider the special case that the parameters $\theta$ appear linearly in our model.</li>
+</ul>
+<p>$$
+p(y|x,θ) = N(y|x^⊤θ, σ^2) \newline \leftrightarrow y=x^⊤θ+ε, ε∼N(0,σ^2)
+$$</p>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="92-parameter-estimation">9.2 Parameter Estimation</h3>
+<ul>
+<li>In the following, we will have a look at parameter estimation by maximizing the likelihood, a topic that we already covered to some degree in Section 8.3.</li>
+</ul>
+<br>
+<h4 id="921-maximum-likelihood-estimation">9.2.1 Maximum Likelihood Estimation</h4>
+<ul>
+<li><strong>(1) Maximum Likelihood Estimation</strong>
+<ul>
+<li>A widely used approach to finding the desired parameters $θ_{ML}$</li>
+<li>where we find parameters $θ_{ML}$ that maximize the likelihood.</li>
+</ul>
+</li>
+</ul>
+<p>$$
+θ_{ML} = \text{argmax}_\theta \ p(Y |X,θ).
+$$</p>
+<ul>
+<li><strong>(2) Likelihood Factorization</strong> : For given training set, $y_i$ and $y_j$ are conditionally independent given their respective inputs $x_i, x_j$ so that the likelihood factorizes according to :</li>
+</ul>
+<p>$$
+p(Y|X,θ) = p(y_1,&hellip;,y_N |x_1,&hellip;,x_N,θ)
+$$</p>
+<p>$$
+= \prod p(y_n |x_n,θ) = \prod N(y_n |x^⊤_n θ, σ^2) \tag{9.5b}
+$$</p>
+<ul>
+<li><strong>(3) Log-Transformation</strong> :
+<ul>
+<li>Since the likelihood (9.5b) is a product of N Gaussian distributions, the log-transformation is useful</li>
+<li>To find $\theta_{ML}$, we can minimize the negative log-likelihood, which is equal to some of squared errors</li>
+</ul>
+</li>
+</ul>
+<p>$$
+−logp(Y|X,θ) = −log \prod p(y_n|x_n,θ) = − \sum logp(y_n|x_n,θ)
+$$</p>
+<p>$$
+logp(y_n|x_n,θ)= − \frac{1}{2\sigma^2} (y_n−x^⊤_nθ)^2 +const = L(\theta)
+$$</p>
+<ul>
+<li><strong>(4) Global Optimum</strong> : We can find the global optimum by computing the gradient of $L$, setting it to 0 and solving for $θ$</li>
+</ul>
+<p>$$
+\frac{dL}{d\theta} = 0^⊤ \Longleftrightarrow  θ_{ML} = (X^⊤X)^{−1}X^⊤y
+$$</p>
+<ul>
+<li><strong>Polynomial Regression (MLE with Features)</strong> : straight lines are not sufficiently expressive when it comes to fitting more interesting data</li>
+<li><strong>Estimating the Noise Variance</strong> : We can also use the principle of MLE to obtain the maximum likelihood estimator $\sigma_{ML}^2$ for the noise variance</li>
+</ul>
+<br>
+<h4 id="922-overfitting-in-linear-regression">9.2.2 Overfitting in Linear Regression</h4>
+<ul>
+<li>
+<p><strong>Model Selection</strong> : we can use the RMSE (or the negative log-likelihood) to determine the best degree of the polynomial that minimizes the objective.</p>
+<ul>
+<li>
+<p>polynomials of low degree fit the data poorly</p>
+</li>
+<li>
+<p>high-degree polynomials oscillate wildly and are a poor representation of the underlying function that generated the data, such that we suffer from overfitting</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="923-maximum-a-posteriori-estimation">9.2.3 Maximum A Posteriori Estimation</h4>
+<ul>
+<li>
+<p><strong>(1) Prior and Posterior</strong> :</p>
+<ul>
+<li>The posterior over the parameters θ, given the training data $X,Y$ is
+obtained by applying Bayes’ theorem (Section 6.3) as :</li>
+</ul>
+<p>$$
+p(θ|X,Y)= \frac{p(Y|X,θ)p(θ)}{p(Y | X )}
+$$</p>
+<ul>
+<li>Since the posterior explicitly depends on the parameter prior $p(θ)$, the prior will have an effect on the parameter vector we find as the maximizer of the posterior.</li>
+</ul>
+</li>
+<li>
+<p><strong>(2) Log-Transformation</strong> :</p>
+<ul>
+<li>To find the MAP estimate, We start with the log-transform and compute the log-posterior</li>
+</ul>
+<p>$$
+log p(θ | X , Y) = log p(Y | X , θ) + log p(θ) + const ,
+$$</p>
+<ul>
+<li>With a (conjugate) Gaussian prior $p(θ) = N(0, b^2I)$􏰂on the parameters θ, we obtain the negative log posterior</li>
+</ul>
+<p>$$
+−logp(θ|X,Y)= \frac{1}{2\sigma^2}(y−Φθ)^⊤(y−Φθ)+ \frac{1}{2b^2} θ^⊤θ+const.
+$$</p>
+</li>
+<li>
+<p>And then, we minimize the negative log-poterior distribution with respect to $\theta$</p>
+<p>$$
+θ_{MAP} ∈ argmin_\theta[−logp(Y|X,θ)−logp(θ)].
+$$</p>
+</li>
+<li>
+<p><strong>(3) Gradient</strong> :</p>
+<ul>
+<li>
+<p>Get gradient of the negative log-posterior with respect to θ, and we can see the first term on the right-had side as the gradient of the negative log-lgikelihood</p>
+<p>$$
+− \frac{dlogp(θ|X,Y)}{d\theta} = −\frac{dlogp(Y|X,θ)}{d\theta} − \frac{dlogp(θ)}{d\theta}
+$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>(4) Global Optimum</strong> : We will find $θ_{MAP}$ by setting this gradient to $0^⊤$ and solving for $θ_{MAP}$</p>
+</li>
+</ul>
+<p>$$
+θ_{MAP} = (Φ^⊤Φ+\frac{σ^2}{b^2}I)^{-1}Φ^⊤y
+$$</p>
+<br>
+<h4 id="924-map-estimation-as-regularization">9.2.4 MAP Estimation as Regularization</h4>
+<ul>
+<li>
+<p><strong>Regularized least squares</strong> :</p>
+<ul>
+<li>In Regularized Least Squares, we consider the loss function as below, which we minimize with respect to θ (see Section 8.2.3)</li>
+</ul>
+<p>$$
+∥y − Φθ∥^2 + λ ∥θ∥^2_2
+$$</p>
+<ul>
+<li>
+<p>the first term is a data-fit term, which is proportional to the negative log-likelihood; see (9.10b).</p>
+</li>
+<li>
+<p>The second term is called the regularizer, and the regularization parameter λ&gt;0 controls the “strictness” of the regularization =&gt; can be interpreted as a negative log-Gaussian prior</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="93-bayesian-linear-regression">9.3 Bayesian Linear Regression</h3>
+<ul>
+<li>Bayesian linear regression :
+<ul>
+<li>pushes the idea of the parameter prior a step further</li>
+<li>does not even attempt to compute a point estimate of the parameters,</li>
+<li>but instead the full posterior distribution over the parameters is taken into account when making predictions</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="931-model">9.3.1 Model</h4>
+<ul>
+<li>
+<p><strong>Prior</strong>, $p(θ) = N(m_0, S_0)$</p>
+</li>
+<li>
+<p><strong>likelihood</strong>, $p(y | x, θ) = N (y | φ^⊤(x)θ, σ^2)$</p>
+</li>
+<li>
+<p><strong>Full probabilistic model</strong> : the joint distribution of observed and unobserved random variables, y and θ, respectively, is:</p>
+</li>
+</ul>
+<p>$$
+p(y,θ|x) = p(y|x,θ)p(θ)
+$$</p>
+<br>
+<h4 id="932-prior-predictions">9.3.2 Prior Predictions</h4>
+<ul>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>we are usually not so much interested in the parameter θ themselves.</p>
+</li>
+<li>
+<p>Instead, our focus often lies in the predictions we make with those parameter values.</p>
+</li>
+<li>
+<p>In a Bayesian setting, we take the parameter distribution and average over all plausible parameter settings when we make predictions.</p>
+</li>
+<li>
+<p>More specifically, to make predictions at an input x∗, we integrate out θ and obtain :</p>
+</li>
+</ul>
+<p>$$
+p(y_∗| x_∗) = \int p(y_∗| x_∗, θ)p(θ)dθ = E_θ[p(y_∗|x_∗, θ)]
+$$</p>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>
+<p>So far, we looked at computing preds using the parameter prior $p(θ)$.</p>
+</li>
+<li>
+<p>However, when we have a parameter posterior (given some training data X, Y) =&gt; we just need to replace the prior $p(θ)$ with the posterior $p(θ|X,Y)$.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="933-posterior-prediction">9.3.3 Posterior Prediction</h4>
+<ul>
+<li><strong>Bayes&rsquo; theorem</strong> : Given a training set of inputs $x_n ∈ R^D$ and corresponding observations $y_n ∈ R$, we compute the posterior over the parameters using Bayes’ theorem :</li>
+</ul>
+<p>$$
+p(θ|X,Y) = \frac{p(Y|X,θ)p(θ)}{p(Y|X)}
+$$</p>
+<ul>
+<li>
+<p><strong>Marginal Likelihood</strong> : independent of the parameters θ and ensures that the posterior is normalized, the likelihood averaged over all possible parameter settings</p>
+</li>
+<li>
+<p><strong>Posterior Predictions</strong></p>
+<ul>
+<li>
+<p>In principle, predicting with the parameter posterior p(θ|X,Y) is not fundamentally different given that in our conjugate model the prior and posterior are both Gaussian (with different parameters).</p>
+</li>
+<li>
+<p>Therefore, by following the same reasoning as in
+Section 9.3.2, we obtain the (posterior) predictive distribution</p>
+</li>
+<li>
+<p>SKIP DETAILS</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="94-maximum-likelihood-as-orthogonal-projection">9.4 Maximum Likelihood as Orthogonal Projection</h3>
+<ul>
+<li>Introduction :
+<ul>
+<li>we will now provide a geometric interpretation of MLE. Let us consider a simple linear regression setting.</li>
+</ul>
+</li>
+</ul>
+<p>$$
+y=xθ+ε, ε∼N(0,σ^2), \tag{9.65}
+$$</p>
+<ul>
+<li>
+<p>Problem Definition :</p>
+<ul>
+<li>
+<p>The parameter θ determines the slope of the line.</p>
+</li>
+<li>
+<p>We obtained (9.2.1) the MLE for the slope parameter as (9.66)</p>
+</li>
+<li>
+<p>This means, $θ_{ML}$ is the approximation with the minimum least-squares error between y and Xθ. (9.67)</p>
+</li>
+</ul>
+<p>$$
+θ_{ML} = (X^⊤X)^{−1}X^⊤y  \tag{9.66}
+$$</p>
+</li>
+</ul>
+<p>$$
+Xθ_{ML} = (X^⊤X)^{−1}XX^⊤y = \frac{XX^⊤}{X^⊤X}y  \tag{9.67}
+$$</p>
+<ul>
+<li>
+<p>Solution : As we are looking for a solution of $y = Xθ$, we can think of linear regression as a problem for solving systems of linear equations</p>
+<ul>
+<li>
+<p>In particular, looking carefully at (9.67) we see that the  $θ_{ML}$ in our example from (9.65) effectively does an orthogonal projection of y onto the one-dimensional subspace spanned by X</p>
+<ul>
+<li>Recalling the results on orthogonal projections from Section 3.8, we identify $\frac{X X^⊤}{X⊤X}$ as the projection matrix,</li>
+</ul>
+</li>
+<li>
+<p>Therefore, the maximum likelihood solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by X that are “closest” to the corresponding observations y,</p>
+</li>
+<li>
+<p>In the general (polynomial) linear regression case, we again can interpret the maximum likelihood result as a projection onto a K-dimensional subspace of $R^N$.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>
+<p>In this chapter, we will see how to find a function that maps input $x$ to $y$ in observed training data set.</p>
+</li>
+<li>
+<p>Section 9.1, Problem Formulation</p>
+<ul>
+<li>
+<p>Functional Relationship :  Objective is to find a funtion that is close to the unknown function $f$ that generated the observed data</p>
+</li>
+<li>
+<p>Observation noise : Set the observation noise $ε∼N(0, σ^2)$ as  (i.i.d.) Gaussian measurement with zero-mean and variance of $σ^2$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Section 9.2, Parameter Estimation</p>
+<ul>
+<li>
+<p><strong>Maximum Liklihood Estimation</strong> : We find the model parameters $\theta_{ML}$ that maximize the likelihood.</p>
+<ul>
+<li>
+<p>(1) Define the likelihood function : with gaussian function</p>
+</li>
+<li>
+<p>(2) Likelihood Factorization : training samples are independent to each other, the likelihood factorizes according to $\prod N(y_n |x^⊤_n θ, σ^2) $</p>
+</li>
+<li>
+<p>(3) Log Transformation :</p>
+<ul>
+<li>Likelihood, a product of N Gaussian Distributions, can be transformed to sum of N log gaussian dist.</li>
+<li>The problem also transformed to minimize the negative log-likelihood</li>
+</ul>
+</li>
+<li>
+<p>(4) Global Minimum : We can find the global optimum by computing the gradient</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Maximum A Posterior</strong> : MLE can lead to severe overfitting, MAP addresses this issue by placing a prior on the params that play the role of a regularizer</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Section 9.3, Bayesian Linear Regression</p>
+<ul>
+<li>
+<p>Bayesian Regression : From section 9.2, we focused on estimating appropriate parameters that work well, However in section 9.3, we focus on prediction itself, not parameters, so we just use parameter distribution and average over all plausible parameter settings when we make predictions</p>
+<ul>
+<li>
+<p>Prior Prediction : to make predictions at an input $x_∗$, we integrate out θ.</p>
+</li>
+<li>
+<p>Posterior Prediction : when we have a parameter posterior (given some training data X, Y) then, we just need to replace the prior $p(θ)$ with the posterior $p(θ|X,Y)$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Section 9.4, Maximum Likelihood as Orthogonal Projection</p>
+<ul>
+<li>The MLE solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by X that are “closest” to the corresponding observations y</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

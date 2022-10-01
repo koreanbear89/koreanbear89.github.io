@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Linear Algebra for ML #2 | Linear System &amp; Linear Transform  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform " />
+<meta property="og:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2019-05-08T09:00:13+00:00" />
+<meta property="article:modified_time" content="2019-05-08T09:00:13+00:00" />
+
+<meta itemprop="name" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform ">
+<meta itemprop="description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are"><meta itemprop="datePublished" content="2019-05-08T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2019-05-08T09:00:13+00:00" />
+<meta itemprop="wordCount" content="1221">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform "/>
+<meta name="twitter:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/"
+    >Linear Algebra for ML #2 | Linear System &amp; Linear Transform </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/" class="article-date">
+  <time datetime="2019-05-08 09:00:13 &#43;0000 UTC" itemprop="datePublished">2019-05-08</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-linear-algebra/"> 1. Linear Algebra </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="21-linear-equation-and-linear-system">2.1 Linear Equation and Linear System</h2>
+<ul>
+<li><strong>Linear Equation</strong> is an equation that can be written in the form  $$ a_1x_1 + &hellip;. a_nx_n = b $$</li>
+<li>The above equation can be written as $ \textbf{a}^T \textbf{x} = b $.</li>
+<li><strong>Linear System</strong> is a collection of one or more linear equations</li>
+</ul>
+<!--
+
+> 몸무게(60,65,55), 키(1.7, 1.6, 1.8), 흡연여부(0,1) 에 대한 기대수명 (66,80,70) 샘플로 부터 각각의 요인들이 기대수명에 미치는 영향을 알고자 할 때
+>
+> 연립 방정식 $ \begin{bmatrix} 60x_1 + 1.7x_2 + 1\cdot{x_3}= 66 \\\ 65x_1 + 1.6x_2 + 0\cdot{x_3}= 80 \\\ 55x_1 + 1.8x_2 + 1\cdot{x_3}= 70 \end{bmatrix} $  의 해를 구하여 해결 할 수 있다.  
+>
+>동시에 이를 $ \begin{bmatrix} 60&1.7&1  \\\ 65&1.6&0 \\\ 55&1.8&1  \end{bmatrix}
+\begin{bmatrix} x_1 \\\ x_2 \\\ x_3 \end{bmatrix} = \begin{bmatrix} 66\\\ 80\\\ 70 \end{bmatrix}$ 와 같이 바꾸어 역행렬을 구할 수도 있다.
+>
+> 즉 Linear System $A \textbf{x} = \textbf{b}$ 에서 $A$의 역행렬을 구함으로서 해당 Linear System을 풀 수 있다.
+
+-->
+<ul>
+<li>
+<p><strong>Identity Matrix</strong> : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are zeros.</p>
+</li>
+<li>
+<p><strong>Inverse Matrix</strong> : $A^{-1}$ is defined such that $A^{-1}A = AA^{-1} = I$</p>
+</li>
+</ul>
+<p>$$A^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d&amp;{-b}\\ -c&amp;a \end{bmatrix}$$</p>
+<ul>
+<li>
+<p><strong>Determinant</strong> : $det(A) = ad-bc$ determines whether $A$ is invertible</p>
+</li>
+<li>
+<p>If $A$ is non invertible, $A \textbf{x} = \textbf{b}$ will have either no solution or infinitely many solutions.</p>
+</li>
+</ul>
+<!--
+
+> - 행렬식(determinant)은 기하학적으로 넓이(2x2) 혹은 부피(3x3) 를 의미함. 예로 벡터 (3,0) 과 (2,1)이 만들어내는 평행사변형의 넓이는 3으로 이 행렬의 Det와 같다.
+> - 좀 더 나아가, Det가 0이라면 행렬을 구성하는 벡터들이 영벡터이거나 서로 동일선상에 있음.
+
+-->
+<br>
+<hr>
+<h2 id="22-linear-combination">2.2 Linear Combination</h2>
+<ul>
+<li>
+<p>For given vectors $\textbf{v}_1,\textbf{v}_2, &hellip; \textbf{v}_p  $ and given scalars $ c_1, c_2, &hellip; c_p $,</p>
+<p>$ c_1\textbf{v}_1 + c_2 \textbf{v}_2, &hellip; + c_p \textbf{v}_p $ is called <strong>Linear Combination</strong> of vectors with weights $c$.</p>
+</li>
+</ul>
+<!--
+
+> 이를 활용하여 앞의 2.1에서의 Matrix equation을 다음 Vector Equation으로 바꿀 수 있다.
+>
+> $\begin{bmatrix} 60\\\ 65\\\ 55\end{bmatrix} x_1 + \begin{bmatrix} 1.2 \\\ 1.6 \\\ 1.8 \end{bmatrix} x_2 + \begin{bmatrix} 1 \\\ 0 \\\ 1 \end{bmatrix} x_3 =  \begin{bmatrix} 66 \\\ 80 \\\ 70\end{bmatrix} \Longleftrightarrow  \textbf{a}_1 x_1 + \textbf{a}_2 x_2 + \textbf{a}_3 x_3 = b $
+>
+> Determinant를 계산하는 대신 span 이라는 개념을 활용하여 위 vector equation 이 해를 갖고 있는가를 확인 할 수 있다.
+
+-->
+<ul>
+<li><strong>Span</strong> : Span{$\textbf{v}_1, &hellip; \textbf{v}_p$} is defined as the set of all linear combinations of $\textbf{v}_1, &hellip; \textbf{v}_p$. That is, Span is the collection of all vectors that can be written in the form $ c_1\textbf{v}_1 + c_2 \textbf{v}_2, &hellip; + c_p \textbf{v}_p $.</li>
+<li><strong>Geometric Description of Span</strong> :  $ \textbf{v}_1 $ and $\textbf{v}_2$ are in $\mathbb{R}^3$ then Span is the plane in $\mathbb{R}^3$ that contains $ \textbf{v}_1 $ and $\textbf{v}_2$</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-05-08-figure1.png">
+</p>
+<!--  
+
+> 위의 Span의 정의에 따라 3차원 벡터 $\textbf{v}_1 , \textbf{v}_2$ 의 span 은 $\textbf{v}_1 , \textbf{v}_2$ 의 선형결합의 집합입니다. 즉 $\textbf{v}_1 , \textbf{v}_2$로 만들 수 있는 모든 선형결합이 되므로 위 그림에 나타난 평행사변형이 Span{$\textbf{v}_1 , \textbf{v}_2$} 이 됩니다.
+
+-->
+<ul>
+<li><strong>Geometric Interpretation of Vector Equation</strong> : we can find whether the solution of vector equation exists using the knowledge of span. The solution of below vector equation exists only when $ \textbf{b} \in Span(\textbf{a}_1, \textbf{a}_2, \textbf{a}_3) $.</li>
+</ul>
+<p>$$\textbf{a}_1 x_1 + \textbf{a}_2 x_2 + \textbf{a}_3 x_3 = b $$</p>
+<!-- 
+
+> Span{$\textbf{a}_1, \textbf{a}_2, \textbf{a}_3$} 이란 결국 $\textbf{a}_1, \textbf{a}_2, \textbf{a}_3$ 로 만들 수 있는 모든 선형결합이므로, 이 안에 $\textbf{b}$ 가 없다면 어떠한 $x_1, x_2, x_3$ 로도 $\mathbf{b}$ 를 만들 수 없다는 말과 같습니다. 즉, 이 경우 해가 존재하지 않습니다.  
+
+-->
+<br>
+<ul>
+<li><strong>Matrix Multiplications as Linear Combinations of Vectors</strong> :</li>
+</ul>
+<p>$$ \begin{bmatrix} 60&amp;1.7&amp;1  \\ 65&amp;1.6&amp;0 \\ 55&amp;1.8&amp;1  \end{bmatrix}
+\begin{bmatrix} x_1  \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 60\\ 65\\ 55\end{bmatrix} x_1 + \begin{bmatrix} 1.2 \\ 1.6 \\ 1.8 \end{bmatrix} x_2 + \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} x_3 $$</p>
+<ul>
+<li><strong>Matrix Multiplication as Column Combinations</strong></li>
+</ul>
+<p>$$ \begin{bmatrix} 1&amp;1&amp;0  \\ 1&amp;0&amp;1 \\ 1&amp;-1&amp;1  \end{bmatrix}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = \begin{bmatrix} 1\\ 1\\ 1\end{bmatrix}1 + \begin{bmatrix} 1\\ 0\\ -1\end{bmatrix}2 + \begin{bmatrix} 0\\ 1\\ 1\end{bmatrix}3 $$</p>
+<ul>
+<li><strong>Matrix Multiplication as Row Combinations</strong></li>
+</ul>
+<p>$$ \begin{bmatrix} 1&amp;2&amp;3 \end{bmatrix} \begin{bmatrix} 1&amp;1&amp;0  \\ 1&amp;0&amp;1 \\ 1&amp;-1&amp;1  \end{bmatrix} = 1 \times \begin{bmatrix} 1&amp;1&amp;0 \end{bmatrix} + 2\times \begin{bmatrix} 1&amp; 0&amp;1 \end{bmatrix} + 3 \times \begin{bmatrix} 1&amp; -1&amp; 1\end{bmatrix}$$</p>
+<ul>
+<li><strong>Matrix Multiplication as Sum of Outer Products</strong></li>
+</ul>
+<p>$$\begin{bmatrix} 1&amp;1 \\ 1&amp;-1 \\ 1&amp;1 \end{bmatrix} \begin{bmatrix} 1&amp; 2&amp; 3 \\ 4&amp;5&amp;6 \end{bmatrix} = \begin{bmatrix} 1\\ 1\\ 1\end{bmatrix} \begin{bmatrix} 1&amp; 2&amp; 3\end{bmatrix} +  \begin{bmatrix} 1\\ -1\\ 1\end{bmatrix} \begin{bmatrix} 4&amp; 5&amp; 6\end{bmatrix} $$</p>
+<!--  
+
+> 지금까지의 Linear Combination 내용과 관련하여 행렬의 곱을 위의 세 가지 새로운 시각으로 바라볼 수 있습니다.
+
+-->
+<br>
+<hr>
+<h2 id="23-linear-independence">2.3 Linear Independence</h2>
+<ul>
+<li>
+<p>The solution for  $A \textbf{x} = \textbf{b} $ is unique, when $\textbf{a}_1, \textbf{a}_2, \textbf{a}_3 $ are <strong>linearly independent</strong></p>
+</li>
+<li>
+<p>Infinitely many solutions exists when $\textbf{a}_1, \textbf{a}_2, \textbf{a}_3 $ are <strong>linearly dependent</strong>.</p>
+</li>
+</ul>
+<!--  
+
+> 앞의 절에서 span의 개념을 통해 vector equation 의 해가 존재하는지 아닌지를 알아보았습니다. 여기서는 유일한(unique) 해가 존재하는지 무수히 많은 해가 존재하는지 알아보기위해 Linear Independence 라는 개념을 알아보겠습니다.
+
+-->
+<br>
+<ul>
+<li><strong>Linear Independence (practical)</strong> : Given a set of vectors $ \textbf {v}_1 , &hellip; , \textbf {v}_p $ , check if $ \textbf{v}_j$ can be represented as a linear combination of the previous vectors. If at least one such $ \textbf{v}_j$ is found then $ \textbf {v}_1 , &hellip; , \textbf {v}_p $ is linearly dependent.</li>
+</ul>
+<!--  
+
+> 3차원 공간에서 네개의 벡터가 주어지는 경우, 이 네 벡터는 반드시 Linear Dependent 하다. 이미 앞의 세가지 벡터로 만든 span 이 전체 집합과 같아져 버리기에 네번째 벡터는 이전까지의 span 에 반드시 포함된다.
+
+-->
+<br>
+<ul>
+<li><strong>Linear Independence (Formal)</strong> : Consider $ x_1 \textbf{v}_1 + &hellip; + x_p \textbf{v}_p = \textbf{0} $. Obviously, one solution is $\textbf{x} = [0&hellip;0]$, which we call a trivial solution. If this is the only solution $ \textbf {v}_1 , &hellip; , \textbf {v}_p $ is the only solution. if this system also has other nontrivial solutions, $ \textbf {v}_1 , &hellip; , \textbf {v}_p $ are linearly dependent.</li>
+</ul>
+<!--  
+
+> $A \textbf{x} = \textbf{b}$ 의 vector equation 에서 solution이 존재하려면 $\textbf{b}$가 반드시 span에 포함되어야 했습니다. 위의 정의에서 $\textbf{0} $ 벡터의 경우 모든 span 에 반드시 포함됩니다. 따라서 최소 하나의 solution이 반드시 발생하고 이런 solution을 trivial solution이라고 합니다.
+
+-->
+<br>
+<hr>
+<h2 id="24-basis-of-a-subspace">2.4 Basis of a Subspace</h2>
+<ul>
+<li>
+<p><strong>Subspace</strong> : is defined as a subset of $\mathbb{R}^n$ closed under linear combination</p>
+</li>
+<li>
+<p>A subspace is always represented as Span {$\mathbf{v}_1 , &hellip; , \mathbf{v}_p$}</p>
+</li>
+</ul>
+<!--  
+
+> 선형결합 이라는 연산에 닫혀있는 부분집합을 subspace 라고 부릅니다. 여기서 뽑은 두 벡터를 어떻게 선형결합을 해도 해당 space 안에 존재.
+
+-->
+<br>
+<ul>
+<li><strong>Basis of a subspace</strong> : a set of vectors that satisfies both of the following</li>
+</ul>
+<ol>
+<li>
+<p>Fully spans the given subspace $H$</p>
+<ol start="2">
+<li>Linearly independent (i.e., no redundancy)</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><strong>Non-Uniqueness of Basis</strong> : In the subspace $H$ (green plane), there other set of linearly independent vectors that span the subspace $H$</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-05-08-figure1.png">
+</p>
+<!-- 
+
+> 주어진 subspace $H$ 에 대하여 해당 평행사변형을 만드는 방법은 여러가지입니다. $\mathbf{v}_1$, $\mathbf{v}_2$ 외의 다른 벡터와 coefficient 를 조합하여 위 그림의 초록색 평행사변형을 만들 수도 있습니다.
+
+-->
+<ul>
+<li><strong>Dimension of Subspace</strong> : Even though different basis exist for $H$, the number of vectors in any basis for $H$ will be unique. This number is the dimension of $H$.</li>
+<li><mark><strong>Column Space of Matrix</strong> : the subspace could be spanned by the column vector of $A$.</mark></li>
+<li><strong>Rank of Matrix</strong> : the dimension of the column space of $A$</li>
+</ul>
+<details> <summary> Details </summary>
+<p>$$
+A = \begin{bmatrix} 1&amp;0&amp;2  \\ 0&amp;1&amp;1 \\ 1&amp;0&amp;2  \end{bmatrix}, \ \ \text{ Column Vector } a_1, a_2, a_3 =   \begin{bmatrix} 1\\ 0\\ 1\end{bmatrix} ,  \begin{bmatrix} 0\\ 1\\ 0\end{bmatrix}, \begin{bmatrix} 2\\ 1\\ 2\end{bmatrix}
+$$</p>
+<ul>
+<li>
+<p>Column Space is subspace of column vectors from matrix $A$. And we need to find basis vector to get column space.</p>
+</li>
+<li>
+<p>$a_1, a_2$ is independent each other. $a_3$ is represented as linear combination of  $a_1, a_2$ . As a result, $a_3$ is dependent on $a_1, a_2$. So, $a_1, a_2$ become basis vector for colum space of $A$</p>
+</li>
+<li>
+<p>Here, Rank of matrix $A$ is two. Because we have only two vectors $a_1, a_2$ that are linearly independent.</p>
+</li>
+<li>
+<p>If a solution for  $A \textbf{x} = \textbf{b} $ exists, then $b$ must be on the column space of $A$.  Because, $b$ is linear combination of column vectors</p>
+</li>
+</ul>
+<p>$$
+Ax =   \begin{bmatrix} 1&amp;0&amp;2  \\ 0&amp;1&amp;1 \\ 1&amp;0&amp;2  \end{bmatrix}  \begin{bmatrix} x_1\\ x_2\\ x_3\end{bmatrix} = \begin{bmatrix} 1\\ 0\\ 1\end{bmatrix} x_1 +   \begin{bmatrix} 0\\ 1\\ 0\end{bmatrix} x_2 + \begin{bmatrix} 2\\ 1\\ 2\end{bmatrix} z_3 = \begin{bmatrix} b_1\\ b_2\\ b_3\end{bmatrix}
+$$</p>
+</details>
+<br>
+<hr>
+<h2 id="25-chage-of-basis">2.5 Chage of Basis</h2>
+<ul>
+<li>Generally, vectors are defined on cartesian coordinate , and it means they are based on standard basis (1,0), (0,1).</li>
+<li>But sometimes, we need vectors on different coordinate (basis) for some reasons like computational efficiency. (e.g. eigendecomposition)</li>
+<li>When the coordinate changes, the vector itself does not changed, but the representation of vector has been changed from (2,2) to (2,0) as in figure below</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="30%" align="center" src="/figures/2019-05-08-figure7.png">
+</p>
+<!--  
+
+> - 위와 같이 새로운 좌표계의 도입은 기하학적으로 새로운 기저의 도입이라 볼 수 있다.
+> - 일반적인 cartesian coordinate 에서 사용하는 기저벡터는 (0,1), (1,0) 이며 이들을 standard basis라 부른다 
+> - **새로운 기저를 이용한 좌표표현** : standard basis가 아닌 새로운 기저로 임의의 벡터를 표현하려면 어떻게 해야하나
+
+> Example. standard basis 에서 (2,2) 로 나타내어지던 vector를  (1,1), (-1,1) 이라는 새로운 기저로 표현한 결과  $(k1,k2)$ 를 구하면
+> $$
+> 2\begin{bmatrix} 1  \\\ 0 \end{bmatrix} + 
+> 2\begin{bmatrix} 0  \\\ 2 \end{bmatrix} = 
+> k_1\begin{bmatrix} 1  \\\ 1 \end{bmatrix}  + 
+> k_2\begin{bmatrix} -1  \\\ 1 \end{bmatrix}
+> $$
+> 위 식의 우변은 행렬곱의 또다른 시각에서 보았듯 열벡터의 선형결합을 이용해 아래와 같이 다시 쓸 수 있다
+> $$
+> \begin{bmatrix} 2  \\\ 2 \end{bmatrix} = 
+> \begin{bmatrix} 1&-1 \\\ 1 & 1 \end{bmatrix}
+> \begin{bmatrix} k_1  \\\ k_2 \end{bmatrix}
+> $$
+> 이를 정리하면,
+> $$
+> \begin{bmatrix} k_1  \\\ k_2 \end{bmatrix} = 
+> \begin{bmatrix} 1&-1 \\\ 1 & 1 \end{bmatrix} ^{-1} \begin{bmatrix} 2  \\\ 2 \end{bmatrix} = \begin{bmatrix} 2  \\\ 0 \end{bmatrix} 
+> $$
+
+-->
+<br>
+<hr>
+<h2 id="26-linear-transformation">2.6 Linear Transformation</h2>
+<ul>
+<li>
+<p>A <strong>transformation</strong>, <strong>function</strong>, or <strong>mapping</strong> maps an input $x$ to an output $y$</p>
+</li>
+<li>
+<p><strong>Domain</strong> : Set of all the possible values of $x$</p>
+</li>
+<li>
+<p><strong>Co-Domain</strong> : Set of all the possible values of $y$</p>
+</li>
+<li>
+<p><strong>Range</strong> : Set of all the output values mapped by each $x$ in the domain</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>Linear Transforamtion</strong> : A transformation (or mapping) $T$ is linear if :
+$$ T(c \mathbf{u}+ d \mathbf{v}) = cT (\mathbf{u}) + dT(\mathbf{v})$$</p>
+</li>
+<li>
+<p><strong>Matrix of Linear Transformation</strong> : In general, let $T$ : $ \mathbb{R}^n \rightarrow \mathbb{R}^m $ be a linear transformation. Then $T$ is always written as a matrix-vector multiplication. i.e., $T(\mathbf{x}) = A \mathbf{x}$</p>
+</li>
+<li>
+<p>Here, the matrix $A$ is called the standad matrix of the linear transformation.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="27-linear-transformation-in-neural-networks">2.7 Linear Transformation in Neural Networks</h2>
+<ul>
+<li>
+<p>Fully Connected Layers can be thought as a linear transformation</p>
+</li>
+<li>
+<p>Fully Connected Layers usually involve a bias term, That&rsquo;s why we call it an affine layer, not a linear Layers</p>
+</li>
+<li>
+<p>Reference : <a href="colah.github.io/posts/2014-03-NN-Manifolds-Topology">colah&rsquo;s blog</a></p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="28-onto-and-one-to-one">2.8 ONTO and ONE-TO-ONE</h2>
+<ul>
+<li>
+<p>ONTO : A mapping $T$ : $\mathbb{R}^n \rightarrow \mathbb{R}^m$ is said to be onto $\mathbb{R}^m$ if each $\mathbf{b} \in \mathbb{R}^m$ is the image of at least one $x \in \mathbb{R}^n$. <strong>That is, the range is equal to the co-domain.</strong></p>
+</li>
+<li>
+<p>ONE-TO-ONE : A mapping $T$ : $\mathbb{R}^n \rightarrow \mathbb{R}^m$ is said to be one-to-one if each $\mathbf{b} \in \mathbb{R}^m$ is the image of at most one $x \in \mathbb{R}^n$. <strong>That is, each output vector in the range is mapped by only one input vector, no more than that.</strong></p>
+</li>
+</ul>
+<br>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

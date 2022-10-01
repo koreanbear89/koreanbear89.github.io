@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Statistics #2 | Random Variables  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Statistics #2 | Random Variables  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Statistics #2 | Random Variables " />
+<meta property="og:description" content="2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &hellip;}$." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2019-01-20T09:00:13+00:00" />
+<meta property="article:modified_time" content="2019-01-20T09:00:13+00:00" />
+
+<meta itemprop="name" content="Statistics #2 | Random Variables ">
+<meta itemprop="description" content="2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &hellip;}$."><meta itemprop="datePublished" content="2019-01-20T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2019-01-20T09:00:13+00:00" />
+<meta itemprop="wordCount" content="717">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Statistics #2 | Random Variables "/>
+<meta name="twitter:description" content="2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &hellip;}$."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/2.-statistics/all-of-statistics-ch2/"
+    >Statistics #2 | Random Variables </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/" class="article-date">
+  <time datetime="2019-01-20 09:00:13 &#43;0000 UTC" itemprop="datePublished">2019-01-20</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-statistics/"> 2. Statistics </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/2.-statistics/all-of-statistics-ch2/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="21-introduction">2.1 Introduction</h2>
+<ul>
+<li>
+<p>How do we link sample spaces and events to data? Random Variable!</p>
+</li>
+<li>
+<p>A <strong>random variable</strong> is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="22-distribuition-functions-and-probability-functions">2.2 Distribuition Functions and Probability Functions</h2>
+<ul>
+<li><strong>Cumulative Distribution Function (CDF)</strong> : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by</li>
+</ul>
+<p>$$F_X(x) = \mathbb{P}(X \leq x)$$</p>
+<ul>
+<li><strong>Probability Mass Function</strong> : A Random Variable $X$ is <strong>discrete</strong> if it takes countably many values ${x_1, x_2, &hellip;}$. We define <strong>probability mass function</strong> for $X$ by</li>
+</ul>
+<p>$$f_X(x) = \mathbb{P}(X=x).$$</p>
+<ul>
+<li><strong>Probability Density Function</strong> : A Random Variabe $X$ is <strong>continuous</strong> if there exists a function $f_X$ such that $f_X(x) \geq$ for all $x$, $\int f_X(x)dx = 1$  and for every $a \leq b$, the probability Density function is</li>
+</ul>
+<p>$$ \mathbb{P}(a&lt;X&lt;b) = \int_{a}^b f_X(x)dx $$</p>
+<br>
+<hr>
+<h2 id="23-some-important-discrete-random-variables">2.3 Some Important Discrete Random Variables</h2>
+<ul>
+<li><strong>The Point Mass Distribution</strong></li>
+</ul>
+<p>$$ F(x) =  \begin{cases} 0 &amp; (x&lt;a)\ 1 &amp; (x\geq a) \end{cases}  $$</p>
+<ul>
+<li><strong>The Discrete Uniform Distribution</strong></li>
+</ul>
+<p>$$ f(x) = \begin{cases}  1/k &amp; ( \text{for} \ x=1, &hellip; ,k ) \ 0 &amp; ( \text{otherwise} ) \end{cases}  $$</p>
+<ul>
+<li><strong>The Bernoulli Distribution</strong> : Let $X$ represent a binary coin flip. Then $\mathbb{P}(X=1) = p $ and $\mathbb{P}(X=0) = 1- p$ for some $p \in [0,1] $. We saye that $X$ has a Bernoulli Distribution written $X \sim  Bernoulli(p)$.</li>
+</ul>
+<p>$$ f(x) = p^x(1-p)^{1-x} \  \text{for} \ x \in {0,1}$$</p>
+<ul>
+<li><strong>The Binomial Distribution</strong></li>
+</ul>
+<p>$$ f(x) = \begin{cases} {n \choose x} p^x (1-p)^{n-x}  &amp; ( \text{for} \ x=0, &hellip; ,n ) \ 0 &amp; ( \text{otherwise} ) \end{cases}  $$</p>
+<ul>
+<li><strong>The Geometric Distribution</strong></li>
+</ul>
+<p>$$ \mathbb{P}(X=k) = p(1-p)^{k-1} , \ k \geq 1 $$</p>
+<ul>
+<li><strong>The Poisson Distribution</strong> : The Poisson is often used as a model for counts of rare events like radioactive decay and traffic accidents.</li>
+</ul>
+<p>$$ f(x) = e^{- \lambda} \frac{\lambda^x}{x!}, \ x \geq 0 $$</p>
+<br>
+<hr>
+<h2 id="24-some-important-continuous-random-variables">2.4 Some Important Continuous Random Variables</h2>
+<p><strong>The Uniform Distribution</strong>:</p>
+<p>$$ f(x) = \begin{cases}  \frac{1}{b-a} &amp; ( \text{for} \ x \in [a,b]) \ 0 &amp; ( \text{otherwise} ) \end{cases}  $$</p>
+<p><strong>Gaussian Distribution</strong> : $X$ has a Normal distribution with parameters $ \mu $ and $\sigma$, denoted by $X \sim N(\mu, \sigma^2)$</p>
+<p><strong>Exponential Distribution</strong> : $X$ has an Exponential distribution with parameter $\beta$, denoted by $X \sim \text{Exp}(\beta)$, if</p>
+<p>$$f(x) = \frac{1}{\beta} e^{-x/\beta}$$</p>
+<br>
+<hr>
+<h2 id="25-bivariate-distributions">2.5 Bivariate Distributions</h2>
+<ul>
+<li><strong>Joint Mass Function</strong> : Given a pair of discrete random variables $X$ and $Y$ define the joint mass function by $f(x,y) = \mathbb{P}(X = x, Y = y)$</li>
+</ul>
+<br>
+<hr>
+<h2 id="26-marginal-distributions">2.6 Marginal Distributions</h2>
+<ul>
+<li>If $(X, Y)$ have joint distribution with mass function $f_{X,Y}$ then the marginal mass function for $X$ and $Y$ is defined by</li>
+</ul>
+<p>$$ f_X(x) = \mathbb{P}(X=x) = \sum_y \mathbb{P}(X=x, Y=y) = \sum_y f(x,y) $$</p>
+<p>$$ f_Y(y) = \mathbb{P}(Y=y) = \sum_x \mathbb{P}(X=x, Y=y) = \sum_x f(x,y) $$</p>
+<ul>
+<li>For continuous random variables, the marginal densities are</li>
+</ul>
+<p>$$ f_X(x) = \int f(x,y) dy, \ \text{and} f_Y(y) = \int f(x,y)dx $$</p>
+<br>
+<hr>
+<h2 id="27-independent-random-variables">2.7 Independent Random Variables</h2>
+<ul>
+<li>Two random variables $X$ and $Y$ are <strong>independent</strong> if for every $A$ and $B$,</li>
+</ul>
+<p>$$ \mathbb{P}(X \in A, Y \in B) = \mathbb{P}(X \in A) \mathbb{P}(Y \in B)$$</p>
+<br>
+<hr>
+<h2 id="28-conditional-distributions">2.8 Conditional Distributions</h2>
+<ul>
+<li>The <strong>conditional probability mass function</strong> is</li>
+</ul>
+<p>$$ f_{X|Y}(x|y) = \mathbb{P}(X=x |  Y=y) = \frac{\mathbb{P}(X=x, Y=y)}{\mathbb{P}(Y=y)} = \frac{f_{X,Y}(x,y)}{f_Y(y)}$$</p>
+<br>
+<hr>
+<h2 id="29-multivariate-distributions-and-iid-samples">2.9 Multivariate Distributions and IID Samples</h2>
+<ul>
+<li>If $X_1, &hellip; , X_n $ are independent and each has the same marginal distribution with CDF $F$ we say that $X_1, &hellip; , X_n$ are IID(independent and identically distributed) and we write</li>
+</ul>
+<p>$$ X_1 , &hellip; , X_n \sim F.$$</p>
+<br>
+<hr>
+<h2 id="210-two-important-multivariate-distributions">2.10 Two Important Multivariate Distributions</h2>
+<ul>
+<li>
+<p><strong>Multinomial</strong> : The multivariate version of a Binomial is called a Multinomial.</p>
+</li>
+<li>
+<p><strong>Multicariate Normal</strong> : The univariate normal has two parameters, $\mu$ and $\sigma$. In the multivariate version, $\mu$ is a vector and $\sigma$ is replaced by a matrix $\Sigma$</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="211-transformations-of-random-variables">2.11 Transformations of Random variables</h2>
+<ul>
+<li>Suppose that $X$ is a random variable with PDF $f_X$ and CDF $F_X$. Let $Y$ = r(X) be a function of $X$, for example, $Y = X^2$ or $Y = e^X$. We call $Y=r(X)$ a Transformation of $X$.</li>
+</ul>
+<br>
+<hr>
+<h2 id="212-transformations-of-several-random-variables">2.12 Transformations of Several Random variables</h2>
+<ul>
+<li>
+<p>Three Steps for Transformation</p>
+<ol>
+<li>
+<p>For each $z$, find the set $A_z = { (x,y) : r(x,y) \leq z }$</p>
+</li>
+<li>
+<p>Find the CDF</p>
+<p>$$F_Z(z) = \mathbb{P}(Z \leq z) = \mathbb{P}(r(X,Y) \leq z) = \mathbb{P}({ (x,y); r(x,y) \leq z })$$</p>
+</li>
+<li>
+<p>Them $f_Z(z) = F&rsquo;_{Z}(z)$</p>
+</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        MLCV #4 | Image Synthesis - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>MLCV #4 | Image Synthesis - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="MLCV #4 | Image Synthesis" />
+<meta property="og:description" content="0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2017-07-25T09:00:13+00:00" />
+<meta property="article:modified_time" content="2017-07-25T09:00:13+00:00" />
+
+<meta itemprop="name" content="MLCV #4 | Image Synthesis">
+<meta itemprop="description" content="0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$."><meta itemprop="datePublished" content="2017-07-25T09:00:13+00:00" />
+<meta itemprop="dateModified" content="2017-07-25T09:00:13+00:00" />
+<meta itemprop="wordCount" content="746">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MLCV #4 | Image Synthesis"/>
+<meta name="twitter:description" content="0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/research/3.-computer-vision/cv04-image-synthesis/"
+    >MLCV #4 | Image Synthesis</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/" class="article-date">
+  <time datetime="2017-07-25 09:00:13 &#43;0000 UTC" itemprop="datePublished">2017-07-25</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-computer-vision/"> 3. Computer Vision </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/3.-computer-vision/cv04-image-synthesis/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="0-introduction">0. Introduction</h2>
+<ul>
+<li>Tasks :
+<ul>
+<li>Image Synthesis : The task of creating new images from some form of image description.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-gan-2014httpspapersnipsccpaper5423-generative-adversarial-netspdf">1. <a href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">GAN (2014)</a></h2>
+<ul>
+<li>
+<p>Introduction : A new framework for estimating generative models via an adversarial process</p>
+</li>
+<li>
+<p>Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$.</p>
+</li>
+</ul>
+<p>$$
+\min_{G} \max_{D} V(D,G) = \mathbb{E} _ {x \sim p_{data}(x)} logD(x) + \mathbb{E} _ {z \sim p_z(z)}log(1-D(G(z)))
+$$</p>
+<!-- - Max value of the objective function is $0$, where $D(x)=1, D(G(z))=0$
+
+- The first term of objective function is independent of $G$, so it shows min value where $D(G(z))$ is $1$ -->
+<ul>
+<li>
+<p>in terms of <strong>Discriminator</strong> : $D(x)$ should be 1 and $D(G(z))$ should be 0. So, $D$ is trained to maximize both left and right terms</p>
+</li>
+<li>
+<p>in terms of <strong>Generator</strong> : Left term can be ignored since it&rsquo;s independent of $G$, and $D(G(z))$ should be 1. So, $G$ is trained to minimize right terms.</p>
+</li>
+<li>
+<p>in terms of implementation : We need to make two optimizer. Also G_loss and D_loss should be defined respectively.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="2-conditional-gan-2014httpsarxivorgabs14111784">2. <a href="https://arxiv.org/abs/1411.1784">Conditional GAN (2014)</a></h2>
+<ul>
+<li>
+<p>Introduction : The conditional version of generative adversarial nets, which can be constructed by simply feeding the data, y.</p>
+</li>
+<li>
+<p>Method : feeding $y$ into the both the discriminator and generator as additional input layer.</p>
+</li>
+</ul>
+<p>$$
+\min_{G} \max_{D} V(D,G) = \mathbb{E} _ {x \sim p_{data}(x)} [logD(x,y)] + \mathbb{E _ {z \sim p_z(z)}[log(1-D(G(z,y),y))].}
+$$</p>
+<br>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src=" /figures/2019-07-25-fig3.png  ">
+</p>
+<pre><code class="language-python">def generator(x,y):
+  input = concat([x,y],1)
+  layer1 = relu(FC(input, 128))
+  layer2 = tanh(FC(layer1, 784))
+  return layer2
+
+def discriminator(x,y):
+  input = concat([x,y],1)
+  layer1 = lrelu(FC(input, 128))
+  layer2 = tanh(FC(layer1, 1))
+  return layer2
+</code></pre>
+<br>
+<hr>
+<h2 id="3-dcgan-2016httpsarxivorgpdf151106434pdfc3afc2bce280b0c3a3e282ace28098">3. <a href="https://arxiv.org/pdf/1511.06434.pdf%C3%AF%C2%BC%E2%80%B0%C3%A3%E2%82%AC%E2%80%98">DCGAN (2016)</a></h2>
+<ul>
+<li>
+<p>Introduction : Convolutional GANs that make them stable to train in most settings.</p>
+</li>
+<li>
+<p>Method : Following techniques were used for stable Deep Conv GANS.</p>
+<ol>
+<li>Replace any pooling layers with strided convolutions (discriminator) and fractional strided convolutions (generator)</li>
+<li>Use batchnorm in both the generator and the discriminator</li>
+<li>Remove fully connected hidden layers for deeper architectures</li>
+<li>Use ReLU for all layers except for the output which uses Tanh</li>
+<li>Use LeakyReLU in discriminator for all layers</li>
+</ol>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2019-07-25-fig1.png ">
+</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="4-began-2017httpspapersnipsccpaper5423-generative-adversarial-netspdf">4. <a href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">BEGAN (2017)</a></h2>
+<ul>
+<li>
+<p>Introduction : A new equilibrium enforcing method paired with a loss derived from the Wasserstein distance for training auto-encoder based GAN.</p>
+</li>
+<li>
+<p>Method</p>
+<ol>
+<li>use an auto-encoder as a discriminator as was first proposed in EBGAN.</li>
+<li>aims to match auto-encoder loss distributions using a loss derived from the Wasserstein distance while typical GANs try to match data distributions directly.</li>
+<li>This is done using a typical GAN objective with the addition of an equilibrium term to balance the discriminator and the generator.</li>
+</ol>
+</li>
+</ul>
+<p>$$ L_D = L(x) - k_t L(G(z_d))  $$</p>
+<p>$$L_G = L(G(z_G))$$</p>
+<p>$$ k_{t+1} = k_t + \lambda (\gamma L(x) - L(G(z_G)))$$</p>
+<br>
+<hr>
+<h2 id="5-giraffe-2021httpsarxivorgpdf201112100pdf">5. <a href="https://arxiv.org/pdf/2011.12100.pdf">GIRAFFE (2021)</a></h2>
+<ul>
+<li>
+<p>Introduction :  Deep generative models allow for photorealistic image synthesis at high resolutions content, But this is not enough =&gt; creation also needs to be controllable with 3D representation.</p>
+<ul>
+<li>Our key hypothesis is that incorporating a compositional 3D scene representation into the generative model leads to more controllable image synthesis.</li>
+</ul>
+</li>
+<li>
+<p>GIRAFFE : generating scenes in a controllable and photorealistic manner without additional supervision</p>
+<ul>
+<li>
+<p>(3.1) model Objects as neural feature fields :</p>
+<ul>
+<li>NeRF (Neural Radiance Fields) : a function f that maps 3D point and viewing direction to a volume density and RGB color value.
+<ul>
+<li>Input : single continuous 5D coordinate (spatial location (x, y, z) and viewing direction (θ, φ)),</li>
+<li>Output : the volume density and view-dependent emitted radiance at that spatial location</li>
+<li>2D images from different view =&gt; Neural Network =&gt; random view image</li>
+</ul>
+</li>
+<li>GRAF (Generative Neural Feature Fields) : unsupervised version of NeRF, trained from unposed image collections with additional latent vector.
+<ul>
+<li>input : spatial location $\gamma(x)$,  viewing direction, $\gamma(d)$,  shape code $z_s$, appearance code $z_a$</li>
+</ul>
+</li>
+<li>GIRAFFE : replace 3D color output with M-dimensional feature from GRAF
+<ul>
+<li>represent each object using a separate feature field in combination with an affine transformation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3.2) Scene Compositions</p>
+<ul>
+<li>we describe scenes as compositions of N entities where the first N−1 are the objects in the scene and the last represents the background</li>
+</ul>
+</li>
+<li>
+<p>(3.3) Scene Rendering</p>
+<ul>
+<li>
+<p>3D Volume Rendering : For given camera extrinsics, maps above evaluations to the pixel&rsquo;s final feature vector</p>
+</li>
+<li>
+<p>2D Neural Rendering  : maps the feature image to the final synthesized image (2D CNN)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Result : By representing scenes as compositional generative neural feature fields, we disentangle individual objects from the background as well as their shape and appearance without explicit supervision. Combining this with a neural renderer yields fast and controllable image synthesis.</p>
+<ul>
+<li>*disentangle : commonly refer to being able to control an attribute of interest, e.g. object shape, size, or pose, without changing other attributes.</li>
+</ul>
+</li>
+</ul>
+<h1 id="heading"></h1>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

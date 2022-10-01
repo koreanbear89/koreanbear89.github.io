@@ -20,29 +20,29 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training" />
-    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <meta name="description" content="Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>MLCV #1 | Image Classification - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="MLCV #1 | Image Classification" />
-<meta property="og:description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training" />
+<meta property="og:description" content="Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/" /><meta property="article:section" content="Research" />
 <meta property="article:published_time" content="2016-07-02T09:00:13+00:00" />
 <meta property="article:modified_time" content="2016-07-02T09:00:13+00:00" />
 
 <meta itemprop="name" content="MLCV #1 | Image Classification">
-<meta itemprop="description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training"><meta itemprop="datePublished" content="2016-07-02T09:00:13+00:00" />
+<meta itemprop="description" content="Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))"><meta itemprop="datePublished" content="2016-07-02T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2016-07-02T09:00:13+00:00" />
-<meta itemprop="wordCount" content="883">
+<meta itemprop="wordCount" content="875">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MLCV #1 | Image Classification"/>
-<meta name="twitter:description" content="Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training"/>
+<meta name="twitter:description" content="Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -269,64 +269,42 @@
 
 
 
-
         <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
-                  <span class="category-list-count">15</span></li>
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
                   <span class="category-list-count">8</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
-                  <span class="category-list-count">3</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
-                  <span class="category-list-count">6</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
-                  <span class="category-list-count">1</span></li>
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">1</span></li>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -394,16 +372,24 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="introduction">Introduction</h2>
+      <br>
+<h2 id="introduction">Introduction</h2>
 <ul>
-<li>Image Classification : The task of classifying an image according to its visual content.</li>
+<li>
+<p>Tasks:</p>
+<ul>
+<li>
+<p>Image Classification : The task of classifying an image according to its visual content.</p>
+</li>
+<li>
+<p>Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding)</p>
+</li>
 </ul>
-<blockquote>
-<p>(2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding)</p>
-</blockquote>
-<h3 id="heading"></h3>
+</li>
+</ul>
+<br>
 <hr>
-<h2 id="alexnet-2012httpspapersnipsccpaper4824-imagenet-classification-with-deep-convolutional-neural-networkspdf"><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet (2012)</a></h2>
+<h2 id="1-alexnet-2012httpspapersnipsccpaper4824-imagenet-classification-with-deep-convolutional-neural-networkspdf">1. <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet (2012)</a></h2>
 <ul>
 <li>Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images.</li>
 <li>Method : Training on Multiple GPUs</li>
@@ -417,9 +403,9 @@
   out = FC(relu(FC(relu(FC(out)))))
   return out
 </code></pre>
-<h3 id="heading-1"></h3>
+<br>
 <hr>
-<h2 id="vgg-net-2014httpsarxivorgpdf14091556v6pdf"><a href="https://arxiv.org/pdf/1409.1556v6.pdf">VGG Net (2014)</a></h2>
+<h2 id="2-vgg-net-2014httpsarxivorgpdf14091556v6pdf">2. <a href="https://arxiv.org/pdf/1409.1556v6.pdf">VGG Net (2014)</a></h2>
 <ul>
 <li>Introduction : come up with significantly more accurate ConvNet</li>
 <li>Method : deeper ConvNet</li>
@@ -432,9 +418,9 @@
   out = softmax(FC(FC(FC(out))))
   return out
 </code></pre>
-<h3 id="heading-2"></h3>
+<br>
 <hr>
-<h2 id="googlenet-2015httpswwwcv-foundationorgopenaccesscontent_cvpr_2015papersszegedy_going_deeper_with_2015_cvpr_paperpdf"><a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf">GoogleNet (2015)</a></h2>
+<h2 id="3-googlenet-2015httpswwwcv-foundationorgopenaccesscontent_cvpr_2015papersszegedy_going_deeper_with_2015_cvpr_paperpdf">3. <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf">GoogleNet (2015)</a></h2>
 <ul>
 <li>Introduction : efficient deeper networks (with fewer params than AlexNet)</li>
 <li>Method : inception module(NIN, Bottleneck)</li>
@@ -447,9 +433,9 @@
   out = concat([branch_1x1,branch_3x3,branch_5x5,branch_pool])
   return out
 </code></pre>
-<h3 id="heading-3"></h3>
+<br>
 <hr>
-<h2 id="resnet-microsoft-2015httpsarxivorgpdf151203385v1pdf"><a href="https://arxiv.org/pdf/1512.03385v1.pdf">ResNet (Microsoft, 2015)</a></h2>
+<h2 id="4-resnet-microsoft-2015httpsarxivorgpdf151203385v1pdf">4. <a href="https://arxiv.org/pdf/1512.03385v1.pdf">ResNet (Microsoft, 2015)</a></h2>
 <ul>
 <li>Introduction : to solve the degradation problem caused by deeper layer.</li>
 <li>Method : Residual Block with shortcut(skip) connection defined as :</li>
@@ -463,9 +449,9 @@
 <p style="text-align: center;">
 <img class="post-fig" width="50%" align="center" src="/figures/2019-07-03-figure1.png">
 </p>
-<h3 id="heading-4"></h3>
+<br>
 <hr>
-<h2 id="densenet-2016httpsarxivorgpdf160806993pdf"><a href="https://arxiv.org/pdf/1608.06993.pdf">DenseNet (2016)</a></h2>
+<h2 id="5-densenet-2016httpsarxivorgpdf160806993pdf">5. <a href="https://arxiv.org/pdf/1608.06993.pdf">DenseNet (2016)</a></h2>
 <ul>
 <li>Introduction : information about the input or gradient can vanish and wash out as CNNs become deep</li>
 <li>Method : Dense Connectivity (not sum, just concat)</li>
@@ -479,9 +465,9 @@
   out = concat([x, out])
   return out
 </code></pre>
-<h3 id="heading-5"></h3>
+<br>
 <hr>
-<h2 id="resnext-2016httpsarxivorgabs161105431"><a href="https://arxiv.org/abs/1611.05431">ResNeXt (2016)</a></h2>
+<h2 id="6-resnext-2016httpsarxivorgabs161105431">6. <a href="https://arxiv.org/abs/1611.05431">ResNeXt (2016)</a></h2>
 <ul>
 <li>Introduction : present a improved architecture that adopts ResNets strategy of repeating layers.</li>
 <li>Method :  split-transform-merge strategy (cardinality)</li>
@@ -495,9 +481,9 @@ $$</p>
   out = relu(bn2(conv3x3(out, groups=cardinality)) + x)
   return out
 </code></pre>
-<h3 id="heading-6"></h3>
+<br>
 <hr>
-<h2 id="shufflenet2017httpsarxivorgpdf170701083pdf"><a href="https://arxiv.org/pdf/1707.01083.pdf">ShuffleNet(2017)</a></h2>
+<h2 id="7-shufflenet2017httpsarxivorgpdf170701083pdf">7. <a href="https://arxiv.org/pdf/1707.01083.pdf">ShuffleNet(2017)</a></h2>
 <ul>
 <li>
 <p>Introduction : extremely computation-efficient CNN architecture named ShuffleNet, designed specially for mobile devices with very limited computing power.</p>
@@ -518,9 +504,9 @@ $$</p>
 </li>
 </ul>
 <!-- 단순하게 생각하면 Conv f-map을 depth축으로 분할하여 계산하되 이 분할된 channel sub group들을 중간중간 shuffle 해줌. -->
-<h3 id="heading-7"></h3>
+<br>
 <hr>
-<h2 id="fixresnext-2019httpsarxivorgpdf190606423v3pdf"><a href="https://arxiv.org/pdf/1906.06423v3.pdf">FixResNeXt (2019)</a></h2>
+<h2 id="8-fixresnext-2019httpsarxivorgpdf190606423v3pdf">8. <a href="https://arxiv.org/pdf/1906.06423v3.pdf">FixResNeXt (2019)</a></h2>
 <ul>
 <li>Introduction : Existing augmentations induce a significant discrepancy between the size of the objects seen by the classifier at train and test time.</li>
 <li>Method : Simple strategy to optimize the classifier performance, that employs  different train and test resolution : in face, a lower train resolution improves the classification at test time.</li>
@@ -530,9 +516,9 @@ $$</p>
 <img class="post-fig" width="50%" align="center" src="/figures/2017-07-02-fig1.png ">
 </p>
 <center>(L) conventional augmentation method   (R) proposed augmentation method</center>
-<h3 id="heading-8"></h3>
+<br>
 <hr>
-<h2 id="vit--an-image-is-worth-16x16-words-2020-googreshttpsarxivorgpdf201011929pdf"><a href="https://arxiv.org/pdf/2010.11929.pdf">ViT : An Image is Worth 16x16 Words (2020, GoogRes)</a></h2>
+<h2 id="9-vit--an-image-is-worth-16x16-words-2020-googreshttpsarxivorgpdf201011929pdf">9. <a href="https://arxiv.org/pdf/2010.11929.pdf">ViT : An Image is Worth 16x16 Words (2020, GoogRes)</a></h2>
 <ul>
 <li>
 <p>Introduction :</p>
@@ -572,7 +558,7 @@ $$</p>
 </ul>
 <br>
 <hr>
-<h2 id="virtex--learning-visual-representations-from-textual-annotationshttpsarxivorgpdf200606666pdf"><a href="https://arxiv.org/pdf/2006.06666.pdf">VirTex : Learning Visual Representations from Textual Annotations</a></h2>
+<h2 id="10-virtex--learning-visual-representations-from-textual-annotationshttpsarxivorgpdf200606666pdf">10. <a href="https://arxiv.org/pdf/2006.06666.pdf">VirTex : Learning Visual Representations from Textual Annotations</a></h2>
 <ul>
 <li>introduction : revisit supervised pretraining, and seek data-efficient alternatives to classification-based pretraining.
 <ul>
@@ -657,7 +643,7 @@ $$</p>
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
 
 <script>
     (function (window) {
@@ -675,7 +661,7 @@ $$</p>
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CheatSheet | Regex - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]&#43;&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>CheatSheet | Regex - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="CheatSheet | Regex" />
+<meta property="og:description" content="Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &quot;[가-힣|a-z|0-9|\-]&#43;&quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2021-08-02T09:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-02T09:00:00+00:00" />
+
+<meta itemprop="name" content="CheatSheet | Regex">
+<meta itemprop="description" content="Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &quot;[가-힣|a-z|0-9|\-]&#43;&quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its"><meta itemprop="datePublished" content="2021-08-02T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-08-02T09:00:00+00:00" />
+<meta itemprop="wordCount" content="834">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CheatSheet | Regex"/>
+<meta name="twitter:description" content="Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &quot;[가-힣|a-z|0-9|\-]&#43;&quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/1.-cheatsheets/cheatsheet-regex/"
+    >CheatSheet | Regex</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/" class="article-date">
+  <time datetime="2021-08-02 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-08-02</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-cheatsheets/"> 1. CheatSheets </a>
+  <a href="/categories/favorites/"> Favorites </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/1.-cheatsheets/cheatsheet-regex/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>reference. <a href="https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf">https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf</a></li>
+</ul>
+<pre><code class="language-python"># including kor/eng/num/-
+&quot;[가-힣|a-z|0-9|\-]+&quot;
+</code></pre>
+<br>
+<hr>
+<h2 id="1-special-characters">1. Special Characters</h2>
+<ul>
+<li><code>^</code> | Matches the expression to its right at the start of a string. It matches every such instance before each <code>\n</code> in the string.</li>
+<li><code>$</code> | Matches the expression to its left at the end of a string. It matches every such instance before each <code>\n</code> in the string.</li>
+<li><code>.</code> | Matches any character except line terminators like `\n``</li>
+<li>``` | Escapes special characters or denotes character classes</li>
+<li><code>A|B</code> | Matches expression <code>A</code> or <code>B</code>. If <code>A</code> is matched first, <code>B</code> is left untried</li>
+<li><code>+</code> | Greedily matches the expression to its left 1 or more times</li>
+<li><code>*</code> | Greedily matches the expression to its left 0 or more times</li>
+<li><code>?</code> | Greedily matches the expression to its left 0 or 1 times. But if <code>?</code> is added to qualifiers (<code>+</code>, <code>*</code>, and <code>?</code> itself) it will perform matches in a non-greedy manner</li>
+<li><code>{m}</code> | Matches the expression to its left <code>m</code> times, and not less</li>
+<li><code>{m,n}</code> | Matches the expression to its left <code>m</code> to <code>n</code> times, and not less.</li>
+<li><code>{m,n}?</code> | Matches the expression to its left <code>m</code> times, and ignores <code>n</code>. See <code>?</code> above.</li>
+</ul>
+<br>
+<hr>
+<h2 id="2-character-classes-aka-special-sequences">2. Character Classes (a.k.a. Special Sequences)</h2>
+<ul>
+<li><code>\w</code> | Matches alphanumeric characters, which means <code>a-z</code>, <code>A-Z</code>, and <code>0-9</code>. It also matches the underscore, <code>_</code>.</li>
+<li><code>\d</code> | Matches digits, which means <code>0-9</code>.</li>
+<li><code>\D</code> | Matches any non-digits.</li>
+<li><code>\s</code> | Matches whitespace characters, which include the <code>\t</code>, <code>\n</code>, <code>\r</code>, and space characters.</li>
+<li>\S<code> | Matches non-whitespace characters.</code></li>
+<li><code>\b</code> | Matches the boundary (or empty string) at the start and end of a word, that is, between <code>\w</code> and <code>\W</code>.</li>
+<li><code>\B</code> | Matches where <code>\b</code> does not, that is, the boundary of <code>\w</code> characters.</li>
+<li><code>\A</code> | Matches the expression to its right at the absolute start of a string whether in single or multi-line mode.</li>
+<li><code>\Z</code> | Matches the expression to its left at the absolute end of a string whether in single or multi-line mode.</li>
+</ul>
+<br>
+<hr>
+<h2 id="3-sets">3. Sets</h2>
+<ul>
+<li><code>[ ]</code> | Contains a set of characters to match.</li>
+<li><code>[amk]</code> | Matches either <code>a</code>, <code>m</code>, or <code>k</code>. It does not match <code>amk</code>.</li>
+<li><code>[a-z]</code> | Matches any alphabet from <code>a</code> to <code>z</code>.</li>
+<li><code>[a\-z]</code> | Matches <code>a</code>, <code>-</code>, or <code>z</code>. It matches <code>-</code> because <code>\</code> escapes it.</li>
+<li><code>[a-]</code> | Matches <code>a</code> or <code>-</code>, because <code>-</code> is not being used to indicate a series of characters.</li>
+<li><code>[-a]</code> | As above, matches <code>a</code> or <code>-</code>.</li>
+<li><code>[a-z0-9]</code> | Matches characters from <code>a</code> to <code>z</code> and also from <code>0</code> to <code>9</code>.</li>
+<li><code>[(+*)]</code> | Special characters become literal inside a set, so this matches <code>(</code>, <code>+</code>, <code>*</code>, and <code>)</code>.</li>
+<li><code>[^ab5]</code> | Adding <code>^</code> excludes any character in the set. Here, it matches characters that are not <code>a</code>, <code>b</code>, or <code>5</code>.</li>
+</ul>
+<br>
+<hr>
+<h2 id="4-groups">4. Groups</h2>
+<ul>
+<li>
+<p><code>( )</code> | Matches the expression inside the parentheses and groups it.</p>
+</li>
+<li>
+<p><code>(? )</code> | Inside parentheses like this, <code>?</code> acts as an extension notation. Its meaning depends on the character immediately to its right.</p>
+</li>
+<li>
+<p><code>(?PAB)</code> | Matches the expression <code>AB</code>, and it can be accessed with the group name.</p>
+</li>
+<li>
+<p><code>(?aiLmsux)</code> | Here, <code>a</code>, <code>i</code>, <code>L</code>, <code>m</code>, <code>s</code>, <code>u</code>, and <code>x</code> are flags:</p>
+<ul>
+<li><code>a</code> — Matches ASCII only</li>
+<li><code>i</code> — Ignore case</li>
+<li><code>L</code> — Locale dependent</li>
+<li><code>m</code> — Multi-line</li>
+<li><code>s</code> — Matches all</li>
+<li><code>u</code> — Matches unicode</li>
+<li><code>x</code> — Verbose</li>
+</ul>
+</li>
+<li>
+<p><code>(?:A)</code> | Matches the expression as represented by <code>A</code>, but unlike <code>(?PAB)</code>, it cannot be retrieved afterwards.</p>
+</li>
+<li>
+<p><code>(?#...)</code> | A comment. Contents are for us to read, not for matching.</p>
+</li>
+<li>
+<p><code>A(?=B)</code> | Lookahead assertion. This matches the expression <code>A</code> only if it is followed by <code>B</code>.</p>
+</li>
+<li>
+<p><code>A(?!B)</code> | Negative lookahead assertion. This matches the expression <code>A</code> only if it is not followed by <code>B</code>.</p>
+</li>
+<li>
+<p><code>(?&lt;=B)A</code> | Positive lookbehind assertion. This matches the expression <code>A</code> only if <code>B</code> is immediately to its left. This can only matched fixed length expressions.</p>
+</li>
+<li>
+<p><code>(?&lt;!B)A</code> | Negative lookbehind assertion. This matches the expression <code>A</code> only if <code>B</code> is not immediately to its left. This can only matched fixed length expressions.</p>
+</li>
+<li>
+<p><code>(?P=name)</code> | Matches the expression matched by an earlier group named “name”.</p>
+</li>
+<li>
+<p><code>(...)\1</code> | The number <code>1</code> corresponds to the first group to be matched. If we want to match more instances of the same expresion, simply use its number instead of writing out the whole expression again. We can use from <code>1</code> up to <code>99</code> such groups and their corresponding numbers.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="5-popular-python-re-module-functions">5. Popular Python <code>re</code> Module Functions</h2>
+<ul>
+<li><code>re.findall(A, B)</code> | Matches all instances of an expression <code>A</code> in a string <code>B</code> and returns them in a list.</li>
+<li><code>re.search(A, B)</code> | Matches the first instance of an expression <code>A</code> in a string <code>B</code>, and returns it as a re match object.</li>
+<li><code>re.split(A, B)</code> | Split a string B into a list using the delimiter <code>A</code>.</li>
+<li><code>re.sub(A, B, C)</code> | Replace <code>A</code> with <code>B</code> in the string <code>C</code>.</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>
