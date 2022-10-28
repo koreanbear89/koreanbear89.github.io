@@ -17,8 +17,22 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-modeling/</loc>
+    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</loc>
     <lastmod>2016-07-22T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-representation/</loc>
+    <lastmod>2021-01-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,8 +52,22 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</loc>
+    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</loc>
     <lastmod>2018-04-26T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</loc>
+    <lastmod>2021-06-28T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -87,50 +115,36 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</loc>
+    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/categories/3.-mathematics-for-ml/</loc>
-    <lastmod>2022-09-13T09:00:00+00:00</lastmod>
+    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/categories/</loc>
-    <lastmod>2022-09-13T09:00:00+00:00</lastmod>
+    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/</loc>
-    <lastmod>2022-09-13T09:00:00+00:00</lastmod>
+    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/mathematics/</loc>
-    <lastmod>2022-09-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/3.-system-design/</loc>
-    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/</loc>
-    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/web-server/</loc>
-    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
+    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -150,8 +164,43 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/engineering/</loc>
+    <lastmod>2022-03-25T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/categories/favorites/</loc>
     <lastmod>2022-03-25T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/5.-natural-language/</loc>
+    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/</loc>
+    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/2.-linux/</loc>
+    <lastmod>2021-11-15T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</loc>
+    <lastmod>2021-11-15T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -171,7 +220,14 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/3.-system-design/system-design-#1.1-nginx/</loc>
+    <loc>https://koreanbear89.github.io/categories/1.-cheatsheet/</loc>
+    <lastmod>2021-07-26T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</loc>
     <lastmod>2021-07-26T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -199,7 +255,7 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-matplotlib/</loc>
+    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</loc>
     <lastmod>2021-01-12T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -221,13 +277,6 @@
   
   <url>
     <loc>https://koreanbear89.github.io/categories/3.-computer-vision/</loc>
-    <lastmod>2020-10-06T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/research/</loc>
     <lastmod>2020-10-06T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -346,8 +395,8 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-snippet/</loc>
-    <lastmod>2016-01-02T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-#2-built-in-modules/</loc>
+    <lastmod>2016-02-02T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -355,6 +404,13 @@
   <url>
     <loc>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</loc>
     <lastmod>2016-01-01T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-#1-basic/</loc>
+    <lastmod>2016-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

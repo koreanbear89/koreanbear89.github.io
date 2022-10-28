@@ -10,6 +10,60 @@
     
     
     <item>
+      <title>CheatSheet | Regex</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
+      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</guid>
+      <description>Introduction Nginx : light-weight Web server
+generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
+Proxy server : is a server that acts as an intermediary between a client and the server
+Load balancing : Proxies distribute requests to a group of servers,
+Encryption : Proxies encrypt the data to keep it from being read during transfer.
+Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
+    </item>
+    
+    <item>
+      <title>HTML | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
+      <description>
+HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python #3 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</guid>
+      <description>Introduction Matplotlib Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+    </item>
+    
+    <item>
       <title>CheatSheet | Spark</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</link>
       <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
@@ -58,13 +112,17 @@ Rebase and Merge : multiple commits will be merged
     </item>
     
     <item>
-      <title>CheatSheet | HDFS</title>
+      <title>CheatSheet | Hadoop</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</link>
       <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</guid>
-      <description>
-1. HDFS $ hdfs dfs -ls $ hdfs dfs -put [LOCAL_FILE_NAME] [DEST] $ hdfs dfs -get [FILE_NAME or FOLDER_PATH] $ hdfs dfs -rm [-f] [-r|-R] [-skipTrash] URI [URI ...] </description>
+      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
+Based on Java
+Save data in Google File System (2003) and process this big data with Map Reduce (2004)
+Modules :
+Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
+Hadoop YARN : A framework for job scheduling and cluster resource management</description>
     </item>
     
     <item>
@@ -186,51 +244,6 @@ Probability Mass Function : A Random Variable $X$ is discrete if it takes counta
       
       <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
       <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Linux</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
-      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</guid>
-      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
-    </item>
-    
-    <item>
-      <title>Python | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-snippet/</link>
-      <pubDate>Sat, 02 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-snippet/</guid>
-      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
-    </item>
-    
-    <item>
-      <title>LaTeX | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</link>
-      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</guid>
-      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
-      <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
-      <description>title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much</description>
     </item>
     
   </channel>

@@ -39,7 +39,7 @@
 <meta itemprop="name" content="CheatSheet | Linux">
 <meta itemprop="description" content="chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename]."><meta itemprop="datePublished" content="2016-03-03T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2016-03-03T09:00:13+00:00" />
-<meta itemprop="wordCount" content="439">
+<meta itemprop="wordCount" content="477">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Linux"/>
 <meta name="twitter:description" content="chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename]."/>
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">5</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -276,14 +276,14 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">10</span></li>
 
                   
               
@@ -394,6 +394,19 @@ $ conda env export &gt; [filename].yaml
 $ conda env create -f [filename].yaml
 </code></pre>
 <br>
+<hr>
+<h2 id="cron">cron</h2>
+<pre><code class="language-bash"># *(m) *(h) *(d) *(m) *(w)
+$ crontab -e
+
+# run every minute
+* * * * * /home/script/test.sh
+
+# run every 10min
+0/10 * * * * 
+# run every day
+0 0 * * * 
+</code></pre>
 <hr>
 <h2 id="curl">curl</h2>
 <pre><code class="language-bash"># -s, --silent

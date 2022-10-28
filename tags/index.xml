@@ -28,12 +28,34 @@
     </item>
     
     <item>
+      <title>NLP #2 | Language Modeling </title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-modeling/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-modeling/</guid>
+      <description>Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences.</description>
+    </item>
+    
+    <item>
       <title>MLCV #2 | Object Detection</title>
       <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
       <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</guid>
-      <description>Introduction Tasks Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. Metrics: AP or mAP is generally used as the primary metrics metric.click here for details Othres Non Maximum Suppression</description>
+      <description>Introduction Tasks Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. Metrics: AP or mAP is generally used as the primary metrics metric.click here for details Others Non Maximum Suppression</description>
+    </item>
+    
+    <item>
+      <title>NLP #3 | Language Representation</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-representation/</link>
+      <pubDate>Wed, 13 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-representation/</guid>
+      <description>Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word</description>
     </item>
     
     <item>
@@ -56,12 +78,35 @@ Method: simultaneously train two models : a generative model $G$ that captures t
     </item>
     
     <item>
+      <title>NLP #5 | Text Segmentation</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</link>
+      <pubDate>Thu, 18 Nov 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</guid>
+      <description>Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
+To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
+Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
+Discriminative approach : calculate similarity between neighboring sentences Hearst.</description>
+    </item>
+    
+    <item>
       <title>MLCV #5 | Image Style Transfer</title>
       <link>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</link>
       <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</guid>
       <description>0. Introduction Tasks : Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize</description>
+    </item>
+    
+    <item>
+      <title>NLP #6 | Text Summarization</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</link>
+      <pubDate>Mon, 28 Jun 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</guid>
+      <description>Summary Text Summarization : is a technique to shorten long texts such that the summary has all the important points of the actual document.
+By Summarization Approache
+Extraction-based Summarization: The extractive approach involves picking up the most important phrases and lines from the documents. It then combines all the important lines to create the summary. So, in this case, every line and word of the summary actually belongs to the original document which is summarized.</description>
     </item>
     
     <item>
@@ -124,14 +169,12 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
     </item>
     
     <item>
-      <title>Networks #1 | API, HTTP, REST</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/web-server/</link>
-      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <title>Mathematcs for ML #10 | Dimensionality Reduction with PCA</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</link>
+      <pubDate>Thu, 13 Oct 2022 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/web-server/</guid>
-      <description>Introduction API (Application Programming Interface) interface : a connection between two pieces of electronic equipment, or between a person and a computer
-API : an application interface made for easy use in another application
-ex) Weather App =&amp;gt; call API from weather station server =&amp;gt; Get weather condition =&amp;gt; User HTTP (HyperText Transfer Protocol) Non HTTP : MQTT, CoAP (low-level, low-energy protocol) REST (Representational State Transfer) </description>
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</guid>
+      <description>10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7.</description>
     </item>
     
     <item>
@@ -144,6 +187,17 @@ ex) Weather App =&amp;gt; call API from weather station server =&amp;gt; Get wea
     </item>
     
     <item>
+      <title>Shell | Snippet </title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</guid>
+      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
+/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
+$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
+    </item>
+    
+    <item>
       <title>CheatSheet | Jupyter</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
       <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
@@ -151,60 +205,6 @@ ex) Weather App =&amp;gt; call API from weather station server =&amp;gt; Get wea
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
       <description>
 1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme </description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Regex</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
-      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
-      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
-    </item>
-    
-    <item>
-      <title>System Design #1.1 | Nginx</title>
-      <link>https://koreanbear89.github.io/engineering/3.-system-design/system-design-#1.1-nginx/</link>
-      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/3.-system-design/system-design-#1.1-nginx/</guid>
-      <description>Introduction Nginx : light-weight Web server
-generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
-Proxy server : is a server that acts as an intermediary between a client and the server
-Load balancing : Proxies distribute requests to a group of servers,
-Encryption : Proxies encrypt the data to keep it from being read during transfer.
-Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
-    </item>
-    
-    <item>
-      <title>HTML | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
-      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
-      <description>
-HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
-    </item>
-    
-    <item>
-      <title>Hanwoong Kim</title>
-      <link>https://koreanbear89.github.io/about/</link>
-      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/about/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python | Matplotlib</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-matplotlib/</link>
-      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-matplotlib/</guid>
-      <description>Introduction Interface
-pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
-object-oriented interface : Explicitly create figures and axes, and call methods on them
-import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
     </item>
     
   </channel>

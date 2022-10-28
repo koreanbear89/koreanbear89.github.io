@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2. Languages on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/2.-languages/</link>
+    <description>Recent content in 2. Languages on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 09 Jun 2021 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/2.-languages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | Linux</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</guid>
+      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
+    </item>
+    
+    <item>
+      <title>Python #2 | Built In Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#2-built-in-modules/</link>
+      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#2-built-in-modules/</guid>
+      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
+    </item>
+    
+    <item>
+      <title>LaTeX | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</guid>
+      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
+    </item>
+    
+    <item>
+      <title>Python #1 | Basic</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#1-basic/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#1-basic/</guid>
+      <description>Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
+      <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
+      <description>title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much</description>
+    </item>
+    
+  </channel>
+</rss>
