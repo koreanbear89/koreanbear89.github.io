@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>9. Study on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/9.-study/</link>
+    <description>Recent content in 9. Study on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 06 Feb 2023 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/9.-study/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shell | Snippet </title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</guid>
+      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
+/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
+$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
+      <description>
+1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme </description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Regex</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
+      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</guid>
+      <description>Introduction Nginx : light-weight Web server
+generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
+Proxy server : is a server that acts as an intermediary between a client and the server
+Load balancing : Proxies distribute requests to a group of servers,
+Encryption : Proxies encrypt the data to keep it from being read during transfer.
+Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
+    </item>
+    
+    <item>
+      <title>HTML | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
+      <description>
+HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python #3 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</guid>
+      <description>Introduction Matplotlib Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Spark</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</guid>
+      <description>1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Docker</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</link>
+      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</guid>
+      <description>Introduction Contents
+Install docker in centos
+Frequently used docker commands
+FIle sharing in docker (bind, volume)
+Dockerfile instruction
+Docker compose
+Docker swarm
+Glossary
+swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node. service : A unit of modules in project, a basic distribution unit, stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Hadoop</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</link>
+      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</guid>
+      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
+Based on Java
+Save data in Google File System (2003) and process this big data with Map Reduce (2004)
+Modules :
+Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
+Hadoop YARN : A framework for job scheduling and cluster resource management</description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet | VIM</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</link>
+      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</guid>
+      <description>1. Setup vim Install Vundle
+git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim color scheme setup
+Jellybean color scheme official install
+And simply add line color jellybean in .vimrc
+mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim write .vimrc
+wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc
+Added Plugin &#39;preservim/nerdcommenter&#39;
+install plugins in vimrc
+:PluginInstall Shell
+# install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
+      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
+      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
+      <description>3.0 Least Square Inner Product : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $. Vector Norm : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$ $L_p$ Norm : $ \Vert \mathbf{x} \Vert_p = (</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
+      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
+Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
+Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
+Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
+      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
+      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
+Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
+If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
+      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
+      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
+The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
+5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
+$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
+      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
+      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
+3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
+The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
+      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
+    </item>
+    
+  </channel>
+</rss>

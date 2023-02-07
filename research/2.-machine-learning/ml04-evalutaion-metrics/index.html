@@ -20,29 +20,29 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne" />
-    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <meta name="description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s point of view, excluding the modeler&amp;rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model," />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>ML Basic #4 | Evaluation Metrics - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="ML Basic #4 | Evaluation Metrics" />
-<meta property="og:description" content="0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne" />
+<meta property="og:description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model," />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/" /><meta property="article:section" content="Research" />
 <meta property="article:published_time" content="2017-01-03T09:00:13+00:00" />
 <meta property="article:modified_time" content="2017-01-03T09:00:13+00:00" />
 
 <meta itemprop="name" content="ML Basic #4 | Evaluation Metrics">
-<meta itemprop="description" content="0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne"><meta itemprop="datePublished" content="2017-01-03T09:00:13+00:00" />
+<meta itemprop="description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,"><meta itemprop="datePublished" content="2017-01-03T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2017-01-03T09:00:13+00:00" />
-<meta itemprop="wordCount" content="1667">
+<meta itemprop="wordCount" content="631">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ML Basic #4 | Evaluation Metrics"/>
-<meta name="twitter:description" content="0. Introduction Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Ne"/>
+<meta name="twitter:description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">5</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -269,64 +269,42 @@
 
 
 
-
         <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
-                  <span class="category-list-count">15</span></li>
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">14</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
-                  <span class="category-list-count">8</span></li>
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">10</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
-                  <span class="category-list-count">3</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
-                  <span class="category-list-count">6</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
-                  <span class="category-list-count">1</span></li>
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">1</span></li>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -394,132 +372,181 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="0-introduction">0. Introduction</h2>
+      <br>
+<h2 id="introduction">Introduction</h2>
 <ul>
 <li>
-<p>Confusion Matrix 는 TP,TN,FP,FN의 네가지 요소로 구성되며, 앞의 True/False는 모델이 정답을 맞추었는지를 나타내고 뒤의 Positive/Negative는 모델의 예측값을 나타낸다.</p>
+<p>Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model.</p>
+<ul>
+<li>
+<p>Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative).</p>
 </li>
 <li>
-<p>Positive, Negative는 모델러의 주관을 제외하고 모델의 관점에서의 예측값으로 해석해야한다. 예로, 암이 있다라는 예측값은 부정적인 결과지만, 모델의 입장에서는 단지 0 (negative) 보다 1(positive)에 가까울 뿐이다.</p>
+<p>It is <strong>intuitive to read from the back</strong> due to the word order difference between English and Korean.</p>
+<ul>
+<li>
+<p>TP (True Positive) : The prediction of the model is <strong>postive</strong> and it is <strong>true</strong> (answer is positive)</p>
 </li>
 <li>
-<p>영문과 국문의 어순차이에 따라 뒤에서부터 읽는것이 직관적이다. 어순을 바꾸어 암의 여부를 판단하는 모델을 예로 아래와 같이 해석할 수 있다.</p>
-<ol>
-<li>TP (True Positive) : 암이 있다고 예측했고, 정답과 같다. (True라고 했는데, True인 경우)</li>
-<li>TN (True Negative) : 암이 없다고 예측했고, 정답과 같다. (False라고 했는데, False인 경우)</li>
-<li>FP (False Positive) : 암이 있다고 예측했고, 정답과 다르다. (True라고 했는데, False인 경우)</li>
-<li>FN (False Negative) : 암이 없다고 예측했고, 정답과 다르다. (False라고 했는데, True인 경우)</li>
-</ol>
+<p>TN (True Negative) : The prediction of the model is <strong>negative</strong> and it is <strong>true</strong> (answer is negative)</p>
 </li>
 <li>
-<p>Multiclass의 경우도 크게 다르지 않다. 각각의 class에 대하여 그대로 Positive, Negative를 찾을 수 있다. 예로 Apple Class에 대하여,</p>
-<ol>
-<li>TP (True Positive) : 7</li>
-<li>TN (True Negative) :  2+3+2+1</li>
-<li>FP (False Positive) : 8+9</li>
-<li>FN (False Negative) : 1+3</li>
-</ol>
+<p>FP (False Positive) : The prediction of the model is <strong>postive</strong> and it is <strong>False</strong> (answer is negative)</p>
+</li>
+<li>
+<p>FN (False Negative) : The prediction of the model is <strong>negative</strong> and it is <strong>False</strong> (answer is positive)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Even if there are multiple classes, it is not very different. For example, in the case of the apple class:</p>
+<ul>
+<li>TP is 7, TN is 1+3+2+3, FP is 8+9, and FN is 1+3</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <p style="text-align: center;">
 <image width=40%; align="center" ; src='https://miro.medium.com/max/1000/1*yH2SM0DIUQlEiveK42NnBg.png'></p>
-<p><br><br></p>
+<br>
+<hr>
 <h2 id="1-true-positive-rate-tpr-sensitivity-recall">1. True Positive Rate (TPR, Sensitivity, Recall)</h2>
 <ul>
 <li>
-<p>실제 암이 있는 환자들 중에 암이 있다고 예측한 비율</p>
-</li>
-<li>
-<p>실제 Positive 중에서 Positive라 예측한 비율</p>
+<p>The probability of a positive prediction, conditioned on truly being positive.</p>
+<ul>
+<li>Ex1. Proportion of predicted cancer among patients who actually had cancer</li>
+</ul>
 </li>
 </ul>
-<p>$$\frac{TP}{P} = \frac{TP}{TP+FN}$$</p>
-<p><br><br></p>
+<p>$$
+\frac{TP}{P} = \frac{TP}{TP+FN}
+$$</p>
+<br>
+<hr>
 <h2 id="2-true-negative-rate-tnr-specificity">2. True Negative Rate (TNR, Specificity)</h2>
 <ul>
-<li>실제 정상인들 중 정상인이라고 예측한 비율</li>
+<li>The probability of a negative prediction, conditioned on truly being negative.
+<ul>
+<li>Ex2. Proportion of predicted normal out of actual normal people</li>
 </ul>
-<p>$$\frac{TN}{N} = \frac{TN}{TN+FP}$$</p>
-<p><br><br></p>
+</li>
+</ul>
+<p>$$
+\frac{TN}{N} = \frac{TN}{TN+FP}
+$$</p>
+<br>
+<hr>
 <h2 id="3-false-positive-rate-fpr-fall-out">3. False Positive Rate (FPR, Fall-out)</h2>
 <ul>
-<li>실제 정상인 중에 암이 있다고 예측한 비율</li>
+<li>The false positive rate is calculated as the ratio between the number of negative events wrongly categorized as positive (false positives) and the total number of actual negative events (regardless of classification).</li>
 </ul>
-<p>$$ FPR = \frac{FP}{N} = 1-TNR = 1-Specificity $$</p>
-<p><br><br></p>
+<p>$$
+FPR = \frac{FP}{N} = 1-TNR = 1-Specificity
+$$</p>
+<br>
+<hr>
 <h2 id="3-positive-predictive-value-ppv-precision">3. Positive Predictive Value (PPV, Precision)</h2>
 <ul>
-<li>암이 있다고 예측한 환자들 중에 실제 암이 있는 비율</li>
-<li>Sensitivity 가 정답의 관점이라면 Precision은 모델 관점</li>
-<li>Positive 라고 예측한 것 중에서 실제 Postive의 비율</li>
-</ul>
-<p>$$ \frac{TP}{TP+FP}$$</p>
-<p><br><br></p>
-<h2 id="5-f1-score">5. F1 Score</h2>
+<li>
+<p>The probability of a true positive prediction, among every positive predictions</p>
 <ul>
-<li>Precision 과 Recall 의 조화평균, 평균 계산에 사용된 값이 불균형할수록 페널티가 가해져서 작은 값에 가깝도록 평균이 계산</li>
-<li>참고 : <a href="https://gaussian37.github.io/ml-concept-ml-evaluation/">https://gaussian37.github.io/ml-concept-ml-evaluation/</a></li>
+<li>
+<p>The ratio of truely cancer among predicted cancer</p>
+</li>
+<li>
+<p>If &ldquo;Sentivity&rdquo; is from the point of view of the answer (label), &ldquo;Precision&rdquo; is the interpretation from the point of view of the model</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$
+\frac{TP}{TP+FP}
+$$</p>
+<br>
+<hr>
+<h2 id="5-f1-score">5. F1-Score</h2>
+<ul>
+<li>F1-Score : The harmonic average of Precision and Recall (harmonic average : the more unbalanced the value used for average calculation, the more the penalty is applied so that the average is calculated closer to the smaller value)
+<ul>
 <li><strong>Micro (Averaged) F1</strong> : is calculated by considering the total TP, total FP and total FN of the model. It does not consider each class individually, It calculates the metrics globally.</li>
 <li><strong>Macro (Averaged) F1</strong> : calculates metrics for each class individually and then takes unweighted mean of the measures.</li>
 <li><strong>Weighted F1</strong>: it takes a weighted mean of the measures. The weights for each class are the total number of samples of that class.</li>
 </ul>
-<p>$$ 2 \times \frac{Precision \times Recall}{Precision + Recall } $$</p>
+</li>
+<li>Reference
+<ul>
+<li><a href="https://gaussian37.github.io/ml-concept-ml-evaluation/">Metrics in Machine Learning - gaussian37</a></li>
+</ul>
+</li>
+</ul>
+<p>$$
+2 \times \frac{Precision \times Recall}{Precision + Recall }
+$$</p>
 <p style="text-align: center;">
 <img class="post-fig" width="50%" align="center" src="/figures/2017-01-03-fig1.png">
 </p>
-<p><br><br></p>
-<h2 id="5-roc-receiver-operating-characteristic-curve">5. ROC (Receiver Operating Characteristic) Curve</h2>
+<br>
+<hr>
+<h2 id="6-roc-receiver-operating-characteristic-curve">6. ROC (Receiver Operating Characteristic) Curve</h2>
 <ul>
-<li>Threshold 를 바꿔가며 Recall (TPR) 과 Fall-out (FPR, FP/(FP+TN))의 변화를 시각화한것</li>
+<li>Threshold 를 바꿔가며 Recall (TPR) 과 Fall-out (FPR, FP/(FP+TN)) 의 변화를 시각화한것</li>
 <li>x축, FPR은 실제 정상인 중에 암이 있다고 예측한 비율 (FP/N)</li>
 <li>y축, TPR은 실제 암인 환자중에 암이 있다고 예측한 비율 (TP/P)</li>
 <li>즉, test data에 대하여 threshold를 0~1로 바꿔가며, (FPR,TPR) 의 좌표를 구하고 이를 그래프위에 나타내면 ROC커브.</li>
 </ul>
-<p><br><br></p>
-<h2 id="6-auc-area-under-curve">6. AUC (Area under Curve)</h2>
-<ul>
-<li>ROC Curve 는 그래프이기에 명확한 수치로 비교하기 어렵고 때문에 그래프 아래의 면적값을 계산</li>
-</ul>
-<p><br><br></p>
-<h2 id="7-precision-recall-curve">7. Precision-Recall Curve</h2>
-<ul>
-<li>
-<p>precision 과 recall은 상호 보완적인 metric으로 두개를 동시에 보아야함.</p>
-</li>
-<li>
-<p>예로, 영상에 10명의 사람이 있는데 이중 모델이 5개 물체를 검출해냈고 그중 4개가 사람이 맞으면 Precision은 0.8, Recall은 0.4.</p>
-</li>
-<li>
-<p>그러나 일반적으로 이 둘은 Trade-Off의 관계에 있음. 가령, 이것저것 다 검출하고 보는 검출기의 경우 recall은 높으나 precision은 낮을것이고, 굉장히 strict 하게 검출하는 검출기의 경우 precision은 높으나 Recall은 낮을수밖에.</p>
-</li>
-<li>
-<p>그래서 ROC 처럼 Precision-Recall도 Curve를 그려 함께 비교하는것이 일반적임</p>
-</li>
-</ul>
-<p><br><br></p>
-<h2 id="8-ap-or-map">8. AP or mAP</h2>
-<ul>
-<li>Computer Vision 분야에서 Object Detection 알고리즘의 성능 평가에 주로 사용되는 metric으로 AUC의 Recall-Precision 버전이라고 생각하면 될 듯</li>
-</ul>
-<p>$$ AP = \int_0^1 p(r)dr $$</p>
-<ul>
-<li>Interpolated AP : Recall Precision 그래프의 넓이를 계산하는게 일반적이나, 계산의 편리성을 위하여 0부터 1까지 0.1간격으로 열한개 recall값의 maximum precision value를 average 하여 11로 나누어 사용하기도 함.</li>
-</ul>
-<p>$$ AP = \frac{1}{11} (P_r(0) + P_r(0.1) + P_r(0.2) + &hellip; + P_r(1.0)) $$</p>
-<ul>
-<li>
-<p>만일 검출하고자하는 물체 클래스가 여러개인 경우 각 클래스당 AP 를 구한 다음 이 AP들의 평균을 계산한 mAP를 사용하기도 함.</p>
-</li>
-<li>
-<p>Area를 계산할때 True/False를 판단하는 기준으로 IoU (교집합/합집합)을 주로 사용하는데 AP_50, AP_75 와 같이 뒤에 붙은 숫자는 일반적으로 IoU의 threshold를 의미함. 가령 AP_50의 경우 IoU가 0.5 d이상인 경우만 검출에 성공했다고 하는 경우.</p>
-</li>
-<li>
-<p>Recall은 0~1 사이의 값을 갖으므로, Recall Precision 그래프를 $\frac{1}{n}$ 크기의 작은 사각형으로 나누어 넓이를 계산하면 아래와 같고, 이는 각 recall값 n에 대한 precision 값의 평균과 같다.</p>
-</li>
-</ul>
-<p>$$ Area = \sum (\frac{1}{n} \times P(n)), \quad AP = \frac{1}{n} {\sum P(n)}$$</p>
-<p><br><br></p>
-<h2 id="9-ndcg">9. nDCG</h2>
+<br>
+<hr>
+<!--
+
+
+
+
+## 6. AUC (Area under Curve)
+
+- ROC Curve 는 그래프이기에 명확한 수치로 비교하기 어렵고 때문에 그래프 아래의 면적값을 계산
+
+<br>
+
+---
+
+## 7. Precision-Recall Curve
+
+- precision 과 recall은 상호 보완적인 metric으로 두개를 동시에 보아야함.
+
+- 예로, 영상에 10명의 사람이 있는데 이중 모델이 5개 물체를 검출해냈고 그중 4개가 사람이 맞으면 Precision은 0.8, Recall은 0.4.
+
+- 그러나 일반적으로 이 둘은 Trade-Off의 관계에 있음. 가령, 이것저것 다 검출하고 보는 검출기의 경우 recall은 높으나 precision은 낮을것이고, 굉장히 strict 하게 검출하는 검출기의 경우 precision은 높으나 Recall은 낮을수밖에.
+
+- 그래서 ROC 처럼 Precision-Recall도 Curve를 그려 함께 비교하는것이 일반적임
+
+<br>
+
+---
+
+## 8. AP or mAP
+
+- Computer Vision 분야에서 Object Detection 알고리즘의 성능 평가에 주로 사용되는 metric으로 AUC의 Recall-Precision 버전이라고 생각하면 될 듯
+
+$$ AP = \int_0^1 p(r)dr $$
+
+- Interpolated AP : Recall Precision 그래프의 넓이를 계산하는게 일반적이나, 계산의 편리성을 위하여 0부터 1까지 0.1간격으로 열한개 recall값의 maximum precision value를 average 하여 11로 나누어 사용하기도 함.
+
+$$ AP = \frac{1}{11} (P_r(0) + P_r(0.1) + P_r(0.2) + ... + P_r(1.0)) $$
+
+- 만일 검출하고자하는 물체 클래스가 여러개인 경우 각 클래스당 AP 를 구한 다음 이 AP들의 평균을 계산한 mAP를 사용하기도 함.
+
+- Area를 계산할때 True/False를 판단하는 기준으로 IoU (교집합/합집합)을 주로 사용하는데 AP_50, AP_75 와 같이 뒤에 붙은 숫자는 일반적으로 IoU의 threshold를 의미함. 가령 AP_50의 경우 IoU가 0.5 d이상인 경우만 검출에 성공했다고 하는 경우.
+
+- Recall은 0~1 사이의 값을 갖으므로, Recall Precision 그래프를 $\frac{1}{n}$ 크기의 작은 사각형으로 나누어 넓이를 계산하면 아래와 같고, 이는 각 recall값 n에 대한 precision 값의 평균과 같다.
+
+$$ Area = \sum (\frac{1}{n} \times P(n)), \quad AP = \frac{1}{n} {\sum P(n)}$$
+
+<br>
+
+~~~
+-->
 
     </div>
     <div class="article-footer">
@@ -579,7 +606,7 @@
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
 
 <script>
     (function (window) {
@@ -597,7 +624,7 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

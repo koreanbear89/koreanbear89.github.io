@@ -28,19 +28,6 @@
     </item>
     
     <item>
-      <title>NLP #2 | Language Modeling </title>
-      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-modeling/</link>
-      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-language-modeling/</guid>
-      <description>Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
-Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
-Spell Correction : Correct spelling by choosing a more natural vocabulary
-Speech Recognition : Correct the recognition result with more natural words
-1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences.</description>
-    </item>
-    
-    <item>
       <title>MLCV #2 | Object Detection</title>
       <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
       <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
@@ -50,12 +37,16 @@ Speech Recognition : Correct the recognition result with more natural words
     </item>
     
     <item>
-      <title>NLP #3 | Language Representation</title>
-      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-representation/</link>
-      <pubDate>Wed, 13 Jan 2021 09:00:00 +0000</pubDate>
+      <title>NLP #3 | Language Modeling </title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-representation/</guid>
-      <description>Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word</description>
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</guid>
+      <description>Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences.</description>
     </item>
     
     <item>
@@ -178,33 +169,47 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
     </item>
     
     <item>
+      <title>Effective Python | #3 Functions</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-03/</guid>
+      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
+Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
+They can eliminate noise and clarify the intention of callers.
+They can significantly reduce subtle bugs that are difficult to find.
+Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #2 Lists and Dictionaries</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-02/</guid>
+      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
+A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
+Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #1 Pythonic Thinking</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-01/</guid>
+      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.</description>
+    </item>
+    
+    <item>
       <title>CheatSheet | GlusterFS</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</link>
       <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
       <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 pgsca2x0350:/home1/irteam/whome/__oss/gs_pvs pgsca2x0351:/home1/irteam/whome/__oss/gs_pvs pgsca2x0352:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
-    </item>
-    
-    <item>
-      <title>Shell | Snippet </title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</link>
-      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</guid>
-      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
-/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
-$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Jupyter</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
-      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
-      <description>
-1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme </description>
     </item>
     
   </channel>

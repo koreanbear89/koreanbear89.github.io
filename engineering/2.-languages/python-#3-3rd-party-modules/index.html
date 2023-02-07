@@ -48,7 +48,7 @@ pyplot interface : Rely on pyplot to automatically create and manage the figures
 object-oriented interface : Explicitly create figures and axes, and call methods on them
 import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt."><meta itemprop="datePublished" content="2021-01-12T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-01-12T09:00:00+00:00" />
-<meta itemprop="wordCount" content="103">
+<meta itemprop="wordCount" content="132">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python #3 | 3rd-Party Modules"/>
 <meta name="twitter:description" content="Introduction Matplotlib Interface
@@ -288,7 +288,7 @@ import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-li
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">13</span></li>
+                  <span class="category-list-count">14</span></li>
 
                   
               
@@ -316,7 +316,7 @@ import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-li
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -430,6 +430,17 @@ ax.set_xlabel('xlabel')
 ax.set_ylim([0, 1e5])
 # rotate tick
 ax.tick_params(axis = 'x', labelrotation =90)
+</code></pre>
+<br>
+<hr>
+<h2 id="pandas">Pandas</h2>
+<ul>
+<li><strong>Groupby</strong></li>
+</ul>
+<pre><code class="language-python"># select columns
+df_channel = df[['COLUMN_A', &quot;COLUMN_1&quot;, &quot;COLUMN_2&quot;, &quot;COLUMN_3&quot;, &quot;COLUMN_4&quot;]]
+# groupby =&gt; will return aggregated list of each columns by COLUMN_A
+df_channel_group = df_channel.groupby('COLUMN_A').agg(lambda x: list(x))
 </code></pre>
 
     </div>

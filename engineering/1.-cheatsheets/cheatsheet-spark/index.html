@@ -288,7 +288,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">13</span></li>
+                  <span class="category-list-count">14</span></li>
 
                   
               
@@ -316,7 +316,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -620,7 +620,7 @@ df.coalesce(1).write.csv(&quot;sample.csv&quot;)
 <ul>
 <li>Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(<code>on</code> expression is true) from both sides of the table</li>
 <li>Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table</li>
-<li>Left join : all rows of the left table remain unchanged, regardless of wheter there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise</li>
+<li>Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise</li>
 <li>Right join : performs the same task as the left join, but for the right table.</li>
 </ul>
 <pre><code class="language-python">df1.join(df2, on='column', how='inner')

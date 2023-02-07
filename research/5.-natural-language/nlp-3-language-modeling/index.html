@@ -20,29 +20,45 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="0. Introduction Language Modeling : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델 Machine Translation (기계 번역) : 언어 모델로 두 문장을 비교하여" />
-    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <meta name="description" content="Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>NLP #3 | Language Modeling  - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="NLP #3 | Language Modeling " />
-<meta property="og:description" content="0. Introduction Language Modeling : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델 Machine Translation (기계 번역) : 언어 모델로 두 문장을 비교하여" />
+<meta property="og:description" content="Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/" /><meta property="article:section" content="Research" />
-<meta property="article:published_time" content="2021-04-13T09:00:00+00:00" />
-<meta property="article:modified_time" content="2021-04-13T09:00:00+00:00" />
+<meta property="article:published_time" content="2020-04-13T09:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-13T09:00:00+00:00" />
 
 <meta itemprop="name" content="NLP #3 | Language Modeling ">
-<meta itemprop="description" content="0. Introduction Language Modeling : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델 Machine Translation (기계 번역) : 언어 모델로 두 문장을 비교하여"><meta itemprop="datePublished" content="2021-04-13T09:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-04-13T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1147">
+<meta itemprop="description" content="Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences."><meta itemprop="datePublished" content="2020-04-13T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-04-13T09:00:00+00:00" />
+<meta itemprop="wordCount" content="812">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NLP #3 | Language Modeling "/>
-<meta name="twitter:description" content="0. Introduction Language Modeling : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델 Machine Translation (기계 번역) : 언어 모델로 두 문장을 비교하여"/>
+<meta name="twitter:description" content="Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences."/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -254,7 +270,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">5</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -269,64 +285,42 @@
 
 
 
-
         <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
-                  <span class="category-list-count">15</span></li>
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">14</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
-                  <span class="category-list-count">8</span></li>
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">10</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
-                  <span class="category-list-count">3</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
-                  <span class="category-list-count">6</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
-                  <span class="category-list-count">1</span></li>
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">1</span></li>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -380,7 +374,7 @@
 <span class="article-date">
   <i class="icon icon-calendar-check"></i>&nbsp;
 <a href="https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/" class="article-date">
-  <time datetime="2021-04-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-04-13</time>
+  <time datetime="2020-04-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-04-13</time>
 </a>
 </span>
 <span class="article-category">
@@ -394,46 +388,43 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="0-introduction">0. Introduction</h2>
+      <br>
+<h2 id="summary">Summary</h2>
 <ul>
 <li>
-<p><strong>Language Modeling</strong> : 이전 단어들이 주어졌을 때 다음 단어를 예측하는 모델. 즉 가장 자연스러운 단어 시퀀스를 찾아내는 모델</p>
+<p><strong>Language Modeling</strong> :  is the task of predicting the next word or character in a document that can be used in downstream tasks like:</p>
 <ol>
 <li>
-<p>Machine Translation (기계 번역) :  언어 모델로 두 문장을 비교하여 더 자연스러운 좌측의 문장을 출력</p>
-<p>$$P(\text{나는 버스를 탔다}) &gt; P(\text{나는 버스를 태운다})$$</p>
+<p>Machine Translation : By comparing two sentences with a language model, and return the more natural sentence</p>
 </li>
 <li>
-<p>Spell Correction (오타 교정)</p>
-<p>$$P(\text{달려갔다}) &gt; P(\text{잘려갔다})$$</p>
+<p>Spell Correction : Correct spelling by choosing a more natural vocabulary</p>
 </li>
 <li>
-<p>Speech Recognition (음성 인식) : 좌측의 결과가 확률이 더 높으므로 인식 결과를 correction</p>
-<p>$$P(\text{나는 메론을 먹는다}) &gt; P(\text{나는 메롱을 먹는다})$$</p>
+<p>Speech Recognition : Correct the recognition result with more natural words</p>
 </li>
 </ol>
 </li>
-<li>
-<p><strong>Topic Modeling</strong> : 문서 집합의 추상적인 주제를 발견하기 위한 통계적 모델 중 하나로, 텍스트 본문의 숨겨진 의미 구조를 발견하기 위해 사용되는 텍스트 마이닝 기법</p>
-</li>
 </ul>
-<p><br><br><br></p>
-<h2 id="1-seq2seq-2014">1. Seq2Seq (2014)</h2>
+<br>
+<hr>
+<h2 id="1-seq2seq-learning-with-neural-networks-2014httpsarxivorgabs14093215">1. <a href="https://arxiv.org/abs/1409.3215">Seq2Seq Learning with Neural Networks (2014)</a></h2>
 <ul>
 <li><strong>Introduction</strong> : DNNs work well but they cannot be used to map sequences to sequences. Authors present a general end-to-end approach to sequence learning.</li>
-<li><strong>Method</strong> : Simply using a multilayered LSTM to map the input sequence to a fixed dim vector (<strong>context vector</strong>) and then another deep LSTM to decode the target sequence from the vector</li>
+<li><strong>Method</strong> : Simply using a multilayered LSTM to map the input sequence to a fixed dim vector (context vector) and then another deep LSTM to decode the target sequence from the vector</li>
 </ul>
 <center><video width="60%" height="auto" loop autoplay controls>
   <source src="/figures/2021-04-13-fig1.mp4" type="video/mp4">
 </video></center>
-<p><br><br><br><br></p>
-<h2 id="2-attention-mechanism-neural-machine-translation-by-jointly-learning-to-align-and-translate-2014">2. Attention Mechanism (Neural Machine Translation by Jointly Learning to Align and Translate, 2014)</h2>
+<br>
+<hr>
+<h2 id="2-attention--neural-machine-translation-by-jointly-learning-to-align-and-translate-2014httpsarxivorgabs14090473">2. <a href="https://arxiv.org/abs/1409.0473">Attention : Neural Machine Translation by Jointly Learning to Align and Translate (2014)</a></h2>
 <ul>
 <li>
-<p>Introduction : A potential issue with the encoder-decoder approach is that a NN needs to be able to <mark>compress all the necessary information of a source sentence into a fixed-length vector : context vector. </mark></p>
+<p>Introduction : A potential issue with the encoder-decoder approach is that a NN needs to be able to compress all the necessary information of a source sentence into a fixed-length vector (context vector).</p>
 </li>
 <li>
-<p>Method : Rather than using fixed context vector (last hidden state value of encoder), we can use encoder&rsquo;s each state with current state to generate dynamic context vector</p>
+<p>Method : Rather than using fixed-length context vector (last hidden state value of encoder), we can use encoder&rsquo;s each state with current state to generate dynamic context vector</p>
 <ol>
 <li>Attention Weight : Simply adding (FC + Softmax) to encoder  output, we can get weight values of each input words for output at time step $t$.</li>
 <li>Dynamic Context Vector : We can get context vector for each timestep $c_t$ by calculating weighted sum of $h_i$ (hidden state of encoder) and $s_i$ (attention weight, softmax).</li>
@@ -441,15 +432,12 @@
 </ol>
 </li>
 </ul>
-<blockquote>
-<p>Architecture : (1)+(2) 단순히 seq2seq의 Encoder에 FC+Softmax를 하나 붙이면 출력에 대한 각 입력 단어의 weight 를 얻을 수 있고 (3), 이를 바탕으로 매 timestep 마다 context vector를 새로 만들어 Decoder에 feeding</p>
-</blockquote>
 <center><video width="60%" height="auto" loop autoplay controls>
   <source src="/figures/2021-04-13-fig2.mp4" type="video/mp4">
 </video></center>
-<h3 id="heading"></h3>
+<br>
 <hr>
-<h2 id="3-transformer-attention-is-all-you-need">3. Transformer (Attention is all you need)</h2>
+<h2 id="3-transformer--attention-is-all-you-need-2017httpsarxivorgabs170603762">3. <a href="https://arxiv.org/abs/1706.03762">Transformer : Attention Is All You Need (2017)</a></h2>
 <ul>
 <li>
 <p>Introduction : propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely</p>
@@ -511,7 +499,7 @@
 <p>References:</p>
 <ul>
 <li><a href="https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms">neural networks - What exactly are keys, queries, and values in attention mechanisms? - Cross Validated</a></li>
-<li><a href="https://blog.promedius.ai/transformer/">Transformer는 이렇게 말했다, &quot;Attention is all you need.&quot;</a></li>
+<li><a href="https://blog.promedius.ai/transformer/">Transformer said, Attention is all you need.</a></li>
 <li><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Master Positional Encoding : Part1</a></li>
 </ul>
 </li>
@@ -524,7 +512,7 @@
 <img width=32% src='https://miro.medium.com/max/1280/1*pS2_ywtYRO7hIRoj0XpHBQ.png'><img width=32% src='https://miro.medium.com/max/1280/1*UqZpS0ZUOW3p0MTixPyqoQ.png'><img width=20% src='https://miro.medium.com/max/1400/1*R3U8xOrxuYRYNLe961n7bg.png'>
   <p> <i>Handcrafted Positional Encoding</i> </p>
 </center>
-<h3 id="heading-1"></h3>
+<br>
 <hr>
 
     </div>
@@ -585,7 +573,7 @@
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
 
 <script>
     (function (window) {
@@ -603,7 +591,7 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

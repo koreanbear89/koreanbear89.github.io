@@ -20,29 +20,45 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를" />
-    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <meta name="description" content="Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx &#43; b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>ML Basic #1 | Activation Functions - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="ML Basic #1 | Activation Functions" />
-<meta property="og:description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를" />
+<meta property="og:description" content="Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx &#43; b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/" /><meta property="article:section" content="Research" />
 <meta property="article:published_time" content="2016-12-01T09:00:13+00:00" />
 <meta property="article:modified_time" content="2016-12-01T09:00:13+00:00" />
 
 <meta itemprop="name" content="ML Basic #1 | Activation Functions">
-<meta itemprop="description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를"><meta itemprop="datePublished" content="2016-12-01T09:00:13+00:00" />
+<meta itemprop="description" content="Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx &#43; b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(."><meta itemprop="datePublished" content="2016-12-01T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2016-12-01T09:00:13+00:00" />
-<meta itemprop="wordCount" content="893">
+<meta itemprop="wordCount" content="771">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ML Basic #1 | Activation Functions"/>
-<meta name="twitter:description" content="0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를"/>
+<meta name="twitter:description" content="Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x&#43;y) = f(x)&#43;f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx &#43; b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(."/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -254,7 +270,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">5</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -269,64 +285,42 @@
 
 
 
-
         <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
-                  <span class="category-list-count">15</span></li>
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">14</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
-                  <span class="category-list-count">8</span></li>
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">10</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
-                  <span class="category-list-count">3</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
-                  <span class="category-list-count">6</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
-                  <span class="category-list-count">1</span></li>
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">1</span></li>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -394,22 +388,40 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="0-introduction">0. Introduction</h2>
+      <br>
+<h2 id="introduction">Introduction</h2>
 <ul>
 <li>
 <p>Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.</p>
+<ul>
+<li>
+<p>Non-Linearity : Functions that do not satisfy the following linearity.</p>
+<ul>
+<li>$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$</li>
+</ul>
 </li>
 <li>
-<p>Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$</p>
+<p>Why Non-Linearity ?  : because composites of linear functions are linear again</p>
+<ul>
+<li>
+<p>if output $f(x)$ of neuron  is  linear form like  $wx + b$,</p>
 </li>
 <li>
-<p>왜 비선형함수를 사용하는가 : $y = wx+b$ 형태로 선형 output을 낸다면 layer의 깊이가 깊어진다한들, 결국 $w_2x +b_2$ 의 또다른 선형 함수를 모델링할 뿐이기 때문. (becaues composites of linear functions are again linear)</p>
-</li>
-<li>
-<p>bias 의 역할 : activation 함수의 x축 평행이동을 위하여. 가령 어떤 feature x가 2보다 작을때 Relu output을 0으로 만들고 싶은데, weight만으로는 이게 불가함. (It&rsquo;s similar to the constant b of a linear function y=ax+b. It allow you to move the line up and down to fit the prediction with the data better. Without b, the line always goes through the origin (0,0) and you may get a poorer fit.)</p>
+<p>Even if the depth of the layer increases, it is just modeling another linear function  $f(f(f(..(x)) = w&rsquo;x+b'$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+</li>
+<li>
+<p>Role of bias :  It&rsquo;s similar to the constant b of a linear function y=ax+b. It allow you to move the line up and down to fit the prediction with the data better.</p>
+<ul>
+<li>Without $b$, the line always goes through the origin (0,0) and you may get a poorer fit.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
 <h2 id="1-sigmoid--logistic">1. Sigmoid / Logistic</h2>
 <ul>
 <li>
@@ -439,7 +451,8 @@
 <p>$$ \sigma (x) = (1+e^{-x})^{-1} \  \sigma&rsquo;(x) = \sigma(x) (1-\sigma(x)) $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="2-tan-h">2. Tan H</h2>
 <ul>
 <li>
@@ -455,7 +468,8 @@
 <p>$$ tanh(x) = \frac{sinh(x)}{cosh(x)}=\frac{e^x-e^{-x}}{e^x+e^{-x}} \ tanh&rsquo;(x) = 1 - tanh^2(x) $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="3-relu-rectified-linear-unit">3. ReLU (Rectified Linear Unit)</h2>
 <ul>
 <li>
@@ -477,7 +491,8 @@
 <p>$$ ReLU = \begin{cases} :x :: (x&gt;0)  \\ 0 :: (x&lt;0)  \end{cases} $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="4-leaky-relu">4. Leaky ReLU</h2>
 <ul>
 <li>
@@ -488,7 +503,8 @@
 <p>$$ \text{Leaky ReLU} = \begin{cases} :x :: (x&gt;0)  \\ 0.01x :: (x&lt;0)  \end{cases} $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="5-elu-exponential-linear-units">5. ELU (Exponential Linear Units)</h2>
 <ul>
 <li>
@@ -504,7 +520,8 @@
 <p>$$ \text{Leaky ReLU} = \begin{cases} :x :: (x&gt;0)  \\ \alpha(e^x -1) :: (x&lt;0)  \end{cases} $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="6-swish-scaled-exponential-linear-units">6. Swish (Scaled Exponential Linear Units)</h2>
 <ul>
 <li>
@@ -523,7 +540,8 @@
 <p>$$ Swish =  x * sigmoid(x) = x * (1+e^{-x})^{-1} $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="6-selu-scaled-exponential-linear-units">6. SELU (Scaled Exponential Linear Units)</h2>
 <ul>
 <li>
@@ -542,7 +560,8 @@
 <p>$$ selu = \lambda \begin{cases}x :: (x&gt;0)  \ \alpha(e^x-1) :: (x&lt;0)  \end{cases} $$</p>
 </li>
 </ul>
-<p><br><br><br></p>
+<br>
+<hr>
 <h2 id="6-soft-argmax">6. Soft-argmax</h2>
 <ul>
 <li>
@@ -622,7 +641,7 @@
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
 
 <script>
     (function (window) {
@@ -640,7 +659,7 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

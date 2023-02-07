@@ -10,6 +10,59 @@
     
     
     <item>
+      <title>Statistics #1 | Probability </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
+      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
+      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Git</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</link>
+      <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</guid>
+      <description>Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
+git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
+git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &amp;lt;feature/issue_number&amp;gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</guid>
+      <description>Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s point of view, excluding the modeler&amp;rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</guid>
+      <description>Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx + b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(.</description>
+    </item>
+    
+    <item>
       <title>CheatSheet | Linux</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
       <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>

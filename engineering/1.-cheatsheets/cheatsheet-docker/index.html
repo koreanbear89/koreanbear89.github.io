@@ -63,7 +63,7 @@ Docker swarm
 Glossary
 swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node. service : A unit of modules in project, a basic distribution unit, stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network."><meta itemprop="datePublished" content="2020-11-10T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2020-11-10T09:00:13+00:00" />
-<meta itemprop="wordCount" content="924">
+<meta itemprop="wordCount" content="1001">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Docker"/>
 <meta name="twitter:description" content="Introduction Contents
@@ -308,7 +308,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">13</span></li>
+                  <span class="category-list-count">14</span></li>
 
                   
               
@@ -336,7 +336,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">11</span></li>
 
                   
               
@@ -455,6 +455,7 @@ $ sudo yum-config-manager \
 
 # (2) Install Docker Engine
 $ sudo yum install docker-ce docker-ce-cli containerd.io
+$ sudo yum install docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io docker-compose-plugin
 </code></pre>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/linux-postinstall/">Post-installation steps for Linux | Docker Documentation</a></li>
@@ -466,6 +467,10 @@ $ sudo yum install docker-ce docker-ce-cli containerd.io
 # sudo usermod -aG docker irteam
 $ sudo /usr/sbin/usermod -aG docker irteam
 $ sudo /usr/sbin/usermod -aG docker irteamsu
+
+# (5) Run and Stop docker before change root directory
+$ sudo systemctl start docker
+$ sudo systemctl stop docker
 
 # (5) change root directory (storage for default docker directory is not enough)
 # add {&quot;data-root&quot;: &quot;/home1/irteam/docker-data&quot;} in /etc/docker/daemon.json
@@ -556,7 +561,15 @@ CMD [&quot;python&quot;, &quot;main.py&quot;]
 </code></pre>
 <br>
 <hr>
-<h2 id="5-docker-compose">5. Docker Compose</h2>
+<h2 id="5-docker-registry">5. Docker Registry</h2>
+<pre><code class="language-shell">$ docker login # docker-hub
+$ docker login -u &lt;ID&gt; reg.*********.com # private registry
+
+$ docker push ${REG_HOST}/IMAGE_TO_PUSH:${TAG}
+</code></pre>
+<br>
+<hr>
+<h2 id="6-docker-compose">6. Docker Compose</h2>
 <pre><code class="language-bash">$ docker-compose up -d 
 $ docker-compose down
 $ docker-compose stop [CONTAINER_NAME]
@@ -593,7 +606,7 @@ networks:
 </code></pre>
 <br>
 <hr>
-<h2 id="6-docker-swarm">6. Docker swarm</h2>
+<h2 id="7-docker-swarm">7. Docker swarm</h2>
 <ul>
 <li>
 <p>Server Orchestration</p>
@@ -622,17 +635,21 @@ networks:
 <pre><code class="language-bash"># (1) init docker swarm
 $ docker swarm init # run on manager node
 # This will return the following command. To add a worker to this swarm, just run that command on the worker node
-&gt; docker swarm join --token .............
+&gt; docker swarm join --token ............. # use &lt;***.nfra.io:2377&gt; rather than inner ip
+&gt; docker swarm join-token worker # will return the token message again
 
 # (2) deploy
 $ docker stack deploy --compose-file &lt;docker-compose.yml&gt; &lt;STACK_NAME&gt; # deploy using docker-compse.yml
 
-# (3) manage the swarm node
+# (3) manage swarm
 $ docker node ls # show all nodes joined to current node
 $ docker stack ls # show all stacks in current node (manager) 
 $ docker service ls # show all services (including worker nodes) managed by current node 
 
 $ docker service ps &lt;SERVICE_NAME&gt;
+
+# Update node metadata
+$ docker node update --label-add &lt;LABEL_KEY&gt;=&lt;LABEL_VALUE&gt; &lt;HOSTNAME&gt;
 </code></pre>
 
     </div>
