@@ -74,10 +74,10 @@ Even if the depth of the layer increases, it is just modeling another linear fun
     
     <item>
       <title>Python #2 | Built In Modules</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#2-built-in-modules/</link>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</link>
       <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#2-built-in-modules/</guid>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</guid>
       <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
     </item>
     
@@ -92,10 +92,10 @@ Even if the depth of the layer increases, it is just modeling another linear fun
     
     <item>
       <title>Python #1 | Basic</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#1-basic/</link>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</link>
       <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#1-basic/</guid>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</guid>
       <description>Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체</description>
     </item>
     

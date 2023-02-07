@@ -74,10 +74,10 @@ HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HO
     
     <item>
       <title>Python #3 | 3rd-Party Modules</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</link>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-3-3rd-party-modules/</link>
       <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-#3-3rd-party-modules/</guid>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-3-3rd-party-modules/</guid>
       <description>Introduction Matplotlib Interface
 pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
 object-oriented interface : Explicitly create figures and axes, and call methods on them

@@ -170,10 +170,10 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
     
     <item>
       <title>Effective Python | #3 Functions</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-03/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</link>
       <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-03/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</guid>
       <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
 Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
 They can eliminate noise and clarify the intention of callers.
@@ -183,10 +183,10 @@ Item 19. Never Unpack More Than Three Variables When Functions Return Multiple V
     
     <item>
       <title>Effective Python | #2 Lists and Dictionaries</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-02/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</link>
       <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-02/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</guid>
       <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
 A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
 Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
@@ -194,10 +194,10 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
     
     <item>
       <title>Effective Python | #1 Pythonic Thinking</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-01/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</link>
       <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-#-01/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</guid>
       <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
 Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
 This book also provides some examples in the syntax of Python 3.</description>
