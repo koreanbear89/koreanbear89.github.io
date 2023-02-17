@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-        NLP #5 | Text Segmentation - Lab.Koreanbear|한국곰연구소
+        NLP #2 | TextRepresentation - Lab.Koreanbear|한국곰연구소
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,41 +20,29 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
-To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
-Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
-Discriminative approach : calculate similarity between neighboring sentences Hearst." />
+    <meta name="description" content="Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word" />
     <meta name="generator" content="Hugo 0.101.0 with theme pure" />
-    <title>NLP #5 | Text Segmentation - Lab.Koreanbear|한국곰연구소</title>
+    <title>NLP #2 | TextRepresentation - Lab.Koreanbear|한국곰연구소</title>
     
     
     <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="NLP #5 | Text Segmentation" />
-<meta property="og:description" content="Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
-To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
-Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
-Discriminative approach : calculate similarity between neighboring sentences Hearst." />
+    <meta property="og:title" content="NLP #2 | TextRepresentation" />
+<meta property="og:description" content="Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &ldquo;vectorize&rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/" /><meta property="article:section" content="Research" />
-<meta property="article:published_time" content="2021-11-18T09:00:00+00:00" />
-<meta property="article:modified_time" content="2021-11-18T09:00:00+00:00" />
+<meta property="og:url" content="https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/" /><meta property="article:section" content="Research" />
+<meta property="article:published_time" content="2021-01-13T09:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-13T09:00:00+00:00" />
 
-<meta itemprop="name" content="NLP #5 | Text Segmentation">
-<meta itemprop="description" content="Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
-To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
-Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
-Discriminative approach : calculate similarity between neighboring sentences Hearst."><meta itemprop="datePublished" content="2021-11-18T09:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-11-18T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1233">
+<meta itemprop="name" content="NLP #2 | TextRepresentation">
+<meta itemprop="description" content="Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &ldquo;vectorize&rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word"><meta itemprop="datePublished" content="2021-01-13T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-13T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1067">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="NLP #5 | Text Segmentation"/>
-<meta name="twitter:description" content="Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
-To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
-Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
-Discriminative approach : calculate similarity between neighboring sentences Hearst."/>
+<meta name="twitter:title" content="NLP #2 | TextRepresentation"/>
+<meta name="twitter:description" content="Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &ldquo;vectorize&rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -360,8 +348,8 @@ Discriminative approach : calculate similarity between neighboring sentences Hea
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/research/5.-natural-language/nlp-5-text-segmentation/"
-    >NLP #5 | Text Segmentation</a
+    href="/research/5.-natural-language/nlp-2-text-representation/"
+    >NLP #2 | TextRepresentation</a
   >
 </h1>
 
@@ -369,8 +357,8 @@ Discriminative approach : calculate similarity between neighboring sentences Hea
         
 <span class="article-date">
   <i class="icon icon-calendar-check"></i>&nbsp;
-<a href="https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/" class="article-date">
-  <time datetime="2021-11-18 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-11-18</time>
+<a href="https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/" class="article-date">
+  <time datetime="2021-01-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-01-13</time>
 </a>
 </span>
 <span class="article-category">
@@ -379,7 +367,7 @@ Discriminative approach : calculate similarity between neighboring sentences Hea
 </span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/5.-natural-language/nlp-5-text-segmentation/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/research/5.-natural-language/nlp-2-text-representation/#comments"
             class="article-comment-link">Comments</a></span>
       </div>
     </div>
@@ -388,277 +376,340 @@ Discriminative approach : calculate similarity between neighboring sentences Hea
 <h2 id="summary">Summary</h2>
 <ul>
 <li>
-<p>Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.</p>
-<ul>
-<li>To improve the results of Information Retrieval system and help users to find relevant passages faster</li>
-<li>keywords : Text Segmentation, Document Segmentation, Discourse Segmentation</li>
-</ul>
+<p>Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &ldquo;vectorize&rdquo; the text) before feeding it to the model.</p>
 </li>
 <li>
 <p>Methods</p>
 <ul>
 <li>
-<p>Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.</p>
-<ul>
-<li>Discriminative approach : calculate similarity between neighboring sentences
-<ul>
-<li><a href="https://aclanthology.org/J97-1003/">Hearst. TextTiling, 1997</a> , <a href="https://arxiv.org/abs/1503.05543">Alemi and Ginsparg, 2015</a>,  and <a href="https://aclanthology.org/S16-2016/">Glavaˇs et al., 2016</a></li>
+<p>Sparse Representation : One-hot encoding, Document Term Matrix, etc.</p>
+</li>
+<li>
+<p>Dense Representation : Word2Vec, Glove, FastText, etc.</p>
+</li>
+<li>
+<p>Pretraind Word Embedding : ELMo, GPT, BERT</p>
+</li>
 </ul>
 </li>
-<li>Clustering approach : generate topic clusters
+</ul>
+<h3 id="heading"></h3>
+<hr>
+<h2 id="1-sparse-representations">1. Sparse Representations</h2>
 <ul>
-<li><a href="https://aclanthology.org/A00-2004/">Freddy. C99, 2000</a></li>
+<li>
+<p>Introduction : Sparse Representation embeds word as a vector which have a relatively small number of nonzero elements. (most of elements in vectors are zero)</p>
+</li>
+<li>
+<p>Models</p>
+<ul>
+<li>
+<p><strong>Model 1) One-hot Encoding</strong> : a 1 × <em>N</em> matrix (vector) used to distinguish each word in a vocabulary from every other word in the vocabulary.</p>
+</li>
+<li>
+<p><strong>Model 2) Bag of Words (BoW)</strong> : In this model, a text (such as a sentence or a document) is represented as the bag(multiset) of its words, disregarding grammar and even word order but keeping multiplicity.</p>
+<ol>
+<li>
+<p>Give each word a unique integer index first.</p>
+</li>
+<li>
+<p>Create a vector recording the number of occurrences of word tokens in each index.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Model 3) Document-Term Matrix</strong> : BoW for set of multiple sentences (documents)</p>
+</li>
+<li>
+<p><strong>Model 4) TF-IDF</strong> : give more score to the terms (token) that occur frequently in this document but not in the others</p>
+<ul>
+<li>
+<p>$TF(d,t)$ : The number of occurrences of a specific term $t$ in a particular document $d$.</p>
+</li>
+<li>
+<p>$DF(t)$ :  The number of documents that a specific term $t$ appeared.</p>
+</li>
+<li>
+<p>$IDF(t)$ : Inverse $DF(t) = log(\frac{n}{1+DF(t)})$ , where $n$ is the number of sentences in corpus</p>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>Feature based Topic Boundaries (Break) Prediction : The second basic insight is that boundaries between topics have their own characteristic features</p>
+<p>Limitations</p>
 <ul>
-<li>Use neural models to identify break points within the text : Solve Binary classification problem (whether a given sentence denotes the beginning of a new segments)
+<li>
+<p>There is no notion of similarity between words =&gt; Word2Vec</p>
+</li>
+<li>
+<p>The dimension of the embedded vector is too high.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">corpus = [
+    &quot;John likes to watch movies. Mary likes movies too.&quot;, # doc1
+    &quot;Mary also likes to watch football games.&quot; # doc2
+    ]
+
+one_hot_John = [1,0,0,0,0,0,0,0,0,0,0] # {&quot;John&quot;,&quot;likes&quot;,&quot;to&quot;,&quot;watch&quot;,&quot;movies&quot;,&quot;Mary&quot;,&quot;too&quot;,&quot;also&quot;,&quot;football&quot;,&quot;games&quot;}
+BoW_sentence1 = {&quot;John&quot;:1,&quot;likes&quot;:2,&quot;to&quot;:1,&quot;watch&quot;:1,&quot;movies&quot;:2,&quot;Mary&quot;:1,&quot;too&quot;:1}
+DTM = [[1,2,1,1,2,1,1,0,0,0],[0,1,1,1,0,1,0,1,1,1]]
+
+# Create DTM with sklearn.CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+count_vectorizer = CountVectorizer().fit(corpus)
+DTM = count_vectorizer.transform([corpus[0]])
+print(DTM.toarray()) # [[1,2,1,1,2,1,1,0,0,0]]
+
+# Create TF-IDF with sklearn TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf_vectorizer = TfidfVectorizer().fit(corpus)
+tfidf = tfidf_vectorizer.transform([corpus[0]])
+print(tfidf.toarray()) # [0.32 0.46 0.23 0.23 0.64 0.23 0.32 0.00 0.00 0.00]
+</code></pre>
+<br>
+<!--
+
+- **DTM** (Document-Term Matrix) : 다수의 문서에서 등장하는 각 단어들의 빈도를 행렬로 표현한 것을 말합니다. 쉽게 생각하면 각 문서에 대한 BoW를 하나의 행렬로 만든 것
+
+- **TF-IDF** (Term Frequency Inverse Doc Frequency) : 단어의 빈도와 역 문서 빈도(문서의 빈도에 특정 식을 취함)를 사용하여 DTM 내의 각 단어들마다 중요한 정도를 가중치로 주는 방법입니다. 사용 방법은 우선 DTM을 만든 후, 각 element에 IDF를 곱해 가중치를 부여합니다
+
+  1. TF : 특정 문서에서 특정단어의 등장횟수로 DTM과 동일
+
+  2. IDF : '특정 단어가 등장한 문서의 수 $(t)$ ' 의 역수, 다만 총 문서의 수 $(n)$ 가 커질수록 IDF가 기하급수로 커지기에 log를 취해줌 , 각 문서에서 몇번씩 등장했는지는 관심 없고 
+
+     ​    $$IDF = log(\frac{n}{1+df(t)})$$
+
+- **Class-based TF-IDF**
+
+  - The goal of the class-based TF-IDF is to supply all documents within a single class with the same **class vector**
+  - If documents are not individuals but part of a larger collective, then it might be interesting to actually regard them as such by joining all docs in a class together
+
+```python
+  doc1 = "정부가 발표하는 물가상승률과 소비자가 느끼는 물가상승률은 다르다."
+  doc2 = "소비자는 주로 소비하는 상품을 기준으로 물가상승률을 느낀다."
+  doc3 = "정부가 발표하는 물가상승률과 소비자가 느끼는 물가상승률은 다르다. 소비자는 주로 소비하는 상품을 기준으로 물가상승률을 느낀다."
+
+  # (1) 각 단어에 고유한 정수 인덱스를 부여하면
+  ('정부': 0, '가': 1, '발표': 2, '하는': 3, '물가상승률': 4, '과': 5, '소비자': 6, '느끼는': 7, '은': 8, '다르다': 9, '는': 10, '주로': 11, '소비': 12, '상품': 13, '을': 14, '기준': 15, '으로': 16, '느낀다': 17)  
+
+  # (2) 각 인덱스의 위치에 단어 토큰의 등장 횟루를 기록
+  BoW1 >> [1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]  
+  BoW2 >> [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1]  
+  BoW3 >> [1, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1]  
+
+  # (3) DTM
+  DTM >> [[1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],  
+          [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1],  
+          [1, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1] ]
+```
+
+    ~~~python
+    from sklearn.feature_extraction.text import CountVectorizer # Convert a collection of text documents to a matrix of token counts
+
+    vectorizer = CountVectorizer(
+        min_df=0.1, # 10% 아래의 문서에서 출현한 단어 제외
+        max_df=0.9, # 90% 이상의 문서에서 출현한 단어 제외
+        ngram_range=(1,1),
+        lowercase=True,
+        tokenizer=lambda x:x.split())
+
+    corpus.iter_sent=False
+    X = vectorizer.fit_transform(corpus)
+    print(X.shape) 
+    ~~~
+
+### 
+
+-->
+<hr>
+<h2 id="2-word2vec--efficient-estimation-of-word-representations-in-vector-space-2013httpsarxivorgabs13013781">2. <a href="https://arxiv.org/abs/1301.3781">Word2Vec : Efficient Estimation of Word Representations in Vector Space (2013)</a></h2>
 <ul>
-<li><a href="https://ieeexplore.ieee.org/author/37086285307">Sehikh et al. 2017, (p.1)</a>, <a href="https://arxiv.org/abs/1803.09337">Koshorek et al. 2018</a> and <a href="https://arxiv.org/abs/1808.09935?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%253A+arxiv%252FQSXk+%2528ExcitingAds%2521+cs+updates+on+arXiv.org%2529">Badjatiya et al. 2018, (p.3)</a></li>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>Current NLP systems and techniques treat words as atomic units - there is no notion of similarity between words, as these are represented as indices in a vocabulary</p>
+</li>
+<li>
+<p>The most successful concept is to use distributed representations of word</p>
+</li>
+<li>
+<p>With the expectation that not only will similar words tend to be close to each other, but that words can have multiple degrees of similarity</p>
+<p>$$
+vector(\text{King}) - vector(\text{Man}) + vector(\text{Woman}) = vector(\text{Queen})
+$$</p>
+</li>
 </ul>
+</li>
+<li>
+<p>Methods :</p>
+<ul>
+<li>
+<p>Continuous Bag of Words Model : predicting the current word based on the context</p>
+<ul>
+<li>
+<p>(1) Put context words into a simple neural net in the form of a one-hot vector.</p>
+</li>
+<li>
+<p>(2) Train the model to predict what the central word is.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Continuous Skip-Gram Model : maximize classification of a word based on another word in the same sentence</p>
+<ul>
+<li>
+<p>(1) Use each current word as an input to a classifier</p>
+</li>
+<li>
+<p>(2) Predict words within a certain range before and after the current word.</p>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<center>
+<img width=40% src='https://wikidocs.net/images/page/22660/word2vec_renew_1.PNG'>
+<img width=40% src='https://wikidocs.net/images/page/22660/word2vec_renew_6.PNG'>
+<p> CBOW(T) , Skip-Gram (B) </p>
+</center>
 <br>
 <hr>
-<h2 id="1-conventional-ideas--application-of-topic-segmentation-in-audiovisual-information-retrieval-2012httpswwwmffcuniczvedakonferencewdsprocpdf12wds12_120_i3_galuscakovapdf">1. <a href="https://www.mff.cuni.cz/veda/konference/wds/proc/pdf12/WDS12_120_i3_Galuscakova.pdf">Conventional Ideas : Application of Topic Segmentation in Audiovisual information retrieval (2012)</a></h2>
+<h2 id="3-elmo--deep-contextualized-word-representations-2018httpsarxivorgabs180205365">3. <a href="https://arxiv.org/abs/1802.05365">ELMo : Deep contextualized word representations (2018)</a></h2>
 <ul>
-<li>Introduction :  Overview of Conventional approaches in Topic Segmentation</li>
-<li>Methods : present several methods used for topic segmentation, based on textual, audio and visual information.
+<li>
+<p><strong>Introduction</strong> :</p>
+<ul>
+<li>
+<p>Existing embedding models consider the surrounding context only in training step.</p>
+</li>
+<li>
+<p>That is, after training step is finished, the word and embedding vector match 1:1 and do not change.</p>
+</li>
+<li>
+<p>Therefore, although the bank of &ldquo;River Bank&rdquo; and &ldquo;Bank Account&rdquo; have completely different meanings, they are embedded to the same vector (polysemy).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Method</strong>: ELMo (Embeddings from Language Model)</p>
 <ol>
-<li>Lexical Cohesion based : use only textual information. They are based on the assumption that the segment we are looking for is lexically coherent (it uses coherent vocabulary)</li>
-<li>Feature based (hand-crafted)
+<li>
+<p>Contextualized Word Embedding : ELMo reflect context not only during the training process but also when making predictions (embedding).</p>
+</li>
+<li>
+<p>Bidirectional-LSTM : A final embedding vector considering context is created by forward-LSTM and backward LSTM</p>
 <ul>
-<li>Textual Features : Lexical Features, Contextual Features, Vocabulary, Lexical Chains</li>
-<li>Audio Features : Prosodic Features and Converational Features</li>
-<li>Video Features : Color Similarity, Motion Similarity, and Bag of Visual words</li>
+<li>
+<p>Forward LSTM : predicts (n+1)th word by looking at n words</p>
+</li>
+<li>
+<p>Backward LSTM : predicts the (n-1)th word by looking at n words.</p>
+</li>
 </ul>
 </li>
 </ol>
 </li>
-<li>Conclusion : would like to use all kinds of modality in the proposed system.  Therefore, machine learning method based on the features appears to be the best solution.</li>
-</ul>
-<br>
-<hr>
-<h2 id="2-topic-segmentation-in-asr-transcript-using-bidrectional-rnns-for-change-detection-2017httpshalarchives-ouvertesfrhal-01599682document">2. <a href="https://hal.archives-ouvertes.fr/hal-01599682/document">Topic segmentation in ASR Transcript using Bidrectional RNNs for Change Detection (2017)</a></h2>
-<ul>
 <li>
-<p>Introduction : propose a novel approach for topic segmentation in speech recognition transcripts by measuring lexical cohesion using bidirectional Recurrent NeuralNetworks (RNN).</p>
-</li>
-<li>
-<p>Methods : Bidirectional Recurrent Neural Networks</p>
-<ul>
-<li>Two or more news articles are randomly chosen and concatenated</li>
-<li>Then the training objective is to mark the boundary be-tween the concatenated articles as a topic change point.</li>
-</ul>
-</li>
-<li>
-<p>Conclusion : These models were trained discriminatively by concatenating news articles from the internet. Evaluation on ASR transcripts of French TV news programs showed that our RNN models can perform better than the C99-LSAand Topic Tiling baseline methods.</p>
+<p><strong>Conclusion</strong> : biLM layers efficiently encode different types of syntactic and semantic information about words in-context</p>
 </li>
 </ul>
 <br>
 <hr>
-<h2 id="3-text-segmentation-as-a-supervised-learning-task-2018-wiki-727httpsarxivorgabs180309337">3. <a href="https://arxiv.org/abs/1803.09337">Text Segmentation as a Supervised Learning Task (2018, Wiki-727)</a></h2>
+<h2 id="4-bert--pre-training-of-deep-bidirectional-transformers-for-language-understandion-google-2018httpsarxivorgabs181004805">4. <a href="https://arxiv.org/abs/1810.04805">BERT : Pre-training of Deep Bidirectional Transformers for Language Understandion (Google, 2018)</a></h2>
 <ul>
 <li>
-<p>Introduction :</p>
-<ul>
-<li>
-<p>Previous work on text segmentation focused on unsupervised methods such as clustering or graph search, due to the paucity in labeled data.</p>
+<p><strong>Introduction</strong> : introduce a new language representation model called BERT, that is designed to pretrain deep bi-directional  representations from unlabeled text by jointly conditioning on both left and right context in all layers.</p>
 </li>
 <li>
-<p>In this work, we formulate text segmentation as a supervised learning problem, and present a large new dataset for text segmentation that is automatically extracted and labeled from Wikipedia.</p>
+<p><strong>Method</strong>:</p>
+<ol>
+<li>
+<p>Input Representation = Token Embeddings + Segment Embeddings + Position Embeddings</p>
+<ul>
+<li>
+<p>Token Embeddings : [CLS] token aggregate sequence representation for classification task and [SEP] token simply diffenciate the sentences</p>
+</li>
+<li>
+<p>Segment Embeddings : details in figure2</p>
+</li>
+<li>
+<p>Positional Embeddings : details in transformer (Attention is all you need)</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Methods</p>
-<ul>
-<li>
-<p>Wiki-727k Dataset : 727k English Wikipedia documents</p>
-<ul>
-<li>
-<p>Removed all photos, tables, Wikipedia template elements, and other non-text elements.</p>
+<p>Architecture : BERT’s model architecture is a multi-layer bidirectional Transformer encoder (Only encoder part)</p>
 </li>
 <li>
-<p>Removed single-sentence segments, documents with less than three segments, and documents where most segments were filtered.</p>
+<p>Pretrain :  pre-train BERT using two unsupervised tasks</p>
+<ul>
+<li>
+<p>Task #1  Masked LM : simply mask some percentage(15%) of the input tokens at random and then predict those masked tokens</p>
 </li>
 <li>
-<p>Divided each segment into sentences using the PUNKT-tokenizer of the NLTK library (Bird et al., 2009). This is necessary for the use of our dataset as a benchmark, as without a well-defined sentence segmentation, it is impossible to evaluate different models</p>
+<p>Task #2  Next Sentence Prediction : train a model that understands sentence relationships, by a binarized next sentence prediction task.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Neural Model for Text Segmentation : two sub-networks based on the LSTM architecture. One generates sentence representations, and the other predicts segment</p>
+<p>Finetune :  For each sub-task, simply plug in the task-specific inputs and outputs into BERT and fine-tune all the parameters end-to-end</p>
 </li>
-</ul>
-</li>
-<li>
-<p>Conclusion : Our text segmentation model outperforms prior methods on Wikipedia documents, and performscompetitively on prior benchmark</p>
-</li>
-</ul>
-<br>
-<hr>
-<h2 id="4-attention-based-neural-text-segmentation-2018httpsarxivorgabs180809935">4. <a href="https://arxiv.org/abs/1808.09935">Attention based Neural Text Segmentation (2018)</a></h2>
-<ul>
-<li>
-<p>Introduction : This paper is the first one to present a novel supervised neural approach for text segmentation.</p>
+</ol>
 </li>
 <li>
-<p>Methods : solve binary classification problem,</p>
-<ul>
-<li>Problem Definition : Classifies whether a given sentence denotes the beginning of a new text segments.</li>
-<li>Model : using attention based bidirectional LSTM</li>
-</ul>
-</li>
-<li>
-<p>Code : <a href="https://github.com/pinkeshbadjatiya/neuralTextSegmentation">https://github.com/pinkeshbadjatiya/neuralTextSegmentation</a></p>
+<p><strong>Conclusion</strong> : generalizing these findings (unsupervised pre-training can improve down-stream NLP tasks) to deep bidirectional architectures, allowing the same pre-trained model to successfully tackle a broad set of NLP tasks.</p>
 </li>
 </ul>
 <br>
 <hr>
-<h2 id="5-text-segmentation-by-cross-segment-attention-2020-google-researchhttpsarxivorgpdf200414535pdf">5. <a href="https://arxiv.org/pdf/2004.14535.pdf">Text Segmentation by cross segment attention (2020, Google Research)</a></h2>
+<h2 id="5-multilingual-sentencebert--making-monolingual-sentence-embeddings-multilingual-using-knowledge-distillationhttpsarxivorgabs200409813">5. <a href="https://arxiv.org/abs/2004.09813">Multilingual SentenceBert : Making Monolingual Sentence Embeddings Multilingual using Knowledge Distillation</a></h2>
 <ul>
 <li>
-<p>Introduction : Text segmentation is a traditional NLP task that breaks up text into constituents.</p>
+<p><strong>Introduction</strong> :</p>
 <ul>
 <li>
-<p>Document Segmentation : has been shown to improve information retrieval by indexing sub-document units instead of full documents (Llopiset al., 2002; Shtekh et al., 2018)</p>
+<p>We present an easy and efficient method to extend existing sentence embedding models to new languages</p>
 </li>
 <li>
-<p>Discourse Segmentation : breaks up pieces of text into sub-sentence elements (EDUs, Fig2)</p>
+<p>based on the idea that a translated sentence should be mapped to the same location in the vector space as the original sentence</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Methods : propose three transformer-based architectures</p>
+<p><strong>Method</strong> :</p>
 <ul>
 <li>
-<p>Preprocessing : simply feed the raw input into a word-piece (sub-word) tokenize (Wu et al., 2016)</p>
+<p>Multilingual knowledge distillation : use the original (monolingual) model to generate sentence embeddings for the source language and then train a new system on translated sentences to mimic the original model.</p>
 </li>
 <li>
-<p>Architecture</p>
+<p>Training : With $s_i$, a sentence in one of the source languages and $t_i$ a sentence in one of the target languages, we minimize the MSE</p>
+<p>$$ \frac{1}{\beta} \sum [ (M(s_j)-M&rsquo;(s_j))^2 + (M(s_j)-M&rsquo;(t_j))^2 ] $$</p>
+</li>
+<li>
+<p>Architecture : mainly use an English SBERT model as teacher model $M$ and use XLM-RoBERTa (XLM-R) as student model $M'$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Conclusion :</strong></p>
 <ul>
 <li>
-<p>Cross-segment BERT : uses only local context around candidate breaks. find appropriate location for [SEP] token</p>
+<p>presented a method to make monolingual sentence embeddings multilingual, with aligned vector spaces between the languages</p>
 </li>
 <li>
-<p>BERT+BiLSTM : encode each sentence using a BERT model, and then feed the sentence representations into a Bi-LSTM</p>
+<p>We demonstrate the effectiveness of our approach for 50+ languages from various language families.</p>
 </li>
 <li>
-<p>Hierarchical BERT : encode each sentence using BERT and then feed the output sentence representations in another transformer-based model.</p>
+<p>Code to extend sentence embeddings models to more than 400 languages is publicly available.</p>
 </li>
 </ul>
 </li>
-<li>
-<p>Dataset : Wiki-727k contains 727 thousand articles from a snapshot of the English Wikipedia,</p>
-<ul>
-<li>re-use the original splits provided by the authors</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Conclusion : In particular, we found that a cross-segmentBERT model is extremely competitive. This is surprising as it suggests that local context is sufficient in many cases</p>
-</li>
-<li>
-<p>References</p>
-<ul>
-<li>word-piece tokenizer implementation (Devlin et al., 2018), which has a vocabulary size of 30,522 word-pieces.</li>
-</ul>
-</li>
-</ul>
-<br>
-<hr>
-<h2 id="6-chapter-captor--text-segmentation-in-novels-2020httpsarxivorgabs201104163">6. <a href="https://arxiv.org/abs/2011.04163">Chapter Captor : Text Segmentation in Novels (2020)</a></h2>
-<ul>
-<li>
-<p>Introduction : investigate the task of predicting chapter boundaries, as a proxy for the general task of segmenting long texts</p>
-</li>
-<li>
-<p>Contributions:</p>
-<ul>
-<li>
-<p>(1) Project Gutenberg Chapter Segmentation Resource : Create a ground-truth data setfor chapter segmentation</p>
-</li>
-<li>
-<p>(2) Local Methods for Chapter Segmentation :</p>
-<ul>
-<li>
-<p>unsupervised weighted-cut approach minimizing cross-boundary cross-references</p>
-</li>
-<li>
-<p>supervised neural network building on the BERT language model (Devlinet al., 2019)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>(3) Global Break Prediction using Optimization</p>
-<ul>
-<li>augmenting the BERT-based local classifier with dynamic programming</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>References</p>
-<ul>
-<li><a href="https://github.com/cpethe/chapter-captor.arXiv:2011.04163v1">https://github.com/cpethe/chapter-captor.arXiv:2011.04163v1</a></li>
-</ul>
-</li>
-</ul>
-<br>
-<hr>
-<h2 id="7-improving-context-modeling-in-neural-topic-segmentation-2020httpsarxivorgpdf201003138pdf">7. <a href="https://arxiv.org/pdf/2010.03138.pdf">Improving Context Modeling in Neural Topic Segmentation (2020)</a></h2>
-<ul>
-<li>
-<p>Introduction :</p>
-<ul>
-<li>Topic segmentation can be framed as a sequence labeling task where each sentence is either the end of a segment or not.</li>
-<li>For topic segmentation, it is critical (important) to supervise the model to focus more on the local context.</li>
-<li>with a proper way of modeling the coherence between adjacent sentences, a topic segmenter can be further enhanced.</li>
-</ul>
-</li>
-<li>
-<p>Methods: given a document represented as a sequence of sentences,  <strong>model will predict the binary label</strong> for each sentence to indicate if the sentence is the end of a topical coherent segment or not.</p>
-<ul>
-<li>add a coherence-related auxiliary task : to make model learn more informative hidden states for all the sentences in a document</li>
-<li>restricted self-attention : which enables model to pay attention to the local context and make better use of the information from the closer neighbors of each sentence</li>
-</ul>
-</li>
-<li>
-<p>Discussion</p>
-<ul>
-<li>Domain Transfer : trained on <em>WIKI-SECTION</em> dataset, evaluated on <em>WIKI-50</em>, which consists of 50 samples randomly generated from the latest English Wikipedia dump,</li>
-<li>Multilingual Evaluation :  trained and tested on two other wikipedia datasets in German and Chinese :  <em>SECTION-DE, SECTION-ZH</em></li>
-</ul>
-</li>
-</ul>
-<br>
-<hr>
-<h2 id="8-unsupervised-topic-segmentation-of-meetings-with-bert-embeddings-2021httpsarxivorgabs210612978">8. <a href="https://arxiv.org/abs/2106.12978">Unsupervised Topic Segmentation of Meetings with BERT Embeddings (2021)</a></h2>
-<ul>
-<li>Introduction :
-<ul>
-<li>In the context of meeting recordings and their transcripts, topic segmentation can quickly provide users with a valuable high level understanding of past meetings.</li>
-<li>Topic segmentation of spoken language is significantly more challenging than written text due to the added complexity that the underlying ASR (Automated Speech Recognition) system</li>
-</ul>
-</li>
-<li>Methods : detect topic changes based on a new similarity score using BERT embeddings.
-<ul>
-<li>Sentence representation model : to extract semantic similarity between sentences (BERT)</li>
-<li>A segmentation scheme : that employs semantic similarity variations over time to detect topic changes.</li>
-</ul>
-</li>
-<li>Conclusion : leveraging the strong semantic representation power of BERT, prposed model shows improved segmentation performance compared to the non neural-based approach</li>
-</ul>
-<br>
 
     </div>
     <div class="article-footer">

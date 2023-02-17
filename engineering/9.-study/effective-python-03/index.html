@@ -51,7 +51,7 @@ They can eliminate noise and clarify the intention of callers.
 They can significantly reduce subtle bugs that are difficult to find.
 Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax."><meta itemprop="datePublished" content="2023-02-06T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-02-06T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1064">
+<meta itemprop="wordCount" content="855">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Effective Python | #3 Functions"/>
 <meta name="twitter:description" content="Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
@@ -320,7 +320,7 @@ Item 19. Never Unpack More Than Three Variables When Functions Return Multiple V
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -434,173 +434,176 @@ longest, *middle, shortest = get_avg_ratio(lengths)
 </code></pre>
 <br>
 <hr>
-<h2 id="item-12-avoid-striding-and-slicing-in-a-single-expression">Item 12. Avoid Striding and Slicing in a Single Expression</h2>
+<h2 id="item-20-prefer-raising-exceptions-to-returning-none">Item 20: Prefer Raising Exceptions to Returning None</h2>
 <ol>
 <li>
-<p>Specifying start, end, and stride in a slice can be extremely confusing.</p>
+<p>Functions that return None to indicate special meaning are error prone because None and other values (e.g., zero, the empty string) all evaluate to False in conditional expressions.</p>
 </li>
 <li>
-<p>Prefer using positive stride values in slices without start or end indexes. Avoid negative stride values if possible.</p>
+<p>Raise exceptions to indicate special situations instead of returning None. Expect the calling code to handle exceptions properly when they’re documented</p>
 </li>
 <li>
-<p> Avoid using start, end, and stride together in a single slice. If you need all three parameters, consider doing two assignments (one to stride and another to slice) or using islice from the itertools built-in module.</p>
+<p>Type annotations can be used to make it clear that a function will never return the value None, even in special situations.</p>
 </li>
 </ol>
-<br>
-<hr>
-<h2 id="item-13-prefer-catch-all-unpacking-over-slicing">Item 13: Prefer Catch-All Unpacking Over Slicing</h2>
-<ol>
-<li>Unpacking assignments may use a starred expression to catch all values that weren’t assigned to the other parts of the unpacking pattern into a list.</li>
-<li>Starred expressions may appear in any position, and they will always become a list containing the zero or more values they receive.</li>
-<li>When dividing a list into non-overlapping pieces, catch-all unpacking is much less error prone than slicing and indexing.</li>
-</ol>
-<pre><code class="language-python"># AS-IS
-oldest = car_ages_descending[0]
-second_oldest = car_ages_descending[1]
-others = car_ages_descending[2:]
-# TO-BE
-oldest, second_oldest, *others = car_ages_descending
+<pre><code class="language-python"># before
+def careful_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+# after
+def careful_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        raise ValueError('Invalid inputs')
 </code></pre>
 <br>
 <hr>
-<h2 id="item14-sort-by-complex-criteria-using-the-key-parameter">Item14. Sort by Complex Criteria Using the key Parameter</h2>
+<h2 id="item-21-know-how-closures-interact-with-variable-scope">Item 21: Know How Closures Interact with Variable Scope</h2>
 <ol>
 <li>
-<p>The sort method of the list type can be used to rearrange a list’s contents by the natural ordering of built-in types like strings, integers, tuples, and so on.</p>
+<p>Closure functions can refer to variables from any of the scopes in which they were defined.</p>
 </li>
 <li>
-<p>The sort method doesn’t work for objects unless they define a natural ordering using special methods, which is uncommon.</p>
+<p>By default, closures can’t affect enclosing scopes by assigning variables.</p>
 </li>
 <li>
-<p>The key parameter of the sort method can be used to supply a helper function that returns the value to use for sorting in place of each item from the list.</p>
+<p>Use the nonlocal statement to indicate when a closure can modify a variable in its enclosing scopes.</p>
 </li>
 <li>
-<p>Returning a tuple from the key function allows you to combine multiple sorting criteria together. The unary minus operator can be used to reverse individual sort orders for types that allow it.</p>
-</li>
-<li>
-<p>For types that can’t be negated, you can combine many sorting criteria together by calling the sort method multiple times using different key functions and reverse values, in the order of lowest rank sort call to highest rank sort call.</p>
+<p>Avoid using <code>nonlocal</code> statements for anything beyond simple functions.</p>
 </li>
 </ol>
-<pre><code class="language-python"># 1) natural ordering
-numbers = [93, 86, 11, 68, 70]
-numbers.sort() # &gt;&gt; [11, 68, 70, 86, 93]
+<pre><code class="language-python"># Avoid using nonlocal
+def sort_priority3(numbers, group):
+    found = False
+    def helper(x):
+        nonlocal found  # Added
+        if x in group:
+            found = True
+            return (0, x)
+        return (1, x)
+    numbers.sort(key=helper)
+    return found
 
-# 3) sorting by key param
-tools = [ Tool('level', 3.5),Tool('hammer', 1.25), Tool('screwdriver', 0.5), Tool('chisel', 0.25) ]
-tools.sort(key=lambda x: x.name)
-
-# 4) multiple criteria, reverse sort
-power_tools = [Tool('drill', 4), Tool('circular saw', 5), Tool('jackhammer', 40),Tool('sander', 4),]
-power_tools.sort(key=lambda x: (x.weight, x.name))  # &gt;&gt; Tool('drill',4), Tool('sander',4), Tool('circular saw', 5), Tool('jackhammer', 40)
-power_tools.sort(key=lambda x: (-x.weight, x.name)) # &gt;&gt; Tool('jackhammer', 40), Tool('circular saw', 5), Tool('drill', 4), Tool('sander', 4)
+def sort_priority(values, group):
+    def helper(x):
+        if x in group:
+            return (0, x)
+        return (1, x)
+    values.sort(key=helper)
 </code></pre>
 <br>
 <hr>
-<h2 id="item15-be-cautious-when-relying-on-dict-insertion-ordering">Item15. Be Cautious When Relying on dict Insertion Ordering</h2>
+<h2 id="item22--reduce-visual-noise-with-variable-positional-arguments">Item22 : Reduce Visual Noise with Variable Positional Arguments.</h2>
 <ol>
 <li>
-<p>Since Python 3.7, you can rely on the fact that iterating a dict instance’s contents will occur in the same order in which the keys were initially added.</p>
+<p>Functions can accept a variable number of positional arguments by using *args in the def statement.</p>
 </li>
 <li>
-<p>Python makes it easy to define objects that act like dictionaries but that aren’t dict instances. For these types, you can’t assume that insertion ordering will be preserved.</p>
+<p>You can use the items from a sequence as the positional arguments for a function with the * operator.</p>
 </li>
 <li>
-<p>There are three ways to be careful about dictionary-like classes:</p>
+<p>Using the * operator with a generator may cause a program to run out of memory and crash.</p>
+</li>
+<li>
+<p>Adding new positional parameters to functions that accept *args can introduce hard-to-detect bugs.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Do not use *args (Positional Args)
+favorites = [7, 33, 99]
+log('Favorite colors', *favorites)
+</code></pre>
+<br>
+<hr>
+<h2 id="item23-provide-optional-behavior-with-keyword-arguments">Item23. Provide Optional Behavior with Keyword Arguments</h2>
+<ol>
+<li>
+<p>Function arguments can be specified by position or by keyword.</p>
+</li>
+<li>
+<p>Keywords make it clear what the purpose of each argument is when it would be confusing with only positional arguments.</p>
+</li>
+<li>
+<p>Keyword arguments with default values make it easy to add new behaviors to a function without needing to migrate all existing callers</p>
+</li>
+<li>
+<p>Optional keyword arguments should always be passed by keyword instead of by position.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Before
+pounds_per_hour = flow_rate(weight_diff, time_diff, 3600, 2.2)
+# after
+pounds_per_hour = flow_rate(weight_diff, time_diff, period=3600, units_per_kg=2.2)
+</code></pre>
+<br>
+<hr>
+<h2 id="item24-use-none-and-docstrings-to-specify-dynamic-default-arguments">Item24. Use None and Docstrings to Specify Dynamic Default Arguments</h2>
 <ul>
 <li>
-<p>Write code that doesn’t rely on insertion ordering,</p>
+<p>A default argument value is evaluated only once: during function definition at module load time. This can cause odd behaviors for dynamic values (like <code>{}</code>, <code>[]</code>, or <code>datetime.now()</code>).</p>
 </li>
 <li>
-<p>explicitly check for the dict type at runtime,</p>
+<p>Use None as the default value for any keyword argument that has a dynamic value. Document the actual default behavior in the function’s docstring.</p>
 </li>
 <li>
-<p>or require dict values using type annotations and static analysis.</p>
+<p>Using None to represent keyword argument default values also works correctly with type annotations.</p>
 </li>
 </ul>
-</li>
-</ol>
-<br>
-<hr>
-<h2 id="item16-prefer-get-over-in-and-keyerror-to-handle-missing-dictionary-keys">Item16. Prefer get Over in and KeyError to Handle Missing Dictionary Keys</h2>
-<ul>
-<li>
-<p>There are four common ways to detect and handle missing keys in dictionaries: using <code>in</code> expressions, <code>KeyError</code> exceptions, the <code>get</code> method, and the <code>setdefault</code> method.</p>
-</li>
-<li>
-<p>The <code>get</code> method is best for dictionaries that contain basic types like counters, and it is preferable along with assignment expressions when creating dictionary values has a high cost or may raise exceptions.</p>
-</li>
-<li>
-<p>When the <code>setdefault</code> method of dict seems like the best fit for your problem, you should consider using <code>defaultdict</code> instead. (Item 17)</p>
-</li>
-</ul>
-<pre><code class="language-python"># before : in
-if key in counters:
-    count = counters[key]
-else:
-    count = 0
-counters[key] = count + 1
+<pre><code class="language-python"># example1  
+def log(message, when=datetime.now()):
+    print(f'{when}: {message}')
+log('Hi there!') # &gt;&gt;&gt; 2019-07-06 14:06:15.120124: Hi there!
+sleep(0.1)
+log('Hello again!') # &gt;&gt;&gt; 2019-07-06 14:06:15.120124: Hello again!
 
-# before : KeyError
-try:
-    count = counters[key]
-except KeyError:
-    count = 0
-counters[key] = count + 1
+# example2
+def decode(data, default={}):
+    try:
+        return json.loads(data)
+    except ValueError:
+        return default
 
-# after : get
-count = counters.get(key, 0)
-counters[key] = count + 1
+foo = decode('bad data')
+foo['stuff'] = 5
+bar = decode('also bad')
+bar['meep'] = 1
+print(foo) # &gt;&gt; {'stuff': 5, 'meep': 1}
 </code></pre>
 <br>
 <hr>
-<h2 id="item17-prefer-defaultdict-over-setdefault-to-handle-missing-items-in-internal-state">Item17. Prefer defaultdict Over setdefault to Handle Missing Items in Internal State</h2>
+<h2 id="item25-enforce-clarity-with-keyword-only-and-positional-only-arguments">Item25. Enforce Clarity with Keyword-Only and Positional-Only Arguments</h2>
 <ol>
 <li>
-<p>If you’re creating a dictionary to manage an arbitrary set of potential keys, then you should prefer using a <code>defaultdict</code> instance from the collections built-in module if it suits your problem.</p>
+<p>Keyword-only arguments force callers to supply certain arguments by keyword (instead of by position), which makes the intention of a function call clearer. Keyword-only arguments are defined after a single * in the argument list.</p>
 </li>
 <li>
-<p>If a dictionary of arbitrary keys is passed to you, and you don’t control its creation, then you should prefer the get method to access its items. However, it’s worth considering using the <code>setdefault</code> method for the few situations in which it leads to shorter code.</p>
+<p>Positional-only arguments ensure that callers can’t supply certain parameters using keywords, which helps reduce coupling. Positional-only arguments are defined before a single / in the argument list.</p>
+</li>
+<li>
+<p>Parameters between the / and * characters in the argument list may be supplied by position or keyword, which is the default for Python parameters.</p>
 </li>
 </ol>
-<pre><code class="language-python"># before : using &quot;in&quot; expression
-def countLetters(word):
-    counter = {}
-    for letter in word:
-        if letter not in counter:
-            counter[letter] = 0
-        counter[letter] += 1
-    return counter
-
-# after1 : using dict.setderault()
-def countLetters(word):
-    counter = {}
-    for letter in word:
-        # flaw : call setdefalut for every loop iteration
-        counter.setdefault(letter, 0)
-        counter[letter] += 1
-    return counter
-
-# after2 : using collections.defaultdict
-from collections import defaultdict
-def countLetters(word):
-    counter = defaultdict(int)
-    for letter in word:
-        counter[letter] += 1
-    return counter
+<pre><code class="language-python"># example
+def safe_division_e(numerator, denominator, # Positional-only
+                    /, ndigits=10, *, # Both are available
+                    ignore_overflow=False, # Keyword-only
+                    ignore_zero_division=False):
 </code></pre>
 <br>
 <hr>
-<h2 id="item-18-know-how-to-construct-key-dependent-default-values-with-__missing__">Item 18. Know How to Construct Key-Dependent Default Values with <code>__missing__</code></h2>
+<h2 id="item-26-define-function-decorators-with-functoolswraps">Item 26. Define Function Decorators with <code>functools.wraps</code></h2>
 <ol>
 <li>
-<p>The setdefault method of dict is a bad fit when creating the default value has high computational cost or may raise exceptions.</p>
+<p> Decorators in Python are syntax to allow one function to modify another function at runtime.</p>
 </li>
 <li>
-<p>The function passed to defaultdict must not require any arguments, which makes it impossible to have the default value depend
-on the key being accessed.</p>
+<p>Using decorators can cause strange behaviors in tools that do intro-spection, such as debuggers.</p>
 </li>
 <li>
-<p>You can define your own dict subclass with a <code>__missing__</code> method in order to construct default values that must know which key was being accessed.</p>
+<p>Use the <code>wraps</code> decorator from the functools built-in module when you define your own decorators to avoid issues.</p>
 </li>
 </ol>
 <br>

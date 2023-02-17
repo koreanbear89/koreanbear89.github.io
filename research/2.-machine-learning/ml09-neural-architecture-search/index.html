@@ -21,11 +21,11 @@
     
     
     <meta name="description" content="0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to" />
-    <meta name="generator" content="Hugo 0.99.1 with theme pure" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>ML Basic #9 | Neural Architecture Search - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.d1216b260cd13e7182354139db9968c003b9e5e63805ce6bf4055d0cc1e58362.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
@@ -39,7 +39,7 @@
 <meta itemprop="name" content="ML Basic #9 | Neural Architecture Search">
 <meta itemprop="description" content="0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &gt; FW &gt; SH &gt; SW &gt; NF , Fig4) to"><meta itemprop="datePublished" content="2019-12-11T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2019-12-11T09:00:13+00:00" />
-<meta itemprop="wordCount" content="601">
+<meta itemprop="wordCount" content="408">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ML Basic #9 | Neural Architecture Search"/>
 <meta name="twitter:description" content="0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &gt; FW &gt; SH &gt; SW &gt; NF , Fig4) to"/>
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">5</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
@@ -269,64 +269,42 @@
 
 
 
-
         <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-tools">1. Tools</a>
-                  <span class="category-list-count">15</span></li>
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">14</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-linux">2. Linux</a>
-                  <span class="category-list-count">8</span></li>
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">10</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-spark">3. Spark</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/4.-web">4. Web</a>
-                  <span class="category-list-count">3</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-study">5. Study</a>
-                  <span class="category-list-count">6</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-mac">6. Mac</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/8.-leet-code">8. Leet Code</a>
-                  <span class="category-list-count">1</span></li>
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">1</span></li>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -394,12 +372,13 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="0-introduction">0. Introduction</h2>
+      <br>
+<h2 id="0-introduction">0. Introduction</h2>
 <ul>
 <li>Neural Architecture Search : A technique for automating the design of Artificial Neural Network</li>
 </ul>
 <br>
-<br>
+<hr>
 <h2 id="1-nas--neural-architecture-search-google-2017-httpsarxivorgpdf161101578pdf">1. <a href="https://arxiv.org/pdf/1611.01578.pdf">NAS : Neural Architecture Search (Google, 2017) </a></h2>
 <ul>
 <li>
@@ -429,7 +408,7 @@
 <!-- > Fig4와 같이 Conv-Layer의 HyperParam를 출력하는 RNN Controller를 N번 반복하여 원하는 깊이(N)의 Network을 만듭니다. 그리고 이를 학습한 결과를 reward로 하여 RNN을 강화학습 합니다. -->
 <!-- > TODO) How does set-selecetion attention work? -->
 <br>
-<br>
+<hr>
 <h2 id="2-nas-net-google-2017httpsarxivorgpdf170707012pdf">2. <a href="https://arxiv.org/pdf/1707.07012.pdf">NAS-Net (Google, 2017)</a></h2>
 <ul>
 <li>
@@ -462,7 +441,7 @@
 <!-- > NAS가 Conv-Layer의 HyperParam를 출력한 것과 달리 NASNet은 search space를 미리 정해둔 13개 연산(1x1conv, 3x3conv, ...)으로 제한합니다. -->
 <!-- RNN은 이전의 모든 hidden state중 두개를 고르고 13개중 하나의 연산을 각각 적용한 뒤 Add 혹은 Concat 하여 두 feature를 합칩니다. 그러면 figure 3의 2와 같은 형태로 cell 이 만들어집니다.  -->
 <br>
-<br>
+<hr>
 <h2 id="3-enas--efficient-nas-via-parameter-sharing-2018httpsarxivorgabs180203268">3. <a href="https://arxiv.org/abs/1802.03268">ENAS : Efficient NAS via Parameter Sharing (2018)</a></h2>
 <ul>
 <li>
@@ -551,7 +530,7 @@
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.cf6ab047215536635a92ff5defe1e5174ee0acd6c4950757b2732693f7f196f3.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
 
 <script>
     (function (window) {
@@ -569,7 +548,7 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.853c5d4062a8c262b2490c70df2f6d2b232483f85227b30b28013788b8c4da8ab59c1a735b9b31c9006f2962ef62213fea9d17cb9469c297f201772ce94e8fdf.js" defer></script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({

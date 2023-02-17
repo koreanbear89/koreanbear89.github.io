@@ -10,6 +10,41 @@
     
     
     <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
+      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
+      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
+The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
+5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
+$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
+      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
+      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
+3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
+The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
+      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
+    </item>
+    
+    <item>
       <title>Statistics #1 | Probability </title>
       <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
       <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
@@ -105,15 +140,6 @@ Even if the depth of the layer increases, it is just modeling another linear fun
       
       <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
       <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
-      <description>title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much</description>
     </item>
     
   </channel>

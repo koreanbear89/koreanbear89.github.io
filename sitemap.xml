@@ -17,6 +17,13 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</loc>
+    <lastmod>2021-01-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</loc>
     <lastmod>2016-07-22T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -199,14 +206,28 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/5.-natural-language/</loc>
-    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/categories/2.-machine-learning/</loc>
+    <lastmod>2021-12-07T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</loc>
+    <lastmod>2021-12-07T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/research/</loc>
+    <lastmod>2021-12-07T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/5.-natural-language/</loc>
     <lastmod>2021-11-18T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -318,6 +339,13 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</loc>
+    <lastmod>2019-12-11T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/categories/1.-linear-algebra/</loc>
     <lastmod>2019-07-29T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -409,13 +437,6 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/2.-machine-learning/</loc>
-    <lastmod>2017-01-03T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</loc>
     <lastmod>2017-01-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -459,12 +480,6 @@
   
   <url>
     <loc>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

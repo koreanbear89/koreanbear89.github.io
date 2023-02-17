@@ -39,7 +39,7 @@
 <meta itemprop="name" content="ML Basic #4 | Evaluation Metrics">
 <meta itemprop="description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,"><meta itemprop="datePublished" content="2017-01-03T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2017-01-03T09:00:13+00:00" />
-<meta itemprop="wordCount" content="631">
+<meta itemprop="wordCount" content="513">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ML Basic #4 | Evaluation Metrics"/>
 <meta name="twitter:description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&rsquo;s point of view, excluding the modeler&rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,"/>
@@ -304,7 +304,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -491,17 +491,17 @@ $$</p>
 <hr>
 <h2 id="6-roc-receiver-operating-characteristic-curve">6. ROC (Receiver Operating Characteristic) Curve</h2>
 <ul>
-<li>Threshold 를 바꿔가며 Recall (TPR) 과 Fall-out (FPR, FP/(FP+TN)) 의 변화를 시각화한것</li>
-<li>x축, FPR은 실제 정상인 중에 암이 있다고 예측한 비율 (FP/N)</li>
-<li>y축, TPR은 실제 암인 환자중에 암이 있다고 예측한 비율 (TP/P)</li>
-<li>즉, test data에 대하여 threshold를 0~1로 바꿔가며, (FPR,TPR) 의 좌표를 구하고 이를 그래프위에 나타내면 ROC커브.</li>
+<li>Visualization of changes in Recall(TPR) and Fall-out(FPR) by threshold</li>
 </ul>
+<!--
+- Threshold 를 바꿔가며 Recall (TPR) 과 Fall-out (FPR, FP/(FP+TN)) 의 변화를 시각화한것
+- x축, FPR은 실제 정상인 중에 암이 있다고 예측한 비율 (FP/N)
+- y축, TPR은 실제 암인 환자중에 암이 있다고 예측한 비율 (TP/P)
+- 즉, test data에 대하여 threshold를 0~1로 바꿔가며, (FPR,TPR) 의 좌표를 구하고 이를 그래프위에 나타내면 ROC커브.
+-->
 <br>
 <hr>
 <!--
-
-
-
 
 ## 6. AUC (Area under Curve)
 
@@ -544,9 +544,6 @@ $$ AP = \frac{1}{11} (P_r(0) + P_r(0.1) + P_r(0.2) + ... + P_r(1.0)) $$
 $$ Area = \sum (\frac{1}{n} \times P(n)), \quad AP = \frac{1}{n} {\sum P(n)}$$
 
 <br>
-
-~~~
--->
 
     </div>
     <div class="article-footer">

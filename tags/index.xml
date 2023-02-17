@@ -28,6 +28,15 @@
     </item>
     
     <item>
+      <title>NLP #2 | TextRepresentation</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</link>
+      <pubDate>Wed, 13 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</guid>
+      <description>Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word</description>
+    </item>
+    
+    <item>
       <title>MLCV #2 | Object Detection</title>
       <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
       <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
@@ -201,15 +210,6 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
       <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
 Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
 This book also provides some examples in the syntax of Python 3.</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | GlusterFS</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</link>
-      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
-      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 pgsca2x0350:/home1/irteam/whome/__oss/gs_pvs pgsca2x0351:/home1/irteam/whome/__oss/gs_pvs pgsca2x0352:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
     </item>
     
   </channel>
