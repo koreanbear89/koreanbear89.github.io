@@ -99,6 +99,15 @@ Discriminative approach : calculate similarity between neighboring sentences Hea
     </item>
     
     <item>
+      <title>Mathematics for ML #6 | Probabilirty and Distributions</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/</link>
+      <pubDate>Mon, 13 Jun 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/</guid>
+      <description>6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model.</description>
+    </item>
+    
+    <item>
       <title>NLP #6 | Text Summarization</title>
       <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</link>
       <pubDate>Mon, 28 Jun 2021 09:00:00 +0000</pubDate>
@@ -156,7 +165,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
       <description>9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,
-where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter)</description>
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations.</description>
     </item>
     
     <item>
@@ -178,38 +187,28 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
     </item>
     
     <item>
-      <title>Effective Python | #3 Functions</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</link>
-      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      <title>Effective Python | #5 Classes and Interfaces</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-05/</link>
+      <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</guid>
-      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
-Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
-They can eliminate noise and clarify the intention of callers.
-They can significantly reduce subtle bugs that are difficult to find.
-Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-05/</guid>
+      <description>Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.</description>
     </item>
     
     <item>
-      <title>Effective Python | #2 Lists and Dictionaries</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</link>
-      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      <title>Effective Python | #4 Comprehensions and Generators</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-04/</link>
+      <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</guid>
-      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
-A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
-Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
-    </item>
-    
-    <item>
-      <title>Effective Python | #1 Pythonic Thinking</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</link>
-      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</guid>
-      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
-Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
-This book also provides some examples in the syntax of Python 3.</description>
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-04/</guid>
+      <description>Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided.</description>
     </item>
     
   </channel>

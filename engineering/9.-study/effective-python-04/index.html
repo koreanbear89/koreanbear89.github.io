@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Effective Python | #4 Comprehensions and Generators - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Effective Python | #4 Comprehensions and Generators - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Effective Python | #4 Comprehensions and Generators" />
+<meta property="og:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/9.-study/effective-python-04/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2023-02-16T09:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T09:00:00+00:00" />
+
+<meta itemprop="name" content="Effective Python | #4 Comprehensions and Generators">
+<meta itemprop="description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided."><meta itemprop="datePublished" content="2023-02-16T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1259">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Effective Python | #4 Comprehensions and Generators"/>
+<meta name="twitter:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">20</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/9.-study/effective-python-04/"
+    >Effective Python | #4 Comprehensions and Generators</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/9.-study/effective-python-04/" class="article-date">
+  <time datetime="2023-02-16 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-02-16</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/9.-study/"> 9. Study </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/9.-study/effective-python-04/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures</p>
+</li>
+<li>
+<p>This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-27-use-comprehensions-instead-of-map-and-filter">Item 27. Use Comprehensions Instead of <code>map</code> and <code>filter</code></h2>
+<ol>
+<li>
+<p>Comprehensions support multiple levels of loops and multiple conditions per loop level.</p>
+</li>
+<li>
+<p>Comprehensions with more than two control subexpressions are very difficult to read and should be avoided. =&gt; Use normal <code>if</code> and <code>for</code> statements and write a helper function (Item30)</p>
+</li>
+</ol>
+<pre><code class="language-python"># multiple levels of looping
+flat = [x for row in matrix for x in row]
+
+# multiple if conditions 
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+b = [x for x in a if x &gt; 4 if x % 2 == 0]
+c = [x for x in a if x &gt; 4 and x % 2 == 0]
+</code></pre>
+<br>
+<hr>
+<h2 id="item-28-avoid-more-than-two-control-subexpressions-in-comprehensions">Item 28: Avoid More Than Two Control Subexpressions in Comprehensions</h2>
+<ol>
+<li>
+<p>Functions that return None to indicate special meaning are error prone because None and other values (e.g., zero, the empty string) all evaluate to False in conditional expressions.</p>
+</li>
+<li>
+<p>Raise exceptions to indicate special situations instead of returning None. Expect the calling code to handle exceptions properly when they’re documented</p>
+</li>
+<li>
+<p>Type annotations can be used to make it clear that a function will never return the value None, even in special situations.</p>
+</li>
+</ol>
+<pre><code class="language-python"># before
+def careful_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+# after
+def careful_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        raise ValueError('Invalid inputs')
+</code></pre>
+<br>
+<hr>
+<h2 id="item-29-avoid-repeated-work-in-comprehensions-by-using-assignment-expressions-">Item 29: Avoid Repeated Work in Comprehensions by Using Assignment Expressions (<code>:=</code>)</h2>
+<ol>
+<li>
+<p>Assignment expressions make it possible for comprehensions and generator expressions to reuse the value from one condition elsewhere in the same comprehension, which can improve readability and performance.</p>
+</li>
+<li>
+<p>Although it’s possible to use an assignment expression outside of a comprehension or generator expression’s condition, you should avoid doing so.</p>
+</li>
+</ol>
+<pre><code class="language-python"># get_batches(stock.get(name, 0)) expression is repeated.
+found = {name: get_batches(stock.get(name, 0))
+         for name in order
+         if get_batches(stock.get(name, 0))}
+
+# use the walrus operator
+found = {name: batches for name in order
+         if (batches := get_batches(stock.get(name, 0), 8))}
+</code></pre>
+<br>
+<hr>
+<h2 id="item30--consider-generators-instead-of-returning-lists">Item30 : Consider Generators Instead of Returning Lists.</h2>
+<ol>
+<li>
+<p>Using generators can be clearer than the alternative of having a function return a list of accumulated results.</p>
+</li>
+<li>
+<p>The iterator returned by a generator produces the set of values passed to yield expressions within the generator function’s body.</p>
+</li>
+<li>
+<p>Generators can produce a sequence of outputs for arbitrarily large inputs because their working memory doesn’t include all inputs and outputs.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Returning Lists : can cause a program to run out of memory
+def index_words(text):
+    result = []
+    if text:
+        result.append(0)
+    for index, letter in enumerate(text):
+        if letter == ' ':
+            result.append(index + 1)
+    return result
+
+# Generators
+def index_words_iter(text):
+    if text:
+        yield 0
+    for index, letter in enumerate(text):
+        if letter == ' ':
+            yield index + 1
+</code></pre>
+<br>
+<hr>
+<h2 id="item31-be-defensive-when-iterating-over-arguments-list">Item31. Be Defensive When Iterating Over Arguments (list)</h2>
+<ol>
+<li>
+<p>Beware of functions and methods that <strong>iterate over input arguments multiple times</strong>. If these arguments are iterators, you may see strange behavior and missing values.</p>
+</li>
+<li>
+<p>Python’s iterator protocol defines how containers and iterators interact with the <code>iter</code> and <code>next</code> built-in functions, for loops, and related expressions.</p>
+</li>
+<li>
+<p>You can easily define your own iterable container type by implementing the <code>__iter__</code> method as a generator.</p>
+</li>
+<li>
+<p>You can detect that a value is an iterator (instead of a container) if calling <code>iter</code> on it produces the same value as what you passed in. Alternatively, you can use the <code>isinstance</code> built-in function along with the collections.abc.Iterator class.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Before : iterate over input iterator multiple times.
+def normalize(numbers):
+    total = sum(numbers)
+    result = []
+    for value in numbers:
+        percent = 100 * value / total
+        result.append(percent)
+    return result
+
+# Problem : create iterator (Item30)
+def read_visits(data_path):
+    with open(data_path) as f:
+        for line in f:
+            yield int(line)
+it = read_visits('my_numbers.txt')
+print(list(it)) # &gt;&gt;&gt; [15, 35, 80]
+print(list(it)) # &gt;&gt;&gt; [] # Already exhausted
+
+## After1 : Defensively copies the input iterator =&gt; input could be extremely large (OOM)
+def normalize_copy(numbers):
+    numbers_copy = list(numbers)  # Copy the iterator
+    total = sum(numbers_copy)
+    result = []
+    for value in numbers_copy:
+        percent = 100 * value / total
+        result.append(percent)
+    return result
+
+## After2 : accept a funtion that returns a new iterator and write your own iterable container
+def normalize_func(get_iter):
+    total = sum(get_iter())   # New iterator
+    result = []
+    for value in get_iter():  # New iterator
+        percent = 100 * value / total
+        result.append(percent)
+    return result
+
+class ReadVisits:
+    def __init__(self, data_path):
+        self.data_path = data_path
+    def __iter__(self):
+        with open(self.data_path) as f:
+            for line in f:
+                yield int(line)
+visits = ReadVisits(path)
+percentages = normalize_func(visits)
+
+# After3 : Be more defensive
+def normalize_defensive(numbers):
+    if isinstance(numbers, Iterator):  # Another way to check
+        raise TypeError('Must supply a container')
+    total = sum(numbers)
+    result = []
+    for value in numbers:
+        percent = 100 * value / total
+        result.append(percent)
+    return result
+</code></pre>
+<br>
+<hr>
+<h2 id="item32-consider-generator-expressions-for-large-list-comprehensions">Item32. Consider Generator Expressions for Large List Comprehensions</h2>
+<ul>
+<li>
+<p>List comprehension may cause problems for large inputs by using too much memory.</p>
+</li>
+<li>
+<p>Generator expressions avoid memory issue by producing outputs one at a time as iterators</p>
+</li>
+<li>
+<p>Generator expressions can be composed by passing the iterator from one generator expression into the <code>for</code> subexpression of another.</p>
+</li>
+<li>
+<p>Generator expressions execute very quickly when chained together and are memory efficient</p>
+</li>
+</ul>
+<pre><code class="language-python"># before  
+value = [len(x) for x in open('my_file.txt')] 
+print(value) # &gt;&gt;&gt; [100, 57, 15, 1, 12, 75, 5, 86, 89, 11]
+
+# after
+it = (len(x) for x in open('my_file.txt'))
+print(it) # &gt;&gt;&gt; &lt;generator object &lt;genexpr&gt; at 0x108993dd0&gt;
+print(next(it)) # &gt;&gt;&gt; 100
+print(next(it)) # &gt;&gt;&gt; 57
+
+# generators can be composed together
+roots = ((x, x**0.5) for x in it)
+</code></pre>
+<br>
+<hr>
+<h2 id="item33-compose-multiple-generators-with-yield-from">Item33. Compose Multiple Generators with <code>yield from</code></h2>
+<ol>
+<li>
+<p>The <code>yield from</code> expression allows you to compose multiple nested generators together into a single combined generator</p>
+</li>
+<li>
+<p><code>yield from</code> provides better performance than manually iterating nested generators and yielding their outputs</p>
+</li>
+</ol>
+<pre><code class="language-python"># example generator
+def move(period, speed):
+    for _ in range(period):
+        yield speed
+def pause(delay):
+    for _ in range(delay):
+        yield 0
+
+# before
+def animate():
+    for delta in move(4, 5.0):
+        yield delta
+    for delta in pause(3):
+        yield delta
+    for delta in move(2, 3.0):
+        yield delta
+
+# after
+def animate_composed():
+    yield from move(4, 5.0)
+    yield from pause(3)
+    yield from move(2, 3.0)
+</code></pre>
+<br>
+<hr>
+<h2 id="item-34-avoid-injecting-data-into-generators-with-send">Item 34. Avoid Injecting Data into Generators with <code>send</code></h2>
+<ol>
+<li>
+<p>The <code>send</code> method can be used to inject data into a generator by giving the <code>yield</code> expression a value that can be assigned to a variable.</p>
+</li>
+<li>
+<p>Using <code>send</code> with <code>yield</code> from expressions may cause surprising behavior, such as <code>None</code> values appearing at unexpected times in the generator output</p>
+</li>
+<li>
+<p>Providing an input iterator to a set of composed generators is a better approach than using the <code>send</code> method, which should be avoided</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-35-avoid-causing-state-transitions-in-generators-with-throw">Item 35. Avoid Causing State Transitions in Generators with <code>throw</code></h2>
+<ol>
+<li>The throw method can be used to re-raise exceptions within generators at the position of the most recently executed yield expression.</li>
+<li>Using <code>throw</code> harms readability because it requires additional neting and boilerplate in order to raise and catch exceptions</li>
+<li>A better way to provide exceptinal behavior in generators is to use a class that implements the <code>__iter__</code> method along with methods to cause exceptional state transitions.</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-36-consider-itertools-for-working-with-iterators-and-generators">Item 36. Consider <code>itertools</code> for Working with Iterators and Generators</h2>
+<ol>
+<li>
+<p>The <code>itertools</code> functions fall into three main categories for working with iterators and generators</p>
+<ul>
+<li>
+<p>linking iterators together</p>
+</li>
+<li>
+<p>filtering items they output</p>
+</li>
+<li>
+<p>producting combinations of items</p>
+</li>
+</ul>
+</li>
+<li>
+<p>There are more advanced functions, additional parameters, and useful reciples available in the documentation at <code>help(itertools)</code></p>
+</li>
+</ol>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

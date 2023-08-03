@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Mathematics for ML #6 | Probabilirty and Distributions - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Mathematics for ML #6 | Probabilirty and Distributions - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Mathematics for ML #6 | Probabilirty and Distributions" />
+<meta property="og:description" content="6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/" /><meta property="article:section" content="Mathematics" />
+<meta property="article:published_time" content="2022-06-13T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-13T09:00:00+00:00" />
+
+<meta itemprop="name" content="Mathematics for ML #6 | Probabilirty and Distributions">
+<meta itemprop="description" content="6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model."><meta itemprop="datePublished" content="2022-06-13T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-06-13T09:00:00+00:00" />
+<meta itemprop="wordCount" content="3297">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mathematics for ML #6 | Probabilirty and Distributions"/>
+<meta name="twitter:description" content="6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">20</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/"
+    >Mathematics for ML #6 | Probabilirty and Distributions</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/" class="article-date">
+  <time datetime="2022-06-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2022-06-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-mathematics-for-ml/"> 3. Mathematics for ML </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="6-probability-and-distributions">6. Probability and Distributions</h2>
+<ul>
+<li>Probability, loosely speaking, concerns the study of uncertainty
+<ul>
+<li>Probability can be thought of
+<ul>
+<li>as the fraction of times an event occurs,</li>
+<li>as a degree of belief about an event.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We then would like to use this probability to measure the chance of something occurring in an experiment
+<ul>
+<li>In ML, we often quantify
+<ul>
+<li>uncertainty in the data,</li>
+<li>uncertainty in the machine learning model, and</li>
+<li>uncertainty in the predictions produced by the model.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Random Variable : Quantifying uncertainty requires the idea of a random variable, which is a function that maps outcomes of random experiments to a set of properties that we are interested in.</li>
+<li>Probability Distribution : Associated with the random variable is a function that measures the probability that a particular outcome (or set of outcomes) will occur</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="80%" align="center" src="/figures/2022-04-04-fig6_1.png"></p>
+<center>Fig 6.1 A mind map of the concepts related to random variables and probability distributions</center>
+<br>
+<hr>
+<h3 id="61-construction-of-a-probability-space">6.1 Construction of a Probability Space</h3>
+<ul>
+<li>The theory of probability aims at defining a mathematical structure to describe random outcomes of experiments.
+<ul>
+<li>ex) Coin toss =&gt; cannot determine the outcome =&gt; by doing a large number of coin tosses =&gt; we can observe a regularity in the average outcome.</li>
+</ul>
+</li>
+<li>Using this mathematical structure of probability, the goal is to perform automated reasoning.</li>
+</ul>
+<p><strong>6.1.1 Philosophical Issues</strong></p>
+<ul>
+<li>When constructing automated reasoning systems,
+<ul>
+<li>Boolean logic : does not allow us to express certain forms of plausible reasoning.</li>
+<li>Probability theory : can be considered as a generalization of classic Boolean logic</li>
+</ul>
+</li>
+<li>Two major interpretations of probability
+<ul>
+<li>Bayesian interpretation : uses probability to specify the degree of uncertainty that the user has about an event, degree of belief
+<ul>
+<li>ex) In Brain MR, a 2cm circle has a 50% chance of being cancer.</li>
+</ul>
+</li>
+<li>Frequentist interpretation :  considers the relative frequencies of events of interest to the total number of events that occurred
+<ul>
+<li>ex) If you toss a coin 100 times, the probability of getting heads is 50%</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>6.1.2 Probability and Random Variables</strong></p>
+<ul>
+<li>
+<p>Three distinct ideas that are often confused when discussing probabilities</p>
+<ul>
+<li><strong>Probability space</strong> : allows us to quantify the idea of a probability</li>
+<li><strong>Random Variables</strong> : transfers the probability to a more convenient (often numerical) space</li>
+<li><strong>Distribution</strong> (or law) with a random variable (6.2)</li>
+</ul>
+</li>
+<li>
+<p>Three concepts introduced by Kolmogorov :</p>
+<ul>
+<li><strong>The sample space, Ω</strong> : the set of all possible outcomes of the experiment
+<ul>
+<li>For example, two successive coin tosses have a sample space of {HH, TT, HT, TH}</li>
+</ul>
+</li>
+<li><strong>The event space, A</strong> : the space of potential results of the experiment, obtained by considering the collection of subsets of Ω</li>
+<li><strong>The probability, P</strong> : We associate(map) a number $P(A)$ that measures the probability or degree of belief that the event will occur.</li>
+</ul>
+</li>
+<li>
+<p><strong>Random Variable</strong> : a function takes an element of Ω and returns a particular quantity of interest $x$, a value in $T$ (target space), This mapping from Ω to $T$ is called a random variable.</p>
+<ul>
+<li>ex) Tossing two coins and counting the number of heads, a RV $X$ maps to the three possible outcomes $X(hh) = 2, X(ht)=X(th)=1, X(tt)=0$, In this case target space $T = {0,1,2 }$</li>
+</ul>
+<blockquote>
+<p>The name &ldquo;random variable&rdquo; is a great source of misunderstanding as it is neither random nor is it a variable. It is a function</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>6.1.3 Statistics</strong></p>
+<ul>
+<li>Probability theory and Statistics : are often presented together, but they concern different aspects of uncertainty.
+<ul>
+<li>In Probability : we use the rules of probability to derive what happens.</li>
+<li>In Statistics : we observe that something has happened and try to figure out the underlying process that explains the observations</li>
+</ul>
+</li>
+<li>Machine Learning : close to statistics in its goals to construct a model that represents the process that generated the data</li>
+</ul>
+<br>
+<hr>
+<h3 id="62-discrete-and-continuous-probabilities">6.2 Discrete and Continuous Probabilities</h3>
+<ul>
+<li>Discrete Target space T :
+<ul>
+<li>Random Variable X : takes a particular value x ∈ T,</li>
+<li>Probability Mass Function : the probability that a random variable X takes a particular value x ∈ T , denoted as P (X = x)</li>
+</ul>
+</li>
+<li>Continuous Target space T :
+<ul>
+<li>Random Variable X :  is in an interval, denoted by P(a&lt;X&lt;b)</li>
+<li>Cumulative distribution function : the probability that a random variable X is less than a particular value x, denoted by P (X &lt; x).</li>
+</ul>
+</li>
+<li>Number of variable
+<ul>
+<li>univariate distribution : distributions of a single random variable</li>
+<li>multivariate distributions : more than one random variable</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.2.1 Discrete Probabilities</strong></p>
+<ul>
+<li><strong>Probability Mass Function</strong> : A function that gives the probability that a discrete random variable is exactly equal to some value.
+<ul>
+<li>Random Variable $X$ maps elements in event space to target space.
+<ul>
+<li>ex) Available events {TT, TH, HT, HH} =&gt; number of Heads {0,1,2}</li>
+</ul>
+</li>
+<li>Probability Mass Function $P$ maps elements in target space to probability
+<ul>
+<li>ex) $P(X=0)= \frac{1}{4}, P(X=1)= \frac{2}{4}, P(X=2)= \frac{1}{4} $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Joint Probability</strong> $p(x,y)$ : is the probability of the intersection of both events, that is $P(X =x_i ∩ Y =y_j) = P(X=x_i, Y=y_j)$</li>
+<li><strong>Marginal Probability</strong> $p(x)$ : takes the value $x$ irrespective of the value of random variable $Y$ that is $P(X=x_i)$
+<ul>
+<li>$X∼p(x)$ : denote that the random variable X is distributed according to $p(x)$</li>
+</ul>
+</li>
+<li><strong>Conditional Probability</strong> $p(y|x)$: If we consider only the instances where (X = x), then the fraction of instances for which $Y = y$</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="40%" align="center" src="/figures/2022-06-13-fig6_2.png"></p>
+<center>Fig 6.2 Visualization of a discrete probability mass function</center>
+<br>
+<p><strong>6.2.2 Continuous Probabilities</strong></p>
+<ul>
+<li><strong>Probability Density Function</strong>: A function $f : R^D → R$ is called a probability density function if :
+<ul>
+<li>$∀x∈R^D :f(x)&gt;0$</li>
+<li>Its integral exists and $ \int_{R^D} f(x)dx = 1 $.</li>
+<li>Probability : $P(a&lt;X&lt;b)=\int_a^b f(x)dx,$
+<ul>
+<li>The probability of a continuous random variable X taking a particular value P (X = x) is zero.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Cumulative Distribution Function</strong>
+<ul>
+<li>CDF of a multivariate real-valued random variable X with states $x ∈ R_D$ is given by $F_X(x) = P(X_1&lt;x_1,&hellip;,X_D&lt;x_D)$</li>
+</ul>
+</li>
+<li><a href="http://rstudio-pubs-static.s3.amazonaws.com/204928_c2d6c62565b74a4987e935f756badfba.html">Probability vs Likelihood</a></li>
+</ul>
+<br>
+<hr>
+<h3 id="63-sum-rule-product-rule-and-bayes-theorem">6.3 Sum Rule, Product Rule, and Bayes&rsquo; Theorem</h3>
+<p><strong>6.3.1 Sum Rule</strong> : the relationship between joint prob and marginal prob.</p>
+<ul>
+<li>
+<p>(1) Let&rsquo;s begin with the joint distribution, $p(x,y) = p(X=x_i, Y=y_j) = \frac{n_{ij}}{N}$ of two random variables $x,y$ (figure 6.2)</p>
+</li>
+<li>
+<p>(2) Corresponding marginal distribution $p(x)$ is same with the summation  $\frac{c_i}{N} = p(x_i,y_1 ) + p(x_i,y_2) + p(x_i,y_3)$</p>
+<ul>
+<li>$ p(x) = p(X=x_i) = \Sigma_j{p(X=x_i, Y=y_j)} , \ \text{(y is discrete)} $</li>
+<li>$ p(x) = \int_y p(x,y)dy, \ \text{(y is continuous)} $</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.3.2 Product Rule</strong> : the relationship between joint prob and cond prob.</p>
+<ul>
+<li>(1) Let&rsquo;s see the figure6.2 again, conditional distribtion is  $p(Y=y_j|X=x_i) = \frac{n_{ij}}{c_i}$</li>
+<li>(2) relates the joint distribution to (1)  $p(X=x_i, Y=y_j) = \frac{n_{ij}}{N}$ which is equal to $\frac{n_{ij}}{c_i} \times \frac{c_i}{N}$</li>
+</ul>
+<p>$$
+p(x, y) = p(y | x)p(x)= p(x | y)p(y)
+$$</p>
+<br>
+<p><strong>6.3.3 Bayes&rsquo; theorem</strong></p>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>In ML and Bayesian statistics, we are often interested in making inferences of unobserved (latent) random variables</p>
+</li>
+<li>
+<p>Bayes’ theorem (6.23) allows us to invert the relationship between x and y given by the likelihood</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Bayes&rsquo; theorem : if we have some prior knowledge $p(x)$ and some relationship $p(y|x)$, and observe $y$, we can use Bayes&rsquo; theorem to draw some conclusions about $x$.</p>
+<p>$$
+p(x|y) = \frac{p(y|x)p(x)}{p(y)}
+$$</p>
+<ul>
+<li>
+<p>Posterior, $p(x|y)$ is the quantity of interest in Bayesian statistics</p>
+</li>
+<li>
+<p>Likelihood, $p(y|x)$ : describes how x and y are related, and in the case of discrete probability distributions, it is the probability of the data y</p>
+</li>
+<li>
+<p>Prior, $p(x)$ : encapsulates our subjective prior knowledge of the unobserved (latent) variable x before observing any data.</p>
+</li>
+<li>
+<p>Evidence (marginal likelihood), $p(y)$ : is independent of x, and it ensures that the posterior $p(x|y)$  is normalized.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>There&rsquo;s a drug test that is 95% accurate. and assume that 1% of population uses the drug.</p>
+<ul>
+<li>
+<p>Q. If a randomly selected person tests positive for the drug test, what&rsquo;s the probabiliy that the person is actually a drug user</p>
+</li>
+<li>
+<p>A. $p(x|y) = \frac{p(y|x)p(x)}{p(y)} = \frac{0.95 \times 0.01}{0.95 \times 0.01 + (1-0.95)*(1-0.01) } \simeq 0.16$</p>
+<ul>
+<li>Let $X$ be the event of an actual drug user and $Y$ the event of a positive result from drug test.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h3 id="64-summary-statistics-and-independence">6.4 Summary Statistics and Independence</h3>
+<ul>
+<li>We will describe two well known summary statistics : mean and variance</li>
+<li>We will discuss two ways to compare two random variables : independece and inner product</li>
+</ul>
+<br>
+<p><strong>6.4.1 Mean and Covariance (population mean and cov)</strong></p>
+<ul>
+<li>
+<p><strong>Expected Value</strong> : the expected value of a function $g$ is given by,</p>
+<ul>
+<li>$ E_x[g(x)] = \int_x{g(x)p(x)dx}$ , (For a univariate continuous random variable)</li>
+<li>$E_x[g(x)] = \Sigma_x g(x)p(x)$, (For a discrete random variable)</li>
+</ul>
+</li>
+<li>
+<p><strong>Mean</strong> :  is an average and is defined as,</p>
+<ul>
+<li>
+<p>$E_{x_d} = \int_x x_dp(x_d) dx_d$ ($X$ is a continous random variable)</p>
+</li>
+<li>
+<p>$E_{x_d} = \Sigma_{x_i} x_ip(x_d=x_i)$ ($X$ is a discrete random variable)</p>
+</li>
+<li>
+<p>Details</p>
+<ul>
+<li>
+<p>Mean depends on given sample : e.g.) dice roll five times =&gt; {1,2,5,2,3} =&gt; mean is 2.6 but expectation is 3.5</p>
+</li>
+<li>
+<p>Average : There are many kinds of mean, such as arithmetic, harmonic. Average is same with arithmetic mean.</p>
+</li>
+<li>
+<p>median : is the middel value if we sort the values</p>
+</li>
+<li>
+<p>mode : the most frequently occuring value</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Covariance (Univariate)</strong>: is given by the expected product of their deviations from their respectvive means.</p>
+<ul>
+<li>
+<p>Covariance (Multivariate) : The notation of covariance can be generalized to multivariate random variables</p>
+</li>
+<li>
+<p>Covariance Matrix : a square matrix giving the covariance between each pair of elements of a given random vector.</p>
+</li>
+<li>
+<p>References. <a href="https://blog.naver.com/sw4r/221025662499">https://blog.naver.com/sw4r/221025662499</a></p>
+</li>
+</ul>
+<p>$$
+Cov[x,y] = \mathbb{E}[ (x-\mathbb{E}_X(x) )] [(x-\mathbb{E}_Y(y))] = \mathbb{E[(x-\mu_x)(y-\mu_y)]}
+$$</p>
+</li>
+<li>
+<p><strong>Variance</strong> : The covariance of a variable with itself $Cov[x,x]$ is called variance and is denoted by $\mathbb{V}_X (x)$</p>
+<p>$$
+\mathbb{V}_X (x) = Cov_X[x,x]
+$$</p>
+</li>
+<li>
+<p><strong>Correlation</strong> : The normalized version of covariance, the correlation matrix is the cov matrix of standardized random variables, $x/\sigma{(x)}$</p>
+<p>$$
+corr[x,y] = \frac{Cov[x,y]}{\sqrt{\mathbb{V}(x)\mathbb{V}[y]}} \in [-1,1]
+$$</p>
+</li>
+</ul>
+<br>
+<p><strong>6.4.2 Empirical Means and Covariances</strong></p>
+<ul>
+<li>
+<p>To compute the statistics for a particular dataset, we would use the observations $x_1, &hellip; ,x_N$ and use following</p>
+<ul>
+<li>
+<p>Empirical Mean : Empirical mean vector is the arithmetic average of the observations for each variable</p>
+<ul>
+<li>$\hat{x} := \frac{1}{N} \sum_n x_n $</li>
+</ul>
+</li>
+<li>
+<p>Covariance : a DxD matrix</p>
+<ul>
+<li>$\Sigma := \frac{1}{N} \sum_n (x_n -\hat{x})( x_n - \hat{x})^⊤$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.4.3 Three Expressions for the Variance</strong></p>
+<ul>
+<li>
+<p>The standard definition of variance (corresponding to the definition) : the expectation of the squared deviation of a randeom variable X from its expected value $\mu$</p>
+<p>$$
+\mathbb{V}_X(x) := \mathbb{E}_X[(x-\mu)^2]
+$$</p>
+</li>
+<li>
+<p>Raw score formula : When estimating variance in 6.43, we  need to calculate the mean $\mu$ first and we also need to calculate $\hat{\mu}$. We can avoid this two passes by rearranging the terms : so called raw-score formula</p>
+<p>$$
+\mathbb{V}_X(x) = \mathbb{E}_X[x^2] - \mathbb{E}_X(x)^2
+$$</p>
+</li>
+<li>
+<p>Sum of pairwise differences</p>
+<p>$$
+\frac{1}{N} \sum_{i,j}^N (x_i - x_j)^2
+$$</p>
+</li>
+</ul>
+<br>
+<p><strong>6.4.4 Sums and Transformations of Random Variables</strong></p>
+<ul>
+<li>
+<p>Manipulations of Random Variables</p>
+<ul>
+<li>
+<p>$\mathbb{E}[x \pm y] = \mathbb{E}(x) \pm \mathbb{E}[y]$</p>
+</li>
+<li>
+<p>$\mathbb{V}[x \pm y] = \mathbb{V}(x) + \mathbb{V}[y] \pm Cov[x,y] \pm Cov[y,x]$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ex) Consider a random variable $X$ with mean $\mu$ , covmat $\Sigma$, and a affine transformation $y = Ax + b$</p>
+<ul>
+<li>
+<p>$\mathbb{E}[y] =\mathbb{E}[Ax+b] =  A\mathbb{E}(x) + b =  A\mu + b$</p>
+</li>
+<li>
+<p>$\mathbb{V}[y] = \mathbb{V}_X[Ax+b]  = \mathbb{V}_X[Ax] =A \mathbb{V}(x)A^⊤ =  A\Sigma A^⊤$</p>
+</li>
+<li>
+<p>$Cov[x,y] = \mathbb{E}[x(Ax+b)^⊤] - \mathbb{E}(x)\mathbb{E}[Ax+b]^⊤ = \Sigma A^⊤$</p>
+<ul>
+<li>where $\Sigma = \mathbb{E}[xx^⊤] = \mu \mu^⊤$ is the covariance of $X$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.4.5 Statistical Independence</strong></p>
+<ul>
+<li>
+<p>Independence : Two random variables X, Y are statistically independent if and only if $p(x, y) = p(x)p(y) .$</p>
+<ul>
+<li>
+<p>$p(y | x) = p(y) $</p>
+</li>
+<li>
+<p>$p(x | y) = p(x)  $</p>
+</li>
+<li>
+<p>$ \mathbb{V}_{X,Y} [x + y] = \mathbb{V}_X (x) + \mathbb{V}_Y [y]$</p>
+</li>
+<li>
+<p>$Cov_{X,Y} [x, y] = 0$</p>
+<ul>
+<li>Two RV can have covariance zero but not statistically independent</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Conditional Independence : Two RV X and Y are conditionally independent given $Z$ if and only if:</p>
+<ul>
+<li>$p(x,y|z)=p(x|z)p(y|z) \ \text{for all } z∈Z$</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.4.6 Inner Products of Random Variables</strong></p>
+<ul>
+<li>
+<p>Inner product between random variables : $&lt;X,Y&gt; := Cov[x,y]$</p>
+<ul>
+<li>
+<p>The length of random variables : standard deviation</p>
+<ul>
+<li>$∥X∥ = \sqrt{Cov[x, x]} = \sqrt{V(x)} = σ(x)$</li>
+<li>The longer the random variable, the more uncertain it is</li>
+</ul>
+</li>
+<li>
+<p>The angle $\theta$ between two random variables : correlation</p>
+<ul>
+<li>$ cos θ = \frac{{X,Y}}{∥X∥∥Y∥} = \frac{Cov[x,y]}{\sqrt{V(x)V[y]}} = corr[x,y]$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="65-gaussian-distribution">6.5 Gaussian Distribution</h3>
+<ul>
+<li>Gaussian Distribution has many computationally convenient properties, which we will be discussing in the following chapters
+<ul>
+<li>ch9. use Gaussian Distribution to define the likelihood and prior for linear regression</li>
+<li>ch11. mixture of Gaussians for density estimation</li>
+</ul>
+</li>
+<li>Univariate Gaussian Distribution
+<ul>
+<li>$p(x|\mu, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}}exp(-\frac{(x-\mu)^2)}{2 \sigma^2})$</li>
+</ul>
+</li>
+<li>Multivariate Gaussian Distribution : is fully characterized by a mean vector $\mu$ and a cov matrix $\Sigma$</li>
+<li>Standard normal distribution : the special case of the Gaussian with zero mean and identity covariance, that is, $\mu=0$ and $\Sigma=I$</li>
+</ul>
+<br>
+<p><strong>6.5.1 Marginals and Conditionals of Gaussians are Gaussians</strong></p>
+<ul>
+<li>The marginal distribution of $p(x)$ of joint Gaussian distrib $p(x,y)$ is itself Gaussian and computed by applying the sum rule :
+<ul>
+<li>$p(x) = \int{p(x,y)dy} = N(x|\mu_x, \Sigma_{xx})$</li>
+</ul>
+</li>
+<li>The conditional distribution $p(x|y)$ is also Gaussian and given by
+<ul>
+<li>$p(x|y) = N(\mu_{x|y}, \Sigma_{x|y})$</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.5.2 Product of Gaussian Densities</strong></p>
+<ul>
+<li>The product of two Gaussians $ N(x|a,A), N(x|b,B)$ is a Gaussian distribution scaled by $c ∈ R$,  given by $c N(x |\mathbf{c,C} )$ with
+<ul>
+<li>$c = (2π)^{−D/2} |A+B|^{−1/2} exp( \frac{-1}{2}(a−b)^⊤(A+B)^{−1}(a−b))$</li>
+<li>$\mathbf{c} = C(A^{-1}a + B^{-1}b)$</li>
+<li>$\mathbf{C} = (A^{-1} + B^{-1} )^{-1}$</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.5.3 Sums and Linear Transformations</strong></p>
+<ul>
+<li>If $X, Y$ are independent Gaussian random variables (i.e., the joint distribution is given as $p(x, y) = p(x)p(y)$ with $p(x) = N(x | μ_x, Σ_x)$ and $p(y) = N(y | μ_y , Σ_y)$,
+<ul>
+<li>then $x + y$ is also Gaussian distributed and given by $ p(x+y) = N (μ_x +μ_y, Σ_x +Σ_y)$.</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.5.4 Sampling from Multivariate Gaussian Distrib.</strong></p>
+<ul>
+<li>
+<p>Sampling from multivariate Gaussian Distrib. $N(0,I)$</p>
+<ul>
+<li>
+<p>(1) We need a source of pseudo-random numbers that provide a uniform sample in the interval [0,1]</p>
+</li>
+<li>
+<p>(2) We use a non-linear transformation such as the Box-Muller transform to obtain sample from a univariate Gaussian</p>
+</li>
+<li>
+<p>(3) We collate a vector of these samples to obtain a sample from a multivariate standart normal $N(0,I)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Obtain samples from a multivariate normal $N(\mu, \Sigma)$</p>
+<ul>
+<li>
+<p>use the properties of a linear transformation of a Gaussian random variable :</p>
+<ul>
+<li>
+<p>If $x~N(0,I)$, $y = Ax+\mu$, $AA^T = \Sigma$  is Gaussian distributed with mean $\mu$ and covariance matrix $\Sigma$</p>
+</li>
+<li>
+<p>One convinient choice of $A$ is to use the Cholesky decomposition (section 4.3)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="66-conjugacy-and-the-exponential-family">6.6 Conjugacy and the Exponential Family</h3>
+<ul>
+<li>
+<p>Bernoulli Distrib.</p>
+<ul>
+<li>
+<p>A discrete distrib having two possible outcomes  $x ∈ [0, 1]$ in which $x=1$ occurs with probability $p$ and $x=0$ occurs with probability $1-p$</p>
+<ul>
+<li>
+<p>$P(x)=p^x(1−p)^{1−x}, x∈ { 0,1 }$</p>
+</li>
+<li>
+<p>$\mathbb{E}(x) = 1 \times p + 0 \times (1-p) = p$</p>
+</li>
+<li>
+<p>$\mathbb{V}(x) = \mathbb{E}[X^2] - (\mathbb{E}<input checked="" disabled="" type="checkbox"> )^2 = p - p^2 =  p (1 - p)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ex) when we are interested in modeling the probability of &ldquo;heads&rdquo; when flipping a coin</p>
+</li>
+<li>
+<p>References. <a href="https://elementary-physics.tistory.com/137">Bernoulli Distribution, Binomial Distribution</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Binomial Distrib.</p>
+<ul>
+<li>
+<p>a generalization of the Bernoulli distribution to a distribution over integers (The number of ways in which y out of N trials can be successful =&gt; N combination y)</p>
+<ul>
+<li>
+<p>$P(Y=y)= \begin{pmatrix} N \ y \end{pmatrix} p^y(1−p)^{N−y}$</p>
+</li>
+<li>
+<p>$\mathbb{E}(x) = Np$</p>
+</li>
+<li>
+<p>$ \mathbb{V}(x) = Np (1 - p)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ex) observing m &ldquo;heads&rdquo; in N coin-flip experiments if the probability for observing head in a single experiments is $\mu$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Beta Distrib.</p>
+<ul>
+<li>
+<p>a distribution over a continuous random variable $x ∈ [0, 1]$, which is often used to represent the probability for some binary event</p>
+<ul>
+<li>
+<p>$P(x|α,β)= \frac{Γ(α+β)}{Γ(α)Γ(β)}x^{α−1}(1−x)^{β−1}$</p>
+</li>
+<li>
+<p>$\mathbb{E}(x) = \frac{\alpha}{\alpha+\beta}$</p>
+</li>
+<li>
+<p>$\mathbb{V}(x) = \frac{ \alpha \beta }{ (\alpha + \beta)^2 (\alpha + \beta + 1)}$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Intuitively, $\alpha$ moves probability mass toward 1, whereas $\beta$ moves probability mass toward 0</p>
+<ul>
+<li>
+<p>For α = β = 1, we obtain the uniform distribution U[0,1].</p>
+</li>
+<li>
+<p>For α, β &lt; 1, we get a bimodal distribution with spikes at 0 and 1.</p>
+</li>
+<li>
+<p>For α, β &gt; 1, the distribution is unimodal.</p>
+</li>
+<li>
+<p>For α, β &gt; 1 and α = β, the distribution is unimodal, symmetric, and centered in the interval [0, 1], i.e., the mode/mean is at 12 .</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.6.1 Conjugacy</strong></p>
+<ul>
+<li>Conjugate Prior : A prior is conjugate for the likelihood function if the posterior is of the same form/type as the prior
+<ul>
+<li>According to Bayes theorem, the poterior is proportional to the product of the prior and likelihood ($p(y|x)p(x)$)</li>
+<li>The specification of the prior can be tricky for two reasons:
+<ul>
+<li>First, the prior should encapsulate our knowledge about the problem before we see any data. This is often difficult to describe.</li>
+<li>Second, it is often not possible to compute the posterior distribution analytically</li>
+<li>However, there are some priors that are computationally
+convenient: conjugate priors.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.6.2 Sufficient Statistics</strong></p>
+<ul>
+<li>
+<p>Sufficient Statistics : the idea that there are statistics that will contain all available information that can be inferred from data corresponding to the distribution under consideration</p>
+<ul>
+<li>sufficient statistics carry all the information needed to make inference about the population, that is, they are the statistics that are sufficient to represent the distribution.</li>
+</ul>
+</li>
+<li>
+<p>In Machine Learning,</p>
+<ul>
+<li>
+<p>we consider a finite number of samples from a distribution.</p>
+<ul>
+<li>
+<p>As we observe more data, do we need more parameters $\theta$ to describe the distribution? =&gt; yes in general (field of non-parametric statistics)</p>
+</li>
+<li>
+<p>Which class of distributions have finite-dimensional sufficient statistics, that is the number of params needed to describe distrib does not increase arbitrarily. =&gt; exponential family distributions (6.6.3)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.6.3 Exponential Family</strong></p>
+<ul>
+<li>
+<p>Three levels of abstraction (when considering distrib.)</p>
+<ul>
+<li>
+<p>(1) a particular named distribution with fixed params :</p>
+<ul>
+<li>ex) univariate Gaussian $N(0,1)$ with zero mean and unit variance</li>
+</ul>
+</li>
+<li>
+<p>(2) fix the parametric form (the univar Gaussian) and infer the parameters from data (often used in ML)</p>
+</li>
+<li>
+<p>(3) Families of distributions</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Exponential Family</p>
+<ul>
+<li>
+<p>a family of probability distributions, parameterized by $\theta \in \mathbb{R}^D$ of the form</p>
+<ul>
+<li>
+<p>$p(x | θ) = h(x) exp (⟨θ, φ(x)⟩ − A(θ))$</p>
+</li>
+<li>
+<p>$φ(x)$ is the vector of sufficient statistics. In general, any inner product can be used</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="67-change-of-variables--inverse-transform--transformation-of-random-variables">6.7 Change of Variables / Inverse Transform : Transformation of random variables</h3>
+<ul>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>There are very many known distributions, but in reality the set of distributions for which we have names is quite limited.</p>
+</li>
+<li>
+<p>Therefore, it is often useful to understand how transformed random variables are distributed</p>
+</li>
+<li>
+<p>ex) Given that $X_1$ and $X_2$ are univariate standard normal, what is the distribution of $\frac{1}{2}(X_1 + X_2)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Two approaches for obtaining distributions of transformations of random variables</p>
+<ul>
+<li>Direct Approach : using the definition of a cumulative distribution function</li>
+<li>Change of variable approach : uses the chain rule of calculus (5.2.2)</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.7.1 Direct Approach : Distribution Fuction Technique</strong></p>
+<ul>
+<li>
+<p>Using the definition of CDF and the fact that its differential is the PDF</p>
+<ul>
+<li>
+<p>(1) Finding the CDF : $F_Y(y) = P(Y &lt;y )$</p>
+</li>
+<li>
+<p>(2) Differentiating the cdf $F_Y(y)$ to get the pdf : $f(y)= \frac{d}{dy}F_Y(y).$</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>6.7.2 Change of Variables</strong></p>
+<ul>
+<li>Using &ldquo;change of variables&rdquo; technique of Calculus
+<ul>
+<li>$ \int f(u)du = \int f(g(x))g^′(x)dx , \text{ where } u = g(x) .$</li>
+</ul>
+</li>
+<li>Skip Details</li>
+</ul>
+<br>
+<hr>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>
+<p>Section 6.1. Construction of a Probability Space</p>
+<ul>
+<li>
+<p>The theory of probability aims at defining a mathematical structure to describe random outcomes of experiments.</p>
+<ul>
+<li>ex) Coin toss =&gt; cannot determine the outcome =&gt; by doing a large number of coin tosses =&gt; we can observe a regularity in the average outcome.</li>
+</ul>
+</li>
+<li>
+<p>Two major interpretations of probability</p>
+<ul>
+<li>Bayesian interpretation</li>
+<li>Frequentist interpretation</li>
+</ul>
+</li>
+<li>
+<p>Random Variable : is a function, is neither random nor is it a variable</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Section 6.2. Discrete and Continuous Probabilities</p>
+<ul>
+<li>Discrete Random Variables and Probability mass functions.</li>
+<li>Continuous Random Variables and Probability density functions.</li>
+</ul>
+</li>
+<li>
+<p>Section 6.3. Sum Rule, Product Rule, and Bayes&rsquo; Theorem</p>
+<ul>
+<li>
+<p>Sum Rule : Given the <strong>joint distribution</strong> $p(x,y)$, <strong>marginal distribution</strong> $p(x)$ is summation</p>
+<ul>
+<li>$p(x) = \sum_i p(x,y_i)$</li>
+</ul>
+</li>
+<li>
+<p>Product Rule : Given the <strong>joint distribution</strong> $p(x,y)$ is same with the product of <strong>conditional distribution</strong> $p(x|y)$ and marginal distribution $p(x)$</p>
+<ul>
+<li>$p(x, y) = p(y | x)p(x)= p(x | y)p(y)$</li>
+</ul>
+</li>
+<li>
+<p>Bayes&rsquo; Theorem</p>
+<ul>
+<li>$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>section 6.4. Summary Statistics and Independence</p>
+<ul>
+<li>
+<p>Summary Statistics : Mean, Variance, Covariance, Correlation</p>
+</li>
+<li>
+<p>Statistically Independent =&gt; $p(x,y) = p(x)p(y)$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>section 6.5. Gaussian Distribution</p>
+</li>
+<li>
+<p>section 6.6 Conjugacy and the Exponential Family</p>
+<ul>
+<li>Named Distrib. Bernoulli, Binomial, Beta distribution</li>
+</ul>
+</li>
+<li>
+<p>section 6.7, Change of Variables / Inverse Transform</p>
+<ul>
+<li>
+<p>Two approaches for obtaining distributions of transformations of random variables</p>
+<ul>
+<li>
+<p>Direct Approach : using the definition of a cumulative distribution function</p>
+</li>
+<li>
+<p>Change of variable approach : uses the chain rule of calculus</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -39,7 +39,7 @@
 <meta itemprop="name" content="Mathematcs for ML #10 | Dimensionality Reduction with PCA">
 <meta itemprop="description" content="10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7."><meta itemprop="datePublished" content="2022-10-13T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-10-13T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1638">
+<meta itemprop="wordCount" content="1754">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mathematcs for ML #10 | Dimensionality Reduction with PCA"/>
 <meta name="twitter:description" content="10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7."/>
@@ -226,7 +226,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -262,6 +262,13 @@
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -276,14 +283,14 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -304,7 +311,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -401,7 +408,7 @@
 <p><strong>Objective</strong> : is to find projections $\hat{x_n}$ of data points $x_n$ that are as similar to the original data points as possible, but which have a significantly lower intrinsic dimensionality.</p>
 </li>
 <li>
-<p><strong>Dataset</strong> : we consider an i.i.d. dataset $X = [x_1 , . . . , x_N], x_n ∈ \mathbb{R}^D,$ with mean 0</p>
+<p><strong>Dataset</strong> : we consider an i.i.d. dataset $X = [x_1 , . . . , x_N], x_n ∈ \mathbb{R}^D,$ with zero mean</p>
 <ul>
 <li>
 <p>possesses the data covariance matrix $S$ (6.42)</p>
@@ -432,7 +439,7 @@ $$</p>
 <p>We seek an M-dimensional subspace $U ⊆ \mathbb{R}^D,$ $dim(U)=M &lt; D $ onto which we project the data.</p>
 </li>
 <li>
-<p>We denote the projected data by $\hat{x}_n ∈ U,$ and their coordinates (with respect to the basis vectors $b_1,&hellip;,b_M$ of $U$ by $z_n. $</p>
+<p>We denote the projected data by $\hat{x}_n ∈ U,$ and their coordinates (with respect to the basis vectors $b_1,&hellip;,b_M$ of $U$ ) by $z_n. $</p>
 </li>
 <li>
 <p>Our aim is to find projections $ \hat{x_n} ∈ \mathbb{R}^D $ (or equivalently the codes $z_n$ and the basis vectors $b_1, . . . , b_M $) so that they are as similar to the original data $x_n$ and minimize the loss due to compression.</p>
@@ -448,9 +455,7 @@ $$</p>
 <ul>
 <li>We know that the variance is an indicator of the spread of the data, (Section 6.4.1),</li>
 <li>And we can derive PCA as a dimensionality reduction algorithm that maximizes the variance in the low-dimensional representation of the data to retain as much information as possible.</li>
-<li>Centered Data : the variance of the low-dimensional code does not depend on the
-mean of the data (eq 10.6) Therefore, we assume without loss of generality that the
-data has mean $0$.</li>
+<li>Centered Data : the variance of the low-dimensional code does not depend on the mean of the data (eq 10.6) Therefore, we assume without loss of generality that the data has mean $0$.</li>
 </ul>
 </li>
 </ul>
@@ -461,10 +466,10 @@ data has mean $0$.</li>
 <p>(1) Objective : maximize the variance $V_1$ of dataset projected onto single vector $b_1$</p>
 </li>
 <li>
-<p>(2) Variance $V_1$ : expectation of the squared deviation</p>
+<p>(2) Variance $V_1$ : expectation of the squared deviation $z_{1n}$</p>
 <ul>
 <li>
-<p>Deviation $z_{1n}$ : $b_1^⊤ x_n$ (section 3.8)</p>
+<p>$z_{1n}$ is coordinate of the orthogonal projection of $x_n$ onto the one-dim subspace spanned by $b_1$,   $z_{1n}$ = $b_1^⊤ x_n$ (section 3.8)</p>
 <p>$$
 V_1=\frac{1}{N} \sum z_{1n}^2 = \frac{1}{N} \sum b^⊤_1 x_n x_n^⊤ b_1 = b^⊤_1 (\frac{1}{N} \sum x_nx_n^⊤)b_1 = b^⊤_1 S b_1
 $$</p>
@@ -474,22 +479,30 @@ $$</p>
 <li>
 <p>(3) Maximize Variance :  solve the constrained optimization problem (section 7.2)</p>
 <ul>
-<li>by Setting the partial derivatives to 0, we see that $b_1$ should be an eigenvector of the data covariance matrix $S$</li>
+<li>by setting the partial derivatives to 0,  gives us the relations</li>
 </ul>
 <p>$$
 Sb_1 = λ_1 b_1
 $$</p>
 </li>
 <li>
-<p><strong>(4) Eigenvalue of Covariance Matrix</strong> : is same with the variance ($V_1$) of the data projected onto a 1D subspace spanned by $b_1$</p>
+<p><strong>(4) Eigenvalue of Covariance Matrix</strong> :</p>
+<ul>
+<li>
+<p>By comparing the above relations with the definition of an eigen-decomposition, we see that $b_1$ is an eigenvector of the data covmat $S$ and the Lagrange multiplier $\lambda_1$ plays the role of the corresponding eigenvalue</p>
+</li>
+<li>
+<p>i.e., the variance ($V_1$) of the data projected onto a 1D subspace equals the eigenvalue</p>
+</li>
+</ul>
 </li>
 </ul>
 <p>$$
-V_1 = b^⊤_1 S b_1 = b^⊤_1 λ_1 b_1 = λ_1
+V_1 = b^⊤_1 S b_1 =  λ_1 b^⊤_1 b_1 = λ_1
 $$</p>
 <ul>
 <li>
-<p><strong>(5) Principal Component</strong> : the basis vector associated with the largest eigenvalue of the data covariance matrix</p>
+<p><strong>(5) Principal Component</strong> :</p>
 <ul>
 <li>Therefore, to maximize the variance, we should find the basis vector associated with the largest eigenvalue (Principal Components), and then project given data onto them.</li>
 </ul>
@@ -513,7 +526,7 @@ $$</p>
 <h3 id="103-projection-perspective">10.3 Projection Perspective</h3>
 <ul>
 <li>
-<p>Introduction :Not something new, we will just derive PCA in another view point</p>
+<p>Introduction : Not something new, we will just derive PCA in another view point</p>
 <ul>
 <li>
 <p>In the previous section, we derived PCA by maximizing the variance in the projected space to retain as much information as possible.</p>
@@ -530,7 +543,7 @@ $$</p>
 <li>Objective : minimizing the average squared Euclidean distance between $x$ and $\tilde{x}_n$ (projection error)</li>
 </ul>
 <p>$$
-J_M := \frac{1}{N} \sum ∥ x_n − \tilde{x}_n∥^2
+J_M := \frac{1}{N} \sum | x_n − \tilde{x}_n | ^2
 $$</p>
 <ul>
 <li>Solution : To find the coordinates $z_n$ and the OrthoNormalBasis of the principal subspace, we follow a two-step approach
@@ -591,10 +604,10 @@ $$</p>
 <p>To get the eigenvalues (and the corresponding eigenvectors) of covmat</p>
 <ul>
 <li>
-<p>We perform an eigendecomposition (see Section 4.2)</p>
+<p>We perform an eigendecomposition (see Section 4.2) : and compute the eigenvalues and eigenvectors of $S$ directly</p>
 </li>
 <li>
-<p>We use a singular value decomposition (see Section 4.5)</p>
+<p>We use a singular value decomposition (see Section 4.5) : Since $S$ is symmetric and factorizes into $XX^T$, the eigenvalues of $S$ are the squared singular values of $X$</p>
 </li>
 </ul>
 </li>
@@ -646,8 +659,8 @@ $$</p>
 <p><strong>Introduction</strong> : In the following, we provide a solution to the problem for the case that we have substantially fewer data points than dimensions</p>
 <ul>
 <li>The number of data $N$ is smaller than the dimension of the data $D$.</li>
-<li>The rank of the covmat is $N$, $S$ has $D-N+1$ eigenvalues are zero.</li>
-<li>We will exploit this and turn the $D×D$ covariance matrix into an $N × N$ covariance matrix whose eigenvalues are all positive.</li>
+<li>The rank of the covmat is $N$, Covmat $S$ has $D-N+1$ eigenvalues that are zero.</li>
+<li>We will turn the $D×D$ covariance matrix into an $N × N$ covariance matrix whose eigenvalues are all positive.</li>
 </ul>
 </li>
 <li>
@@ -658,21 +671,44 @@ $$</p>
 <hr>
 <h3 id="106-key-steps-of-pca-in-practice">10.6 Key Steps of PCA in Practice</h3>
 <ul>
-<li><strong>Introduction</strong> : n the following, we will go through the individual steps of PCA using a running example, which is summarized in Figure 10.11</li>
+<li><strong>Introduction</strong> : In the following, we will go through the individual steps of PCA using a running example, which is summarized in Figure 10.11</li>
 <li><strong>(1) Mean Subtraction</strong> : centering the data by computing the mean and subtracting it from every single data point =&gt; dataset has zero-mean</li>
 <li><strong>(2) Standardization</strong> : Divide the datapoints by the standard deviation $σ_d$ of the dataset for every dimension.</li>
 <li><strong>(3) Eigendecomposition of the covariance matrix</strong> : Compute the data covariance matrix and its eigenvalues and corresponding eigenvectors</li>
 <li><strong>(4) Projection</strong> : We can project any data point $x_∗ ∈ R^D$ onto the principal subspace</li>
 </ul>
 <p style="text-align: center;">
-<img class="post-fig" width="80%" align="center" src="/figures/2022-07-15-fig1.png"></p>
+<img class="post-fig" width="60%" align="center" src="/figures/2022-07-15-fig1.png"></p>
 <center><i>Fig10.11 Steps of PCA</i></center>
 <br>
 <hr>
 <h3 id="107-latent-variable-perspective">10.7 Latent Variable Perspective</h3>
 <ul>
-<li><strong>Introduction</strong> : In the previous sections, we derived PCA without any notion of a probabilistic model</li>
-<li><strong>Probabilistic PCA</strong> : By introducing a continuous-valued latent variable $z ∈ R^M$ it is possible to phrase PCA as a probabilistic latent-variable model (skip details)</li>
+<li>
+<p><strong>Introduction</strong> :</p>
+<ul>
+<li>
+<p>In the previous sections, we derived PCA without any notion of a probabilistic model</p>
+</li>
+<li>
+<p>A probabilistic model would offer us more flexibility and useful insights. More specifically, a probabilistic model would</p>
+<ul>
+<li>
+<p>Come with a likelihood function, and we can explicitly deal with noisy observations ( which we did not even discuss earlier)</p>
+</li>
+<li>
+<p>View PCA as a generative model, which allows us to simulate new data</p>
+</li>
+<li>
+<p>Have the PCA we derived in earlier sections as a special case</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Probabilistic PCA</strong> : By introducing a continuous-valued latent variable $z ∈ R^M$ it is possible to phrase PCA as a probabilistic latent-variable model (skip details)</p>
+</li>
 </ul>
 <br>
 <hr>
@@ -682,19 +718,19 @@ $$</p>
 <p>In this chapter, we will discuss principal component analysis, an algorithm for linear dimensionality reduction</p>
 </li>
 <li>
-<p>Section 10.1, Problem Setting</p>
+<p>Section 10.1, Problem Setting</p>
 <ul>
 <li>Our objective is to find projections $\hat{x_n}$ of data points $x_n$ that are as similar to the original data points as possible, but which have a significantly lower intrinsic dimensionality.</li>
 </ul>
 </li>
 <li>
-<p>Section 10.2, Maximum Variance Perspective</p>
+<p>Section 10.2, Perspective1) Maximum Variance Perspective</p>
 <ul>
 <li>
-<p>We saw PCA as a way of dim-reduction that results in the largest variance after projection</p>
+<p>PCA as a way of dim-reduction that results in the largest variance after projection</p>
 <ul>
 <li>
-<p>the variance of projected vectors are same with the eigenvalue of covariance matrix</p>
+<p><strong>the variance of projected vectors are same with the eigenvalue of covariance matrix</strong></p>
 </li>
 <li>
 <p>So we can find the best basis vector to project by choose the vector whose eigenvalue is the largest</p>
@@ -704,7 +740,7 @@ $$</p>
 </ul>
 </li>
 <li>
-<p>Section 10.3, Projection Perspective</p>
+<p>Section 10.3, Perspective2) Projection Perspective</p>
 <ul>
 <li>
 <p>We looked at the difference vectors between the original data $x_n$ and their projection $\tilde{x}_n$ and minimize this distance so that $x_n$ and $\tilde{x}_n$ are as close as possible.</p>
@@ -722,13 +758,13 @@ $$</p>
 <li>
 <p>Section 10.4, Eigenvector Computation and Low-Rank Approximations</p>
 <ul>
-<li>We saw computational efficient ways to find Eigenvector in practical aspect.</li>
+<li>Computational efficient ways to find Eigenvector in practical aspect.</li>
 </ul>
 </li>
 <li>
 <p>Section 10.5, PCA in high dimensions</p>
 <ul>
-<li>We provided a solution to the problem for the case that we have substantially fewer data points than dimensions</li>
+<li>A solution to the problem for the case that we have substantially fewer data points than dimensions</li>
 </ul>
 </li>
 <li>
@@ -751,7 +787,7 @@ $$</p>
 <li>
 <p>section 10.7, Latent Variable Perspective</p>
 <ul>
-<li>We saw PCA as probabilistic latent-variable model</li>
+<li>PCA as probabilistic latent-variable model</li>
 </ul>
 </li>
 </ul>

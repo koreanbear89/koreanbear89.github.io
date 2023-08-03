@@ -5,10 +5,45 @@
     <link>https://koreanbear89.github.io/categories/</link>
     <description>Recent content in Categories on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 06 Feb 2023 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Mar 2023 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Effective Python | #3 Functions</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</guid>
+      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
+Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
+They can eliminate noise and clarify the intention of callers.
+They can significantly reduce subtle bugs that are difficult to find.
+Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #2 Lists and Dictionaries</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</guid>
+      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
+A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
+Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #1 Pythonic Thinking</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</guid>
+      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.</description>
+    </item>
     
     <item>
       <title>CheatSheet | GlusterFS</title>
@@ -16,16 +51,7 @@
       <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
-      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 pgsca2x0350:/home1/irteam/whome/__oss/gs_pvs pgsca2x0351:/home1/irteam/whome/__oss/gs_pvs pgsca2x0352:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
-    </item>
-    
-    <item>
-      <title>MLCV #13 | Multimodal Representation</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
-      <pubDate>Tue, 07 Dec 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
-      <description>Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision. Methods Extract feature representations of each modality (image, text)</description>
+      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
     </item>
     
     <item>
@@ -45,8 +71,7 @@ $ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Ope
       <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
-      <description>
-1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme </description>
+      <description>1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme Add conda environment to jupyter # Create conda environment $ conda create --name &amp;quot;myenv&amp;quot; python=3.</description>
     </item>
     
     <item>
@@ -92,11 +117,11 @@ HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HO
     </item>
     
     <item>
-      <title>Python #3 | 3rd-Party Modules</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-3-3rd-party-modules/</link>
+      <title>Python #5 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</link>
       <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-3-3rd-party-modules/</guid>
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</guid>
       <description>Introduction Matplotlib Interface
 pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
 object-oriented interface : Explicitly create figures and axes, and call methods on them
@@ -122,7 +147,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</guid>
       <description>Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -147,7 +172,7 @@ Hadoop YARN : A framework for job scheduling and cluster resource management</de
     </item>
     
     <item>
-      <title>Cheat Sheet | VIM</title>
+      <title>CheatSheet | VIM</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</link>
       <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
       
@@ -207,29 +232,6 @@ install plugins in vimrc
       
       <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
       <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
-    </item>
-    
-    <item>
-      <title>Linear Algebra for ML #1 | Introductions </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
-      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
-      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
-Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
-Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
-Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
-    </item>
-    
-    <item>
-      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
-      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
-      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
-Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
-If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
     </item>
     
   </channel>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CheatSheet | pyTorch - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch." />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>CheatSheet | pyTorch - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="CheatSheet | pyTorch" />
+<meta property="og:description" content="Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2018-11-04T09:00:00+00:00" />
+<meta property="article:modified_time" content="2018-11-04T09:00:00+00:00" />
+
+<meta itemprop="name" content="CheatSheet | pyTorch">
+<meta itemprop="description" content="Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch."><meta itemprop="datePublished" content="2018-11-04T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-11-04T09:00:00+00:00" />
+<meta itemprop="wordCount" content="307">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CheatSheet | pyTorch"/>
+<meta name="twitter:description" content="Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">20</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/1.-cheatsheets/cheatsheet-pytorch/"
+    >CheatSheet | pyTorch</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/" class="article-date">
+  <time datetime="2018-11-04 09:00:00 &#43;0000 UTC" itemprop="datePublished">2018-11-04</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-system-design/"> 3. System Design </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/1.-cheatsheets/cheatsheet-pytorch/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ol>
+<li>
+<p>Dataset</p>
+</li>
+<li>
+<p>Data loader</p>
+</li>
+<li>
+<p>Model</p>
+</li>
+<li>
+<p>Train</p>
+</li>
+<li>
+<p>Data Parallelism</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="1-dataset">1. Dataset</h2>
+<ul>
+<li>TODO</li>
+</ul>
+<pre><code class="language-python">import torch.utils.data as data_utl
+
+class Dataset(data_utl.Dataset):
+    def __init_(self):
+        # Read data and preprocess input features with labels
+        self.features = []
+        self.labels = []
+
+    def __len__(self):
+        return len(self.labels)
+
+    def __getitem__(self, idx):
+        return self.features[idx], self.labels[idx]
+</code></pre>
+<br>
+<hr>
+<h2 id="2-dataloader">2. DataLoader</h2>
+<ul>
+<li>TODO</li>
+</ul>
+<pre><code class="language-python"># Create Dataset using torch.utils.data.Dataset
+dataset = dataset.Dataset()
+# Split Dataset into train and validation set
+num_train = int(len(dataset) * 0.9)
+train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train])
+# train_loader, val_loader
+batch_size = 192 * torch.cuda.device_count() # batch will be divided by the number of gpus 
+train_loader = DataLoader(train_set, batch_size, shuffle=True)
+val_loader = DataLoader(val_set, batch_size, shuffle=True)
+</code></pre>
+<br>
+<hr>
+<h2 id="3-model">3. Model</h2>
+<ul>
+<li>Simple Linear Classifier</li>
+</ul>
+<pre><code class="language-python">import torch.nn as nn
+import torch.nn.functional as F
+
+class Classifier(nn.Module):
+    def __init__(self, num_classes):
+        super(SenBert_Classifier, self).__init__()
+        self.fc1 = nn.Linear(256, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(128, 64)
+        self.fc4 = nn.Linear(64, 32)
+        self.fc5 = nn.Linear(32, num_classes)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.relu(self.fc3(x))
+        x = F.relu(self.fc4(x))
+        x = self.fc5(x)
+        return x
+</code></pre>
+<br>
+<hr>
+<h2 id="4-train">4. Train</h2>
+<ul>
+<li>TODO</li>
+</ul>
+<pre><code class="language-python">device = &quot;cuda&quot;
+
+# Setup Model
+model = senbcls.SenBert_Classifier(num_classes=len(config.CATEGORY_PRED1))
+if torch.cuda.device_count() &gt; 1:
+    model = torch.nn.DataParallel(model)
+model.to(device)
+model.train()
+
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
+for epoch in range(config.TRAIN_EPOCHS):
+    # train model
+    start = time.time()
+    for step, batch in enumerate(train_loader):
+        inputs, labels = batch 
+        inputs, labels = inputs.to(device), labels.to(device)
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+</code></pre>
+<br>
+<hr>
+<h2 id="5-data-parallelism">5. Data Parallelism</h2>
+<ul>
+<li>
+<p><code>nn.DataParallel</code> : You can simply use multiple gpus with <code>nn.DataParallel</code> that processes followings :</p>
+<ol>
+<li>
+<p><code>nn.parallel.replicate(module, device_ids)</code> : your model is replicated on each device</p>
+</li>
+<li>
+<p><code>nn.parallel.scatter(input, device_ids)</code> : batch size in your dataloader will be devided into num_gpu =&gt; batch_size/num_gpu</p>
+</li>
+<li>
+<p><code>nn.parallel.gather(outputs, output_device)</code>: gathering outputs from replicated models on each device</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-python">device = torch.device(&quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;)
+model = myModel()
+# multiple gpus =&gt; model to DataParallel
+if torch.cuda.device_count() &gt; 1:
+    model = torch.nn.DataParallel(model)
+model.to(device)
+</code></pre>
+<ul>
+<li>
+<p>References :</p>
+<ul>
+<li><a href="https://kongsberg.tistory.com/7">pytorch Distributed DataParallel</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

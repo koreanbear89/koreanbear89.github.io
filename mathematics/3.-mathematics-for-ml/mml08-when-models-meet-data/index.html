@@ -45,7 +45,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
 The second part of the book introduces four pillars of machine learning:
 Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation (Chapter 11) Classification (Chapter 12) 8.1 Data, Models, and Learning Three major components of a machine learning system: data, models, and learning. Good models : should perform well on unseen data."><meta itemprop="datePublished" content="2022-08-13T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-08-13T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1581">
+<meta itemprop="wordCount" content="1842">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mathematics for ML #8 | Introduction Part.II"/>
 <meta name="twitter:description" content="8. When Models Meet Data In the first part of the book, we introduced the mathematics that form the foundations of many machine learning methods
@@ -234,7 +234,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -262,7 +262,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -270,6 +270,13 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -284,14 +291,14 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -312,7 +319,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -400,7 +407,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
 <hr>
 <h3 id="81-data-models-and-learning">8.1 Data, Models, and Learning</h3>
 <ul>
-<li>Three major components of a machine learning system: data, models, and learning.</li>
+<li>Three major components of a machine learning system: <strong>data</strong>, <strong>models</strong>, and <strong>learning</strong>.</li>
 <li>Good models : should perform well on unseen data.</li>
 <li>There are two different senses in which we use the phrase “machine learning algorithm”: training and prediction.</li>
 </ul>
@@ -442,7 +449,7 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
 <p><strong>8.2.1 Hypothesis Class of Functions</strong></p>
 <ul>
 <li>
-<p>For given data, we would like to estimate a predictor $f(·,θ):RD →R$, parametrized by $θ$. We hope to be able to find a good parameter $θ^∗$ such that we fit the data well, that is,</p>
+<p>For given data, we would like to estimate a predictor $f(·,θ):R^D →R$, parametrized by $θ$. We hope to be able to find a good parameter $θ^∗$ such that we fit the data well, that is,</p>
 <p>$$
 f(x_n,θ^∗) ≈ y_n \text{ for all } n = 1,&hellip;,N.
 $$</p>
@@ -469,14 +476,18 @@ $$</p>
 <ul>
 <li>The aim of training a ML predictor is so that we can perform well on unseen data</li>
 <li>Overfitting : the predictor fits too closely to the training data and does not generalize well to new data</li>
-<li>Regularization : introduce a penalty term that makes it harder for the optimizer to return an overly flexible predictor</li>
+<li>Regularization : introduce a penalty term that makes it harder for the optimizer to return an overly flexible predictor
+<ul>
+<li>The simplest regularization strategy is to replace the least-squares problem with the regularized problem by adding a penalty term</li>
+</ul>
+</li>
 </ul>
 <p>$$
-\text{min}_θ \frac{1}{N}∥y − Xθ∥^2  \rightarrow  \text{min}_θ \frac{1}{N}∥y − Xθ∥^2 + λ∥θ∥^2
+\text{min}_θ \frac{1}{N}∥y − Xθ∥^2  \rightarrow  \text{min}_θ \frac{1}{N}∥y − Xθ∥^2 + {λ∥θ∥}^2
 $$</p>
 <p><strong>8.2.4 Cross-Validation to Assess the Generalization Performance</strong></p>
 <ul>
-<li>partitions the data into K chunks, K-1 of which form the trainig set, and the last chunk serves as the validation set.</li>
+<li>Partitions the data into $K$ chunks, $K-1$ of which form the trainig set, and the last chunk serves as the validation set.</li>
 <li>We cycle through all possible partitionings of validation and training sets and compute the average generalization error of the predictor</li>
 </ul>
 <br>
@@ -489,37 +500,51 @@ $$</p>
 <p><strong>8.3.1 Maximum Likelihood Estimation</strong></p>
 <ul>
 <li>
-<p>The idea behind MLE is to define a function of the parameters that enables us to find a model that fits the data well.</p>
+<p>The idea behind MLE is to define a function of the params that enables us to find a model that fits the data well.</p>
 </li>
 <li>
 <p>Negative log-likelihood for data represented by a random variable $x$ and a family of probability densities $p(x|θ)$ is given by :</p>
 <ul>
 <li>The notation $L_x(θ)$ emphasizes the fact that the parameter $θ$ is varying and the data $x$ is fixed.</li>
-<li>to find a good parameter vector $θ$ that explains the data well, minimize the negative log-likelihood $L(θ)$ with respect to $θ$.</li>
+<li>To find a good parameter vector $θ$ that explains the data well, minimize the negative log-likelihood $L(θ)$ with respect to $θ$.</li>
 </ul>
 <p>$$
 L_x(\theta) = −logp(x|θ)
 $$</p>
 </li>
 <li>
-<p>Minimizing NLL $L(θ)$ of Gaussian, corresponds to solving the least-squares problem (example 8.5)</p>
+<p>Minimizing Neg Log Likelihood $L(θ)$ of Gaussian, corresponds to solving the least-squares problem (below)</p>
+<ul>
+<li>Detail explains : We decided to use Gaussian Distrib to represent given dataset $x_n$, find good param $\theta$ by minimizing Negative Log Likelihood
+<ul>
+<li>Log : We use log due to the exp term in Gaussian</li>
+<li>Negative : We use negative because of negative in exp  term in Gaussian</li>
+</ul>
+</li>
+<li>Likelihood and Posterior : details in section 6.3</li>
+</ul>
 </li>
 </ul>
-<blockquote>
-<p>Likelihood detail in section 6.3</p>
-</blockquote>
+<p style="text-align: center;">
+    <img width="70%" src="/figures/20220813-fig1.png">
+</p>
 <br>
 <p><strong>8.3.2 Maximum A Posteriori Estimaion</strong></p>
 <ul>
-<li>If we have prior knowledge about the distribution of the parameters θ, we can multiply an additional term to the likelihood.
-<ul>
-<li>using Bayes&rsquo; theorem (6.3) we can compute a posterior distbution $p(θ|x)$, with prior distribution $p(\theta)$, and likelihood $p(x|θ)$</li>
-</ul>
+<li>
+<p>If we have prior knowledge about the distribution of the parameters θ, we can multiply an additional term to the likelihood.</p>
+</li>
+<li>
+<p>Using Bayes&rsquo; theorem (6.3) we can compute a posterior distbution $p(θ|x)$, with prior distribution $p(\theta)$, and likelihood $p(x|θ)$</p>
 </li>
 </ul>
 <p>$$
-p(θ|x) = p(x|θ)p(θ) / p(x)
+p(θ|x) ∝p(x|θ)p(θ)
 $$</p>
+<ul>
+<li>Instead of estimating the minimum NLL, we now estimate minimum of the negative log-posterior : Maximum a posteriori estimation</li>
+<li>Including prior knowledge =&gt; regularization, which introduces an additional  term that biases the resulting parameters to be close to the origin.</li>
+</ul>
 <br>
 <p><strong>8.3.3 Model Fitting</strong></p>
 <ul>
@@ -534,7 +559,7 @@ $$</p>
 <ul>
 <li>A coin-flip experiment can be described in two steps,
 <ul>
-<li>(1), we define a parameter μ, which describes the probability of “heads” as the parameter of a Bernoulli distribution</li>
+<li>(1) we define a parameter μ, which describes the probability of “heads” as the parameter of a Bernoulli distribution</li>
 <li>(2) we can sample an outcome x ∈ {head, tail} from the Bernoulli distribution $p(x | μ) = Ber(μ)$</li>
 </ul>
 </li>
@@ -546,35 +571,72 @@ $$</p>
 <p><strong>8.4.1 Probabilistic Models</strong></p>
 <ul>
 <li>Probabilistic models represent the uncertain aspects of an experiment as probability distributions.</li>
-<li>Only the joint distribution has this property. Therefore, a probabilistic model is specified by the joint distribution of all its random variables
+<li>In probabilistic modeling, the joint distribution $p(x, θ)$ of the observed variables $x$ and the hidden parameters $θ$ is of central importance: It encapsulates information from the following:
 <ul>
 <li>The prior and the likelihood (product rule, Section 6.3)</li>
 <li>The marginal likelihood p(x), which will play an important role in model selection (Section 8.6), can be computed by taking the joint distribution and integrating out the parameters (sum rule, Section 6.3)</li>
 <li>The posterior, which can be obtained by dividing the joint by the marginal likelihood.</li>
 </ul>
 </li>
+<li>Only the joint distribution has this property. Therefore, a probabilistic model is specified by the joint distribution of all its random variables.</li>
 </ul>
 <br>
 <p><strong>8.4.2 Bayesian Inference</strong></p>
 <ul>
 <li>
-<p>In Section 8.3.1, we already discussed two ways for estimating model parameters θ using maximum likelihood or maximum a posteriori estimation.</p>
+<p>Bayesian Inference</p>
+<ul>
+<li>
+<p>In Section 8.3.1, we already discussed two ways for estimating model parameters θ using <strong>maximum likelihood</strong> or <strong>maximum a posteriori</strong> estimation.</p>
 </li>
 <li>
-<p>Once these point estimates θ* are known, we use them to make predictions. More specifically, the predictive distribution will be p(x | θ*), where we use θ* in the likelihood function.</p>
+<p>Once these point estimates $θ^<em>$ are known, we use them to make predictions. More specifically, the predictive distribution will be $p(x | θ^</em>)$, where we use $θ^*$ in the likelihood function.</p>
 </li>
 <li>
 <p>Having the full posterior distribution around can be extremely useful and leads to more robust decisions.</p>
-<p>=&gt; Bayesian inference is about finding this posterior distribution</p>
+<ul>
+<li>
+<p>Bayesian inference is about finding this posterior distribution</p>
 </li>
 <li>
-<p>The key idea is to exploit Bayes’ theorem to invert the relationship between the parameters θ and the data X (given by the likelihood) to obtain the posterior distribution p(θ | X ).</p>
+<p>$p(\theta|X) = \frac{P(X|\theta) p(\theta) }{p(X)}, p(X) = \int{ p(x|\theta) p(\theta) d \theta}$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The key idea is to exploit Bayes’ theorem to invert the relationship between the parameters $θ$ and the data $X$  (given by the likelihood) to obtain the posterior distribution $p(θ | X )$.</p>
+</li>
+<li>
+<p>More specifically, with a distribution p(θ) on the parameters our
+predictions will be no longer depend on the model param $\theta$, which have been marginalized/integated out.</p>
+<ul>
+<li>$p(x) = \int p(x | θ)p(θ)dθ$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Parameter Estimation (MLE, MAP)  vs Bayesian Inference</p>
+<ul>
+<li>
+<p>Param estimation : yields a consistent point $\theta^*$ of the parameters</p>
+<ul>
+<li>the key computational problem to be solved is optimization</li>
+</ul>
+</li>
+<li>
+<p>Bayesian Inference : yields a (posterior) distribution</p>
+<ul>
+<li>the key computational problem to be solved is integration</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <br>
 <p><strong>8.4.3 Latent Variable Models</strong></p>
 <ul>
-<li>In practice, it is sometimes useful to have additional latent variables z (besides the model parameters θ) as part of the model.</li>
+<li>In practice, it is sometimes useful to have additional latent variables $z$ (besides the model parameters $θ$) as part of the model.</li>
 <li>Latent variables may describe the data-generating process, thereby contributing to the interpretability of the model.</li>
 <li>The conditional distribution $p(x | θ,z)$ allows us to generate data for any model parameters and latent variables.</li>
 </ul>
@@ -597,7 +659,17 @@ $$</p>
 <li>Complex computations for inference and learning in statistical models can be expressed in terms of graphical manipulations.</li>
 </ul>
 </li>
+<li>Ex) The arrow between a and b in Figure 8.9(a) gives the conditional probability $p(b|a) $,
+<ul>
+<li>c depends directly on a and b.</li>
+<li>b depends directly on a.</li>
+<li>a depends neither on b nor on c.</li>
 </ul>
+</li>
+</ul>
+<p style="text-align: center;">
+    <img width="70%" src="/figures/20220813-fig2.png">
+</p>
 <br>
 <hr>
 <h3 id="86-model-selection">8.6 Model Selection</h3>
@@ -618,32 +690,38 @@ $$</p>
 <li>In this chapter, We will see how ML algorithms work from a mathematical point of view.</li>
 <li>Section 8.1, Data, Model, Learning
 <ul>
-<li>We saw the three main components of ML algorithm : Data, Model, Learning</li>
+<li>Three main components of ML algorithm : Data, Model, Learning
+<ul>
+<li>Data as vectors</li>
+<li>Models as Funtions or Probability Distrib</li>
+<li>Learning is Finding Parameters</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Section 8.2, Empirical Risk Minimization
 <ul>
-<li>We learned about the perspective of seeing ML model as a functional optimization
+<li>ML model as a functional optimization
 <ul>
-<li>Loss Function (ex. MSE =&gt; Least Square Problem)</li>
-<li>Regularization, additional penalty term in loss function</li>
+<li>Loss Function : Empirical Risk Minimization (ex. MSE =&gt; Least Square Problem)</li>
+<li>Regularization : additional penalty term in loss function</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Section 8.3, Parameter Estimation
+<li><strong>Section 8.3, Parameter Estimation</strong>
 <ul>
-<li>We learned about the parameter estimation of data distribution in terms of ML model training.
+<li>Parameter estimation of data distribution (in terms of ML model training)
 <ul>
-<li>Likelihood (loss function)</li>
-<li>prior (regularization term)</li>
+<li>Likelihood (as loss function)</li>
+<li>Prior (as regularization term)</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Section 8.4 Probabilistic Modeling and Inference
+<li><strong>Section 8.4 Probabilistic Modeling and Inference</strong>
 <ul>
-<li>We learned about the Bayesian inference in terms of ML Model inference</li>
+<li>Bayesian Inference  : yields a (posterior) distribution</li>
 </ul>
 </li>
 <li>Section 8.5 Directed Graphical Models

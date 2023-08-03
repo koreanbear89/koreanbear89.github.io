@@ -45,7 +45,7 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
 A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
 Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index."><meta itemprop="datePublished" content="2023-01-25T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-01-25T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1041">
+<meta itemprop="wordCount" content="1054">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Effective Python | #2 Lists and Dictionaries"/>
 <meta name="twitter:description" content="Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
@@ -234,7 +234,7 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -262,7 +262,7 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -270,6 +270,13 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -284,14 +291,14 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -312,7 +319,7 @@ Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t s
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -526,7 +533,7 @@ counters[key] = count + 1
 </code></pre>
 <br>
 <hr>
-<h2 id="item17-prefer-defaultdict-over-setdefault-to-handle-missing-items-in-internal-state">Item17. Prefer defaultdict Over setdefault to Handle Missing Items in Internal State</h2>
+<h2 id="item17-prefer-defaultdict-over-setdefault-to-handle-missing-items-in-internal-state">Item17. Prefer <code>defaultdict</code> Over <code>setdefault</code> to Handle Missing Items in Internal State</h2>
 <ol>
 <li>
 <p>If you’re creating a dictionary to manage an arbitrary set of potential keys, then you should prefer using a <code>defaultdict</code> instance from the collections built-in module if it suits your problem.</p>
@@ -535,7 +542,7 @@ counters[key] = count + 1
 <p>If a dictionary of arbitrary keys is passed to you, and you don’t control its creation, then you should prefer the get method to access its items. However, it’s worth considering using the <code>setdefault</code> method for the few situations in which it leads to shorter code.</p>
 </li>
 </ol>
-<pre><code class="language-python"># before : using &quot;in&quot; expression
+<pre><code class="language-python"># before : Define funtion to count number of each alphabetical letter using &quot;in&quot; expression
 def countLetters(word):
     counter = {}
     for letter in word:
@@ -553,7 +560,7 @@ def countLetters(word):
         counter[letter] += 1
     return counter
 
-# after2 : using collections.defaultdict
+# after2 : using collections.defaultdict =&gt; int() returns 0 
 from collections import defaultdict
 def countLetters(word):
     counter = defaultdict(int)

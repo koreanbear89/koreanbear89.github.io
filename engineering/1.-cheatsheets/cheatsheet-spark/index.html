@@ -48,7 +48,7 @@ Job : A piece of code that reads some input (HDFS or local), performs some compu
 Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
 Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine)."><meta itemprop="datePublished" content="2020-12-11T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-12-11T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1110">
+<meta itemprop="wordCount" content="1292">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Spark"/>
 <meta name="twitter:description" content="1. Introduction 1.1 Terminologies
@@ -238,7 +238,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -266,7 +266,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -274,6 +274,13 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -288,14 +295,14 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -316,7 +323,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -519,7 +526,7 @@ mv spark-3.0.1-bin-hadoop2.7 ~/spark
 </li>
 <li>
 <p><strong>2.4 Change the execution path for pyspark</strong></p>
-<pre><code class="language-bash">  export SPARK_HOME=&quot;/your_home_directory/spark/&quot;
+<pre><code class="language-bash">export SPARK_HOME=&quot;/your_home_directory/spark/&quot;
 export PATH=&quot;$SPARK_HOME/bin:$PATH&quot;
 </code></pre>
 </li>
@@ -623,7 +630,17 @@ df.coalesce(1).write.csv(&quot;sample.csv&quot;)
 <li>Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise</li>
 <li>Right join : performs the same task as the left join, but for the right table.</li>
 </ul>
-<pre><code class="language-python">df1.join(df2, on='column', how='inner')
+<pre><code class="language-python"># Use union, if scheme of dfs are same.
+df1.join(df2, on='column', how='inner')
+</code></pre>
+<pre><code class="language-python"># Drop duplicate rows using dropDuplicates(), otherwise df_new will also have duplicate rows
+df2 = df2.dropDuplicates(([&quot;KEY&quot;, &quot;UID&quot;])) # rows with same KEY but diff UID will remain
+
+# update df1 with df2 using outer join
+cols = [&quot;DOC_TITLE&quot;, &quot;CHANNEL_NAME&quot;, &quot;CHANNEL_PC_URL&quot;, &quot;VIDEO_THUMBNAIL&quot;, &quot;MODIFY_DATE&quot;, &quot;INFER_DATE&quot;]
+df_new = df.alias(&quot;a&quot;)
+           .join(df2.alias(&quot;b&quot;), [&quot;KEY&quot;, &quot;UID&quot;], how=&quot;outer&quot;)
+           .select(&quot;KEY&quot;,&quot;UID&quot;, *(F.coalesce(&quot;b.&quot; + col, &quot;a.&quot; + col).alias(col) for col in cols))
 </code></pre>
 <br>
 <h3 id="34-sql-functions">3.4 SQL functions</h3>
@@ -664,6 +681,43 @@ def show(p):
     print(&quot;%html &lt;div style='width:400px'&gt;&quot; + img.getvalue() + &quot;&lt;/div&gt;&quot;)
 </code></pre>
 <br>
+<hr>
+<h2 id="4-submit-pyspark">4. Submit Pyspark</h2>
+<pre><code class="language-bash">PYSPARK_PYTHON=python3 spark-submit \
+    --master local[*] \
+    --executor-memory 20g \
+    --driver-java-options &quot;-XX:-OmitStackTraceInFastThrow&quot; \
+    --conf spark.driver.memory=20g \
+    --conf spark.driver.maxResultSize=5g \
+    --conf spark.executor.memoryOverhead=4096 \
+    --conf spark.rpc.timeout=6000s \
+    --conf spark.eventLog.enabled=true \
+    /opt/dump/src/download_channel.py \
+</code></pre>
+<pre><code class="language-bash">PYSPARK_PYTHON=python3 spark-submit \    --name ${JOB_NAME} \
+    --master yarn \ 
+    # --master local[*] \ #to use local machine
+    --deploy-mode cluster \
+    --num-executors 200 \
+    --executor-cores 1 \
+    --executor-memory 2g \ # &lt;20g
+    --driver-java-options &quot;-XX:-OmitStackTraceInFastThrow&quot; \
+    --conf spark.driver.memory=4g \ # &lt;20g
+    --conf spark.eventLog.enabled=true \
+    --conf spark.eventLog.dir=hdfs://user/${USERNAME}/spark2-history/ \
+    --conf spark.executor.memoryOverhead=4096 \
+    --conf spark.executorEnv.YARN_CONTAINER_RUNTIME_TYPE=docker \
+    --conf spark.executorEnv.YARN_CONTAINER_RUNTIME_DOCKER_IMAGE=${DOCKER_IMAGE} \
+    --conf spark.executorEnv.JAVA_HOME=/usr/jdk64/jdk1.8.0_112 \
+    --conf spark.yarn.queue=batch \
+    --conf spark.yarn.maxAppAttempts=1 \
+    --conf spark.yarn.appMasterEnv.YARN_CONTAINER_RUNTIME_TYPE=docker \
+    --conf spark.yarn.appMasterEnv.YARN_CONTAINER_RUNTIME_DOCKER_IMAGE=${DOCKER_IMAGE} \
+    --conf spark.yarn.appMasterEnv.JAVA_HOME=/usr/jdk64/jdk1.8.0_112 \
+    --conf spark.yarn.keytab=${KEYTAB} \
+    --conf spark.yarn.principal=${C3S_PRINCIPAL} \
+    pyspark_entrypoint.py \
+</code></pre>
 <hr>
 <h2 id="references">References</h2>
 <ul>

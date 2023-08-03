@@ -5,10 +5,128 @@
     <link>https://koreanbear89.github.io/categories/3.-system-design/</link>
     <description>Recent content in 3. System Design on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 01 Aug 2022 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Nov 2018 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Effective Python | #3 Functions</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</guid>
+      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
+Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
+They can eliminate noise and clarify the intention of callers.
+They can significantly reduce subtle bugs that are difficult to find.
+Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #2 Lists and Dictionaries</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</guid>
+      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
+A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
+Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python | #1 Pythonic Thinking</title>
+      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</guid>
+      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
+      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
+    </item>
+    
+    <item>
+      <title>Shell | Snippet </title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</guid>
+      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
+/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
+$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
+      <description>1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme Add conda environment to jupyter # Create conda environment $ conda create --name &amp;quot;myenv&amp;quot; python=3.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Regex</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
+      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</guid>
+      <description>Introduction Nginx : light-weight Web server
+generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
+Proxy server : is a server that acts as an intermediary between a client and the server
+Load balancing : Proxies distribute requests to a group of servers,
+Encryption : Proxies encrypt the data to keep it from being read during transfer.
+Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
+    </item>
+    
+    <item>
+      <title>HTML | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
+      <description>
+HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python #5 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</guid>
+      <description>Introduction Matplotlib Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+    </item>
     
     <item>
       <title>CheatSheet | Spark</title>
@@ -29,7 +147,7 @@ Tasks : Each stage has some tasks. One task is executed on one partition of data
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</guid>
       <description>Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -40,36 +158,21 @@ swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker
     </item>
     
     <item>
-      <title>CheatSheet | Git</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</link>
-      <pubDate>Tue, 29 Sep 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</guid>
-      <description>Introduction Pull Request Summary
-Fork repo to your own repo
-clone, set remote
-git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
-git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
-git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
-Code Review
-Merge
-Squash and Merge : squash multiple commits into a new commit
-Rebase and Merge : multiple commits will be merged
-1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | HDFS</title>
+      <title>CheatSheet | Hadoop</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</link>
       <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</guid>
-      <description>
-1. HDFS $ hdfs dfs -ls $ hdfs dfs -put [LOCAL_FILE_NAME] [DEST] $ hdfs dfs -get [FILE_NAME or FOLDER_PATH] $ hdfs dfs -rm [-f] [-r|-R] [-skipTrash] URI [URI ...] </description>
+      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
+Based on Java
+Save data in Google File System (2003) and process this big data with Map Reduce (2004)
+Modules :
+Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
+Hadoop YARN : A framework for job scheduling and cluster resource management</description>
     </item>
     
     <item>
-      <title>Cheat Sheet | VIM</title>
+      <title>CheatSheet | VIM</title>
       <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</link>
       <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
       
@@ -84,6 +187,15 @@ Added Plugin &#39;preservim/nerdcommenter&#39;
 install plugins in vimrc
 :PluginInstall Shell
 # install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
+      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
     </item>
     
     <item>
@@ -120,118 +232,6 @@ install plugins in vimrc
       
       <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
       <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
-    </item>
-    
-    <item>
-      <title>Linear Algebra for ML #1 | Introductions </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
-      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
-      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
-Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
-Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
-Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
-    </item>
-    
-    <item>
-      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
-      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
-      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
-Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
-If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
-    </item>
-    
-    <item>
-      <title>Statistics #5 | Convergence of Random Variable </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
-      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
-      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
-The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
-5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
-$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
-    </item>
-    
-    <item>
-      <title>Statistics #3 | Expectation </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
-      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
-      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
-3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
-The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
-    </item>
-    
-    <item>
-      <title>Statistics #2 | Random Variables </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
-      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
-      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
-A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
-2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
-Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
-    </item>
-    
-    <item>
-      <title>Statistics #1 | Probability </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
-      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
-      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Linux</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
-      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</guid>
-      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
-    </item>
-    
-    <item>
-      <title>Python | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-snippet/</link>
-      <pubDate>Sat, 02 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-snippet/</guid>
-      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
-    </item>
-    
-    <item>
-      <title>LaTeX | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</link>
-      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</guid>
-      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
-      <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
-      <description>title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much</description>
     </item>
     
   </channel>

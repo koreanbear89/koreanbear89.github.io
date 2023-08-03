@@ -78,7 +78,7 @@ Fetch upstream in local master branch
 remove branch &lt;feature/issue_number&gt;
 1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates ."><meta itemprop="datePublished" content="2018-09-29T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2018-09-29T09:00:00+00:00" />
-<meta itemprop="wordCount" content="559">
+<meta itemprop="wordCount" content="630">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Git"/>
 <meta name="twitter:description" content="Introduction Pull Request Summary
@@ -278,7 +278,7 @@ remove branch &lt;feature/issue_number&gt;
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -306,7 +306,7 @@ remove branch &lt;feature/issue_number&gt;
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -314,6 +314,13 @@ remove branch &lt;feature/issue_number&gt;
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -328,14 +335,14 @@ remove branch &lt;feature/issue_number&gt;
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -356,7 +363,7 @@ remove branch &lt;feature/issue_number&gt;
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -517,7 +524,10 @@ $ git reset HEAD &lt;FILE&gt; # cancle add, unclearstage file. unstage all w/o &
 # (2) commit
 $ git commit -m &quot;explain this commit&quot; #  commit
 $ git log  # show commit log
+
+# (3) Change commit
 $ git commit --amend -m &quot;modify commit message&quot;
+$ git commit --amend --author=&quot;Author Name &lt;email@address.com&gt;&quot; --no-edit
 
 # (3) push
 $ git push &lt;remote_name&gt; &lt;branch_name&gt; # changes from local to server
@@ -530,7 +540,29 @@ $ git fetch  # only download, not merge
 <hr>
 <h2 id="3-branch">3. Branch</h2>
 <ul>
-<li>The commited chanes in BRANCH_A do not affect in BRANCH_B</li>
+<li>
+<p>The commited changes in BRANCH_A do not affect in BRANCH_B</p>
+</li>
+<li>
+<p>Branch Naming Convention</p>
+<ul>
+<li>
+<p><code>feature</code> : is for adding, refactoring or removing a feature</p>
+</li>
+<li>
+<p><code>bugfix</code> : is for fixing a bug</p>
+</li>
+<li>
+<p><code>hotfix</code>: is for changing code with a temporary solution and/or without following the usual process (usually because of an emergency)</p>
+</li>
+<li>
+<p><code>test</code>: is for experimenting outside of an issue/ticket</p>
+</li>
+<li>
+<p><a href="https://dev.to/couchcamote/git-branching-name-convention-cch">Git Branch Naming Convention - DEV Community</a></p>
+</li>
+</ul>
+</li>
 </ul>
 <pre><code class="language-bash"># (0) Show all branches
 $ git branch
@@ -549,6 +581,7 @@ $ git push origin --delete &lt;BRANCH&gt; # (3.2) Delete remote branch
 # (4) Stash
 $ git stash
 $ git stash list
+$ git stash pop
 $ git stash apply # apply recent stash
 $ git stash drop # remove recent stash
 </code></pre>

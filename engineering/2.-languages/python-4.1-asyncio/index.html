@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Python #4.1 | asyncio - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine" />
+    <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+    <title>Python #4.1 | asyncio - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Python #4.1 | asyncio" />
+<meta property="og:description" content="Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2019-01-01T09:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-01T09:00:00+00:00" />
+
+<meta itemprop="name" content="Python #4.1 | asyncio">
+<meta itemprop="description" content="Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine"><meta itemprop="datePublished" content="2019-01-01T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-01-01T09:00:00+00:00" />
+<meta itemprop="wordCount" content="341">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python #4.1 | asyncio"/>
+<meta name="twitter:description" content="Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-system-design">3. System Design</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">20</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/2.-languages/python-4.1-asyncio/"
+    >Python #4.1 | asyncio</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/" class="article-date">
+  <time datetime="2019-01-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2019-01-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-languages/"> 2. Languages </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/2.-languages/python-4.1-asyncio/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>asyncio
+<ol>
+<li>Coroutines</li>
+<li>Awaitable</li>
+<li>Creating Tasks</li>
+</ol>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-coroutines">1. Coroutines</h2>
+<ul>
+<li>
+<p>Declaration : Python functions defined with the <code>def</code> syntax are synchronous functions. However, to make a function asynchronous, you need to use the <code>async</code> keyword to the function definition. And we call this async funtion, Coroutine.</p>
+</li>
+<li>
+<p>Run a coroutine : Simply calling a coroutine will not schedule it to be executed. <code>asyncio</code> provides the following mechanisms (multiple ways) to run a coroutine</p>
+<ul>
+<li>
+<p><code>ayncio.run()</code> : run the <strong>top-level</strong> entry point</p>
+</li>
+<li>
+<p><code>await</code> : awaiting on a coroutine</p>
+</li>
+<li>
+<p><code>ayncio.create_task()</code>  : run coroutines concurrently as asyncio <code>Tasks</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">import asyncio
+import time
+
+# Define coroutine with async syntax 
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+
+# takes 3secs to run
+async def main():
+    await say_after(1, 'hello')
+    await say_after(2, 'world')
+
+# takes 2secs to run
+async def main(): 
+    task1 = asyncio.create_task(say_after(1, 'hello'))
+    task2 = asyncio.create_task(say_after(2, 'world'))
+    await task1
+    await task2
+
+asyncio.run(main())
+</code></pre>
+<br>
+<hr>
+<h2 id="2-awaitables">2. Awaitables</h2>
+<ul>
+<li>
+<p>We say that an object is awaitable object if it can be used in an await expression</p>
+<ul>
+<li>
+<p><strong>couroutines</strong> : are <em>awaitables</em> and therefore can be awaited from other coroutines</p>
+<ul>
+<li>
+<p>a <em>coroutine function</em>: an <a href="https://docs.python.org/3/reference/compound_stmts.html#async-def"><code>async def</code></a> function;</p>
+</li>
+<li>
+<p>a <em>coroutine object</em>: an object returned by calling a <em>coroutine function</em>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Tasks</strong> : are used to schedule coroutines <em>concurrently</em>. When a coroutine is wrapped into a <em>Task</em> with functions like <a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task" title="asyncio.create_task"><code>asyncio.create_task()</code></a> the coroutine is automatically scheduled to run soon:</p>
+</li>
+<li>
+<p><strong>Futures</strong> : a special low-level awaitable object that represents an eventual result of an asynchronous operation.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="3-creating-tasks">3. Creating Tasks</h2>
+<ul>
+<li><code>asyncio.create_task(coro, *, name=None, context=None)</code></li>
+</ul>
+<pre><code class="language-python">background_tasks = set()
+
+for i in range(10):
+    task = asyncio.create_task(some_coro(param=i))
+    # Add task to the set. This creates a strong reference.
+    background_tasks.add(task)
+    # To prevent keeping references to finished tasks forever, 
+    # make each task remove its own reference from the set after completion:
+    task.add_done_callback(background_tasks.discard)
+</code></pre>
+<br>
+<hr>
+<h2 id="7-running-tasks-concurrently">7. Running Tasks Concurrently</h2>
+<ul>
+<li>
+<p><code>asyncio.gather(*aws, return_exceptions=False)</code> : Run awaitable objects in the aws sequence concurrently.</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/asyncio-task.html#running-tasks-concurrently">Coroutines and Tasks : Running Tasks Concurrently:</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">import asyncio
+
+async def test(name, time):
+    await asyncio.sleep(time)
+    return &quot;Done&quot;
+
+async def main():
+    L = await asyncio.gather(test(&quot;A&quot;, 1), test(&quot;B&quot;, 2), test(&quot;C&quot;, 3))
+
+asyncio.run(main()
+</code></pre>
+<br>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/asyncio-task.html#id1">Coroutines and Tasks — Python 3.11.2 documentation</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.c181e6b0c036798c7731cfb85b41b44c80689fd48fee546b73d449386ce6ccfb.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.46930345227de54c034f39c80841463c3b879632feb482e9f2734d4b616ae3be.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.07c7d73e2ec5e960e55f8b98577ada0bd78b36e7ef9d6dd65b85d4b1d443e7c1a1ca7cd1d98e7105db5fd72583cbc6fbb5e386062d3bf3c2568588fbb38c0c06.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

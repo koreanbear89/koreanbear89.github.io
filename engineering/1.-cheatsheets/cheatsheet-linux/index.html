@@ -39,7 +39,7 @@
 <meta itemprop="name" content="CheatSheet | Linux">
 <meta itemprop="description" content="chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename]."><meta itemprop="datePublished" content="2016-03-03T09:00:13+00:00" />
 <meta itemprop="dateModified" content="2016-03-03T09:00:13+00:00" />
-<meta itemprop="wordCount" content="477">
+<meta itemprop="wordCount" content="542">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Linux"/>
 <meta name="twitter:description" content="chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename]."/>
@@ -226,7 +226,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -262,6 +262,13 @@
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -276,14 +283,14 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -304,7 +311,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -451,6 +458,14 @@ ls | gawk &quot;BEGIN {\&quot;pwd\&quot; | getline cwd} {printf(\&quot;%s/%s\n\&
 </code></pre>
 <br>
 <hr>
+<h2 id="ln">ln</h2>
+<pre><code class="language-bash"># Symbolic Link
+$ ln -s ${SYM_SRC} ${SYM_DST} 
+# Hard Link
+$ ln ${HARD_SRC} ${HARD_DST}
+</code></pre>
+<br>
+<hr>
 <h2 id="ps">ps</h2>
 <pre><code class="language-bash"># show all processes
 ps aux | grep PROCESS_NAME
@@ -512,6 +527,33 @@ $ tar -zcvf &lt;FILENAME.tar.gz&gt; &lt;DIRNAME&gt;
 $ tar -zxvf &lt;FILENAME.tar.gz&gt;
 </code></pre>
 <br>
+<hr>
+<h2 id="tmux">tmux</h2>
+<ul>
+<li>
+<p>Components:</p>
+<ul>
+<li>
+<p>Socket : composed of multiple sessions</p>
+</li>
+<li>
+<p>Session : composed of multiple windows</p>
+</li>
+<li>
+<p>Window : composed of multiple panes</p>
+</li>
+<li>
+<p>Pane : windows can be splited into multiple panes (vertical, horizontal)</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash"># Create new session with 
+$ tmux -S &quot;/PATH/TO/SOCKET&quot; -s SESSION_NAME
+
+# Show environment
+$ tmux showenv -g
+</code></pre>
 
     </div>
     <div class="article-footer">

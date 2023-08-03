@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. System Design on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/3.-system-design/</link>
+    <description>Recent content in 3. System Design on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 04 Nov 2018 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
+Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
+Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
+Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
+      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
+      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
+Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
+If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
+      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
+      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
+The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
+5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
+$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
+      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
+      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
+3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
+The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
+      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #1 | Probability </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
+      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
+      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>Python #4.1 | asyncio</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</link>
+      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</guid>
+      <description>Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyTorch</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</link>
+      <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</guid>
+      <description>Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Git</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</link>
+      <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</guid>
+      <description>Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
+git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
+git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &amp;lt;feature/issue_number&amp;gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</guid>
+      <description>Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s point of view, excluding the modeler&amp;rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</guid>
+      <description>Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx + b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Linux</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</guid>
+      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
+    </item>
+    
+    <item>
+      <title>Python #2 | Built In Modules</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</link>
+      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</guid>
+      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
+    </item>
+    
+    <item>
+      <title>LaTeX | Snippet</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</guid>
+      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
+    </item>
+    
+    <item>
+      <title>Python #1 | Basic</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</guid>
+      <description>Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
+      <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
+    </item>
+    
+  </channel>
+</rss>

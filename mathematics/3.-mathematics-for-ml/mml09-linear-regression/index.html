@@ -23,7 +23,7 @@
     <meta name="description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
-where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter)" />
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations." />
     <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>Mathematics for ML #9 | Linear Regression - Lab.Koreanbear|한국곰연구소</title>
     
@@ -36,7 +36,7 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
 <meta property="og:description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
-where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)" />
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/" /><meta property="article:section" content="Mathematics" />
 <meta property="article:published_time" content="2022-09-13T09:00:00+00:00" />
@@ -46,15 +46,15 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
 <meta itemprop="description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
-where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)"><meta itemprop="datePublished" content="2022-09-13T09:00:00+00:00" />
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations."><meta itemprop="datePublished" content="2022-09-13T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-09-13T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1685">
+<meta itemprop="wordCount" content="1784">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mathematics for ML #9 | Linear Regression"/>
 <meta name="twitter:description" content="9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) &#43; \epsilon$,
-where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)"/>
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations."/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -238,7 +238,7 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -266,7 +266,7 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -274,6 +274,13 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -288,14 +295,14 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -316,7 +323,7 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -395,9 +402,12 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
 <ul>
 <li>
 <p>We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,</p>
+<ul>
+<li>where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)</li>
+</ul>
 </li>
 <li>
-<p>where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&gt; simply zero-mean Gaussian noise (not further in this chapter)</p>
+<p>Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations.</p>
 </li>
 </ul>
 </li>
@@ -432,7 +442,7 @@ where $\epsilon$ is an i.i.d random variable that describes measurement and obse
 <li>
 <p><strong>Observation Noise</strong></p>
 <ul>
-<li>The functional relationship between input x and y is given as below.</li>
+<li>The functional relationship between input $x$ and $y$ is given as below.</li>
 <li>Noise $ε∼N(0, σ^2)$ is independent, identically distributed (i.i.d.) Gaussian measurement noise with zero-mean and variance of $σ^2$.</li>
 </ul>
 <p>$$
@@ -459,7 +469,7 @@ $$</p>
 <li>We consider the special case that the parameters $\theta$ appear linearly in our model.</li>
 </ul>
 <p>$$
-p(y|x,θ) = N(y|x^⊤θ, σ^2) \newline \leftrightarrow y=x^⊤θ+ε, ε∼N(0,σ^2)
+p(y|x,θ) = N(y|x^⊤θ, σ^2) \leftrightarrow y=x^⊤θ+ε, ε∼N(0,σ^2)
 $$</p>
 </li>
 </ul>
@@ -605,6 +615,12 @@ $$</p>
 </li>
 </ul>
 </li>
+<li>
+<p>So far, we have covered parameter estimation using MLE and MAP where we found point estimates $\theta^*$ that optimize an objective function</p>
+</li>
+<li>
+<p>In the next section, we will use Bayesian inference (8.4) to find a posterior distribution over the unknown parameters, which we subsequently use to make predictions.</p>
+</li>
 </ul>
 <br>
 <hr>
@@ -612,7 +628,6 @@ $$</p>
 <ul>
 <li>Bayesian linear regression :
 <ul>
-<li>pushes the idea of the parameter prior a step further</li>
 <li>does not even attempt to compute a point estimate of the parameters,</li>
 <li>but instead the full posterior distribution over the parameters is taken into account when making predictions</li>
 </ul>
@@ -670,7 +685,7 @@ $$</p>
 </li>
 </ul>
 <br>
-<h4 id="933-posterior-prediction">9.3.3 Posterior Prediction</h4>
+<h4 id="933-posterior-distribution">9.3.3 Posterior Distribution</h4>
 <ul>
 <li><strong>Bayes&rsquo; theorem</strong> : Given a training set of inputs $x_n ∈ R^D$ and corresponding observations $y_n ∈ R$, we compute the posterior over the parameters using Bayes’ theorem :</li>
 </ul>
@@ -678,11 +693,10 @@ $$</p>
 p(θ|X,Y) = \frac{p(Y|X,θ)p(θ)}{p(Y|X)}
 $$</p>
 <ul>
-<li>
-<p><strong>Marginal Likelihood</strong> : independent of the parameters θ and ensures that the posterior is normalized, the likelihood averaged over all possible parameter settings</p>
-</li>
-<li>
-<p><strong>Posterior Predictions</strong></p>
+<li><strong>Marginal Likelihood</strong> : independent of the parameters θ and ensures that the posterior is normalized, the likelihood averaged over all possible parameter settings</li>
+</ul>
+<br>
+<h4 id="934-posterior-predictions">9.3.4 <strong>Posterior Predictions</strong></h4>
 <ul>
 <li>
 <p>In principle, predicting with the parameter posterior p(θ|X,Y) is not fundamentally different given that in our conjugate model the prior and posterior are both Gaussian (with different parameters).</p>
@@ -693,8 +707,6 @@ Section 9.3.2, we obtain the (posterior) predictive distribution</p>
 </li>
 <li>
 <p>SKIP DETAILS</p>
-</li>
-</ul>
 </li>
 </ul>
 <br>
@@ -718,10 +730,10 @@ $$</p>
 <p>The parameter θ determines the slope of the line.</p>
 </li>
 <li>
-<p>We obtained (9.2.1) the MLE for the slope parameter as (9.66)</p>
+<p>We obtained the MLE for the slope parameter as (9.66) from section 9.2.1</p>
 </li>
 <li>
-<p>This means, $θ_{ML}$ is the approximation with the minimum least-squares error between y and Xθ. (9.67)</p>
+<p>This means, $θ_{ML}$ is the approximation with the minimum least-squares error between $y$ and $Xθ$. (9.67)</p>
 </li>
 </ul>
 <p>$$
@@ -737,17 +749,29 @@ $$</p>
 <p>Solution : As we are looking for a solution of $y = Xθ$, we can think of linear regression as a problem for solving systems of linear equations</p>
 <ul>
 <li>
-<p>In particular, looking carefully at (9.67) we see that the  $θ_{ML}$ in our example from (9.65) effectively does an orthogonal projection of y onto the one-dimensional subspace spanned by X</p>
+<p>In particular, looking carefully at (9.67) we see that the maximum likelihood estimator  $θ_{ML}$ in our example from (9.65) effectively does an orthogonal projection of $y$ onto the one-dimensional subspace spanned by $X$</p>
 <ul>
-<li>Recalling the results on orthogonal projections from Section 3.8, we identify $\frac{X X^⊤}{X⊤X}$ as the projection matrix,</li>
+<li>Recalling the results on orthogonal projections from Section 3.8, we identify $\frac{X X^⊤}{X^⊤X}$ as the projection matrix,</li>
 </ul>
 </li>
 <li>
-<p>Therefore, the maximum likelihood solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by X that are “closest” to the corresponding observations y,</p>
+<p>Therefore, the maximum likelihood solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by $X$ that are “closest” to the corresponding observations y,</p>
 </li>
 <li>
 <p>In the general (polynomial) linear regression case, we again can interpret the maximum likelihood result as a projection onto a K-dimensional subspace of $R^N$.</p>
 </li>
+</ul>
+</li>
+<li>
+<p>Summary</p>
+<ol>
+<li>To model the given dataset (observation), we decided to use degree-1 curve (line)  =&gt; equation 9.65</li>
+</ol>
+<ul>
+<li>
+<p>We need to find appropriate parameter $\theta$ of our linear model, using MLE =&gt; equation 9.66</p>
+</li>
+<li></li>
 </ul>
 </li>
 </ul>
@@ -817,7 +841,7 @@ $$</p>
 <li>
 <p>Section 9.4, Maximum Likelihood as Orthogonal Projection</p>
 <ul>
-<li>The MLE solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by X that are “closest” to the corresponding observations y</li>
+<li>The MLE solution provides also a geometrically optimal solution by finding the vectors in the subspace spanned by $X$ that are “closest” to the corresponding observations $y$</li>
 </ul>
 </li>
 </ul>

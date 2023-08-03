@@ -5,10 +5,33 @@
     <link>https://koreanbear89.github.io/research/</link>
     <description>Recent content in Research on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 07 Dec 2021 09:00:13 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Nov 2021 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
+Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
+Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
+Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
+      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
+      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
+Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
+If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+    </item>
     
     <item>
       <title>Statistics #5 | Convergence of Random Variable </title>
@@ -52,6 +75,30 @@ Probability Mass Function : A Random Variable $X$ is discrete if it takes counta
       
       <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
       <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>Python #4.1 | asyncio</title>
+      <link>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</link>
+      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</guid>
+      <description>Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyTorch</title>
+      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</link>
+      <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</guid>
+      <description>Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch.</description>
     </item>
     
     <item>
@@ -131,7 +178,7 @@ Even if the depth of the layer increases, it is just modeling another linear fun
       <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</guid>
-      <description>Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체</description>
+      <description>Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object</description>
     </item>
     
     <item>

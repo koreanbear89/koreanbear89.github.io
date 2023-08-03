@@ -21,7 +21,7 @@
     
     
     <meta name="description" content="Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -39,7 +39,7 @@ swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="CheatSheet | Docker" />
 <meta property="og:description" content="Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -54,7 +54,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
 
 <meta itemprop="name" content="CheatSheet | Docker">
 <meta itemprop="description" content="Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -67,7 +67,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CheatSheet | Docker"/>
 <meta name="twitter:description" content="Introduction Contents
-Install docker in centos
+Install docker ∑in centos
 Frequently used docker commands
 FIle sharing in docker (bind, volume)
 Dockerfile instruction
@@ -258,7 +258,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -286,7 +286,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -294,6 +294,13 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -308,14 +315,14 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -336,7 +343,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -412,7 +419,7 @@ swarm : almost same with word &ldquo;cluster&rdquo; node (manager/worker) : A un
 <p>Contents</p>
 <ol>
 <li>
-<p>Install docker in centos</p>
+<p>Install docker ∑in centos</p>
 </li>
 <li>
 <p>Frequently used docker commands</p>
@@ -464,16 +471,16 @@ $ sudo yum install docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io docke
 # $ sudo groupadd docker
 
 # (4)Add your user to the docker group.
-# sudo usermod -aG docker irteam
-$ sudo /usr/sbin/usermod -aG docker irteam
-$ sudo /usr/sbin/usermod -aG docker irteamsu
+# sudo usermod -aG docker &lt;USER&gt;
+$ sudo /usr/sbin/usermod -aG docker &lt;USER&gt;
+$ sudo /usr/sbin/usermod -aG docker &lt;USER_SU&gt;
 
 # (5) Run and Stop docker before change root directory
 $ sudo systemctl start docker
 $ sudo systemctl stop docker
 
 # (5) change root directory (storage for default docker directory is not enough)
-# add {&quot;data-root&quot;: &quot;/home1/irteam/docker-data&quot;} in /etc/docker/daemon.json
+# add {&quot;data-root&quot;: &quot;/home1/&lt;USER&gt;/docker-data&quot;} in /etc/docker/daemon.json
 $ sudo vim /etc/docker/daemon.json
 
 # (6) Run docker

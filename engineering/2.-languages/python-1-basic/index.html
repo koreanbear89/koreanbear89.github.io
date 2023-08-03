@@ -20,7 +20,7 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체" />
+    <meta name="description" content="Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object" />
     <meta name="generator" content="Hugo 0.101.0 with theme pure" />
     <title>Python #1 | Basic - Lab.Koreanbear|한국곰연구소</title>
     
@@ -30,19 +30,19 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:title" content="Python #1 | Basic" />
-<meta property="og:description" content="Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체" />
+<meta property="og:description" content="Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/" /><meta property="article:section" content="Engineering" />
 <meta property="article:published_time" content="2016-01-01T09:00:00+00:00" />
 <meta property="article:modified_time" content="2016-01-01T09:00:00+00:00" />
 
 <meta itemprop="name" content="Python #1 | Basic">
-<meta itemprop="description" content="Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체"><meta itemprop="datePublished" content="2016-01-01T09:00:00+00:00" />
+<meta itemprop="description" content="Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object"><meta itemprop="datePublished" content="2016-01-01T09:00:00+00:00" />
 <meta itemprop="dateModified" content="2016-01-01T09:00:00+00:00" />
-<meta itemprop="wordCount" content="384">
+<meta itemprop="wordCount" content="435">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python #1 | Basic"/>
-<meta name="twitter:description" content="Introduction Basic Python Syntax 1. Data Types 1.1 String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; 2. Class Class : A set of related variables and methods as a blueprint for creating an object Object : declared as a class type, Instance : when the object is allocated in memory and is actually used 2.1 init, call class A: def __init__(self): # 객체"/>
+<meta name="twitter:description" content="Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &quot;{:.2f} / {:.3f}&quot;.format(1.2345, 1.2345) f&quot;{num:.2f}&quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -226,7 +226,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">8</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -254,7 +254,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -262,6 +262,13 @@
                   
                   <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
                   <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
 
                   
               
@@ -276,14 +283,14 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-cheatsheets">1. CheatSheets</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-languages">2. Languages</a>
-                  <span class="category-list-count">10</span></li>
+                  <span class="category-list-count">13</span></li>
 
                   
               
@@ -304,7 +311,7 @@
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -380,7 +387,9 @@
 <br>
 <hr>
 <h2 id="1-data-types">1. Data Types</h2>
-<h3 id="11-string">1.1 String</h3>
+<ul>
+<li>
+<p><strong>String</strong></p>
 <ul>
 <li>
 <p>Limiting floats to N demicmal points</p>
@@ -397,12 +406,31 @@
 </ul>
 </li>
 </ul>
+</li>
+<li>
+<p><strong>Set</strong></p>
+<ul>
+<li>
+<p><code>add</code>: add value to set</p>
+</li>
+<li>
+<p><code>update</code>: add multiples values to set</p>
+</li>
+<li>
+<p><code>remove</code>: remove specific value from set</p>
+</li>
+</ul>
+</li>
+</ul>
 <br>
 <hr>
 <h2 id="2-class">2. Class</h2>
 <ul>
 <li>
 <p>Class : A set of related variables and methods as a blueprint for creating an object</p>
+<ul>
+<li>Methods (instance, static, class) are described in detail in the next chapter.</li>
+</ul>
 </li>
 <li>
 <p>Object : declared as a class type,</p>
@@ -411,10 +439,15 @@
 <p>Instance : when the object is allocated in memory and is actually used</p>
 </li>
 </ul>
-<h3 id="21-init-call">2.1 init, call</h3>
 <pre><code class="language-python">class A:
+    # class variable
+    class_var = 0 
+
     def __init__(self): # 객체를 생성할때 사용
+         # instance variable
+        self.var1 = 1
         print('init')
+
     def __call__(self): # 마치 함수를 호출하는 것처럼 인스턴스를 호출할 수 있도록 만듦
         print('call')
 
@@ -426,39 +459,45 @@
 <h2 id="3-method">3. Method</h2>
 <ul>
 <li>
-<p>Instance Method : The most common method type. Able to access data and properties unique to each instance.</p>
+<p>Instance Method : The most common method type. Able to access data and properties unique to each instance. (instance variables)</p>
 </li>
 <li>
 <p>Static Method : Cannot access anything else in the class. Totally self-contained code.</p>
 <ul>
 <li>can be defined with decorator <code>@staticmethod</code></li>
 <li>can be defined without <code>self</code> in argument</li>
-<li>can call without generate instance</li>
+<li>can be called without generate instance</li>
+<li>usally independent to instance fields, but included in classes due to its logical reasons</li>
 </ul>
 </li>
 <li>
 <p>Class Method: Can access limited methods in the class. Can modify class specific details.</p>
 </li>
 </ul>
-<pre><code class="language-python">class Calc:
-    #instance method
-    def add(self, a, b):
-        return a+b
+<pre><code class="language-python">class Rectangle:
+    count = 0 # class variable
+
+    def __init__(self, width, height):
+        self.width, self.height = width, height
+        Rectangle.count += 1 
+
+    # Instance Method
+    def calcArea(self):
+        return self.width * self.height
 
     @staticmethod
-    def add(a, b): # static method does not need self in arg
-        print(a + b)
+    def isSquare(rect_w, rect_h):
+        return rect_w == rect_h
 
-# We must create instance before we call instance method
-calc = Calc()
-calc.add(10,20)
-# We can call static method https://www.makeuseof.com/tag/python-instance-static-class-methods/without create instance
-Calc.add(10, 20)    
+    @classmethod
+    def print_count(cls):
+        print(cls.count)
 </code></pre>
 <ul>
 <li>Reference
 <ul>
 <li><a href="https://www.makeuseof.com/tag/python-instance-static-class-methods/">Instance vs. Static vs. Class Methods in Python: The Important Differences</a></li>
+<li><a href="https://frenchkebab.tistory.com/56">Python class - @classmethod - KOR</a></li>
 </ul>
 </li>
 </ul>
