@@ -5,10 +5,93 @@
     <link>https://koreanbear89.github.io/categories/favorites/</link>
     <description>Recent content in Favorites on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 25 Mar 2022 09:00:13 +0000</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Mon, 31 Jul 2023 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/categories/favorites/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CheatSheet | VIM</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</link>
+      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</guid>
+      <description>1. Setup vim Install Vundle
+git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim color scheme setup
+Jellybean color scheme official install
+And simply add line color jellybean in .vimrc
+mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim write .vimrc
+wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc
+Added Plugin &#39;preservim/nerdcommenter&#39;
+install plugins in vimrc
+:PluginInstall Shell
+# install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+    </item>
+    
+    <item>
+      <title>Scala #0 | Setup</title>
+      <link>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</link>
+      <pubDate>Wed, 01 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</guid>
+      <description>Introduction Install
+Install | The Scala Programming Language Components (commands)
+scalac : the scala compiler
+scala : the scala REPL and script runner
+scala-cli: scala CLI, interactive toolkit for scala
+sbt: build tool
+amm : Ammonite, an enhanced REPL
+scalafmt : the scala code formatter
+Scalac (Scala Compiler) usage
+scalac HelloWorld.scala SBT (Simple Build Kit) Directory Structure : sbt Reference Manual — Directory structure
+(1) Base Directory: location of build.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
+      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
+      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
+      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
+      <description>3.0 Least Square Inner Product : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $. Vector Norm : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$ $L_p$ Norm : $ \Vert \mathbf{x} \Vert_p = (</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
+      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
+    </item>
     
     <item>
       <title>Linear Algebra for ML #1 | Introductions </title>
@@ -78,21 +161,11 @@ Probability Mass Function : A Random Variable $X$ is discrete if it takes counta
     </item>
     
     <item>
-      <title>Python #4.1 | asyncio</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</link>
-      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</guid>
-      <description>Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
-Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine</description>
-    </item>
-    
-    <item>
       <title>CheatSheet | pyTorch</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</link>
       <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</guid>
       <description>Introduction Dataset
 Data loader
 Model
@@ -103,10 +176,10 @@ Data Parallelism
     
     <item>
       <title>CheatSheet | Git</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</link>
       <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</guid>
       <description>Introduction Pull Request Summary
 Fork repo to your own repo
 clone, set remote
@@ -121,6 +194,30 @@ Fetch upstream
 Fetch upstream in local master branch
 remove branch &amp;lt;feature/issue_number&amp;gt;
 1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Dimensionality Reduction</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</link>
+      <pubDate>Fri, 23 Jun 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</guid>
+      <description>Introduction 1. UMAP Introduction : a fairly flexible non-linear dimension reduction algorithm Usage : 2-dim representation of given high dimensional dataset Parameters : Basic UMAP Parameters — umap 0.5 documentation n_neighbors min_dist: controls how tightly UMAP is allowed to pack points together. It provides the minimum distance apart that points are allowed to be in the low dimensional representation n_components : allows the user to determine the dimensionality of the reduced dimension space we will be embedding the data into.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Clustering</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</link>
+      <pubDate>Thu, 22 Jun 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</guid>
+      <description>Introduction Major Clustering Algorithm
+(1) Distribution Based Clustering : EM Algorithm
+(2) Centroid Based Clustering : K-means
+(3) Conectivity Based Models
+(4) Density Based Models : DBSCAN
+Spark built-in Clustering
+1. Distribution based Clustering Data points are grouped based on the probability of belonging to a gaussian distrib. 2. Centroid Based Clustering An iterative algorithm in which data is organized into clusters based on how close data points are in the centre (centroid) of clusgters 2.</description>
     </item>
     
     <item>
@@ -147,47 +244,11 @@ Even if the depth of the layer increases, it is just modeling another linear fun
     
     <item>
       <title>CheatSheet | Linux</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</link>
       <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</guid>
       <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
-    </item>
-    
-    <item>
-      <title>Python #2 | Built In Modules</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</link>
-      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</guid>
-      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
-    </item>
-    
-    <item>
-      <title>LaTeX | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</link>
-      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</guid>
-      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
-    </item>
-    
-    <item>
-      <title>Python #1 | Basic</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</link>
-      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</guid>
-      <description>Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
-      <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
     </item>
     
   </channel>

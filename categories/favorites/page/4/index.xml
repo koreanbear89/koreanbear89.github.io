@@ -5,119 +5,28 @@
     <link>https://koreanbear89.github.io/categories/favorites/</link>
     <description>Recent content in Favorites on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 25 Mar 2022 09:00:13 +0000</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Mon, 31 Jul 2023 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/categories/favorites/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ML Basic #3 | Optimization</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml03-optimization/</link>
-      <pubDate>Sat, 03 Dec 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml03-optimization/</guid>
-      <description>0. Introduction Optimizer : updates the weight parameters to minimize the loss function. 1. Gradient Descent Introduction : calculate the gradient $\frac{\partial c}{\partial w} $ of cost function for weight w, and update the weights using calcuated gradient $$ \theta_{new} = \theta - \eta \bigtriangledown J (\theta;x,y)$$ Batch Gradient Descent : use the entire dataset to compute gradient of the cost function for each iteration Stochastic Gradient Descent : use</description>
-    </item>
-    
-    <item>
-      <title>ML Basic #2 | Loss Functions</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml02-loss-funtions/</link>
-      <pubDate>Fri, 02 Dec 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml02-loss-funtions/</guid>
-      <description>0. Introduction Loss Function : is a function that evaluate how well the algorithm models the target dataset MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.</description>
-    </item>
-    
-    <item>
-      <title>ML Basic #1 | Activation Functions</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</link>
-      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</guid>
-      <description>0. Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input. Non-Linearity: 아래의 선형성을 만족하지 않는 함수들에 대하여 비선형성을 보인다고함. $ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ 왜 비선형함수를</description>
-    </item>
-    
-    <item>
-      <title>ML Basic #0 | Terminology</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml00-terminologies/</link>
-      <pubDate>Tue, 01 Nov 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml00-terminologies/</guid>
-      <description>0. Introduction Generative Model: likelihood를 활용하거나 Posterior 를 활용하여 Data Distribution을 Modeling 하여 Decision Boundary를 찾고자 하는 방법론, 오박사스타일. GMM</description>
-    </item>
-    
-    <item>
-      <title>MLCV #1 | Image Classification</title>
-      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</link>
-      <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</guid>
-      <description>Introduction Image Classification : The task of classifying an image according to its visual content. (2022) At first, the goal of works in this summary was to solve the visual classification problems, but now I want to focus on the way to encode visual contents into vectors (embedding, encoding) AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training</description>
-    </item>
-    
-    <item>
-      <title>How to set up Ubuntu 16.04 for ML </title>
-      <link>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-ubuntu-16.04-for-ml/</link>
-      <pubDate>Mon, 20 Jun 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-linux/how-to-set-up-ubuntu-16.04-for-ml/</guid>
-      <description>1. Windows와 Ubuntu에 사용할 파티션 나누기 컴퓨터관리 - 저장 - 디스크관리 2. 멀티부팅을 위한 윈도우의 빠른시작기능 해제 제어판 - 전원옵션 - 전원</description>
-    </item>
-    
-    <item>
-      <title>Cheat Sheet | Linux Commands</title>
-      <link>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-linux-commands/</link>
-      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-linux/cheatsheet-linux-commands/</guid>
-      <description>1. Check the number of files in directory. # the number of directories in working directory $ ls -l | grep ^d | wc -l # the number of files in working directory $ ls -l | grep ^- | wc -l # the number of files in working directory $ ls ./ | wc -l # print all the files in dir ls | gawk &amp;quot;BEGIN {\&amp;quot;pwd\&amp;quot; | getline</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Python Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/170102-cheatsheet-python-snippet/</link>
-      <pubDate>Sat, 02 Jan 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/170102-cheatsheet-python-snippet/</guid>
-      <description>1. Pickle import pickle # load or save object using pickle try: with open(path_pkl, &#39;rb&#39;) as f: obj_pkl = pickle.load(f) except: obj_pkl = [] with open(path_pkl, &#39;wb&#39;) as f: pickle.dump(obj_pkl, f) 2. Requests import requests # GET url = &#39;http://localhost/test&#39; params = {&#39;arg1&#39;:&#39;1&#39;, &#39;arg2&#39;:&#39;2&#39;} response = requests.get(url=url, params=params).json() # POST response = requests.post(url=url, data=json.dumps(params)) 3. argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | LaTeX Math Symbol</title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/160101-cheatsheet-latex-math-symbol/</link>
+      <title>LaTeX | Snippet</title>
+      <link>https://koreanbear89.github.io/language/9.-others/latex-snippet/</link>
       <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/160101-cheatsheet-latex-math-symbol/</guid>
-      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}$$
-\begin{pmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\ 4 &amp;amp; 5 &amp;amp; 6 \\ 7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \\ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \\ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}  </description>
+      <guid>https://koreanbear89.github.io/language/9.-others/latex-snippet/</guid>
+      <description>1. Matrix $$ \begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix} $$</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-pytorch/</link>
+      <link>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/1.-tools/cheatsheet-pytorch/</guid>
-      <description>​ with torch.no_grad():
-​ torch.cuda.empty_cache()</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/engineering/6.-mac/set-up-mac/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/6.-mac/set-up-mac/</guid>
+      <guid>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</guid>
       <description>title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot; date: 2022-05-22 09:00:13 categories: [2. Linux, Favorites] Introduction 어플리케이션 별 단축키 설정 시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키 Automount 해제 diskutil info -all 로 Volume UUID 와 type 확인 sudo vi /etc/fstab 맨 아래에 아래와</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml11-multimodal-representation/</guid>
-      <description>title: &amp;quot;MLCV #13 | Multimodal Representation&amp;quot; date: 2021-12-07 09:00:13 categories: [2. Machine Learning] Learing Transferable Visual Models, CLIP (Contrastive Language Image Pretraining Introduction Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept. Learning directly from raw text about images is a promising alternative which leverages a much</description>
     </item>
     
   </channel>

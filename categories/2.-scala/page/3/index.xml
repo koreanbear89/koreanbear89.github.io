@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2. Scala on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/2.-scala/</link>
+    <description>Recent content in 2. Scala on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 Jan 2020 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/2.-scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | VIM</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</link>
+      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</guid>
+      <description>1. Setup vim Install Vundle
+git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim color scheme setup
+Jellybean color scheme official install
+And simply add line color jellybean in .vimrc
+mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim write .vimrc
+wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc
+Added Plugin &#39;preservim/nerdcommenter&#39;
+install plugins in vimrc
+:PluginInstall Shell
+# install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+    </item>
+    
+    <item>
+      <title>Scala #0 | Setup</title>
+      <link>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</link>
+      <pubDate>Wed, 01 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</guid>
+      <description>Introduction Install
+Install | The Scala Programming Language Components (commands)
+scalac : the scala compiler
+scala : the scala REPL and script runner
+scala-cli: scala CLI, interactive toolkit for scala
+sbt: build tool
+amm : Ammonite, an enhanced REPL
+scalafmt : the scala code formatter
+Scalac (Scala Compiler) usage
+scalac HelloWorld.scala SBT (Simple Build Kit) Directory Structure : sbt Reference Manual — Directory structure
+(1) Base Directory: location of build.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
+      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
+      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
+      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
+      <description>3.0 Least Square Inner Product : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $. Vector Norm : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$ $L_p$ Norm : $ \Vert \mathbf{x} \Vert_p = (</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
+      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
+      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
+Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
+Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
+Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
+      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
+      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
+Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
+If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
+      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
+      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
+The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
+5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
+$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
+      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
+      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
+3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
+The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
+      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
+      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
+A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
+2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
+Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
+    </item>
+    
+    <item>
+      <title>Statistics #1 | Probability </title>
+      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
+      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
+      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyTorch</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</link>
+      <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</guid>
+      <description>Introduction Dataset
+Data loader
+Model
+Train
+Data Parallelism
+1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Git</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</link>
+      <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</guid>
+      <description>Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
+git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
+git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &amp;lt;feature/issue_number&amp;gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Dimensionality Reduction</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</link>
+      <pubDate>Fri, 23 Jun 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</guid>
+      <description>Introduction 1. UMAP Introduction : a fairly flexible non-linear dimension reduction algorithm Usage : 2-dim representation of given high dimensional dataset Parameters : Basic UMAP Parameters — umap 0.5 documentation n_neighbors min_dist: controls how tightly UMAP is allowed to pack points together. It provides the minimum distance apart that points are allowed to be in the low dimensional representation n_components : allows the user to determine the dimensionality of the reduced dimension space we will be embedding the data into.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Clustering</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</link>
+      <pubDate>Thu, 22 Jun 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</guid>
+      <description>Introduction Major Clustering Algorithm
+(1) Distribution Based Clustering : EM Algorithm
+(2) Centroid Based Clustering : K-means
+(3) Conectivity Based Models
+(4) Density Based Models : DBSCAN
+Spark built-in Clustering
+1. Distribution based Clustering Data points are grouped based on the probability of belonging to a gaussian distrib. 2. Centroid Based Clustering An iterative algorithm in which data is organized into clusters based on how close data points are in the centre (centroid) of clusgters 2.</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</guid>
+      <description>Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s point of view, excluding the modeler&amp;rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</guid>
+      <description>Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+Non-Linearity : Functions that do not satisfy the following linearity.
+$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
+if output $f(x)$ of neuron is linear form like $wx + b$,
+Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Linux</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</guid>
+      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
+    </item>
+    
+  </channel>
+</rss>

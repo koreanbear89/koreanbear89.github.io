@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CheatSheet | Git - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
+git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
+git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &amp;lt;feature/issue_number&amp;gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates ." />
+    <meta name="generator" content="Hugo 0.121.2 with theme pure" />
+    <title>CheatSheet | Git - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="CheatSheet | Git" />
+<meta property="og:description" content="Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &lt;remote_name&gt; &lt;URL&gt; Generate branch
+git checkout -b &lt;feature/issue_number&gt; Add, Commit, Push
+git push &lt;remote_name&gt; &lt;branch_name&gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &lt;feature/issue_number&gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2018-09-29T09:00:00+00:00" />
+<meta property="article:modified_time" content="2018-09-29T09:00:00+00:00" />
+
+<meta itemprop="name" content="CheatSheet | Git">
+<meta itemprop="description" content="Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &lt;remote_name&gt; &lt;URL&gt; Generate branch
+git checkout -b &lt;feature/issue_number&gt; Add, Commit, Push
+git push &lt;remote_name&gt; &lt;branch_name&gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &lt;feature/issue_number&gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates ."><meta itemprop="datePublished" content="2018-09-29T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-09-29T09:00:00+00:00" />
+<meta itemprop="wordCount" content="630">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="CheatSheet | Git"/>
+<meta name="twitter:description" content="Introduction Pull Request Summary
+Fork repo to your own repo
+clone, set remote
+git remote add &lt;remote_name&gt; &lt;URL&gt; Generate branch
+git checkout -b &lt;feature/issue_number&gt; Add, Commit, Push
+git push &lt;remote_name&gt; &lt;branch_name&gt; Pull Request
+Code Review
+Merge
+Squash and Merge : squash multiple commits into a new commit
+Rebase and Merge : multiple commits will be merged
+Fetch upstream
+Fetch upstream in local master branch
+remove branch &lt;feature/issue_number&gt;
+1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates ."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-language">
+                <a href="/language/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">14</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-backend">2. Backend</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-frontend">3. Frontend</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">17</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
+                  <span class="category-list-count">19</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/9.-cheatsheets/cheatsheet-git/"
+    >CheatSheet | Git</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/" class="article-date">
+  <time datetime="2018-09-29 09:00:00 &#43;0000 UTC" itemprop="datePublished">2018-09-29</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/9.-cheatsheets/"> 9. CheatSheets </a>
+  <a href="/categories/favorites/"> Favorites </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/9.-cheatsheets/cheatsheet-git/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p><strong>Pull Request Summary</strong></p>
+<ol>
+<li>
+<p>Fork repo to your own repo</p>
+</li>
+<li>
+<p>clone, set remote</p>
+<ul>
+<li><code>git remote add &lt;remote_name&gt; &lt;URL&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>Generate branch</p>
+<ul>
+<li><code>git checkout -b &lt;feature/issue_number&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>Add, Commit, Push</p>
+<ul>
+<li><code>git push &lt;remote_name&gt; &lt;branch_name&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>Pull Request</p>
+</li>
+<li>
+<p>Code Review</p>
+</li>
+<li>
+<p>Merge</p>
+<ul>
+<li>
+<p>Squash and Merge : squash multiple commits into a new commit</p>
+</li>
+<li>
+<p>Rebase and Merge : multiple commits will be merged</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Fetch upstream</p>
+<ul>
+<li>
+<p>Fetch upstream in local master branch</p>
+</li>
+<li>
+<p>remove branch <code>&lt;feature/issue_number&gt;</code></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-setup-git-environment">1. Setup Git Environment</h2>
+<pre><code class="language-bash"># (1) create new git
+$ git init # in the working dir, generates .git directory
+$ git clone &lt;URL&gt; # cloning repo registers remote named origin automatically 
+$ git clone --recursive &lt;URL&gt; # recursive clone including submodule
+$ git clone -b &lt;BRANCH&gt; &lt;URL&gt; # without &lt;BRANCH&gt;, clone master branch
+
+# (2) Add remote git 
+$ git remote # show remotes for current project 
+$ git remote add &lt;remote_name&gt; &lt;URL&gt; 
+
+# (3) git user check
+$ git config --list
+$ git config --global --list
+
+# (4) Add user 
+$ git config user.name &quot;Your Name&quot; # only for this project
+$ git config user.email you@example.com
+$ git config --global user.name &quot;Your Name&quot; # for global usage
+$ git config --global user.email you@example.com
+</code></pre>
+<br>
+<hr>
+<h2 id="2-changes-in-source-code--add-commit-push">2. Changes in source code : Add, Commit, Push</h2>
+<pre><code class="language-bash"># (1) add
+$ git add *  # add changes to index
+$ git status  # Check git status (staged/unstaged)
+$ git reset HEAD &lt;FILE&gt; # cancle add, unclearstage file. unstage all w/o &lt;FILE 
+
+# (2) commit
+$ git commit -m &quot;explain this commit&quot; #  commit
+$ git log  # show commit log
+
+# (3) Change commit
+$ git commit --amend -m &quot;modify commit message&quot;
+$ git commit --amend --author=&quot;Author Name &lt;email@address.com&gt;&quot; --no-edit
+
+# (3) push
+$ git push &lt;remote_name&gt; &lt;branch_name&gt; # changes from local to server
+
+# (4) pull
+$ git pull # download and merge
+$ git fetch  # only download, not merge
+</code></pre>
+<br>
+<hr>
+<h2 id="3-branch">3. Branch</h2>
+<ul>
+<li>
+<p>The commited changes in BRANCH_A do not affect in BRANCH_B</p>
+</li>
+<li>
+<p>Branch Naming Convention</p>
+<ul>
+<li>
+<p><code>feature</code> : is for adding, refactoring or removing a feature</p>
+</li>
+<li>
+<p><code>bugfix</code> : is for fixing a bug</p>
+</li>
+<li>
+<p><code>hotfix</code>: is for changing code with a temporary solution and/or without following the usual process (usually because of an emergency)</p>
+</li>
+<li>
+<p><code>test</code>: is for experimenting outside of an issue/ticket</p>
+</li>
+<li>
+<p><a href="https://dev.to/couchcamote/git-branching-name-convention-cch">Git Branch Naming Convention - DEV Community</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash"># (0) Show all branches
+$ git branch
+
+# (1) create new local branch
+$ git branch &lt;BRANCH&gt;
+$ git checkout -b &lt;BRANCH&gt; # Create new branch and change to it
+
+# (2) change to the new branch
+$ git checkout &lt;BRANCH&gt;
+
+# (3) Delete branch
+$ git branch -d &lt;BRANCH&gt; # (3.1) Delete local branch
+$ git push origin --delete &lt;BRANCH&gt; # (3.2) Delete remote branch
+
+# (4) Stash
+$ git stash
+$ git stash list
+$ git stash pop
+$ git stash apply # apply recent stash
+$ git stash drop # remove recent stash
+</code></pre>
+<br>
+<hr>
+<h2 id="4-pull-merge-rebase">4. Pull, Merge, Rebase</h2>
+<ul>
+<li>
+<p><code>git pull</code> : fetch + merge</p>
+<ul>
+<li><code>git pull --rebase &lt;REMOTE&gt; &lt;BRANCH&gt;</code></li>
+</ul>
+</li>
+<li>
+<p><code>git merge</code> : performs a 3-way merge between the two latest branch snapshots (<code>C3</code> and <code>C4</code>) and the most recent common ancestor of the two (<code>C2</code>), creating a new snapshot (and commit).</p>
+</li>
+<li>
+<p><code>git rebase</code> : take the patch of the change that was introduced in <code>C4</code> and reapply it on top of <code>C3</code></p>
+</li>
+<li>
+<p>Referenes</p>
+<ul>
+<li>
+<p><a href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-Merge-%EC%9D%98-%EA%B8%B0%EC%B4%88#_basic_merging">Git - Merge</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0">Git - Rebase </a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+    <img width="70%" src="https://git-scm.com/book/en/v2/images/basic-rebase-2.png">
+</p>
+<p style="text-align: center;">
+    <img width="70%" src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png">
+</p>
+<br>
+<hr>
+<h2 id="5-gitignore-file">5. gitignore File</h2>
+<pre><code class="language-bash">#  ignore every 'file.ext' in project
+file.ext
+# You cannot write annotation in define ignore-rule line (like below)
+file.ext # not a comment
+
+# ends with / will ignore directory only
+bin/
+# the line below will ignore both file named bin and directory named bin
+bin
+
+# You can use Glob pattern. e.g the line below will ignore build/ and Build
+[bB]uild/
+# You can ignore files with certain extension 
+*.apk
+
+# exception from ignore list with !
+!.gitignore
+</code></pre>
+<p>[Reference] <a href="https://rogerdudler.github.io/git-guide/index.ko.html">https://rogerdudler.github.io/git-guide/index.ko.html</a>)</p>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

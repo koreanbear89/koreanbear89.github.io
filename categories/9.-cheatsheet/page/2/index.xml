@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>9. CheatSheet on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/9.-cheatsheet/</link>
+    <description>Recent content in 9. CheatSheet on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 26 Jul 2021 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/9.-cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MLCV #9 | 3D Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</link>
+      <pubDate>Tue, 06 Oct 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</guid>
+      <description>Introduction Tasks : 3D object detection : classifies the object category and estimates oriented 3D bounding boxes of physical objects from 3D sensor data. Applications : By extending prediction to 3D, one can capture an object’s size, position and orientation in the world, leading to a variety of applications in robotics, self-driving vehicles, image retrieval, and augmented reality Benchmarks KITTI (car, cyclist, pedestrian</description>
+    </item>
+    
+    <item>
+      <title>Mathematcs for ML #10 | Dimensionality Reduction with PCA</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</link>
+      <pubDate>Thu, 13 Oct 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</guid>
+      <description>10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | k8s</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</link>
+      <pubDate>Mon, 31 Jul 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</guid>
+      <description>Introduction Kubernetes (k8s) : is an open-source system for automating deployment, scaling, and management of containerized applications
+Simply a container orchestration tool like docker swarm Kubernetes Components:
+Kubernetes Cluster : set of worker machines (nodes)
+Nodes : host the Pods that are the components of the application workload
+Pod : the smallest deployable units
+Contents
+Pod
+Service
+kubectl
+1. Pod Pods : are the smallest deployable units of computing that you can create and manage in Kubernetes.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #5 | Classes and Interfaces</title>
+      <link>https://koreanbear89.github.io/language/1.-python/effective-python-05/</link>
+      <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-05/</guid>
+      <description>Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #4 | Comprehensions and Generators</title>
+      <link>https://koreanbear89.github.io/language/1.-python/effective-python-04/</link>
+      <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-04/</guid>
+      <description>Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
+Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
+Comprehensions with more than two control subexpressions are very difficult to read and should be avoided.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #3 | Functions</title>
+      <link>https://koreanbear89.github.io/language/1.-python/effective-python-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-03/</guid>
+      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
+Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
+They can eliminate noise and clarify the intention of callers.
+They can significantly reduce subtle bugs that are difficult to find.
+Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #2 | Lists and Dictionaries</title>
+      <link>https://koreanbear89.github.io/language/1.-python/effective-python-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-02/</guid>
+      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
+A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
+Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #1 | Pythonic Thinking</title>
+      <link>https://koreanbear89.github.io/language/1.-python/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-01/</guid>
+      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.</description>
+    </item>
+    
+    <item>
+      <title>BE #1 | Network</title>
+      <link>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</guid>
+      <description>Introduction Contents Protocol (HTTP) API (REST, RPC) 1. Protocol HTTP (HyperText Transfer Protocol) : functions as a request-response protocol in the client-server model,
+Request Methods:
+GET, POST, PUT, DELETE Response Messages:
+2xx : successful
+3xx : redirection
+4xx : client error
+5xx : server error
+Other Protocols : MQTT, CoAP (low-level, low-energy protocol)
+2. API (Application Programming Interface) Introduction
+interface : a connection between two pieces of electronic equipment, or between a person and a computer</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</guid>
+      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
+    </item>
+    
+    <item>
+      <title>Shell | Snippet </title>
+      <link>https://koreanbear89.github.io/language/9.-others/shell-snippet/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/9.-others/shell-snippet/</guid>
+      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
+/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
+$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</guid>
+      <description>1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme Add conda environment to jupyter # Create conda environment $ conda create --name &amp;quot;myenv&amp;quot; python=3.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Regex</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</guid>
+      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</guid>
+      <description>Introduction Nginx : light-weight Web server
+generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
+Proxy server : is a server that acts as an intermediary between a client and the server
+Load balancing : Proxies distribute requests to a group of servers,
+Encryption : Proxies encrypt the data to keep it from being read during transfer.
+Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
+    </item>
+    
+    <item>
+      <title>HTML | Snippet</title>
+      <link>https://koreanbear89.github.io/language/9.-others/html-snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/9.-others/html-snippet/</guid>
+      <description>
+HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | spark</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</link>
+      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</guid>
+      <description>1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyspark</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</guid>
+      <description>1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Docker</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</link>
+      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</guid>
+      <description>Introduction Contents
+Install docker ∑in centos
+Frequently used docker commands
+FIle sharing in docker (bind, volume)
+Dockerfile instruction
+Docker compose
+Docker swarm
+Glossary
+swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node. service : A unit of modules in project, a basic distribution unit, stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Hadoop</title>
+      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</link>
+      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</guid>
+      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
+Based on Java
+Save data in Google File System (2003) and process this big data with Map Reduce (2004)
+Modules :
+Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
+Hadoop YARN : A framework for job scheduling and cluster resource management</description>
+    </item>
+    
+  </channel>
+</rss>

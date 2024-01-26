@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CheatSheet | pyspark - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine)." />
+    <meta name="generator" content="Hugo 0.121.2 with theme pure" />
+    <title>CheatSheet | pyspark - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="CheatSheet | pyspark" />
+<meta property="og:description" content="1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/" /><meta property="article:section" content="Engineering" />
+<meta property="article:published_time" content="2020-12-11T09:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-11T09:00:00+00:00" />
+
+<meta itemprop="name" content="CheatSheet | pyspark">
+<meta itemprop="description" content="1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine)."><meta itemprop="datePublished" content="2020-12-11T09:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-11T09:00:00+00:00" />
+<meta itemprop="wordCount" content="1331">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="CheatSheet | pyspark"/>
+<meta name="twitter:description" content="1. Introduction 1.1 Terminologies
+Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
+Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
+Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine)."/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-research">
+                <a href="/research/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-book-open"></i>
+                  <span class="menu-title">Research</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-engineering">
+                <a href="/engineering/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Engineering</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-language">
+                <a href="/language/">
+
+                    
+                    
+
+                    
+                    <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">12</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">14</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
+                  <span class="category-list-count">4</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-backend">2. Backend</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-frontend">3. Frontend</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">17</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
+                  <span class="category-list-count">19</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/engineering/9.-cheatsheets/cheatsheet-pyspark/"
+    >CheatSheet | pyspark</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/" class="article-date">
+  <time datetime="2020-12-11 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-12-11</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/9.-cheatsheets/"> 9. CheatSheets </a>
+  <a href="/categories/favorites/"> Favorites </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/engineering/9.-cheatsheets/cheatsheet-pyspark/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="1-introduction">1. Introduction</h2>
+<ul>
+<li>
+<p><strong>1.1 Terminologies</strong></p>
+<ul>
+<li>
+<p>Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.</p>
+</li>
+<li>
+<p>Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.</p>
+</li>
+<li>
+<p>Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</p>
+</li>
+<li>
+<p>DAG : DAG stands for Directed Acyclic Graph, in the present context its a DAG of operators.</p>
+</li>
+<li>
+<p>Executor : The process responsible for executing a task.</p>
+</li>
+<li>
+<p>Master : The machine on which the Driver program runs</p>
+</li>
+<li>
+<p>Slave : The machine on which the Executor program runs</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>1.2 Spark Components</strong></p>
+<ul>
+<li>
+<p>Spark Driver</p>
+<ul>
+<li>
+<p>separate process to execute user applications</p>
+</li>
+<li>
+<p>creates SparkContext to schedule jobs execution and negotiate with cluster manager</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Executors</p>
+<ul>
+<li>
+<p>run tasks scheduled by driver</p>
+</li>
+<li>
+<p>store computation results in memory, on disk or off-heap</p>
+</li>
+<li>
+<p>interact with storage systems</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Cluster Manager</p>
+<ul>
+<li>
+<p>Apache Mesos : a general cluster manager that can also run Hadoop MapReduce and service applications.</p>
+</li>
+<li>
+<p>Hadoop YARN : the resource manager in Hadoop.</p>
+</li>
+<li>
+<p>Spark Standalone : a simple cluster manager included with Spark that makes it easy to set up</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>1.3 How Spark Works?</strong></p>
+<ul>
+<li>
+<p>Spark has a small code base and the system is divided in various layer.</p>
+</li>
+<li>
+<p>Each layers has some responsibilities. The layers are independent of each other</p>
+<ul>
+<li>
+<p><strong>Interpreter</strong> : The first layer is the interpreter, Spark uses a Scala interpreter, with some modifications. As you enter your code in spark console (creating RDD’s and applying operators), Spark creates a operator graph.</p>
+</li>
+<li>
+<p><strong>DAG Scheduler</strong> : When the user runs an action (like collect), the Graph is submitted to a DAG Scheduler. The DAG scheduler divides operator graph into (map and reduce) stages. A stage is comprised of tasks based on partitions of the input data. The DAG scheduler pipelines operators together to optimize the graph. For e.g. Many map operators can be scheduled in a single stage. This optimization is key to Sparks performance. The final result of a DAG scheduler is a set of stages.</p>
+</li>
+<li>
+<p><strong>Task Schedular</strong> : The stages are passed on to the Task Scheduler. The task scheduler launches tasks via cluster manager. (Spark Standalone/Yarn/Mesos). The task scheduler doesn’t know about dependencies among stages.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="2-install-spark-locally">2. Install Spark Locally</h2>
+<ul>
+<li>
+<p><strong>2.1 Prerequisite</strong></p>
+<ul>
+<li>
+<p>Check java version first</p>
+</li>
+<li>
+<p>Then, just install miniconda3 and create virtual environment based on python 3.6</p>
+</li>
+</ul>
+<pre><code class="language-bash">java -version
+# The command above might show something like below
+&gt;&gt; openjdk version &quot;1.8.0_262&quot;
+&gt;&gt; OpenJDK Runtime Environment (build 1.8.0_262-b10)
+&gt;&gt; OpenJDK 64-Bit Server VM (build 25.262-b10, mixed mode)
+</code></pre>
+</li>
+<li>
+<p><strong>2.2 Download Spark</strong></p>
+<pre><code class="language-bash"># Download spark
+wget https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
+# unzip 
+tar -xvzf spark-3.0.1-bin-hadoop2.7.tgz
+# move to home and rename
+mv spark-3.0.1-bin-hadoop2.7 ~/spark
+</code></pre>
+</li>
+<li>
+<p><strong>2.3 Install pyspark</strong></p>
+<pre><code class="language-bash">pip install pyspark
+</code></pre>
+</li>
+<li>
+<p><strong>2.4 Change the execution path for pyspark</strong></p>
+<pre><code class="language-bash">export SPARK_HOME=&quot;/your_home_directory/spark/&quot;
+export PATH=&quot;$SPARK_HOME/bin:$PATH&quot;
+</code></pre>
+</li>
+<li>
+<p><strong>2.5 Test</strong></p>
+<pre><code class="language-bash">$ pyspark
+</code></pre>
+</li>
+<li>
+<p><strong>2.6 PySpark in Jupyter</strong></p>
+<pre><code class="language-bash"># add below lines in .bashrc 
+export PYSPARK_DRIVER_PYTHON=jupyter 
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook' 
+# And run $ pyspark &gt;&gt; will give you a url for jupyter notebook
+</code></pre>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="3-cheat-sheet">3. Cheat Sheet</h2>
+<h3 id="31-initialization--configuration">3.1 Initialization &amp; Configuration</h3>
+<ul>
+<li>
+<p><code>SparkContext</code> : provides connection to Spark with the ability to create RDDs</p>
+</li>
+<li>
+<p><code>SQLContext</code> : procides connection to Spark with the ability to run SQL queries on data</p>
+</li>
+<li>
+<p><code>SparkSession</code> : all encompassing context which includes coverage for <code>SparkContext</code>, <code>SQLContext</code> and HiveContext</p>
+</li>
+</ul>
+<pre><code class="language-python">import pyspark
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql import SQLContext
+
+# create a SparkSession instance with the name 'appname' 
+spark = SparkSession.builder.appName(&quot;appname&quot;).getOrCreate()
+# create a SparkContext instance which allows the Spark Application to access 
+sc = SparkContext.getOrCreate()
+# create a SQLContext instance to access the SQL query engine built on top of Spark
+sqlContext = SQLContext(spark)
+</code></pre>
+<br>
+<h3 id="32-dataframe">3.2 Dataframe</h3>
+<ul>
+<li><strong>Explore Dataframe</strong></li>
+</ul>
+<pre><code class="language-python"># Prints out the schema in the tree format.
+df.printSchema()
+# To get the number of rows
+df.count()
+</code></pre>
+<ul>
+<li><strong>Modifying Dataframe</strong></li>
+</ul>
+<pre><code class="language-python"># Create a column
+df = df.withColumn('column_new', F.lit('abc')) #  with the defalut value 'abc'
+df = df.withColumn('column_new', 2*F.col('exisisting column')) #  using an existing column
+
+# Change Column Name
+df.withColumnRenamed(&quot;column_ori&quot;, &quot;column_new&quot;)
+
+# add index column
+from pyspark.sql.functions import monotonically_increasing_id 
+df_index = df.select(&quot;*&quot;).withColumn(&quot;id&quot;, monotonically_increasing_id())
+
+# filter (=where)
+df.filter(df.column_float.between(7.5,8.2))
+
+# remove column
+df.drop(&quot;column_drop&quot;)
+
+# grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&quot;column_name&quot;).
+  .count() # Returns the count of rows for each group.
+  .mean() # Returns the mean of values for each group.
+  .max() # Returns the maximum of values for each group.
+  .min() # Returns the minimum of values for each group.
+  .sum() # Returns the total for values for each group.
+  .avg() # Returns the average for values for each group.
+  .agg() # Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() # This function is used to Pivot the DataFrame
+</code></pre>
+<ul>
+<li><strong>Read and Write</strong></li>
+</ul>
+<pre><code class="language-python"># create a SparkSession instance with the name 'appname' 
+spark = SparkSession.builder.appName(&quot;appname&quot;).getOrCreate()
+# read (csv, json, text, parquet)
+df = spark.read.csv('PATH_CSV')
+# write
+df.coalesce(1).write.csv(&quot;sample.csv&quot;)
+</code></pre>
+<br>
+<h3 id="33-join">3.3 Join</h3>
+<ul>
+<li>Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(<code>on</code> expression is true) from both sides of the table</li>
+<li>Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table</li>
+<li>Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise</li>
+<li>Right join : performs the same task as the left join, but for the right table.</li>
+</ul>
+<pre><code class="language-python"># Use union, if scheme of dfs are same.
+df1.join(df2, on='column', how='inner')
+</code></pre>
+<pre><code class="language-python"># Drop duplicate rows using dropDuplicates(), otherwise df_new will also have duplicate rows
+df2 = df2.dropDuplicates(([&quot;KEY&quot;, &quot;UID&quot;])) # rows with same KEY but diff UID will remain
+
+# update df1 with df2 using outer join
+cols = [&quot;DOC_TITLE&quot;, &quot;CHANNEL_NAME&quot;, &quot;CHANNEL_PC_URL&quot;, &quot;VIDEO_THUMBNAIL&quot;, &quot;MODIFY_DATE&quot;, &quot;INFER_DATE&quot;]
+df_new = df.alias(&quot;a&quot;)
+           .join(df2.alias(&quot;b&quot;), [&quot;KEY&quot;, &quot;UID&quot;], how=&quot;outer&quot;)
+           .select(&quot;KEY&quot;,&quot;UID&quot;, *(F.coalesce(&quot;b.&quot; + col, &quot;a.&quot; + col).alias(col) for col in cols))
+</code></pre>
+<br>
+<h3 id="34-sql-functions">3.4 SQL functions</h3>
+<pre><code class="language-python">from pyspark.sql import functions as F
+
+# Aggregate function: returns a set of objects with duplicate elements eliminated.
+F.collect_set()
+# Bucketize rows into one or more time windows given a timestamp specifying column. 
+F.window(timeColumn='timestamp', windowDuration='20 minute')
+# Creates a Column of literal value.
+F.lit()
+# Replace all substrings of the specified string value that match regexp with rep.
+F.regexp_replace()
+</code></pre>
+<br>
+<h3 id="35-user-defined-function">3.5 User Defined Function</h3>
+<ul>
+<li>
+<p>input arguments for udf should be column name as you can see in line no.3 or you might get an  <code>TypeError: Invalid argument, not a string or column: 2 of type &lt;class ‘int’&gt;. For column literals, use ‘lit’, ‘array’, ‘struct’ or ‘create_map’ function</code></p>
+<pre><code class="language-python"># User Defined Functions
+def func(x): return x
+test_udf = F.udf(lambda x : func(x), ArrayType(StringType()))
+df_udf = df.withColumn('udf', test_udf('input_column_name')) 
+</code></pre>
+</li>
+</ul>
+<br>
+<h3 id="36-others">3.6 Others</h3>
+<ul>
+<li><code>$&quot;colname&quot;</code>   is converted to Column by SQLContext.implicits$.StringToColumn</li>
+</ul>
+<pre><code class="language-python"># zeppelin plot
+def show(p):
+    import io
+    img = io.StringIO()
+    p.savefig(img, format='svg')
+    img.seek(0)
+    print(&quot;%html &lt;div style='width:400px'&gt;&quot; + img.getvalue() + &quot;&lt;/div&gt;&quot;)
+</code></pre>
+<br>
+<hr>
+<h2 id="4-submit-pyspark">4. Submit Pyspark</h2>
+<pre><code class="language-bash">PYSPARK_PYTHON=python3 spark-submit \
+    --master local[*] \
+    --executor-memory 20g \
+    --driver-java-options &quot;-XX:-OmitStackTraceInFastThrow&quot; \
+    --conf spark.driver.memory=20g \
+    --conf spark.driver.maxResultSize=5g \
+    --conf spark.executor.memoryOverhead=4096 \
+    --conf spark.rpc.timeout=6000s \
+    --conf spark.eventLog.enabled=true \
+    /opt/dump/src/download_channel.py \
+</code></pre>
+<pre><code class="language-bash">PYSPARK_PYTHON=python3 spark-submit \    --name ${JOB_NAME} \
+    --master yarn \ 
+    # --master local[*] \ #to use local machine
+    --deploy-mode cluster \
+    --num-executors 200 \
+    --executor-cores 1 \
+    --executor-memory 2g \ # &lt;20g
+    --driver-java-options &quot;-XX:-OmitStackTraceInFastThrow&quot; \
+    --conf spark.driver.memory=4g \ # &lt;20g
+    --conf spark.eventLog.enabled=true \
+    --conf spark.eventLog.dir=hdfs://user/${USERNAME}/spark2-history/ \
+    --conf spark.executor.memoryOverhead=4096 \
+    --conf spark.executorEnv.YARN_CONTAINER_RUNTIME_TYPE=docker \
+    --conf spark.executorEnv.YARN_CONTAINER_RUNTIME_DOCKER_IMAGE=${DOCKER_IMAGE} \
+    --conf spark.executorEnv.JAVA_HOME=/usr/jdk64/jdk1.8.0_112 \
+    --conf spark.yarn.queue=batch \
+    --conf spark.yarn.maxAppAttempts=1 \
+    --conf spark.yarn.appMasterEnv.YARN_CONTAINER_RUNTIME_TYPE=docker \
+    --conf spark.yarn.appMasterEnv.YARN_CONTAINER_RUNTIME_DOCKER_IMAGE=${DOCKER_IMAGE} \
+    --conf spark.yarn.appMasterEnv.JAVA_HOME=/usr/jdk64/jdk1.8.0_112 \
+    --conf spark.yarn.keytab=${KEYTAB} \
+    --conf spark.yarn.principal=${C3S_PRINCIPAL} \
+    pyspark_entrypoint.py \
+</code></pre>
+<br>
+<hr>
+<h2 id="5-logging">5. Logging</h2>
+<ul>
+<li>
+<p>Writing logs : details in below</p>
+</li>
+<li>
+<p>Check Log in Spark History Server</p>
+<ul>
+<li>App ID &gt; Executors &gt; Executor ID &gt; stderr</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># set logger
+Logger= spark._jvm.org.apache.log4j.Logger                                  
+logger = Logger.getLogger(__name__)                                         
+# leave log                         
+logger.error(f&quot;{len_videos}, hw_error&quot;)                                     
+logger.info(f&quot;{len_videos}, hw_info&quot;)              
+</code></pre>
+<br>
+<p>&ndash;</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a href="https://towardsdatascience.com/ultimate-pyspark-cheat-sheet-7d3938d13421">PySpark Cheat Sheet, TowardsDataScience</a></p>
+</li>
+<li>
+<p><a href="https://luminousmen.com/post/introduction-to-pyspark-join-types">Introduction to PySpark join types</a></p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

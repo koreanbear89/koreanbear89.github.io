@@ -5,7 +5,8 @@
     <link>https://koreanbear89.github.io/engineering/</link>
     <description>Recent content in Engineering on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 13 Mar 2023 09:00:00 +0000</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Mon, 31 Jul 2023 09:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://koreanbear89.github.io/engineering/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,12 +21,52 @@
     </item>
     
     <item>
+      <title>Python #5 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</guid>
+      <description>Introduction Matplotlib Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+    </item>
+    
+    <item>
+      <title>Python #4.1 | asyncio</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</link>
+      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</guid>
+      <description>Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine</description>
+    </item>
+    
+    <item>
       <title>MLCV #1 | Image Classification</title>
       <link>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</link>
       <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
       
       <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</guid>
       <description>Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))</description>
+    </item>
+    
+    <item>
+      <title>Python #2 | Built In Modules</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</link>
+      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</guid>
+      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
+    </item>
+    
+    <item>
+      <title>Python #1 | Basic</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-1-basic/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-1-basic/</guid>
+      <description>Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object</description>
     </item>
     
     <item>
@@ -167,49 +208,6 @@ Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation 
 In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
 We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,
 where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations.</description>
-    </item>
-    
-    <item>
-      <title>MLCV #9 | 3D Object Detection</title>
-      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</link>
-      <pubDate>Tue, 06 Oct 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</guid>
-      <description>Introduction Tasks : 3D object detection : classifies the object category and estimates oriented 3D bounding boxes of physical objects from 3D sensor data. Applications : By extending prediction to 3D, one can capture an object’s size, position and orientation in the world, leading to a variety of applications in robotics, self-driving vehicles, image retrieval, and augmented reality Benchmarks KITTI (car, cyclist, pedestrian</description>
-    </item>
-    
-    <item>
-      <title>Mathematcs for ML #10 | Dimensionality Reduction with PCA</title>
-      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</link>
-      <pubDate>Thu, 13 Oct 2022 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</guid>
-      <description>10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7.</description>
-    </item>
-    
-    <item>
-      <title>Effective Python | #5 Classes and Interfaces</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-05/</link>
-      <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-05/</guid>
-      <description>Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
-Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
-They allow you to improve and expand functionality over time.
-They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.</description>
-    </item>
-    
-    <item>
-      <title>Effective Python | #4 Comprehensions and Generators</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-04/</link>
-      <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-04/</guid>
-      <description>Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
-This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided.</description>
     </item>
     
   </channel>

@@ -10,8 +10,36 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</loc>
+    <lastmod>2021-01-12T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</loc>
+    <lastmod>2019-01-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</loc>
     <lastmod>2016-07-02T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</loc>
+    <lastmod>2016-02-02T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/1.-python/python-1-basic/</loc>
+    <lastmod>2016-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -129,6 +157,48 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/categories/9.-cheatsheets/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/engineering/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/favorites/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/</loc>
+    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/categories/9.-study/</loc>
     <lastmod>2023-03-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -136,56 +206,49 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/</loc>
+    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-05/</loc>
     <lastmod>2023-03-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-study/effective-python-05/</loc>
+    <loc>https://koreanbear89.github.io/language/</loc>
     <lastmod>2023-03-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/</loc>
-    <lastmod>2023-03-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/</loc>
-    <lastmod>2023-03-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-study/effective-python-04/</loc>
+    <loc>https://koreanbear89.github.io/categories/1.-python/</loc>
     <lastmod>2023-02-16T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</loc>
+    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-04/</loc>
+    <lastmod>2023-02-16T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-03/</loc>
     <lastmod>2023-02-06T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</loc>
+    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-02/</loc>
     <lastmod>2023-01-25T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</loc>
+    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-01/</loc>
     <lastmod>2023-01-09T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -206,21 +269,21 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/1.-cheatsheets/</loc>
-    <lastmod>2022-03-25T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/categories/2.-backend/</loc>
+    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</loc>
-    <lastmod>2022-03-25T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</loc>
+    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/favorites/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</loc>
     <lastmod>2022-03-25T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -241,56 +304,49 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/2.-linux/</loc>
+    <loc>https://koreanbear89.github.io/categories/9.-others/</loc>
     <lastmod>2021-11-15T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/9.-others/shell-snippet/</loc>
     <lastmod>2021-11-15T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</loc>
     <lastmod>2021-10-21T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</loc>
     <lastmod>2021-08-02T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/1.-cheatsheet/</loc>
+    <loc>https://koreanbear89.github.io/categories/9.-cheatsheet/</loc>
     <lastmod>2021-07-26T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</loc>
     <lastmod>2021-07-26T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/2.-languages/</loc>
-    <lastmod>2021-06-09T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/9.-others/html-snippet/</loc>
     <lastmod>2021-06-09T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -304,21 +360,21 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</loc>
-    <lastmod>2021-01-12T09:00:00+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</loc>
+    <lastmod>2020-12-12T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</loc>
     <lastmod>2020-12-11T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</loc>
     <lastmod>2020-11-10T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -332,15 +388,29 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</loc>
     <lastmod>2020-03-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</loc>
     <lastmod>2020-01-26T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/2.-scala/</loc>
+    <lastmod>2020-01-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</loc>
+    <lastmod>2020-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -444,29 +514,29 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-4.1-asyncio/</loc>
-    <lastmod>2019-01-01T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/3.-system-design/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</loc>
     <lastmod>2018-11-04T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-pytorch/</loc>
-    <lastmod>2018-11-04T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-git/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</loc>
     <lastmod>2018-09-29T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</loc>
+    <lastmod>2017-06-23T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</loc>
+    <lastmod>2017-06-22T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -486,29 +556,15 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-linux/</loc>
+    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</loc>
     <lastmod>2016-03-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-2-built-in-modules/</loc>
-    <lastmod>2016-02-02T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/latex-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/9.-others/latex-snippet/</loc>
     <lastmod>2016-01-01T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-languages/python-1-basic/</loc>
-    <lastmod>2016-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

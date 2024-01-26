@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>9. CheatSheet on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/9.-cheatsheet/</link>
+    <description>Recent content in 9. CheatSheet on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 26 Jul 2021 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/9.-cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mathematics for ML #1 | Introduction Part.I </title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml01-introduction/</link>
+      <pubDate>Tue, 18 Jan 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml01-introduction/</guid>
+      <description>1. Introduction and Motivation Machine learning is about designing algorithms that automatically extract valuable information from data. There are three concepts that are at the core of machine learning : data, a model, and learning. Data : Since machine learning is inherently data driven, data is at the core of machine learning. Model : would describe a function that maps inputs to real-valued outputs. Learning : can be understood as a way to automatically find patterns and structure in data by optimizing the parameters of the model 1.</description>
+    </item>
+    
+    <item>
+      <title>Python #5 | 3rd-Party Modules</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</guid>
+      <description>Introduction Matplotlib Interface
+pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
+object-oriented interface : Explicitly create figures and axes, and call methods on them
+import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+    </item>
+    
+    <item>
+      <title>Python #4.1 | asyncio</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</link>
+      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</guid>
+      <description>Introduction asyncio Coroutines Awaitable Creating Tasks 1. Coroutines Declaration : Python functions defined with the def syntax are synchronous functions. However, to make a function asynchronous, you need to use the async keyword to the function definition. And we call this async funtion, Coroutine.
+Run a coroutine : Simply calling a coroutine will not schedule it to be executed. asyncio provides the following mechanisms (multiple ways) to run a coroutine</description>
+    </item>
+    
+    <item>
+      <title>MLCV #1 | Image Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</link>
+      <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</guid>
+      <description>Introduction Tasks: Image Classification : The task of classifying an image according to its visual content. Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding) 1. AlexNet (2012) Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images. Method : Training on Multiple GPUs def AlexNet(x): out = MP(relu(conv11x11(x))) out = MP(relu(conv5x5(out))) out = relu(conv3x3(out)) out = relu(conv3x3(out))</description>
+    </item>
+    
+    <item>
+      <title>Python #2 | Built In Modules</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</link>
+      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</guid>
+      <description>argparse import argparse if __name__ == &amp;quot;__main__&amp;quot;: parser = argparse.ArgumentParser() parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;) args = parser.parse_args() print(args.name) counter from collections import Counter Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;]) &amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1}) datetime from datetime import datetime datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;) # YYYYmmddHHMMSS 형태의 시간 출력 flask from flask import jsonify, make_response @application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;]) def infer(): summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;} # make response data res = make_response(jsonify(summary), 200)</description>
+    </item>
+    
+    <item>
+      <title>Python #1 | Basic</title>
+      <link>https://koreanbear89.github.io/language/1.-python/python-1-basic/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/language/1.-python/python-1-basic/</guid>
+      <description>Introduction Basic Python Syntax 1. Data Types String Limiting floats to N demicmal points round(1.23456, 4) &amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345) f&amp;quot;{num:.2f}&amp;quot; Set add: add value to set update: add multiples values to set remove: remove specific value from set 2. Class Class : A set of related variables and methods as a blueprint for creating an object Methods (instance, static, class) are described in detail in the next chapter. Object</description>
+    </item>
+    
+    <item>
+      <title>NLP #2 | TextRepresentation</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</link>
+      <pubDate>Wed, 13 Jan 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</guid>
+      <description>Summary Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model. Methods Sparse Representation : One-hot encoding, Document Term Matrix, etc. Dense Representation : Word2Vec, Glove, FastText, etc. Pretraind Word Embedding : ELMo, GPT, BERT 1. Sparse Representations Introduction : Sparse Representation embeds word</description>
+    </item>
+    
+    <item>
+      <title>MLCV #2 | Object Detection</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</link>
+      <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</guid>
+      <description>Introduction Tasks Object Detection : a task of finding the different objects in an image and classifying them Salient Object Detection : a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images. Metrics: AP or mAP is generally used as the primary metrics metric.click here for details Others Non Maximum Suppression</description>
+    </item>
+    
+    <item>
+      <title>NLP #3 | Language Modeling </title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</guid>
+      <description>Summary Language Modeling : is the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+1. Seq2Seq Learning with Neural Networks (2014) Introduction : DNNs work well but they cannot be used to map sequences to sequences.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #3 | Semantic Segmentation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</link>
+      <pubDate>Sun, 23 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</guid>
+      <description>Introduction Tasks: Image Segmentation : The process of assigning a label to every pixel in the image. Semantic Segmentation : treats multiple objects of the same class as a single entity. Instance Segmentation : treats multiple objects of the same class as distinct individual objects. 1. FCN (2015) Introduction : The first end-to-end pixel-wise prediction model based only on convolutional layers. Method: Feature Extraction : using convolution layers like conventional</description>
+    </item>
+    
+    <item>
+      <title>MLCV #4 | Image Synthesis</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/</link>
+      <pubDate>Tue, 25 Jul 2017 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/</guid>
+      <description>0. Introduction Tasks : Image Synthesis : The task of creating new images from some form of image description. 1. GAN (2014) Introduction : A new framework for estimating generative models via an adversarial process
+Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$.</description>
+    </item>
+    
+    <item>
+      <title>NLP #5 | Text Segmentation</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</link>
+      <pubDate>Thu, 18 Nov 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</guid>
+      <description>Summary Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.
+To improve the results of Information Retrieval system and help users to find relevant passages faster keywords : Text Segmentation, Document Segmentation, Discourse Segmentation Methods
+Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.
+Discriminative approach : calculate similarity between neighboring sentences Hearst.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #5 | Image Style Transfer</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</link>
+      <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</guid>
+      <description>0. Introduction Tasks : Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image). 1. Image Style Transfer using CNNs (2016) Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images. Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #6 | Probabilirty and Distributions</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/</link>
+      <pubDate>Mon, 13 Jun 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/</guid>
+      <description>6. Probability and Distributions Probability, loosely speaking, concerns the study of uncertainty Probability can be thought of as the fraction of times an event occurs, as a degree of belief about an event. We then would like to use this probability to measure the chance of something occurring in an experiment In ML, we often quantify uncertainty in the data, uncertainty in the machine learning model, and uncertainty in the predictions produced by the model.</description>
+    </item>
+    
+    <item>
+      <title>NLP #6 | Text Summarization</title>
+      <link>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</link>
+      <pubDate>Mon, 28 Jun 2021 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</guid>
+      <description>Summary Text Summarization : is a technique to shorten long texts such that the summary has all the important points of the actual document.
+By Summarization Approache
+Extraction-based Summarization: The extractive approach involves picking up the most important phrases and lines from the documents. It then combines all the important lines to create the summary. So, in this case, every line and word of the summary actually belongs to the original document which is summarized.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #6 | Image Retrieval</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</link>
+      <pubDate>Thu, 14 Jun 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</guid>
+      <description>Introduction Tasks: Image Retrieval : aims to find similar images to a query image among an image dataset. Tech Trend : Conventional Methods : relying on local descriptor matching (scale invariant features - local image descriptors - reranking with spatial verifications) using FC layers : after several conv layers as global descriptors [A Babenko et al, A Gordo et al.] using global pooling methods : from the activations of conv</description>
+    </item>
+    
+    <item>
+      <title>MLCV #7 | Action Classification</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</link>
+      <pubDate>Sat, 03 Nov 2018 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</guid>
+      <description>Introduction Tasks: Action Classification : The task classfying an action in video sequences according to its spatio-temporal content. Benchmark Set UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories. HMDB-51 Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video. Methods CNN + RNNs 3D Convolutional Networks ResNeXt-101 :</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #8 | Introduction Part.II</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08-when-models-meet-data/</link>
+      <pubDate>Sat, 13 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08-when-models-meet-data/</guid>
+      <description>8. When Models Meet Data In the first part of the book, we introduced the mathematics that form the foundations of many machine learning methods
+The second part of the book introduces four pillars of machine learning:
+Regression (Chapter 9) Dimensionality reduction (Chapter 10) Density estimation (Chapter 11) Classification (Chapter 12) 8.1 Data, Models, and Learning Three major components of a machine learning system: data, models, and learning. Good models : should perform well on unseen data.</description>
+    </item>
+    
+    <item>
+      <title>MLCV #8 | Pose Estimation</title>
+      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</link>
+      <pubDate>Wed, 07 Aug 2019 09:00:13 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</guid>
+      <description>Introduction Tasks : Pose Estimation : The task aims to detect the locations of human anatomical keypoints (e.g., elbow, wrist, etc) 1. Deep Pose (2014) Introduction : The first major paper that applied Deep Learning to Human pose estimation Method : DNN-based regression : Alexnet backend (7 layers) with an extra final layer that outputs 2k joint coordinates (where $k$ is the number of joints). Cascade of pose regressors :</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #9 | Linear Regression</title>
+      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/</link>
+      <pubDate>Tue, 13 Sep 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/</guid>
+      <description>9. Linear Regression In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.
+In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$
+We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,
+where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter) Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations.</description>
+    </item>
+    
+  </channel>
+</rss>
