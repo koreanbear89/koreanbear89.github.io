@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+11. Density Estimation with Gaussian Mixture Models Introduction : We often aim to represent data in some way. In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib) In this chapter, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians. For a given dataset, we aim to maximize the likelhood of the model params to train the GMM 11.1 Gaussian Mixture Model Gaussian Mixture Model : a density model where we combine a fininte number of $K$ Gaussian Distrib. $$ p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)} $$
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models">
+  <meta property="og:description" content="11. Density Estimation with Gaussian Mixture Models Introduction : We often aim to represent data in some way. In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib) In this chapter, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians. For a given dataset, we aim to maximize the likelhood of the model params to train the GMM 11.1 Gaussian Mixture Model Gaussian Mixture Model : a density model where we combine a fininte number of $K$ Gaussian Distrib. $$ p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)} $$">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mathematics">
+    <meta property="article:published_time" content="2022-11-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2022-11-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models">
+  <meta itemprop="description" content="11. Density Estimation with Gaussian Mixture Models Introduction : We often aim to represent data in some way. In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib) In this chapter, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians. For a given dataset, we aim to maximize the likelhood of the model params to train the GMM 11.1 Gaussian Mixture Model Gaussian Mixture Model : a density model where we combine a fininte number of $K$ Gaussian Distrib. $$ p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)} $$">
+  <meta itemprop="datePublished" content="2022-11-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-11-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="338">
+  <meta itemprop="keywords" content="3. Mathematics for ML">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models">
+  <meta name="twitter:description" content="11. Density Estimation with Gaussian Mixture Models Introduction : We often aim to represent data in some way. In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib) In this chapter, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians. For a given dataset, we aim to maximize the likelhood of the model params to train the GMM 11.1 Gaussian Mixture Model Gaussian Mixture Model : a density model where we combine a fininte number of $K$ Gaussian Distrib. $$ p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)} $$">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/"
+    >Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/" class="article-date">
+  <time datetime="2022-11-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2022-11-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-mathematics-for-ml/"> 3. Mathematics for ML </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="11-density-estimation-with-gaussian-mixture-models">11. Density Estimation with Gaussian Mixture Models</h2>
+<ul>
+<li><strong>Introduction</strong> : We often aim to represent data in some way.
+<ul>
+<li>In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib)</li>
+</ul>
+</li>
+<li><strong>In this chapter</strong>, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians.
+<ul>
+<li>For a given dataset, we aim to maximize the likelhood of the model params to train the GMM</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="111-gaussian-mixture-model">11.1 Gaussian Mixture Model</h3>
+<ul>
+<li>Gaussian Mixture Model : a density model where we combine a fininte  number of $K$ Gaussian Distrib.</li>
+</ul>
+<p>$$
+p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)}
+$$</p>
+<ul>
+<li>An illustration is given in Figure 11.2, displaying the weighted components and the mixture densitiy, which is given as</li>
+</ul>
+<p>$$
+p(x|θ)=0.5 N (x|−2,1) + 0.2N(x|1,2) + 0.3N(x|4,1)
+$$</p>
+<p style="text-align: center;">
+    <img width="50%" src="/figures/20221113.png">
+</p>
+<center> Figure 11.2 Gaussian Mixture Model composed of a convex combination of Gaussian distrib </center>
+<br>
+<hr>
+<h3 id="112-parameter-learning-via-maxinum-likelihood">11.2 Parameter Learning via Maxinum Likelihood</h3>
+<ul>
+<li>
+<p>Objective : find a good representation/approximation of given data by means of GMM with $K$ mixture components</p>
+<ul>
+<li>
+<p>Given a dataset $X = [x_1, &hellip;, x_N ]$</p>
+</li>
+<li>
+<p>parameters of the GMM $\theta$ : means $\mu_k$, covariances $\Sigma_k$, mixture weights $\pi_k$</p>
+</li>
+<li>
+<p>we detail how to obtain a maximum likelihood estimate $θ_{ML}$ of the model parameters $θ$ in the following.</p>
+<ul>
+<li>$\theta_{ML}$ maximize the log-likelihood $L$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Likelihood : of the training data $[x_1, &hellip;, x_N ]$ given the parameters</p>
+<p>$$
+p(X|\theta) = \prod_n^N p(x_n | \theta), \text{ } p(x_n|\theta) = \sum_k^K \pi_kN(x_n|\mu_k, \Sigma_k)
+$$</p>
+</li>
+<li>
+<p>Log-Likelihood $L$: every individual likelihood term $p(x_n|\theta)$ is a Gaussian Mixture Density, Then we obtain the log-likelihood as</p>
+</li>
+</ul>
+<p>$$
+log p(X|\theta) = \sum_n^N log p (x_n | \theta) = \sum_n^N log \sum_k^K \pi_k N (x_n | \mu_k, \Sigma_k)
+$$</p>
+<ul>
+<li>
+<p>Maximization : compute the gradient $dL/dθ$ of the log-likelihood with respect to the model parameters $θ$, set it to $0$, and solve for $θ$.</p>
+<ul>
+<li>
+<p>Unlike previous examples for MLE, we cannot obtain a closed-form solution.</p>
+</li>
+<li>
+<p>We can exploit an iterative scheme to find good params (EM algorithm)</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="113-cholesky-decomposition">11.3 Cholesky Decomposition</h3>
+<ul>
+<li>todo</li>
+</ul>
+<br>
+<hr>
+<h3 id="114-eigendecomposition-and">11.4 Eigendecomposition and</h3>
+<ul>
+<li>todo</li>
+</ul>
+<br>
+<hr>
+<h3 id="115-orthonormal-basis">11.5 Orthonormal Basis</h3>
+<ul>
+<li>todo</li>
+</ul>
+<br>
+<hr>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>todo</li>
+</ul>
+<br>
+<hr>
+<h3></h3>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

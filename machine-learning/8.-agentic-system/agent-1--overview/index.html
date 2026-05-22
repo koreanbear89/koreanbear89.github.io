@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Agent #1 | Overview - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Overview Taxonomy System Architecture Single Agent system Multiple Agent coordination Human-Agent collaboration Agent Architecture Reasoning Profile Memory Planning Action Applications Evaluation 1. A Survey on Large Language Model based Autonomous Agents (2023) Abstract : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments. Introduction : Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention. Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory Agent Construction (Agent Architecture Design) Reasoning : LLM acts as the central reasoning and decision-making engine Profile : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt. Handcrafting Method : agent profiles are manually specified. LLM Generation Method : agent profiles are automatically generated based on LLMs. Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets. Memory : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its : Structures : short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed. Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts. Hybrid Memory (short &amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time. Formats : Natural Languages, Embeddings, Databases Operations : Memory Reading, Memory Writing, Memory Reflections Planning : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions. Planning without Feedback: Single-path Reasoning : the final task is decomposed into several intermediate steps Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure. External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners. Planning with Feedback: Environmental Feedback : This feedback is obtained from the objective world or virtual environment. Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability. Model Feedback : utilization of internal feedback from the agents themselves. Action : The action module is responsible for translating the agent’s decisions into specific outputs. Action Goal Task Completion : The actions are aimed at accomplishing specific tasks Communication : with the other agents or real humans for sharing information Environment Exploration : explore unfamiliar environments to expand its perception Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources. Action via Memory Recollection : the action is generated by extracting information from the agent memory according to the current task. Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans. Action Space : refers to the set of possible actions that can be performed by the agent. external tools : APIs, DB &amp; KB, External Models internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding Action Impact : refers to the consequences of an agent’s actions. Changing Environments. Altering Internal States Triggering New Actions. Agent Applications This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering. Agent Evaluation Subjective methods : Human annotation, Turing Test, Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics 2.The Rise and Potential of Large Language Model Based Agents Introduction : LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting. LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks. Their rapid development highlights both significant potential and critical challenges in reliability and scalability. Construction of LLM based Agents Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain Perception : Textual, Visual, Auditory, Other input Action : Textual Output, Tool Using, Embodied Action Agents in Practice : Harnessing AI for good Single-Agent Applications Perform autonomous task execution using LLM reasoning and tool use. Applied in task-oriented, creative, and long-term lifecycle scenarios. Limited by reasoning reliability, environment understanding, and robustness. Multi-Agent Systems Multiple agents collaborate or compete to solve complex tasks. Enable role specialization, distributed reasoning, and emergent behavior. Face challenges in coordination, communication overhead, and alignment. Human-Agent Systems Humans guide agents through instructions or feedback loops. Agents act as assistants or partners in decision-making and creativity. Practical value emerges from effective human–agent interaction rather than full autonomy. " />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Agent #1 | Overview - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/machine-learning/8.-agentic-system/agent-1--overview/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Agent #1 | Overview">
+  <meta property="og:description" content="Overview Taxonomy System Architecture Single Agent system Multiple Agent coordination Human-Agent collaboration Agent Architecture Reasoning Profile Memory Planning Action Applications Evaluation 1. A Survey on Large Language Model based Autonomous Agents (2023) Abstract : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments. Introduction : Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention. Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory Agent Construction (Agent Architecture Design) Reasoning : LLM acts as the central reasoning and decision-making engine Profile : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt. Handcrafting Method : agent profiles are manually specified. LLM Generation Method : agent profiles are automatically generated based on LLMs. Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets. Memory : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its : Structures : short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed. Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts. Hybrid Memory (short &amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time. Formats : Natural Languages, Embeddings, Databases Operations : Memory Reading, Memory Writing, Memory Reflections Planning : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions. Planning without Feedback: Single-path Reasoning : the final task is decomposed into several intermediate steps Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure. External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners. Planning with Feedback: Environmental Feedback : This feedback is obtained from the objective world or virtual environment. Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability. Model Feedback : utilization of internal feedback from the agents themselves. Action : The action module is responsible for translating the agent’s decisions into specific outputs. Action Goal Task Completion : The actions are aimed at accomplishing specific tasks Communication : with the other agents or real humans for sharing information Environment Exploration : explore unfamiliar environments to expand its perception Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources. Action via Memory Recollection : the action is generated by extracting information from the agent memory according to the current task. Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans. Action Space : refers to the set of possible actions that can be performed by the agent. external tools : APIs, DB &amp; KB, External Models internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding Action Impact : refers to the consequences of an agent’s actions. Changing Environments. Altering Internal States Triggering New Actions. Agent Applications This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering. Agent Evaluation Subjective methods : Human annotation, Turing Test, Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics 2.The Rise and Potential of Large Language Model Based Agents Introduction : LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting. LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks. Their rapid development highlights both significant potential and critical challenges in reliability and scalability. Construction of LLM based Agents Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain Perception : Textual, Visual, Auditory, Other input Action : Textual Output, Tool Using, Embodied Action Agents in Practice : Harnessing AI for good Single-Agent Applications Perform autonomous task execution using LLM reasoning and tool use. Applied in task-oriented, creative, and long-term lifecycle scenarios. Limited by reasoning reliability, environment understanding, and robustness. Multi-Agent Systems Multiple agents collaborate or compete to solve complex tasks. Enable role specialization, distributed reasoning, and emergent behavior. Face challenges in coordination, communication overhead, and alignment. Human-Agent Systems Humans guide agents through instructions or feedback loops. Agents act as assistants or partners in decision-making and creativity. Practical value emerges from effective human–agent interaction rather than full autonomy.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2025-01-30T09:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-30T09:00:00+00:00">
+
+  <meta itemprop="name" content="Agent #1 | Overview">
+  <meta itemprop="description" content="Overview Taxonomy System Architecture Single Agent system Multiple Agent coordination Human-Agent collaboration Agent Architecture Reasoning Profile Memory Planning Action Applications Evaluation 1. A Survey on Large Language Model based Autonomous Agents (2023) Abstract : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments. Introduction : Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention. Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory Agent Construction (Agent Architecture Design) Reasoning : LLM acts as the central reasoning and decision-making engine Profile : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt. Handcrafting Method : agent profiles are manually specified. LLM Generation Method : agent profiles are automatically generated based on LLMs. Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets. Memory : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its : Structures : short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed. Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts. Hybrid Memory (short &amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time. Formats : Natural Languages, Embeddings, Databases Operations : Memory Reading, Memory Writing, Memory Reflections Planning : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions. Planning without Feedback: Single-path Reasoning : the final task is decomposed into several intermediate steps Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure. External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners. Planning with Feedback: Environmental Feedback : This feedback is obtained from the objective world or virtual environment. Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability. Model Feedback : utilization of internal feedback from the agents themselves. Action : The action module is responsible for translating the agent’s decisions into specific outputs. Action Goal Task Completion : The actions are aimed at accomplishing specific tasks Communication : with the other agents or real humans for sharing information Environment Exploration : explore unfamiliar environments to expand its perception Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources. Action via Memory Recollection : the action is generated by extracting information from the agent memory according to the current task. Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans. Action Space : refers to the set of possible actions that can be performed by the agent. external tools : APIs, DB &amp; KB, External Models internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding Action Impact : refers to the consequences of an agent’s actions. Changing Environments. Altering Internal States Triggering New Actions. Agent Applications This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering. Agent Evaluation Subjective methods : Human annotation, Turing Test, Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics 2.The Rise and Potential of Large Language Model Based Agents Introduction : LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting. LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks. Their rapid development highlights both significant potential and critical challenges in reliability and scalability. Construction of LLM based Agents Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain Perception : Textual, Visual, Auditory, Other input Action : Textual Output, Tool Using, Embodied Action Agents in Practice : Harnessing AI for good Single-Agent Applications Perform autonomous task execution using LLM reasoning and tool use. Applied in task-oriented, creative, and long-term lifecycle scenarios. Limited by reasoning reliability, environment understanding, and robustness. Multi-Agent Systems Multiple agents collaborate or compete to solve complex tasks. Enable role specialization, distributed reasoning, and emergent behavior. Face challenges in coordination, communication overhead, and alignment. Human-Agent Systems Humans guide agents through instructions or feedback loops. Agents act as assistants or partners in decision-making and creativity. Practical value emerges from effective human–agent interaction rather than full autonomy.">
+  <meta itemprop="datePublished" content="2025-01-30T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-01-30T09:00:00+00:00">
+  <meta itemprop="wordCount" content="887">
+  <meta itemprop="keywords" content="8. Agentic System">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Agent #1 | Overview">
+  <meta name="twitter:description" content="Overview Taxonomy System Architecture Single Agent system Multiple Agent coordination Human-Agent collaboration Agent Architecture Reasoning Profile Memory Planning Action Applications Evaluation 1. A Survey on Large Language Model based Autonomous Agents (2023) Abstract : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments. Introduction : Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention. Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory Agent Construction (Agent Architecture Design) Reasoning : LLM acts as the central reasoning and decision-making engine Profile : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt. Handcrafting Method : agent profiles are manually specified. LLM Generation Method : agent profiles are automatically generated based on LLMs. Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets. Memory : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its : Structures : short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed. Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts. Hybrid Memory (short &amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time. Formats : Natural Languages, Embeddings, Databases Operations : Memory Reading, Memory Writing, Memory Reflections Planning : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions. Planning without Feedback: Single-path Reasoning : the final task is decomposed into several intermediate steps Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure. External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners. Planning with Feedback: Environmental Feedback : This feedback is obtained from the objective world or virtual environment. Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability. Model Feedback : utilization of internal feedback from the agents themselves. Action : The action module is responsible for translating the agent’s decisions into specific outputs. Action Goal Task Completion : The actions are aimed at accomplishing specific tasks Communication : with the other agents or real humans for sharing information Environment Exploration : explore unfamiliar environments to expand its perception Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources. Action via Memory Recollection : the action is generated by extracting information from the agent memory according to the current task. Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans. Action Space : refers to the set of possible actions that can be performed by the agent. external tools : APIs, DB &amp; KB, External Models internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding Action Impact : refers to the consequences of an agent’s actions. Changing Environments. Altering Internal States Triggering New Actions. Agent Applications This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering. Agent Evaluation Subjective methods : Human annotation, Turing Test, Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics 2.The Rise and Potential of Large Language Model Based Agents Introduction : LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting. LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks. Their rapid development highlights both significant potential and critical challenges in reliability and scalability. Construction of LLM based Agents Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain Perception : Textual, Visual, Auditory, Other input Action : Textual Output, Tool Using, Embodied Action Agents in Practice : Harnessing AI for good Single-Agent Applications Perform autonomous task execution using LLM reasoning and tool use. Applied in task-oriented, creative, and long-term lifecycle scenarios. Limited by reasoning reliability, environment understanding, and robustness. Multi-Agent Systems Multiple agents collaborate or compete to solve complex tasks. Enable role specialization, distributed reasoning, and emergent behavior. Face challenges in coordination, communication overhead, and alignment. Human-Agent Systems Humans guide agents through instructions or feedback loops. Agents act as assistants or partners in decision-making and creativity. Practical value emerges from effective human–agent interaction rather than full autonomy.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-agentic-system">8. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-python">3. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-scala">4. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/8.-agentic-system/agent-1--overview/"
+    >Agent #1 | Overview</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/machine-learning/8.-agentic-system/agent-1--overview/" class="article-date">
+  <time datetime="2025-01-30 09:00:00 &#43;0000 UTC" itemprop="datePublished">2025-01-30</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/8.-agentic-system/"> 8. Agentic System </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/8.-agentic-system/agent-1--overview/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="overview">Overview</h2>
+<ul>
+<li>Taxonomy
+<ul>
+<li>System Architecture
+<ul>
+<li>Single Agent system</li>
+<li>Multiple Agent coordination</li>
+<li>Human-Agent collaboration</li>
+</ul>
+</li>
+<li>Agent Architecture
+<ul>
+<li>Reasoning</li>
+<li>Profile</li>
+<li>Memory</li>
+<li>Planning</li>
+<li>Action</li>
+</ul>
+</li>
+<li>Applications</li>
+<li>Evaluation</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-a-survey-on-large-language-model-based-autonomous-agents-2023">1. <a href="https://arxiv.org/pdf/2308.11432">A Survey on Large Language Model based Autonomous Agents (2023)</a></h2>
+<ul>
+<li><strong>Abstract</strong> : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments.</li>
+<li><strong>Introduction</strong> :
+<ul>
+<li>Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention.</li>
+<li>Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory</li>
+</ul>
+</li>
+<li><strong>Agent Construction (Agent Architecture Design)</strong>
+<ul>
+<li><strong>Reasoning</strong> : LLM acts as the central reasoning and decision-making engine</li>
+<li><strong>Profile</strong> : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt.
+<ul>
+<li>Handcrafting Method : agent profiles are manually specified.</li>
+<li>LLM Generation Method : agent profiles are automatically generated based on LLMs.</li>
+<li>Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets.</li>
+</ul>
+</li>
+<li><strong>Memory</strong> : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its :
+<ul>
+<li>Structures :  short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed.
+<ul>
+<li>Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts.</li>
+<li>Hybrid Memory (short &amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time.</li>
+</ul>
+</li>
+<li>Formats : Natural Languages, Embeddings, Databases</li>
+<li>Operations : Memory Reading, Memory Writing, Memory Reflections</li>
+</ul>
+</li>
+<li><strong>Planning</strong> : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions.
+<ul>
+<li>Planning without Feedback:
+<ul>
+<li>Single-path Reasoning : the final task is decomposed into several intermediate steps</li>
+<li>Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure.</li>
+<li>External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners.</li>
+</ul>
+</li>
+<li>Planning with Feedback:
+<ul>
+<li>Environmental Feedback : This feedback is obtained from the objective world or virtual environment.</li>
+<li>Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability.</li>
+<li>Model Feedback : utilization of internal feedback from the agents themselves.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Action</strong> : The action module is responsible for translating the agent’s decisions into specific outputs.
+<ul>
+<li>Action Goal
+<ul>
+<li>Task Completion : The actions are aimed at accomplishing specific tasks</li>
+<li>Communication : with the other agents or real humans for sharing information</li>
+<li>Environment Exploration : explore unfamiliar environments to expand its perception</li>
+</ul>
+</li>
+<li>Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources.
+<ul>
+<li>Action via Memory Recollection :  the action is generated by extracting information from the agent memory according to the current task.</li>
+<li>Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans.</li>
+</ul>
+</li>
+<li>Action Space : refers to the set of possible actions that can be performed by the agent.
+<ul>
+<li>external tools : APIs, DB &amp; KB, External Models</li>
+<li>internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding</li>
+</ul>
+</li>
+<li>Action Impact : refers to the consequences of an agent’s actions.
+<ul>
+<li>Changing Environments.</li>
+<li>Altering Internal States</li>
+<li>Triggering New Actions.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Agent Applications</strong>
+<ul>
+<li>This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering.</li>
+</ul>
+</li>
+<li><strong>Agent Evaluation</strong>
+<ul>
+<li>Subjective methods : Human annotation, Turing Test,</li>
+<li>Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics</li>
+</ul>
+</li>
+</ul>
+<br>
+<h2 id="2the-rise-and-potential-of-large-language-model-based-agents">2.The Rise and Potential of Large Language Model Based Agents</h2>
+<ul>
+<li>Introduction :
+<ul>
+<li>LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting.</li>
+<li>LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks.</li>
+<li>Their rapid development highlights both significant potential and critical challenges in reliability and scalability.</li>
+</ul>
+</li>
+<li>Construction of LLM based Agents
+<ul>
+<li>Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain</li>
+<li>Perception : Textual, Visual, Auditory, Other input</li>
+<li>Action : Textual Output, Tool Using, Embodied Action</li>
+</ul>
+</li>
+<li>Agents in Practice : Harnessing AI for good
+<ul>
+<li>Single-Agent Applications
+<ul>
+<li>Perform autonomous task execution using LLM reasoning and tool use.</li>
+<li>Applied in task-oriented, creative, and long-term lifecycle scenarios.</li>
+<li>Limited by reasoning reliability, environment understanding, and robustness.</li>
+</ul>
+</li>
+<li>Multi-Agent Systems
+<ul>
+<li>Multiple agents collaborate or compete to solve complex tasks.</li>
+<li>Enable role specialization, distributed reasoning, and emergent behavior.</li>
+<li>Face challenges in coordination, communication overhead, and alignment.</li>
+</ul>
+</li>
+<li>Human-Agent Systems
+<ul>
+<li>Humans guide agents through instructions or feedback loops.</li>
+<li>Agents act as assistants or partners in decision-making and creativity.</li>
+<li>Practical value emerges from effective human–agent interaction rather than full autonomy.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

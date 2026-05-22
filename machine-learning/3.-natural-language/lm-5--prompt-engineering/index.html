@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        LM #5 | Prompt Engineering - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a &ldquo;Let’s think step-by-step&rdquo; prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &ldquo;thoughts&rdquo;. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>LM #5 | Prompt Engineering - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="LM #5 | Prompt Engineering">
+  <meta property="og:description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2024-07-04T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-04T09:00:00+00:00">
+
+  <meta itemprop="name" content="LM #5 | Prompt Engineering">
+  <meta itemprop="description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
+  <meta itemprop="datePublished" content="2024-07-04T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-04T09:00:00+00:00">
+  <meta itemprop="wordCount" content="3181">
+  <meta itemprop="keywords" content="3. Natural Language">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LM #5 | Prompt Engineering">
+  <meta name="twitter:description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/3.-natural-language/lm-5--prompt-engineering/"
+    >LM #5 | Prompt Engineering</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/" class="article-date">
+  <time datetime="2024-07-04 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-07-04</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-natural-language/"> 3. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/3.-natural-language/lm-5--prompt-engineering/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>New Tasks without Extensive Training
+<ul>
+<li><strong>Zero‑Shot Prompting</strong> : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge.</li>
+<li><strong>Few‑Shot Prompting</strong> : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior.</li>
+<li><strong>Automatic Prompt Engineer (APE)</strong> : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions</li>
+</ul>
+</li>
+<li>Reasoning and Logic
+<ul>
+<li><strong>Chain-of-Thought (CoT)</strong> : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts.</li>
+<li><strong>Automatic Chain of Thought Prompting</strong> : automatically instruct LLMs with a &ldquo;Let’s think step-by-step&rdquo; prompt to generate reasoning chains.</li>
+<li><strong>Self-Consistency</strong> : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting.</li>
+<li><strong>Tree of Thoughts</strong> : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &ldquo;thoughts&rdquo;. Each thought represents a coherent language sequence moving toward the final solution.</li>
+<li><strong>Graph of Thoughts</strong> : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations</li>
+<li><strong>Self Refine Prompting</strong> : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback.</li>
+</ul>
+</li>
+<li>Reduce Hallucination
+<ul>
+<li><strong>Retrieval Augmented Generation (RAG)</strong> : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background.</li>
+<li><strong>ReAct Prompting</strong> : enables LLMs to generate reasoning traces and task-specific actions concurrently</li>
+<li><strong>Chain of Verification</strong> : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification</li>
+</ul>
+</li>
+<li>Others
+<ul>
+<li><strong>Automatic Prompt Engineer (APE)</strong>: sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="a-systematic-survey-of-prompt-engineering-in-large-language-models--techniques-and-applications"><a href="https://arxiv.org/pdf/2402.07927">A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications</a></h2>
+<ul>
+<li>
+<p>Abstract</p>
+<ul>
+<li>Prompt engineering is a powerful technique that extends the abilities of LMs by using task-specific prompts to guide behavior without adjusting model params.</li>
+<li>The survey categorizes and systematically reviews over 29 different prompting methods across tasks like question answering, reasoning, code generation, and common sense inference.</li>
+</ul>
+</li>
+<li>
+<p>Introduction</p>
+<ul>
+<li>The paper emphasizes that prompt engineering has become essential for leveraging pre-trained LLMs/VLMs without costly retraining.</li>
+<li>Techniques range from simple (zero-shot and few-shot) to advanced forms like chain-of-thought and code-based prompting.</li>
+<li>Despite rapid development, there’s a lack of a structured, application-centric overview—hence the need for this thorough survey.</li>
+</ul>
+</li>
+<li>
+<p>Methods:</p>
+<ul>
+<li>New Tasks without Extensive Training
+<ul>
+<li><strong>Zero‑Shot Prompting</strong> : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge.</li>
+<li><strong>Few‑Shot Prompting</strong> : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior.</li>
+</ul>
+</li>
+<li>Reasoning and Logic
+<ul>
+<li><strong>Chain-of-THought (CoT)</strong> : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts.</li>
+<li><strong>Automatic Chain of Thought Prompting</strong> :  automatically instruct LLMs with a &ldquo;Let’s think step-by-step&rdquo; prompt to generate reasoning chains.</li>
+<li><strong>Self-Consistency</strong> : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting.</li>
+<li><strong>Tree of Thoughts</strong> : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &ldquo;thoughts&rdquo;. Each thought represents a coherent language sequence moving toward the final solution.</li>
+<li><strong>Graph of Thoughts</strong> : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations</li>
+<li><strong>Self Refine Prompting</strong> : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback.</li>
+</ul>
+</li>
+<li>Reduce Hallucination
+<ul>
+<li><strong>Retrieval Augmented Generation (RAG)</strong> : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background.</li>
+<li><strong>ReAct Prompting</strong> : enables LLMs to generate reasoning traces and task-specific actions concurrently</li>
+<li><strong>Chain of Verification</strong> : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="chain-of-thought-prompting-elicits-reasoning"><a href="https://arxiv.org/pdf/2201.11903">Chain-of-Thought Prompting Elicits Reasoning</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>The paper investigates <strong>Chain‑of‑Thought (CoT) prompting</strong>, where a prompt includes intermediate reasoning steps to guide LLMs toward answers.</li>
+<li>Experiments on large models like PaLM 540B (540B parameters) show that CoT dramatically improves performance on arithmetic, commonsense, and symbolic reasoning tasks—achieving state-of-the-art on the GSM8K math benchmark—even outperforming finetuned GPT‑3</li>
+</ul>
+</li>
+<li>Introduction:
+<ul>
+<li>Scaling LLMs boosts general capabilities, yet <strong>challenging reasoning tasks (multi-step math, logic puzzles) often hit performance plateaus.</strong></li>
+<li>Inspired by human problem-solving, the authors propose inserting <strong>few-shot CoT exemplars</strong> into the prompt.</li>
+<li>This enables sufficiently large LLMs to generate their own chains of reasoning, unlocking more complex reasoning ability</li>
+</ul>
+</li>
+<li>Methods: Few-shot CoT Prompting :
+<ul>
+<li>Add multiple examples (where each Q is paired with detailed reasoning steps leading to the answer) into the prompt</li>
+</ul>
+</li>
+<li>Conclusion:
+<ul>
+<li>CoT prompting is a <strong>simple yet powerful way</strong> to evoke multi-step reasoning in LLMs without additional training data.</li>
+<li>It’s interpretable (revealing the model’s reasoning path), scalable (works across reasoning domains), and most effective with large-scale models.</li>
+<li>The authors suggest the approach holds promise for broader applications and call for future work on automating CoT demonstrations</li>
+</ul>
+</li>
+</ul>
+<pre><code># Prompt for Math Word Problems (additional Q-A pairs with detailed resoning steps in the prompt)
+
+Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?
+A: There are originally 3 cars. 2 more cars arrive. 3 + 2 = 5. The answer is 5.
+Q: Leah had 32 chocolates and her sister had 42. If they ate 35, how many pieces do they have left in total?
+A: Originally, Leah had 32 chocolates. Her sister had 42. So in total they had 32 + 42 = 74. After eating 35, they
+had 74 - 35 = 39. The answer is 39.
+Q: Jason had 20 lollipops. He gave Denny some lollipops. Now Jason has 12 lollipops. How many lollipops did
+Jason give to Denny?
+A: Jason started with 20 lollipops. Then he had 12 after giving some to Denny. So he gave Denny 20 - 12 = 8.
+The answer is 8.
+Q: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?
+A: Olivia had 23 dollars. 5 bagels for 3 dollars each will be 5 x 3 = 15 dollars. So she has 23 - 15 dollars left. 23
+- 15 is 8. The answer is 8.
+...
+</code></pre>
+<br>
+<hr>
+<h2 id="self-consistency-improves-chain-of-thought-reasoning-in-language-models"><a href="https://arxiv.org/abs/2203.11171">Self-Consistency Improves Chain of Thought Reasoning in Language Models</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>While CoT stylistically guides models to think through problems step by step, it typically uses greedy decoding which may produce suboptimal or inconsistent reasoning.</p>
+</li>
+<li>
+<p>The paper observes that complex questions often admit multiple reasoning paths that yield the same correct answer.</p>
+</li>
+<li>
+<p>Building on that intuition, self‑consistency <strong>ensembles</strong> by <strong>sampling multiple CoT outputs and voting on the most frequent final answer</strong>—effectively providing confidence through agreement across reasoning paths.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods</p>
+<ol>
+<li>
+<p>Prompt the model with chain‑of‑thought exemplars as in standard CoT prompting.</p>
+</li>
+<li>
+<p>Sample <strong>multiple reasoning paths (answer)</strong> from the model (via stochastic decoding—e.g. temperature or top‑k sampling).</p>
+</li>
+<li>
+<p><strong>Aggregate</strong> by choosing the answer with majority/plurality among all sampled responses.</p>
+<ul>
+<li>This approximates marginalizing over reasoning trajectories: the model’s final output is the most consistently generated answer.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Conclusion :</p>
+<ul>
+<li>Self‑consistency consistently enhances LM reasoning, offering large absolute accuracy gains on multiple tasks without extra training or annotation. Improvements range from ~4 % to over 20 % depending on the dataset.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># 1. Prompt the model w/ CoT
+prompt = &quot;Kyle bought last year’s best-selling book for $19.50. This is with a 25% discount from the original price. What was the original price of &quot;the book?&quot;
+
+# 2. Sample multiple reasoning paths (answer) : generate multiple answers by setting higher temperature
+import openai
+responses = openai.ChatCompletion.create(
+    model=&quot;gpt-4&quot;,
+    messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],
+    temperature=0.8,
+    n=20  # generate 20 reasoning paths
+)
+paths = [choice['message']['content'] for choice in responses['choices']]
+
+# 3. From each sampled reasoning paths, extract the final answer (usually at the end of the text), and count which answer appears most often
+paths[0] # &gt;&gt; The original price of the book is $19.50. ... The answer is 26.
+paths[1] # &gt;&gt; the discounted price is 0.75x. ... The answer is $26.
+most_common_anser # &gt;&gt; &quot;The answer is $26&quot;
+</code></pre>
+<br>
+<hr>
+<h2 id="tree-of-thoughts-deliberate-problem-solving-with-large-language-models"><a href="https://arxiv.org/abs/2305.10601">Tree of Thoughts: Deliberate Problem Solving with Large Language Models</a></h2>
+<ul>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>LLMs have shown success in reasoning tasks when guided by Chain-of-Thought prompting, but often struggle with <strong>planning, self-evaluation, and error correction</strong>.</p>
+</li>
+<li>
+<p>ToT addresses these limitations by formalizing the reasoning process as <strong>search over a tree of intermediate thoughts</strong>, combining LMs with classical search algorithms.</p>
+</li>
+<li>
+<p>This framework allows models to look ahead, backtrack, and assess multiple reasoning paths—offering a more <strong>systematic and controllable</strong> approach than linear generation.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods: ToT consists of four main component</p>
+<ol>
+<li>
+<p><strong>Thought Decomposition</strong> – A task is broken down into a sequence of intermediate thoughts or subproblems where each thought represents a partial solution or reasoning step. Depending on different problems, a thought could be a couple of words (Crosswords), a line of equation (Game of 24), or a whole paragraph of writing plan (Creative Writing).</p>
+</li>
+<li>
+<p><strong>Thought Generator</strong> - the language model acts as a <strong>thought generator</strong>, producing <strong>multiple candidate thoughts</strong> based on the current state.</p>
+</li>
+<li>
+<p><strong>State Evaluator</strong> – To decide which thoughts are promising, each state (sequence of thoughts) is <strong>evaluated and scored</strong> by using the LM to deliberately reason about states</p>
+</li>
+<li>
+<p><strong>Search Algorithm</strong> – (e.g., breadth-first or depth-first with pruning) is used to navigate toward the best solution.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>
+<p>ToT is model-agnostic and can be applied with standard LMs without fine-tuning. The authors demonstrate ToT’s effectiveness on tasks like game solving and mathematical reasoning, where it outperforms CoT and other baselines.</p>
+</li>
+<li>
+<p>The authors suggest that this approach could serve as a foundation for more advanced, <strong>deliberative AI systems</strong> capable of more human-like problem solving.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="graph-of-thoughts-solving-elaborate-problems-with-large-language-models"><a href="https://arxiv.org/abs/2308.09687">Graph of Thoughts: Solving Elaborate Problems with Large Language Models</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>The paper identifies the limitations of existing prompting strategies such as Chain of Thought (CoT), which follows a linear path, and Tree of Thoughts (ToT), which allows branching but remains restricted to a tree structure.</p>
+</li>
+<li>
+<p>These methods often fail to capture the rich and iterative nature of human reasoning. To address this, GoT introduces a more generalized and expressive approach by organizing thoughts within a graph.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods : represents each reasoning step as a node in a graph, while edges denote logical or causal dependencies between them.</p>
+<ul>
+<li>
+<p>Transformations of Thoughts</p>
+<ul>
+<li>
+<p><strong>Generation</strong> of new thoughts from existing ones,</p>
+</li>
+<li>
+<p><strong>Aggregation</strong> of multiple thoughts into a unified form,</p>
+</li>
+<li>
+<p><strong>Refinement</strong> of thoughts through feedback loops.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>System Architecture : This modular architecture allows GoT to flexibly explore reasoning paths and improve results through iterative and structured exploration.</p>
+<ul>
+<li>
+<p><strong>Prompter</strong> : prepares the prompts to be sent to the LLM. This module is responsible for the specifics of encoding the graph structure within the prompt.</p>
+</li>
+<li>
+<p><strong>Parser</strong> : interprets LLM outputs back into graph updates</p>
+</li>
+<li>
+<p><strong>Validator</strong> : verify whether a given LLM thought satisfies potential correctness conditions, and then we assign it a score</p>
+</li>
+<li>
+<p><strong>Controller</strong> : manages the evolution of the graph by selecting which transformations to apply based on the task context.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>
+<p>By organizing thoughts in a graph structure and enabling dynamic operations on them, GoT supports more robust and context-aware reasoning.</p>
+</li>
+<li>
+<p>The experimental results demonstrate that GoT achieves higher accuracy and lower computational cost across various tasks compared to CoT and ToT.</p>
+</li>
+</ul>
+<br>
+<hr>
+</li>
+</ul>
+<h2 id="self-refine-iterative-refinement-with-self-feedback"><a href="https://arxiv.org/abs/2303.17651">Self-Refine: Iterative Refinement with Self-Feedback</a></h2>
+<ul>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>Inspired by human writing processes, the authors propose <strong>Self-Refine</strong>, where a model first drafts an initial output, then provides feedback (self-critique), and finally revises its response.</p>
+</li>
+<li>
+<p>Unlike existing methods that rely on human feedback or few-shot exemplars, Self-Refine only uses <strong>task instructions</strong> and <strong>self-generated feedback</strong>, making it widely applicable across tasks without task-specific engineering.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Method</p>
+<ul>
+<li><strong>Initial Generation</strong>: The model produces a response given a task prompt $P_{gen}$.</li>
+<li><strong>Self-Critique</strong>: It analyzes its own output and provides structured feedback (e.g., pointing out inconsistencies or missing details).
+<ul>
+<li>given a task-specific prompt $P_{fb}$ for generating feedback</li>
+</ul>
+</li>
+<li><strong>Revision</strong>: Using the feedback, the model generates a revised version of the response.</li>
+</ul>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>
+<p>Self-Refine shows that language models can significantly improve their outputs through structured self-feedback and iteration.</p>
+</li>
+<li>
+<p>The approach is <strong>simple, general-purpose, and effective</strong>, requiring minimal engineering or supervision.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="retrieval-augmented-generation-for-knowledge-intensive-nlp-tasks-2020"><a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (2020)</a></h2>
+<ul>
+<li>Summary : RAG literally (1) retrieves the top-k documents for a given query, (2) augments the latent vector by concatenating the original input x with the retrieved passage z, and (3) generates the final output.</li>
+<li>Abstract
+<ul>
+<li>Background. LLMs have been shown to store factual knowledge in their parameters, and achieve SOTA results when fine-tuned on down-stream NLP tasks.</li>
+<li>Problem Def.  However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.</li>
+<li>Contrib. We explore a general-purpose fine-tuning recipe for RAG ? models which combine pre-trained parametric and non-parametric memory for language generation.</li>
+</ul>
+</li>
+<li>Method : We explore RAG models, which use the input sequence $x$ to retrieve text documents $z$ and use them as additional context when generating the target sequence $y$.
+<ul>
+<li><strong>Retrieval (DPR) :</strong> returns top-K distributions over text passages given a query $x$
+<ul>
+<li>To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.</li>
+</ul>
+</li>
+<li><strong>Generator $p_\theta(y_i | x, z, y_{1:i-1})$ :</strong> generates a current token based on a context of the previous tokens  $y_{1:i-1}$ , the original input $x$ and a retrived passage $z$
+<ul>
+<li>could be modelled using any encoder-decoder.</li>
+<li>To combine the input $x$ with the retrieved content $z$ when generating from BART, we simply concatenate them.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<center>
+<img width=70% src='https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb382620-ad44-444f-b148-3b5460405bcc_1072x334.png'>
+  <p> <i>RAG overview</i> </p>
+</center>
+<br>
+<hr>
+<h2 id="react-synergizing-reasoning-and-acting-in-language-models"><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>Prior work treated <strong>reasoning</strong> (via chain‑of‑thought) and <strong>acting</strong> (task‑specific steps in environments) as separate capabilities.</p>
+</li>
+<li>
+<p>Chain‑of‑thought helps solve problems with internal logic but can hallucinate or propagate errors; acting approaches let LMs execute tasks but without an explicit reasoning process.</p>
+</li>
+<li>
+<p>Human intelligence combines verbal reasoning and task‑oriented action. Motivated by this, the authors propose ReAct to tightly interleave reasoning and action in one agent, improving both performance and interpretability over isolated approaches</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Method : ReAct treats the LM’s output space as containing two types: <strong>L</strong> (language reasoning traces) and <strong>A</strong> (actions).</p>
+<ul>
+<li>
+<p>The model alternates these: it reasons internally (without affecting the environment), then takes an action (like a search or navigation), receives observation feedback, and continues reasoning based on updated context.</p>
+</li>
+<li>
+<p>This allows dynamic plan creation, commonsense injection, progress monitoring, and exception handling.</p>
+</li>
+<li>
+<p>The prompting style is flexible—dense reasoning for QA tasks, sparse traces for action‑heavy tasks—with only a few in‑context examples required</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion :</p>
+<ul>
+<li>
+<p>ReAct demonstrates that intertwining reasoning and acting leads to emergent capabilities beyond either alone.</p>
+</li>
+<li>
+<p>It excels across both language reasoning and embodied decision tasks, offering enhanced <strong>accuracy</strong>, <strong>robustness</strong>, and <strong>interpretability</strong>.</p>
+</li>
+<li>
+<p>Because reasoning traces serve as a transparent intermediate representation, errors become easier to diagnose and correct.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-md">- Question) What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+
+- Thought 1) I need to search Colorado orogeny, find the area that the eastern sector of the Colorado orogeny extends into, then find the elevation range of thearea.
+- Action 1) Search[Colorado orogeny]
+- Observation 1) The Colorado orogeny was an episode of mountain building (an orogeny) in Colorado and surrounding areas.
+
+- Thought 2) It does not mention the eastern sector. So I need to look up eastern sector.
+- Action 2) Lookup[eastern sector]
+- Observation 2) (Result 1 / 1) The eastern sector extends into the High Plains and is called the Central Plains orogeny.
+
+- Thought 3) The eastern sector of Colorado orogeny extends into the High Plains. So I need to search High Plains and find its elevation range.
+- Action 3) Search[High Plains]
+- Observation 3) High Plains refers to one of two distinct land regions
+
+- Thought 4) I need to instead search High Plains (United States).
+- Action 4) Search[High Plains (United States)]
+...
+</code></pre>
+<br>
+<hr>
+<h2 id="chain-of-verification-reduces-hallucination-in-large-language-models"><a href="https://arxiv.org/abs/2309.11495">Chain-of-Verification Reduces Hallucination in Large Language Models</a></h2>
+<ul>
+<li>
+<p>Abstract :</p>
+<ul>
+<li>
+<p>The paper introduces <strong>Chain of Verification</strong>, a new framework for <strong>multi-hop question answering (QA)</strong> that enhances answer trustworthiness by verifying intermediate reasoning steps.</p>
+</li>
+<li>
+<p>Instead of relying solely on direct answer generation, the method first predicts reasoning chains and then <strong>verifies each step</strong> using a separate <strong>verifier model</strong>, improving both factual accuracy and model reliability.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>Traditional chain-of-thought (CoT) methods generate reasoning steps to improve transparency, but these steps can contain errors, leading to incorrect answers.</p>
+</li>
+<li>
+<p>This paper proposes treating <strong>verification as a first-class citizen</strong>, introducing <strong>verifier models</strong> to assess the correctness of individual reasoning steps, which helps ensure that the final answer is grounded in accurate intermediate steps.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Method :</p>
+<ul>
+<li>
+<p>(1) Generate Baseline Response : Given a query, generate the response using the LLM.</p>
+</li>
+<li>
+<p>(2) Plan Verifications: Given both query and baseline response, generate a list of verification questions that could help to self-analyze if there are any mistakes in the original response.</p>
+</li>
+<li>
+<p>(3) Execute Verifications: Answer each verification question in turn, and hence check the answer against the original response to check for inconsistencies or mistakes.</p>
+</li>
+<li>
+<p>(4) Generate Final Verified Response: Given the discovered inconsistencies (if any), generate a revised response incorporating the verification results.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>
+<p>CoVe significantly improves multi-hop QA performance and robustness by shifting focus from just generating answers to <strong>validating the reasoning</strong> behind them.</p>
+</li>
+<li>
+<p>It achieves better factual correctness than traditional CoT or direct-answer methods, setting a new direction for building more <strong>trustworthy AI systems</strong> in complex reasoning tasks.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="automatic-prompt-engineer--large-language-models-are-human-level-prompt-engineers"><a href="https://arxiv.org/pdf/2211.01910">Automatic Prompt Engineer : Large Language Models Are Human-Level Prompt Engineers</a></h2>
+<ul>
+<li>
+<p>Abstract : The authors introduce <strong>Automatic Prompt Engineer (APE)</strong>, which reframes prompt engineering as a form of natural language program synthesis. Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions, then another LLM evaluates and selects the best prompt based on defined score functions.</p>
+</li>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>Prompt quality critically influences LLM task performance, yet crafting effective prompts remains labor-intensive and human-dependent.</p>
+</li>
+<li>
+<p>Inspired by program synthesis techniques, the authors propose treating prompts as “programs” to be automatically generated and optimized.</p>
+</li>
+<li>
+<p>APE aims to reduce reliance on human prompt design, leveraging LLMs themselves to search, propose, and refine prompt candidates</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods : The APE framework unfolds in several stages:</p>
+<ul>
+<li>
+<p><strong>Candidate Generation</strong>: An LLM produces instruction candidates (directly infers instructions from input–output examples).</p>
+</li>
+<li>
+<p><strong>Scoring</strong>: Each candidate prompt is evaluated using metrics such as execution accuracy or the log-probability of correct outputs.</p>
+</li>
+<li>
+<p><strong>Iterative Monte Carlo Search</strong>: Based on scores, high-performing prompts are resampled and refined over multiple iterations—though the benefits of additional sampling plateau over time.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion : APE reframes prompt engineering as an automated, black-box optimization task guided by LLMs. The findings highlight that LLMs can achieve—or even surpass—human-level prompt design with minimal human involvement. This establishes APE as a powerful tool for making LLM-based systems more efficient and adaptable. The paper lays the groundwork for future exploration in automated prompt generation, including improved scoring strategies, cross-model prompt transferability, and tighter integration with in-context learning methods</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

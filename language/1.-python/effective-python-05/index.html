@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <title>
         Effective Python #5 | Classes and Interfaces - Lab.Koreanbear|한국곰연구소
       </title>
@@ -20,44 +20,52 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+    <meta name="description" content="
+Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
 Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
 They allow you to improve and expand functionality over time.
 They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types." />
-    <meta name="generator" content="Hugo 0.121.2 with theme pure" />
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.
+" />
+    <meta name="generator" content="Hugo 0.149.1 with theme pure" />
     <title>Effective Python #5 | Classes and Interfaces - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.cc594716968e94b5563a146aea1df7e7f754c7e26754143a88110f383e0d9008.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="Effective Python #5 | Classes and Interfaces" />
-<meta property="og:description" content="Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+    <meta property="og:url" content="http://localhost:1313/language/1.-python/effective-python-05/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #5 | Classes and Interfaces">
+  <meta property="og:description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
 Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
 They allow you to improve and expand functionality over time.
 They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://koreanbear89.github.io/language/1.-python/effective-python-05/" /><meta property="article:section" content="Language" />
-<meta property="article:published_time" content="2023-03-13T09:00:00+00:00" />
-<meta property="article:modified_time" content="2023-03-13T09:00:00+00:00" />
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-03-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-03-13T09:00:00+00:00">
 
-<meta itemprop="name" content="Effective Python #5 | Classes and Interfaces">
-<meta itemprop="description" content="Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+  <meta itemprop="name" content="Effective Python #5 | Classes and Interfaces">
+  <meta itemprop="description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
 Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
 They allow you to improve and expand functionality over time.
 They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types."><meta itemprop="datePublished" content="2023-03-13T09:00:00+00:00" />
-<meta itemprop="dateModified" content="2023-03-13T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1009">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Effective Python #5 | Classes and Interfaces"/>
-<meta name="twitter:description" content="Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
+  <meta itemprop="datePublished" content="2023-03-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-03-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1321">
+  <meta itemprop="keywords" content="9. Study">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #5 | Classes and Interfaces">
+  <meta name="twitter:description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
 Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
 They allow you to improve and expand functionality over time.
 They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types."/>
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -95,7 +103,7 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
            
           
           <a id="avatar" href="/" target="_self">
-            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
           </a>
           <a href="/" target="_self">
             <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
@@ -139,76 +147,50 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
 
       <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
         <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
+              <li class="menu-item menu-item-home">
                 <a href="/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-home"></i>
+                        <i class=" fas fa-home"></i>
                   <span class="menu-title">Home</span>
                 </a>
-            </li>
-            <li class="menu-item menu-item-about">
+              </li>
+              <li class="menu-item menu-item-about">
                 <a href="/about/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-user-alt"></i>
+                        <i class=" fas fa-user-alt"></i>
                   <span class="menu-title">About</span>
                 </a>
-            </li>
-            <li class="menu-item menu-item-mathematics">
-                <a href="/mathematics/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-square-root-alt"></i>
-                  <span class="menu-title">Mathematics</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-research">
-                <a href="/research/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-book-open"></i>
-                  <span class="menu-title">Research</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-engineering">
-                <a href="/engineering/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-cog"></i>
-                  <span class="menu-title">Engineering</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-language">
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
                 <a href="/language/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-language"></i>
+                        <i class=" fas fa-language"></i>
                   <span class="menu-title">Language</span>
                 </a>
-            </li>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
         </ul>
       </nav>
     </div>
   </header>
+
+
 
     <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
   <div class="slimContent">
@@ -238,28 +220,21 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
                   
                   
                   <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">13</span></li>
                   
               
         </ul><hr>
 
 
 
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
               
               
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">13</span></li>
-
-                  
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
@@ -272,22 +247,8 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">8</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
-                  <span class="category-list-count">2</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -298,11 +259,18 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
 
                   
               
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
         </ul><hr>
 
 
 
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
               
               
               
@@ -311,20 +279,41 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
-                  <span class="category-list-count">4</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-backend">2. Backend</a>
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">7</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">0</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
                   <span class="category-list-count">2</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-frontend">3. Frontend</a>
+                  <li class="category-list-item"><a href="/categories/5.-monitoring">5. Monitoring</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-visualization">8. Visualization</a>
                   <span class="category-list-count">1</span></li>
 
                   
@@ -332,21 +321,7 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
-                  <span class="category-list-count">17</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">9</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">13</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -359,25 +334,30 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
               
               
                   
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
               
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
-                  <span class="category-list-count">19</span></li>
+                  <span class="category-list-count">18</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
-                  <span class="category-list-count">2</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">6</span></li>
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -427,7 +407,7 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
         
 <span class="article-date">
   <i class="icon icon-calendar-check"></i>&nbsp;
-<a href="https://koreanbear89.github.io/language/1.-python/effective-python-05/" class="article-date">
+<a href="http://localhost:1313/language/1.-python/effective-python-05/" class="article-date">
   <time datetime="2023-03-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-13</time>
 </a>
 </span>
@@ -446,7 +426,7 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
 <h2 id="introduction">Introduction</h2>
 <ul>
 <li>
-<p>As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation</p>
+<p>As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation</p>
 </li>
 <li>
 <p>Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.</p>
@@ -468,7 +448,7 @@ Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid 
 <p>Avoid <strong>making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types</strong>.</p>
 </li>
 <li>
-<p>Use <code>namedtuple</code> for lightweight, immutalbe data containers before you need the flexibility of a full class.</p>
+<p>Use <code>namedtuple</code> for lightweight, immutable data containers before you need the flexibility of a full class.</p>
 </li>
 <li>
 <p>Move your bookkeeping code to using multiple classes when your internal state dictionaries get complicated</p>
@@ -525,6 +505,32 @@ class Gradebook:
 </code></pre>
 <br>
 <hr>
+<h2 id="item-38-accecpt-functions-instead-of-classes-for-simple-interfaces">Item 38. Accecpt Functions Instead of Classes for Simple Interfaces</h2>
+<ol>
+<li>
+<p> Instead of defining and instantiating classes, you can often simply use functions for simple interfaces between components in Python.</p>
+</li>
+<li>
+<p>References to functions and methods in Python are first class, meaning they can be used in expressions (like any other type).</p>
+</li>
+<li>
+<p>The <code>__call__</code> special method enables instances of a class to be called like plain Python functions.</p>
+</li>
+<li>
+<p>When you need a function to maintain state, consider defining a class that provides the <code>__call__</code> method instead of defining a state-</p>
+<p>ful closure.</p>
+</li>
+</ol>
+<pre><code class="language-python">class BetterCountMissing:
+    def __init__(self):
+        self.added = 0
+
+    def __call__(self):
+        self.added += 1
+        return 0
+</code></pre>
+<br>
+<hr>
 <h2 id="item-39-use-classmethod-polymorphism-to-construct-object-generically">Item 39. Use <code>@classmethod</code> Polymorphism to Construct Object Generically</h2>
 <ol>
 <li>
@@ -535,9 +541,45 @@ class Gradebook:
 </li>
 <li>
 <p>Use class method polymorphism to provide generic ways to build and <strong>connect many concrete subclasses.</strong></p>
+<ul>
+<li>
+<p>Constructor Polymorphism (overloading) : A concept in OOP where a class can have multiple constructors with different number or types of parameters ( in other languages, python only provides <code>__init__</code>)</p>
+</li>
+<li>
+<p>You can achieve similar functionality by using <code>@classmethod</code>in python to create alternative constructors</p>
+</li>
+</ul>
 </li>
 </ol>
-<br>
+<pre><code class="language-python"># example not in the book
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def from_birth_year(cls, name, birth_year, current_year):
+        age = current_year - birth_year
+        return cls(name, age) # Calls the __init__ method
+
+    @classmethod
+    def from_string(cls, data_string):
+        name, age_str = data_string.split(',')
+        age = int(age_str.strip())
+        return cls(name.strip(), age) # Calls the __init__ method
+
+# Using the primary constructor
+person1 = Person(&quot;Alice&quot;, 30)
+print(f&quot;Person 1: {person1.name}, {person1.age}&quot;)
+
+# Using an alternative constructor (from_birth_year)
+person2 = Person.from_birth_year(&quot;Bob&quot;, 1990, 2025)
+print(f&quot;Person 2: {person2.name}, {person2.age}&quot;)
+
+# Using another alternative constructor (from_string)
+person3 = Person.from_string(&quot;Charlie, 25&quot;)
+print(f&quot;Person 3: {person3.name}, {person3.age}&quot;)&lt;br&gt;
+</code></pre>
 <hr>
 <h2 id="item-40-initialize-parent-classes-with-super">Item 40. Initialize Parent Classes with <code>super</code></h2>
 <ol>
@@ -568,7 +610,8 @@ class ThisWay(TimesSeven, PlusNine):
         TimesSeven.__init__(self, value)
         PlusNine.__init__(self, value) # This line resets the value to 5
 
-# &gt;&gt; Should be (5 * 7) + 9 = 44 but is 14
+
+ㅆ# &gt;&gt; Should be (5 * 7) + 9 = 44 but is 14
 # The call to the second parent class’s constructor, PlusNine.__init__, causes self.value to be reset back to 5 when MyBaseClass
 </code></pre>
 <pre><code class="language-python"># To solve these problems, Python has the super built-in function and standard method resolution order (MRO). 
@@ -594,6 +637,9 @@ class GoodWay(TimesSevenCorrect, PlusNineCorrect):
 <ol>
 <li>
 <p>Avoid using multiple inheritance with instance attributes and <code>__init__</code> if mix-in classes can achieve the same outcome.</p>
+<ul>
+<li>A mix-in is a class that defines only a small set of additional methods for its child classes to provide.</li>
+</ul>
 </li>
 <li>
 <p>Use pluggable behaviors at the instance level to provide per-class customization when mix-in classes may require it.</p>
@@ -676,17 +722,17 @@ Class MyChildObject(MyObject):
 <br>
 <hr>
 <h2 id="item43-inherit-from-collectionsabc-for-custom-container-types">Item43. Inherit from <code>collections.abc</code> for Custom Container Types</h2>
-<ul>
+<ol>
 <li>
-<p>Inherit dicectly from Python&rsquo;s container types (like list or dict) for simple use cases</p>
+<p>Inherit directly from Python&rsquo;s container types (like list or dict) for simple use cases</p>
 </li>
 <li>
 <p>Beware of the large number of methods required to implement custom container types correctly</p>
 </li>
 <li>
-<p>Have yout custom container types inherit from the interfaces defined in <code>collections.abc</code> to ensure that your classes match required interfaces and behaviors</p>
+<p>Have your custom container types inherit from the interfaces defined in <code>collections.abc</code> to ensure that your classes match required interfaces and behaviors</p>
 </li>
-</ul>
+</ol>
 <pre><code class="language-python"># When you access a sequence item by index:
 bar = [1,2,3]
 bar[0] 
@@ -706,6 +752,9 @@ class MyClass():
 # But it's not enough to provide all of the sequence semantics you'd expect from a list instance
 test = MyClass(values=[1,2,3])
 len(test) # &gt;&gt; MyClass has no len()
+# You can directly inherit list like :
+class Myclass(list):
+...
 </code></pre>
 <pre><code class="language-python"># The built-in collections.abc module defines a set of abstract base classes that provide all of the typical methods for each container type
 from collections.abc import Sequence
@@ -748,7 +797,7 @@ TypeError: Can't instantiate abstract class BadType with  ̄abstract methods __g
             <i class="icon icon-github"></i></a></li>
     <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
             <i class="icon icon-linkedin"></i></a></li>
-    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
             <i class="icon icon-rss"></i></a></li>
 </ul>
   
@@ -779,8 +828,8 @@ TypeError: Can't instantiate abstract class BadType with  ̄abstract methods __g
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js"></script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.51f370e0d0e8604c70d31356f1a863f986c884e3b25c4be0cb9f9e9cb452e4b1.js"></script>
 
 <script>
     (function (window) {
@@ -792,13 +841,13 @@ TypeError: Can't instantiate abstract class BadType with  ̄abstract methods __g
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
-            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({
@@ -812,7 +861,6 @@ TypeError: Can't instantiate abstract class BadType with  ̄abstract methods __g
         hasInnerContainers: true,
     });
 </script>
-
 
 
   </body>

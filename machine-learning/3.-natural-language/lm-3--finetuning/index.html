@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        LM #3 | Language Model Fine-tuning - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Overview (SFT) LoRA LoRA QLoRA DoRA LoRA&#43; PO (Preference Optimization) RLHF (reinforcement learning from human feedback) RLAIF DPO ( direct preference optimization) SFT : Training language models to follow instructions with human feedback (2022) Introduction Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this. The paper proposes an alignment-focused training method where a base model is first fine-tuned on human-written responses (SFT), then optimized to match human preferences using RLHF. Methods Supervised Fine-Tuning (SFT): Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data. Training Reward Model: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output). Reinforcement Learning (PPO): The SFT model is further tuned using Proximal Policy Optimization (PPO) to maximize the reward model’s score. Conclusion : InstructGPT models trained via this pipeline:Follow instructions better than GPT-3. LlamaFactory : Unified Efficient Fine-Tuning of 100&#43; Language Models Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100&#43; LLMs Introduction With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive. LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers. Efficient Fine-Tuning Techniques: Efficient Optimization Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner. BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters. LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer) QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance LoRA&#43; (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA. PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence. Efficient Computation Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation. S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training. Llama Factory Framework LLAMAFACTORY consists of three main modules: Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs). Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues. Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks. Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019) Abstract: The paper proposes adapter modules as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT. Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks. This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning. Introduction : Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved. The authors argue for a more efficient approach where most model parameters remain frozen and they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters. Methods : The authors design lightweight adapter layers that are inserted within each layer of a pretrained transformer. consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection. During training on a new task, only the adapter parameters are updated, the original model weights remain fixed. This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs. Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task). LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022) Abstract : Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters. Introduction : Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations. Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution by decomposing weight updates into low-rank representations, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable. Methods : LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers). Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count. This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost. Conclusion: LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters. This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment. QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023) Abstract : QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning. This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost. Introduction: Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive. QLoRA addresses this by quantizing the base model to 4-bit precision, significantly reducing memory footprint, and using low-rank updates for fine-tuning. Methods : applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use. attaches small trainable low-rank adapters (as in LoRA) to certain layers. During training, only these adapters are updated, while the quantized base remains fixed. Conclusion demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy. The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU. DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024) Abstract : Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed. Introduction : Scaling up LLMs has led to a need for more efficient fine-tuning techniques. Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates. DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms. Methods: DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W&rsquo;$, such that $W = ||W|| \cdot W’$. During adaptation, only $W&rsquo;$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model. This reduces the risk of introducing harmful perturbations and keeps the weight scale stable. The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures. Conclusion DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation. It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. &#39; LoRA&#43;: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024) Abstract : The key limitation in the original LoRA method: using the same learning rate for both adapter matrices A and B leads to inefficient feature learning Authors propose LoRA&#43;, which sets different learning rates (using a higher rate for B relative to A ) to overcome this issue. Empirical results show LoRA&#43; enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost. Introduction : LLMs are central to modern NLP, but full fine-tuning is resource-intensive. While effective in reducing costs, standard LoRA uses the same learning rate for both A and B, which becomes suboptimal for wide networks. Methods : Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for B (relative to A) is derived (e.g., η_B ≫ η_A) Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A). Conclusion: LoRA&#43; offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models. DPO: Direct Preference Optimization (Rafael et al., 2023) Abstract : The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning. Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy) Introduction : Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO). DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training. The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters. Method : DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred). Computes the log-probability ratio between these two responses under the model and a reference model. The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$ This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step. Conclusion: DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper. It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical. " />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>LM #3 | Language Model Fine-tuning - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="LM #3 | Language Model Fine-tuning">
+  <meta property="og:description" content="Introduction Overview (SFT) LoRA LoRA QLoRA DoRA LoRA&#43; PO (Preference Optimization) RLHF (reinforcement learning from human feedback) RLAIF DPO ( direct preference optimization) SFT : Training language models to follow instructions with human feedback (2022) Introduction Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this. The paper proposes an alignment-focused training method where a base model is first fine-tuned on human-written responses (SFT), then optimized to match human preferences using RLHF. Methods Supervised Fine-Tuning (SFT): Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data. Training Reward Model: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output). Reinforcement Learning (PPO): The SFT model is further tuned using Proximal Policy Optimization (PPO) to maximize the reward model’s score. Conclusion : InstructGPT models trained via this pipeline:Follow instructions better than GPT-3. LlamaFactory : Unified Efficient Fine-Tuning of 100&#43; Language Models Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100&#43; LLMs Introduction With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive. LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers. Efficient Fine-Tuning Techniques: Efficient Optimization Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner. BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters. LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer) QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance LoRA&#43; (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA. PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence. Efficient Computation Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation. S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training. Llama Factory Framework LLAMAFACTORY consists of three main modules: Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs). Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues. Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks. Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019) Abstract: The paper proposes adapter modules as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT. Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks. This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning. Introduction : Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved. The authors argue for a more efficient approach where most model parameters remain frozen and they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters. Methods : The authors design lightweight adapter layers that are inserted within each layer of a pretrained transformer. consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection. During training on a new task, only the adapter parameters are updated, the original model weights remain fixed. This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs. Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task). LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022) Abstract : Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters. Introduction : Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations. Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution by decomposing weight updates into low-rank representations, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable. Methods : LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers). Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count. This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost. Conclusion: LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters. This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment. QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023) Abstract : QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning. This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost. Introduction: Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive. QLoRA addresses this by quantizing the base model to 4-bit precision, significantly reducing memory footprint, and using low-rank updates for fine-tuning. Methods : applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use. attaches small trainable low-rank adapters (as in LoRA) to certain layers. During training, only these adapters are updated, while the quantized base remains fixed. Conclusion demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy. The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU. DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024) Abstract : Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed. Introduction : Scaling up LLMs has led to a need for more efficient fine-tuning techniques. Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates. DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms. Methods: DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W’$, such that $W = ||W|| \cdot W’$. During adaptation, only $W’$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model. This reduces the risk of introducing harmful perturbations and keeps the weight scale stable. The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures. Conclusion DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation. It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. &#39; LoRA&#43;: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024) Abstract : The key limitation in the original LoRA method: using the same learning rate for both adapter matrices A and B leads to inefficient feature learning Authors propose LoRA&#43;, which sets different learning rates (using a higher rate for B relative to A ) to overcome this issue. Empirical results show LoRA&#43; enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost. Introduction : LLMs are central to modern NLP, but full fine-tuning is resource-intensive. While effective in reducing costs, standard LoRA uses the same learning rate for both A and B, which becomes suboptimal for wide networks. Methods : Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for B (relative to A) is derived (e.g., η_B ≫ η_A) Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A). Conclusion: LoRA&#43; offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models. DPO: Direct Preference Optimization (Rafael et al., 2023) Abstract : The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning. Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy) Introduction : Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO). DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training. The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters. Method : DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred). Computes the log-probability ratio between these two responses under the model and a reference model. The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$ This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step. Conclusion: DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper. It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2020-04-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2020-04-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="LM #3 | Language Model Fine-tuning">
+  <meta itemprop="description" content="Introduction Overview (SFT) LoRA LoRA QLoRA DoRA LoRA&#43; PO (Preference Optimization) RLHF (reinforcement learning from human feedback) RLAIF DPO ( direct preference optimization) SFT : Training language models to follow instructions with human feedback (2022) Introduction Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this. The paper proposes an alignment-focused training method where a base model is first fine-tuned on human-written responses (SFT), then optimized to match human preferences using RLHF. Methods Supervised Fine-Tuning (SFT): Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data. Training Reward Model: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output). Reinforcement Learning (PPO): The SFT model is further tuned using Proximal Policy Optimization (PPO) to maximize the reward model’s score. Conclusion : InstructGPT models trained via this pipeline:Follow instructions better than GPT-3. LlamaFactory : Unified Efficient Fine-Tuning of 100&#43; Language Models Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100&#43; LLMs Introduction With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive. LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers. Efficient Fine-Tuning Techniques: Efficient Optimization Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner. BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters. LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer) QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance LoRA&#43; (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA. PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence. Efficient Computation Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation. S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training. Llama Factory Framework LLAMAFACTORY consists of three main modules: Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs). Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues. Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks. Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019) Abstract: The paper proposes adapter modules as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT. Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks. This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning. Introduction : Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved. The authors argue for a more efficient approach where most model parameters remain frozen and they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters. Methods : The authors design lightweight adapter layers that are inserted within each layer of a pretrained transformer. consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection. During training on a new task, only the adapter parameters are updated, the original model weights remain fixed. This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs. Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task). LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022) Abstract : Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters. Introduction : Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations. Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution by decomposing weight updates into low-rank representations, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable. Methods : LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers). Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count. This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost. Conclusion: LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters. This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment. QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023) Abstract : QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning. This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost. Introduction: Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive. QLoRA addresses this by quantizing the base model to 4-bit precision, significantly reducing memory footprint, and using low-rank updates for fine-tuning. Methods : applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use. attaches small trainable low-rank adapters (as in LoRA) to certain layers. During training, only these adapters are updated, while the quantized base remains fixed. Conclusion demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy. The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU. DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024) Abstract : Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed. Introduction : Scaling up LLMs has led to a need for more efficient fine-tuning techniques. Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates. DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms. Methods: DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W’$, such that $W = ||W|| \cdot W’$. During adaptation, only $W’$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model. This reduces the risk of introducing harmful perturbations and keeps the weight scale stable. The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures. Conclusion DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation. It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. &#39; LoRA&#43;: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024) Abstract : The key limitation in the original LoRA method: using the same learning rate for both adapter matrices A and B leads to inefficient feature learning Authors propose LoRA&#43;, which sets different learning rates (using a higher rate for B relative to A ) to overcome this issue. Empirical results show LoRA&#43; enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost. Introduction : LLMs are central to modern NLP, but full fine-tuning is resource-intensive. While effective in reducing costs, standard LoRA uses the same learning rate for both A and B, which becomes suboptimal for wide networks. Methods : Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for B (relative to A) is derived (e.g., η_B ≫ η_A) Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A). Conclusion: LoRA&#43; offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models. DPO: Direct Preference Optimization (Rafael et al., 2023) Abstract : The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning. Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy) Introduction : Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO). DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training. The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters. Method : DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred). Computes the log-probability ratio between these two responses under the model and a reference model. The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$ This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step. Conclusion: DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper. It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical.">
+  <meta itemprop="datePublished" content="2020-04-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-04-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1833">
+  <meta itemprop="keywords" content="3. Natural Language">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LM #3 | Language Model Fine-tuning">
+  <meta name="twitter:description" content="Introduction Overview (SFT) LoRA LoRA QLoRA DoRA LoRA&#43; PO (Preference Optimization) RLHF (reinforcement learning from human feedback) RLAIF DPO ( direct preference optimization) SFT : Training language models to follow instructions with human feedback (2022) Introduction Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this. The paper proposes an alignment-focused training method where a base model is first fine-tuned on human-written responses (SFT), then optimized to match human preferences using RLHF. Methods Supervised Fine-Tuning (SFT): Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data. Training Reward Model: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output). Reinforcement Learning (PPO): The SFT model is further tuned using Proximal Policy Optimization (PPO) to maximize the reward model’s score. Conclusion : InstructGPT models trained via this pipeline:Follow instructions better than GPT-3. LlamaFactory : Unified Efficient Fine-Tuning of 100&#43; Language Models Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100&#43; LLMs Introduction With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive. LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers. Efficient Fine-Tuning Techniques: Efficient Optimization Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner. BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters. LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer) QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance LoRA&#43; (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA. PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence. Efficient Computation Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation. S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training. Llama Factory Framework LLAMAFACTORY consists of three main modules: Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs). Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues. Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks. Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019) Abstract: The paper proposes adapter modules as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT. Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks. This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning. Introduction : Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved. The authors argue for a more efficient approach where most model parameters remain frozen and they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters. Methods : The authors design lightweight adapter layers that are inserted within each layer of a pretrained transformer. consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection. During training on a new task, only the adapter parameters are updated, the original model weights remain fixed. This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs. Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task). LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022) Abstract : Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters. Introduction : Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations. Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution by decomposing weight updates into low-rank representations, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable. Methods : LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers). Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count. This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost. Conclusion: LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters. This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment. QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023) Abstract : QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning. This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost. Introduction: Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive. QLoRA addresses this by quantizing the base model to 4-bit precision, significantly reducing memory footprint, and using low-rank updates for fine-tuning. Methods : applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use. attaches small trainable low-rank adapters (as in LoRA) to certain layers. During training, only these adapters are updated, while the quantized base remains fixed. Conclusion demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy. The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU. DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024) Abstract : Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed. Introduction : Scaling up LLMs has led to a need for more efficient fine-tuning techniques. Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates. DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms. Methods: DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W’$, such that $W = ||W|| \cdot W’$. During adaptation, only $W’$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model. This reduces the risk of introducing harmful perturbations and keeps the weight scale stable. The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures. Conclusion DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation. It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. &#39; LoRA&#43;: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024) Abstract : The key limitation in the original LoRA method: using the same learning rate for both adapter matrices A and B leads to inefficient feature learning Authors propose LoRA&#43;, which sets different learning rates (using a higher rate for B relative to A ) to overcome this issue. Empirical results show LoRA&#43; enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost. Introduction : LLMs are central to modern NLP, but full fine-tuning is resource-intensive. While effective in reducing costs, standard LoRA uses the same learning rate for both A and B, which becomes suboptimal for wide networks. Methods : Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for B (relative to A) is derived (e.g., η_B ≫ η_A) Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A). Conclusion: LoRA&#43; offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models. DPO: Direct Preference Optimization (Rafael et al., 2023) Abstract : The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning. Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy) Introduction : Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO). DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training. The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters. Method : DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred). Computes the log-probability ratio between these two responses under the model and a reference model. The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$ This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step. Conclusion: DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper. It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/3.-natural-language/lm-3--finetuning/"
+    >LM #3 | Language Model Fine-tuning</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/" class="article-date">
+  <time datetime="2020-04-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-04-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-natural-language/"> 3. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/3.-natural-language/lm-3--finetuning/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Overview (SFT)
+<ul>
+<li>LoRA
+<ul>
+<li>LoRA</li>
+<li>QLoRA</li>
+<li>DoRA</li>
+<li>LoRA+</li>
+</ul>
+</li>
+<li>PO (Preference Optimization)
+<ul>
+<li>RLHF (reinforcement learning from human feedback)</li>
+<li>RLAIF</li>
+<li>DPO ( direct preference optimization)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="sft--training-language-models-to-follow-instructions-with-human-feedback-2022"><a href="https://arxiv.org/pdf/2203.02155">SFT : Training language models to follow instructions with human feedback (2022)</a></h2>
+<ul>
+<li>Introduction
+<ul>
+<li>Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this.</li>
+<li>The paper proposes an alignment-focused training method where a base model is first <strong>fine-tuned on human-written responses (SFT)</strong>, then optimized to match human preferences using RLHF.</li>
+</ul>
+</li>
+<li>Methods
+<ul>
+<li><strong>Supervised Fine-Tuning (SFT)</strong>: Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data.</li>
+<li><strong>Training Reward Model</strong>: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output).</li>
+<li><strong>Reinforcement Learning (PPO)</strong>: The SFT model is further tuned using <strong>Proximal Policy Optimization (PPO)</strong> to maximize the reward model’s score.</li>
+</ul>
+</li>
+<li>Conclusion : InstructGPT models trained via this pipeline:<strong>Follow instructions better</strong> than GPT-3.</li>
+</ul>
+<br>
+<hr>
+<h2 id="llamafactory--unified-efficient-fine-tuning-of-100-language-models"><a href="https://arxiv.org/pdf/2403.13372">LlamaFactory : Unified Efficient Fine-Tuning of 100+ Language Models</a></h2>
+<ul>
+<li>Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100+ LLMs</li>
+<li>Introduction
+<ul>
+<li>With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive.</li>
+<li>LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers.</li>
+</ul>
+</li>
+<li>Efficient Fine-Tuning Techniques:
+<ul>
+<li>Efficient Optimization
+<ul>
+<li>Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers</li>
+<li>GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner.</li>
+<li>BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters.</li>
+<li>LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer)</li>
+<li>QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage</li>
+<li>DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance</li>
+<li>LoRA+ (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA.</li>
+<li>PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence.</li>
+</ul>
+</li>
+<li>Efficient Computation
+<ul>
+<li>Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer</li>
+<li>Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation.</li>
+<li>S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs</li>
+<li>Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights</li>
+<li>Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Llama Factory Framework
+<ul>
+<li>LLAMAFACTORY consists of three main modules:
+<ul>
+<li>Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs).</li>
+<li>Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues.</li>
+<li>Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks.</li>
+</ul>
+<br>
+<hr>
+<h2 id="freeze-tuning--parameter-efficient-transfer-learning-for-nlp-houlsby-et-al-2019"><a href="https://arxiv.org/pdf/1902.00751">Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019)</a></h2>
+<ul>
+<li>Abstract:
+<ul>
+<li>The paper proposes <em>adapter modules</em> as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT.</li>
+<li>Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks.</li>
+<li>This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning.</li>
+</ul>
+</li>
+<li>Introduction :
+<ul>
+<li>Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved.</li>
+<li>The authors argue for a more efficient approach where most model parameters remain frozen and  they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters.</li>
+</ul>
+</li>
+<li>Methods :
+<ul>
+<li>The authors design lightweight <em>adapter layers</em> that are inserted within each layer of a pretrained transformer.
+<ul>
+<li>consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection.</li>
+</ul>
+</li>
+<li>During training on a new task, only the adapter parameters are updated, the original model weights remain fixed.</li>
+<li>This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs.</li>
+</ul>
+</li>
+<li>Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task).</li>
+</ul>
+<br>
+<hr>
+<h2 id="lora-low-rank-adaptation-of-large-language-models-hu-et-al-2022"><a href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022)</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters.</li>
+</ul>
+</li>
+<li>Introduction :
+<ul>
+<li>Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations.</li>
+<li>Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution <strong>by decomposing weight updates into low-rank representations</strong>, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable.</li>
+</ul>
+</li>
+<li>Methods : 
+<ul>
+<li>LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers).</li>
+<li>Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count.</li>
+<li>This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost.</li>
+</ul>
+</li>
+<li>Conclusion:
+<ul>
+<li>LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters.</li>
+<li>This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="qlora-efficient-finetuning-of-quantized-llms-dettmers-et-al-2023"><a href="https://arxiv.org/pdf/2305.14314">QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning.</li>
+<li>This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost.</li>
+</ul>
+</li>
+<li>Introduction:
+<ul>
+<li>Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive.</li>
+<li>QLoRA <strong>addresses this by quantizing the base model to 4-bit precision,</strong> significantly reducing memory footprint, and using low-rank updates for fine-tuning.</li>
+</ul>
+</li>
+<li>Methods :
+<ol>
+<li>applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use.</li>
+<li>attaches small trainable low-rank adapters (as in LoRA) to certain layers.</li>
+<li>During training, only these adapters are updated, while the quantized base remains fixed.</li>
+</ol>
+</li>
+<li>Conclusion
+<ul>
+<li>demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy.</li>
+<li>The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="dora--weight-decomposed-low-rank-adapdation-liu-et-al-2024"><a href="https://arxiv.org/pdf/2402.09353">DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024)</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed.</li>
+</ul>
+</li>
+<li>Introduction :
+<ul>
+<li>Scaling up LLMs has led to a need for more efficient fine-tuning techniques.</li>
+<li>Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates.</li>
+<li>DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms.</li>
+</ul>
+</li>
+<li>Methods:
+<ul>
+<li>DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W&rsquo;$, such that $W = ||W|| \cdot W’$.</li>
+<li>During adaptation, only $W&rsquo;$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model.
+<ul>
+<li>This reduces the risk of introducing harmful perturbations and keeps the weight scale stable.</li>
+</ul>
+</li>
+<li>The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures.</li>
+</ul>
+</li>
+<li>Conclusion
+<ul>
+<li>DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation.</li>
+<li>It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. '</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="lora-efficient-low-rank-adaptation-of-large-models-hayou-et-al-2024"><a href="https://arxiv.org/pdf/2402.12354">LoRA+: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024)</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>The key limitation in the original LoRA method: using the same learning rate for both adapter matrices <strong>A</strong> and <strong>B</strong> leads to inefficient feature learning</li>
+<li>Authors propose LoRA+, which sets different learning rates (using a higher rate for <strong>B</strong> relative to <strong>A</strong> ) to overcome this issue.</li>
+<li>Empirical results show LoRA+ enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost.</li>
+</ul>
+</li>
+<li>Introduction :
+<ul>
+<li>LLMs are central to modern NLP, but full fine-tuning is resource-intensive.</li>
+<li>While effective in reducing costs, standard LoRA uses the same learning rate for both <strong>A</strong> and <strong>B</strong>, which becomes suboptimal for wide networks.</li>
+</ul>
+</li>
+<li>Methods :
+<ul>
+<li>Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for <strong>B</strong> (relative to <strong>A</strong>) is derived (e.g., η_B ≫ η_A)</li>
+<li>Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A).</li>
+</ul>
+</li>
+<li>Conclusion:
+<ul>
+<li>LoRA+ offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices</li>
+<li>It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="dpo-direct-preference-optimization-rafael-et-al-2023"><a href="https://arxiv.org/abs/2305.18290">DPO: Direct Preference Optimization (Rafael et al., 2023)</a></h2>
+<ul>
+<li>Abstract :
+<ul>
+<li>The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning.</li>
+<li>Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy)</li>
+</ul>
+</li>
+<li>Introduction :
+<ul>
+<li>Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO).</li>
+<li>DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training.</li>
+<li>The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters.</li>
+</ul>
+</li>
+<li>Method :
+<ul>
+<li>DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred).</li>
+<li>Computes the log-probability ratio between these two responses under the model and a reference model.</li>
+<li>The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$</li>
+<li>This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step.</li>
+</ul>
+</li>
+<li>Conclusion:
+<ul>
+<li>DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper.</li>
+<li>It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical.</li>
+</ul>
+</li>
+</ul>
+<!--
+$$\mathcal{L}{\text{DPO}} = -\log \sigma\left( \beta [\log \pi\theta(y^+|x) - \log \pi_\theta(y^-|x)] - \log \pi_{\text{ref}}(y^+|x) + \log \pi_{\text{ref}}(y^-|x) \right)$$
+-->
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Effective Python #5 | Classes and Interfaces - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Effective Python #5 | Classes and Interfaces - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/3.-python/effective-python-05/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #5 | Classes and Interfaces">
+  <meta property="og:description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-03-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-03-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="Effective Python #5 | Classes and Interfaces">
+  <meta itemprop="description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
+  <meta itemprop="datePublished" content="2023-03-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-03-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1321">
+  <meta itemprop="keywords" content="3. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #5 | Classes and Interfaces">
+  <meta name="twitter:description" content="Introduction As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
+Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
+They allow you to improve and expand functionality over time.
+They provide flexibility in an environment of changing requirements.
+Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-python">3. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-scala">4. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/3.-python/effective-python-05/"
+    >Effective Python #5 | Classes and Interfaces</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/3.-python/effective-python-05/" class="article-date">
+  <time datetime="2023-03-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-03-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-python/"> 3. Python </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/3.-python/effective-python-05/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation</p>
+</li>
+<li>
+<p>Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.</p>
+<ul>
+<li>
+<p>They allow you to improve and expand functionality over time.</p>
+</li>
+<li>
+<p>They provide flexibility in an environment of changing requirements.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-37-compose-classes-instead-of-nesting-many-levels-of-build-in-types">Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types</h2>
+<ol>
+<li>
+<p>Avoid <strong>making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types</strong>.</p>
+</li>
+<li>
+<p>Use <code>namedtuple</code> for lightweight, immutable data containers before you need the flexibility of a full class.</p>
+</li>
+<li>
+<p>Move your bookkeeping code to using multiple classes when your internal state dictionaries get complicated</p>
+</li>
+</ol>
+<pre><code class="language-python"># Before : nested build-in types in dictionary
+class BySubjectGradeBook:
+    def __init__(self):
+        self._grades = {}
+
+    def add_student(self, name):
+        self._grades[name] = defaultdict(list)
+
+    def report_grade(self, name, subject, grade):
+        by_subject = self._grades[name]
+        grade_list = by_subject[subject]
+        grade_list.append(grade)
+
+    def average_grade(self, name):
+        by_subject = self._grades[name]
+        total, count = 0, 0    
+        for grades in by_subject.values():
+            total += sum(grades)
+            coutn += len(grades)
+        return total/count
+</code></pre>
+<pre><code class="language-python"># After : Use multiple classes
+class Subject:
+    def __init__(self):
+        self._grades = []
+
+    def report_grades(self, score, weight):
+        self._grades.append(Grade(score, weight))
+
+    def average_grade(self):
+        return total / total_weight # omitted details
+
+class Student:
+    def __init__(self):
+        self._subjects = defaultdict(Subject)
+
+    def get_subject(self, name):
+        return self._subjects[name]
+
+    def average_grade(self):
+        return total / count # omitted details 
+
+class Gradebook:
+    def __init__(self):
+        self._students = defaultdict(Student)
+
+    def get_student(self, name):
+        return self._students[name]
+</code></pre>
+<br>
+<hr>
+<h2 id="item-38-accecpt-functions-instead-of-classes-for-simple-interfaces">Item 38. Accecpt Functions Instead of Classes for Simple Interfaces</h2>
+<ol>
+<li>
+<p> Instead of defining and instantiating classes, you can often simply use functions for simple interfaces between components in Python.</p>
+</li>
+<li>
+<p>References to functions and methods in Python are first class, meaning they can be used in expressions (like any other type).</p>
+</li>
+<li>
+<p>The <code>__call__</code> special method enables instances of a class to be called like plain Python functions.</p>
+</li>
+<li>
+<p>When you need a function to maintain state, consider defining a class that provides the <code>__call__</code> method instead of defining a state-</p>
+<p>ful closure.</p>
+</li>
+</ol>
+<pre><code class="language-python">class BetterCountMissing:
+    def __init__(self):
+        self.added = 0
+
+    def __call__(self):
+        self.added += 1
+        return 0
+</code></pre>
+<br>
+<hr>
+<h2 id="item-39-use-classmethod-polymorphism-to-construct-object-generically">Item 39. Use <code>@classmethod</code> Polymorphism to Construct Object Generically</h2>
+<ol>
+<li>
+<p>Python only supports a single constructor per class: the <code>__init__ </code>method.</p>
+</li>
+<li>
+<p>Use <code>@classmethod</code> to define alternative constructors for your classes.</p>
+</li>
+<li>
+<p>Use class method polymorphism to provide generic ways to build and <strong>connect many concrete subclasses.</strong></p>
+<ul>
+<li>
+<p>Constructor Polymorphism (overloading) : A concept in OOP where a class can have multiple constructors with different number or types of parameters ( in other languages, python only provides <code>__init__</code>)</p>
+</li>
+<li>
+<p>You can achieve similar functionality by using <code>@classmethod</code>in python to create alternative constructors</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-python"># example not in the book
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def from_birth_year(cls, name, birth_year, current_year):
+        age = current_year - birth_year
+        return cls(name, age) # Calls the __init__ method
+
+    @classmethod
+    def from_string(cls, data_string):
+        name, age_str = data_string.split(',')
+        age = int(age_str.strip())
+        return cls(name.strip(), age) # Calls the __init__ method
+
+# Using the primary constructor
+person1 = Person(&quot;Alice&quot;, 30)
+print(f&quot;Person 1: {person1.name}, {person1.age}&quot;)
+
+# Using an alternative constructor (from_birth_year)
+person2 = Person.from_birth_year(&quot;Bob&quot;, 1990, 2025)
+print(f&quot;Person 2: {person2.name}, {person2.age}&quot;)
+
+# Using another alternative constructor (from_string)
+person3 = Person.from_string(&quot;Charlie, 25&quot;)
+print(f&quot;Person 3: {person3.name}, {person3.age}&quot;)&lt;br&gt;
+</code></pre>
+<hr>
+<h2 id="item-40-initialize-parent-classes-with-super">Item 40. Initialize Parent Classes with <code>super</code></h2>
+<ol>
+<li>
+<p>Python&rsquo;s standard method resolution order solves the problems of superclass initialization order and diamond inheritance</p>
+</li>
+<li>
+<p>Use the <code>super</code> built-in function with zero arguments to initialize parent classes</p>
+</li>
+</ol>
+<pre><code class="language-python"># Diamond inheritance
+class MyBaseClass:
+    def __init__(self, value):
+        self.value = value
+
+class TimesSeven(MyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value *= 7
+
+class PlusNine(MyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value += 9
+
+class ThisWay(TimesSeven, PlusNine):
+    def __init__(self, value):
+        TimesSeven.__init__(self, value)
+        PlusNine.__init__(self, value) # This line resets the value to 5
+
+
+ㅆ# &gt;&gt; Should be (5 * 7) + 9 = 44 but is 14
+# The call to the second parent class’s constructor, PlusNine.__init__, causes self.value to be reset back to 5 when MyBaseClass
+</code></pre>
+<pre><code class="language-python"># To solve these problems, Python has the super built-in function and standard method resolution order (MRO). 
+# super ensures that common superclasses in diamond hierarchies are run only once
+class TimesSevenCorrect(MyBaseClass):
+    def __init__(self, value):
+        super().__init__(value)
+        self.value *= 7
+
+class PlusNineCorrect(MyBaseClass):
+    def __init__(self, value):
+        super().__init__(value)
+        self.value += 9
+
+# Now, the top part of the diamond, MyBaseClass.__init__, is run only a single time. The other parent classes are run in the order specified in the class statement
+class GoodWay(TimesSevenCorrect, PlusNineCorrect):
+    def __init__(self, value):
+        super().__init__(value)
+</code></pre>
+<br>
+<hr>
+<h2 id="item41-consider-composing-functionality-with-mix-in-classes">Item41. Consider Composing Functionality with Mix-in Classes</h2>
+<ol>
+<li>
+<p>Avoid using multiple inheritance with instance attributes and <code>__init__</code> if mix-in classes can achieve the same outcome.</p>
+<ul>
+<li>A mix-in is a class that defines only a small set of additional methods for its child classes to provide.</li>
+</ul>
+</li>
+<li>
+<p>Use pluggable behaviors at the instance level to provide per-class customization when mix-in classes may require it.</p>
+</li>
+<li>
+<p>Mix-ins can include instance methods or class methods, depending on your needs.</p>
+</li>
+<li>
+<p>Compose mix-ins to create complex functionality from simple behaviors.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Define an example mix-in that accomplishes 
+class ToDictMixin:
+    def to_dict(self):
+        return self._traverse_dict(self.__dict__)
+
+    def _traverse_dict(self, instance_dict):
+        output = {}
+        for k,v in instance_dict.items()
+            output[key] = self._traverse(key, value)
+        return output
+
+    def _traverse(self, key, value):
+        if isinstance(value, ToDictMixin):
+            return value.to_dict()
+        elif isinstance(value, dict):
+            return self._traverse_dict(value)
+        elif isinstance(value, list):
+            return [self.traverse(key, i) for i in value]
+        else:
+            return value
+
+# Define an example class that uses the mix-in to make a dictionary representation of a binary tree
+class BinaryTree(ToDictMixin):
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+# Translating a large number of related Python objects into a dict becomes easy:
+tree = BinaryTree(10,
+    left = BinaryTree(7, right=BinaryTree(9)),
+    right = BinaryTree(13, left=BinaryTree(11)))
+</code></pre>
+<br>
+<hr>
+<h2 id="item42-prefer-public-attributes-over-private-ones">Item42. Prefer Public Attributes Over Private Ones</h2>
+<ol>
+<li>
+<p>Private attributes aren&rsquo;t regorously enforced by the Python complier</p>
+</li>
+<li>
+<p>Plan from the beginning to allow subclasses to do more with your internal APIs and attributes instead of choosing to lock them out.</p>
+</li>
+<li>
+<p>Use documentation of protected fields to guide subclasses instead of trying to force access control with private attributes</p>
+</li>
+<li>
+<p>Only consider using private attributes to avoid naming conflicts with subclasses that are out of your control</p>
+</li>
+</ol>
+<pre><code class="language-python"># In Python, there are only two types of visibility for a class’s attributes: public and private
+Class MyObject:
+    def __init__(self):
+        self.public_field = 5
+        self.__private_field = 10
+
+    def get_private_field(self):
+        return self.__privage_field
+
+    # class methdos also have access to private attributes    
+    @classmethod
+    def get_private_field_of_instance(cls, instance):
+        return instance.__private_field
+
+Class MyChildObject(MyObject):
+    def get_private_field(self):
+        return self.__private_field
+</code></pre>
+<br>
+<hr>
+<h2 id="item43-inherit-from-collectionsabc-for-custom-container-types">Item43. Inherit from <code>collections.abc</code> for Custom Container Types</h2>
+<ol>
+<li>
+<p>Inherit directly from Python&rsquo;s container types (like list or dict) for simple use cases</p>
+</li>
+<li>
+<p>Beware of the large number of methods required to implement custom container types correctly</p>
+</li>
+<li>
+<p>Have your custom container types inherit from the interfaces defined in <code>collections.abc</code> to ensure that your classes match required interfaces and behaviors</p>
+</li>
+</ol>
+<pre><code class="language-python"># When you access a sequence item by index:
+bar = [1,2,3]
+bar[0] 
+# above line will be interpreted as : 
+bar.__getitem__(0)
+</code></pre>
+<pre><code class="language-python"># So, to make your own class act like a sequence, you can provide a custom implementation of __getitem__
+class MyClass():
+    def __init__(self, values):
+        self.values = values
+
+    def __getitem__(self, index):
+        for i, item in enumerate(values):
+            if i == index:
+                return item
+        raies IndexError(f'Inted {index} is out of range')
+# But it's not enough to provide all of the sequence semantics you'd expect from a list instance
+test = MyClass(values=[1,2,3])
+len(test) # &gt;&gt; MyClass has no len()
+# You can directly inherit list like :
+class Myclass(list):
+...
+</code></pre>
+<pre><code class="language-python"># The built-in collections.abc module defines a set of abstract base classes that provide all of the typical methods for each container type
+from collections.abc import Sequence
+class BadType(Sequence):
+    pass
+
+foo = BadType()
+&gt;&gt;&gt;
+Traceback ...
+TypeError: Can't instantiate abstract class BadType with  ̄abstract methods __getitem__, __len__
+
+# When you do implement all the methods required by an abstract base class from collections.abc, it provides all of the additional methods, like index, count, ... for free.
+</code></pre>
+<br>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

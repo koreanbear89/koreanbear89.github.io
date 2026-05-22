@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. Frontend on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/3.-frontend/</link>
+    <description>Recent content in 3. Frontend on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+        <atom:link href="http://localhost:1313/categories/3.-frontend/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title> CheatSheet | LaTex</title>
+      <link>http://localhost:1313/language/9.-cheatsheets/latex--snippet/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/9.-cheatsheets/latex--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-matrix&#34;&gt;1. Matrix&lt;/h2&gt;
+&lt;p&gt;$$
+\begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-latex&#34;&gt;\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 3 \\
+4 &amp;amp; 5 &amp;amp; 6 \\
+7 &amp;amp; 8 &amp;amp; 9
+\end{pmatrix}
+
+\begin{bmatrix}
+a &amp;amp; b &amp;amp; c \\
+d &amp;amp; e &amp;amp; f \\
+g &amp;amp; h &amp;amp; i
+\end{bmatrix}
+
+\begin{pmatrix}
+a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \\
+a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \\
+\vdots  &amp;amp; \vdots  &amp;amp; \ddots &amp;amp; \vdots  \\
+a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n}
+\end{pmatrix}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/__draft/9.-others/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/__draft/9.-others/set-up-mac/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot;
+date: 2022-05-22 09:00:13
+categories: [2. Linux, Favorites]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;어플리케이션 별 단축키 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;automount-해제&#34;&gt;Automount 해제&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;diskutil info -all&lt;/code&gt; 로 Volume UUID 와 type 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo vi /etc/fstab&lt;/code&gt; 맨 아래에 아래와 같이 추가&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

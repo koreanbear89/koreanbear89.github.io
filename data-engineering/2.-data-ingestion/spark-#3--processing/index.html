@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Spark #3 | Processing - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+3.0 Introduction Contents 3.1 Basic Manipulation 3.2 Duplicates 3.3 Null 3.4 Filter 3.5 Group 3.6 Join 3.7 UDF 3.1 Basic Manipulation todo 3.2 Duplicates drop_duplicates(subset=[&quot;COLUMN&quot;]) : Returns a new Dataset with duplicate rows removed, considering only the subset of columns. distinct() : returns the distinct rows of DataFrame. takes no args and thus all columns are taken into account when dropping dups df.join(df.exceptAll(df.distinct())) leave duplicates and remove distinct 3.3 Null df.dropna(how=&quot;any&quot;, thresh=None, subset=[&quot;COLUMN1&quot;]) 3.4 Filter Filtering Pushdown Filtering General workflow : read data from file system, filtering on memory Pushdown workflow : read necessary data from file sys, not on memory // single condition df.filter(df(&quot;PRED&quot;) === &quot;Entertainment&quot;) df.filter(df(&quot;VIDEO_PLAY_TIME&quot;) &gt; 20) // multiple conditions df.filter((df(&quot;PRED&quot;) === &quot;Entertainment&quot;) &amp;&amp; (df(&quot;VIDEO_PLAY_TIME&quot;) &gt; 20)) 3.5 Group groupBy : Groups the DF using the specified columns, so we can run aggregation on them. returns GroupdedData .agg(collect_set()) .agg(collect_list()) // grouped data : GroupBy allows you to group rows together based off some column value df.groupBy(&quot;column_name&quot;) .count() // Returns the count of rows for each group. .mean() // Returns the mean of values for each group. .max() // Returns the maximum of values for each group. .min() // Returns the minimum of values for each group. .sum() // Returns the total for values for each group. .avg() // Returns the average for values for each group. .agg() // Using agg() function, we can calculate more than one aggregate at a time. .pivot() // This function is used to Pivot the DataFrame 3.6 Join Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(on expression is true) from both sides of the table Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise Right join : performs the same task as the left join, but for the right table. 3.7 UDF " />
+    <meta name="generator" content="Hugo 0.149.1 with theme pure" />
+    <title>Spark #3 | Processing - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.cc594716968e94b5563a146aea1df7e7f754c7e26754143a88110f383e0d9008.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/data-engineering/2.-data-ingestion/spark-%233--processing/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Spark #3 | Processing">
+  <meta property="og:description" content="3.0 Introduction Contents 3.1 Basic Manipulation 3.2 Duplicates 3.3 Null 3.4 Filter 3.5 Group 3.6 Join 3.7 UDF 3.1 Basic Manipulation todo 3.2 Duplicates drop_duplicates(subset=[&#34;COLUMN&#34;]) : Returns a new Dataset with duplicate rows removed, considering only the subset of columns. distinct() : returns the distinct rows of DataFrame. takes no args and thus all columns are taken into account when dropping dups df.join(df.exceptAll(df.distinct())) leave duplicates and remove distinct 3.3 Null df.dropna(how=&#34;any&#34;, thresh=None, subset=[&#34;COLUMN1&#34;]) 3.4 Filter Filtering Pushdown Filtering General workflow : read data from file system, filtering on memory Pushdown workflow : read necessary data from file sys, not on memory // single condition df.filter(df(&#34;PRED&#34;) === &#34;Entertainment&#34;) df.filter(df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20) // multiple conditions df.filter((df(&#34;PRED&#34;) === &#34;Entertainment&#34;) &amp;&amp; (df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20)) 3.5 Group groupBy : Groups the DF using the specified columns, so we can run aggregation on them. returns GroupdedData .agg(collect_set()) .agg(collect_list()) // grouped data : GroupBy allows you to group rows together based off some column value df.groupBy(&#34;column_name&#34;) .count() // Returns the count of rows for each group. .mean() // Returns the mean of values for each group. .max() // Returns the maximum of values for each group. .min() // Returns the minimum of values for each group. .sum() // Returns the total for values for each group. .avg() // Returns the average for values for each group. .agg() // Using agg() function, we can calculate more than one aggregate at a time. .pivot() // This function is used to Pivot the DataFrame 3.6 Join Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(on expression is true) from both sides of the table Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise Right join : performs the same task as the left join, but for the right table. 3.7 UDF">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="data-engineering">
+    <meta property="article:published_time" content="2020-12-14T09:00:00+00:00">
+    <meta property="article:modified_time" content="2020-12-14T09:00:00+00:00">
+
+  <meta itemprop="name" content="Spark #3 | Processing">
+  <meta itemprop="description" content="3.0 Introduction Contents 3.1 Basic Manipulation 3.2 Duplicates 3.3 Null 3.4 Filter 3.5 Group 3.6 Join 3.7 UDF 3.1 Basic Manipulation todo 3.2 Duplicates drop_duplicates(subset=[&#34;COLUMN&#34;]) : Returns a new Dataset with duplicate rows removed, considering only the subset of columns. distinct() : returns the distinct rows of DataFrame. takes no args and thus all columns are taken into account when dropping dups df.join(df.exceptAll(df.distinct())) leave duplicates and remove distinct 3.3 Null df.dropna(how=&#34;any&#34;, thresh=None, subset=[&#34;COLUMN1&#34;]) 3.4 Filter Filtering Pushdown Filtering General workflow : read data from file system, filtering on memory Pushdown workflow : read necessary data from file sys, not on memory // single condition df.filter(df(&#34;PRED&#34;) === &#34;Entertainment&#34;) df.filter(df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20) // multiple conditions df.filter((df(&#34;PRED&#34;) === &#34;Entertainment&#34;) &amp;&amp; (df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20)) 3.5 Group groupBy : Groups the DF using the specified columns, so we can run aggregation on them. returns GroupdedData .agg(collect_set()) .agg(collect_list()) // grouped data : GroupBy allows you to group rows together based off some column value df.groupBy(&#34;column_name&#34;) .count() // Returns the count of rows for each group. .mean() // Returns the mean of values for each group. .max() // Returns the maximum of values for each group. .min() // Returns the minimum of values for each group. .sum() // Returns the total for values for each group. .avg() // Returns the average for values for each group. .agg() // Using agg() function, we can calculate more than one aggregate at a time. .pivot() // This function is used to Pivot the DataFrame 3.6 Join Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(on expression is true) from both sides of the table Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise Right join : performs the same task as the left join, but for the right table. 3.7 UDF">
+  <meta itemprop="datePublished" content="2020-12-14T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-12-14T09:00:00+00:00">
+  <meta itemprop="wordCount" content="364">
+  <meta itemprop="keywords" content="2. System Design">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spark #3 | Processing">
+  <meta name="twitter:description" content="3.0 Introduction Contents 3.1 Basic Manipulation 3.2 Duplicates 3.3 Null 3.4 Filter 3.5 Group 3.6 Join 3.7 UDF 3.1 Basic Manipulation todo 3.2 Duplicates drop_duplicates(subset=[&#34;COLUMN&#34;]) : Returns a new Dataset with duplicate rows removed, considering only the subset of columns. distinct() : returns the distinct rows of DataFrame. takes no args and thus all columns are taken into account when dropping dups df.join(df.exceptAll(df.distinct())) leave duplicates and remove distinct 3.3 Null df.dropna(how=&#34;any&#34;, thresh=None, subset=[&#34;COLUMN1&#34;]) 3.4 Filter Filtering Pushdown Filtering General workflow : read data from file system, filtering on memory Pushdown workflow : read necessary data from file sys, not on memory // single condition df.filter(df(&#34;PRED&#34;) === &#34;Entertainment&#34;) df.filter(df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20) // multiple conditions df.filter((df(&#34;PRED&#34;) === &#34;Entertainment&#34;) &amp;&amp; (df(&#34;VIDEO_PLAY_TIME&#34;) &gt; 20)) 3.5 Group groupBy : Groups the DF using the specified columns, so we can run aggregation on them. returns GroupdedData .agg(collect_set()) .agg(collect_list()) // grouped data : GroupBy allows you to group rows together based off some column value df.groupBy(&#34;column_name&#34;) .count() // Returns the count of rows for each group. .mean() // Returns the mean of values for each group. .max() // Returns the maximum of values for each group. .min() // Returns the minimum of values for each group. .sum() // Returns the total for values for each group. .avg() // Returns the average for values for each group. .agg() // Using agg() function, we can calculate more than one aggregate at a time. .pivot() // This function is used to Pivot the DataFrame 3.6 Join Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(on expression is true) from both sides of the table Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise Right join : performs the same task as the left join, but for the right table. 3.7 UDF">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black main-center theme-black main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-data-engineering">
+                <a href="/data-engineering/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">Data Engineering</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Data Engineering</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">7</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">0</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-monitoring">5. Monitoring</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-visualization">8. Visualization</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">20</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/data-engineering/2.-data-ingestion/spark-%233--processing/"
+    >Spark #3 | Processing</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/data-engineering/2.-data-ingestion/spark-%233--processing/" class="article-date">
+  <time datetime="2020-12-14 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-12-14</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-system-design/"> 2. System Design </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/data-engineering/2.-data-ingestion/spark-%233--processing/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="30-introduction">3.0 Introduction</h2>
+<ul>
+<li>Contents
+<ul>
+<li>3.1 Basic Manipulation</li>
+<li>3.2 Duplicates</li>
+<li>3.3 Null</li>
+<li>3.4 Filter</li>
+<li>3.5 Group</li>
+<li>3.6 Join</li>
+<li>3.7 UDF</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="31-basic-manipulation">3.1 Basic Manipulation</h2>
+<ul>
+<li>todo</li>
+</ul>
+<br>
+<hr>
+<h2 id="32-duplicates">3.2 Duplicates</h2>
+<ul>
+<li><code>drop_duplicates(subset=[&quot;COLUMN&quot;])</code> :
+<ul>
+<li>Returns a new Dataset with duplicate rows removed, considering only the subset of columns.</li>
+</ul>
+</li>
+<li><code>distinct()</code> :
+<ul>
+<li>returns the distinct rows of DataFrame.</li>
+<li>takes no args and thus all columns are taken into account when dropping dups</li>
+</ul>
+</li>
+<li><code>df.join(df.exceptAll(df.distinct()))</code>
+<ul>
+<li>leave duplicates and remove distinct</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="33-null">3.3 Null</h2>
+<ul>
+<li><code>df.dropna(how=&quot;any&quot;, thresh=None, subset=[&quot;COLUMN1&quot;])</code></li>
+</ul>
+<br>
+<hr>
+<h2 id="34-filter">3.4 Filter</h2>
+<ul>
+<li>Filtering</li>
+<li>Pushdown Filtering
+<ul>
+<li>General workflow : read data from file system, filtering on memory</li>
+<li>Pushdown workflow : read necessary data from file sys, not on memory</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scala">// single condition
+df.filter(df(&quot;PRED&quot;) === &quot;Entertainment&quot;)
+df.filter(df(&quot;VIDEO_PLAY_TIME&quot;) &gt; 20)
+// multiple conditions
+df.filter((df(&quot;PRED&quot;) === &quot;Entertainment&quot;) &amp;&amp; (df(&quot;VIDEO_PLAY_TIME&quot;) &gt; 20))
+</code></pre>
+<br>
+<hr>
+<h2 id="35-group">3.5 Group</h2>
+<ul>
+<li><code>groupBy</code> : Groups the DF using the specified columns, so we can run aggregation on them. returns <code>GroupdedData</code>
+<ul>
+<li><code>.agg(collect_set())</code></li>
+<li><code>.agg(collect_list())</code></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scala">// grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&quot;column_name&quot;)
+  .count() // Returns the count of rows for each group.
+  .mean() // Returns the mean of values for each group.
+  .max() // Returns the maximum of values for each group.
+  .min() // Returns the minimum of values for each group.
+  .sum() // Returns the total for values for each group.
+  .avg() // Returns the average for values for each group.
+  .agg() // Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() // This function is used to Pivot the DataFrame
+</code></pre>
+<br>
+<hr>
+<h2 id="36-join">3.6 Join</h2>
+<ul>
+<li>Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(<code>on</code> expression is true) from both sides of the table</li>
+<li>Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table</li>
+<li>Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise</li>
+<li>Right join : performs the same task as the left join, but for the right table.</li>
+</ul>
+<br>
+<hr>
+<h2 id="37-udf">3.7 UDF</h2>
+<br>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.51f370e0d0e8604c70d31356f1a863f986c884e3b25c4be0cb9f9e9cb452e4b1.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+  </body>
+</html>

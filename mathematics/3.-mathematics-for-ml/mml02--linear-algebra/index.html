@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Mathematics for ML #2 | Linear Algebra  - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+2. Linear Algebra Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.
+In general, vectors are special objects that can be (1) added together and (2) multiplied by scalars to produce another object of the same kind.
+From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector
+Geometric vectors : may be familiar from highschool mathematics and physic
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Mathematics for ML #2 | Linear Algebra  - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Mathematics for ML #2 | Linear Algebra ">
+  <meta property="og:description" content="2. Linear Algebra Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.
+In general, vectors are special objects that can be (1) added together and (2) multiplied by scalars to produce another object of the same kind.
+From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector
+Geometric vectors : may be familiar from highschool mathematics and physic">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mathematics">
+    <meta property="article:published_time" content="2022-01-28T09:00:00+00:00">
+    <meta property="article:modified_time" content="2022-01-28T09:00:00+00:00">
+
+  <meta itemprop="name" content="Mathematics for ML #2 | Linear Algebra ">
+  <meta itemprop="description" content="2. Linear Algebra Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.
+In general, vectors are special objects that can be (1) added together and (2) multiplied by scalars to produce another object of the same kind.
+From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector
+Geometric vectors : may be familiar from highschool mathematics and physic">
+  <meta itemprop="datePublished" content="2022-01-28T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-01-28T09:00:00+00:00">
+  <meta itemprop="wordCount" content="2474">
+  <meta itemprop="keywords" content="3. Mathematics for ML">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mathematics for ML #2 | Linear Algebra ">
+  <meta name="twitter:description" content="2. Linear Algebra Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.
+In general, vectors are special objects that can be (1) added together and (2) multiplied by scalars to produce another object of the same kind.
+From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector
+Geometric vectors : may be familiar from highschool mathematics and physic">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/"
+    >Mathematics for ML #2 | Linear Algebra </a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/" class="article-date">
+  <time datetime="2022-01-28 09:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-28</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-mathematics-for-ml/"> 3. Mathematics for ML </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="2-linear-algebra">2. Linear Algebra</h2>
+<ul>
+<li>
+<p>Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.</p>
+</li>
+<li>
+<p>In general, vectors are special objects that can be <strong>(1) added together</strong> and <strong>(2) multiplied by scalars</strong> to produce another object of the same kind.</p>
+</li>
+<li>
+<p>From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector</p>
+<ul>
+<li>
+<p>Geometric vectors : may be familiar from highschool mathematics and physic</p>
+</li>
+<li>
+<p>Polynomials are also vectors : Two polynomials can be added together, and they can be multiplied by a scalar.</p>
+</li>
+<li>
+<p>Audio signals are vectors</p>
+</li>
+<li>
+<p>Elements of $\mathbb{R}^n$ are vectors</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="21-systems-of-linear-equations">2.1 Systems of Linear Equations</h3>
+<ul>
+<li>
+<p>Many problems can be formulated as systems of linear equations, and linear algebra gives us the tools for solving them.</p>
+</li>
+<li>
+<p><strong>system of linear equations</strong></p>
+<ul>
+<li>linear equation : $a_1x_1 + &hellip;. + a_nx_n = b_n$</li>
+<li>system of linear equations : set of linear equations</li>
+</ul>
+</li>
+<li>
+<p><strong>solution</strong> : every $n$-tuple $(x_1, &hellip;, x_n) \in  \mathbb{R}^n$ that satisfies the linear equation systems</p>
+<ul>
+<li>no solution</li>
+<li>unique solution</li>
+<li>infinitely many solutions</li>
+</ul>
+</li>
+<li>
+<p><strong>Geometric Interpretation</strong></p>
+<ul>
+<li>For two variables : can obtain a solution set that is a line, a point or empty</li>
+<li>For three variables : can obtain a solution set that is a plane, a line, a point or empty</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="22-matrices">2.2 Matrices</h3>
+<ul>
+<li>Matrices play a central role in linear algebra
+<ul>
+<li>can be used to compactly represent systems of linear equations,</li>
+<li>also represent linear functions (linear mappings) =&gt; Section 2.7.</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.2.1 Matrix Addition and Multiplication</strong></p>
+<ul>
+<li>Addition : The sum of two matrices is defined as the element-wise sum</li>
+<li>Multiplication : Nothing Special, $AB \neq BA$</li>
+<li>Hadamard product : element-wise multiplication of matrix</li>
+<li>Identity matrix : as the $n×n$ matrix containing 1 on the diagonal and 0 everywhere else.</li>
+</ul>
+<p><strong>2.2.2 Inverse and Transpose</strong></p>
+<ul>
+<li>Unfortunately, not every matrix $A$ possesses an inverse $A^{−1}$.
+<ul>
+<li>If this inverse does exist, $A$ is called regular/invertible/nonsingular,</li>
+<li>otherwise singular/noninvertible.</li>
+</ul>
+</li>
+<li>Transpose : can be obtained by writing the columns of $A$ as the rows of $A^T$</li>
+</ul>
+<p><strong>2.2.3 Multiplication by a Scalar</strong></p>
+<ul>
+<li>Practically, multiplied scalar $\lambda$  scales each element of $A$</li>
+</ul>
+<p><strong>2.2.4 Compact representations of Systems of Linear Equations</strong></p>
+<ul>
+<li>Usingse the rules for matrix multiplication, we can write this linear equation system in a more compact form :</li>
+</ul>
+<br>
+<hr>
+<h3 id="23-solving-systems-of-linear-equations">2.3 Solving Systems of Linear Equations</h3>
+<ul>
+<li>We saw that matrices can be used as a compact way of formulating systems of linear equations so that we can write $AX=B$</li>
+<li>In the following, we will focus on solving systems of linear equations and provide an algorithm for finding the inverse of a matrix</li>
+</ul>
+<p><strong>2.3.1 Particular and General Solution</strong></p>
+<ul>
+<li>
+<p>The solution set $X$ of linear system $AX=B$, is same with $X=X_p+X_n$</p>
+<ul>
+<li>Particular Solution : Here, $X_p$ is one of any possible solution from $AX=B$</li>
+<li>Homogeneous Solution : And $X_h$ is the solution of $AX=0$</li>
+</ul>
+</li>
+<li>
+<p>So, If we can find any possible solution $X_p$ and the solution $X_h$ then we can get the general solution by combining the two.</p>
+<ul>
+<li>(1) Find a particular solution to $AX=B$</li>
+<li>(2) Find all solutions to $AX=0$</li>
+<li>(3) Combine the solutions from above steps for the general solution</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.3.2 Elementary Transformations</strong></p>
+<ul>
+<li>
+<p>Gaussian Elimination : is an algorithm that performs elementary transformations to bring a system of linear equations into reduced row-echelon form.</p>
+<ul>
+<li>Given Matix → Forward Elimination → Row-Echelon Form (Triangular) → Backward Elimination → Reduced REF</li>
+<li>keep the solution set the same, but transform the equation system into a simpler form by :
+<ul>
+<li>Exchange of two equations</li>
+<li>Multiplication of an equation with a constant $ \lambda$.</li>
+<li>Addition of two equations</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Particular Solution : with Row-Echelon Form matrix</p>
+<p>$$
+\begin{bmatrix} 1\ -2\ 1\ -1\ 1 \\ 0\ 0\ 1\ -1\ 3 \\ 0\ 0\ 0\ 1\ -2\ \end{bmatrix}
+\begin{bmatrix} x_1\ x_2\ x_3\ x_4\ x_5 \end{bmatrix} =
+\begin{bmatrix} 0\ -2\ 1\  \end{bmatrix}
+$$</p>
+<ul>
+<li>Pivot (leading coefficient) : the first non-zero number of each row, $\rightarrow (1,1,1)$</li>
+<li>Basic variables : The variables corresponding to the pivot $\rightarrow (x_1,x_3,x_4)$</li>
+<li>Free variables : the other variables $\rightarrow (x_2, x_5)$</li>
+<li>To obtain a Particular Solution : Set the free variables to zero and solve the REF matrix</li>
+</ul>
+</li>
+<li>
+<p>Homogeneouse Solution : with Reduced Row-Echelon Form</p>
+<ul>
+<li>To obtain a Homogeneous Solution:
+<ul>
+<li>(1) Set one free variabels to 1 and others to 0, then solve the RREF matrix</li>
+<li>(2) Iterate step (1) for all free variables</li>
+<li>(3) Combine all the solutions multiplied by $\lambda_i$ for each free variables.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="24-vector-spaces">2.4 Vector Spaces</h3>
+<ul>
+<li>we will have a closer look at vector spaces, a structured space in which vectors live.</li>
+</ul>
+<p><strong>2.4.1 Group</strong></p>
+<ul>
+<li>Group : Consider a set $\Gamma$ and an operation $\otimes$ , Then $G := (\Gamma, \otimes)$ is called a group if the following hold: (Closure, Associativity, Neutral element, Inverse element , commutative =&gt; Abelian Group)</li>
+</ul>
+<p><strong>2.4.2 Vector Spaces</strong></p>
+<ul>
+<li>A real-valued vector space $\mathbf{V} = (V,+,\cdot)$ is a set $\nu$ with two operations</li>
+</ul>
+<p>$$</p>
+<ul>
+<li>: V \times V \rightarrow V \
+\cdot : \mathbb{R} \times V \rightarrow V
+$$</li>
+</ul>
+<ul>
+<li>
+<p>vectors : The elements $x \in V$ are called vectors</p>
+</li>
+<li>
+<p>the inner operation $+$ : is called vector addition.</p>
+</li>
+<li>
+<p>the outer operation $\cdot$  : is a multiplication by scalars.</p>
+</li>
+</ul>
+<p><strong>2.4.3 Vector Subspaces</strong></p>
+<ul>
+<li>Let $\mathbf{V} = (V, +, \cdot)$ be a vector space and $U\subseteq V, U\neq\mathbf{0}$ Then $\mathbf{U} = (U,+,\cdot)$ is called vector subspace of $\mathbf{V}$</li>
+<li>Every subspace $\mathbf{U} ⊆(Rn,+,·)$ is the solution space of a homogeneous system of linear equations $Ax=0$ for $x∈\mathbb{R}_n$.</li>
+</ul>
+<br>
+<hr>
+<h3 id="25-linear-independence">2.5 Linear Independence</h3>
+<ul>
+<li>Linear Combination :
+<ul>
+<li>an expression constructed from a set of vectors by multiplying each vector by a constant (scalar) and adding the results</li>
+<li>The zero-vectors can always be written as the linear combination of k vectors</li>
+</ul>
+</li>
+</ul>
+<p>$$
+v  =λ_1x_1 + ··· + λ_kx_k
+$$</p>
+<ul>
+<li>
+<p>Linear Independence :</p>
+<ul>
+<li>a set of vectors is said to be linearly dependent if there is a nontrivial linear combination of the vectors that equals the zero vector.</li>
+<li>If no such linear combination exists, then the vectors are said to be linearly independent.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="26-basis-and-rank">2.6 Basis and Rank</h3>
+<p><strong>2.6.1 Generating Set and Basis</strong></p>
+<ul>
+<li>Generating Set : Consider a vector space $V$ and set of vectors $A={x1,&hellip;,xk} ⊆ V$. If every vector $v∈V$ can be expressed as a linear combination of $x_1,&hellip;,x_k,$ $A$ is called a generating setof $V$.</li>
+<li>Span : The set of all linear combinations of vectors in A is generating set called the span of $A$.</li>
+<li>Basis : Consider a vector space $V$ and $A⊆V$,  A generating set $A$ of $V$ is called minimal if there exists no smaller set $\hat{A}⊆A⊆V$ that spans $V$. Every linearly independent generating set of $V$ is minimal and <strong>is called a basis</strong> of $V$.</li>
+<li>Basis $B$ can also be thought as followng:
+<ul>
+<li>$B$ is a minimal generating set.</li>
+<li>$B$ is a maximal linearly independent set of vectors in $V$, i.e., adding any other vector to this set will make it linearly dependent.</li>
+<li>Every vector $x∈V$ is a linear combination of vectors from $B$, and every linear combination is unique</li>
+</ul>
+</li>
+<li>dimension : of $V$ is the number of basis vectors of $V$</li>
+</ul>
+<p><strong>2.6.2 Rank</strong></p>
+<ul>
+<li>The number of linearly independent columns of a matrix $A∈R^{m×n}$ equals the number of linearly independent rows and is called the rank of $A$ and is denoted by $rk(A)$.</li>
+<li>the rank of a matrix A is the dimension of the vector space generated (or spanned) by its columns.</li>
+</ul>
+<br>
+<hr>
+<h3 id="27-linear-mappings-linear-transformation">2.7 Linear Mappings (Linear Transformation)</h3>
+<ul>
+<li>Linear Mapping : For vector spaces $V,W$, a mapping $Φ :V→W$ is called a linear mapping.
+<ul>
+<li>Injective : $∀x,y∈V: Φ(x) = Φ(y) ⇒x=y.$</li>
+<li>Surjective : $Φ(V) =W$</li>
+<li>Bijective : if it is injective and surjective</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.7.1 Matrix Representation of Linear Mappings</strong></p>
+<ul>
+<li>
+<p>Transformation Matrix : Consider vector spaces $V,W$ with corresponding (ordered) bases $B= (b1,&hellip;,bn) \text{ and } C= (c1,&hellip;,cm)$. Moreover, we consider a linear mapping $Φ :V→W$. For $j∈{1,&hellip;,n},$</p>
+<p>$$
+Φ(b_j) =α_{1j}c_1+···+α_{mj}c_m=∑_{i=1}^mα_ijc_i
+$$</p>
+<p>is the unique representation of $Φ(b_j)$with respect to C. Then, we call the $m×n$ matrix $A_Φ$, whose elements are given by</p>
+<p>$$
+A_Φ(i,j) =α_{ij}
+$$</p>
+<p>the transformation matrix of $Φ$ (with respect to the ordered bases $B$ of $V$ transformation matrix and $C$ of $W$).</p>
+</li>
+</ul>
+<p><strong>2.7.2 Basis Change</strong></p>
+<ul>
+<li>Computational Efficiency : By changing the basis and correspondingly the representation of vectors, the transformation matrix with respect to this new basis can have a particularly simple form that allows for straightforward computation.</li>
+</ul>
+<br>
+<hr>
+<h3 id="28-affine-spaces">2.8 Affine Spaces</h3>
+<ul>
+<li>In the ML literature, the distinction between linear and affine is sometimes not clear so that we can find references to affine spaces/mappings as linear spaces/mappings</li>
+</ul>
+<p><strong>2.8.1 Affine subspaces</strong></p>
+<ul>
+<li>
+<p>Let $V$ be a vector space, $x_0∈V$ and $U⊆V$ a subspace. Then the subset $L$ is called affine subspace or linear manifold of $V$. $U$ is called direction or direction space, and $x_0$ is called support point.</p>
+<p>$$
+L=x_0+U:={x_0+u:u∈U}
+$$</p>
+</li>
+<li>
+<p>Examples of affine subspaces are points, lines, and planes in $\mathbb{R}^3$, which do not (necessarily) go through the origin</p>
+</li>
+</ul>
+<p><strong>2.8.2 Affine Mapping</strong></p>
+<ul>
+<li>Affine Mapping : For two vector spacesV,W, a linear mapping $Φ :V→W$, and $a∈W,$ the mapping below is an affine mapping from $V$ to $W$. The vector $a$ is called the translation vector of φ.</li>
+</ul>
+<p>$$
+φ:V→W
+$$</p>
+<p>$$
+x \mapsto a+ Φ(x)
+$$</p>
+<br>
+<hr>
+<h3 id="29-summary">2.9 Summary</h3>
+<ul>
+<li>
+<p>2.1) Linear equation Sytems</p>
+</li>
+<li>
+<p>2.2) Matrix &amp; operation : Addition, Multiplication, Inverse, Transpose,</p>
+</li>
+<li>
+<p>2.3) How to solve Linear Equation system</p>
+<ul>
+<li>
+<p>주어진 Linear Equation System $AX=B$ 의 해 $X=X_p+X_n$ 이다.</p>
+<ul>
+<li>
+<p>Particular Solution $X_p$ : 는 $AX=B$ 를 만족하는 아무런 하나의 해이며,</p>
+<ul>
+<li>
+<p>중요한건 일단 $AX=B$ 를 만족하는 아무런 해를 하나 찾고 싶다는 것.</p>
+</li>
+<li>
+<p>이를 위해 Matrix를 Row-Echelon Form으로  reduction 하고 Free Variables를 모두 0으로 설정한 특수한 경우의 해를 하나 구한다</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Homogeneous Solution $X_n$ : 은 $AX=0$ 을 만족하는 해이며,</p>
+<ul>
+<li>Reduced Row-Echelon Form 으로 Matrix를 reduction 한 뒤 Free Variable을 하나만 1, 나머지는 0으로 하여 해를 구한다,</li>
+<li>나머지 Free Variable에 대하여 각각 다 solution을 구하고</li>
+<li>각각에 coefficient 를 곱해준 뒤에 더하면 homogeneous Solution으로 한다.</li>
+</ul>
+</li>
+<li>
+<p>General Solution $X=X_n+X_p$</p>
+<ul>
+<li>
+<p>$B$ 가 0일때의 해 $X_n$ 을 구하는것이 더 쉽고 합리적이기 때문에 $X_n$을 굳이 구하고</p>
+</li>
+<li>
+<p>$X_n$ 에 아무런 $X_p$ 를 더하면 Vector Space 의 span의 개념에서 $X$ 로 확장된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2.4) Vector Space</p>
+<ul>
+<li>Group (군) : 주어진 set이 어떤 연산에 닫혀있고, 결합법칙이 성립하고, 항등원 역원이 존재하면 이를 Group (군) 이라 한다. 여기에 교환법칙까지 성립하면 아벨군이라 한다</li>
+</ul>
+</li>
+<li>
+<p>2.5) Linear Independence</p>
+<ul>
+<li>적어도 하나의 벡터가 다른 벡터들의 선형결합에 의해 정의 될 수 있다면 이 벡터 집합은 dependent, 이렇게 선형 결합으로 표현 될 수 있는 벡터가 존재하지 않는다면 linearly independent</li>
+</ul>
+</li>
+<li>
+<p>2.6) Basis and Rank</p>
+<ul>
+<li>
+<p>Basis : 어떤 벡터 공간의 기저는 그 벡터공간을 선형생성하는 선형 독립인 벡터들</p>
+</li>
+<li>
+<p>dimension : 기저(벡터 집합)의 크기 (벡터 공간에 대하여)</p>
+</li>
+<li>
+<p>Rank : Column space 의 dimension (REF 에서 pivot column의 개수, 행렬에 대하여)</p>
+</li>
+<li>
+<p>rank는 해당 행렬이 만들 수 있는 벡터공간의 차원과 같다</p>
+</li>
+</ul>
+</li>
+<li>
+<p>2.7) Linear Mappings</p>
+</li>
+<li>
+<p>2.8) Affine Spaces</p>
+<ul>
+<li>
+<p>벡터 공간에서는 벡터가 어디에 위치해 있던지 크기와 방향이 같다면 모두 같은 벡터로 취급, 따라서 벡터 공간에서는 위치를 중시하는 기하학을 표현하기에 어려움이 있다</p>
+</li>
+<li>
+<p>이를 극복하기 위해 벡터에 support point라는 점을 추가하여 위치정보도 나타낼 수 있도록 고안한 공간</p>
+</li>
+</ul>
+</li>
+<li>
+<p>2.9) In this book, we distinguish between the topics of linear algebra (e.g.,vectors, matrices, linear independence, basis) and topics related to the geometry of a vector space.(Chapter3)</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

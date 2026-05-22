@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1. Database on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/1.-database/</link>
+    <description>Recent content in 1. Database on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 Jan 2024 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/1.-database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ML Basic #6 | Conventional Models</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml06--conventional-models/</link>
+      <pubDate>Fri, 22 Jun 2018 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml06--conventional-models/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Regression
+&lt;ul&gt;
+&lt;li&gt;Linear Regression&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Classification
+&lt;ul&gt;
+&lt;li&gt;Logistic Regression&lt;/li&gt;
+&lt;li&gt;SVM&lt;/li&gt;
+&lt;li&gt;KNN&lt;/li&gt;
+&lt;li&gt;Decision Tree&lt;/li&gt;
+&lt;li&gt;Random Forest / Boosting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Clustering
+&lt;ul&gt;
+&lt;li&gt;K-means&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dimensionality Reduction
+&lt;ul&gt;
+&lt;li&gt;PCA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;RL basics&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-linear-regression&#34;&gt;1.1 Linear Regression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Models a linear relationship between input features and a continuous target variable using:&lt;/p&gt;
+&lt;p&gt;$$ \hat{y} = w^T x + b = \theta^T x \quad (\text{with } x_0 = 1) $$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Objective (Ordinary Least Squares)&lt;/strong&gt; : minimize the sum of squared residuals (the vertical deviation from each point to the line).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #7 | Clustering</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml07--clustering/</link>
+      <pubDate>Thu, 22 Jun 2017 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml07--clustering/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Major Clustering Algorithm&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Distribution Based Clustering : EM Algorithm&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Centroid Based Clustering  : K-means&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Conectivity Based Models&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Density Based Models  : DBSCAN&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spark built-in Clustering&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-distribution-based-clustering&#34;&gt;1. Distribution based Clustering&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Data points are grouped based on the probability of belonging to a gaussian distrib.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-centroid-based-clustering&#34;&gt;2. Centroid Based Clustering&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;An iterative algorithm in which data is organized into clusters based on how close data points are in the centre (centroid) of clusgters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;21-k-means&#34;&gt;2.1 K-Means&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : assigns data points to clusters based on the shortest distance to the centroids of the cluster&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Confusion Matrix : is composed of four elements: TP, TN, FP, and FN.
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s POV, excluding the modeler&amp;rsquo;s subjectivity.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is &lt;strong&gt;intuitive to read from the back&lt;/strong&gt; due to the word order difference between English and Korean.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #3 | Optimization</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml03--optimization/</link>
+      <pubDate>Sat, 03 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml03--optimization/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Optimizer : updates the weight parameters to minimize the loss function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-gradient-descent&#34;&gt;1. Gradient Descent&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : calculate the gradient $\frac{\partial c}{\partial w} $ of cost function for weight w, and update the weights using calcuated gradient&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- $$ w_{new} = w - \alpha \frac{\partial c}{\partial w}$$ --&gt;
+&lt;p&gt;$$ \theta_{new} = \theta - \eta \bigtriangledown J (\theta;x,y)$$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Batch Gradient Descent : use the entire dataset to compute gradient of the cost function for each iteration&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #2 | Loss Functions</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml02--loss-funtions/</link>
+      <pubDate>Fri, 02 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml02--loss-funtions/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Loss Function : a function that evaluates how well the algorithm models the target dataset
+&lt;ul&gt;
+&lt;li&gt;MSE : From a probabilistic view, MSE equals the negative log-likelihood of a Gaussian distribution — i.e. MSE is the MLE under a Gaussian.&lt;/li&gt;
+&lt;li&gt;Cross Entropy : From a probabilistic view, CE equals the negative log-likelihood of a Multinomial distribution — i.e. CE is the MLE under a Multinomial.&lt;/li&gt;
+&lt;li&gt;Binary Cross Entropy : From a probabilistic view, BCE equals the negative log-likelihood of a Binomial distribution — i.e. BCE is the MLE under a Binomial.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-mean-squared-error-mse&#34;&gt;1. Mean Squared Error (MSE)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;introduction : easily computable quantity that measures the average of the squares of the errors.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml01--activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml01--activation-funtions/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+&lt;ul&gt;
+&lt;li&gt;Non-Linearity : Functions that do not satisfy the following linearity.
+&lt;ul&gt;
+&lt;li&gt;$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Why Non-Linearity ?  : because composites of linear functions are linear again
+&lt;ul&gt;
+&lt;li&gt;if output $f(x)$ of neuron  is  linear form like  $wx + b$,&lt;/li&gt;
+&lt;li&gt;Even if the depth of the layer increases, it is just modeling another linear function  $f(f(f(..(x)) = w&amp;rsquo;x+b&#39;$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Role of bias :  It&amp;rsquo;s similar to the constant b of a linear function y=ax+b. It allow you to move the line up and down to fit the prediction with the data better.
+&lt;ul&gt;
+&lt;li&gt;Without $b$, the line always goes through the origin (0,0) and you may get a poorer fit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sigmoid--logistic-1960s&#34;&gt;1. Sigmoid / Logistic (1960s)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Advantages :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Linux</title>
+      <link>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--linux/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--linux/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;chmod&#34;&gt;chmod&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ chmod -R [777] FOLDER_NAME
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;conda&#34;&gt;conda&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# show the list of envs
+$ conda info --envs
+# Create conda ENV using specific python version
+$ conda create --name myenv python=3.5
+# Create conda ENV using the existing ENV
+$ conda create --name myclone --clone myenv
+# Remove activated #!/usr/bin/env
+$ conda remove --name myenv --all
+
+# Backup conda env
+$ conda env export &amp;gt; [filename].yaml
+# create conda env from yaml file
+$ conda env create -f [filename].yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cron&#34;&gt;cron&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# *(m) *(h) *(d) *(m) *(w)
+$ crontab -e
+
+# run every minute
+* * * * * /home/script/test.sh
+
+# run every 10min
+0/10 * * * * 
+# run every day
+0 0 * * * 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;curl&#34;&gt;curl&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# -s, --silent
+$ curl -s URL 
+
+# -X, --request &amp;lt;command&amp;gt; Specify request command to use
+$ curl -X GET URL 
+$ curl -X POST URL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;date&#34;&gt;date&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;li&gt;input format =&amp;gt; YYYY-MM-DD HH:MM:SS&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;envsubst&#34;&gt;envsubst&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;changes ${VARNAME} in string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;apt-get install gettext-base&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# put /opt/nginx.conf and redirection output to /etc/ngix...
+$ envsubst &amp;lt; /opt/nginx.conf &amp;gt; /etc/nginx/conf.d/default.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;kill&#34;&gt;kill&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# kill sends signal to process (-15:quit, -9:force quit)
+$ kill -15 PID 
+$ kill -9 PID
+
+# pkill quit process bt name
+$ pkill -f PROCESS_NAME
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ls&#34;&gt;ls&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# the number of directories in working directory
+$ ls -l | grep ^d | wc -l
+# the number of files in working directory
+$ ls -l | grep ^- | wc -l
+# the number of files in working directory
+$ ls ./ | wc -l
+
+# print all the files in dir
+ls | gawk &amp;quot;BEGIN {\&amp;quot;pwd\&amp;quot; | getline cwd} {printf(\&amp;quot;%s/%s\n\&amp;quot;, cwd, \$0)}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ln&#34;&gt;ln&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Symbolic Link
+$ ln -s ${SYM_SRC} ${SYM_DST} 
+# Hard Link
+$ ln ${HARD_SRC} ${HARD_DST}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ps&#34;&gt;ps&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# show all processes
+ps aux | grep PROCESS_NAME
+# show the list of process, you can find Process ID using command below
+$ ps -ef | grep python
+# show the number of processes
+$ ps -ef | grep -ic palantir
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;screen&#34;&gt;screen&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create new session with name
+$ screen -S name
+# Create new session
+$ Ctrl+a+c
+# Move to next session
+$ Ctrl+a+a
+# Move to previous session
+$ Ctrl+a+n
+
+# quit the current screen session
+$ Ctrl+d
+# Detach current screen session
+$ Ctrl+a+d
+# Detach screen from remote
+$ screen -d &amp;lt;SCREENID&amp;gt;
+
+# connect to specific screen session using ID
+$ screen -r &amp;lt;SCREENID&amp;gt;
+# connect to specific screen session using name
+$ screen -r name
+
+# show the list of screen sessions
+$ screen -ls
+# kill the screen session using SCREENID
+$ screen -X -S SCREENID quit
+
+
+# split the screen 
+$ Ctrl+a+|
+# split the screen
+$ Ctrl+a+S
+# Resize the screen pane
+$ Ctrl+a+: # to commmand mode
+$ resize 30% 
+# save layout
+$ Ctrl+a+:
+$ layout save default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ssh&#34;&gt;ssh&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# start ssh connection to remote server
+$ ssh koreanbear@192.168.0.1
+# start ssh connection to remote server using private key
+$ ssh -i ~/Desktop/key.pem koreanbear@192.168.0.1
+# copy test.txt from local PC to remote server
+$ scp ./test.txt koreanbear@192.168.0.1:~/Desktop
+$ rsync options source destination
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tar&#34;&gt;tar&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# tar
+$ tar -cvf &amp;lt;FILENAME.tar&amp;gt; &amp;lt;DIRNAME&amp;gt;
+# untar
+$ tar -xvf &amp;lt;FILENAME.tar&amp;gt;
+# tar.gz
+$ tar -zcvf &amp;lt;FILENAME.tar.gz&amp;gt; &amp;lt;DIRNAME&amp;gt;
+# untar.gz 
+$ tar -zxvf &amp;lt;FILENAME.tar.gz&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tmux&#34;&gt;tmux&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Components:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> CheatSheet | LaTex</title>
+      <link>https://koreanbear89.github.io/language/misc/latex--snippet/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/misc/latex--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-matrix&#34;&gt;1. Matrix&lt;/h2&gt;
+&lt;p&gt;$$
+\begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-latex&#34;&gt;\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 3 \\
+4 &amp;amp; 5 &amp;amp; 6 \\
+7 &amp;amp; 8 &amp;amp; 9
+\end{pmatrix}
+
+\begin{bmatrix}
+a &amp;amp; b &amp;amp; c \\
+d &amp;amp; e &amp;amp; f \\
+g &amp;amp; h &amp;amp; i
+\end{bmatrix}
+
+\begin{pmatrix}
+a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \\
+a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \\
+\vdots  &amp;amp; \vdots  &amp;amp; \ddots &amp;amp; \vdots  \\
+a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n}
+\end{pmatrix}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://koreanbear89.github.io/__draft/misc/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/__draft/misc/set-up-mac/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot;
+date: 2022-05-22 09:00:13
+categories: [2. Linux, Favorites]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;어플리케이션 별 단축키 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;automount-해제&#34;&gt;Automount 해제&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;diskutil info -all&lt;/code&gt; 로 Volume UUID 와 type 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo vi /etc/fstab&lt;/code&gt; 맨 아래에 아래와 같이 추가&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

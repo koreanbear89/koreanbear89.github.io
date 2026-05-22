@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>8. Visualization on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/8.-visualization/</link>
+    <description>Recent content in 8. Visualization on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+        <atom:link href="http://localhost:1313/categories/8.-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Effective Python #1 | Pythonic Thinking</title>
+      <link>http://localhost:1313/language/3.-python/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/3.-python/effective-python-01/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-1-know-which-version-of-python-youre-using&#34;&gt;Item 1. Know Which Version of Python You’re Using&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This book also provides some examples in the syntax of Python 3.8 (released in October 2019)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BE #1 | Network</title>
+      <link>http://localhost:1313/system-architecture/4.-model-serving/be-%231--network/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/4.-model-serving/be-%231--network/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Protocol (HTTP)&lt;/li&gt;
+&lt;li&gt;API (REST, RPC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-protocol&#34;&gt;1. Protocol&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP (HyperText Transfer Protocol) : functions as a request-response protocol in the client-server model,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Request Methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET, POST, PUT, DELETE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Response Messages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;2xx : successful&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3xx : redirection&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4xx : client error&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5xx : server error&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Other Protocols : MQTT, CoAP (low-level, low-energy protocol)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-api-application-programming-interface&#34;&gt;2. API (Application Programming Interface)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;interface : a connection between two pieces of electronic equipment, or between a person and a computer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VL01 | Vision Language Pretraining</title>
+      <link>http://localhost:1313/machine-learning/7.-vision-language/vl01--vision-language-understanding/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/7.-vision-language/vl01--vision-language-understanding/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks
+&lt;ul&gt;
+&lt;li&gt;Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;clip--learning-transferable-visual-models-from-natural-language-supervision-2021&#34;&gt;CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;introduction :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--glusterfs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GlusterFS : is a Scalable Network Filesystem
+&lt;ul&gt;
+&lt;li&gt;Brick : is the basic unit of storage in GlusterFS,&lt;/li&gt;
+&lt;li&gt;Volume : is a logical collection of bricks.
+&lt;ul&gt;
+&lt;li&gt;Create volume with bricks from several nodes (peer)&lt;/li&gt;
+&lt;li&gt;And mount volume to the specific location to use volume like virtual Storage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;References
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://thenewstack.io/tutorial-create-a-docker-swarm-with-persistent-storage-using-glusterfs/&#34;&gt;Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install GlusterFS on CentOS
+sudo yum install centos-release-gluster
+sudo yum install glusterfs-server
+sudo systemctl start glusterd # start daemon
+sudo systemctl enable glusterd # restart daemon when reboot the machine
+
+# Configure Gluster Volume
+gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer
+gluster pool list # show gluster peers
+
+# Create Volume
+sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines
+sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force  # run only on the master
+# ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force 
+
+# Start Volume
+sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master
+sudo mount.glusterfs localhost:/&amp;lt;VOLUME_NAME&amp;gt; &amp;lt;MOUNT_LOCATION&amp;gt; # run on all machines
+# ex) sudo mount.glusterfs localhost:/gluster_pvs /home1/&amp;lt;USER&amp;gt;/mnt_gluster
+
+# Manage Gluster Volumes
+gluster volume info # show information of volume and bricks 
+gluster volume stop &amp;lt;VOLUME_NAME&amp;gt;
+gluster volume delete &amp;lt;VOLUME_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Shell</title>
+      <link>http://localhost:1313/language/9.-cheatsheets/shell--snippet/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/9.-cheatsheets/shell--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;#!&amp;rdquo;, defines shell to run script like &lt;code&gt;#!/bin/sh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -al /bin/sh
+lrwxrwxrwx 1 root root 4  6M 30 19:44 /bin/sh -&amp;gt; dash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;operators&#34;&gt;Operators&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&lt;/code&gt; : input redirection, to redirect the input given&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; : output redirection,  overwriting an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; : output redirection, appends an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;for-loop&#34;&gt;For loop&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;for i in (seq 0 2 10) ; do     
+    echo &amp;quot;Running loop seq &amp;quot;$i # 0, 2, 4, 6, 8, 10
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;special-characters&#34;&gt;Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~&lt;/code&gt; : Home Directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; : allocate value of variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; : for running background task&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt; : annotation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; : wild card&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; : wild card , single character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; : generalize next character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(&lt;/code&gt; : start child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;)&lt;/code&gt; : finish child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!&lt;/code&gt; : NOT&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;;&lt;/code&gt; : separate shell command&lt;/li&gt;
+&lt;li&gt;``cmd` : reverse quotes, run command in command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; : use pipe command output as input of other command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[&lt;/code&gt; : start string set&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;]&lt;/code&gt; : finish string set ( #ls [ a-d]*.sh )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;arithmetic-expression&#34;&gt;Arithmetic Expression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;POSIX shell uses the &lt;code&gt;$(( ))&lt;/code&gt; syntax to do arithmetic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;References : &lt;a href=&#34;https://mywiki.wooledge.org/ArithmeticExpression&#34;&gt;ArithmeticExpression - Greg&amp;rsquo;s Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;string&#34;&gt;String&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;substring (slicing)
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;${INPUT_STR:I1}&lt;/code&gt; : extract all chars from &lt;code&gt;I1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;${INPUT_STR:I1:I2}&lt;/code&gt; : extract &lt;code&gt;I2&lt;/code&gt; chars from &lt;code&gt;I1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# extract substring 
+INPUT_STR=abc012
+echo &amp;quot;${INPUT_STR:2}&amp;quot;  # &amp;gt;&amp;gt; c012
+echo &amp;quot;${INPUT_STR:2:3}&amp;quot; # &amp;gt;&amp;gt; c01
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jupyter/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-setup-jupyter-lab&#34;&gt;1. Setup Jupyter-Lab&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ conda install -c conda-forge jupyter jupyterlab nbconvert
+
+# nodejs&amp;gt;12.0.0 needed
+$ conda install -c conda-forge nodejs
+$ conda install -c conda-forge/label/gcc7 nodejs
+$ conda install -c conda-forge/label/cf201901 nodejs
+$ conda install -c conda-forge/label/cf202003 nodejs # v13.10
+$ conda update nodejs # v16.13 
+
+# if above not workconda uninstall --force nodejs
+$ conda uninstall --force nodejs # remove all
+$ conda install nodejs -c conda-forge --repodata-fn=repodata.json
+$ pip install jupyterlab-unfold 
+
+# theme
+$ pip install theme-darcular # do not need new node version
+$ conda install -c conda-forge theme-darcula
+$ jupyter labextension install @arbennett/base16-nord # theme
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;add-conda-environment-to-jupyter&#34;&gt;Add conda environment to jupyter&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create conda environment
+$ conda create --name &amp;quot;myenv&amp;quot; python=3.6
+
+# Activate environment
+$ conda activate &amp;quot;myenv&amp;quot;
+
+# You need to create kernel for &amp;quot;myenv&amp;quot; to be used in jupyter notebook
+$ conda install ipykernel
+$ python -m ipykernel install --user --name &#39;myenv&#39; --display-name &amp;quot;myenv(3.6)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Regex</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--regex/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--regex/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;reference. &lt;a href=&#34;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&#34;&gt;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# including kor/eng/num/-
+&amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-special-characters&#34;&gt;1. Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;^&lt;/code&gt; | Matches the expression to its right at the start of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; | Matches the expression to its left at the end of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; | Matches any character except line terminators like `\n``&lt;/li&gt;
+&lt;li&gt;``` | Escapes special characters or denotes character classes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A|B&lt;/code&gt; | Matches expression &lt;code&gt;A&lt;/code&gt; or &lt;code&gt;B&lt;/code&gt;. If &lt;code&gt;A&lt;/code&gt; is matched first, &lt;code&gt;B&lt;/code&gt; is left untried&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; | Greedily matches the expression to its left 1 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; | Greedily matches the expression to its left 0 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; | Greedily matches the expression to its left 0 or 1 times. But if &lt;code&gt;?&lt;/code&gt; is added to qualifiers (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;?&lt;/code&gt; itself) it will perform matches in a non-greedy manner&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and not less&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; to &lt;code&gt;n&lt;/code&gt; times, and not less.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}?&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and ignores &lt;code&gt;n&lt;/code&gt;. See &lt;code&gt;?&lt;/code&gt; above.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-character-classes-aka-special-sequences&#34;&gt;2. Character Classes (a.k.a. Special Sequences)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\w&lt;/code&gt; | Matches alphanumeric characters, which means &lt;code&gt;a-z&lt;/code&gt;, &lt;code&gt;A-Z&lt;/code&gt;, and &lt;code&gt;0-9&lt;/code&gt;. It also matches the underscore, &lt;code&gt;_&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\d&lt;/code&gt; | Matches digits, which means &lt;code&gt;0-9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\D&lt;/code&gt; | Matches any non-digits.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\s&lt;/code&gt; | Matches whitespace characters, which include the &lt;code&gt;\t&lt;/code&gt;, &lt;code&gt;\n&lt;/code&gt;, &lt;code&gt;\r&lt;/code&gt;, and space characters.&lt;/li&gt;
+&lt;li&gt;\S&lt;code&gt; | Matches non-whitespace characters.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\b&lt;/code&gt; | Matches the boundary (or empty string) at the start and end of a word, that is, between &lt;code&gt;\w&lt;/code&gt; and &lt;code&gt;\W&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\B&lt;/code&gt; | Matches where &lt;code&gt;\b&lt;/code&gt; does not, that is, the boundary of &lt;code&gt;\w&lt;/code&gt; characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\A&lt;/code&gt; | Matches the expression to its right at the absolute start of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\Z&lt;/code&gt; | Matches the expression to its left at the absolute end of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sets&#34;&gt;3. Sets&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[ ]&lt;/code&gt; | Contains a set of characters to match.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[amk]&lt;/code&gt; | Matches either &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt;, or &lt;code&gt;k&lt;/code&gt;. It does not match &lt;code&gt;amk&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z]&lt;/code&gt; | Matches any alphabet from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a\-z]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, or &lt;code&gt;z&lt;/code&gt;. It matches &lt;code&gt;-&lt;/code&gt; because &lt;code&gt;\&lt;/code&gt; escapes it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;, because &lt;code&gt;-&lt;/code&gt; is not being used to indicate a series of characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[-a]&lt;/code&gt; | As above, matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z0-9]&lt;/code&gt; | Matches characters from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt; and also from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[(+*)]&lt;/code&gt; | Special characters become literal inside a set, so this matches &lt;code&gt;(&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[^ab5]&lt;/code&gt; | Adding &lt;code&gt;^&lt;/code&gt; excludes any character in the set. Here, it matches characters that are not &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, or &lt;code&gt;5&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-groups&#34;&gt;4. Groups&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;( )&lt;/code&gt; | Matches the expression inside the parentheses and groups it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--nginx/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nginx : light-weight Web server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reverse Proxy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proxy server : is a server that acts as an intermediary between a client and the server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Load balancing : Proxies distribute requests to a group of servers,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Encryption : Proxies encrypt the data to keep it from being read during transfer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | HTML</title>
+      <link>http://localhost:1313/language/9.-cheatsheets/html--snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/9.-cheatsheets/html--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;http-request-using-ajax&#34;&gt;HTTP request using ajax&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+  $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;,
+          method : &amp;quot;GET&amp;quot;,
+          datatype : &amp;quot;JSON&amp;quot;})
+  .done(function(data) { alert(&#39;Done&#39;);})
+  .fail(function(xhr, status, error){alert(&#39;Failed&#39;);});
+  });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;!-- pure/layout/default/about.html 수정 --&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #4 | Write</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%235--submit/</link>
+      <pubDate>Tue, 15 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%235--submit/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;40-introduction&#34;&gt;4.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Write
+&lt;ul&gt;
+&lt;li&gt;4.1 options&lt;/li&gt;
+&lt;li&gt;4.2 partitioning&lt;/li&gt;
+&lt;li&gt;4.3 bucketing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;41-options&#34;&gt;4.1. Options&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.option(&amp;quot;maxRecordsPerFile&amp;quot;, 100)&lt;/code&gt; : set the max number of records per file
+&lt;ul&gt;
+&lt;li&gt;The last number from the name of created files like &lt;code&gt;c000&lt;/code&gt;, &lt;code&gt;c001&lt;/code&gt;, &lt;code&gt;c002&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;42-partitioning&#34;&gt;4.2 Partitioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt; : In HDFS, physical partitions are called as Block (Default block size is 128MB), Spark creates one partition for every block of a file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partitioning&lt;/strong&gt; : Dividing the dataset into multiple pars across the cluster.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #3 | Processing</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%233--processing/</link>
+      <pubDate>Mon, 14 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%233--processing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;30-introduction&#34;&gt;3.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;3.1 Basic Manipulation&lt;/li&gt;
+&lt;li&gt;3.2 Duplicates&lt;/li&gt;
+&lt;li&gt;3.3 Null&lt;/li&gt;
+&lt;li&gt;3.4 Filter&lt;/li&gt;
+&lt;li&gt;3.5 Group&lt;/li&gt;
+&lt;li&gt;3.6 Join&lt;/li&gt;
+&lt;li&gt;3.7 UDF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;31-basic-manipulation&#34;&gt;3.1 Basic Manipulation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;32-duplicates&#34;&gt;3.2 Duplicates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;drop_duplicates(subset=[&amp;quot;COLUMN&amp;quot;])&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;Returns a new Dataset with duplicate rows removed, considering only the subset of columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;distinct()&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;returns the distinct rows of DataFrame.&lt;/li&gt;
+&lt;li&gt;takes no args and thus all columns are taken into account when dropping dups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;df.join(df.exceptAll(df.distinct()))&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;leave duplicates and remove distinct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;33-null&#34;&gt;3.3 Null&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;df.dropna(how=&amp;quot;any&amp;quot;, thresh=None, subset=[&amp;quot;COLUMN1&amp;quot;])&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;34-filter&#34;&gt;3.4 Filter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Filtering&lt;/li&gt;
+&lt;li&gt;Pushdown Filtering
+&lt;ul&gt;
+&lt;li&gt;General workflow : read data from file system, filtering on memory&lt;/li&gt;
+&lt;li&gt;Pushdown workflow : read necessary data from file sys, not on memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// single condition
+df.filter(df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;)
+df.filter(df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20)
+// multiple conditions
+df.filter((df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;) &amp;amp;&amp;amp; (df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;35-group&#34;&gt;3.5 Group&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;groupBy&lt;/code&gt; : Groups the DF using the specified columns, so we can run aggregation on them. returns &lt;code&gt;GroupdedData&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_set())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_list())&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() // Returns the count of rows for each group.
+  .mean() // Returns the mean of values for each group.
+  .max() // Returns the maximum of values for each group.
+  .min() // Returns the minimum of values for each group.
+  .sum() // Returns the total for values for each group.
+  .avg() // Returns the average for values for each group.
+  .agg() // Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() // This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;36-join&#34;&gt;3.6 Join&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(&lt;code&gt;on&lt;/code&gt; expression is true) from both sides of the table&lt;/li&gt;
+&lt;li&gt;Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table&lt;/li&gt;
+&lt;li&gt;Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise&lt;/li&gt;
+&lt;li&gt;Right join : performs the same task as the left join, but for the right table.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;37-udf&#34;&gt;3.7 UDF&lt;/h2&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%231--overview/</link>
+      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/spark-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-introduction&#34;&gt;1.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;1.1 Spark Components&lt;/li&gt;
+&lt;li&gt;1.2 How spark works&lt;/li&gt;
+&lt;li&gt;1.9 Terminologies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-spark-components&#34;&gt;1.1 Spark Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Spark Driver&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;separate process to execute user applications&lt;/li&gt;
+&lt;li&gt;creates SparkContext to schedule jobs execution and negotiate with cluster manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Executors&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;run tasks scheduled by driver&lt;/li&gt;
+&lt;li&gt;store computation results in memory, on disk or off-heap&lt;/li&gt;
+&lt;li&gt;interact with storage systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cluster Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Mesos : a general cluster manager that can also run Hadoop MapReduce and service applications.&lt;/li&gt;
+&lt;li&gt;Hadoop YARN : the resource manager in Hadoop.&lt;/li&gt;
+&lt;li&gt;Spark Standalone : a simple cluster manager included with Spark that makes it easy to set up&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-how-spark-works&#34;&gt;1.2 How Spark works?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spark has a small code base and the system is divided in various layer.&lt;/li&gt;
+&lt;li&gt;Each layers has some responsibilities. The layers are independent of each other
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interpreter&lt;/strong&gt; : The first layer is the interpreter, Spark uses a Scala interpreter, with some modifications. As you enter your code in spark console (creating RDD’s and applying operators), Spark creates a operator graph.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG Scheduler&lt;/strong&gt; : When the user runs an action (like collect), the Graph is submitted to a DAG Scheduler. The DAG scheduler divides operator graph into (map and reduce) stages. A stage is comprised of tasks based on partitions of the input data. The DAG scheduler pipelines operators together to optimize the graph. For ex, Many map operators can be scheduled in a single stage. This optimization is key to Sparks performance. The final result of a DAG scheduler is a set of stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Task Schedular&lt;/strong&gt; : The stages are passed on to the Task Scheduler. The task scheduler launches tasks via cluster manager. (Spark Standalone/Yarn/Mesos). The task scheduler doesn’t know about dependencies among stages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;19-terminologies&#34;&gt;1.9 Terminologies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Job&lt;/strong&gt; : A piece of code that reads some input (HDFS or local), performs some computation and writes output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stages&lt;/strong&gt; : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tasks&lt;/strong&gt; : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG&lt;/strong&gt; : DAG stands for Directed Acyclic Graph, in the present context its a DAG of operators.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Executor&lt;/strong&gt; : The process responsible for executing a task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Master&lt;/strong&gt; : The machine on which the Driver program runs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slave&lt;/strong&gt; : The machine on which the Executor program runs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyspark</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pyspark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pyspark/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Initialization &amp;amp; Configuration&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Read data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Data processing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Write&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(5) Visualization&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(6) Logging&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-initialization--configuration&#34;&gt;1. Initialization &amp;amp; Configuration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkContext&lt;/code&gt; : provides connection to Spark with the ability to create RDDs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SQLContext&lt;/code&gt; : procides connection to Spark with the ability to run SQL queries on data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkSession&lt;/code&gt; : all encompassing context which includes coverage for &lt;code&gt;SparkContext&lt;/code&gt;, &lt;code&gt;SQLContext&lt;/code&gt; and HiveContext&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pyspark
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql import SQLContext
+
+# create a SparkSession instance with the name &#39;appname&#39; 
+spark = SparkSession.builder.appName(&amp;quot;appname&amp;quot;).getOrCreate()
+# create a SparkContext instance which allows the Spark Application to access 
+sc = SparkContext.getOrCreate()
+# create a SQLContext instance to access the SQL query engine built on top of Spark
+sqlContext = SQLContext(spark)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-read-data&#34;&gt;2. Read data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read dataframe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# read (csv, json, text, parquet)
+df = spark.read.csv(&#39;PATH_CSV&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Exploration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Prints out the schema in the tree format.
+df.printSchema()
+# To get the number of rows
+df.count()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-data-processing&#34;&gt;3. Data processing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic Manipulation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create a column
+df = df.withColumn(&#39;column_new&#39;, F.lit(&#39;abc&#39;)) #  with the defalut value &#39;abc&#39;
+df = df.withColumn(&#39;column_new&#39;, 2*F.col(&#39;exisisting column&#39;)) #  using an existing column
+
+# Change Column Name
+df.withColumnRenamed(&amp;quot;column_ori&amp;quot;, &amp;quot;column_new&amp;quot;)
+
+# add index column
+from pyspark.sql.functions import monotonically_increasing_id 
+df_index = df.select(&amp;quot;*&amp;quot;).withColumn(&amp;quot;id&amp;quot;, monotonically_increasing_id())
+
+# remove column
+df.drop(&amp;quot;column_drop&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;filtering&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# filter (=where)
+df.filter(df.column_float.between(7.5,8.2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;grouping (&lt;code&gt;groupBy&lt;/code&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() # Returns the count of rows for each group.
+  .mean() # Returns the mean of values for each group.
+  .max() # Returns the maximum of values for each group.
+  .min() # Returns the minimum of values for each group.
+  .sum() # Returns the total for values for each group.
+  .avg() # Returns the average for values for each group.
+  .agg() # Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() # This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Join&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Use union, if scheme of dfs are same.
+df1.join(df2, on=&#39;column&#39;, how=&#39;inner&#39;)
+
+# Drop duplicate rows using dropDuplicates(), otherwise df_new will also have duplicate rows
+df2 = df2.dropDuplicates(([&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;])) # rows with same KEY but diff ID will remain
+
+# update df1 with df2 using outer join
+df_new = (
+    df1.alias(&amp;quot;a&amp;quot;)
+         .join(df2.alias(&amp;quot;b&amp;quot;), &amp;quot;KEY&amp;quot;, how=&amp;quot;outer&amp;quot;)
+         .select(&amp;quot;KEY&amp;quot;, F.coalesce(&amp;quot;b.col1&amp;quot;, &amp;quot;a.col1&amp;quot;).alias(&amp;quot;col1&amp;quot;) )
+    )
+
+
+# update df1 with df2 using outer join
+cols = [&amp;quot;TITLE&amp;quot;, &amp;quot;NAME&amp;quot;, &amp;quot;URL&amp;quot;, &amp;quot;THUMBNAIL&amp;quot;, &amp;quot;DATE&amp;quot;]
+df_new = df.alias(&amp;quot;a&amp;quot;)
+           .join(df2.alias(&amp;quot;b&amp;quot;), [&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;], how=&amp;quot;outer&amp;quot;)
+           .select(&amp;quot;KEY&amp;quot;,&amp;quot;ID&amp;quot;, *(F.coalesce(&amp;quot;b.&amp;quot; + col, &amp;quot;a.&amp;quot; + col).alias(col) for col in cols))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Union&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Docker</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--docker/</link>
+      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--docker/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install docker in centos&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Frequently used docker commands&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;FIle sharing in docker (bind, volume)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile instruction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker compose&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker swarm&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Glossary&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;swarm : almost same with word &amp;ldquo;cluster&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node.&lt;/li&gt;
+&lt;li&gt;service :  A unit of modules in project, a basic distribution unit,&lt;/li&gt;
+&lt;li&gt;stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-install-docker-in-centos&#34;&gt;1. Install docker in centOS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/install/centos/&#34;&gt;Install Docker Engine on CentOS | Docker Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# (1) Set up the repository
+$ sudo yum install -y yum-utils
+$ sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+# (2) Install Docker Engine
+$ sudo yum install docker-ce docker-ce-cli containerd.io
+$ sudo yum install docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io docker-compose-plugin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/install/linux-postinstall/&#34;&gt;Post-installation steps for Linux | Docker Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# (3) Create the docker group.
+# $ sudo groupadd docker
+
+# (4)Add your user to the docker group.
+# sudo usermod -aG docker &amp;lt;USER&amp;gt;
+$ sudo /usr/sbin/usermod -aG docker &amp;lt;USER&amp;gt;
+$ sudo /usr/sbin/usermod -aG docker &amp;lt;USER_SU&amp;gt;
+
+# (5) Run and Stop docker before change root directory
+$ sudo systemctl start docker
+$ sudo systemctl stop docker
+
+# (5) change root directory (storage for default docker directory is not enough)
+# add {&amp;quot;data-root&amp;quot;: &amp;quot;/home1/&amp;lt;USER&amp;gt;/docker-data&amp;quot;} in /etc/docker/daemon.json
+$ sudo vim /etc/docker/daemon.json
+
+# (6) Run docker
+$ sudo systemctl start docker
+# if got permission error for /var/run/docker.sock
+$ sudo chmod 666 /var/run/docker.sock
+# check root directory
+$ docker info | grep Root
+$ docker run hello-world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-install-colima-for-mac&#34;&gt;1. Install Colima for Mac&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2024.08 (Sonoma 14.5)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install docker client
+brew install docker
+brew install docker-buildx
+brew install docker-compose
+
+
+# Error Solution for &amp;quot;docker-credential-osxkeychain : excutable file not found&amp;quot;&amp;quot;
+brew install docker-credential-helper
+
+# Install Colima
+brew install qemu
+brew install colima
+
+# Start colima
+colima start \
+  --profile default \
+  --activate \
+  --arch aarch64 \
+  --cpu 4 \
+  --memory 8 \
+  --disk 40 \
+  --mount ${HOME}:w \
+  --mount-inotify \
+  --ssh-agent \
+  --vm-type vz \
+  --vz-rosetta \
+  --verbose
+
+
+# Setup Docker context
+docker context use colima
+
+# Run colima when restart Mac
+brew services start colima
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-frequently-used-docker-commands&#34;&gt;2. Frequently used Docker Commands&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/examples/running_ssh_service/&#34;&gt;Dockerize an SSH service&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker --version # check docker version
+$ docker build -t [TAG] . # build using Dockerfile in cwd
+$ docker images # show docker images
+$ docker ps -a # show docker containers
+$ docker ps --format &#39;{{.Names}}&#39;
+$ docker rm -f [CONTAINER_NAME] # remove docker container
+$ docker rmi [IMAGE_NAME] # remove docker image
+
+$ docker run --dit --rm -p 22:22 --name [CONTAINER_NAME] -v [SRC]:[DST] [IMAGE_NAME] # run docker container
+$ ctrl p q # exit without removing container
+$ docker attach [CONTAINER_NAME]] # attach to docker container
+$ docker exec -u 0 -it [CONTAINER_NAME] bash # exec on root 
+
+$ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+$ docker push [REPOSITORY[:TAG]]
+
+$ docker container prune # prune docker container
+$ docker image prune # prune docker images
+$ docker system prune -a # remove all building cache
+
+$ docker logs -f &amp;lt;CONTAINER_NAME&amp;gt; --tail=1000 2&amp;gt;&amp;amp;1 | grep complete # show logs in container
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-file-sharing-in-docker-container&#34;&gt;3. File sharing in docker container&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bind-mount : are files mounted from your host machine (the one that runs your docker daemon) onto your container.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Hadoop</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hdfs/</link>
+      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hdfs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Based on Java&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Save data in &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/ko//archive/gfs-sosp2003.pdf&#34;&gt;Google File System (2003)&lt;/a&gt; and process this big data with  &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/ko//archive/mapreduce-osdi04.pdf&#34;&gt;Map Reduce (2004)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modules :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop YARN : A framework for job scheduling and cluster resource management&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop MapReduce : A YARN-based system for parallel processing of large data sets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | VIM</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vim/</link>
+      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vim/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-setup-vim&#34;&gt;1. Setup vim&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install Vundle&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;color scheme setup&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nanotech/jellybeans.vim&#34;&gt;Jellybean color scheme official install&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And simply add line &lt;code&gt;color jellybean&lt;/code&gt; in .vimrc&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;write .vimrc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Added &lt;code&gt;Plugin &#39;preservim/nerdcommenter&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;install plugins in vimrc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:PluginInstall&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# setup jellybean color scheme
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+# copy .vimrc
+cp ~/configuration/vim/.vimrc ~/.vimrc
+vim -c &#39;PluginInstall&#39; -c &#39;qa!&#39; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Reference&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scala #1 | Basic</title>
+      <link>http://localhost:1313/language/4.-scala/scala-1--basic/</link>
+      <pubDate>Thu, 02 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/4.-scala/scala-1--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Features
+&lt;ul&gt;
+&lt;li&gt;object-oriented : a pure object-oriented language&lt;/li&gt;
+&lt;li&gt;functional : every function is a value&lt;/li&gt;
+&lt;li&gt;statically typed&lt;/li&gt;
+&lt;li&gt;extensible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-expressions&#34;&gt;1. Expressions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Expressions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Values &lt;code&gt;val&lt;/code&gt; : name the results of expressions&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Variables &lt;code&gt;var&lt;/code&gt; : are like values, except you can re-assigin them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blocks &lt;code&gt;{ }&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can combine expressions by surrounding them with &lt;code&gt;{}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Functions &lt;code&gt;=&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you can define a function that have params&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods &lt;code&gt;def&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;very similar to funtions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Classes &lt;code&gt;class&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scala #0 | Setup</title>
+      <link>http://localhost:1313/language/4.-scala/scala-0--setup/</link>
+      <pubDate>Wed, 01 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/language/4.-scala/scala-0--setup/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.scala-lang.org/download/&#34;&gt;Install | The Scala Programming Language&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Components (commands)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scalac&lt;/code&gt; : the scala compiler&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scala&lt;/code&gt; : the scala REPL and script runner&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scala-cli&lt;/code&gt;: scala CLI, interactive toolkit for scala&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sbt&lt;/code&gt;: build tool&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;amm&lt;/code&gt; : Ammonite, an enhanced REPL&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scalafmt&lt;/code&gt; : the scala code formatter&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;scalac-scala-compiler&#34;&gt;Scalac (Scala Compiler)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;usage&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;scalac HelloWorld.scala&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sbt-simple-build-kit&#34;&gt;SBT (Simple Build Kit)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Directory Structure : &lt;a href=&#34;https://www.scala-sbt.org/1.x/docs/Directories.html&#34;&gt;sbt Reference Manual — Directory structure&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Base Directory:  location of &lt;code&gt;build.sbt&lt;/code&gt;, &lt;code&gt;${PROJECT_HOME}&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>http://localhost:1313/machine-learning/2.-machine-learning/ml09--neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/2.-machine-learning/ml09--neural-architecture-search/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural Architecture Search : A technique for automating the design of Artificial Neural Network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-nas--neural-architecture-search-google-2017&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/pdf/1611.01578.pdf&#34;&gt;NAS : Neural Architecture Search (Google, 2017) &lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;use &lt;strong&gt;RNN controller&lt;/strong&gt; which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to generate neural networks. After the RNN builds the desired number of layers, we stop the RNN and train the network from scratch to convergence.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

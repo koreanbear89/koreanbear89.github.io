@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Workflow #1 | Airflow - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Contents Airflow components Architecture Diagrams 1. Airflow Components Airflow’s architecture consists of multiple components.
+(1) components required for a bare-minimum Airflow installation, (2) an optional component to achieve better Airflow extensibility, performance, and scalability. Required components
+A scheduler, which handles both triggering scheduled workflows, and submitting Tasks to the executor to run. The executor, is a configuration property of the scheduler, not a separate component and runs within the scheduler process. There are several executors available out of the box, and you can also write your own. A webserver, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks. A folder of DAG files, which is read by the scheduler to figure out what tasks to run and when to run them. A metadata database, which airflow components use to store state of workflows and tasks. Setting up a metadata database is described in Set up a Database Backend and is required for Airflow to work. Optional components
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Workflow #1 | Airflow - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/system-architecture/2.-data-ingestion/workflow-%231--airflow/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Workflow #1 | Airflow">
+  <meta property="og:description" content="Introduction Contents Airflow components Architecture Diagrams 1. Airflow Components Airflow’s architecture consists of multiple components.
+(1) components required for a bare-minimum Airflow installation, (2) an optional component to achieve better Airflow extensibility, performance, and scalability. Required components
+A scheduler, which handles both triggering scheduled workflows, and submitting Tasks to the executor to run. The executor, is a configuration property of the scheduler, not a separate component and runs within the scheduler process. There are several executors available out of the box, and you can also write your own. A webserver, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks. A folder of DAG files, which is read by the scheduler to figure out what tasks to run and when to run them. A metadata database, which airflow components use to store state of workflows and tasks. Setting up a metadata database is described in Set up a Database Backend and is required for Airflow to work. Optional components">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="system-architecture">
+    <meta property="article:published_time" content="2024-03-26T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-03-26T09:00:00+00:00">
+
+  <meta itemprop="name" content="Workflow #1 | Airflow">
+  <meta itemprop="description" content="Introduction Contents Airflow components Architecture Diagrams 1. Airflow Components Airflow’s architecture consists of multiple components.
+(1) components required for a bare-minimum Airflow installation, (2) an optional component to achieve better Airflow extensibility, performance, and scalability. Required components
+A scheduler, which handles both triggering scheduled workflows, and submitting Tasks to the executor to run. The executor, is a configuration property of the scheduler, not a separate component and runs within the scheduler process. There are several executors available out of the box, and you can also write your own. A webserver, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks. A folder of DAG files, which is read by the scheduler to figure out what tasks to run and when to run them. A metadata database, which airflow components use to store state of workflows and tasks. Setting up a metadata database is described in Set up a Database Backend and is required for Airflow to work. Optional components">
+  <meta itemprop="datePublished" content="2024-03-26T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-03-26T09:00:00+00:00">
+  <meta itemprop="wordCount" content="561">
+  <meta itemprop="keywords" content="2. Data Ingestion">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Workflow #1 | Airflow">
+  <meta name="twitter:description" content="Introduction Contents Airflow components Architecture Diagrams 1. Airflow Components Airflow’s architecture consists of multiple components.
+(1) components required for a bare-minimum Airflow installation, (2) an optional component to achieve better Airflow extensibility, performance, and scalability. Required components
+A scheduler, which handles both triggering scheduled workflows, and submitting Tasks to the executor to run. The executor, is a configuration property of the scheduler, not a separate component and runs within the scheduler process. There are several executors available out of the box, and you can also write your own. A webserver, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks. A folder of DAG files, which is read by the scheduler to figure out what tasks to run and when to run them. A metadata database, which airflow components use to store state of workflows and tasks. Setting up a metadata database is described in Set up a Database Backend and is required for Airflow to work. Optional components">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/system-architecture/2.-data-ingestion/workflow-%231--airflow/"
+    >Workflow #1 | Airflow</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/system-architecture/2.-data-ingestion/workflow-%231--airflow/" class="article-date">
+  <time datetime="2024-03-26 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-03-26</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-data-ingestion/"> 2. Data Ingestion </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/system-architecture/2.-data-ingestion/workflow-%231--airflow/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Contents
+<ul>
+<li>Airflow components</li>
+<li>Architecture Diagrams</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-airflow-components">1. Airflow Components</h2>
+<ul>
+<li>
+<p>Airflow’s architecture consists of multiple components.</p>
+<ul>
+<li>(1) components required for a bare-minimum Airflow installation,</li>
+<li>(2) an optional component to achieve better Airflow extensibility, performance, and scalability.</li>
+</ul>
+</li>
+<li>
+<p>Required components</p>
+<ul>
+<li>A <a href="https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/scheduler.html">scheduler</a>, which handles both triggering scheduled workflows, and submitting <a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html">Tasks</a> to the executor to run.
+<ul>
+<li>The <a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/executor/index.html">executor</a>, is a configuration property of the <em>scheduler</em>, not a separate component and runs within the scheduler process.</li>
+<li>There are several executors available out of the box, and you can also write your own.</li>
+</ul>
+</li>
+<li>A <em>webserver</em>, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks.</li>
+<li>A folder of <em>DAG files</em>, which is read by the <em>scheduler</em> to figure out what tasks to run and when to run them.</li>
+<li>A <em>metadata database</em>, which airflow components use to store state of workflows and tasks.
+<ul>
+<li>Setting up a metadata database is described in <a href="https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html">Set up a Database Backend</a> and is required for Airflow to work.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Optional components</p>
+<ul>
+<li>Optional <em>worker</em>, which executes the tasks given to it by the scheduler.
+<ul>
+<li>In the basic installation worker might be part of the scheduler not a separate component.</li>
+<li>It can be run as a long running process in the <a href="https://airflow.apache.org/docs/apache-airflow-providers-celery/stable/celery_executor.html" title="(in apache-airflow-providers-celery v3.10.0)">CeleryExecutor</a>, or as a POD in the <a href="https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/kubernetes_executor.html" title="(in apache-airflow-providers-cncf-kubernetes v10.1.0)">KubernetesExecutor</a>.</li>
+</ul>
+</li>
+<li>Optional folder of <em>plugins</em>.
+<ul>
+<li>Plugins are a way to extend Airflow’s functionality (similar to installed packages).</li>
+<li>Plugins are read by the <em>scheduler</em>, <em>dag processor</em>, <em>triggerer</em> and <em>webserver</em>. More about plugins can be found in <a href="https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/plugins.html">Plugins</a>.</li>
+</ul>
+</li>
+<li>Optional <em>triggerer</em>, which executes deferred tasks in an asyncio event loop.
+<ul>
+<li>In basic installation where deferred tasks are not used, a triggerer is not necessary.</li>
+<li>More about deferring tasks can be found in <a href="https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/deferring.html">Deferrable Operators &amp; Triggers</a>.</li>
+</ul>
+</li>
+<li>Optional <em>dag processor</em>, which parses DAG files and serializes them into the<em>metadata database</em>.
+<ul>
+<li>By default, the <em>dag processor</em> process is part of the scheduler, but it can be run as a separate component for scalability and security reasons.</li>
+<li>If <em>dag processor</em> is present <em>scheduler</em> does not need to read the <em>DAG files</em> directly. More about processing DAG files can be found in <a href="https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/dagfile-processing.html">DAG File Processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="2-architecture-diagrams">2. Architecture Diagrams</h2>
+<ul>
+<li>
+<p>connection types in the diagrams</p>
+<ul>
+<li><strong>brown solid lines</strong> represent <em>DAG files</em> submission and synchronization</li>
+<li><strong>blue solid lines</strong> represent deploying and accessing <em>installed packages</em> and <em>plugins</em></li>
+<li><strong>black dashed lines</strong> represent control flow of workers by the <em>scheduler</em> (via executor)</li>
+<li><strong>black solid lines</strong> represent accessing the UI to manage execution of the workflows</li>
+<li><strong>red dashed lines</strong> represent accessing the <em>metadata database</em> by all components</li>
+</ul>
+</li>
+<li>
+<p>Basic Airflow Deployment</p>
+<ul>
+<li>The simplest deployment of Airflow, usually operated and managed on a single machine.</li>
+<li>Such a deployment usually uses the LocalExecutor,</li>
+<li>The <em>webserver</em> runs on the same machine as the <em>scheduler</em>.</li>
+<li>There is no <em>triggerer</em> component, which means that task deferral is not possible.</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+    <img width="70%" src="https://airflow.apache.org/docs/apache-airflow/stable/_images/diagram_basic_airflow_architecture.png">
+</p>
+<ul>
+<li>Distributed Airflow Architecture
+<ul>
+<li>Components of Airflow are distributed among multiple machines and where various roles of users are introduced - <em>Deployment Manager</em>, <strong>DAG author</strong>, <strong>Operations User</strong>.</li>
+<li>The <em>webserver</em> does not have access to the <em>DAG files</em> directly.
+<ul>
+<li>The code in the <code>Code</code> tab of the UI is read from the <em>metadata database</em>.</li>
+<li>The <em>webserver</em> cannot execute any code submitted by the<strong>DAG author</strong>.</li>
+<li>The <strong>Operations User</strong> only has access to the UI and can only trigger DAGs and tasks, but cannot author DAGs.</li>
+</ul>
+</li>
+<li>The <em>DAG files</em> need to be synchronized between all the components that use them - <em>scheduler</em>, <em>triggerer</em> and <em>workers</em>.</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+    <img width="70%" src="https://airflow.apache.org/docs/apache-airflow/stable/_images/diagram_distributed_airflow_architecture.png">
+</p>
+<br>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Functional Programming #9 | Parser Combinators - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction This chapter covers Introducing parser combinators Designing and using APIs without implementations In this chapter,
+we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)
+Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of functional design.
+This chapter will introduce a design approach we’ll call algebraic design.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Functional Programming #9 | Parser Combinators - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/3.-scala/functional-programming-9--parser-combinators/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Functional Programming #9 | Parser Combinators">
+  <meta property="og:description" content="Introduction This chapter covers Introducing parser combinators Designing and using APIs without implementations In this chapter,
+we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)
+Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of functional design.
+This chapter will introduce a design approach we’ll call algebraic design.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2024-07-04T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-04T09:00:00+00:00">
+
+  <meta itemprop="name" content="Functional Programming #9 | Parser Combinators">
+  <meta itemprop="description" content="Introduction This chapter covers Introducing parser combinators Designing and using APIs without implementations In this chapter,
+we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)
+Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of functional design.
+This chapter will introduce a design approach we’ll call algebraic design.">
+  <meta itemprop="datePublished" content="2024-07-04T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-04T09:00:00+00:00">
+  <meta itemprop="wordCount" content="2696">
+  <meta itemprop="keywords" content="3. Scala">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Functional Programming #9 | Parser Combinators">
+  <meta name="twitter:description" content="Introduction This chapter covers Introducing parser combinators Designing and using APIs without implementations In this chapter,
+we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)
+Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of functional design.
+This chapter will introduce a design approach we’ll call algebraic design.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/3.-scala/functional-programming-9--parser-combinators/"
+    >Functional Programming #9 | Parser Combinators</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/3.-scala/functional-programming-9--parser-combinators/" class="article-date">
+  <time datetime="2024-07-04 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-07-04</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-scala/"> 3. Scala </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/3.-scala/functional-programming-9--parser-combinators/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>This chapter covers </p>
+<ul>
+<li><strong>Introducing parser combinators</strong></li>
+<li>Designing and using APIs <strong>without implementations</strong></li>
+</ul>
+</li>
+<li>
+<p>In this chapter,</p>
+<ul>
+<li>
+<p>we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)</p>
+</li>
+<li>
+<p>Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of <strong>functional design.</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>This chapter will introduce a design approach we’ll call <strong>algebraic design.</strong></p>
+<ul>
+<li>just a natural evolution of what we’ve already done to different degrees in past chapters</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>9.1 일단 필요한대로 combinator를 만들어보기</p>
+<p>9.2 앞에서 만든 combinator를 refine 하고 law를 정립</p>
+<p>    - product, map, primitives</p>
+<p>9.3 introduce product &amp; map을 대신할 또다른 primitive 인 flatmap (to solve context-sentivie grammars) ??????????????</p>
+<p>9.4 Json Parser</p>
+<p>9.5 Error Reporting</p>
+</blockquote>
+<br>
+<hr>
+<h2 id="91-designing-an-algebra-first-215">9.1 Designing an algebra first (215)</h2>
+<ul>
+<li>
+<p>Recall that we defined an <strong>algebra</strong> as a collection of functions operating over some data type(s), along with a set of laws specifying relationships between these function</p>
+<ul>
+<li>
+<p>In past chapters, we moved rather fluidly between</p>
+<ul>
+<li>
+<p>inventing functions in our algebra,</p>
+</li>
+<li>
+<p>refining the set of functions,</p>
+</li>
+<li>
+<p>and tweaking our data type representations.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>In this chapter, We’ll start with the algebra (including its laws) and decide on a representation later. Let’s call this approach, algebraic design.</p>
+<ul>
+<li>
+<p>Let&rsquo;s begin!</p>
+<ul>
+<li>
+<p>Library for what? : Parsing library that operate on strings as input.</p>
+</li>
+<li>
+<p>what to parse? : start with parsing various combinations of repeated letters and gibberish words like &ldquo;abracadabra&rdquo; and &ldquo;abba&rdquo;.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(1) Let’s start with the simplest of parsers: one that recognizes the single character input &lsquo;a&rsquo; : invent a combinator for the task—<code>char</code>:</p>
+<ul>
+<li><code>def char(c: Char): Parser[Char]</code></li>
+</ul>
+</li>
+<li>
+<p>(2) running a parser shouldn’t simply <strong>yield a yes/no response</strong>; if it succeeds, we want to <strong>get a result</strong> that has some useful type, and if it fails, we expect <strong>information about the failure</strong>.</p>
+<ul>
+<li><code>extension [A](p: Parser[A]) def run(input: String): Either[ParseError, A]</code></li>
+</ul>
+</li>
+<li>
+<p>(3) specifying an interface that happens to make use of two types =&gt; Let’s make this explicit with a <code>trait</code></p>
+<ul>
+<li><code>trait Parsers[ParseError, Parser[+_]]:</code>
+<ul>
+<li><code>Parser[+_]</code> : Scala’s syntax for a type parameter that is itself a type constructor.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(4) What if we want to recognize the string ? (not only char)</p>
+<ul>
+<li><code>def string(s: String): Parser[String]</code></li>
+</ul>
+</li>
+<li>
+<p>(5) what if we want to recognize either the string &ldquo;abra&rdquo; or the string &ldquo;cadabra&rdquo;? We could add a very specialized combinator for it:</p>
+<ul>
+<li><code>def orString(s1: String, s2: String): Parser[String]</code></li>
+</ul>
+</li>
+<li>
+<p>(6) But choosing between two parsers seems like something that would be more generally useful, <strong>regardless</strong> of their <strong>result type</strong>, so let&rsquo;s make this <strong>polymorphic</strong>: <code>orString</code> =&gt; <code>or</code></p>
+<ul>
+<li>
+<p><code>extension [A](p: Parser[A]) def or(p2: Parser[A]): Parser[A]</code></p>
+</li>
+<li>
+<p>we can give this <code>or</code> combination nice infix syntax, like <code>s1|s2</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scala">// (3) specifying an interface that happens to make use of two types (Parser, ParseError)
+trait Parsers[ParseError, Parser[+_]]:
+  // (1) base combinator: char('a') parser will succeed only if the input is exactly the character 'a', and it will return that same character 'a' as its result.
+  def char(c: Char): Parser[Char]  
+  // (4) What if we want to recognize the string?
+  def string(s: String): Parser[String]
+  // (2) get a result or information about the failure
+  extension [A](p: Parser[A]) 
+    def run(input: String): Either[ParseError, A] // HW ) When we run the parser =&gt; it will return the input or ParseError
+    // (5) polymorphic
+    infix def or(p2: Parser[A]): Parser[A]
+    // (6)  The infix modifier allows or to be used as an operator.
+    def |(p2: Parser[A]): Parser[A] = p.or(p2)
+</code></pre>
+<ul>
+<li>
+<p>We can now recognize various strings, but we don’t have a way of talking about <strong>repetition</strong>.</p>
+<ul>
+<li>how would we recognize three repetitions of our <code>string(&quot;abra&quot;) | string(&quot;cadabra&quot;)</code> parser?  Once again, let’s add a combinator for it
+<ul>
+<li><code>extension [A](p: Parser[A]) def listOfN(n: Int): Parser[List[A]]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>At this point, we’ve just been <strong>collecting</strong> required <strong>combinators</strong>,</p>
+<ul>
+<li>but we haven’t tried to <strong>refine</strong> our algebra into a minimal set of primitives,</li>
+<li>and we haven’t talked much about more general <strong>laws</strong>.</li>
+</ul>
+</li>
+<li>
+<p>We’ll start doing this next</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="92--a-possible-algebra">9.2  A possible algebra</h2>
+<ul>
+<li>
+<p>(1)  First, let’s consider the parser that recognizes zero or more repetitions of the character &lsquo;a&rsquo; and returns <strong>the number of characters it has seen.</strong> - <code>many</code></p>
+<ul>
+<li><code>extension [A](p: Parser[A]) def many: Parser[List[A]]</code></li>
+</ul>
+</li>
+<li>
+<p>(2) we need a <code>Parser[Int]</code> that counts the number of elements.</p>
+<ul>
+<li>
+<p>We could change the <code>many</code> combinator to return a <code>Parser[Int]</code>,</p>
+</li>
+<li>
+<p>But It is better to introduce another combinator that should be familiar by now—<code>map</code></p>
+<ul>
+<li><code>extension [A](p: Parser[A]) def map[B](f: A =&gt; B): Parser[B]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>(3) We can now define our parser like this:</p>
+<ul>
+<li>
+<p><code>val numA: Parser[Int] = char('a').many.map(_.size)</code></p>
+</li>
+<li>
+<p>ex) <code>numA.run(&quot;aaa&quot;)</code>gives <code>Right(3)</code> and <code>numA.run(&quot;b&quot;)</code> gives <code>Right(0)</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(4) we expect <strong>map</strong> to be <strong>structure preserving,</strong></p>
+<ul>
+<li>
+<p>merely transform the result value if the Parser was successful.</p>
+</li>
+<li>
+<p>No additional input characters should be examined by map,</p>
+</li>
+<li>
+<p>a failing parser can’t become a successful one via map,</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(5) Let’s formalize this by stipulating the now-familiar <strong>law</strong>:</p>
+<ul>
+<li><code>p.map(a =&gt; a) == p</code></li>
+</ul>
+</li>
+<li>
+<p>(6) We could put this law in a documentation comment, but in the preceding chapter, <strong>we developed a way of making our laws executable</strong>.</p>
+</li>
+</ul>
+<pre><code class="language-scala">trait Parsers[ParseError, Parser[+_]]:
+  ...
+  object Laws:
+    def equal[A](p1: Parser[A], p2: Parser[A])(in: Gen[String]): Prop =
+      Prop.forAll(in)(s =&gt; p1.run(s) == p2.run(s))
+    def mapLaw[A](p: Parser[A])(in: Gen[String]): Prop =
+      equal(p, p.map(a =&gt; a))(in)
+</code></pre>
+<ul>
+<li>
+<p>This will come in handy later when we test that our implementation of Parsers behaves as we expect.</p>
+</li>
+<li>
+<p>When we discover more laws later on, you’re encouraged to write them out as actual properties inside the Laws object.</p>
+</li>
+<li>
+<p>And now we can refine combinators we made from 9.1</p>
+<ul>
+<li>
+<p>Incidentally, now that we have map, we can implement <code>char</code> in terms of string:</p>
+<ul>
+<li><code>def char(c: Char): Parser[Char] = string(c.toString).map(_.charAt(0))</code></li>
+</ul>
+</li>
+<li>
+<p>Similarly, another combinator, <code>succeed</code>, can be defined in terms of string and map:</p>
+<ul>
+<li><code>def succeed[A](a: A): Parser[A] = string(&quot;&quot;).map(_ =&gt; a)</code></li>
+</ul>
+</li>
+<li>
+<p>This parser always succeeds with the value a, regardless of the input string (since string(&quot;&quot;) will always succeed, even if the input is empty). Does this combinator seem familiar to you? We can specify its behavior with a law:</p>
+<ul>
+<li><code>succeed(a).run(s) == Right(a)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="921-slicing-and-nonempty-repetition">9.2.1 Slicing and nonempty repetition</h3>
+<ul>
+<li>
+<p>Slicing</p>
+<ul>
+<li>
+<p>The combination of <code>many</code> and <code>map</code> certainly lets us express the <strong>parsing task of counting the number</strong> of &lsquo;a&rsquo; characters,</p>
+<ul>
+<li>
+<p>but it seems inefficient to construct a <code>List[Char]</code> only to <strong>discard</strong> its values and extract its length.</p>
+<ul>
+<li>
+<p><code>slice</code> : It would be nice if we could run a Parser purely to see what portion of the input string it examines</p>
+<ul>
+<li><code>extension [A](p: Parser[A]) def slice: Parser[String]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>With slice, our parser that counts &lsquo;a&rsquo; characters can now be written as :</p>
+<ul>
+<li><code>char('a').many.slice.map(_.size).</code></li>
+</ul>
+</li>
+<li>
+<p><code>slice</code> is primitive : since it have to have access to the internal representation of the parser.</p>
+<ul>
+<li>parser <code>p.many.map(_.size)</code> will generate an intermediate list when run, <code>p.many.slice.map(_.size)</code> will not.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>non-empty repetition</p>
+<ul>
+<li>
+<p>What if we want to recognize <strong>one or more &lsquo;a&rsquo; charactors</strong> - <code>many1</code></p>
+<ul>
+<li><code>p.many1</code> is just <code>p</code> followed by <code>p.many</code></li>
+</ul>
+</li>
+<li>
+<p>we need some way of running one parser followed by another, <strong>assuming the first is successful,</strong> and returning the product of their results.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scala">extension [A](p: Parser[A])
+  def product[B](p2: Parser[B]): Parser[(A, B)]
+  def **[B](p2: Parser[B]): Parser[(A, B)] = product(p2) // Operator alias for product, where a ** b delegates to a.product(b)
+</code></pre>
+<br>
+<hr>
+<h2 id="93-handling-context-sensitivity">9.3 Handling context sensitivity</h2>
+<ul>
+<li>
+<p>Let’s take a step back and look at the primitives we have so far:</p>
+<ul>
+<li>
+<p><code>string(s)</code>—Recognizes and returns a single String</p>
+</li>
+<li>
+<p><code>p.slice</code>—Returns the portion of input inspected by p if successful</p>
+</li>
+<li>
+<p><code>succeed(a)</code>—Always succeeds with the value a</p>
+</li>
+<li>
+<p><code>p.map(f)</code>—Applies the function f to the result of p, if successful</p>
+</li>
+<li>
+<p><code>p1.product(p2)</code>—Sequences two parsers, running p1 and then p2, and returns the pair of their results if both succeed</p>
+</li>
+<li>
+<p><code>p1 or p2</code>—Chooses between two parsers, first attempting p1 and then p2 if p1 fails</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Using these primitives, we can express repetition  (<code>many</code>, <code>listOfN</code>), as well as combinators like <code>char</code></p>
+<ul>
+<li><strong>but what can’t we express yet?</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Context-sensitive grammar</strong></p>
+<ul>
+<li>
+<p>Suppose we want to parse a single digit followed by many &lsquo;a&rsquo; characters, like  <code>&quot;0&quot;, &quot;1a&quot;, &quot;2aa&quot;, &quot;4aaaa&quot;</code></p>
+</li>
+<li>
+<p>We want to run the first parser and then do a <code>listOfN</code> using the number extracted from the first parser&rsquo;s result.</p>
+</li>
+<li>
+<p>It can&rsquo;t be expressed with <code>product</code> (the second parser depends on its context)</p>
+</li>
+<li>
+<p>In past chapters, we dealt with these limitations by <strong>introducing a new primitive</strong> - <code>flatmap</code>:</p>
+<ul>
+<li>
+<p><code>flatMap</code> enables context-sensitive parsing and allows us to implement map</p>
+</li>
+<li>
+<p><code>extension [A](p: Parser[A]) def flatMap[B](f: A =&gt; Parser[B]): Parser[B]</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>With flatMap, instead of the less-general map and product,</p>
+<ul>
+<li>
+<p>we can parse not just arbitrary <strong>context-free grammars</strong>, like JSON,</p>
+</li>
+<li>
+<p>but <strong>context-sensitive grammars</strong> as well, including extremely complicated ones, like C++ and PERL.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="94-writing-a-json-parser">9.4 Writing a JSON parser</h2>
+<ul>
+<li>Let’s write that JSON parser now
+<ul>
+<li>Our JSON parser doesn’t need to know the <strong>internal details</strong> of how parsers are represented</li>
+<li>We can simply write a function that produces a JSON parser <strong>using only the set of primitives we’ve defined</strong> and any derived combinators.</li>
+<li>This might seem like a <strong>peculiar thing to do</strong>, However, we’ll proceed because in <strong>FP it’s common to define an algebra and explore its expressiveness without having a concrete implementation.</strong></li>
+<li>Especially during the design phase of a library, it can be much <strong>easier</strong> to refine an algebra without having any particular implementation, and part of our goal here is <strong>getting you comfortable with this style of working.</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="941-the-json-format">9.4.1 The JSON format</h3>
+<pre><code class="language-json">{
+  &quot;Company name&quot; : &quot;Microsoft Corporation&quot;,
+  &quot;Ticker&quot;  : &quot;MSFT&quot;,
+  &quot;Active&quot;  : true,
+  &quot;Price&quot;   : 30.66,
+  &quot;Shares outstanding&quot; : 8.38e9,
+  &quot;Related companies&quot; :
+    [ &quot;HPQ&quot;, &quot;IBM&quot;, &quot;YHOO&quot;, &quot;DELL&quot;, &quot;GOOG&quot; ]
+}
+</code></pre>
+<h3 id="942-a-json-parser-exercies-99">9.4.2 A JSON parser (Exercies 9.9)</h3>
+<ul>
+<li>
+<p>You’ll be creating a Parser[JSON] from scratch using the primitives we’ve defined. You don’t need to worry (yet) about the <strong>representation</strong> of Parser.</p>
+</li>
+<li>
+<p>Use the skills you’ve been developing throughout this book, and have fun!</p>
+</li>
+</ul>
+<pre><code class="language-scala">package fpinscala.answers.parsing
+
+// We need a representation for a parsed JSON document.
+enum JSON:
+  case JNull
+  case JNumber(get: Double)
+  case JString(get: String)
+  case JBool(get: Boolean)
+  case JArray(get: IndexedSeq[JSON])
+  case JObject(get: Map[String, JSON])
+
+object JSON:
+  def jsonParser[Parser[+_]](P: Parsers[Parser]): Parser[JSON]=
+    import P.*
+
+    def token(s: String) = string(s).token
+
+    def array: Parser[JSON] = (
+      token(&quot;[&quot;) *&gt; value.sep(token(&quot;,&quot;)).map(vs =&gt; JArray(vs.toIndexedSeq)) &lt;* token(&quot;]&quot;)
+    ).scope(&quot;array&quot;)
+
+    def obj: Parser[JSON] = (
+      token(&quot;{&quot;) *&gt; keyval.sep(token(&quot;,&quot;)).map(kvs =&gt; JObject(kvs.toMap)) &lt;* token(&quot;}&quot;)
+    ).scope(&quot;object&quot;)
+
+    def keyval: Parser[(String, JSON)] = escapedQuoted ** (token(&quot;:&quot;) *&gt; value)
+
+    def lit: Parser[JSON] = (
+      token(&quot;null&quot;).as(JNull) |
+      double.map(JNumber(_)) |
+      escapedQuoted.map(JString(_)) |
+      token(&quot;true&quot;).as(JBool(true)) |
+      token(&quot;false&quot;).as(JBool(false))
+    ).scope(&quot;literal&quot;)
+
+    def value: Parser[JSON] = lit | obj | array
+
+    (whitespace *&gt; (obj | array)).root
+</code></pre>
+<br>
+<hr>
+<h2 id="95-error-reporting">9.5 Error reporting</h2>
+<ul>
+<li>
+<p>So far, we haven’t discussed error reporting at all.</p>
+<ul>
+<li>
+<p>We’ve focused exclusively on <strong>discovering a set of primitives</strong> that let us <strong>express parsers for different grammars,</strong></p>
+</li>
+<li>
+<p>but besides just parsing a grammar, we want to be able to determine how the parser should respond when <strong>given unexpected input</strong>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Even without knowing what an <strong>implementation</strong> of Parsers will look like, we can reason abstractly about what information is being specified by <strong>a set of combinators.</strong></p>
+</li>
+</ul>
+<h3 id="951-a-possible-design">9.5.1 A possible design</h3>
+<ul>
+<li>
+<p>We can introduce a primitive combinator for this—<code>label</code>:</p>
+<ul>
+<li>
+<p><code>extension [A](p: Parser[A]) def label(msg: String): Parser[A]</code></p>
+</li>
+<li>
+<p>The intended meaning of label is that if <code>p</code> fails, its <code>ParseError</code> will somehow incorporate <code>msg</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>but we’d like our parse error to also tell us <strong>where the problem occurred</strong>. Let’s tentatively add this to our algebra: <code>Location</code></p>
+<ul>
+<li>concrete representation for <code>Location</code> that includes the full input, an offset into this input, and the line and column numbers, which can be computed lazily.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-scala">case class Location(input: String, offset: Int = 0):
+  lazy val line = input.slice(0, offset + 1).count(_ == '\n') + 1
+  lazy val col = input.slice(0, offset + 1).lastIndexOf('\n') match
+       case -1 =&gt; offset + 1
+       case lineStart =&gt; offset - lineStart
+
+def errorLocation(e: ParseError): Location // Extracts a concrete Location from an abstract ParseError
+def errorMessage(e: ParseError): String // Extracts a concrete message from an abstract ParseError
+</code></pre>
+<h3 id="952-error-nesting">9.5.2 Error nesting</h3>
+<ul>
+<li>
+<p>This notion is still a bit fuzzy; if we have a | b, and both parsers fail on the input, which location and label(s) are reported?</p>
+</li>
+<li>
+<p>it seems wrong to assume that <strong>one level</strong> of error reporting will always be sufficient. Let’s therefore provide a way to <strong>nest labels</strong>: - <code>scope</code></p>
+<ul>
+<li>
+<p><code>extension [A](p: Parser[A]) def scope(msg: String): Parser[A]</code></p>
+</li>
+<li>
+<p>Unlike label, scope doesn’t throw away the label(s) attached to <code>p</code>—it merely adds additional information in the event that p fails.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Let&rsquo;s modify the functions that pull information out of a ParseError. Rather than containing just a single Location and String message, we should get a <code>List[(Location, String)]</code>:</p>
+<ul>
+<li><code>case class ParseError(stack: List[(Location, String)])</code></li>
+<li>ParseError is a stack of error messages indicating what the Parser was doing when it failed.</li>
+</ul>
+</li>
+<li>
+<p>Now we’re giving the Parsers implementation all the information it needs to construct nice, hierarchical errors.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="97-conclusion">9.7 Conclusion</h2>
+<ul>
+<li>
+<p>In this chapter, we introduced <strong>algebraic design</strong>, an approach to writing combinator libraries, and we used it to design a parser library and implement a JSON parser.</p>
+<ul>
+<li>
+<p>Along the way, we discovered a number of combinators similar to what we saw in <strong>previous chapters</strong>, and these were again related by familiar laws.</p>
+</li>
+<li>
+<p>In part3, we’ll finally understand the nature of the connection between <strong>these libraries</strong> and learn how to abstract over their common structure.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Summary</strong></p>
+<ul>
+<li>
+<p>A <strong>parser</strong> converts a sequence of unstructured data into a structured representation.</p>
+</li>
+<li>
+<p>A <strong>parser combinator</strong> library allows the construction of a parser by combining <strong>simple primitive parsers and generic combinators.</strong></p>
+</li>
+<li>
+<p><strong>Algebraic design</strong> is the process in which an <strong>interface and associated laws are designed first</strong> and then used to guide the choice of data type representations.</p>
+</li>
+<li>
+<p>Judicious use of <strong>infix operators</strong>, either defined with symbols as in <code>|</code> or with the <code>infix</code> keyword as in <code>or</code>, <strong>can make combinator libraries easier to use</strong>.</p>
+</li>
+<li>
+<p>The <code>many</code> combinator creates a parser that parses zero or more repetitions of the input parser and returns a list of parsed values.</p>
+</li>
+<li>
+<p>The <code>product</code> combinator (or <code>**</code> operator) creates a parser from two input parsers, which runs the first parser and, if successful, runs the second parser on the remaining input. The resulting value of each input parser is returned in a tuple.</p>
+</li>
+<li>
+<p>The <code>map</code> and <code>flatMap</code> operations are useful for building composite parsers. In particular, flatMap allows the creation of context-sensitive parsers.</p>
+</li>
+<li>
+<p>The <code>label</code> and <code>scope</code> combinators allow better error messages to be generated with parsing fails.</p>
+</li>
+<li>
+<p>APIs can be designed by <strong>choosing primitive operations</strong>, building <strong>combinators</strong>, and deciding how those operations and combinators should <strong>interact</strong>.</p>
+</li>
+<li>
+<p>API design is an <strong>iterative process</strong>, where interactions amongst operations, sample usages, and implementation difficulties all contribute to the process.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

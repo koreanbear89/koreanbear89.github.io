@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. Java on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/3.-java/</link>
+    <description>Recent content in 3. Java on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 11 Jul 2024 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/3.-java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 5.9 | Plotly</title>
+      <link>http://localhost:1313/language/2.-python/python-5.9--plotly/</link>
+      <pubDate>Sun, 01 Jan 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-5.9--plotly/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-references&#34;&gt;3. References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dash.plotly.com/tutorial&#34;&gt;https://dash.plotly.com/tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #3 | Concurrency and Parallelism</title>
+      <link>http://localhost:1313/language/2.-python/python-4--concurrency-and-parallelism/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-4--concurrency-and-parallelism/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview
+&lt;ul&gt;
+&lt;li&gt;Concurrency :
+&lt;ul&gt;
+&lt;li&gt;enables a computer to do many different things seemingly at the same time.&lt;/li&gt;
+&lt;li&gt;multiple jobs to take turns accessing the same shared resources, likes disk, network, or a single CPU core.&lt;/li&gt;
+&lt;li&gt;For I/O bounded tasks, Python offers two different mechanisms
+&lt;ul&gt;
+&lt;li&gt;threading&lt;/li&gt;
+&lt;li&gt;asyncio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Parallelism :
+&lt;ul&gt;
+&lt;li&gt;involves actually doing many different things at the same time.&lt;/li&gt;
+&lt;li&gt;For CPU bounded tasks, Python offers multiprocessing
+&lt;ul&gt;
+&lt;li&gt;multiprocessing&lt;/li&gt;
+&lt;li&gt;subprocess&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-threading&#34;&gt;1. Threading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Threads : are units of work where you can take one or more functions and execute them independently of the rest of the program. You can then aggregate the results, typically by waiting for all threads to run to completition
+&lt;ul&gt;
+&lt;li&gt;Global Interptreter Lock (GIL) : python threads can&amp;rsquo;t run in parallel on multiple CPU cores because of the GIL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Python threads are still useful despite the GIL, because they provide an easy way to do multiple things seemingly at the same time.&lt;/li&gt;
+&lt;li&gt;Use Python threads to make multiple system calls in parallel. This allows you to do blocking I/O at the same time as computation  (things like reading and writing files, interacting with networks, communicating with devices like displays, and so on.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvatages
+&lt;ul&gt;
+&lt;li&gt;Threads are &lt;em&gt;cooperative&lt;/em&gt;. The Python runtime divides its attention between them, so that objects accessed by threads can be managed correctly.&lt;/li&gt;
+&lt;li&gt;As a result, threads shouldn’t be used for CPU-intensive work. If you run a CPU-intensive operation in a thread, it will be paused when the runtime switches to another thread, so there will be no performance benefit over running that operation outside of a thread.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import requests
+from concurrent.futures import as_completed, wait, ThreadPoolExecutor
+
+def io_bounded(url):
+    return requests.get(url).content
+
+urls = [&#39;http://www.foxnews.com/&#39;,
+        &#39;http://www.cnn.com/&#39;,
+        &#39;http://europe.wsj.com/&#39;,
+        &#39;http://www.bbc.co.uk/&#39;,
+        &#39;http://some-made-up-domain.com/&#39;]
+
+with ThreadPoolExecutor(max_workers=5) as ex:
+    url_to_futures = {url:ex.submit(io_bounded, url) for url in urls}
+    futures = url_to_futures.values()
+    # Use &amp;quot;wait&amp;quot; for ordered result or as_completed for not-ordered results
+    results = wait(futures, timeout=0.3)
+
+print(url_to_futures.get(&#39;http://www.foxnews.com/&#39;).result()[:1000])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-asyncio&#34;&gt;2. Asyncio&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Coroutines : are a different way to execute functions concurrently in Python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-multiprocessing&#34;&gt;3. Multiprocessing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Multiprocessing : allows you to run many CPU-intensive tasks side by side by launching multiple, independent copies of the Python runtime.&lt;/li&gt;
+&lt;li&gt;Advantages : With threading and coroutines, the Python runtime forces all operations to run serially. Multiprocessing sidesteps this limitation by giving each operation a separate Python runtime and a full CPU core.&lt;/li&gt;
+&lt;li&gt;Disadvantages :
+&lt;ul&gt;
+&lt;li&gt;Additional overhead is associated with creating the processes&lt;/li&gt;
+&lt;li&gt;Each subprocess needs to have a copy of the data it works with sent to it from the main process. (related to pickle)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import time
+import multiprocessing
+
+# If the number of process is not given, cpu_count will be used as the default
+# The number of processes running concurrently on your computer is not limited by the number of cores.
+NUM_OF_PROC = multiprocessing.cpu_count()
+
+def cpu_bounded(input_data):
+    time.sleep(1)
+    return &amp;quot;result&amp;quot;
+
+with multiprocessing.Pool(NUM_OF_PROC) as p:
+     outputs = p.map(cpu_bounded, inputs)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-references&#34;&gt;5. References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.infoworld.com/article/3632284/python-concurrency-and-parallelism-explained.html&#34;&gt;Python concurrency and parallelism explained&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #1 | Introduction Part.I </title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml01--introduction/</link>
+      <pubDate>Tue, 18 Jan 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml01--introduction/</guid>
+      <description>&lt;div&gt;&lt;br&gt;&lt;/div&gt;
+&lt;h2 id=&#34;1-introduction-and-motivation&#34;&gt;1. Introduction and Motivation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Machine learning is about designing algorithms that automatically extract valuable information from data.&lt;/li&gt;
+&lt;li&gt;There are three concepts that are at the core of machine learning : &lt;strong&gt;data&lt;/strong&gt;, a &lt;strong&gt;model&lt;/strong&gt;, and &lt;strong&gt;learning&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;Data : Since machine learning is inherently data driven, data is at the core of machine learning.&lt;/li&gt;
+&lt;li&gt;Model : would describe a function that maps inputs to real-valued outputs.&lt;/li&gt;
+&lt;li&gt;Learning : can be understood as a way to automatically find patterns and structure in data by optimizing the parameters of the model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;br&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;11-finding-words-for-intuitions&#34;&gt;1.1 Finding Words for Intuitions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data as vectors&lt;/strong&gt; : there are (at least) three different ways to think about vectors:
+&lt;ul&gt;
+&lt;li&gt;a vector as an array of numbers (computer science view),&lt;/li&gt;
+&lt;li&gt;a vector as an arrow with a direction and magnitude (physics view),&lt;/li&gt;
+&lt;li&gt;a vector as an object that obeys addition and scaling (a mathematical view)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;/strong&gt; : A good model can be used to predict what would happen in the real world without performing real-world experiments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Learning&lt;/strong&gt; : We learn from available data by using numerical optimization methods with the aim that the model performs well on unseen data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;br&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;12-two-ways-to-read-this-book&#34;&gt;1.2 Two Ways to Read This Book&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bottom-up : Building up the concepts from foundational to more ad-vanced.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #5 | 3rd-Party Modules</title>
+      <link>http://localhost:1313/language/2.-python/python-5--3rd-party-modules/</link>
+      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-5--3rd-party-modules/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Matplotlib&lt;/li&gt;
+&lt;li&gt;Pandas&lt;/li&gt;
+&lt;li&gt;Pydantic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;matplotlib&#34;&gt;Matplotlib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Interface&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;pyplot interface&lt;/strong&gt; : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;object-oriented interface&lt;/strong&gt; : Explicitly create figures and axes, and call methods on them&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+import numpy as np
+
+# pyplot interface (MATLAB-like, rely on pyplot)
+x = np.linspace(0,2,100)
+plt.plot(x,x**2)
+# Recommended) object-oriented interface (create figures and axes manually)
+fig, ax = plt.subplots(figsize=(15,4))
+ax.plot(x,x**2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Plot&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig, ax = plt.subplots()
+ax.plot(x,x**2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Axes&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Axes 
+fig, ax = plt.subplots()
+# set axes
+ax.set_title(&amp;quot;Title&amp;quot;)
+ax.set_xlabel(&#39;xlabel&#39;)
+# set limits
+ax.set_ylim([0, 1e5])
+# rotate tick
+ax.tick_params(axis = &#39;x&#39;, labelrotation =90)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pandas&#34;&gt;Pandas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Groupby&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# select columns
+df_channel = df[[&#39;COLUMN_A&#39;, &amp;quot;COLUMN_1&amp;quot;, &amp;quot;COLUMN_2&amp;quot;, &amp;quot;COLUMN_3&amp;quot;, &amp;quot;COLUMN_4&amp;quot;]]
+# groupby =&amp;gt; will return aggregated list of each columns by COLUMN_A
+df_channel_group = df_channel.groupby(&#39;COLUMN_A&#39;).agg(lambda x: list(x))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pydantic&#34;&gt;Pydantic&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview
+&lt;ul&gt;
+&lt;li&gt;Data validation and settings management using Python type annotations.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pydantic&lt;/em&gt; enforces type hints at runtime, and provides user friendly errors when data is invalid.&lt;/li&gt;
+&lt;li&gt;Define how data should be in pure, canonical Python; validate it with &lt;em&gt;pydantic&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Custom Root Types : &lt;code&gt;__root__&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Pydantic models can be defined with a custom root type by declaring the &lt;code&gt;__root__&lt;/code&gt;field.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #1 | Text Preprocessing</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-1--text-preprocessing/</link>
+      <pubDate>Tue, 05 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-1--text-preprocessing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tokenization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-tokenization&#34;&gt;1. Tokenization&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tokenization&lt;/strong&gt; : dividing a given corpus into tokens, which are units defined for a specific purpose.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sentence Tokenization&lt;/strong&gt; : The unit of the token is a sentence.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as &amp;lsquo;Ph.D.&amp;rsquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Word Tokenization&lt;/strong&gt; : The criterion of the token is a word.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In English, word tokens can be distinguished by cutting them by space (&amp;quot; &amp;ldquo;), but in Korean, this is not the case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Subword Tokenizer (Morpheme Tokenization)&lt;/strong&gt; : the standard of the token is a morpheme. In the case of Korean, morpheme tokenization is preferred for the following reasons:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pySpark</title>
+      <link>http://localhost:1313/language/2.-python/python-5.1--pyspark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-5.1--pyspark/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1.1 Terminologies&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #4 | asyncio</title>
+      <link>http://localhost:1313/language/2.-python/python-4--asyncio/</link>
+      <pubDate>Tue, 01 Jan 2019 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-4--asyncio/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;asyncio
+&lt;ol&gt;
+&lt;li&gt;Coroutines&lt;/li&gt;
+&lt;li&gt;Awaitable&lt;/li&gt;
+&lt;li&gt;Creating Tasks&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-coroutines&#34;&gt;1. Coroutines&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Declaration : Python functions defined with the &lt;code&gt;def&lt;/code&gt; syntax are synchronous functions. However, to make a function asynchronous, you need to use the &lt;code&gt;async&lt;/code&gt; keyword to the function definition. And we call this async funtion, Coroutine.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run a coroutine : Simply calling a coroutine will not schedule it to be executed. &lt;code&gt;asyncio&lt;/code&gt; provides the following mechanisms (multiple ways) to run a coroutine&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #1 | Image Classification</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv01--image-classification/</link>
+      <pubDate>Sat, 02 Jul 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv01--image-classification/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Image Classification : The task of classifying an image according to its visual content.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Image Representation : focus on the way to encode visual contents into vectors (embedding, encoding)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-alexnet-2012&#34;&gt;1. &lt;a href=&#34;https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf&#34;&gt;AlexNet (2012)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : CNNs have been prohibitively expensive to apply in large scale to high resolution images.&lt;/li&gt;
+&lt;li&gt;Method : Training on Multiple GPUs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def AlexNet(x):
+  out = MP(relu(conv11x11(x)))
+  out = MP(relu(conv5x5(out)))
+  out = relu(conv3x3(out))
+  out = relu(conv3x3(out))
+  out = MP(relu(conv3x3(out)))
+  out = FC(relu(FC(relu(FC(out)))))
+  return out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-vgg-net-2014&#34;&gt;2. &lt;a href=&#34;https://arxiv.org/pdf/1409.1556v6.pdf&#34;&gt;VGG Net (2014)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : come up with significantly more accurate ConvNet&lt;/li&gt;
+&lt;li&gt;Method : deeper ConvNet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def VGG16(x):
+  out = MP(conv3x3(conv3x3(x)))
+  out = MP(conv3x3(conv3x3(out)))
+  for i in range(3):
+    out = MP(conv3x3(conv3x3(conv3x3(out))))
+  out = softmax(FC(FC(FC(out))))
+  return out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-googlenet-2015&#34;&gt;3. &lt;a href=&#34;https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf&#34;&gt;GoogleNet (2015)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : efficient deeper networks (with fewer params than AlexNet)&lt;/li&gt;
+&lt;li&gt;Method : inception module(NIN, Bottleneck)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def inception_block(x):
+  branch_1x1 = conv1x1(x)
+  branch_3x3 = conv3x3(conv1x1(x))
+  branch_5x5 = conv5x5(conv1x1(x))
+  branch_pool = conv1x1(MP3x3(x,same))
+  out = concat([branch_1x1,branch_3x3,branch_5x5,branch_pool])
+  return out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-resnet-microsoft-2015&#34;&gt;4. &lt;a href=&#34;https://arxiv.org/pdf/1512.03385v1.pdf&#34;&gt;ResNet (Microsoft, 2015)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : to solve the degradation problem caused by deeper layer.&lt;/li&gt;
+&lt;li&gt;Method : Residual Block with shortcut(skip) connection defined as :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbf{x}_{l+1} = \mathbf{x}_l + F(\mathbf{x}_l,{W_i})  $$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #2 | Built In Modules</title>
+      <link>http://localhost:1313/language/2.-python/python-2--built-in-modules/</link>
+      <pubDate>Tue, 02 Feb 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-2--built-in-modules/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;argparse&#34;&gt;argparse&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import argparse
+
+if __name__ == &amp;quot;__main__&amp;quot;:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&amp;quot;--name&amp;quot;, type=str, required=True, help=&amp;quot;help&amp;quot;)
+    args = parser.parse_args()
+    print(args.name)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;counter&#34;&gt;counter&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from collections import Counter
+Counter([&#39;apple&#39;,&#39;red&#39;,&#39;apple&#39;,&#39;red&#39;,&#39;red&#39;,&#39;pear&#39;])
+&amp;gt;&amp;gt;&amp;gt; Counter({&#39;red&#39;: 3, &#39;apple&#39;: 2, &#39;pear&#39;: 1})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;datetime&#34;&gt;datetime&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from datetime import datetime
+datetime.today().strftime(&amp;quot;%Y%m%d%H%M%S&amp;quot;)    # YYYYmmddHHMMSS 형태의 시간 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;flask&#34;&gt;flask&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from flask import jsonify, make_response
+
+@application.route(&#39;/inference&#39;, methods=[&amp;quot;GET&amp;quot;])
+def infer():
+  summary = {&#39;class&#39; : &#39;cat&#39;, &#39;score&#39;:&#39;0.92&#39;}   # make response data
+  res = make_response(jsonify(summary), 200)   # make Response object
+  res.headers.add(&amp;quot;Access-Control-Allow-Origin&amp;quot;, &amp;quot;*&amp;quot;)   # CORS ERROR 대응
+  return res
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;itertools&#34;&gt;itertools&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from itertools import chain, product, combinations, permutations, groupby, accumulate, islice, cycle
+
+# chain: flatten iterables
+list(chain([1,2], [3,4]))                 # [1, 2, 3, 4]
+
+# product: cartesian product
+list(product([1,2], [&#39;a&#39;,&#39;b&#39;]))           # [(1,&#39;a&#39;), (1,&#39;b&#39;), (2,&#39;a&#39;), (2,&#39;b&#39;)]
+
+# combinations / permutations
+list(combinations([1,2,3], 2))            # [(1,2), (1,3), (2,3)]
+list(permutations([1,2,3], 2))            # [(1,2), (1,3), (2,1), (2,3), (3,1), (3,2)]
+
+# groupby: consecutive runs (sort first if you want global groups)
+data = sorted([(&#39;a&#39;,1), (&#39;b&#39;,2), (&#39;a&#39;,3)], key=lambda x: x[0])
+{k: [v for _, v in g] for k, g in groupby(data, key=lambda x: x[0])}
+# {&#39;a&#39;: [1, 3], &#39;b&#39;: [2]}
+
+# accumulate: running totals (or any binary op)
+list(accumulate([1,2,3,4]))               # [1, 3, 6, 10]
+
+# islice: slice a generator without materializing
+list(islice((x*x for x in range(10)), 2, 6))   # [4, 9, 16, 25]
+
+# cycle: infinite repetition (combine with islice or zip)
+list(islice(cycle([&#39;A&#39;,&#39;B&#39;]), 5))         # [&#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#39;B&#39;, &#39;A&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;os&#34;&gt;os&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;os.chdir(&#39;/opt/vidClassifier/classifier/&#39;)
+# sys.path.append(&#39;/opt/vidClassifier/classifier&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pandas&#34;&gt;pandas&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df = pd.read_pickle(&#39;PICKLED_PATH&#39;)
+
+df.drop(i) # remove i-th row
+df.sort_values(by, ascending=True) # sort 
+
+# Filtering 
+df.iloc[[0,1,2,3,4,5]] # get rows by indices # not iloc() =&amp;gt; iloc[]
+df_new = df.loc[df[&#39;Column&#39;].str.contains(&amp;quot;sub_str1|sub_str2&amp;quot;, case=False)] # Filtering rows that contain either sub_str1 or sub_str2
+
+# Groupby
+agg_functions = {&#39;col1&#39;:&#39;first&#39;, 
+                 &#39;col2&#39; : &#39;sum&#39;, 
+                 &#39;col3&#39; : lambda col: &#39; &amp;amp;&amp;amp; &#39;.join(col), }
+df_new = df.groupby(df[&#39;id&#39;]).aggregate(agg_functions)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pickle&#34;&gt;pickle&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pickle
+# load or save object using pickle
+try:
+    with open(path_pkl, &#39;rb&#39;) as f: obj_pkl = pickle.load(f)
+except:
+    obj_pkl = []
+    with open(path_pkl, &#39;wb&#39;) as f: pickle.dump(obj_pkl, f)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;requests&#34;&gt;requests&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import requests
+
+# GET
+url = &#39;http://localhost/test&#39;
+params = {&#39;arg1&#39;:&#39;1&#39;, &#39;arg2&#39;:&#39;2&#39;}
+response = requests.get(url=url, params=params).json()
+
+# POST
+response = requests.post(url=url, data=json.dumps(params))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;typing&#34;&gt;typing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;&lt;code&gt;typing.Union&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #1 | Basic</title>
+      <link>http://localhost:1313/language/2.-python/python-1--basic/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-1--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Python Syntax&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-data-types&#34;&gt;1. Data Types&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;String&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Limiting floats to N demicmal points
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;round(1.23456, 4)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;{:.2f} / {:.3f}&amp;quot;.format(1.2345, 1.2345)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f&amp;quot;{num:.2f}&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Set&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;add&lt;/code&gt;: add value to set&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;update&lt;/code&gt;: add multiples values to set&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;remove&lt;/code&gt;: remove specific value from set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-class&#34;&gt;2. Class&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Class : A set of related variables and methods as a blueprint for creating an object&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Methods (instance, static, class) are described in detail in the next chapter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Object : declared as a class type,&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python #0 | Setup</title>
+      <link>http://localhost:1313/language/2.-python/python-0--setup/</link>
+      <pubDate>Fri, 01 Jan 2016 08:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/python-0--setup/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;using conda&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using docker&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;using-pip-to-install-packages-in-specific-conda-env&#34;&gt;Using pip to install packages in specific conda env&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;conda create -n venv_name&lt;/code&gt; and &lt;code&gt;conda activate venv_name&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;conda install pip&lt;/code&gt;. This will install pip to your venv directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find your anaconda directory, and find the actual venv folder. It should be somewhere like &lt;code&gt;/anaconda/envs/venv_name/&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install new packages by doing &lt;code&gt;/anaconda/envs/venv_name/bin/pip install package_name&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;reference : &lt;a href=&#34;https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment&#34;&gt;python - Using Pip to install packages to Anaconda Environment - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #2 | Text Representation</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-2--text-representation/</link>
+      <pubDate>Wed, 13 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-2--text-representation/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Text Representation (Embedding) : When working with text, the first thing you must do is come up with a strategy to convert strings to numbers (or to &amp;ldquo;vectorize&amp;rdquo; the text) before feeding it to the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Sparse Representation : One-hot encoding, Document Term Matrix, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dense Representation : Word2Vec, Glove, FastText, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pretraind Word Embedding : ELMo, GPT, BERT&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sparse-representations&#34;&gt;1. Sparse Representations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Sparse Representation embeds word as a vector which have a relatively small number of nonzero elements. (most of elements in vectors are zero)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #2 | Object Detection</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv02--object-detection/</link>
+      <pubDate>Fri, 22 Jul 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv02--object-detection/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Object Detection : a task of finding the different objects in an image and classifying them&lt;/li&gt;
+&lt;li&gt;Salient Object Detection :  a task based on a visual attention mechanism, in which algorithms aim to explore objects or regions more attentive than the surrounding areas on the scene or RGB images.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Metrics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AP or mAP is generally used as the primary metrics metric.&lt;a href=&#34;http://localhost:1313/archivers/Archive/2016-01-03&#34;&gt;click here for details&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Others&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Non Maximum Suppression (NMS) :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #3 | Semantic Segmentation</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv03--image-segmentation/</link>
+      <pubDate>Sun, 23 Jul 2017 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv03--image-segmentation/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Image Segmentation : The process of assigning a label to every pixel in the image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Semantic Segmentation : treats multiple objects of the same class as a single entity.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Instance Segmentation : treats multiple objects of the same class as distinct individual objects.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-fcn-2015&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/pdf/1411.4038.pdf&#34;&gt;FCN (2015)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction :  The first end-to-end pixel-wise prediction model based only on convolutional layers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Method:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Feature Extraction&lt;/strong&gt; : using convolution layers like conventional Image Classification Tasks (layer 1,2,3,4,5)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Convolutionalizing&lt;/strong&gt; : Downsampling using 1x1 conv rather than FC layer(layer 6,7,8)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pixel Wise Classification&lt;/strong&gt; : Last conv1x1 layer performs pixel wise classification for 21 classes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upsampling&lt;/strong&gt; : using deconvolution layer, also called transposed convolution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fusing Output&lt;/strong&gt; : x32 upsample from pool5 (FCN-32S) +  x16 upsample from pool4 (FCN16S) + x8 upsample from pool3 (FCN8S)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34; /figures/2020-02-28-fig1.png &#34;&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #4 | Image Synthesis</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv04--image-synthesis/</link>
+      <pubDate>Tue, 25 Jul 2017 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv04--image-synthesis/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks :
+&lt;ul&gt;
+&lt;li&gt;Image Synthesis : The task of creating new images from some form of image description.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-gan-2014&#34;&gt;1. &lt;a href=&#34;https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf&#34;&gt;GAN (2014)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : A new framework for estimating generative models via an adversarial process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Method: simultaneously train two models : a generative model $G$ that captures the data distribution, and a discriminative model $D$ that estimates the probability that a sample came from the training data rather than $G$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\min_{G} \max_{D} V(D,G) = \mathbb{E} _ {x \sim p_{data}(x)} logD(x) + \mathbb{E} _ {z \sim p_z(z)}log(1-D(G(z)))
+$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #5 | Text Segmentation</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-5--text-segmentation/</link>
+      <pubDate>Thu, 18 Nov 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-5--text-segmentation/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Text Segmentation : is the process of dividing written text into meaningful units, such as words, sentences, or topics.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To improve the results of Information Retrieval system and help users to find relevant passages faster&lt;/li&gt;
+&lt;li&gt;keywords : Text Segmentation, Document Segmentation, Discourse Segmentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lexical-Cohesion based methods : The first basic insight is that people talk about different topics in different ways: they use different words.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Discriminative approach : calculate similarity between neighboring sentences
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://aclanthology.org/J97-1003/&#34;&gt;Hearst. TextTiling, 1997&lt;/a&gt; , &lt;a href=&#34;https://arxiv.org/abs/1503.05543&#34;&gt;Alemi and Ginsparg, 2015&lt;/a&gt;,  and &lt;a href=&#34;https://aclanthology.org/S16-2016/&#34;&gt;Glavaˇs et al., 2016&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Clustering approach : generate topic clusters
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://aclanthology.org/A00-2004/&#34;&gt;Freddy. C99, 2000&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feature based Topic Boundaries (Break) Prediction : The second basic insight is that boundaries between topics have their own characteristic features&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #5 | Image Style Transfer</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv05--image-style-transfer/</link>
+      <pubDate>Thu, 26 Apr 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv05--image-style-transfer/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks :
+&lt;ul&gt;
+&lt;li&gt;Image Style Transfer : The task of migrating a style from one image (Style Image) to another (Content Image).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-image-style-transfer-using-cnns-2016&#34;&gt;1. &lt;a href=&#34;https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf&#34;&gt;Image Style Transfer using CNNs (2016)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Introduce a algorithm that can separate and recombine the image content and style of natural images.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Method : Extract feature maps $F_l$ from each input image $I_{content} $ and $I_{style}$ using pretrained networks at $l_{th}$ layer. Then, optimize $I_{output}$ to have similar contents with $I_{content}$ and similar style with $I_{style}$.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #6 | Probabilirty and Distributions</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml06--probability-and-distributions/</link>
+      <pubDate>Mon, 13 Jun 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml06--probability-and-distributions/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;6-probability-and-distributions&#34;&gt;6. Probability and Distributions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Probability, loosely speaking, concerns the study of uncertainty
+&lt;ul&gt;
+&lt;li&gt;Probability can be thought of
+&lt;ul&gt;
+&lt;li&gt;as the fraction of times an event occurs,&lt;/li&gt;
+&lt;li&gt;as a degree of belief about an event.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;We then would like to use this probability to measure the chance of something occurring in an experiment
+&lt;ul&gt;
+&lt;li&gt;In ML, we often quantify
+&lt;ul&gt;
+&lt;li&gt;uncertainty in the data,&lt;/li&gt;
+&lt;li&gt;uncertainty in the machine learning model, and&lt;/li&gt;
+&lt;li&gt;uncertainty in the predictions produced by the model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Random Variable : Quantifying uncertainty requires the idea of a random variable, which is a function that maps outcomes of random experiments to a set of properties that we are interested in.&lt;/li&gt;
+&lt;li&gt;Probability Distribution : Associated with the random variable is a function that measures the probability that a particular outcome (or set of outcomes) will occur&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;80%&#34; align=&#34;center&#34; src=&#34;http://localhost:1313/figures/2022-04-04-fig6_1.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #6 | Text Summarization</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-6--text-summarization/</link>
+      <pubDate>Mon, 28 Jun 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-6--text-summarization/</guid>
+      <description>&lt;h2&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Text Summarization : is a technique to shorten long texts such that the summary has all the important points of the actual document.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;By Summarization Approache&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Extraction-based Summarization:&lt;/strong&gt; The extractive approach involves picking up the most important phrases and lines from the documents. It then combines all the important lines to create the summary. So, in this case, every line and word of the summary actually belongs to the original document which is summarized.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #6 | Image Retrieval</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv06--image-retrieval/</link>
+      <pubDate>Thu, 14 Jun 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv06--image-retrieval/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Image Retrieval : aims to find similar images to a query image among an image dataset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tech Trend :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Conventional Methods :  relying on local descriptor matching (scale invariant features - local image descriptors - reranking with spatial verifications)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using FC layers :  after several conv layers as global descriptors [&lt;a href=&#34;https://arxiv.org/abs/1404.1777&#34;&gt;A Babenko et al&lt;/a&gt;, &lt;a href=&#34;https://arxiv.org/abs/1604.01325&#34;&gt;A Gordo et al.&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using global pooling methods : from the activations of conv layers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;boost the performance : by combining different global descriptors which are trained individually.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -20,28 +20,36 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are" />
-    <meta name="generator" content="Hugo 0.121.2 with theme pure" />
+    <meta name="description" content="
+2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are zeros.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
     <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform  - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform " />
-<meta property="og:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/" /><meta property="article:section" content="Mathematics" />
-<meta property="article:published_time" content="2019-05-08T09:00:13+00:00" />
-<meta property="article:modified_time" content="2019-05-08T09:00:13+00:00" />
+    <meta property="og:url" content="https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Linear Algebra for ML #2 | Linear System & Linear Transform ">
+  <meta property="og:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; …. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1’s and all the other entries are zeros.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mathematics">
+    <meta property="article:published_time" content="2019-05-08T09:00:13+00:00">
+    <meta property="article:modified_time" content="2019-05-08T09:00:13+00:00">
 
-<meta itemprop="name" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform ">
-<meta itemprop="description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are"><meta itemprop="datePublished" content="2019-05-08T09:00:13+00:00" />
-<meta itemprop="dateModified" content="2019-05-08T09:00:13+00:00" />
-<meta itemprop="wordCount" content="1221">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Linear Algebra for ML #2 | Linear System &amp; Linear Transform "/>
-<meta name="twitter:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; &hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&rsquo;s and all the other entries are"/>
+  <meta itemprop="name" content="Linear Algebra for ML #2 | Linear System & Linear Transform ">
+  <meta itemprop="description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; …. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1’s and all the other entries are zeros.">
+  <meta itemprop="datePublished" content="2019-05-08T09:00:13+00:00">
+  <meta itemprop="dateModified" content="2019-05-08T09:00:13+00:00">
+  <meta itemprop="wordCount" content="1221">
+  <meta itemprop="keywords" content="1. Linear Algebra">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linear Algebra for ML #2 | Linear System & Linear Transform ">
+  <meta name="twitter:description" content="2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 &#43; …. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1’s and all the other entries are zeros.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -123,81 +131,51 @@
 
       <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
         <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
+              <li class="menu-item menu-item-home">
                 <a href="/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-home"></i>
+                        <i class=" fas fa-home"></i>
                   <span class="menu-title">Home</span>
                 </a>
-            </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-user-alt"></i>
-                  <span class="menu-title">About</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-mathematics">
-                <a href="/mathematics/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-square-root-alt"></i>
-                  <span class="menu-title">Mathematics</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-research">
-                <a href="/research/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-book-open"></i>
-                  <span class="menu-title">Research</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-engineering">
-                <a href="/engineering/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-cog"></i>
-                  <span class="menu-title">Engineering</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-language">
+              </li>
+              <li class="menu-item menu-item-language">
                 <a href="/language/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-language"></i>
+                        <i class=" fas fa-language"></i>
                   <span class="menu-title">Language</span>
                 </a>
-            </li>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
         </ul>
       </nav>
     </div>
   </header>
 
+
+
     <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
   <div class="slimContent">
     
-      <div class="widget">
+    
+      
+        <div class="widget">
     
     <div class="widget-body">
 
@@ -207,131 +185,150 @@
               
               
               
+              
+                  
+                  
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
-                  <span class="category-list-count">6</span></li>
+                  <span class="category-list-count">5</span></li>
+                  
                   
               
+                  
+                  
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">5</span></li>
+                  
                   
               
+                  
+                  
                   
                   
                   <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">6</span></li>
+                  
                   
               
         </ul><hr>
 
 
 
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
               
               
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">13</span></li>
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
 
                   
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
-                  <span class="category-list-count">14</span></li>
-
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
-                  <span class="category-list-count">13</span></li>
-
-                  
-              
                   
                   
-                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">8</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
-                  <span class="category-list-count">2</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-        </ul><hr>
-
-
-
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
-              
-              
-              
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/2.-backend">2. Backend</a>
-                  <span class="category-list-count">2</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/3.-frontend">3. Frontend</a>
-                  <span class="category-list-count">1</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
-                  <span class="category-list-count">17</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
                   <span class="category-list-count">9</span></li>
 
                   
+                  
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">13</span></li>
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
 
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
                   
               
         </ul><hr>
@@ -342,27 +339,47 @@
               
               
               
+              
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
-                  <span class="category-list-count">19</span></li>
-
-                  
-              
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
                   <span class="category-list-count">2</span></li>
 
                   
+                  
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">6</span></li>
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
 
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
                   
               
         </ul><hr>
@@ -375,6 +392,7 @@
     </div>
 </div>
 
+    
   </div>
 </aside>
 
@@ -569,11 +587,10 @@
 <hr>
 <h2 id="24-basis-of-a-subspace">2.4 Basis of a Subspace</h2>
 <ul>
-<li>
-<p><strong>Subspace</strong> : is defined as a subset of $\mathbb{R}^n$ closed under linear combination</p>
-</li>
-<li>
-<p>A subspace is always represented as Span {$\mathbf{v}_1 , &hellip; , \mathbf{v}_p$}</p>
+<li><strong>Subspace</strong> : is defined as a subset of $\mathbb{R}^n$ closed under linear combination
+<ul>
+<li>A subspace is always represented as Span {$\mathbf{v}_1 , &hellip; , \mathbf{v}_p$}</li>
+</ul>
 </li>
 </ul>
 <!--  
@@ -581,20 +598,17 @@
 > 선형결합 이라는 연산에 닫혀있는 부분집합을 subspace 라고 부릅니다. 여기서 뽑은 두 벡터를 어떻게 선형결합을 해도 해당 space 안에 존재.
 
 -->
-<br>
 <ul>
-<li><strong>Basis of a subspace</strong> : a set of vectors that satisfies both of the following</li>
-</ul>
-<ol>
 <li>
-<p>Fully spans the given subspace $H$</p>
-<ol start="2">
-<li>Linearly independent (i.e., no redundancy)</li>
-</ol>
-</li>
-</ol>
+<p><strong>Basis of a subspace</strong> : a set of vectors that satisfies both of the following</p>
 <ul>
-<li><strong>Non-Uniqueness of Basis</strong> : In the subspace $H$ (green plane), there other set of linearly independent vectors that span the subspace $H$</li>
+<li>Fully spans the given subspace $H$</li>
+<li>Linearly independent (i.e., no redundancy)</li>
+</ul>
+</li>
+<li>
+<p><strong>Non-Uniqueness of Basis</strong> : In the subspace $H$ (green plane), there are other set of linearly independent vectors that span the subspace $H$</p>
+</li>
 </ul>
 <p style="text-align: center;">
 <img class="post-fig" width="50%" align="center" src="/figures/2019-05-08-figure1.png">
@@ -609,7 +623,6 @@
 <li><mark><strong>Column Space of Matrix</strong> : the subspace could be spanned by the column vector of $A$.</mark></li>
 <li><strong>Rank of Matrix</strong> : the dimension of the column space of $A$</li>
 </ul>
-<details> <summary> Details </summary>
 <p>$$
 A = \begin{bmatrix} 1&amp;0&amp;2  \\ 0&amp;1&amp;1 \\ 1&amp;0&amp;2  \end{bmatrix}, \ \ \text{ Column Vector } a_1, a_2, a_3 =   \begin{bmatrix} 1\\ 0\\ 1\end{bmatrix} ,  \begin{bmatrix} 0\\ 1\\ 0\end{bmatrix}, \begin{bmatrix} 2\\ 1\\ 2\end{bmatrix}
 $$</p>
@@ -630,14 +643,16 @@ $$</p>
 <p>$$
 Ax =   \begin{bmatrix} 1&amp;0&amp;2  \\ 0&amp;1&amp;1 \\ 1&amp;0&amp;2  \end{bmatrix}  \begin{bmatrix} x_1\\ x_2\\ x_3\end{bmatrix} = \begin{bmatrix} 1\\ 0\\ 1\end{bmatrix} x_1 +   \begin{bmatrix} 0\\ 1\\ 0\end{bmatrix} x_2 + \begin{bmatrix} 2\\ 1\\ 2\end{bmatrix} z_3 = \begin{bmatrix} b_1\\ b_2\\ b_3\end{bmatrix}
 $$</p>
-</details>
 <br>
 <hr>
 <h2 id="25-chage-of-basis">2.5 Chage of Basis</h2>
 <ul>
-<li>Generally, vectors are defined on cartesian coordinate , and it means they are based on standard basis (1,0), (0,1).</li>
-<li>But sometimes, we need vectors on different coordinate (basis) for some reasons like computational efficiency. (e.g. eigendecomposition)</li>
+<li>Generally, vectors are defined on cartesian coordinate, and it means they are based on standard basis (1,0), (0,1).
+<ul>
+<li>But sometimes, we need vectors on different coordinate (basis) for some reasons like computational efficiency. (e.g. eigen decomposition)</li>
 <li>When the coordinate changes, the vector itself does not changed, but the representation of vector has been changed from (2,2) to (2,0) as in figure below</li>
+</ul>
+</li>
 </ul>
 <p style="text-align: center;">
 <img class="post-fig" width="30%" align="center" src="/figures/2019-05-08-figure7.png">
@@ -783,7 +798,7 @@ $$ T(c \mathbf{u}+ d \mathbf{v}) = cT (\mathbf{u}) + dT(\mathbf{v})$$</p>
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
 
 <script>
     (function (window) {

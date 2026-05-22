@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        CICD #1 | Github Actions - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub. It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository. Key Concepts: Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule. Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch. Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies. Steps: A step is an individual task within a job, which can be a shell command or an &ldquo;action.&rdquo; Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services. Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment. Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including: Automating code quality checks and static analysis. Publishing packages to registries. Managing issues and pull requests, such as adding labels or assigning reviewers. Deploying applications to various cloud platforms. Creating custom notifications or reports. 1. Quick Start You can use github actions by simply placing .yaml files into the ./github/workflows directory name: GitHub Actions Demo run-name: ${{ github.actor }} is testing out GitHub Actions 🚀 on: [push] jobs: Explore-GitHub-Actions: runs-on: ubuntu-latest steps: - run: echo &quot;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&quot; - run: echo &quot;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&quot; - run: echo &quot;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&quot; - name: Check out repository code uses: actions/checkout@v4 - run: echo &quot;💡 The ${{ github.repository }} repository has been cloned to the runner.&quot; - run: echo &quot;🖥️ The workflow is now ready to test your code on the runner.&quot; - name: List files in the repository run: | ls ${{ github.workspace }} - run: echo &quot;🍏 This job&#39;s status is ${{ job.status }}.&quot; 2. Docker-image on : Available events to trigger workflow : GitHub Docs # GitHub displays the names of your workflows under your repository&#39;s &quot;Actions&quot; tab. name: GitHub Actions Demo # To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. on: push: branches: [&quot;main&quot;] tags: [&quot;v*&quot;] # trigger workflows when new tag is created (release) pull_request: branches: [&quot;main&quot;] # new/following commits also trigger the workflow jobs: build: runs-on: group: &lt; ORGANIZATION_NAME &gt; steps: - uses: actions/checkout@v3 # download src to CI server from remote repo - name: Build the docker image run: sh bin/run.sh build-image ${{ github.ref_name }} if: github.ref_type == &#39;tag&#39; # run this step only if the workflow is triggered by tag " />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>CICD #1 | Github Actions - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/system-architecture/5.-operations/cicd-%231--github-actions/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="CICD #1 | Github Actions">
+  <meta property="og:description" content="Introduction A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub. It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository. Key Concepts: Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule. Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch. Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies. Steps: A step is an individual task within a job, which can be a shell command or an “action.” Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services. Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment. Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including: Automating code quality checks and static analysis. Publishing packages to registries. Managing issues and pull requests, such as adding labels or assigning reviewers. Deploying applications to various cloud platforms. Creating custom notifications or reports. 1. Quick Start You can use github actions by simply placing .yaml files into the ./github/workflows directory name: GitHub Actions Demo run-name: ${{ github.actor }} is testing out GitHub Actions 🚀 on: [push] jobs: Explore-GitHub-Actions: runs-on: ubuntu-latest steps: - run: echo &#34;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&#34; - run: echo &#34;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&#34; - run: echo &#34;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&#34; - name: Check out repository code uses: actions/checkout@v4 - run: echo &#34;💡 The ${{ github.repository }} repository has been cloned to the runner.&#34; - run: echo &#34;🖥️ The workflow is now ready to test your code on the runner.&#34; - name: List files in the repository run: | ls ${{ github.workspace }} - run: echo &#34;🍏 This job&#39;s status is ${{ job.status }}.&#34; 2. Docker-image on : Available events to trigger workflow : GitHub Docs # GitHub displays the names of your workflows under your repository&#39;s &#34;Actions&#34; tab. name: GitHub Actions Demo # To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. on: push: branches: [&#34;main&#34;] tags: [&#34;v*&#34;] # trigger workflows when new tag is created (release) pull_request: branches: [&#34;main&#34;] # new/following commits also trigger the workflow jobs: build: runs-on: group: &lt; ORGANIZATION_NAME &gt; steps: - uses: actions/checkout@v3 # download src to CI server from remote repo - name: Build the docker image run: sh bin/run.sh build-image ${{ github.ref_name }} if: github.ref_type == &#39;tag&#39; # run this step only if the workflow is triggered by tag">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="system-architecture">
+    <meta property="article:published_time" content="2024-08-01T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-01T09:00:00+00:00">
+
+  <meta itemprop="name" content="CICD #1 | Github Actions">
+  <meta itemprop="description" content="Introduction A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub. It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository. Key Concepts: Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule. Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch. Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies. Steps: A step is an individual task within a job, which can be a shell command or an “action.” Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services. Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment. Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including: Automating code quality checks and static analysis. Publishing packages to registries. Managing issues and pull requests, such as adding labels or assigning reviewers. Deploying applications to various cloud platforms. Creating custom notifications or reports. 1. Quick Start You can use github actions by simply placing .yaml files into the ./github/workflows directory name: GitHub Actions Demo run-name: ${{ github.actor }} is testing out GitHub Actions 🚀 on: [push] jobs: Explore-GitHub-Actions: runs-on: ubuntu-latest steps: - run: echo &#34;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&#34; - run: echo &#34;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&#34; - run: echo &#34;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&#34; - name: Check out repository code uses: actions/checkout@v4 - run: echo &#34;💡 The ${{ github.repository }} repository has been cloned to the runner.&#34; - run: echo &#34;🖥️ The workflow is now ready to test your code on the runner.&#34; - name: List files in the repository run: | ls ${{ github.workspace }} - run: echo &#34;🍏 This job&#39;s status is ${{ job.status }}.&#34; 2. Docker-image on : Available events to trigger workflow : GitHub Docs # GitHub displays the names of your workflows under your repository&#39;s &#34;Actions&#34; tab. name: GitHub Actions Demo # To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. on: push: branches: [&#34;main&#34;] tags: [&#34;v*&#34;] # trigger workflows when new tag is created (release) pull_request: branches: [&#34;main&#34;] # new/following commits also trigger the workflow jobs: build: runs-on: group: &lt; ORGANIZATION_NAME &gt; steps: - uses: actions/checkout@v3 # download src to CI server from remote repo - name: Build the docker image run: sh bin/run.sh build-image ${{ github.ref_name }} if: github.ref_type == &#39;tag&#39; # run this step only if the workflow is triggered by tag">
+  <meta itemprop="datePublished" content="2024-08-01T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-08-01T09:00:00+00:00">
+  <meta itemprop="wordCount" content="524">
+  <meta itemprop="keywords" content="5. Operations">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CICD #1 | Github Actions">
+  <meta name="twitter:description" content="Introduction A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub. It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository. Key Concepts: Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule. Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch. Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies. Steps: A step is an individual task within a job, which can be a shell command or an “action.” Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services. Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment. Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including: Automating code quality checks and static analysis. Publishing packages to registries. Managing issues and pull requests, such as adding labels or assigning reviewers. Deploying applications to various cloud platforms. Creating custom notifications or reports. 1. Quick Start You can use github actions by simply placing .yaml files into the ./github/workflows directory name: GitHub Actions Demo run-name: ${{ github.actor }} is testing out GitHub Actions 🚀 on: [push] jobs: Explore-GitHub-Actions: runs-on: ubuntu-latest steps: - run: echo &#34;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&#34; - run: echo &#34;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&#34; - run: echo &#34;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&#34; - name: Check out repository code uses: actions/checkout@v4 - run: echo &#34;💡 The ${{ github.repository }} repository has been cloned to the runner.&#34; - run: echo &#34;🖥️ The workflow is now ready to test your code on the runner.&#34; - name: List files in the repository run: | ls ${{ github.workspace }} - run: echo &#34;🍏 This job&#39;s status is ${{ job.status }}.&#34; 2. Docker-image on : Available events to trigger workflow : GitHub Docs # GitHub displays the names of your workflows under your repository&#39;s &#34;Actions&#34; tab. name: GitHub Actions Demo # To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. on: push: branches: [&#34;main&#34;] tags: [&#34;v*&#34;] # trigger workflows when new tag is created (release) pull_request: branches: [&#34;main&#34;] # new/following commits also trigger the workflow jobs: build: runs-on: group: &lt; ORGANIZATION_NAME &gt; steps: - uses: actions/checkout@v3 # download src to CI server from remote repo - name: Build the docker image run: sh bin/run.sh build-image ${{ github.ref_name }} if: github.ref_type == &#39;tag&#39; # run this step only if the workflow is triggered by tag">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/system-architecture/5.-operations/cicd-%231--github-actions/"
+    >CICD #1 | Github Actions</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/system-architecture/5.-operations/cicd-%231--github-actions/" class="article-date">
+  <time datetime="2024-08-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-08-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-operations/"> 5. Operations </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/system-architecture/5.-operations/cicd-%231--github-actions/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub.
+<ul>
+<li>It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository.</li>
+</ul>
+</li>
+<li>Key Concepts:
+<ul>
+<li>Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule.</li>
+<li>Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch.</li>
+<li>Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies.</li>
+<li>Steps: A step is an individual task within a job, which can be a shell command or an &ldquo;action.&rdquo;</li>
+<li>Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services.</li>
+<li>Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment.</li>
+<li>Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including:
+<ul>
+<li>Automating code quality checks and static analysis.</li>
+<li>Publishing packages to registries.</li>
+<li>Managing issues and pull requests, such as adding labels or assigning reviewers.</li>
+<li>Deploying applications to various cloud platforms.</li>
+<li>Creating custom notifications or reports.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-quick-start">1. Quick Start</h2>
+<ul>
+<li>You can use github actions by simply placing <code>.yaml</code> files into the <code>./github/workflows</code> directory</li>
+</ul>
+<pre><code class="language-yaml">name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo &quot;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&quot;
+      - run: echo &quot;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&quot;
+      - run: echo &quot;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&quot;
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo &quot;💡 The ${{ github.repository }} repository has been cloned to the runner.&quot;
+      - run: echo &quot;🖥️ The workflow is now ready to test your code on the runner.&quot;
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo &quot;🍏 This job's status is ${{ job.status }}.&quot;
+</code></pre>
+<br>
+<hr>
+<h2 id="2-docker-image">2. Docker-image</h2>
+<ul>
+<li><code>on</code> :
+<ul>
+<li>Available events to trigger workflow  : <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#release">GitHub Docs</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-yaml"># GitHub displays the names of your workflows under your repository's &quot;Actions&quot; tab.
+name: GitHub Actions Demo
+
+# To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. 
+on:
+  push:
+    branches: [&quot;main&quot;]
+    tags: [&quot;v*&quot;]  # trigger workflows when new tag is created (release)
+  pull_request:
+    branches: [&quot;main&quot;]  # new/following commits also trigger the workflow
+
+jobs:
+  build:
+    runs-on:
+      group: &lt; ORGANIZATION_NAME &gt;
+
+    steps:
+      - uses: actions/checkout@v3 # download src to CI server from remote repo
+
+      - name: Build the docker image
+        run: sh bin/run.sh build-image ${{ github.ref_name }}
+        if: github.ref_type == 'tag' # run this step only if the workflow is triggered by tag 
+
+
+</code></pre>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

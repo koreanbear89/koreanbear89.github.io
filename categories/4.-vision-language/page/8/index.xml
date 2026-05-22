@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>4. Vision Language on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/4.-vision-language/</link>
+    <description>Recent content in 4. Vision Language on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Aug 2022 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/4.-vision-language/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linear Algebra for ML #6 | PCA </title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-pca/</link>
+      <pubDate>Sat, 27 Jun 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-pca/</guid>
+      <description>&lt;h2 id=&#34;61-principal-component-analysis&#34;&gt;6.1 Principal Component Analysis&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Principal component analysis (PCA)&lt;/strong&gt; :  is the process of computing the principal components and using them to perform a change of basis on the data, sometimes using only the first few principal components and ignoring the rest.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Principal components&lt;/strong&gt; : of a collection of n-dim data points are a sequence of $n$ unit vectors, where the $i$-th vector is the direction of a line that best fits the data while being orthogonal to the previous $i-1$ vectors. Here, a best-fitting line is defined as one that minimizes the average squared distance from the points to the line.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Methods&lt;/strong&gt;
+&lt;ol&gt;
+&lt;li&gt;가장 직관적으로 PC를 찾는 방법은 위와 같이 각 데이터로부터 거리가 가장 짧은 축 (벡터) 을 찾고 이를 반복하는 방법&lt;/li&gt;
+&lt;li&gt;일반적으로는 주어진 데이터셋의 covariance matrix를 eigendecomposion 하여 얻어낸 eigenvector를 eigenvalue가 큰 순서대로 정렬하여 PC 얻는 방법&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34; /figures/2020-06-27-fig3.png &#34;&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bayesian statistics #2 | MLE and MAP</title>
+      <link>http://localhost:1313/mathematics/2.-statistics/bayes2-mle-and-map/</link>
+      <pubDate>Tue, 23 Jun 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/bayes2-mle-and-map/</guid>
+      <description>&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;앞서 Bayes&amp;rsquo; Rule을 이용한 방식의 단점은 likelihood의 probability distribution을 알고있어야 한다는 점인데, 관찰을 통해 likelihood를 얻는 것도 쉽지 않을뿐더러 완벽한 Distrib function을 얻을 수 있는것도 아님.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2020 | CVPR</title>
+      <link>http://localhost:1313/__draft/misc/2020-06-17-2020-cvpr/</link>
+      <pubDate>Wed, 17 Jun 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/2020-06-17-2020-cvpr/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;New Topics : Explainable AI, Fairness, Accountability, Transparency and Ethics in Vision&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Recognition &amp;gt; Learning Methods &amp;gt; Face, Gesture, Body Pose &amp;gt; Img and Video Synthesis &amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Young Researcher Award : Jon Barron and Deqing Sun&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Best Paper Award : Unsupervised Learning of Probably Symmetric Deformable 3D Objects from Images in the wild&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Best Studen Paper Award : BSP-Net: Generating Compact Meshes via Binary Space Partitioning&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Best Stud Honorable Mention : DeepCap: Monocular Human Performance Capture Using Weak Supervision&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bayesian statistics #1 | Bayes&#39; Rule</title>
+      <link>http://localhost:1313/mathematics/2.-statistics/bayes1-bayes-rule/</link>
+      <pubDate>Tue, 09 Jun 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/bayes1-bayes-rule/</guid>
+      <description>&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;연역적 추론(Freq) 에서 귀납적 추론(Bayes) 으로의 확률론 패러다임의 전환&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Frequentist View&lt;/strong&gt; : 확률을 &amp;lsquo;발생하는 현상의 빈도수&amp;rsquo;로 해석하는 관점 =&amp;gt;  연역적 사고에 기반, 가설을 먼저 세워놓고 결론적으로 여러 사실에 적용, 확률계산, 유의성 검증 (e.g. 1이나올 확률은 16%다 = 100번 던지면 16번은 앞면이 나온다)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Camera Calibration</title>
+      <link>http://localhost:1313/__draft/4.-image-processing/2020-05-07-camera-calibration/</link>
+      <pubDate>Wed, 06 May 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/4.-image-processing/2020-05-07-camera-calibration/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Taking a picture can be seen as a process of projecting the 3D space onto a 2D image&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Theoretically, the location of projected points would depend on the position and orientation of the camera.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;However, real images are greatly affected by the mechanical elements inside the camera, such as lens.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Therefore, when we reconstruct 3D space coordinate from the 2D image, we need to remove these kinds of noises (from mechanical elements).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vision Geometry #6. Epipolar Geometry</title>
+      <link>http://localhost:1313/__draft/4.-image-processing/2020-04-26-epipolar-geometry/</link>
+      <pubDate>Sun, 26 Apr 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/4.-image-processing/2020-04-26-epipolar-geometry/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Epipolar Geometry is the gemetry of stereo vision. When two cameras view a 3D scene from two distinct positions, there are a number of geometric relations between the 3D points and their projections onto the 2D images that lead to constraints between the image points.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;One of the main topic of Epipolar Geometry is epipolar constraints, and the other is  triangulation.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Epipolar constraints&lt;/strong&gt; : the projection of $P$ on the right camera plane $p^\prime$ must be contained in the line $l^\prime$ which is called epiline. (details in below)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jekyll</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jekyll/</link>
+      <pubDate>Sat, 18 Apr 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jekyll/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-install-rvm--ruby&#34;&gt;1. Install RVM &amp;amp; Ruby&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get update
+$ sudo apt-get install -y curl gnupg build-essential
+
+$ sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+$ curl -sSL https://get.rvm.io | sudo bash -s stable
+$ sudo usermod -a -G rvm `whoami`
+$ rvm install ruby-X.X.X
+$ rvm --default use ruby-X.X.X
+
+$ gem install bundler --no-rdoc --no-ri
+
+# If bash cannot find ruby,
+$ source /etc/profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-install-mathjax&#34;&gt;1. Install MathJax&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Problem: MathJax does not work&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Algorithms #1 | Fundamentals</title>
+      <link>http://localhost:1313/__draft/9.-study/algorithm-01--fundamentals/</link>
+      <pubDate>Sun, 12 Apr 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/algorithm-01--fundamentals/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Object Tracking</title>
+      <link>http://localhost:1313/__draft/4.-image-processing/2020-04-01-object-tracking/</link>
+      <pubDate>Wed, 01 Apr 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/4.-image-processing/2020-04-01-object-tracking/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Locating an object in successive frames of a video.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Personal suggestion is to use &lt;strong&gt;CSRT when you need higher object tracking accuracy&lt;/strong&gt; and can tolerate slower FPS. Use &lt;strong&gt;KCF when you need faster FPS&lt;/strong&gt; but can handle slightly lower object tracking accuracy. Use &lt;strong&gt;MOSSE when you need pure speed&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;1-boosting-tracker&#34;&gt;1. Boosting Tracker&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Based on online version of AdaBoost- the algorithm that the Haar Cascade based face detector uses internally.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Hadoop</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hdfs/</link>
+      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hdfs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Based on Java&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Save data in &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/ko//archive/gfs-sosp2003.pdf&#34;&gt;Google File System (2003)&lt;/a&gt; and process this big data with  &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/ko//archive/mapreduce-osdi04.pdf&#34;&gt;Map Reduce (2004)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modules :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop YARN : A framework for job scheduling and cluster resource management&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop MapReduce : A YARN-based system for parallel processing of large data sets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>statistics #2 | Distributions</title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-stats9_distributions/</link>
+      <pubDate>Fri, 28 Feb 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-stats9_distributions/</guid>
+      <description>&lt;h2 id=&#34;1-gaussian-distributions&#34;&gt;1. Gaussian Distributions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The general form of its probability density function is :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ f(x) = \frac{1}{\sigma \sqrt2 \pi} e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-binomial-distributions&#34;&gt;2. Binomial Distributions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The binomial distrib with parameters $n$ and $p$ is the discrete probability distribution of the number of successes in a sequence of $n$ independent experiments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ f(k,n,p) = \frac{n!}{k! (n-k)!} p^k (1-p)^{n-k}$$&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-multinomial-distributions&#34;&gt;3. Multinomial Distributions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The multinomial distriib. is a generalization of the binomial distrib.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #8 | Covariance and Correlation</title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-stats8_covariance/</link>
+      <pubDate>Thu, 27 Feb 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-stats8_covariance/</guid>
+      <description>&lt;h2 id=&#34;1-covariance&#34;&gt;1. Covariance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;두 확률변수 사이의 상관성/의존성/유사성의 방향 및 정도에 대한 척도, 즉 데이터간의 관계성을 정량화한 정도.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이때의 관계성은 일반적으로 선형 관계성만을 의미하며 아래와 같이 $X$ 편차와 $Y$ 편차의 곱의 평균으로 계산&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #7 | Estimating the CDF and Statistical Functionals </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch7/</link>
+      <pubDate>Tue, 11 Feb 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch7/</guid>
+      <description>&lt;h2 id=&#34;71-the-empirical-distribution-function&#34;&gt;7.1 The Empirical Distribution Function&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;empirical distribution function&lt;/strong&gt; $\hat{F_n}$ is the CDF that puts mass $1/n$ at each data point $X_i$. Formally,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \hat{F_n}(x) = \frac{\sum ^n_{i=1} I (X_i \leq x)}{n}  \ \  where  \ I(X_i \leq x) =  \begin{cases} 1 &amp;amp; \text{if} \  X_i \leq x \ 0 &amp;amp; \text{if} \ X_i &amp;gt; x  \end{cases} $$&lt;/p&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | VIM</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vim/</link>
+      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vim/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-setup-vim&#34;&gt;1. Setup vim&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install Vundle&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;color scheme setup&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nanotech/jellybeans.vim&#34;&gt;Jellybean color scheme official install&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And simply add line &lt;code&gt;color jellybean&lt;/code&gt; in .vimrc&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;write .vimrc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Added &lt;code&gt;Plugin &#39;preservim/nerdcommenter&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;install plugins in vimrc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:PluginInstall&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# setup jellybean color scheme
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+# copy .vimrc
+cp ~/configuration/vim/.vimrc ~/.vimrc
+vim -c &#39;PluginInstall&#39; -c &#39;qa!&#39; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Reference&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to serve Deep Learning Model on AWS</title>
+      <link>http://localhost:1313/__draft/misc/how-to-serve-dl-on-aws/</link>
+      <pubDate>Thu, 02 Jan 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/how-to-serve-dl-on-aws/</guid>
+      <description>&lt;h2 id=&#34;1-generate-api&#34;&gt;1. Generate API&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;PROJECT_ROOT/Dockerfile&lt;/strong&gt; 은 아래와 같고 이를 터미널에서 한줄씩 동일하게 실행하면 http://127.0.0.1:5000/ 과 같은 로컬 웹 주소가 출력됨&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;...
+
+ENTRYPOINT [&amp;quot;python&amp;quot;, &amp;quot;setup.py&amp;quot;, &amp;quot;runserver&amp;quot;, &amp;quot;--host=0.0.0.0&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;사용가능한 API endpoint는 &lt;strong&gt;PROJECT_ROOT/src/api/__init__.py&lt;/strong&gt; 에서 확인 할 수 있고 이를 아래와 같이 웹 주소에 추가해주면 해당 API 의 결과를 확인할 수 있음 http://127.0.0.1:5000/swing-error-finder/healthChk&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #0 | Overview</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-0--overview/</link>
+      <pubDate>Thu, 02 Jan 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-0--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Text Preprocessing&lt;/li&gt;
+&lt;li&gt;Language Representation&lt;/li&gt;
+&lt;li&gt;Language Modeling&lt;/li&gt;
+&lt;li&gt;Text Summarization&lt;/li&gt;
+&lt;li&gt;Auto Chaptering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scala #1 | Basic</title>
+      <link>http://localhost:1313/language/3.-scala/scala-1--basic/</link>
+      <pubDate>Thu, 02 Jan 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/scala-1--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Features
+&lt;ul&gt;
+&lt;li&gt;object-oriented : a pure object-oriented language&lt;/li&gt;
+&lt;li&gt;functional : every function is a value&lt;/li&gt;
+&lt;li&gt;statically typed&lt;/li&gt;
+&lt;li&gt;extensible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-expressions&#34;&gt;1. Expressions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Expressions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Values &lt;code&gt;val&lt;/code&gt; : name the results of expressions&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Variables &lt;code&gt;var&lt;/code&gt; : are like values, except you can re-assigin them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blocks &lt;code&gt;{ }&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can combine expressions by surrounding them with &lt;code&gt;{}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Functions &lt;code&gt;=&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you can define a function that have params&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods &lt;code&gt;def&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;very similar to funtions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Classes &lt;code&gt;class&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scala #0 | Setup</title>
+      <link>http://localhost:1313/language/3.-scala/scala-0--setup/</link>
+      <pubDate>Wed, 01 Jan 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/scala-0--setup/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.scala-lang.org/download/&#34;&gt;Install | The Scala Programming Language&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Components (commands)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scalac&lt;/code&gt; : the scala compiler&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scala&lt;/code&gt; : the scala REPL and script runner&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scala-cli&lt;/code&gt;: scala CLI, interactive toolkit for scala&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sbt&lt;/code&gt;: build tool&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;amm&lt;/code&gt; : Ammonite, an enhanced REPL&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;scalafmt&lt;/code&gt; : the scala code formatter&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;scalac-scala-compiler&#34;&gt;Scalac (Scala Compiler)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;usage&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;scalac HelloWorld.scala&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sbt-simple-build-kit&#34;&gt;SBT (Simple Build Kit)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Directory Structure : &lt;a href=&#34;https://www.scala-sbt.org/1.x/docs/Directories.html&#34;&gt;sbt Reference Manual — Directory structure&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Base Directory:  location of &lt;code&gt;build.sbt&lt;/code&gt;, &lt;code&gt;${PROJECT_HOME}&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #9 | Neural Architecture Search</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml09--neural-architecture-search/</link>
+      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml09--neural-architecture-search/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural Architecture Search : A technique for automating the design of Artificial Neural Network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-nas--neural-architecture-search-google-2017&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/pdf/1611.01578.pdf&#34;&gt;NAS : Neural Architecture Search (Google, 2017) &lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;use &lt;strong&gt;RNN controller&lt;/strong&gt; which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to generate neural networks. After the RNN builds the desired number of layers, we stop the RNN and train the network from scratch to convergence.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CS #02 | Algorithm</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs02--algorithm/</link>
+      <pubDate>Sun, 01 Sep 2019 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs02--algorithm/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Sorting&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Bubble Sort, Insertion Sort, Selection Sort, O(n^2)&lt;/li&gt;
+&lt;li&gt;Merge Sort, O(nlogn) : Divide &amp;amp; Conquer&lt;/li&gt;
+&lt;li&gt;Quick Sort, O(nlogn)&lt;/li&gt;
+&lt;li&gt;Heap Sort: Based on heap data structure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Searching&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Linear Search, O(n)&lt;/li&gt;
+&lt;li&gt;Binary Search, O(logn)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Recursion (Divide and Conquer)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Binary Search&lt;/li&gt;
+&lt;li&gt;Merge Sort, Quick Sort&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Greedy Algorithm&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Huffman Coding&lt;/li&gt;
+&lt;li&gt;Activity Selection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;Dynamic Programming&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Fibonacci Sequence (memoization, tabulation)&lt;/li&gt;
+&lt;li&gt;Longest Common Subsequences&lt;/li&gt;
+&lt;li&gt;Longest Increasing Subsequences&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;Graph Algorithm&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Depth First Search&lt;/li&gt;
+&lt;li&gt;Breadth Fisrt Search&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sorting&#34;&gt;1. Sorting&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Bubble Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order
+&lt;ul&gt;
+&lt;li&gt;Large elements bubble up to the end of the array after each pass&lt;/li&gt;
+&lt;li&gt;Repeat until no swaps are needed&lt;/li&gt;
+&lt;li&gt;Think of it like sorting bubbles in water, the biggest bubble floats to the top first&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;Start at the beginning of the list&lt;/li&gt;
+&lt;li&gt;Compare each pair of adjacent items&lt;/li&gt;
+&lt;li&gt;Swap them if they are in the wrong order&lt;/li&gt;
+&lt;li&gt;Repeat until the list is sorted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Best Case : O(n)&lt;/li&gt;
+&lt;li&gt;Worst Case : O(n^2)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def bubble_sort(arr: list[int]) -&amp;gt; list[int]:
+    for i in range(len(arr)):  # number of passes
+        swapped = False
+        for j in range(0, len(arr) - i - 1):  # last i elements are sorted
+            if arr[j] &amp;gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]  # swap
+                swapped = True
+        if not swapped:  # optimization: stop if already sorted
+            break
+    return arr
+
+# Example
+print(bubble_sort([5, 3, 8, 4, 2]))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Selection Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept :
+&lt;ul&gt;
+&lt;li&gt;repeatedly find the minimum element from the unsorted part of the array&lt;/li&gt;
+&lt;li&gt;and put it at the beginning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;Start with the first element&lt;/li&gt;
+&lt;li&gt;Find the smallest element in the unsorted part of the array&lt;/li&gt;
+&lt;li&gt;Swap it with the first unsorted element&lt;/li&gt;
+&lt;li&gt;Move to the next index and repeat until the whole array is sorted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Best Case : O(n^2)&lt;/li&gt;
+&lt;li&gt;Worst Case : O(n^2)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Insertion Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept : works like how uou arrnage cards in your hand while playing cares
+&lt;ul&gt;
+&lt;li&gt;Take the next card&lt;/li&gt;
+&lt;li&gt;Insert it into its correct position among the already sorted cards&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;Start with the second element&lt;/li&gt;
+&lt;li&gt;Compare it with the elements before it&lt;/li&gt;
+&lt;li&gt;Shift larger elements one position to the right&lt;/li&gt;
+&lt;li&gt;Insert the current element into its correct spot&lt;/li&gt;
+&lt;li&gt;Repeat for all elements until the array is sorted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Best Case : O(n)&lt;/li&gt;
+&lt;li&gt;Worst Case : O(n^2)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Merge Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept : Uses divide and conquer strategy
+&lt;ul&gt;
+&lt;li&gt;Divide : Split the array into two halves&lt;/li&gt;
+&lt;li&gt;Conquer : Recursively sort each half&lt;/li&gt;
+&lt;li&gt;Combine : Merge the two sorted halves into one sorted array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;If the array has only 1 element, it&amp;rsquo;s already sorted&lt;/li&gt;
+&lt;li&gt;Otherwise, split the array into two halves&lt;/li&gt;
+&lt;li&gt;Recursively sort both halves&lt;/li&gt;
+&lt;li&gt;Merge the two sorted halves by comparing elements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Best Case : O(n logn)&lt;/li&gt;
+&lt;li&gt;Worst Case : O(n logn)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def merge_sort(arr: list[int]) -&amp;gt; list[int]:
+    if len(arr) &amp;lt;= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge2(left, right)
+
+
+def merge(left: list[int], right: list[int]) -&amp;gt; list[int]:
+    result = []
+    while left or right:
+        if left and right:
+            if left[0] &amp;lt; right[0]:
+                result.append(left.pop(0))
+            else:
+                result.append(right.pop(0))
+        elif left:
+            result.append(left.pop(0))
+        elif right:
+            result.append(right.pop(0))
+    return result
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+print(merge_sort(arr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Quick Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept : another divide and conquer algorithm, but partitions first and then sorts recursively&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;Pick a pivot(center) element&lt;/li&gt;
+&lt;li&gt;Rearrange the array so that:
+&lt;ul&gt;
+&lt;li&gt;Elements smaller than pivot -&amp;gt; left side&lt;/li&gt;
+&lt;li&gt;Elements larger than pivot -&amp;gt; right side&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Recursively apply Quick Sort to left and right parts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Best Case : O(n logn)&lt;/li&gt;
+&lt;li&gt;Worst Case : O(n^2)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(logn)&lt;/li&gt;
+&lt;li&gt;Stable : No, equal elements may change order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;def quick_sort(arr: list[int]) -&amp;gt; list[int]:
+    if len(arr) &amp;lt;= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x &amp;lt; pivot]
+    right = [x for x in arr[1:] if x &amp;gt;= pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+print(quick_sort(arr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Heap Sort&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Concept : Heap Sort uses a binary heap data strcuture to sort elements&lt;/li&gt;
+&lt;li&gt;Algorithm Steps
+&lt;ul&gt;
+&lt;li&gt;Build a max heap from the array&lt;/li&gt;
+&lt;li&gt;Swap the root(max element) with the last element&lt;/li&gt;
+&lt;li&gt;Reduce heap size by 1&lt;/li&gt;
+&lt;li&gt;Heapify&lt;/li&gt;
+&lt;li&gt;Repeat until heap size becomes 1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complexity
+&lt;ul&gt;
+&lt;li&gt;Heapify : O(log n)&lt;/li&gt;
+&lt;li&gt;Build Heap : O(n)&lt;/li&gt;
+&lt;li&gt;Sorting : O(nlogn)&lt;/li&gt;
+&lt;li&gt;Space Complexity : O(1)&lt;/li&gt;
+&lt;li&gt;Stable : No&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python3&#34;&gt;import heapq
+def heap_sort(arr):
+    heapq.heapify(arr)
+    result = []
+    while arr:
+        arr[0], arr[-1] = arr[-1], arr[0]
+        result.append(heapq.heappop(arr))
+    return result
+
+arr = [4, 10, 3, 5, 1]
+print(heap_sort(arr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-searching&#34;&gt;2. Searching&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Linear Search&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

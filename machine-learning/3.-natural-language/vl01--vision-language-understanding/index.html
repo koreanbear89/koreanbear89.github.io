@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        VL #01 | Vision Language Pretraining - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Tasks Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021) introduction :
+Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years
+Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>VL #01 | Vision Language Pretraining - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="VL #01 | Vision Language Pretraining">
+  <meta property="og:description" content="Introduction Tasks Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021) introduction :
+Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years
+Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2022-08-01T09:00:00+00:00">
+    <meta property="article:modified_time" content="2022-08-01T09:00:00+00:00">
+
+  <meta itemprop="name" content="VL #01 | Vision Language Pretraining">
+  <meta itemprop="description" content="Introduction Tasks Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021) introduction :
+Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years
+Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?">
+  <meta itemprop="datePublished" content="2022-08-01T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-08-01T09:00:00+00:00">
+  <meta itemprop="wordCount" content="919">
+  <meta itemprop="keywords" content="3. Natural Language">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VL #01 | Vision Language Pretraining">
+  <meta name="twitter:description" content="Introduction Tasks Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021) introduction :
+Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years
+Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/3.-natural-language/vl01--vision-language-understanding/"
+    >VL #01 | Vision Language Pretraining</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/" class="article-date">
+  <time datetime="2022-08-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2022-08-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-natural-language/"> 3. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/3.-natural-language/vl01--vision-language-understanding/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Tasks
+<ul>
+<li>Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="clip--learning-transferable-visual-models-from-natural-language-supervision-2021">CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021)</h2>
+<ul>
+<li>
+<p>introduction :</p>
+<ul>
+<li>
+<p>Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years</p>
+</li>
+<li>
+<p>Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods :</p>
+<ul>
+<li>
+<p>Dataset :</p>
+<ul>
+<li>
+<p>Natural Language Supervision : learn visual representations from text paired with images =&gt; easier to scale since it does not require annotations (2.1)</p>
+</li>
+<li>
+<p>Creating a Sufficiently Large Dataset : A major motivation for NLS is the large quantities of data available publicly on the internet, we constructed a new dataset of 400 milion pairs. (2.2)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Training : Selecting an Efficient Pre-training Method (2.3)</p>
+<ul>
+<li>
+<p>Given $N$ (image, text) pairs, CLIP is trained to predict which of the $N \times N$ pairings acutally occurred</p>
+</li>
+<li>
+<p>Learns multi-modal embedding space by jointly training an image encoder and text encoder :</p>
+<ul>
+<li>maximize cos-sim of the image and text embeddings of the N real pairs and minimize cos-sim of incorrect pairings</li>
+</ul>
+</li>
+<li>
+<p>detail training params in paper, 12 days on 256-V100 GPUs (2.5)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Model : ViT as image encoder and Transformer as text encoder (2.4)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Experiments:</p>
+<ul>
+<li>Zero-Shot Transfer : For each dataset, we use the names of all the classes in the dataset as the set of potential text pairings and predict the most probable pair according to CLIP
+<ul>
+<li>Using the prompt template <code>a photo of a {LABEL}</code> often improves performance</li>
+</ul>
+</li>
+<li>Representation Learning : Fitting a linear classifier on a representation extracted from the model and measuring its performance on various dataset</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># extract feature representations of each modality
+I_f = image_encoder(I) #[n, d_i]
+T_f = text_encoder(T)  #[n, d_t]
+# joint multimodal embedding [n, d_e]
+I_e = l2_normalize(np.dot(I_f, W_i), axis=1)
+T_e = l2_normalize(np.dot(T_f, W_t), axis=1)
+# scaled pairwise cosine similarities [n, n]
+logits = np.dot(I_e, T_e.T) * np.exp(t)
+# symmetric loss function
+labels = np.arange(n)
+loss_i = cross_entropy_loss(logits, labels, axis=0)
+loss_t = cross_entropy_loss(logits, labels, axis=1)
+loss   = (loss_i + loss_t)/2
+</code></pre>
+<br>
+<hr>
+<h2 id="align-scaling-up-visual-and-vision-language-representation-learning-with-noisy-text-supervision-2021-google-research"><a href="https://arxiv.org/pdf/2102.05918.pdf">ALIGN: Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision (2021, Google Research)</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>While representation learning in NLP has transitioned to training on raw text without human annotations,</p>
+</li>
+<li>
+<p>visual and vision-language representations still rely heavily on curated training datasets that are expensive or require expert knowledge.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods : leverage a noisy dataset of over one billion image alt-text pairs, obtained without expensive filtering or post-processing steps in the Conceptual Captions Dataset</p>
+<ul>
+<li>
+<p>A Large Scale Noisy Image-Text Dataset : TODO</p>
+</li>
+<li>
+<p>Pretraining and Task Transfer : TODO</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Result : achieves strong performance when transferred to classification tasks</p>
+<ul>
+<li>TODO</li>
+</ul>
+</li>
+<li>
+<p>Differences between ALIGN and CLIP</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="blip-bootstrapping-language-image-pre-training-for-unified-vision-language-understanding-and-generation-2022"><a href="https://arxiv.org/pdf/2201.12086.pdf">BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation (2022)</a></h2>
+<ul>
+<li>
+<p>Introduction : Vision-language pre-training has recently received tremendous success on various multimodal downstream tasks. However, existing methods have two major limitations :</p>
+<ul>
+<li>
+<p>(1) Model perspective : most methods either adopt encoder-based model or an encoder-decoder model.</p>
+<ul>
+<li>
+<p>encoder-based models : less straight forward to directly transfer to text generation tasks (e.g. image captioning),</p>
+</li>
+<li>
+<p>encoder-decoder models have not been successfully adopted for understanding tasks (e.g. image-text retrieval)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2) Data perspective : most SOTA methods pre-train on image-text pairs collected from the web (noisy web text is suboptimal for VL learning).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods : BLIP, a new VLP framework which transfers flexibly to both vision-language understanding and generation task</p>
+<ul>
+<li>
+<p>Multimodal mixture of Encoder-Decoder (MED) : a multi-task model which can operate in one of the three functionalities:</p>
+<ul>
+<li>
+<p>Unimodal encoder : separately encodes image and text.</p>
+</li>
+<li>
+<p>Image-grounded text encoder : filter</p>
+</li>
+<li>
+<p>Image-grounded text decoder : captioner</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Captioning and Filering (CapFilt) : Both captioner and filter are initialized from the same pre-trained MED model, and finetuned individually on the COCO dataset (high quality human annotated image-text pairs) =&gt; combine the filtered image-text pairs with the human-annotated pairs to form a new dataset</p>
+<ul>
+<li>
+<p>captioner : an image-grounded text decoder, generates synthetic captions given web images.</p>
+</li>
+<li>
+<p>filter : an image-grounded text encoder which decide whether a text matches an image (remove noisy image-text pairs)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Results :</p>
+<ul>
+<li>image-text retrieval (+2.7% in average recall@1),</li>
+<li>image captioning (+2.8% in CIDEr)</li>
+<li>VQA (+1.6% in VQA score)</li>
+<li><a href="https://github.com/salesforce/BLIP">https://github.com/salesforce/BLIP</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="blip-2--bootstrapping-language-image-pre-training-with-frozen-image-encoders-and-large-language-models-2023"><a href="https://arxiv.org/pdf/2301.12597.pdf">BLIP-2 : Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models (2023)</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>Most VLP methods perform end-to-end pretraining using large-scale image-text pair datasets.</p>
+</li>
+<li>
+<p>The cost of VLP has become increasingly prohibitive due to end-to-end training of large-scale models.</p>
+</li>
+<li>
+<p>So, we propose a generic and compute-efficient VLP method by bootstrapping from off-the-shelf pre-trained vision models and language models.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Methods :  bridges the modality gap with a lightweight Querying Transformer, pre-trained with a new two-stage pre-training strategy</p>
+<ul>
+<li>
+<p>Architecture : consists of two transformer submodules  ($BERT_{base}$, 188M)</p>
+<ul>
+<li>
+<p>an image transformer : interacts with the frozen image encoder for visual feature extraction</p>
+</li>
+<li>
+<p>a text transformer : can function as both text encoder and a text decoder</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Stage1. Bootstrap Vision-Language Representation Learning from a Frozen Image Encoder :</p>
+<ul>
+<li>
+<p>connect Q-Former to a frozen image encoder and perform pre-training using image-text pairs</p>
+</li>
+<li>
+<p>jointly optimize three pre-training objectives ITC, ITG and  ITM (BLIP-V1 in detail)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Stage2. Bootstrap Vision-to-Language Generative Learning from a Frozen LLM,</p>
+<ul>
+<li>by connecting the output of the Q-Former to a frozen LLM, and trains the Q-Former such that its output visual representation can be interpreted by the LLM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Results :</p>
+<ul>
+<li>
+<p>achieves SOTA performance on various vision-language tasks, despite having significantly fewer trainable parameters than existing methods.</p>
+</li>
+<li>
+<p>can be prompted to perform zero-shot image-to-text generation that follows natural language instructions</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

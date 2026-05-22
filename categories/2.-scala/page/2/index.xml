@@ -2,253 +2,832 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2. Scala on Lab.Koreanbear|한국곰연구소</title>
-    <link>https://koreanbear89.github.io/categories/2.-scala/</link>
+    <link>http://localhost:1313/categories/2.-scala/</link>
     <description>Recent content in 2. Scala on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Jan 2020 09:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://koreanbear89.github.io/categories/2.-scala/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://localhost:1313/categories/2.-scala/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>MLCV #9 | 3D Object Detection</title>
-      <link>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</link>
-      <pubDate>Tue, 06 Oct 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</guid>
-      <description>Introduction Tasks : 3D object detection : classifies the object category and estimates oriented 3D bounding boxes of physical objects from 3D sensor data. Applications : By extending prediction to 3D, one can capture an object’s size, position and orientation in the world, leading to a variety of applications in robotics, self-driving vehicles, image retrieval, and augmented reality Benchmarks KITTI (car, cyclist, pedestrian</description>
-    </item>
     
     <item>
       <title>Mathematcs for ML #10 | Dimensionality Reduction with PCA</title>
-      <link>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</link>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml10--dimensionality-reduction-and-pca/</link>
       <pubDate>Thu, 13 Oct 2022 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</guid>
-      <description>10. Dimensionality Reduction with PCA Introduction : Working directly with high-dimensional data comes with some difficulties It is hard to analyze, interpretation is difficult, visualization is nearly impossible, and storage of the data vectors can be expensive In this chapter, we derive PCA from first principles, drawing on our understanding of basis and basis change (Sections 2.6.1 and 2.7.2), projections (Section 3.8), eigenvalues (Section 4.2), Gaussian distributions (Section 6.5), and constrained optimization (Section 7.</description>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml10--dimensionality-reduction-and-pca/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-dimensionality-reduction-with-pca&#34;&gt;10. Dimensionality Reduction with PCA&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Introduction&lt;/strong&gt; : Working directly with high-dimensional data comes with some difficulties
+&lt;ul&gt;
+&lt;li&gt;It is hard to analyze,&lt;/li&gt;
+&lt;li&gt;interpretation is difficult,&lt;/li&gt;
+&lt;li&gt;visualization is nearly impossible,&lt;/li&gt;
+&lt;li&gt;and storage of the data vectors can be expensive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In this chapter&lt;/strong&gt;, we derive PCA from first principles, drawing on our understanding of
+&lt;ul&gt;
+&lt;li&gt;basis and basis change (Sections 2.6.1 and 2.7.2),&lt;/li&gt;
+&lt;li&gt;projections (Section 3.8),&lt;/li&gt;
+&lt;li&gt;eigenvalues (Section 4.2),&lt;/li&gt;
+&lt;li&gt;Gaussian distributions (Section 6.5),&lt;/li&gt;
+&lt;li&gt;and constrained optimization (Section 7.2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;101-problem-setting&#34;&gt;10.1 Problem Setting&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt; : is to find projections $\hat{x_n}$ of data points $x_n$ that are as similar to the original data points as possible, but which have a significantly lower intrinsic dimensionality.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LM #1 | Language Model Architecture</title>
+      <link>http://localhost:1313/machine-learning/5.-natural-language/lm-1--architecture/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/5.-natural-language/lm-1--architecture/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Language Modeling&lt;/strong&gt; :  the task of predicting the next word or character in a document that can be used in downstream tasks like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Machine Translation : By comparing two sentences with a language model, and return the more natural sentence&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spell Correction : Correct spelling by choosing a more natural vocabulary&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Speech Recognition : Correct the recognition result with more natural words&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Natural Language Generation : produces natural lanugage output&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LM #2 | Language Model Pretraining</title>
+      <link>http://localhost:1313/machine-learning/5.-natural-language/lm-2--pretraining/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/5.-natural-language/lm-2--pretraining/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pretraining Tasks Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Masked LM : simply mask some of the input tokens at random and then predict those masked tokens&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Next Sentence Prediction: train a model that understands sentence relationships, by a binarized next sentence prediction task.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-bert--pre-training-of-deep-bidirectional-transformers-for-language-understanding-google-2018&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/abs/1810.04805&#34;&gt;BERT : Pre-training of Deep Bidirectional Transformers for Language Understanding (Google, 2018)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt; : introduce a new language representation model called BERT, that is designed to pretrain deep bi-directional  representations from unlabeled text by jointly conditioning on both left and right context in all layers.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LM #3 | Language Model Fine-tuning</title>
+      <link>http://localhost:1313/machine-learning/5.-natural-language/lm-3--finetuning/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/5.-natural-language/lm-3--finetuning/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview
+&lt;ul&gt;
+&lt;li&gt;RLHF (reinforcement learning from human feedback)&lt;/li&gt;
+&lt;li&gt;DPO ( direct preference optimization)&lt;/li&gt;
+&lt;li&gt;RLAIF&lt;/li&gt;
+&lt;li&gt;Constitutional AI&lt;/li&gt;
+&lt;li&gt;SFT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;LLM Training Approaches (w/ Llama Factory)
+&lt;ul&gt;
+&lt;li&gt;Depth1) select train mode
+&lt;ul&gt;
+&lt;li&gt;Pre-Training&lt;/li&gt;
+&lt;li&gt;Supervised Fine-Tuning&lt;/li&gt;
+&lt;li&gt;Reward Modeling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Depth2)  select layer or params to update
+&lt;ul&gt;
+&lt;li&gt;Full-tuning&lt;/li&gt;
+&lt;li&gt;Freeze-tuning&lt;/li&gt;
+&lt;li&gt;LoRA&lt;/li&gt;
+&lt;li&gt;QLoRA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sft--training-language-models-to-follow-instructions-with-human-feedback-2022&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2203.02155&#34;&gt;SFT : Training language models to follow instructions with human feedback (2022)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this.&lt;/li&gt;
+&lt;li&gt;The paper proposes an alignment-focused training method where a base model is first &lt;strong&gt;fine-tuned on human-written responses (SFT)&lt;/strong&gt;, then optimized to match human preferences using RLHF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LM #4 | Language Model Enhancing</title>
+      <link>http://localhost:1313/machine-learning/5.-natural-language/lm-4--enhancing/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/5.-natural-language/lm-4--enhancing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview : Techniques that improve the performance of large language models
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RAG&lt;/strong&gt; (Retrieval Augmented Generation)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Improved factual accuracy&lt;/strong&gt;: The model can refer to real documents rather than relying solely on its pretraining.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Smaller models can perform better&lt;/strong&gt;: Because the knowledge can be retrieved, the model doesn&amp;rsquo;t need to memorize everything.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Domain adaptation&lt;/strong&gt;: You can add specialized knowledge (e.g., company manuals, legal docs) without retraining the LLM.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reduced hallucinations&lt;/strong&gt;: More grounded responses since they&amp;rsquo;re based on actual sources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-retrieval-augmented-generation-for-knowledge-intensive-nlp-tasks-2020&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/abs/2005.11401&#34;&gt;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (2020)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Summary : RAG literally (1) retrieves the top-k documents for a given query, (2) augments the latent vector by concatenating the original input x with the retrieved passage z, and (3) generates the final output.&lt;/li&gt;
+&lt;li&gt;Abstract
+&lt;ul&gt;
+&lt;li&gt;Background. LLMs have been shown to store factual knowledge in their parameters, and achieve SOTA results when fine-tuned on down-stream NLP tasks.&lt;/li&gt;
+&lt;li&gt;Problem Def.  However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.&lt;/li&gt;
+&lt;li&gt;Contrib. We explore a general-purpose fine-tuning recipe for RAG ? models which combine pre-trained parametric and non-parametric memory for language generation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Method : We explore RAG models, which use the input sequence $x$ to retrieve text documents $z$ and use them as additional context when generating the target sequence $y$.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Retrieval (DPR) :&lt;/strong&gt; returns top-K distributions over text passages given a query $x$
+&lt;ul&gt;
+&lt;li&gt;To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generator $p_\theta(y_i | x, z, y_{1:i-1})$ :&lt;/strong&gt; generates a current token based on a context of the previous tokens  $y_{1:i-1}$ , the original input $x$ and a retrived passage $z$
+&lt;ul&gt;
+&lt;li&gt;could be modelled using any encoder-decoder.&lt;/li&gt;
+&lt;li&gt;To combine the input $x$ with the retrieved content $z$ when generating from BART, we simply concatenate them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;
+&lt;img width=70% src=&#39;https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb382620-ad44-444f-b148-3b5460405bcc_1072x334.png&#39;&gt;
+  &lt;p&gt; &lt;i&gt;RAG overview&lt;/i&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LM #5 | Prompt Engineering</title>
+      <link>http://localhost:1313/machine-learning/5.-natural-language/lm-5--prompt-engineering/</link>
+      <pubDate>Thu, 04 Jul 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/machine-learning/5.-natural-language/lm-5--prompt-engineering/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;New Tasks without Extensive Training
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Zero‑Shot Prompting&lt;/strong&gt; : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Few‑Shot Prompting&lt;/strong&gt; : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Prompt Engineer (APE)&lt;/strong&gt; : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reasoning and Logic
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chain-of-Thought (CoT)&lt;/strong&gt; : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Chain of Thought Prompting&lt;/strong&gt; : automatically instruct LLMs with a &amp;ldquo;Let’s think step-by-step&amp;rdquo; prompt to generate reasoning chains.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-Consistency&lt;/strong&gt; : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tree of Thoughts&lt;/strong&gt; : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &amp;ldquo;thoughts&amp;rdquo;. Each thought represents a coherent language sequence moving toward the final solution.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph of Thoughts&lt;/strong&gt; : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self Refine Prompting&lt;/strong&gt; : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduce Hallucination
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Retrieval Augmented Generation (RAG)&lt;/strong&gt; : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ReAct Prompting&lt;/strong&gt; : enables LLMs to generate reasoning traces and task-specific actions concurrently&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chain of Verification&lt;/strong&gt; : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Others
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Prompt Engineer (APE)&lt;/strong&gt;: sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;a-systematic-survey-of-prompt-engineering-in-large-language-models--techniques-and-applications&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2402.07927&#34;&gt;A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Abstract&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #13 | Markov Decision Process</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/</link>
+      <pubDate>Fri, 13 Dec 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;13-markov-decision-process&#34;&gt;13. Markov Decision Process&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Reward Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Decision Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bellman Equations&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Summary&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It’s complex to find the &lt;strong&gt;argmax&lt;/strong&gt; of long-term value functions directly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Bellman equations allow us to break down complex, long-term value functions into recursive steps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This enables us to find a reward-maximizing trajectory in an &lt;strong&gt;iterative&lt;/strong&gt; manner.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Streamlit #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/8.-visualization/streamlit-%231--overview/</link>
+      <pubDate>Wed, 11 Dec 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/8.-visualization/streamlit-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.streamlit.io/get-started&#34;&gt;Get started with Streamlit - Streamlit Docs&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Concepts&lt;/li&gt;
+&lt;li&gt;Advanced Concepts&lt;/li&gt;
+&lt;li&gt;Additional Streamlit features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-basic-concepts&#34;&gt;1. Basic Concepts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;First you sprinkle a few Streamlit commands into a normal Python script, then you run it with &lt;code&gt;streamlit run&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The app is your canvas, where you&amp;rsquo;ll draw charts, text, widgets, tables, and more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;12-data-flow&#34;&gt;1.2 Data Flow&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Streamlit apps have a unique data flow: any time something must be updated on the screen, Streamlit reruns your entire Python script from top to bottom.
+&lt;ul&gt;
+&lt;li&gt;Whenever you modify your app&amp;rsquo;s source code.&lt;/li&gt;
+&lt;li&gt;Whenever a user interacts with widgets in the app&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;13-display-and-style-data&#34;&gt;1.3 Display and style data&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt; You can pass almost anything to &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/write-magic/st.write&#34;&gt;&lt;code&gt;st.write()&lt;/code&gt;&lt;/a&gt;: text, data, Matplotlib figures, Altair charts, and more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;14-widgets&#34;&gt;1.4 Widgets&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;When you&amp;rsquo;ve got the data or model into the state that you want to explore, you can add in widgets like &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.slider&#34;&gt;&lt;code&gt;st.slider()&lt;/code&gt;&lt;/a&gt;,&lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.button&#34;&gt;&lt;code&gt;st.button()&lt;/code&gt;&lt;/a&gt; or &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.selectbox&#34;&gt;&lt;code&gt;st.selectbox()&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;15-layout&#34;&gt;1.5 Layout&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Streamlit makes it easy to organize your widgets in a left panel sidebar with &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/layout/st.sidebar&#34;&gt;&lt;code&gt;st.sidebar&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Learning Spark #7 | Optimizing and Tuning Spark Apps</title>
+      <link>http://localhost:1313/__draft/9.-study/learning-spark-7--optimizing-and-tuning-spark-applications/</link>
+      <pubDate>Thu, 05 Dec 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/__draft/9.-study/learning-spark-7--optimizing-and-tuning-spark-applications/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;70-introduction&#34;&gt;7.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In this chapter,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;we will discuss a set of Spark configurations that enable optimizations,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;look at Spark’s family of join strategies,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;and inspect the Spark UI, looking for clues to bad behavior.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;71-optimizing-and-tuning-spark-for-efficiency&#34;&gt;7.1 Optimizing and Tuning Spark for Efficiency&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Three ways to get and set Spark properties.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Through a set of configuration files. In your deployment’s &lt;code&gt;$SPARK_HOME&lt;/code&gt; directory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt; Specify Spark configurations directly in your Spark application&lt;/p&gt;
+&lt;p&gt;or on the command line when submitting the application with spark-submit, using the &lt;code&gt;--conf&lt;/code&gt; flag&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Learning Spark #1 | Introduction to Apache Spark</title>
+      <link>http://localhost:1313/__draft/9.-study/learning-spark-1-overview/</link>
+      <pubDate>Tue, 22 Oct 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/__draft/9.-study/learning-spark-1-overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;11-the-genesis-of-spark&#34;&gt;1.1 The Genesis of Spark&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Google :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Traditional storage systems such as RDBMSs were not able to handle the scale at which Google wanted to build and search the internet’s indexed documents.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;need for new approaches led to the creation of the Google File System (GFS), MapReduce (MR), and Bigtable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Yahoo :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop Common, MapReduce, HDFS, and Apache Hadoop YARN.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;intermediate computed result is written to the local disk for the subsequent stage of its operation&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kafka #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/kafka-%231--overview/</link>
+      <pubDate>Wed, 01 May 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/kafka-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-introduction&#34;&gt;1.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;1.1 Kafka Cluster Components&lt;/li&gt;
+&lt;li&gt;1.2 Kafka does not delete consumed message&lt;/li&gt;
+&lt;li&gt;1.3 Consumer group rebalancing&lt;/li&gt;
+&lt;li&gt;References&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-kafka-cluster-components&#34;&gt;1.1 Kafka Cluster Components&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://media.licdn.com/dms/image/v2/D5612AQEJBjRQN6BmmQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1715599437773?e=1759968000&amp;v=beta&amp;t=0ZxkH8IwHJ0MrPvnQ3ZwlkUoAi6MBci9AiyIJE2EKeU&#34;&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cluster : A Kafka cluster is a distributed system composed of multiple Kafka brokers working together to handle the storage and processing of real-time streaming data.&lt;/li&gt;
+&lt;li&gt;Broker : In Kafka, a broker works as a container that can hold multiple topics with different partitions. A unique integer ID is used to identify brokers in the Kafka cluster. Connection with any one of the kafka brokers in the cluster implies a connection with the whole cluster. If there is more than one broker in a cluster, the brokers need not contain the complete data associated with a particular topic.&lt;/li&gt;
+&lt;li&gt;Topic &amp;amp; Partition : A stream of messages that are a part of a specific category or feed name is referred to as a Kafka topic.
+&lt;ul&gt;
+&lt;li&gt;In Kafka, data is stored in the form of topics. Producers write their data to topics, and consumers read the data from these topics.&lt;/li&gt;
+&lt;li&gt;Topics in Kafka are divided into a configurable number of parts, which are known as partitions. Partitions allow several consumers to read data from a particular topic in parallel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Producer : Producers in Kafka publish messages to one or more topics&lt;/li&gt;
+&lt;li&gt;Consumer &amp;amp; Consumer Group : Consumers read data from the Kafka cluster. The data to be read by the consumers has to be pulled from the broker when the consumer is ready to receive the message. A consumer group in Kafka refers to a number of consumers that pull data from the same topic or same set of topics.&lt;/li&gt;
+&lt;li&gt;Replication : Replicas are like backups for partitions in Kafka. They are used to ensure that there is no data loss in the event of a failure or a planned shutdown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-kafka-does-not-delete-consumed-message&#34;&gt;1.2 Kafka does not delete consumed message&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Kafka has consumer groups and their own offsets, so each consumer within consumer groups can read messages in serialized order, and each group can read topics in parallel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-consumer-group-rebalancing&#34;&gt;1.3 Consumer group rebalancing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;session.timeout.ms&lt;/code&gt;&lt;/strong&gt; (default: 10s)
+&lt;ul&gt;
+&lt;li&gt;This is the amount of time a Kafka broker waits to determine that a Kafka consumer has failed and is no longer active.&lt;/li&gt;
+&lt;li&gt;The Kafka consumer sends heartbeats to the group coordinator to prove it is still alive.&lt;/li&gt;
+&lt;li&gt;If the &lt;code&gt;session.timeout.ms&lt;/code&gt; elapses without receiving a heartbeat, the consumer group will be rebalanced, and the partitions it was handling will be reassigned to other consumers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;max.poll.interval.ms&lt;/code&gt;&lt;/strong&gt; (default: 5m)
+&lt;ul&gt;
+&lt;li&gt;This setting defines the maximum interval between consecutive &lt;code&gt;poll()&lt;/code&gt; calls by the consumer.&lt;/li&gt;
+&lt;li&gt;If the consumer does not call &lt;code&gt;poll()&lt;/code&gt; within the &lt;code&gt;max.poll.interval.ms&lt;/code&gt;, it will be considered inactive and removed from the group, triggering a rebalance of the consumer group.&lt;/li&gt;
+&lt;li&gt;If your processing task takes a long time, you may need to increase &lt;code&gt;max.poll.interval.ms&lt;/code&gt; to avoid triggering rebalancing due to lengthy processing times.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;max.poll.records&lt;/code&gt;&lt;/strong&gt; (default: 500)
+&lt;ul&gt;
+&lt;li&gt;This defines the maximum number of records (messages) returned in a single call to &lt;code&gt;poll()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Increasing this value can improve throughput by reducing the number of &lt;code&gt;poll()&lt;/code&gt; calls needed to process messages, but it can also increase memory usage if the consumer processes large batches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Airflow #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/airflow-%231--overview/</link>
+      <pubDate>Tue, 26 Mar 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/airflow-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Airflow components&lt;/li&gt;
+&lt;li&gt;Architecture Diagrams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-airflow-components&#34;&gt;1. Airflow Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Airflow’s architecture consists of multiple components.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) components required for a bare-minimum Airflow installation,&lt;/li&gt;
+&lt;li&gt;(2) an optional component to achieve better Airflow extensibility, performance, and scalability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Required components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/scheduler.html&#34;&gt;scheduler&lt;/a&gt;, which handles both triggering scheduled workflows, and submitting &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html&#34;&gt;Tasks&lt;/a&gt; to the executor to run.
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/executor/index.html&#34;&gt;executor&lt;/a&gt;, is a configuration property of the &lt;em&gt;scheduler&lt;/em&gt;, not a separate component and runs within the scheduler process.&lt;/li&gt;
+&lt;li&gt;There are several executors available out of the box, and you can also write your own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A &lt;em&gt;webserver&lt;/em&gt;, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks.&lt;/li&gt;
+&lt;li&gt;A folder of &lt;em&gt;DAG files&lt;/em&gt;, which is read by the &lt;em&gt;scheduler&lt;/em&gt; to figure out what tasks to run and when to run them.&lt;/li&gt;
+&lt;li&gt;A &lt;em&gt;metadata database&lt;/em&gt;, which airflow components use to store state of workflows and tasks.
+&lt;ul&gt;
+&lt;li&gt;Setting up a metadata database is described in &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html&#34;&gt;Set up a Database Backend&lt;/a&gt; and is required for Airflow to work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optional components&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InfluxDB #1 | Basic </title>
+      <link>http://localhost:1313/system-architecture/1.-database/influxdb-%231--basic/</link>
+      <pubDate>Thu, 04 Jan 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/1.-database/influxdb-%231--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Time Series DB (TSDB) : a DB optimized for time-stamped or time series data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ex) server metrics, network data, sensor data,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-data-elements&#34;&gt;1. Data Elements&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;_time&lt;/th&gt;
+          &lt;th&gt;_measurement&lt;/th&gt;
+          &lt;th&gt;location&lt;/th&gt;
+          &lt;th&gt;scientist&lt;/th&gt;
+          &lt;th&gt;_field&lt;/th&gt;
+          &lt;th&gt;_value&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2019-08-18T00:00:00Z&lt;/td&gt;
+          &lt;td&gt;census&lt;/td&gt;
+          &lt;td&gt;klamath&lt;/td&gt;
+          &lt;td&gt;anderson&lt;/td&gt;
+          &lt;td&gt;bees&lt;/td&gt;
+          &lt;td&gt;23&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2019-08-18T00:00:00Z&lt;/td&gt;
+          &lt;td&gt;census&lt;/td&gt;
+          &lt;td&gt;portland&lt;/td&gt;
+          &lt;td&gt;mullen&lt;/td&gt;
+          &lt;td&gt;ants&lt;/td&gt;
+          &lt;td&gt;30&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2019-08-18T00:06:00Z&lt;/td&gt;
+          &lt;td&gt;census&lt;/td&gt;
+          &lt;td&gt;klamath&lt;/td&gt;
+          &lt;td&gt;anderson&lt;/td&gt;
+          &lt;td&gt;bees&lt;/td&gt;
+          &lt;td&gt;28&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2019-08-18T00:06:00Z&lt;/td&gt;
+          &lt;td&gt;census&lt;/td&gt;
+          &lt;td&gt;portland&lt;/td&gt;
+          &lt;td&gt;mullen&lt;/td&gt;
+          &lt;td&gt;ants&lt;/td&gt;
+          &lt;td&gt;32&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Timestamp (&lt;code&gt;_time&lt;/code&gt;) :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All data stored in influxDB has a &lt;code&gt;_time&lt;/code&gt; column that stores timestamps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Measurement (&lt;code&gt;_measurement&lt;/code&gt;) :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hbase #2 | Data Model</title>
+      <link>http://localhost:1313/system-architecture/1.-database/hbase-%232--data-model/</link>
+      <pubDate>Tue, 02 Jan 2024 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/system-architecture/1.-database/hbase-%232--data-model/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Reference Guide : &lt;a href=&#34;https://hbase.apache.org/book.html&#34;&gt;https://hbase.apache.org/book.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;21-conceptual-view&#34;&gt;21. Conceptual View&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cells in this table that appear to be &lt;strong&gt;empty do not take space,&lt;/strong&gt; or in fact exist, in HBase. This is what makes HBase &amp;ldquo;sparse.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A tabular view is not the only possible way to look at data in HBase, or even the most accurate. The following represents the same information as a multi-dimensional map. This is only a mock-up for illustrative purposes and may not be strictly accurate.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>CheatSheet | k8s</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</link>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--k8s/</link>
       <pubDate>Mon, 31 Jul 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</guid>
-      <description>Introduction Kubernetes (k8s) : is an open-source system for automating deployment, scaling, and management of containerized applications
-Simply a container orchestration tool like docker swarm Kubernetes Components:
-Kubernetes Cluster : set of worker machines (nodes)
-Nodes : host the Pods that are the components of the application workload
-Pod : the smallest deployable units
-Contents
-Pod
-Service
-kubectl
-1. Pod Pods : are the smallest deployable units of computing that you can create and manage in Kubernetes.</description>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--k8s/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes (k8s)  : is an open-source system for automating deployment, scaling, and management of containerized applications&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simply a container orchestration tool like docker swarm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Cluster : set of worker machines (nodes)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nodes : host the Pods that are the components of the application workload&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pod : the smallest deployable units&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pod&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kubectl&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-pod&#34;&gt;1. Pod&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pods : are the smallest deployable units of computing that you can create and manage in Kubernetes.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Effective Python #5 | Classes and Interfaces</title>
-      <link>https://koreanbear89.github.io/language/1.-python/effective-python-05/</link>
+      <link>http://localhost:1313/language/3.-python/effective-python-05/</link>
       <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-05/</guid>
-      <description>Introduction As an oop language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation
-Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.
-They allow you to improve and expand functionality over time.
-They provide flexibility in an environment of changing requirements.
-Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types Avoid making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types.</description>
+      <guid>http://localhost:1313/language/3.-python/effective-python-05/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They allow you to improve and expand functionality over time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They provide flexibility in an environment of changing requirements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-37-compose-classes-instead-of-nesting-many-levels-of-build-in-types&#34;&gt;Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid &lt;strong&gt;making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Effective Python #4 | Comprehensions and Generators</title>
-      <link>https://koreanbear89.github.io/language/1.-python/effective-python-04/</link>
+      <link>http://localhost:1313/language/3.-python/effective-python-04/</link>
       <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-04/</guid>
-      <description>Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
-This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided.</description>
+      <guid>http://localhost:1313/language/3.-python/effective-python-04/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-27-use-comprehensions-instead-of-map-and-filter&#34;&gt;Item 27. Use Comprehensions Instead of &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Effective Python #3 | Functions</title>
-      <link>https://koreanbear89.github.io/language/1.-python/effective-python-03/</link>
+      <link>http://localhost:1313/language/3.-python/effective-python-03/</link>
       <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-03/</guid>
-      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
-Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
-They can eliminate noise and clarify the intention of callers.
-They can significantly reduce subtle bugs that are difficult to find.
-Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+      <guid>http://localhost:1313/language/3.-python/effective-python-03/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Functions in Python have a variety of extra features that make a programmer’s life easier.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some are similar to capabilities in other programming languages, but many are unique to Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;These extras can make a function’s purpose more obvious.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They can eliminate noise and clarify the intention of callers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They can significantly reduce subtle bugs that are difficult to find.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-19-never-unpack-more-than-three-variables-when-functions-return-multiple-values&#34;&gt;Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Effective Python #2 | Lists and Dictionaries</title>
-      <link>https://koreanbear89.github.io/language/1.-python/effective-python-02/</link>
+      <link>http://localhost:1313/language/3.-python/effective-python-02/</link>
       <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-02/</guid>
-      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
-A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
-Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+      <guid>http://localhost:1313/language/3.-python/effective-python-02/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-11-know-how-to-slice-sequences&#34;&gt;Item 11. Know How to Slice Sequences&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Effective Python #1 | Pythonic Thinking</title>
-      <link>https://koreanbear89.github.io/language/1.-python/effective-python-01/</link>
+      <link>http://localhost:1313/language/3.-python/effective-python-01/</link>
       <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
       
-      <guid>https://koreanbear89.github.io/language/1.-python/effective-python-01/</guid>
-      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
-Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
-This book also provides some examples in the syntax of Python 3.</description>
-    </item>
-    
-    <item>
-      <title>BE #1 | Network</title>
-      <link>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</link>
-      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</guid>
-      <description>Introduction Contents Protocol (HTTP) API (REST, RPC) 1. Protocol HTTP (HyperText Transfer Protocol) : functions as a request-response protocol in the client-server model,
-Request Methods:
-GET, POST, PUT, DELETE Response Messages:
-2xx : successful
-3xx : redirection
-4xx : client error
-5xx : server error
-Other Protocols : MQTT, CoAP (low-level, low-energy protocol)
-2. API (Application Programming Interface) Introduction
-interface : a connection between two pieces of electronic equipment, or between a person and a computer</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | GlusterFS</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</link>
-      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</guid>
-      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
-    </item>
-    
-    <item>
-      <title>Shell | Snippet </title>
-      <link>https://koreanbear89.github.io/language/9.-others/shell-snippet/</link>
-      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/language/9.-others/shell-snippet/</guid>
-      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
-/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
-$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Jupyter</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</link>
-      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</guid>
-      <description>1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme Add conda environment to jupyter # Create conda environment $ conda create --name &amp;quot;myenv&amp;quot; python=3.</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Regex</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</link>
-      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</guid>
-      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Nginx</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</link>
-      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</guid>
-      <description>Introduction Nginx : light-weight Web server
-generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
-Proxy server : is a server that acts as an intermediary between a client and the server
-Load balancing : Proxies distribute requests to a group of servers,
-Encryption : Proxies encrypt the data to keep it from being read during transfer.
-Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
-    </item>
-    
-    <item>
-      <title>HTML | Snippet</title>
-      <link>https://koreanbear89.github.io/language/9.-others/html-snippet/</link>
-      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/language/9.-others/html-snippet/</guid>
-      <description>
-HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
-    </item>
-    
-    <item>
-      <title>Hanwoong Kim</title>
-      <link>https://koreanbear89.github.io/about/</link>
-      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/about/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | spark</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</link>
-      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</guid>
-      <description>1. Introduction 1.1 Terminologies
-Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
-Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
-Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | pyspark</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</link>
-      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</guid>
-      <description>1. Introduction 1.1 Terminologies
-Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
-Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
-Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Docker</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</link>
-      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</guid>
-      <description>Introduction Contents
-Install docker ∑in centos
-Frequently used docker commands
-FIle sharing in docker (bind, volume)
-Dockerfile instruction
-Docker compose
-Docker swarm
-Glossary
-swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node. service : A unit of modules in project, a basic distribution unit, stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.</description>
-    </item>
-    
-    <item>
-      <title>CheatSheet | Hadoop</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</link>
-      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</guid>
-      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
-Based on Java
-Save data in Google File System (2003) and process this big data with Map Reduce (2004)
-Modules :
-Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
-Hadoop YARN : A framework for job scheduling and cluster resource management</description>
+      <guid>http://localhost:1313/language/3.-python/effective-python-01/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-1-know-which-version-of-python-youre-using&#34;&gt;Item 1. Know Which Version of Python You’re Using&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This book also provides some examples in the syntax of Python 3.8 (released in October 2019)&lt;/p&gt;</description>
     </item>
     
   </channel>

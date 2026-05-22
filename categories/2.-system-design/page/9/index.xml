@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2. System Design on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/2.-system-design/</link>
+    <description>Recent content in 2. System Design on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Aug 2022 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/2.-system-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CS #09 | Encoding</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--encoding/</link>
+      <pubDate>Sun, 01 Sep 2019 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--encoding/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;binary vs text&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;encoding&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;binary-data&#34;&gt;Binary Data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;msg = &amp;quot;test data in korean, 한글 테스트 데이터&amp;quot;
+with open(&amp;quot;test_text.bin&amp;quot;, &amp;quot;wb&amp;quot;) as f:
+    f.write(msg.encode())
+with open(&amp;quot;test_text.bin&amp;quot;, &amp;quot;rb&amp;quot;) as f:
+    msg_bin = f.read()
+print(&amp;quot;binary: &amp;quot;, msg_bin ) # &amp;gt;&amp;gt; binary:  b&#39;test data in korean, \xed\x95\x9c\xea\xb8\x80 \xed\x85\x8c\xec\x8a\xa4\xed\x8a\xb8 \xeb\x8d\xb0\xec\x9d\xb4\xed\x84\xb0&#39;
+print(&amp;quot;string: &amp;quot;, msg_bin.decode(&amp;quot;utf-8&amp;quot;)) # &amp;gt;&amp;gt; string:  test data in korean, 한글 테스트 데이터
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;base64&#34;&gt;Base64&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Base64 : An encoding method that converts &lt;strong&gt;an arbitrary byte stream&lt;/strong&gt; into &lt;strong&gt;ASCII characters&lt;/strong&gt; that can be displayed on the screen.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #8 | Action Localization</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv08--action-localization/</link>
+      <pubDate>Tue, 06 Aug 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv08--action-localization/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Temporal Action Localization : is aimed at not only classifying every activity instance in each video, but also looking for the accurate temporal locations of them&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Anchor-based Localization : adjusting the pre-defined anchors, Due to the fixed pre-defined anchors, such methods are not flexible when it comes to various action classes&lt;/li&gt;
+&lt;li&gt;Action-ness guided Localization : mainly focus on evaluating actionness, which indicates the probability of a potential action, for each frame or clip in a video.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>CS #01 | Data Structure</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs01--data-structure/</link>
+      <pubDate>Thu, 01 Aug 2019 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs01--data-structure/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Linear Data Structure
+&lt;ul&gt;
+&lt;li&gt;Array&lt;/li&gt;
+&lt;li&gt;Linked List&lt;/li&gt;
+&lt;li&gt;Stack&lt;/li&gt;
+&lt;li&gt;Queue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Non-Linear Data Structure
+&lt;ul&gt;
+&lt;li&gt;Tree&lt;/li&gt;
+&lt;li&gt;Heap&lt;/li&gt;
+&lt;li&gt;Hash&lt;/li&gt;
+&lt;li&gt;Graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Data Types vs Data Structures
+&lt;ul&gt;
+&lt;li&gt;Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool)&lt;/li&gt;
+&lt;li&gt;Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-array&#34;&gt;1. Array&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition :  A data structure that stores a &lt;strong&gt;collection of elements&lt;/strong&gt; (usually of the same type) in &lt;strong&gt;contiguous memory locations&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c++)&lt;/li&gt;
+&lt;li&gt;Same data type : All elements must be of the same type&lt;/li&gt;
+&lt;li&gt;Contiguous memory : Elements are stored next to each other in memory, which makes access very fast&lt;/li&gt;
+&lt;li&gt;Index-based access : Elements are accessed using indices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Access, O(1) : the memory address can be calculated directly&lt;/li&gt;
+&lt;li&gt;Update, O(1) : &lt;code&gt;arr[i] = x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Traversal, O(n) : loop through array&lt;/li&gt;
+&lt;li&gt;Insertion/Deletion, O(n) : elements may need to be shifted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Very fast random access (by indexing)&lt;/li&gt;
+&lt;li&gt;Easy to use and implement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed size (cannot grow/shrink easily)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Costly insertion and deletion (need shifting)&lt;/li&gt;
+&lt;li&gt;Wasted memory if array  is allocated larger than needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arr = [1, 2, 3, 4]
+print(arr[0]) # Access
+arr[2] = 99 # Update
+[print(x) for x in arr] # Traversal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-linked-list&#34;&gt;2. Linked List&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : a data structure where elements (called &lt;strong&gt;nodes&lt;/strong&gt;) are connected using &lt;strong&gt;pointers (links)&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;Each node contains data (the value) and pointer (reference) to the next node in the list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Characteristics :
+&lt;ul&gt;
+&lt;li&gt;Dynamic size : Can easily grow or shrink at runtime&lt;/li&gt;
+&lt;li&gt;Non-contiguous memory : Nodes can be stored anywhere in memory&lt;/li&gt;
+&lt;li&gt;Pointer based navigation : Accessing an element requires following pointers from the head node&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Access, O(n) : must traverse from head&lt;/li&gt;
+&lt;li&gt;Update, O(1) : if node is known &lt;code&gt;node.data=x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Traversal, O(n)&lt;/li&gt;
+&lt;li&gt;Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic size&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Efficient insertions/deletions (no shifting required like arrays)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;No random access (must traverse sequentially)&lt;/li&gt;
+&lt;li&gt;Extra memory overhead (storing pointers)&lt;/li&gt;
+&lt;li&gt;Cache unfriendly (nodes not stored contiguously)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+# Cread nodes
+head = Node(10)
+head.next = Node(20)
+head.next.next = Node(30)
+
+# Traverse
+current = head
+while current:
+    print(current.data)
+    current = current.next
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-stack&#34;&gt;3. Stack&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : a linear data structure that follows the LIFO (Last In, First Out) principles&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;LIFO : Last inserted elements is the first one removed&lt;/li&gt;
+&lt;li&gt;Restricted Access : Only the top elemnet can be accessed, added, or removed&lt;/li&gt;
+&lt;li&gt;Can be implemented using arrays or linked lists.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Push, O(1)&lt;/li&gt;
+&lt;li&gt;Pop, O(1)&lt;/li&gt;
+&lt;li&gt;Traversal, O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Simple to use and efficient for undo/redo, recursion, parsing, backtracking&lt;/li&gt;
+&lt;li&gt;Fast operations (all O(1) for push,pop)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;Limited access (only top elements is available)&lt;/li&gt;
+&lt;li&gt;FIxed size if implemented using an array (unless dynamically resized)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real-world Uses
+&lt;ul&gt;
+&lt;li&gt;Undo/Redo in text editors&lt;/li&gt;
+&lt;li&gt;Browser history (back button)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;stack = []
+# push
+stack.append(10)
+stack.append(20)
+stack.append(30)
+# pop
+top = stack.pop()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-queue&#34;&gt;4. Queue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : a linear data structure that follows FIFO (First In, First Out) principles&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;FIFO : First Inserted element is the first one removed&lt;/li&gt;
+&lt;li&gt;Front : where elements are removed&lt;/li&gt;
+&lt;li&gt;Rear : where elements are added&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Enqueue, O(1)&lt;/li&gt;
+&lt;li&gt;Dequeue, O(1)&lt;/li&gt;
+&lt;li&gt;Traversal, O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Maintains order of processing&lt;/li&gt;
+&lt;li&gt;Simple to implement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;Random access is not allowed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real-World uses
+&lt;ul&gt;
+&lt;li&gt;Printers&lt;/li&gt;
+&lt;li&gt;Customer Services Lines&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# double ended queue
+from collections import deque
+
+queue = deque()
+# Enqueue
+queue.append(10)
+queue.append(20)
+queue.append(30)
+# Dequeue
+front = queue.popleft()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-tree&#34;&gt;5. Tree&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges
+&lt;ul&gt;
+&lt;li&gt;A tree starts swith a special node called the root&lt;/li&gt;
+&lt;li&gt;Each node can have child nodes (subtrees)&lt;/li&gt;
+&lt;li&gt;Nodes without children are called leaves&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;Hierarchical structure&lt;/li&gt;
+&lt;li&gt;Root node at the top : every other node has exactly one parent&lt;/li&gt;
+&lt;li&gt;Edges connect nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Insertion : Depends on tree type&lt;/li&gt;
+&lt;li&gt;Deletion : More complex&lt;/li&gt;
+&lt;li&gt;Traversal &amp;amp; Search O(logn) : Visit nodes in a specific order, efficient in BST
+&lt;ul&gt;
+&lt;li&gt;BFS (Breadth First Search) : Level order&lt;/li&gt;
+&lt;li&gt;DFS (Depth First Search) : Preorder, Inorder, Postorder
+&lt;ul&gt;
+&lt;li&gt;Preorder : root -&amp;gt; left -&amp;gt; right&lt;/li&gt;
+&lt;li&gt;Inorder : left -&amp;gt; root -&amp;gt; right&lt;/li&gt;
+&lt;li&gt;Postorder : left -&amp;gt; right -&amp;gt; root&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Represent hierarchical data naturally&lt;/li&gt;
+&lt;li&gt;Enable fast search, insert, delete, in balanced trees O(logn)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;More complex to implement than linear structures&lt;/li&gt;
+&lt;li&gt;Performance can degrade if tree becomes unbalanced&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real-World Uses
+&lt;ul&gt;
+&lt;li&gt;File Systems (folders, subfolders)&lt;/li&gt;
+&lt;li&gt;Database (B-trees)&lt;/li&gt;
+&lt;li&gt;API responses&lt;/li&gt;
+&lt;li&gt;AI/ML (decision trees)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Binary Tree
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+# Create nodes
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+
+# Traversal (preorder) - recursive
+def preorder(node):
+    if node:
+        print(node.data)
+        preorder(node.left)
+        preorder(node.right)
+
+# Traversal (inorder) - recursive
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.data)
+        inorder(node.right)
+
+preorder(root)
+inorder(root)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-heap&#34;&gt;6. Heap&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : Special complete binary tree that satisfies the heap propery
+&lt;ul&gt;
+&lt;li&gt;Max Heap : Every parent node is greater than or equal to its children&lt;/li&gt;
+&lt;li&gt;Min Heap : Every parent node is less than or equal to its children&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;Complete Binary Tree : All levels are filled, except possibly the last&lt;/li&gt;
+&lt;li&gt;Heap Property : Parent node compares consistently with children&lt;/li&gt;
+&lt;li&gt;Efficient operations : Insertions and deletions keep the tree balanced&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Insert, O(logn): new element bubbled up to restore heap property
+&lt;ul&gt;
+&lt;li&gt;To maintain the complete binary tree structure
+&lt;ul&gt;
+&lt;li&gt;Insert the new element at the next available position&lt;/li&gt;
+&lt;li&gt;And then, restore the heap property&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Delete, O(logn): root removed, last element moved to root, then bubbled down&lt;/li&gt;
+&lt;li&gt;Heapify, O(n) : build heap from an array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Guarantees fast access to min/max element&lt;/li&gt;
+&lt;li&gt;Useful for priority-based tasks&lt;/li&gt;
+&lt;li&gt;Efficient for sorting (Heap Sort)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;Not good for fast searching arbitrary elements (only root is fast)&lt;/li&gt;
+&lt;li&gt;Requires extra work to maintain heap property after insertions/deletions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real world Uses
+&lt;ul&gt;
+&lt;li&gt;Heap sort : efficient O(nlogn) sorting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import heapq
+# Create a min-heap
+heap = []
+heapq.heappush(heap, 20)
+heapq.heappush(heap, 5)
+heapq.heappush(heap, 15)
+print(heap) #[5, 20, 15]
+
+# pop (remove smalles element)
+print(heapq.heappop(heap))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-hash-map&#34;&gt;7. Hash Map&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys.&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;Key-Value Mapping : Each unique key maps to a value&lt;/li&gt;
+&lt;li&gt;Hash Function : Converts a key into an index&lt;/li&gt;
+&lt;li&gt;Collision Handling : Two different keys may hash to the same index.&lt;/li&gt;
+&lt;li&gt;Dynamic Resizing : Often grows when load factor (items/buckets) gets too high&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Insert, O(1) average, O(n) worst-case&lt;/li&gt;
+&lt;li&gt;Search, O(1) average, O(n) worst-case&lt;/li&gt;
+&lt;li&gt;Delete, O(1)&lt;/li&gt;
+&lt;li&gt;Traversal, O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Extremely fast lookups on average, O(1)&lt;/li&gt;
+&lt;li&gt;Great for dictionaries, caches, symbol tables.&lt;/li&gt;
+&lt;li&gt;Flexible keys (can be strings, numbers, tuples)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;Collisions degrade performance&lt;/li&gt;
+&lt;li&gt;Unordered (no natural order of keys)&lt;/li&gt;
+&lt;li&gt;Requires a good hash function to avoid clustering (Hbase)
+&lt;ul&gt;
+&lt;li&gt;When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket)&lt;/li&gt;
+&lt;li&gt;A hash function takes a key and converts it into a number. That number is then mapped into the hash table&amp;rsquo;s array index
+&lt;ul&gt;
+&lt;li&gt;e.g. using modulo : hash(&amp;ldquo;apple&amp;rdquo;) → 9324983 → store at index(bucket) No.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real world Uses
+&lt;ul&gt;
+&lt;li&gt;Databases (Indexing with hash-based indexes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# create a hash table
+hash = {}
+# Insert
+hash[&amp;quot;apple&amp;quot;] = 10
+hash[&amp;quot;banana&amp;quot;] = 20
+# Search
+print(hash[&amp;quot;apple&amp;quot;]
+# Delete
+del hash[&amp;quot;apple&amp;quot;]
+# Traverse
+for key, value in hash.items():
+    print(key, value)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-graph&#34;&gt;8. Graph&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes&lt;/li&gt;
+&lt;li&gt;Characteristics
+&lt;ul&gt;
+&lt;li&gt;Vertices : represents entities&lt;/li&gt;
+&lt;li&gt;Edges : represent relationships between vertices&lt;/li&gt;
+&lt;li&gt;Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B)&lt;/li&gt;
+&lt;li&gt;Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally&lt;/li&gt;
+&lt;li&gt;Cycles vs Acyclic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operations
+&lt;ul&gt;
+&lt;li&gt;Traversal&lt;/li&gt;
+&lt;li&gt;Insert/Delete veritices and edges, O(1) to O(V^2)&lt;/li&gt;
+&lt;li&gt;Search
+&lt;ul&gt;
+&lt;li&gt;DFS (Depth First Search) : Explore deeply first&lt;/li&gt;
+&lt;li&gt;BFS (Breadth First Search) : Explore level by level.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Very flexible, can model complex relationships&lt;/li&gt;
+&lt;li&gt;Efficient algorithms exist for pathfinding, connectivity, shortest paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages
+&lt;ul&gt;
+&lt;li&gt;More complex than trees or arrays.&lt;/li&gt;
+&lt;li&gt;Some operations can be expensive or large graphs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Real world Uses
+&lt;ul&gt;
+&lt;li&gt;Social networks&lt;/li&gt;
+&lt;li&gt;Recommendation Engines&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+
+    def bfs(self, start):
+        visited = set()
+        queue = [start]
+        while queue:
+            node = queue.pop(0)
+            if node not in visited:
+                print(node, end=&amp;quot; &amp;quot;)
+                visited.add(node)
+                queue.extend(self.graph[node])
+g = Graph()
+g.add_edge(0, 1)
+g.add_edge(0, 2)
+g.add_edge(1, 2)
+g.add_edge(2, 0)
+g.add_edge(2, 3)
+g.bfs(2)  # 2, 0, 3, 1
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
+      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;51-singular-value-decomposition-svd&#34;&gt;5.1 Singular Value decomposition (SVD)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;singular value decomposition&lt;/strong&gt; (&lt;strong&gt;SVD&lt;/strong&gt;) : is a factorization of a real or complex matrix that &lt;mark&gt;generalizes the eigendecomposition (EVD)  of a square normal matrix to any $m \times n$ matrix &lt;/mark&gt;via an extension of the polar decomposition.&lt;/p&gt;
+&lt;center&gt;$$ A = U \Sigma V^T$$&lt;/center&gt;
+&lt;ol&gt;
+&lt;li&gt;$A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix&lt;/li&gt;
+&lt;li&gt;$U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an orthonormal basis of $Col(A)$&lt;/li&gt;
+&lt;li&gt;$V \in \mathbb{R}^{n \times n}$ : matrices with orthonormal columns, providing an orthonormal basis of $Row(A)$&lt;/li&gt;
+&lt;li&gt;$\Sigma \in \mathbb{R}^{m \times n}$ : a diagonal matrix whose entries are in a decreasing order, i.e., $\sigma_1 \geq \sigma_2 \geq &amp;hellip; \geq \sigma_{min(m,n)}$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34; /figures/2019-07-29-fig1.png &#34;&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
+      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;40-introduction&#34;&gt;4.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;$D$ is a diagonal matrix with eigenvalues in diagonal entries&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$V$ is a matrix whose column vectors are eigenvectors&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #3 | Least Square </title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
+      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;30-least-square&#34;&gt;3.0 Least Square&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Inner Product&lt;/strong&gt; : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vector Norm&lt;/strong&gt; : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;$L_p$ Norm&lt;/strong&gt; : $ \Vert \mathbf{x} \Vert_p = ( \Sigma_{i=1}^n \vert x_i \vert^p)^{1/p}$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #8 | Graph Neural Nets</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml08--graph-neural-networks/</link>
+      <pubDate>Wed, 26 Jun 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml08--graph-neural-networks/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;What is a graph?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;A graph is a data structure consisting of two components : &lt;strong&gt;vertices&lt;/strong&gt; and &lt;strong&gt;edges&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Typically, a graph is defined as $G = (V,E)$, where $V$ is a set of nodes and $E$ is the edges between them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A graph is often represented by an Adjacency matrix, $A \in \mathbb{R}^{N \times N}$ and feature matrix $X \in \mathbb{R}^{N \times F}$ to describe the nodes in the graph. $N,F$ is the number of nodes and features.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
+      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;21-linear-equation-and-linear-system&#34;&gt;2.1 Linear Equation and Linear System&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Linear Equation&lt;/strong&gt; is an equation that can be written in the form  $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$&lt;/li&gt;
+&lt;li&gt;The above equation can be written as $ \textbf{a}^T \textbf{x} = b $.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linear System&lt;/strong&gt; is a collection of one or more linear equations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--
+
+&gt; 몸무게(60,65,55), 키(1.7, 1.6, 1.8), 흡연여부(0,1) 에 대한 기대수명 (66,80,70) 샘플로 부터 각각의 요인들이 기대수명에 미치는 영향을 알고자 할 때
+&gt;
+&gt; 연립 방정식 $ \begin{bmatrix} 60x_1 + 1.7x_2 + 1\cdot{x_3}= 66 \\\ 65x_1 + 1.6x_2 + 0\cdot{x_3}= 80 \\\ 55x_1 + 1.8x_2 + 1\cdot{x_3}= 70 \end{bmatrix} $  의 해를 구하여 해결 할 수 있다.  
+&gt;
+&gt;동시에 이를 $ \begin{bmatrix} 60&amp;1.7&amp;1  \\\ 65&amp;1.6&amp;0 \\\ 55&amp;1.8&amp;1  \end{bmatrix}
+\begin{bmatrix} x_1 \\\ x_2 \\\ x_3 \end{bmatrix} = \begin{bmatrix} 66\\\ 80\\\ 70 \end{bmatrix}$ 와 같이 바꾸어 역행렬을 구할 수도 있다.
+&gt;
+&gt; 즉 Linear System $A \textbf{x} = \textbf{b}$ 에서 $A$의 역행렬을 구함으로서 해당 Linear System을 풀 수 있다.
+
+--&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Identity Matrix&lt;/strong&gt; : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are zeros.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra for ML #1 | Introductions </title>
+      <link>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
+      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;11-scalars-vectors-matrices-and-tensors&#34;&gt;1.1 Scalars, Vectors, Matrices, and Tensors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Scalars&lt;/strong&gt; : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vectors&lt;/strong&gt; : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Matrices&lt;/strong&gt; : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tensors&lt;/strong&gt; : an array of numbers arranged on a regular grid with a variable number of axes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #7 | Sequential Modeling</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml07--sequential-models/</link>
+      <pubDate>Fri, 22 Mar 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml07--sequential-models/</guid>
+      <description>&lt;!-- todo
+unidirectional
+bidirectional --&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;one to one : Vanilla mode of processing without RNN, from fixed sized input to fixed-sized output&lt;/li&gt;
+&lt;li&gt;one to many : Sequence output (e.g. image captioning)&lt;/li&gt;
+&lt;li&gt;many to one : Sequence input (e.g. sentiment analysis)&lt;/li&gt;
+&lt;li&gt;many to many : Sequence input and sequence output (e.g. Machine Translation)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- - Speech Recognition
+- Language Modeling
+- Translation
+- Image captioning --&gt;
+&lt;br&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34; /figures/2020-03-22-fig1.png &#34;&gt;
+&lt;/p&gt;
+&lt;center&gt;Figure 1. Overview of Sequence Processing&lt;/center&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;1-recurrent-neural-networks&#34;&gt;1. Recurrent Neural Networks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Imagine you want to classify what kind of action is happening at every point in a movie. It&amp;rsquo;s unclear how traditional neural nets could use its reasoning about previous events in the film to predict later ones.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to set up an NFS mount on Ubuntu 16.04</title>
+      <link>http://localhost:1313/__draft/misc/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</link>
+      <pubDate>Thu, 21 Mar 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/how-to-set-up-an-nfs-mount-on-ubuntu-16.04/</guid>
+      <description>&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NFS, Network File System, is a distributed file system protocol that allows you to mount remote directories on your server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In situation that you have big data in PC-1 and need to process them with PC-2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-methods&#34;&gt;2. Methods&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;On the host (192.168.205.183)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install nfs-kernel-server
+$ sudo apt update
+$ sudo apt install nfs-kernel-server
+
+# configure the NFS Exports on the Host Server
+$ sudo vi /etc/exports
+# add line in this format : directory_to_share client(share_option1, ... )
+# ex) mnt/HW1 192.168.205.0(rw,sync,no_subtree_check)
+
+$ sudo systemctl restart nfs-kernel-server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On the client (192.168.205.184)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch6/</link>
+      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;61-introduction&#34;&gt;6.1 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;62-parametric-and-nonparametric-models&#34;&gt;6.2 Parametric and Nonparametric Models&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A &lt;strong&gt;statistical model $\Im$&lt;/strong&gt; is a set of distributions (or densities or regression functions)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Parametric model&lt;/strong&gt; : is a set of $\Im$ that can be parameterized by a finite number of parameters&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #5 | Convergence of Random Variable </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch5/</link>
+      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
+      <description>&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;51-introduction&#34;&gt;5.1 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;52-types-of-convergence&#34;&gt;5.2 Types of Convergence&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;$X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #4 | Probability Inequalities </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch4/</link>
+      <pubDate>Tue, 29 Jan 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch4/</guid>
+      <description>&lt;h2 id=&#34;41-probability-inequalities&#34;&gt;4.1 Probability Inequalities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Inequalities are useful for bounding quantities that might otherwise be hard to compute.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Markov&amp;rsquo;s inequality&lt;/strong&gt; : Let $X$ be a non-negative random variable and suppose that $\mathbb{E}(X)$ exists. For any $t&amp;gt;0$,&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$\mathbb{P}(X&amp;gt;t) \leq \frac{\mathbb{E}(X)}{t}$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chebyshev&amp;rsquo;s inequality&lt;/strong&gt; : Let $\mu = \mathbb{E}(X)$ and $\sigma^2 = \mathbb{V}(X)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbb{P}(| X-\mu| \geq t) \leq \frac{\sigma^2}{t^2} \ \text{and} \mathbb{P}(|Z| \geq k) \leq \frac{1}{k^2}$$&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;inequalities-for-expectations&#34;&gt;Inequalities for Expectations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cauch-Schwartz inequality&lt;/strong&gt; : If $X$ and $Y$ have finite variances then&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbb{E} |XY| \leq \sqrt{\mathbb{E}(X^2) \mathbb{E}(Y^2)}  $$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #3 | Expectation </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch3/</link>
+      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;31-expectation-of-a-random-variable&#34;&gt;3.1 Expectation of a Random Variable&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;expected value&lt;/strong&gt;, or &lt;strong&gt;mean&lt;/strong&gt;, or &lt;strong&gt;first moment&lt;/strong&gt; of $X$ is defined to be&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$&lt;/p&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;33-variance-and-covariance&#34;&gt;3.3 Variance and Covariance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The variance measures the spread of a distribution&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #2 | Random Variables </title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch2/</link>
+      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;21-introduction&#34;&gt;2.1 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;How do we link sample spaces and events to data? Random Variable!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A &lt;strong&gt;random variable&lt;/strong&gt; is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;22-distribuition-functions-and-probability-functions&#34;&gt;2.2 Distribuition Functions and Probability Functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cumulative Distribution Function (CDF)&lt;/strong&gt; : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$F_X(x) = \mathbb{P}(X \leq x)$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Probability Mass Function&lt;/strong&gt; : A Random Variable $X$ is &lt;strong&gt;discrete&lt;/strong&gt; if it takes countably many values ${x_1, x_2, &amp;hellip;}$. We define &lt;strong&gt;probability mass function&lt;/strong&gt; for $X$ by&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$f_X(x) = \mathbb{P}(X=x).$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Statistics #1 | Probability</title>
+      <link>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch1/</link>
+      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;11-introduction&#34;&gt;1.1 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Probability is a mathematical language for quantifying uncertatinty&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-sample-spaces-and-events&#34;&gt;1.2 Sample Spaces and Events&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Sample Space $\Omega$ : is the set of possible outcomes of an experiment&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Events : Subsets of Ω are called Events&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-probability&#34;&gt;1.3 Probability&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;14-probability-on-finite-sample-spaces&#34;&gt;1.4 Probability on Finite Sample Spaces&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;If $\Omega$ is finite and if each outcome is equally likely, then, the &lt;strong&gt;uniform probability distribution&lt;/strong&gt; is&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$ \mathbb{P} = \frac{|A|}{| \Omega |}$$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyTorch</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pytorch/</link>
+      <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pytorch/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Dataset&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Data loader&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Model&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Train&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Data Parallelism&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-dataset&#34;&gt;1. Dataset&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import torch.utils.data as data_utl
+
+class Dataset(data_utl.Dataset):
+    def __init_(self):
+        # Read data and preprocess input features with labels
+        self.features = []
+        self.labels = []
+
+    def __len__(self):
+        return len(self.labels)
+
+    def __getitem__(self, idx):
+        return self.features[idx], self.labels[idx]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-dataloader&#34;&gt;2. DataLoader&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create Dataset using torch.utils.data.Dataset
+dataset = dataset.Dataset()
+# Split Dataset into train and validation set
+num_train = int(len(dataset) * 0.9)
+train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train])
+# train_loader, val_loader
+batch_size = 192 * torch.cuda.device_count() # batch will be divided by the number of gpus 
+train_loader = DataLoader(train_set, batch_size, shuffle=True)
+val_loader = DataLoader(val_set, batch_size, shuffle=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-model&#34;&gt;3. Model&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple Linear Classifier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import torch.nn as nn
+import torch.nn.functional as F
+
+class Classifier(nn.Module):
+    def __init__(self, num_classes):
+        super(SenBert_Classifier, self).__init__()
+        self.fc1 = nn.Linear(256, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(128, 64)
+        self.fc4 = nn.Linear(64, 32)
+        self.fc5 = nn.Linear(32, num_classes)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.relu(self.fc3(x))
+        x = F.relu(self.fc4(x))
+        x = self.fc5(x)
+        return x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-train&#34;&gt;4. Train&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;device = &amp;quot;cuda&amp;quot;
+
+# Setup Model
+model = senbcls.SenBert_Classifier(num_classes=len(config.CATEGORY_PRED1))
+if torch.cuda.device_count() &amp;gt; 1:
+    model = torch.nn.DataParallel(model)
+model.to(device)
+model.train()
+
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
+for epoch in range(config.TRAIN_EPOCHS):
+    # train model
+    start = time.time()
+    for step, batch in enumerate(train_loader):
+        inputs, labels = batch 
+        inputs, labels = inputs.to(device), labels.to(device)
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-data-parallelism&#34;&gt;5. Data Parallelism&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;nn.DataParallel&lt;/code&gt; : You can simply use multiple gpus with &lt;code&gt;nn.DataParallel&lt;/code&gt; that processes followings :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Git</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--git/</link>
+      <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--git/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pull Request Summary&lt;/strong&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Fork repo to your own repo (if you don&amp;rsquo;t have repo authority)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;clone, set remote&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Generate branch&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git checkout -b &amp;lt;feature/issue_number&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add, Commit, Push&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pull Request&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Code Review&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Merge&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Squash and Merge : squash multiple commits into a new commit&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Rebase and Merge : multiple commits will be merged&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fetch upstream&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Fetch upstream in local master branch&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Conventional Models</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml06--conventional-models/</link>
+      <pubDate>Fri, 22 Jun 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml06--conventional-models/</guid>
+      <description>&lt;h2 id=&#34;1-k-nearest-neighbors&#34;&gt;1. K-Nearest Neighbors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : a method that predicts a given data based on the nearest K neigbors in existing data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors ,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;40%&#34; align=&#34;center&#34; src=&#34;http://localhost:1313/figures/2018-06-22-fig1.png&#34;&gt;
+&lt;/p&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-linear-regression&#34;&gt;2. Linear Regression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Linear regression attempts to model the relationship between two variables by fitting a linear equation to observed data.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

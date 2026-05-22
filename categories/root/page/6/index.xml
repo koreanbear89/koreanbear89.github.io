@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ROOT on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/root/</link>
+    <description>Recent content in ROOT on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Aug 2022 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/root/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CS09 | Parallel Computing</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--parallel-computing/</link>
+      <pubDate>Sun, 20 Mar 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--parallel-computing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Parallel/Distributed Computing, Big Data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;mapreduce-simplified-data-processing-on-large-clusters-google-2004&#34;&gt;&lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/ko//archive/mapreduce-osdi04.pdf&#34;&gt;MapReduce: Simplified Data Processing on Large Clusters (Google, 2004)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;we designed a new abstraction thatallows us to express the simple computations we were trying to perform but hides the messy details of parallelization, fault-tolerance, data distribution and load balancing in a library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MapReduce, a programming model and an associated implementation for processing and generating large datasets.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Map function : processes a key/value pair to generate a set of intermediate key/value pairs, and a&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #3 | Analytic Geometry </title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml03--analytic-geometry/</link>
+      <pubDate>Mon, 28 Feb 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml03--analytic-geometry/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;3-analytic-geometry&#34;&gt;3. Analytic Geometry&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In Chapter 2, we studied vectors, vector spaces, and linear mappings at a general but abstract level.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In this chapter, we will add some geometric interpretation and intuition to all of these concepts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In particular, we will look at geometric vectors and compute their lengths and distances or angles between two vectors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;31-norms&#34;&gt;3.1 Norms&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Norm : A norm on a vector space $V$ is a function, which assigns each vector $x$ its length $‖x‖ ∈R$&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #2 | Linear Algebra </title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/</link>
+      <pubDate>Fri, 28 Jan 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml02--linear-algebra/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;2-linear-algebra&#34;&gt;2. Linear Algebra&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Linear algebra is the study of vectors and certain algebra rules to manipulate vectors.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In general, vectors are special objects that can be &lt;strong&gt;(1) added together&lt;/strong&gt; and &lt;strong&gt;(2) multiplied by scalars&lt;/strong&gt; to produce another object of the same kind.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From an abstract mathematical viewpoint, any object that satisfies these two properties can be considered a vector&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Geometric vectors : may be familiar from highschool mathematics and physic&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CS | Operating System</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--operating-system/</link>
+      <pubDate>Tue, 14 Dec 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--operating-system/</guid>
+      <description>&lt;h3&gt;&lt;/h3&gt;
+&lt;h2 id=&#34;1-central-processing-unit&#34;&gt;1. Central Processing Unit&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CPU / Processor : 보통 CPU 와 Processor 는 같은 의미로 사용됨&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Core :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU를 내부에서 물리적으로 분할&lt;/li&gt;
+&lt;li&gt;과거 1CPU = 1Core 인 시절에는 의미상 구분이 필요 없었으나&lt;/li&gt;
+&lt;li&gt;최근에는 CPU 하나당 2,4개의 코어로 구성되어 1-Core CPU 대비 물리적으로 N개의 일을 동시에 처리할 수 있게됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thread&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #12 | Reinforcement Learning</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml12--reinforcement-learning/</link>
+      <pubDate>Tue, 07 Dec 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml12--reinforcement-learning/</guid>
+      <description>&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Problem Definition. The goal in RL is to select a policy which maximizes &lt;strong&gt;expected return&lt;/strong&gt; when the agent acts according to it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Taxonomy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model Based RL&lt;/li&gt;
+&lt;li&gt;Model Free RL
+&lt;ul&gt;
+&lt;li&gt;Q-Learning
+&lt;ul&gt;
+&lt;li&gt;DQN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Policy Optimization
+&lt;ul&gt;
+&lt;li&gt;Vanilla Policy Gradient (VPG, REINFORCE)&lt;/li&gt;
+&lt;li&gt;Trust Region Policy Optimization (TRPO)&lt;/li&gt;
+&lt;li&gt;Proximal Policy Optimization (PPO)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Terminologies&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Agent, Actor&lt;/strong&gt; : main character being trained is in the environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Environemt&lt;/strong&gt; : is the world that the agent lives in and interacts with.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #11 | Multimodal Representation</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml11--multimodal-representation/</link>
+      <pubDate>Tue, 07 Dec 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml11--multimodal-representation/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;clip--learing-transferable-visual-models&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2103.00020&#34;&gt;CLIP : Learing Transferable Visual Models&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction
+&lt;ul&gt;
+&lt;li&gt;Traditional CV-DL models are trained to predict a fixed set of pre-determined object categories =&amp;gt; limits their generality and usability since additional labeled data is needed to specify any other visual concept.&lt;/li&gt;
+&lt;li&gt;Learning directly from raw text about images is a promising alternative which leverages a much broader source of supervision.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods
+&lt;ol&gt;
+&lt;li&gt;Extract feature representations of each modality (image, text)&lt;/li&gt;
+&lt;li&gt;Joint multi-modal embedding&lt;/li&gt;
+&lt;li&gt;Scaled pair-wise cosine similarities&lt;/li&gt;
+&lt;li&gt;Symmetric loss function&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion
+&lt;ul&gt;
+&lt;li&gt;We have investigated whether it is possible to transfer the success of task-agnostic web-scale pre-training in NLP to another domain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reference
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=T9XSU0pKX2E&#34;&gt;OpenAI CLIP: ConnectingText and Images (Paper Explained) - YouTube&lt;/a&gt; , [14:40~]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;CLIP 은 pretrain 방법의 하나로 NLP 분야에서 BERT 등이 자연어로 pretrain 하여 성능을 대폭 향상시킨 방식으로부터 insight를 얻음&lt;/li&gt;
+&lt;li&gt;이미지+자연어 데이터셋으로 특정 이미지의 feature $I_f$ 와 대응되는 텍스트의 feature $T_f$ 의 inner product $I_f \cdot T_f$ 가 최대가 되도록 미리 학습해둔뒤
+&lt;ul&gt;
+&lt;li&gt;Inference 할 떄는 추가적인 fine-tuning 없이 test-set의 label들 중에 Inner product가 최대가 되는 label을 선택&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# extract feature representations of each modality
+I_f = image_encoder(I) #[n, d_i]
+T_f = text_encoder(T)  #[n, d_t]
+
+# Joint multimodal embedding [n, d_e]
+    # 아래의 inner-product가 최대가 되도록 W_i, W_t를 학습  
+I_e = np.dot(I_f, W_i) 
+T_e = np.dot(T_f, W_t)
+
+# Scaled pairwise cosine similarities [n,n]
+logits = np.dot(I_e, T_e.T)
+
+# Symmetric loss function
+loss_i = cross_entropy(Logits, labels, axis=0)
+loss_t = cross_entropy(logits, labels, axis=1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;a-local-to-global-approach-to-multi-modal-movie-scene-segmentation&#34;&gt;&lt;a href=&#34;https://anyirao.com/files/papers/cvpr2020scene.pdf&#34;&gt;A Local-to-Global Approach to Multi-modal Movie Scene Segmentation&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : Recognizing the movie scenes, including &lt;strong&gt;the detection of scene boundaries&lt;/strong&gt; and &lt;strong&gt;the understanding of the scene content&lt;/strong&gt;, facilitates a wide-range of movie understanding tasks such as &lt;strong&gt;scene classification&lt;/strong&gt;, &lt;strong&gt;cross movie scene retrieval&lt;/strong&gt;, &lt;strong&gt;human interaction graph&lt;/strong&gt; and &lt;strong&gt;human-centric storyline construction&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Django</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--django/</link>
+      <pubDate>Wed, 01 Dec 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--django/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;django&#34;&gt;Django&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# set Django project with config folder 
+django-admin startproject config .
+
+# start Django Server
+python manage.py runserver 127.0.0.1:8080
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell | Overview</title>
+      <link>http://localhost:1313/language/misc/shelloverview/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/shelloverview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;#!&amp;rdquo;, defines shell to run script like &lt;code&gt;#!/bin/sh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -al /bin/sh
+lrwxrwxrwx 1 root root 4  6M 30 19:44 /bin/sh -&amp;gt; dash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;operators&#34;&gt;Operators&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&lt;/code&gt; : input redirection, to redirect the input given&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; : output redirection,  overwriting an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; : output redirection, appends an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;for-loop&#34;&gt;For loop&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;for i in (seq 0 2 10) ; do
+    echo &amp;quot;Running loop seq &amp;quot;$i # 0, 2, 4, 6, 8, 10
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;special-characters&#34;&gt;Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~&lt;/code&gt; : Home Directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; : allocate value of variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; : for running background task&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt; : annotation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; : wild card&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; : wild card , single character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; : generalize next character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(&lt;/code&gt; : start child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;)&lt;/code&gt; : finish child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!&lt;/code&gt; : NOT&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;;&lt;/code&gt; : separate shell command&lt;/li&gt;
+&lt;li&gt;``cmd` : reverse quotes, run command in command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; : use pipe command output as input of other command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[&lt;/code&gt; : start string set&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;]&lt;/code&gt; : finish string set ( #ls [ a-d]*.sh )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;arithmetic-expression&#34;&gt;Arithmetic Expression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;POSIX shell uses the &lt;code&gt;$(( ))&lt;/code&gt; syntax to do arithmetic&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #12 | The Future of Data Systems</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-12/</link>
+      <pubDate>Tue, 26 Oct 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-12/</guid>
+      <description>&lt;h4&gt;&lt;/h4&gt;
+&lt;h2 id=&#34;the-future-of-data-systems&#34;&gt;The Future of Data Systems&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In this final chapter,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;we will shift our perspective toward the future and discuss how things should be:&lt;/li&gt;
+&lt;li&gt;propose some ideas and approaches that may fundamentally improve the ways we design and build applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The goal of this book was outlined in Chapter 1 : to explore how to create applications and systems that are reliable, scalable, and maintainable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In this chapter we will bring all of these ideas together, and build on them to envisage the future.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #8 | The trouble with distributed system</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-08/</link>
+      <pubDate>Tue, 26 Oct 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-08/</guid>
+      <description>&lt;h2&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;80-introduction&#34;&gt;8.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In the last few chapters =&amp;gt; how systems handle things going wrong&lt;/li&gt;
+&lt;li&gt;However, even though we have talked a lot about faults, the last few chapters have still been too &lt;strong&gt;optimistic&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;The reality is &lt;strong&gt;even darker&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;we will now turn our &lt;strong&gt;pessimism&lt;/strong&gt; to the maximum and assume that anything that can go wrong will go wrong&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In this chapter
+&lt;ul&gt;
+&lt;li&gt;we will get a taste of the problems that arise in practice&lt;/li&gt;
+&lt;li&gt;and understanding of the things we can and cannot rely on&lt;/li&gt;
+&lt;li&gt;we must understand what challenges we are up against&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Next chapter,
+&lt;ul&gt;
+&lt;li&gt;In spite of everthing going wrong, our task as engineers is to build systems that do their job (i.e, meet the guarantees that users are expecting)&lt;/li&gt;
+&lt;li&gt;We will look at some examples of algorithms that can provide such guarantees in a distributed systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--jupyter/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-setup-jupyter-lab&#34;&gt;1. Setup Jupyter-Lab&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ conda install -c conda-forge jupyter jupyterlab nbconvert
+
+# nodejs&amp;gt;12.0.0 needed
+$ conda install -c conda-forge nodejs
+$ conda install -c conda-forge/label/gcc7 nodejs
+$ conda install -c conda-forge/label/cf201901 nodejs
+$ conda install -c conda-forge/label/cf202003 nodejs # v13.10
+$ conda update nodejs # v16.13 
+
+# if above not workconda uninstall --force nodejs
+$ conda uninstall --force nodejs # remove all
+$ conda install nodejs -c conda-forge --repodata-fn=repodata.json
+$ pip install jupyterlab-unfold 
+
+# theme
+$ pip install theme-darcular # do not need new node version
+$ conda install -c conda-forge theme-darcula
+$ jupyter labextension install @arbennett/base16-nord # theme
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;add-conda-environment-to-jupyter&#34;&gt;Add conda environment to jupyter&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create conda environment
+$ conda create --name &amp;quot;myenv&amp;quot; python=3.6
+
+# Activate environment
+$ conda activate &amp;quot;myenv&amp;quot;
+
+# You need to create kernel for &amp;quot;myenv&amp;quot; to be used in jupyter notebook
+$ conda install ipykernel
+$ python -m ipykernel install --user --name &#39;myenv&#39; --display-name &amp;quot;myenv(3.6)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #4 | Encoding And Evolution</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-04/</link>
+      <pubDate>Tue, 28 Sep 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-04/</guid>
+      <description>&lt;h2 id=&#34;40-introduction&#34;&gt;4.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Applications &lt;strong&gt;inevitably change over time.&lt;/strong&gt; (Features are added or modified as new products are launched)&lt;/li&gt;
+&lt;li&gt;A change to an app&amp;rsquo;s features also requires &lt;strong&gt;a change to data&lt;/strong&gt; that it stores.&lt;/li&gt;
+&lt;li&gt;This means that old and new versions of the code, and old and new data formats may potentially &lt;strong&gt;all coexists&lt;/strong&gt; in the system at the same time.
+&lt;ul&gt;
+&lt;li&gt;Backward Compatibility : Newer code can read data written by older code =&amp;gt; &lt;strong&gt;Easy&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Forward Compatibility : Older code can read data written by newer code =&amp;gt; &lt;strong&gt;can be tricker&lt;/strong&gt; =&amp;gt; requires older code to ignore additions made by newer code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In this chapter,
+&lt;ul&gt;
+&lt;li&gt;We will look at several formats for encoding data&lt;/li&gt;
+&lt;li&gt;We will then discuss how those formats are used for data storage and for communication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #3 | Storage and Retrieval</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-03/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-03/</guid>
+      <description>&lt;h2 id=&#34;30-storage-and-retrieval&#34;&gt;3.0 Storage and Retrieval&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;색인의 방식에 따라 다음 두가지로 나뉨&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;log structured storage engine&lt;/li&gt;
+&lt;li&gt;Page-oriented storage engine&lt;/li&gt;
+&lt;li&gt;Other indexing structures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;31-data-structures-that-power-your-database&#34;&gt;3.1 Data Structures That Power your Database&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;db_set&lt;/li&gt;
+&lt;li&gt;Db_get : full table scan O(n) =&amp;gt;  색인의 필요성&lt;/li&gt;
+&lt;li&gt;색인 (index)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3.1.1 Hash Indexes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;conventional 한 느낌?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3.1.2 Log Structured Storage Engine : SSTables and LSM-Trees&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #2 | Data Models and Query Languages</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-02/</link>
+      <pubDate>Sun, 26 Sep 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-02/</guid>
+      <description>&lt;h2 id=&#34;20-introduction&#34;&gt;2.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In this chapter we will look at a. ange of. Eneral-purpose data models for data storage and querying
+&lt;ul&gt;
+&lt;li&gt;relational data model&lt;/li&gt;
+&lt;li&gt;document data model&lt;/li&gt;
+&lt;li&gt;Graph-based data models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;21-relational-model-sql-vs-document-model-nosql&#34;&gt;2.1 Relational Model (SQL) vs Document Model (NoSQL)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;SQL : based on the relational model, data is organized into relations (called tables in SQL) where each relation is an unordered collection of tuples&lt;/li&gt;
+&lt;li&gt;DBMS : Database management systems : mySQL, postgreSQL, etc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;211-the-birth-of-nosql&#34;&gt;2.1.1 The Birth of NoSQL&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NoSQL (Not only SQL) is the latest attempt to overthrow the relational model&amp;rsquo;s dominance since 2010s.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Intensive App #1 | Reliable, Scalable, Maintainable Applications</title>
+      <link>http://localhost:1313/__draft/9.-study/data-intensive-app-01/</link>
+      <pubDate>Sat, 25 Sep 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/data-intensive-app-01/</guid>
+      <description>&lt;h2 id=&#34;10-introduction&#34;&gt;1.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Data-intensive (vs compute-intensive) : raw CPU power is out of interest, bigger problems are usually the amount of data, the complexity of data, and the speed at which it is changing
+&lt;ul&gt;
+&lt;li&gt;Database : store data so that they, or another application, can find it again later&lt;/li&gt;
+&lt;li&gt;Caches : Remember the result of an expensive operation, to speed up reads&lt;/li&gt;
+&lt;li&gt;Search Indexes : Allow users to search data by keyword or filter it in various ways&lt;/li&gt;
+&lt;li&gt;Stream Processing : Send a message to another process, to be handled asynchronously&lt;/li&gt;
+&lt;li&gt;Batch Processing: Periodically crunch a large amount of accumulated data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34;http://localhost:1313/figures/2021-09-27-fig1.png &#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dev Rules</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--dev-rules/</link>
+      <pubDate>Wed, 01 Sep 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--dev-rules/</guid>
+      <description>&lt;h2 id=&#34;semantic-versioning&#34;&gt;Semantic Versioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ver 4.2.1 = Major.Minor.Patch&lt;/li&gt;
+&lt;li&gt;Major :  기존 api가 변경 / 삭제 되었기 때문에 update 하면 동작하지 않을 수 있다는 경고의 의미&lt;/li&gt;
+&lt;li&gt;Minor : 이전 버전과 호환되는 방식으로 API가 추가되었으니 살펴보라는 의미&lt;/li&gt;
+&lt;li&gt;Patch : 이전 버전과 호환되는 버그 수정을 했을 경우&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Backend Tools #1 | Message Queue</title>
+      <link>http://localhost:1313/__draft/misc/backend-tools--message-queue/</link>
+      <pubDate>Tue, 31 Aug 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/backend-tools--message-queue/</guid>
+      <description>&lt;h2 id=&#34;apache-kafka&#34;&gt;Apache Kafka&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : kafka는 publish-subscribe 모델의 메시지큐, 분산환경에 특화, 아래 네가지 요소로 구성되어있음
+&lt;ul&gt;
+&lt;li&gt;Event (Message) : 이벤트는 Kafka 에서 producer / consumer 가 메시지를 주고받는 단위&lt;/li&gt;
+&lt;li&gt;Producer : Kafka에 이벤트를 post하는 클라이언트 어플리케이션&lt;/li&gt;
+&lt;li&gt;Consumer : Topic을 구독하고 이로부터 얻어낸 이벤트를 처리하는 클라이언트 어플리케이션&lt;/li&gt;
+&lt;li&gt;Topic : Producer는 아 Topic에 event를 게시, Consumer는 Topic으로부터 이벤트를 가져와 처리, Topic은 폴더 이벤트는 폴더안의 파일과 유사한 느낌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Backend Tools #1 | Message Queue</title>
+      <link>http://localhost:1313/__draft/misc/how-to-serve-multiple-dl-models/</link>
+      <pubDate>Tue, 31 Aug 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/how-to-serve-multiple-dl-models/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Goal : 사용자로부터 요청을 받으면 (영상) 이 요청을 DL 모델로 돌려서 (Flask) 다시 사용자에게 return 해주는 API를 만들고 싶다.
+&lt;ul&gt;
+&lt;li&gt;Flask 내부의 web server인 Werkzeug 는 없다고 생각하고 gunicorn을 붙여서 써야함&lt;/li&gt;
+&lt;li&gt;이 과정에서 속도는 빨라지지 않는데 멀티프로세스를 쓰면 메모리가 늘어남  =&amp;gt; gpu 연산 과정에서 발생한 결과물이 gpu ram에 남아있어서 그럼,  torch.cuda.empty_cache() 해주면 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Tools
+&lt;ul&gt;
+&lt;li&gt;Flask / FastAPI : python web framework로 web app을 작성하는 용도로 사용&lt;/li&gt;
+&lt;li&gt;Gunicorn : web framework으로 작성된 application을 서빙하는 용도&lt;/li&gt;
+&lt;li&gt;Nginx : load-balancing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Flow Overview
+&lt;ul&gt;
+&lt;li&gt;Client Request =&amp;gt; gunicorn&lt;/li&gt;
+&lt;li&gt;gunicorn =&amp;gt; Flask&lt;/li&gt;
+&lt;li&gt;DL model Prediction (Flask, web application framework)  8workers/gpu&lt;/li&gt;
+&lt;li&gt;Flask =&amp;gt; gunicorn&lt;/li&gt;
+&lt;li&gt;gunicorn =&amp;gt; Client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TODO : gunicorn 서버가  20035~20039까지 5개 떠 있고 각각이 8개의 worker를 쓰고 있으면 총 40개의 DL 모델이 떠있는셈인데&lt;/li&gt;
+&lt;li&gt;이 때 client는 각각의 서버에 알아서 요청을 나눠 보내야한다, 이를 묶어서 처리할 수 있는 방법이 필요한데 이런걸 gateway라고 하는듯&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Regex | Overview</title>
+      <link>http://localhost:1313/language/misc/regexoverview/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/regexoverview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;reference. &lt;a href=&#34;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&#34;&gt;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# including kor/eng/num/-
+&amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-special-characters&#34;&gt;1. Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;^&lt;/code&gt; | Matches the expression to its right at the start of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; | Matches the expression to its left at the end of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; | Matches any character except line terminators like &lt;code&gt;\n&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; | Escapes special characters or denotes character classes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A|B&lt;/code&gt; | Matches expression &lt;code&gt;A&lt;/code&gt; or &lt;code&gt;B&lt;/code&gt;. If &lt;code&gt;A&lt;/code&gt; is matched first, &lt;code&gt;B&lt;/code&gt; is left untried&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; | Greedily matches the expression to its left 1 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; | Greedily matches the expression to its left 0 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; | Greedily matches the expression to its left 0 or 1 times. But if &lt;code&gt;?&lt;/code&gt; is added to qualifiers (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;?&lt;/code&gt; itself) it will perform matches in a non-greedy manner&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and not less&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; to &lt;code&gt;n&lt;/code&gt; times, and not less.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}?&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and ignores &lt;code&gt;n&lt;/code&gt;. See &lt;code&gt;?&lt;/code&gt; above.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-character-classes-aka-special-sequences&#34;&gt;2. Character Classes (a.k.a. Special Sequences)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\w&lt;/code&gt; | Matches alphanumeric characters, which means &lt;code&gt;a-z&lt;/code&gt;, &lt;code&gt;A-Z&lt;/code&gt;, and &lt;code&gt;0-9&lt;/code&gt;. It also matches the underscore, &lt;code&gt;_&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\d&lt;/code&gt; | Matches digits, which means &lt;code&gt;0-9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\D&lt;/code&gt; | Matches any non-digits.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\s&lt;/code&gt; | Matches whitespace characters, which include the &lt;code&gt;\t&lt;/code&gt;, &lt;code&gt;\n&lt;/code&gt;, &lt;code&gt;\r&lt;/code&gt;, and space characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\S&lt;/code&gt; | Matches non-whitespace characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\b&lt;/code&gt; | Matches the boundary (or empty string) at the start and end of a word, that is, between &lt;code&gt;\w&lt;/code&gt; and &lt;code&gt;\W&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\B&lt;/code&gt; | Matches where &lt;code&gt;\b&lt;/code&gt; does not, that is, the boundary of &lt;code&gt;\w&lt;/code&gt; characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\A&lt;/code&gt; | Matches the expression to its right at the absolute start of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\Z&lt;/code&gt; | Matches the expression to its left at the absolute end of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sets&#34;&gt;3. Sets&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[ ]&lt;/code&gt; | Contains a set of characters to match.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[amk]&lt;/code&gt; | Matches either &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt;, or &lt;code&gt;k&lt;/code&gt;. It does not match &lt;code&gt;amk&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z]&lt;/code&gt; | Matches any alphabet from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a\-z]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, or &lt;code&gt;z&lt;/code&gt;. It matches &lt;code&gt;-&lt;/code&gt; because &lt;code&gt;\&lt;/code&gt; escapes it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;, because &lt;code&gt;-&lt;/code&gt; is not being used to indicate a series of characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[-a]&lt;/code&gt; | As above, matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z0-9]&lt;/code&gt; | Matches characters from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt; and also from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[(+*)]&lt;/code&gt; | Special characters become literal inside a set, so this matches &lt;code&gt;(&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[^ab5]&lt;/code&gt; | Adding &lt;code&gt;^&lt;/code&gt; excludes any character in the set. Here, it matches characters that are not &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, or &lt;code&gt;5&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-groups&#34;&gt;4. Groups&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;( )&lt;/code&gt; | Matches the expression inside the parentheses and groups it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(? )&lt;/code&gt; | Inside parentheses like this, &lt;code&gt;?&lt;/code&gt; acts as an extension notation. Its meaning depends on the character immediately to its right.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?PAB)&lt;/code&gt; | Matches the expression &lt;code&gt;AB&lt;/code&gt;, and it can be accessed with the group name.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?aiLmsux)&lt;/code&gt; | Here, &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;L&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt;, &lt;code&gt;s&lt;/code&gt;, &lt;code&gt;u&lt;/code&gt;, and &lt;code&gt;x&lt;/code&gt; are flags:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;a&lt;/code&gt; — Matches ASCII only&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; — Ignore case&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;L&lt;/code&gt; — Locale dependent&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m&lt;/code&gt; — Multi-line&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s&lt;/code&gt; — Matches all&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;u&lt;/code&gt; — Matches unicode&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; — Verbose&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?:A)&lt;/code&gt; | Matches the expression as represented by &lt;code&gt;A&lt;/code&gt;, but unlike &lt;code&gt;(?PAB)&lt;/code&gt;, it cannot be retrieved afterwards.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?#...)&lt;/code&gt; | A comment. Contents are for us to read, not for matching.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A(?=B)&lt;/code&gt; | Lookahead assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if it is followed by &lt;code&gt;B&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A(?!B)&lt;/code&gt; | Negative lookahead assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if it is not followed by &lt;code&gt;B&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;=B)A&lt;/code&gt; | Positive lookbehind assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if &lt;code&gt;B&lt;/code&gt; is immediately to its left. This can only matched fixed length expressions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;!B)A&lt;/code&gt; | Negative lookbehind assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if &lt;code&gt;B&lt;/code&gt; is not immediately to its left. This can only matched fixed length expressions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?P=name)&lt;/code&gt; | Matches the expression matched by an earlier group named “name”.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(...)\1&lt;/code&gt; | The number &lt;code&gt;1&lt;/code&gt; corresponds to the first group to be matched. If we want to match more instances of the same expresion, simply use its number instead of writing out the whole expression again. We can use from &lt;code&gt;1&lt;/code&gt; up to &lt;code&gt;99&lt;/code&gt; such groups and their corresponding numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-popular-python-re-module-functions&#34;&gt;5. Popular Python &lt;code&gt;re&lt;/code&gt; Module Functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;re.findall(A, B)&lt;/code&gt; | Matches all instances of an expression &lt;code&gt;A&lt;/code&gt; in a string &lt;code&gt;B&lt;/code&gt; and returns them in a list.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.search(A, B)&lt;/code&gt; | Matches the first instance of an expression &lt;code&gt;A&lt;/code&gt; in a string &lt;code&gt;B&lt;/code&gt;, and returns it as a re match object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.split(A, B)&lt;/code&gt; | Split a string B into a list using the delimiter &lt;code&gt;A&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.sub(A, B, C)&lt;/code&gt; | Replace &lt;code&gt;A&lt;/code&gt; with &lt;code&gt;B&lt;/code&gt; in the string &lt;code&gt;C&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #10 | Learning</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml10--learning/</link>
+      <pubDate>Sun, 01 Aug 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml10--learning/</guid>
+      <description>&lt;h2&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Supervised&lt;/li&gt;
+&lt;li&gt;Semi-Supervised&lt;/li&gt;
+&lt;li&gt;Unsupervised
+&lt;ul&gt;
+&lt;li&gt;Self-Supervised
+&lt;ul&gt;
+&lt;li&gt;Contrastive Learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;curriculum-learning&#34;&gt;&lt;a href=&#34;https://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf&#34;&gt;Curriculum Learning&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : Humans and animals learn much better when the examples are not randomly presented but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones.&lt;/li&gt;
+&lt;li&gt;Methods : In the context of recent research studying the difficulty of training in the presence of non-convex training criteria (for  deep deterministic and stochastic neural networks), we explore curriculum learning in various set ups.&lt;/li&gt;
+&lt;li&gt;Result : The experiments show that significant improvements in generalization can be achieved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;federated-learning&#34;&gt;&lt;a href=&#34;https://ai.googleblog.com/2017/04/federated-learning-collaborative.html&#34;&gt;Federated Learning&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : Standard ML approaches require centralizing the training data on one machine or in a datacenter. And Google has built one of the most secure and robust cloud infra-structures for processing this data to make our services better.&lt;/li&gt;
+&lt;li&gt;Methods :cl
+&lt;ul&gt;
+&lt;li&gt;your device downloads the current model,&lt;/li&gt;
+&lt;li&gt;improves it by learning from data on your phone, and then summarizes the changes as a small focused update.&lt;/li&gt;
+&lt;li&gt;Only this update to the model is sent to the cloud, using encrypted communication,&lt;/li&gt;
+&lt;li&gt;where it is immediately averaged with other user updates to improve the shared model.&lt;/li&gt;
+&lt;li&gt;All the training data remains on your device, and no individual updates are stored in the cloud.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion : Federated Learning enables mobile phones to collaboratively learn a shared prediction model while keeping all the training data on device, decoupling the ability to do machine learning from the need to store the data in the cloud.&lt;/li&gt;
+&lt;li&gt;Example : Google Keyboard&amp;rsquo;s query suggestion model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;쉽게 생각하면, 의료데이터, 개인정보와 같이 central-server에 모아 학습이 어려운 데이터에 대하여 각자의 장비에서 모델을 학습하고 이렇게 업데이트 된 모델을 다시 central-server로 보내 central-model을 업데이트 하는 방식&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

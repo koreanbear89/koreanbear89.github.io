@@ -1,0 +1,1186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1. Machine Learning on Lab.Koreanbear|한국곰연구소</title>
+    <link>https://koreanbear89.github.io/categories/1.-machine-learning/</link>
+    <description>Recent content in 1. Machine Learning on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Jun 2018 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="https://koreanbear89.github.io/categories/1.-machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | k8s</title>
+      <link>https://koreanbear89.github.io/system-architecture/4.-model-serving/cheatsheet--k8s/</link>
+      <pubDate>Mon, 31 Jul 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/4.-model-serving/cheatsheet--k8s/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes (k8s)  : is an open-source system for automating deployment, scaling, and management of containerized applications&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simply a container orchestration tool like docker swarm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Cluster : set of worker machines (nodes)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nodes : host the Pods that are the components of the application workload&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pod : the smallest deployable units&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pod&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kubectl&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-pod&#34;&gt;1. Pod&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pods : are the smallest deployable units of computing that you can create and manage in Kubernetes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #5 | Classes and Interfaces</title>
+      <link>https://koreanbear89.github.io/language/2.-python/effective-python-05/</link>
+      <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/2.-python/effective-python-05/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They allow you to improve and expand functionality over time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They provide flexibility in an environment of changing requirements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-37-compose-classes-instead-of-nesting-many-levels-of-build-in-types&#34;&gt;Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid &lt;strong&gt;making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #4 | Comprehensions and Generators</title>
+      <link>https://koreanbear89.github.io/language/2.-python/effective-python-04/</link>
+      <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/2.-python/effective-python-04/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-27-use-comprehensions-instead-of-map-and-filter&#34;&gt;Item 27. Use Comprehensions Instead of &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #3 | Functions</title>
+      <link>https://koreanbear89.github.io/language/2.-python/effective-python-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/2.-python/effective-python-03/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Functions in Python have a variety of extra features that make a programmer’s life easier.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some are similar to capabilities in other programming languages, but many are unique to Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;These extras can make a function’s purpose more obvious.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They can eliminate noise and clarify the intention of callers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They can significantly reduce subtle bugs that are difficult to find.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-19-never-unpack-more-than-three-variables-when-functions-return-multiple-values&#34;&gt;Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #2 | Lists and Dictionaries</title>
+      <link>https://koreanbear89.github.io/language/2.-python/effective-python-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/2.-python/effective-python-02/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-11-know-how-to-slice-sequences&#34;&gt;Item 11. Know How to Slice Sequences&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #1 | Pythonic Thinking</title>
+      <link>https://koreanbear89.github.io/language/2.-python/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/2.-python/effective-python-01/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-1-know-which-version-of-python-youre-using&#34;&gt;Item 1. Know Which Version of Python You’re Using&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This book also provides some examples in the syntax of Python 3.8 (released in October 2019)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BE #1 | Network</title>
+      <link>https://koreanbear89.github.io/system-architecture/4.-model-serving/be-%231--network/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/4.-model-serving/be-%231--network/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Protocol (HTTP)&lt;/li&gt;
+&lt;li&gt;API (REST, RPC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-protocol&#34;&gt;1. Protocol&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP (HyperText Transfer Protocol) : functions as a request-response protocol in the client-server model,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Request Methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET, POST, PUT, DELETE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Response Messages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;2xx : successful&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3xx : redirection&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4xx : client error&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5xx : server error&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Other Protocols : MQTT, CoAP (low-level, low-energy protocol)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-api-application-programming-interface&#34;&gt;2. API (Application Programming Interface)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;interface : a connection between two pieces of electronic equipment, or between a person and a computer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VL #01 | Vision Language Pretraining</title>
+      <link>https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks
+&lt;ul&gt;
+&lt;li&gt;Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;clip--learning-transferable-visual-models-from-natural-language-supervision-2021&#34;&gt;CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;introduction :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--glusterfs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GlusterFS : is a Scalable Network Filesystem
+&lt;ul&gt;
+&lt;li&gt;Brick : is the basic unit of storage in GlusterFS,&lt;/li&gt;
+&lt;li&gt;Volume : is a logical collection of bricks.
+&lt;ul&gt;
+&lt;li&gt;Create volume with bricks from several nodes (peer)&lt;/li&gt;
+&lt;li&gt;And mount volume to the specific location to use volume like virtual Storage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;References
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://thenewstack.io/tutorial-create-a-docker-swarm-with-persistent-storage-using-glusterfs/&#34;&gt;Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install GlusterFS on CentOS
+sudo yum install centos-release-gluster
+sudo yum install glusterfs-server
+sudo systemctl start glusterd # start daemon
+sudo systemctl enable glusterd # restart daemon when reboot the machine
+
+# Configure Gluster Volume
+gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer
+gluster pool list # show gluster peers
+
+# Create Volume
+sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines
+sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force  # run only on the master
+# ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force 
+
+# Start Volume
+sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master
+sudo mount.glusterfs localhost:/&amp;lt;VOLUME_NAME&amp;gt; &amp;lt;MOUNT_LOCATION&amp;gt; # run on all machines
+# ex) sudo mount.glusterfs localhost:/gluster_pvs /home1/&amp;lt;USER&amp;gt;/mnt_gluster
+
+# Manage Gluster Volumes
+gluster volume info # show information of volume and bricks 
+gluster volume stop &amp;lt;VOLUME_NAME&amp;gt;
+gluster volume delete &amp;lt;VOLUME_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell | Overview</title>
+      <link>https://koreanbear89.github.io/language/misc/shelloverview/</link>
+      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/misc/shelloverview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;#!&amp;rdquo;, defines shell to run script like &lt;code&gt;#!/bin/sh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -al /bin/sh
+lrwxrwxrwx 1 root root 4  6M 30 19:44 /bin/sh -&amp;gt; dash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;operators&#34;&gt;Operators&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&lt;/code&gt; : input redirection, to redirect the input given&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; : output redirection,  overwriting an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; : output redirection, appends an already existing file or creates a new file if not exist.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;for-loop&#34;&gt;For loop&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;for i in (seq 0 2 10) ; do
+    echo &amp;quot;Running loop seq &amp;quot;$i # 0, 2, 4, 6, 8, 10
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;special-characters&#34;&gt;Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~&lt;/code&gt; : Home Directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; : allocate value of variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; : for running background task&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt; : annotation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; : wild card&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; : wild card , single character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; : generalize next character&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(&lt;/code&gt; : start child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;)&lt;/code&gt; : finish child shell&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!&lt;/code&gt; : NOT&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;;&lt;/code&gt; : separate shell command&lt;/li&gt;
+&lt;li&gt;``cmd` : reverse quotes, run command in command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; : use pipe command output as input of other command&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[&lt;/code&gt; : start string set&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;]&lt;/code&gt; : finish string set ( #ls [ a-d]*.sh )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;arithmetic-expression&#34;&gt;Arithmetic Expression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;POSIX shell uses the &lt;code&gt;$(( ))&lt;/code&gt; syntax to do arithmetic&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Jupyter</title>
+      <link>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--jupyter/</link>
+      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--jupyter/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-setup-jupyter-lab&#34;&gt;1. Setup Jupyter-Lab&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ conda install -c conda-forge jupyter jupyterlab nbconvert
+
+# nodejs&amp;gt;12.0.0 needed
+$ conda install -c conda-forge nodejs
+$ conda install -c conda-forge/label/gcc7 nodejs
+$ conda install -c conda-forge/label/cf201901 nodejs
+$ conda install -c conda-forge/label/cf202003 nodejs # v13.10
+$ conda update nodejs # v16.13 
+
+# if above not workconda uninstall --force nodejs
+$ conda uninstall --force nodejs # remove all
+$ conda install nodejs -c conda-forge --repodata-fn=repodata.json
+$ pip install jupyterlab-unfold 
+
+# theme
+$ pip install theme-darcular # do not need new node version
+$ conda install -c conda-forge theme-darcula
+$ jupyter labextension install @arbennett/base16-nord # theme
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;add-conda-environment-to-jupyter&#34;&gt;Add conda environment to jupyter&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create conda environment
+$ conda create --name &amp;quot;myenv&amp;quot; python=3.6
+
+# Activate environment
+$ conda activate &amp;quot;myenv&amp;quot;
+
+# You need to create kernel for &amp;quot;myenv&amp;quot; to be used in jupyter notebook
+$ conda install ipykernel
+$ python -m ipykernel install --user --name &#39;myenv&#39; --display-name &amp;quot;myenv(3.6)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Regex | Overview</title>
+      <link>https://koreanbear89.github.io/language/misc/regexoverview/</link>
+      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/misc/regexoverview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;reference. &lt;a href=&#34;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&#34;&gt;https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# including kor/eng/num/-
+&amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-special-characters&#34;&gt;1. Special Characters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;^&lt;/code&gt; | Matches the expression to its right at the start of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; | Matches the expression to its left at the end of a string. It matches every such instance before each &lt;code&gt;\n&lt;/code&gt; in the string.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; | Matches any character except line terminators like &lt;code&gt;\n&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\&lt;/code&gt; | Escapes special characters or denotes character classes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A|B&lt;/code&gt; | Matches expression &lt;code&gt;A&lt;/code&gt; or &lt;code&gt;B&lt;/code&gt;. If &lt;code&gt;A&lt;/code&gt; is matched first, &lt;code&gt;B&lt;/code&gt; is left untried&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; | Greedily matches the expression to its left 1 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; | Greedily matches the expression to its left 0 or more times&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; | Greedily matches the expression to its left 0 or 1 times. But if &lt;code&gt;?&lt;/code&gt; is added to qualifiers (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;?&lt;/code&gt; itself) it will perform matches in a non-greedy manner&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and not less&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; to &lt;code&gt;n&lt;/code&gt; times, and not less.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}?&lt;/code&gt; | Matches the expression to its left &lt;code&gt;m&lt;/code&gt; times, and ignores &lt;code&gt;n&lt;/code&gt;. See &lt;code&gt;?&lt;/code&gt; above.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-character-classes-aka-special-sequences&#34;&gt;2. Character Classes (a.k.a. Special Sequences)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\w&lt;/code&gt; | Matches alphanumeric characters, which means &lt;code&gt;a-z&lt;/code&gt;, &lt;code&gt;A-Z&lt;/code&gt;, and &lt;code&gt;0-9&lt;/code&gt;. It also matches the underscore, &lt;code&gt;_&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\d&lt;/code&gt; | Matches digits, which means &lt;code&gt;0-9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\D&lt;/code&gt; | Matches any non-digits.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\s&lt;/code&gt; | Matches whitespace characters, which include the &lt;code&gt;\t&lt;/code&gt;, &lt;code&gt;\n&lt;/code&gt;, &lt;code&gt;\r&lt;/code&gt;, and space characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\S&lt;/code&gt; | Matches non-whitespace characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\b&lt;/code&gt; | Matches the boundary (or empty string) at the start and end of a word, that is, between &lt;code&gt;\w&lt;/code&gt; and &lt;code&gt;\W&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\B&lt;/code&gt; | Matches where &lt;code&gt;\b&lt;/code&gt; does not, that is, the boundary of &lt;code&gt;\w&lt;/code&gt; characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\A&lt;/code&gt; | Matches the expression to its right at the absolute start of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\Z&lt;/code&gt; | Matches the expression to its left at the absolute end of a string whether in single or multi-line mode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sets&#34;&gt;3. Sets&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[ ]&lt;/code&gt; | Contains a set of characters to match.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[amk]&lt;/code&gt; | Matches either &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt;, or &lt;code&gt;k&lt;/code&gt;. It does not match &lt;code&gt;amk&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z]&lt;/code&gt; | Matches any alphabet from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a\-z]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, or &lt;code&gt;z&lt;/code&gt;. It matches &lt;code&gt;-&lt;/code&gt; because &lt;code&gt;\&lt;/code&gt; escapes it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-]&lt;/code&gt; | Matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;, because &lt;code&gt;-&lt;/code&gt; is not being used to indicate a series of characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[-a]&lt;/code&gt; | As above, matches &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z0-9]&lt;/code&gt; | Matches characters from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;z&lt;/code&gt; and also from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;9&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[(+*)]&lt;/code&gt; | Special characters become literal inside a set, so this matches &lt;code&gt;(&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, and &lt;code&gt;)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[^ab5]&lt;/code&gt; | Adding &lt;code&gt;^&lt;/code&gt; excludes any character in the set. Here, it matches characters that are not &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, or &lt;code&gt;5&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-groups&#34;&gt;4. Groups&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;( )&lt;/code&gt; | Matches the expression inside the parentheses and groups it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(? )&lt;/code&gt; | Inside parentheses like this, &lt;code&gt;?&lt;/code&gt; acts as an extension notation. Its meaning depends on the character immediately to its right.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?PAB)&lt;/code&gt; | Matches the expression &lt;code&gt;AB&lt;/code&gt;, and it can be accessed with the group name.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?aiLmsux)&lt;/code&gt; | Here, &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;L&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt;, &lt;code&gt;s&lt;/code&gt;, &lt;code&gt;u&lt;/code&gt;, and &lt;code&gt;x&lt;/code&gt; are flags:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;a&lt;/code&gt; — Matches ASCII only&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; — Ignore case&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;L&lt;/code&gt; — Locale dependent&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m&lt;/code&gt; — Multi-line&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s&lt;/code&gt; — Matches all&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;u&lt;/code&gt; — Matches unicode&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; — Verbose&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?:A)&lt;/code&gt; | Matches the expression as represented by &lt;code&gt;A&lt;/code&gt;, but unlike &lt;code&gt;(?PAB)&lt;/code&gt;, it cannot be retrieved afterwards.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?#...)&lt;/code&gt; | A comment. Contents are for us to read, not for matching.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A(?=B)&lt;/code&gt; | Lookahead assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if it is followed by &lt;code&gt;B&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;A(?!B)&lt;/code&gt; | Negative lookahead assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if it is not followed by &lt;code&gt;B&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;=B)A&lt;/code&gt; | Positive lookbehind assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if &lt;code&gt;B&lt;/code&gt; is immediately to its left. This can only matched fixed length expressions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;!B)A&lt;/code&gt; | Negative lookbehind assertion. This matches the expression &lt;code&gt;A&lt;/code&gt; only if &lt;code&gt;B&lt;/code&gt; is not immediately to its left. This can only matched fixed length expressions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?P=name)&lt;/code&gt; | Matches the expression matched by an earlier group named “name”.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(...)\1&lt;/code&gt; | The number &lt;code&gt;1&lt;/code&gt; corresponds to the first group to be matched. If we want to match more instances of the same expresion, simply use its number instead of writing out the whole expression again. We can use from &lt;code&gt;1&lt;/code&gt; up to &lt;code&gt;99&lt;/code&gt; such groups and their corresponding numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-popular-python-re-module-functions&#34;&gt;5. Popular Python &lt;code&gt;re&lt;/code&gt; Module Functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;re.findall(A, B)&lt;/code&gt; | Matches all instances of an expression &lt;code&gt;A&lt;/code&gt; in a string &lt;code&gt;B&lt;/code&gt; and returns them in a list.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.search(A, B)&lt;/code&gt; | Matches the first instance of an expression &lt;code&gt;A&lt;/code&gt; in a string &lt;code&gt;B&lt;/code&gt;, and returns it as a re match object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.split(A, B)&lt;/code&gt; | Split a string B into a list using the delimiter &lt;code&gt;A&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;re.sub(A, B, C)&lt;/code&gt; | Replace &lt;code&gt;A&lt;/code&gt; with &lt;code&gt;B&lt;/code&gt; in the string &lt;code&gt;C&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--nginx/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nginx : light-weight Web server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reverse Proxy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proxy server : is a server that acts as an intermediary between a client and the server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Load balancing : Proxies distribute requests to a group of servers,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Encryption : Proxies encrypt the data to keep it from being read during transfer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | HTML</title>
+      <link>https://koreanbear89.github.io/language/misc/html--snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/language/misc/html--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;http-request-using-ajax&#34;&gt;HTTP request using ajax&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+  $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;,
+          method : &amp;quot;GET&amp;quot;,
+          datatype : &amp;quot;JSON&amp;quot;})
+  .done(function(data) { alert(&#39;Done&#39;);})
+  .fail(function(xhr, status, error){alert(&#39;Failed&#39;);});
+  });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>https://koreanbear89.github.io/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/about/</guid>
+      <description>&lt;!-- pure/layout/default/about.html 수정 --&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #4 | Write</title>
+      <link>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%234--write/</link>
+      <pubDate>Tue, 15 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%234--write/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;4.1 options&lt;/li&gt;
+&lt;li&gt;4.2 partitioning&lt;/li&gt;
+&lt;li&gt;4.3 bucketing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;41-options&#34;&gt;4.1. Options&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.option(&amp;quot;maxRecordsPerFile&amp;quot;, 100)&lt;/code&gt; : set the max number of records per file
+&lt;ul&gt;
+&lt;li&gt;The last number from the name of created files like &lt;code&gt;c000&lt;/code&gt;, &lt;code&gt;c001&lt;/code&gt;, &lt;code&gt;c002&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;42-partitioning&#34;&gt;4.2 Partitioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt; : In HDFS, physical partitions are called as Block (Default block size is 128MB), Spark creates one partition for every block of a file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partitioning&lt;/strong&gt; : Dividing the dataset into multiple pars across the cluster.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #3 | Processing</title>
+      <link>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%233--processing/</link>
+      <pubDate>Mon, 14 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%233--processing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;3.1 Basic Manipulation&lt;/li&gt;
+&lt;li&gt;3.2 Duplicates&lt;/li&gt;
+&lt;li&gt;3.3 Null&lt;/li&gt;
+&lt;li&gt;3.4 Filter&lt;/li&gt;
+&lt;li&gt;3.5 Group&lt;/li&gt;
+&lt;li&gt;3.6 Join&lt;/li&gt;
+&lt;li&gt;3.7 UDF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;31-basic-manipulation&#34;&gt;3.1 Basic Manipulation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Schema / shape inspection&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;printSchema()&lt;/code&gt; : prints the column names, types, and nullability of the DataFrame.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dtypes&lt;/code&gt; : returns a sequence of &lt;code&gt;(name, type)&lt;/code&gt; tuples without printing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count()&lt;/code&gt; : total row count.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Select&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;select(col1, col2, ...)&lt;/code&gt; : project a subset of columns.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;selectExpr(&amp;quot;a&amp;quot;, &amp;quot;b + 1 as c&amp;quot;)&lt;/code&gt; : project with SQL expressions; cheaper than chained &lt;code&gt;withColumn&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add / transform columns&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;withColumn(&amp;quot;name&amp;quot;, expr)&lt;/code&gt; : add a new column or replace one of the same name.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lit(value)&lt;/code&gt; : turn a Scala value into a Column literal (use inside &lt;code&gt;withColumn&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;col(&amp;quot;x&amp;quot;).cast(&amp;quot;int&amp;quot;)&lt;/code&gt; : type-cast a column.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rename / drop columns&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;withColumnRenamed(&amp;quot;old&amp;quot;, &amp;quot;new&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;drop(&amp;quot;col1&amp;quot;, &amp;quot;col2&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Order&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;orderBy(col(&amp;quot;x&amp;quot;).desc, col(&amp;quot;y&amp;quot;).asc)&lt;/code&gt; (alias &lt;code&gt;sort(...)&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sample / preview&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;limit(n)&lt;/code&gt; : take the first &lt;code&gt;n&lt;/code&gt; rows as a DataFrame (lazy).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;show(n, truncate=false)&lt;/code&gt; : print to driver (action; triggers a job).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;head(n)&lt;/code&gt; / &lt;code&gt;take(n)&lt;/code&gt; : collect first &lt;code&gt;n&lt;/code&gt; rows to the driver as &lt;code&gt;Array[Row]&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.sql.functions.{col, lit, expr}
+
+// inspect
+df.printSchema()
+df.count()
+
+// select &amp;amp; rename
+df.select(col(&amp;quot;user_id&amp;quot;), col(&amp;quot;ts&amp;quot;))
+df.selectExpr(&amp;quot;user_id&amp;quot;, &amp;quot;from_unixtime(ts) as event_time&amp;quot;)
+df.withColumnRenamed(&amp;quot;ts&amp;quot;, &amp;quot;event_ts&amp;quot;)
+
+// add / cast / drop
+val df2 = df
+  .withColumn(&amp;quot;source&amp;quot;, lit(&amp;quot;kafka&amp;quot;))               // constant column
+  .withColumn(&amp;quot;duration&amp;quot;, col(&amp;quot;end&amp;quot;) - col(&amp;quot;start&amp;quot;))
+  .withColumn(&amp;quot;user_id&amp;quot;, col(&amp;quot;user_id&amp;quot;).cast(&amp;quot;string&amp;quot;))
+  .drop(&amp;quot;raw_payload&amp;quot;)
+
+// order &amp;amp; preview
+df2.orderBy(col(&amp;quot;event_ts&amp;quot;).desc).show(10, truncate = false)
+val firstTen = df2.limit(10)                        // still a DataFrame, lazy
+val sample   = df2.take(5)                          // Array[Row], runs a job
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;32-duplicates&#34;&gt;3.2 Duplicates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;drop_duplicates(subset=[&amp;quot;COLUMN&amp;quot;])&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;Returns a new Dataset with duplicate rows removed, considering only the subset of columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;distinct()&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;returns the distinct rows of DataFrame.&lt;/li&gt;
+&lt;li&gt;takes no args and thus all columns are taken into account when dropping dups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;df.join(df.exceptAll(df.distinct()))&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;leave duplicates and remove distinct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;33-null&#34;&gt;3.3 Null&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;df.dropna(how=&amp;quot;any&amp;quot;, thresh=None, subset=[&amp;quot;COLUMN1&amp;quot;])&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;34-filter&#34;&gt;3.4 Filter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Filtering&lt;/li&gt;
+&lt;li&gt;Pushdown Filtering
+&lt;ul&gt;
+&lt;li&gt;General workflow : read data from file system, filtering on memory&lt;/li&gt;
+&lt;li&gt;Pushdown workflow : read necessary data from file sys, not on memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// single condition
+df.filter(df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;)
+df.filter(df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20)
+// multiple conditions
+df.filter((df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;) &amp;amp;&amp;amp; (df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;35-group&#34;&gt;3.5 Group&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;groupBy&lt;/code&gt; : Groups the DF using the specified columns, so we can run aggregation on them. returns &lt;code&gt;GroupdedData&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_set())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_list())&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() // Returns the count of rows for each group.
+  .mean() // Returns the mean of values for each group.
+  .max() // Returns the maximum of values for each group.
+  .min() // Returns the minimum of values for each group.
+  .sum() // Returns the total for values for each group.
+  .avg() // Returns the average for values for each group.
+  .agg() // Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() // This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;36-join&#34;&gt;3.6 Join&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(&lt;code&gt;on&lt;/code&gt; expression is true) from both sides of the table&lt;/li&gt;
+&lt;li&gt;Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table&lt;/li&gt;
+&lt;li&gt;Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise&lt;/li&gt;
+&lt;li&gt;Right join : performs the same task as the left join, but for the right table.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;37-udf&#34;&gt;3.7 UDF&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;User-Defined Function (UDF)&lt;/strong&gt; : wrap a plain Scala function as a Column expression when no built-in covers the logic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prefer built-ins.&lt;/strong&gt; Catalyst can&amp;rsquo;t optimize through a UDF — it treats it as a black box, blocking predicate pushdown, constant folding, and codegen. Use &lt;code&gt;org.apache.spark.sql.functions&lt;/code&gt; first; only reach for a UDF when nothing fits.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Define &amp;amp; apply via DataFrame API&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;udf((args) =&amp;gt; result)&lt;/code&gt; returns a &lt;code&gt;UserDefinedFunction&lt;/code&gt; you call like any built-in column function.&lt;/li&gt;
+&lt;li&gt;Declare an explicit return type for stability (e.g. &lt;code&gt;udf[String, String, Int](...)&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Register for Spark SQL&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;spark.udf.register(&amp;quot;name&amp;quot;, fn)&lt;/code&gt; lets you call it from SQL strings: &lt;code&gt;spark.sql(&amp;quot;select name(col) from t&amp;quot;)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Null safety&lt;/strong&gt; : a UDF receives Scala &lt;code&gt;null&lt;/code&gt;s as &lt;code&gt;null&lt;/code&gt; for boxed types, but as the type&amp;rsquo;s default (&lt;code&gt;0&lt;/code&gt;, &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;) for primitives — guard inside the function or use &lt;code&gt;Option[T]&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Language performance&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Scala UDFs run inside the JVM executor — fast.&lt;/li&gt;
+&lt;li&gt;Python UDFs serialize each row to a Python worker (PySpark) — slow; prefer &lt;strong&gt;pandas UDFs&lt;/strong&gt; (&lt;code&gt;@pandas_udf&lt;/code&gt;, Arrow-based vectorized batches) when you must stay in Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.sql.functions.{udf, col, lit}
+import org.apache.spark.sql.expressions.UserDefinedFunction
+
+// 1. define
+val tld: UserDefinedFunction = udf { (url: String) =&amp;gt;
+  if (url == null) null
+  else url.split(&#39;.&#39;).lastOption.getOrElse(&amp;quot;&amp;quot;)
+}
+
+// 2. apply on a column
+val df2 = df.withColumn(&amp;quot;tld&amp;quot;, tld(col(&amp;quot;url&amp;quot;)))
+
+// 3. Option[T] for clean null handling
+val safeLen = udf { (s: String) =&amp;gt; Option(s).map(_.length) }
+df.withColumn(&amp;quot;len&amp;quot;, safeLen(col(&amp;quot;name&amp;quot;)))
+
+// 4. SQL registration
+spark.udf.register(&amp;quot;tld&amp;quot;, tld)
+spark.sql(&amp;quot;select url, tld(url) as tld from urls&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #2 | Read</title>
+      <link>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%232--read/</link>
+      <pubDate>Sun, 13 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%232--read/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;2.1 Read&lt;/li&gt;
+&lt;li&gt;2.2 Read Streaming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;21-read&#34;&gt;2.1 Read&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Entry point&lt;/strong&gt; : &lt;code&gt;spark.read&lt;/code&gt; returns a &lt;code&gt;DataFrameReader&lt;/code&gt;. Generic form is &lt;code&gt;spark.read.format(&amp;quot;fmt&amp;quot;).option(...).load(path)&lt;/code&gt;; each built-in format has a shorthand (&lt;code&gt;parquet&lt;/code&gt;, &lt;code&gt;csv&lt;/code&gt;, &lt;code&gt;json&lt;/code&gt;, &lt;code&gt;orc&lt;/code&gt;, &lt;code&gt;text&lt;/code&gt;, &lt;code&gt;jdbc&lt;/code&gt;, &lt;code&gt;table&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Schema&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Default: schema is inferred (&lt;code&gt;parquet&lt;/code&gt;/&lt;code&gt;orc&lt;/code&gt; from the file footer; &lt;code&gt;csv&lt;/code&gt;/&lt;code&gt;json&lt;/code&gt; only if &lt;code&gt;inferSchema = true&lt;/code&gt;, which requires an extra pass).&lt;/li&gt;
+&lt;li&gt;Production: always pass an explicit &lt;code&gt;StructType&lt;/code&gt; via &lt;code&gt;.schema(...)&lt;/code&gt;. Skips inference, makes the job idempotent, and lets you handle type changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Common options&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;CSV: &lt;code&gt;header&lt;/code&gt;, &lt;code&gt;delimiter&lt;/code&gt;, &lt;code&gt;quote&lt;/code&gt;, &lt;code&gt;escape&lt;/code&gt;, &lt;code&gt;nullValue&lt;/code&gt;, &lt;code&gt;mode&lt;/code&gt; (&lt;code&gt;PERMISSIVE&lt;/code&gt; / &lt;code&gt;DROPMALFORMED&lt;/code&gt; / &lt;code&gt;FAILFAST&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;JSON: &lt;code&gt;multiLine&lt;/code&gt; for pretty-printed JSON, &lt;code&gt;primitivesAsString&lt;/code&gt; to preserve numeric precision.&lt;/li&gt;
+&lt;li&gt;Parquet / ORC: &lt;code&gt;mergeSchema&lt;/code&gt; to union schemas across files (slow; off by default).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Path semantics&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;You can pass a file, a directory, a glob (&lt;code&gt;s3a://bucket/yyyy=2024/mm=*/data-*.parquet&lt;/code&gt;), or a comma-separated list.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hive-style partitioning&lt;/strong&gt; (&lt;code&gt;/year=2024/month=01/...&lt;/code&gt;) is auto-discovered and exposed as columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Other sources&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;spark.read.jdbc(url, table, props)&lt;/code&gt; — for relational DBs. Use &lt;code&gt;partitionColumn&lt;/code&gt; + &lt;code&gt;lowerBound&lt;/code&gt;/&lt;code&gt;upperBound&lt;/code&gt;/&lt;code&gt;numPartitions&lt;/code&gt; to parallelize.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;spark.read.table(&amp;quot;db.t&amp;quot;)&lt;/code&gt; — Hive/metastore-managed tables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.sql.types._
+
+// 1. shorthand by format
+val df = spark.read.parquet(&amp;quot;s3a://bucket/events/dt=2024-05-18/&amp;quot;)
+
+// 2. CSV with explicit schema and options
+val schema = StructType(Seq(
+  StructField(&amp;quot;user_id&amp;quot;,  StringType,    nullable = false),
+  StructField(&amp;quot;ts&amp;quot;,       LongType,      nullable = false),
+  StructField(&amp;quot;payload&amp;quot;,  StringType,    nullable = true)
+))
+val raw = spark.read
+  .schema(schema)
+  .option(&amp;quot;header&amp;quot;, &amp;quot;true&amp;quot;)
+  .option(&amp;quot;mode&amp;quot;,   &amp;quot;DROPMALFORMED&amp;quot;)   // skip bad rows instead of failing
+  .csv(&amp;quot;/data/events/*.csv&amp;quot;)
+
+// 3. JDBC with parallel partitioning
+val jdbcDf = spark.read
+  .format(&amp;quot;jdbc&amp;quot;)
+  .option(&amp;quot;url&amp;quot;,            &amp;quot;jdbc:postgresql://host/db&amp;quot;)
+  .option(&amp;quot;dbtable&amp;quot;,        &amp;quot;events&amp;quot;)
+  .option(&amp;quot;partitionColumn&amp;quot;,&amp;quot;id&amp;quot;)
+  .option(&amp;quot;lowerBound&amp;quot;,     &amp;quot;1&amp;quot;)
+  .option(&amp;quot;upperBound&amp;quot;,     &amp;quot;10000000&amp;quot;)
+  .option(&amp;quot;numPartitions&amp;quot;,  &amp;quot;16&amp;quot;)
+  .load()
+
+// 4. Hive table
+val orders = spark.read.table(&amp;quot;warehouse.orders&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;22-read-streaming&#34;&gt;2.2 Read Streaming&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Structured Streaming&lt;/strong&gt; : same DataFrame API, batched into micro-batches (or continuous). Entry point is &lt;code&gt;spark.readStream&lt;/code&gt; instead of &lt;code&gt;spark.read&lt;/code&gt;. The returned DataFrame is &lt;em&gt;unbounded&lt;/em&gt;; transformations are the same as batch.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Schema is required&lt;/strong&gt; for file sources (no inference for streaming).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Common sources&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;File source&lt;/strong&gt; (&lt;code&gt;csv&lt;/code&gt;, &lt;code&gt;json&lt;/code&gt;, &lt;code&gt;parquet&lt;/code&gt;, &lt;code&gt;orc&lt;/code&gt;, &lt;code&gt;text&lt;/code&gt;) : watches a directory for new files. Options: &lt;code&gt;maxFilesPerTrigger&lt;/code&gt; (throughput cap), &lt;code&gt;latestFirst&lt;/code&gt;, &lt;code&gt;fileNameOnly&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kafka&lt;/strong&gt; (&lt;code&gt;format(&amp;quot;kafka&amp;quot;)&lt;/code&gt;) : the standard message-bus source. Reads return columns &lt;code&gt;(key, value, topic, partition, offset, timestamp, ...)&lt;/code&gt; — &lt;code&gt;value&lt;/code&gt; is a binary blob you typically &lt;code&gt;cast(&amp;quot;string&amp;quot;)&lt;/code&gt; then parse.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rate&lt;/strong&gt; / &lt;strong&gt;socket&lt;/strong&gt; : test sources only — never use in production.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Triggers&lt;/strong&gt; (configured on the &lt;em&gt;write&lt;/em&gt; side via &lt;code&gt;.trigger(...)&lt;/code&gt;) : &lt;code&gt;ProcessingTime(&amp;quot;30 seconds&amp;quot;)&lt;/code&gt;, &lt;code&gt;Once&lt;/code&gt; (one micro-batch and exit), &lt;code&gt;AvailableNow&lt;/code&gt; (process all current data then exit), or &lt;code&gt;Continuous&lt;/code&gt; (experimental).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Watermarks&lt;/strong&gt; : &lt;code&gt;.withWatermark(&amp;quot;event_time&amp;quot;, &amp;quot;10 minutes&amp;quot;)&lt;/code&gt; lets Spark drop very late records and bound state size for windowed aggregations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.sql.functions.{col, from_json}
+import org.apache.spark.sql.types._
+
+// 1. File source — incremental ingestion of new files
+val schema = new StructType()
+  .add(&amp;quot;user_id&amp;quot;, StringType)
+  .add(&amp;quot;ts&amp;quot;,      LongType)
+  .add(&amp;quot;event&amp;quot;,   StringType)
+
+val fileStream = spark.readStream
+  .schema(schema)
+  .option(&amp;quot;maxFilesPerTrigger&amp;quot;, 10)
+  .json(&amp;quot;s3a://bucket/landing/&amp;quot;)
+
+// 2. Kafka source — JSON-encoded payload
+val eventSchema = new StructType()
+  .add(&amp;quot;user_id&amp;quot;, StringType)
+  .add(&amp;quot;ts&amp;quot;,      LongType)
+  .add(&amp;quot;event&amp;quot;,   StringType)
+
+val kafkaStream = spark.readStream
+  .format(&amp;quot;kafka&amp;quot;)
+  .option(&amp;quot;kafka.bootstrap.servers&amp;quot;, &amp;quot;broker1:9092,broker2:9092&amp;quot;)
+  .option(&amp;quot;subscribe&amp;quot;,               &amp;quot;events.v1&amp;quot;)
+  .option(&amp;quot;startingOffsets&amp;quot;,         &amp;quot;latest&amp;quot;)   // or &amp;quot;earliest&amp;quot;, or per-partition JSON
+  .load()
+  .selectExpr(&amp;quot;CAST(value AS STRING) as json&amp;quot;)
+  .select(from_json(col(&amp;quot;json&amp;quot;), eventSchema).as(&amp;quot;e&amp;quot;))
+  .select(&amp;quot;e.*&amp;quot;)
+  .withWatermark(&amp;quot;ts&amp;quot;, &amp;quot;10 minutes&amp;quot;)             // bound state for downstream windows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #1 | Overview</title>
+      <link>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%231--overview/</link>
+      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;1.1 Spark Components&lt;/li&gt;
+&lt;li&gt;1.2 How spark works&lt;/li&gt;
+&lt;li&gt;1.3 Terminologies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-spark-components&#34;&gt;1.1 Spark Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Spark Driver&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;separate process to execute user applications&lt;/li&gt;
+&lt;li&gt;creates SparkContext to schedule jobs execution and negotiate with cluster manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Executors&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;run tasks scheduled by driver&lt;/li&gt;
+&lt;li&gt;store computation results in memory, on disk or off-heap&lt;/li&gt;
+&lt;li&gt;interact with storage systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cluster Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Mesos : a general cluster manager that can also run Hadoop MapReduce and service applications.&lt;/li&gt;
+&lt;li&gt;Hadoop YARN : the resource manager in Hadoop.&lt;/li&gt;
+&lt;li&gt;Spark Standalone : a simple cluster manager included with Spark that makes it easy to set up&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-how-spark-works&#34;&gt;1.2 How Spark works?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spark has a small code base and the system is divided in various layer.&lt;/li&gt;
+&lt;li&gt;Each layers has some responsibilities. The layers are independent of each other
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interpreter&lt;/strong&gt; : The first layer is the interpreter, Spark uses a Scala interpreter, with some modifications. As you enter your code in spark console (creating RDD’s and applying operators), Spark creates a operator graph.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG Scheduler&lt;/strong&gt; : When the user runs an action (like collect), the Graph is submitted to a DAG Scheduler. The DAG scheduler divides operator graph into (map and reduce) stages. A stage is comprised of tasks based on partitions of the input data. The DAG scheduler pipelines operators together to optimize the graph. For ex, Many map operators can be scheduled in a single stage. This optimization is key to Sparks performance. The final result of a DAG scheduler is a set of stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Task Schedular&lt;/strong&gt; : The stages are passed on to the Task Scheduler. The task scheduler launches tasks via cluster manager. (Spark Standalone/Yarn/Mesos). The task scheduler doesn’t know about dependencies among stages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-terminologies&#34;&gt;1.3 Terminologies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Job&lt;/strong&gt; : A piece of code that reads some input (HDFS or local), performs some computation and writes output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stages&lt;/strong&gt; : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tasks&lt;/strong&gt; : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG&lt;/strong&gt; : DAG stands for Directed Acyclic Graph, in the present context its a DAG of operators.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Executor&lt;/strong&gt; : The process responsible for executing a task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Master&lt;/strong&gt; : The machine on which the Driver program runs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slave&lt;/strong&gt; : The machine on which the Executor program runs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyspark</title>
+      <link>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--pyspark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--pyspark/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Initialization &amp;amp; Configuration&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Read data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Data processing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Write&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(5) Visualization&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(6) Logging&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-initialization--configuration&#34;&gt;1. Initialization &amp;amp; Configuration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkContext&lt;/code&gt; : provides connection to Spark with the ability to create RDDs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SQLContext&lt;/code&gt; : procides connection to Spark with the ability to run SQL queries on data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkSession&lt;/code&gt; : all encompassing context which includes coverage for &lt;code&gt;SparkContext&lt;/code&gt;, &lt;code&gt;SQLContext&lt;/code&gt; and HiveContext&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pyspark
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql import SQLContext
+
+# create a SparkSession instance with the name &#39;appname&#39; 
+spark = SparkSession.builder.appName(&amp;quot;appname&amp;quot;).getOrCreate()
+# create a SparkContext instance which allows the Spark Application to access 
+sc = SparkContext.getOrCreate()
+# create a SQLContext instance to access the SQL query engine built on top of Spark
+sqlContext = SQLContext(spark)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-read-data&#34;&gt;2. Read data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read dataframe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# read (csv, json, text, parquet)
+df = spark.read.csv(&#39;PATH_CSV&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Exploration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Prints out the schema in the tree format.
+df.printSchema()
+# To get the number of rows
+df.count()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-data-processing&#34;&gt;3. Data processing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic Manipulation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create a column
+df = df.withColumn(&#39;column_new&#39;, F.lit(&#39;abc&#39;)) #  with the defalut value &#39;abc&#39;
+df = df.withColumn(&#39;column_new&#39;, 2*F.col(&#39;exisisting column&#39;)) #  using an existing column
+
+# Change Column Name
+df.withColumnRenamed(&amp;quot;column_ori&amp;quot;, &amp;quot;column_new&amp;quot;)
+
+# add index column
+from pyspark.sql.functions import monotonically_increasing_id 
+df_index = df.select(&amp;quot;*&amp;quot;).withColumn(&amp;quot;id&amp;quot;, monotonically_increasing_id())
+
+# remove column
+df.drop(&amp;quot;column_drop&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;filtering&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# filter (=where)
+df.filter(df.column_float.between(7.5,8.2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;grouping (&lt;code&gt;groupBy&lt;/code&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() # Returns the count of rows for each group.
+  .mean() # Returns the mean of values for each group.
+  .max() # Returns the maximum of values for each group.
+  .min() # Returns the minimum of values for each group.
+  .sum() # Returns the total for values for each group.
+  .avg() # Returns the average for values for each group.
+  .agg() # Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() # This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Join&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Use union, if scheme of dfs are same.
+df1.join(df2, on=&#39;column&#39;, how=&#39;inner&#39;)
+
+# Drop duplicate rows using dropDuplicates(), otherwise df_new will also have duplicate rows
+df2 = df2.dropDuplicates(([&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;])) # rows with same KEY but diff ID will remain
+
+# update df1 with df2 using outer join
+df_new = (
+    df1.alias(&amp;quot;a&amp;quot;)
+         .join(df2.alias(&amp;quot;b&amp;quot;), &amp;quot;KEY&amp;quot;, how=&amp;quot;outer&amp;quot;)
+         .select(&amp;quot;KEY&amp;quot;, F.coalesce(&amp;quot;b.col1&amp;quot;, &amp;quot;a.col1&amp;quot;).alias(&amp;quot;col1&amp;quot;) )
+    )
+
+
+# update df1 with df2 using outer join
+cols = [&amp;quot;TITLE&amp;quot;, &amp;quot;NAME&amp;quot;, &amp;quot;URL&amp;quot;, &amp;quot;THUMBNAIL&amp;quot;, &amp;quot;DATE&amp;quot;]
+df_new = df.alias(&amp;quot;a&amp;quot;)
+           .join(df2.alias(&amp;quot;b&amp;quot;), [&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;], how=&amp;quot;outer&amp;quot;)
+           .select(&amp;quot;KEY&amp;quot;,&amp;quot;ID&amp;quot;, *(F.coalesce(&amp;quot;b.&amp;quot; + col, &amp;quot;a.&amp;quot; + col).alias(col) for col in cols))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Union&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

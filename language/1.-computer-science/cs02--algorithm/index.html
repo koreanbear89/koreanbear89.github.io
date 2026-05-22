@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CS #02 | Algorithm - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Sorting Bubble Sort, Insertion Sort, Selection Sort, O(n^2) Merge Sort, O(nlogn) : Divide &amp; Conquer Quick Sort, O(nlogn) Heap Sort: Based on heap data structure Searching Linear Search, O(n) Binary Search, O(logn) Recursion (Divide and Conquer) Binary Search Merge Sort, Quick Sort Greedy Algorithm Huffman Coding Activity Selection Dynamic Programming Fibonacci Sequence (memoization, tabulation) Longest Common Subsequences Longest Increasing Subsequences Graph Algorithm Depth First Search Breadth Fisrt Search 1. Sorting Bubble Sort Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order Large elements bubble up to the end of the array after each pass Repeat until no swaps are needed Think of it like sorting bubbles in water, the biggest bubble floats to the top first Algorithm Steps Start at the beginning of the list Compare each pair of adjacent items Swap them if they are in the wrong order Repeat until the list is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) def bubble_sort(arr: list[int]) -&gt; list[int]: for i in range(len(arr)): # number of passes swapped = False for j in range(0, len(arr) - i - 1): # last i elements are sorted if arr[j] &gt; arr[j &#43; 1]: arr[j], arr[j &#43; 1] = arr[j &#43; 1], arr[j] # swap swapped = True if not swapped: # optimization: stop if already sorted break return arr # Example print(bubble_sort([5, 3, 8, 4, 2])) Selection Sort Concept : repeatedly find the minimum element from the unsorted part of the array and put it at the beginning Algorithm Steps Start with the first element Find the smallest element in the unsorted part of the array Swap it with the first unsorted element Move to the next index and repeat until the whole array is sorted Complexity Best Case : O(n^2) Worst Case : O(n^2) Space Complexity : O(1) Insertion Sort Concept : works like how uou arrnage cards in your hand while playing cares Take the next card Insert it into its correct position among the already sorted cards Algorithm Steps Start with the second element Compare it with the elements before it Shift larger elements one position to the right Insert the current element into its correct spot Repeat for all elements until the array is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) Merge Sort Concept : Uses divide and conquer strategy Divide : Split the array into two halves Conquer : Recursively sort each half Combine : Merge the two sorted halves into one sorted array Algorithm Steps If the array has only 1 element, it&rsquo;s already sorted Otherwise, split the array into two halves Recursively sort both halves Merge the two sorted halves by comparing elements Complexity Best Case : O(n logn) Worst Case : O(n logn) Space Complexity : O(n) def merge_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr mid = len(arr) // 2 left = merge_sort(arr[:mid]) right = merge_sort(arr[mid:]) return merge2(left, right) def merge(left: list[int], right: list[int]) -&gt; list[int]: result = [] while left or right: if left and right: if left[0] &lt; right[0]: result.append(left.pop(0)) else: result.append(right.pop(0)) elif left: result.append(left.pop(0)) elif right: result.append(right.pop(0)) return result arr = [38, 27, 43, 3, 9, 82, 10] print(merge_sort(arr)) Quick Sort Concept : another divide and conquer algorithm, but partitions first and then sorts recursively Algorithm Steps Pick a pivot(center) element Rearrange the array so that: Elements smaller than pivot -&gt; left side Elements larger than pivot -&gt; right side Recursively apply Quick Sort to left and right parts Complexity Best Case : O(n logn) Worst Case : O(n^2) Space Complexity : O(logn) Stable : No, equal elements may change order def quick_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr pivot = arr[0] left = [x for x in arr[1:] if x &lt; pivot] right = [x for x in arr[1:] if x &gt;= pivot] return quick_sort(left) &#43; [pivot] &#43; quick_sort(right) arr = [38, 27, 43, 3, 9, 82, 10] print(quick_sort(arr)) Heap Sort Concept : Heap Sort uses a binary heap data strcuture to sort elements Algorithm Steps Build a max heap from the array Swap the root(max element) with the last element Reduce heap size by 1 Heapify Repeat until heap size becomes 1. Complexity Heapify : O(log n) Build Heap : O(n) Sorting : O(nlogn) Space Complexity : O(1) Stable : No import heapq def heap_sort(arr): heapq.heapify(arr) result = [] while arr: arr[0], arr[-1] = arr[-1], arr[0] result.append(heapq.heappop(arr)) return result arr = [4, 10, 3, 5, 1] print(heap_sort(arr)) 2. Searching Linear Search
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>CS #02 | Algorithm - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/language/1.-computer-science/cs02--algorithm/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="CS #02 | Algorithm">
+  <meta property="og:description" content="Introduction Sorting Bubble Sort, Insertion Sort, Selection Sort, O(n^2) Merge Sort, O(nlogn) : Divide &amp; Conquer Quick Sort, O(nlogn) Heap Sort: Based on heap data structure Searching Linear Search, O(n) Binary Search, O(logn) Recursion (Divide and Conquer) Binary Search Merge Sort, Quick Sort Greedy Algorithm Huffman Coding Activity Selection Dynamic Programming Fibonacci Sequence (memoization, tabulation) Longest Common Subsequences Longest Increasing Subsequences Graph Algorithm Depth First Search Breadth Fisrt Search 1. Sorting Bubble Sort Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order Large elements bubble up to the end of the array after each pass Repeat until no swaps are needed Think of it like sorting bubbles in water, the biggest bubble floats to the top first Algorithm Steps Start at the beginning of the list Compare each pair of adjacent items Swap them if they are in the wrong order Repeat until the list is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) def bubble_sort(arr: list[int]) -&gt; list[int]: for i in range(len(arr)): # number of passes swapped = False for j in range(0, len(arr) - i - 1): # last i elements are sorted if arr[j] &gt; arr[j &#43; 1]: arr[j], arr[j &#43; 1] = arr[j &#43; 1], arr[j] # swap swapped = True if not swapped: # optimization: stop if already sorted break return arr # Example print(bubble_sort([5, 3, 8, 4, 2])) Selection Sort Concept : repeatedly find the minimum element from the unsorted part of the array and put it at the beginning Algorithm Steps Start with the first element Find the smallest element in the unsorted part of the array Swap it with the first unsorted element Move to the next index and repeat until the whole array is sorted Complexity Best Case : O(n^2) Worst Case : O(n^2) Space Complexity : O(1) Insertion Sort Concept : works like how uou arrnage cards in your hand while playing cares Take the next card Insert it into its correct position among the already sorted cards Algorithm Steps Start with the second element Compare it with the elements before it Shift larger elements one position to the right Insert the current element into its correct spot Repeat for all elements until the array is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) Merge Sort Concept : Uses divide and conquer strategy Divide : Split the array into two halves Conquer : Recursively sort each half Combine : Merge the two sorted halves into one sorted array Algorithm Steps If the array has only 1 element, it’s already sorted Otherwise, split the array into two halves Recursively sort both halves Merge the two sorted halves by comparing elements Complexity Best Case : O(n logn) Worst Case : O(n logn) Space Complexity : O(n) def merge_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr mid = len(arr) // 2 left = merge_sort(arr[:mid]) right = merge_sort(arr[mid:]) return merge2(left, right) def merge(left: list[int], right: list[int]) -&gt; list[int]: result = [] while left or right: if left and right: if left[0] &lt; right[0]: result.append(left.pop(0)) else: result.append(right.pop(0)) elif left: result.append(left.pop(0)) elif right: result.append(right.pop(0)) return result arr = [38, 27, 43, 3, 9, 82, 10] print(merge_sort(arr)) Quick Sort Concept : another divide and conquer algorithm, but partitions first and then sorts recursively Algorithm Steps Pick a pivot(center) element Rearrange the array so that: Elements smaller than pivot -&gt; left side Elements larger than pivot -&gt; right side Recursively apply Quick Sort to left and right parts Complexity Best Case : O(n logn) Worst Case : O(n^2) Space Complexity : O(logn) Stable : No, equal elements may change order def quick_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr pivot = arr[0] left = [x for x in arr[1:] if x &lt; pivot] right = [x for x in arr[1:] if x &gt;= pivot] return quick_sort(left) &#43; [pivot] &#43; quick_sort(right) arr = [38, 27, 43, 3, 9, 82, 10] print(quick_sort(arr)) Heap Sort Concept : Heap Sort uses a binary heap data strcuture to sort elements Algorithm Steps Build a max heap from the array Swap the root(max element) with the last element Reduce heap size by 1 Heapify Repeat until heap size becomes 1. Complexity Heapify : O(log n) Build Heap : O(n) Sorting : O(nlogn) Space Complexity : O(1) Stable : No import heapq def heap_sort(arr): heapq.heapify(arr) result = [] while arr: arr[0], arr[-1] = arr[-1], arr[0] result.append(heapq.heappop(arr)) return result arr = [4, 10, 3, 5, 1] print(heap_sort(arr)) 2. Searching Linear Search">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2019-09-01T09:00:00+00:00">
+    <meta property="article:modified_time" content="2019-09-01T09:00:00+00:00">
+
+  <meta itemprop="name" content="CS #02 | Algorithm">
+  <meta itemprop="description" content="Introduction Sorting Bubble Sort, Insertion Sort, Selection Sort, O(n^2) Merge Sort, O(nlogn) : Divide &amp; Conquer Quick Sort, O(nlogn) Heap Sort: Based on heap data structure Searching Linear Search, O(n) Binary Search, O(logn) Recursion (Divide and Conquer) Binary Search Merge Sort, Quick Sort Greedy Algorithm Huffman Coding Activity Selection Dynamic Programming Fibonacci Sequence (memoization, tabulation) Longest Common Subsequences Longest Increasing Subsequences Graph Algorithm Depth First Search Breadth Fisrt Search 1. Sorting Bubble Sort Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order Large elements bubble up to the end of the array after each pass Repeat until no swaps are needed Think of it like sorting bubbles in water, the biggest bubble floats to the top first Algorithm Steps Start at the beginning of the list Compare each pair of adjacent items Swap them if they are in the wrong order Repeat until the list is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) def bubble_sort(arr: list[int]) -&gt; list[int]: for i in range(len(arr)): # number of passes swapped = False for j in range(0, len(arr) - i - 1): # last i elements are sorted if arr[j] &gt; arr[j &#43; 1]: arr[j], arr[j &#43; 1] = arr[j &#43; 1], arr[j] # swap swapped = True if not swapped: # optimization: stop if already sorted break return arr # Example print(bubble_sort([5, 3, 8, 4, 2])) Selection Sort Concept : repeatedly find the minimum element from the unsorted part of the array and put it at the beginning Algorithm Steps Start with the first element Find the smallest element in the unsorted part of the array Swap it with the first unsorted element Move to the next index and repeat until the whole array is sorted Complexity Best Case : O(n^2) Worst Case : O(n^2) Space Complexity : O(1) Insertion Sort Concept : works like how uou arrnage cards in your hand while playing cares Take the next card Insert it into its correct position among the already sorted cards Algorithm Steps Start with the second element Compare it with the elements before it Shift larger elements one position to the right Insert the current element into its correct spot Repeat for all elements until the array is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) Merge Sort Concept : Uses divide and conquer strategy Divide : Split the array into two halves Conquer : Recursively sort each half Combine : Merge the two sorted halves into one sorted array Algorithm Steps If the array has only 1 element, it’s already sorted Otherwise, split the array into two halves Recursively sort both halves Merge the two sorted halves by comparing elements Complexity Best Case : O(n logn) Worst Case : O(n logn) Space Complexity : O(n) def merge_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr mid = len(arr) // 2 left = merge_sort(arr[:mid]) right = merge_sort(arr[mid:]) return merge2(left, right) def merge(left: list[int], right: list[int]) -&gt; list[int]: result = [] while left or right: if left and right: if left[0] &lt; right[0]: result.append(left.pop(0)) else: result.append(right.pop(0)) elif left: result.append(left.pop(0)) elif right: result.append(right.pop(0)) return result arr = [38, 27, 43, 3, 9, 82, 10] print(merge_sort(arr)) Quick Sort Concept : another divide and conquer algorithm, but partitions first and then sorts recursively Algorithm Steps Pick a pivot(center) element Rearrange the array so that: Elements smaller than pivot -&gt; left side Elements larger than pivot -&gt; right side Recursively apply Quick Sort to left and right parts Complexity Best Case : O(n logn) Worst Case : O(n^2) Space Complexity : O(logn) Stable : No, equal elements may change order def quick_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr pivot = arr[0] left = [x for x in arr[1:] if x &lt; pivot] right = [x for x in arr[1:] if x &gt;= pivot] return quick_sort(left) &#43; [pivot] &#43; quick_sort(right) arr = [38, 27, 43, 3, 9, 82, 10] print(quick_sort(arr)) Heap Sort Concept : Heap Sort uses a binary heap data strcuture to sort elements Algorithm Steps Build a max heap from the array Swap the root(max element) with the last element Reduce heap size by 1 Heapify Repeat until heap size becomes 1. Complexity Heapify : O(log n) Build Heap : O(n) Sorting : O(nlogn) Space Complexity : O(1) Stable : No import heapq def heap_sort(arr): heapq.heapify(arr) result = [] while arr: arr[0], arr[-1] = arr[-1], arr[0] result.append(heapq.heappop(arr)) return result arr = [4, 10, 3, 5, 1] print(heap_sort(arr)) 2. Searching Linear Search">
+  <meta itemprop="datePublished" content="2019-09-01T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-09-01T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1470">
+  <meta itemprop="keywords" content="1. Computer Science">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CS #02 | Algorithm">
+  <meta name="twitter:description" content="Introduction Sorting Bubble Sort, Insertion Sort, Selection Sort, O(n^2) Merge Sort, O(nlogn) : Divide &amp; Conquer Quick Sort, O(nlogn) Heap Sort: Based on heap data structure Searching Linear Search, O(n) Binary Search, O(logn) Recursion (Divide and Conquer) Binary Search Merge Sort, Quick Sort Greedy Algorithm Huffman Coding Activity Selection Dynamic Programming Fibonacci Sequence (memoization, tabulation) Longest Common Subsequences Longest Increasing Subsequences Graph Algorithm Depth First Search Breadth Fisrt Search 1. Sorting Bubble Sort Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order Large elements bubble up to the end of the array after each pass Repeat until no swaps are needed Think of it like sorting bubbles in water, the biggest bubble floats to the top first Algorithm Steps Start at the beginning of the list Compare each pair of adjacent items Swap them if they are in the wrong order Repeat until the list is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) def bubble_sort(arr: list[int]) -&gt; list[int]: for i in range(len(arr)): # number of passes swapped = False for j in range(0, len(arr) - i - 1): # last i elements are sorted if arr[j] &gt; arr[j &#43; 1]: arr[j], arr[j &#43; 1] = arr[j &#43; 1], arr[j] # swap swapped = True if not swapped: # optimization: stop if already sorted break return arr # Example print(bubble_sort([5, 3, 8, 4, 2])) Selection Sort Concept : repeatedly find the minimum element from the unsorted part of the array and put it at the beginning Algorithm Steps Start with the first element Find the smallest element in the unsorted part of the array Swap it with the first unsorted element Move to the next index and repeat until the whole array is sorted Complexity Best Case : O(n^2) Worst Case : O(n^2) Space Complexity : O(1) Insertion Sort Concept : works like how uou arrnage cards in your hand while playing cares Take the next card Insert it into its correct position among the already sorted cards Algorithm Steps Start with the second element Compare it with the elements before it Shift larger elements one position to the right Insert the current element into its correct spot Repeat for all elements until the array is sorted Complexity Best Case : O(n) Worst Case : O(n^2) Space Complexity : O(1) Merge Sort Concept : Uses divide and conquer strategy Divide : Split the array into two halves Conquer : Recursively sort each half Combine : Merge the two sorted halves into one sorted array Algorithm Steps If the array has only 1 element, it’s already sorted Otherwise, split the array into two halves Recursively sort both halves Merge the two sorted halves by comparing elements Complexity Best Case : O(n logn) Worst Case : O(n logn) Space Complexity : O(n) def merge_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr mid = len(arr) // 2 left = merge_sort(arr[:mid]) right = merge_sort(arr[mid:]) return merge2(left, right) def merge(left: list[int], right: list[int]) -&gt; list[int]: result = [] while left or right: if left and right: if left[0] &lt; right[0]: result.append(left.pop(0)) else: result.append(right.pop(0)) elif left: result.append(left.pop(0)) elif right: result.append(right.pop(0)) return result arr = [38, 27, 43, 3, 9, 82, 10] print(merge_sort(arr)) Quick Sort Concept : another divide and conquer algorithm, but partitions first and then sorts recursively Algorithm Steps Pick a pivot(center) element Rearrange the array so that: Elements smaller than pivot -&gt; left side Elements larger than pivot -&gt; right side Recursively apply Quick Sort to left and right parts Complexity Best Case : O(n logn) Worst Case : O(n^2) Space Complexity : O(logn) Stable : No, equal elements may change order def quick_sort(arr: list[int]) -&gt; list[int]: if len(arr) &lt;= 1: return arr pivot = arr[0] left = [x for x in arr[1:] if x &lt; pivot] right = [x for x in arr[1:] if x &gt;= pivot] return quick_sort(left) &#43; [pivot] &#43; quick_sort(right) arr = [38, 27, 43, 3, 9, 82, 10] print(quick_sort(arr)) Heap Sort Concept : Heap Sort uses a binary heap data strcuture to sort elements Algorithm Steps Build a max heap from the array Swap the root(max element) with the last element Reduce heap size by 1 Heapify Repeat until heap size becomes 1. Complexity Heapify : O(log n) Build Heap : O(n) Sorting : O(nlogn) Space Complexity : O(1) Stable : No import heapq def heap_sort(arr): heapq.heapify(arr) result = [] while arr: arr[0], arr[-1] = arr[-1], arr[0] result.append(heapq.heappop(arr)) return result arr = [4, 10, 3, 5, 1] print(heap_sort(arr)) 2. Searching Linear Search">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/1.-computer-science/cs02--algorithm/"
+    >CS #02 | Algorithm</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/language/1.-computer-science/cs02--algorithm/" class="article-date">
+  <time datetime="2019-09-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2019-09-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-computer-science/"> 1. Computer Science </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/1.-computer-science/cs02--algorithm/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<ol>
+<li>Sorting</li>
+</ol>
+<ul>
+<li>Bubble Sort, Insertion Sort, Selection Sort, O(n^2)</li>
+<li>Merge Sort, O(nlogn) : Divide &amp; Conquer</li>
+<li>Quick Sort, O(nlogn)</li>
+<li>Heap Sort: Based on heap data structure</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Searching</li>
+</ol>
+<ul>
+<li>Linear Search, O(n)</li>
+<li>Binary Search, O(logn)</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Recursion (Divide and Conquer)</li>
+</ol>
+<ul>
+<li>Binary Search</li>
+<li>Merge Sort, Quick Sort</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>Greedy Algorithm</li>
+</ol>
+<ul>
+<li>Huffman Coding</li>
+<li>Activity Selection</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>Dynamic Programming</li>
+</ol>
+<ul>
+<li>Fibonacci Sequence (memoization, tabulation)</li>
+<li>Longest Common Subsequences</li>
+<li>Longest Increasing Subsequences</li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li>Graph Algorithm</li>
+</ol>
+<ul>
+<li>Depth First Search</li>
+<li>Breadth Fisrt Search</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-sorting">1. Sorting</h2>
+<ul>
+<li><strong>Bubble Sort</strong>
+<ul>
+<li>Concept : repeatedly compares adjacent elements and swaps them if they are in the wrong order
+<ul>
+<li>Large elements bubble up to the end of the array after each pass</li>
+<li>Repeat until no swaps are needed</li>
+<li>Think of it like sorting bubbles in water, the biggest bubble floats to the top first</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>Start at the beginning of the list</li>
+<li>Compare each pair of adjacent items</li>
+<li>Swap them if they are in the wrong order</li>
+<li>Repeat until the list is sorted</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(n)</li>
+<li>Worst Case : O(n^2)</li>
+<li>Space Complexity : O(1)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">def bubble_sort(arr: list[int]) -&gt; list[int]:
+    for i in range(len(arr)):  # number of passes
+        swapped = False
+        for j in range(0, len(arr) - i - 1):  # last i elements are sorted
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]  # swap
+                swapped = True
+        if not swapped:  # optimization: stop if already sorted
+            break
+    return arr
+
+# Example
+print(bubble_sort([5, 3, 8, 4, 2]))
+</code></pre>
+<br>
+<ul>
+<li><strong>Selection Sort</strong>
+<ul>
+<li>Concept :
+<ul>
+<li>repeatedly find the minimum element from the unsorted part of the array</li>
+<li>and put it at the beginning</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>Start with the first element</li>
+<li>Find the smallest element in the unsorted part of the array</li>
+<li>Swap it with the first unsorted element</li>
+<li>Move to the next index and repeat until the whole array is sorted</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(n^2)</li>
+<li>Worst Case : O(n^2)</li>
+<li>Space Complexity : O(1)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>Insertion Sort</strong>
+<ul>
+<li>Concept : works like how uou arrnage cards in your hand while playing cares
+<ul>
+<li>Take the next card</li>
+<li>Insert it into its correct position among the already sorted cards</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>Start with the second element</li>
+<li>Compare it with the elements before it</li>
+<li>Shift larger elements one position to the right</li>
+<li>Insert the current element into its correct spot</li>
+<li>Repeat for all elements until the array is sorted</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(n)</li>
+<li>Worst Case : O(n^2)</li>
+<li>Space Complexity : O(1)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>Merge Sort</strong>
+<ul>
+<li>Concept : Uses divide and conquer strategy
+<ul>
+<li>Divide : Split the array into two halves</li>
+<li>Conquer : Recursively sort each half</li>
+<li>Combine : Merge the two sorted halves into one sorted array</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>If the array has only 1 element, it&rsquo;s already sorted</li>
+<li>Otherwise, split the array into two halves</li>
+<li>Recursively sort both halves</li>
+<li>Merge the two sorted halves by comparing elements</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(n logn)</li>
+<li>Worst Case : O(n logn)</li>
+<li>Space Complexity : O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">def merge_sort(arr: list[int]) -&gt; list[int]:
+    if len(arr) &lt;= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge2(left, right)
+
+
+def merge(left: list[int], right: list[int]) -&gt; list[int]:
+    result = []
+    while left or right:
+        if left and right:
+            if left[0] &lt; right[0]:
+                result.append(left.pop(0))
+            else:
+                result.append(right.pop(0))
+        elif left:
+            result.append(left.pop(0))
+        elif right:
+            result.append(right.pop(0))
+    return result
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+print(merge_sort(arr))
+</code></pre>
+<br>
+<ul>
+<li><strong>Quick Sort</strong>
+<ul>
+<li>Concept : another divide and conquer algorithm, but partitions first and then sorts recursively</li>
+<li>Algorithm Steps
+<ul>
+<li>Pick a pivot(center) element</li>
+<li>Rearrange the array so that:
+<ul>
+<li>Elements smaller than pivot -&gt; left side</li>
+<li>Elements larger than pivot -&gt; right side</li>
+</ul>
+</li>
+<li>Recursively apply Quick Sort to left and right parts</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(n logn)</li>
+<li>Worst Case : O(n^2)</li>
+<li>Space Complexity : O(logn)</li>
+<li>Stable : No, equal elements may change order</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>def quick_sort(arr: list[int]) -&gt; list[int]:
+    if len(arr) &lt;= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x &lt; pivot]
+    right = [x for x in arr[1:] if x &gt;= pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+print(quick_sort(arr))
+</code></pre>
+<br>
+<ul>
+<li><strong>Heap Sort</strong>
+<ul>
+<li>Concept : Heap Sort uses a binary heap data strcuture to sort elements</li>
+<li>Algorithm Steps
+<ul>
+<li>Build a max heap from the array</li>
+<li>Swap the root(max element) with the last element</li>
+<li>Reduce heap size by 1</li>
+<li>Heapify</li>
+<li>Repeat until heap size becomes 1.</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Heapify : O(log n)</li>
+<li>Build Heap : O(n)</li>
+<li>Sorting : O(nlogn)</li>
+<li>Space Complexity : O(1)</li>
+<li>Stable : No</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python3">import heapq
+def heap_sort(arr):
+    heapq.heapify(arr)
+    result = []
+    while arr:
+        arr[0], arr[-1] = arr[-1], arr[0]
+        result.append(heapq.heappop(arr))
+    return result
+
+arr = [4, 10, 3, 5, 1]
+print(heap_sort(arr))
+</code></pre>
+<br>
+<hr>
+<h2 id="2-searching">2. Searching</h2>
+<ul>
+<li>
+<p><strong>Linear Search</strong></p>
+<ul>
+<li>Concept : scans the list element by element until the target is found or the list ends.</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(1)</li>
+<li>Worst Case : O(n)</li>
+<li>Space Complexity : O(n)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Binary Search</strong></p>
+<ul>
+<li>Concept : is an efficient algorithm for finding an element in a sorted array
+<ul>
+<li>Looks at the middle element</li>
+<li>If the target is smaller : search the left half</li>
+<li>If the target is larget : search right half</li>
+<li>Repeat until found or interval becomes empty</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>Start with two pointers (low = 0, high = n-1)</li>
+<li>Find mid</li>
+<li>if arr[mid] == target : finish</li>
+<li>if arr[mid] &lt; target : move to right half</li>
+<li>if arr[mid] &gt; target : move to left half</li>
+<li>Repeat until low &gt; high : not found</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Best Case : O(1)</li>
+<li>Worst Case : O(logn)</li>
+<li>Space Complexity : O(1)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># Method1: recursive
+def bsearch(arr, target, low, high):
+    if low &gt; high:
+        return -1  # not found
+    mid = (low + high) // 2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] &lt; target:
+        return bsearch(arr, target, mid + 1, high)
+    else:
+        return bsearch(arr, target, low, mid - 1)
+
+# Example
+arr = [2, 3, 4, 10, 40]
+print(bsearch(arr, 10, 0, len(arr) - 1))  # Output: 3
+
+# Method2: use pointer
+def bsearch2(arr, target):
+    l, r = 0, len(arr)-1
+    while l &lt;= r:
+        m = (l + r) // 2
+        if arr[m] == target:
+            return m
+        elif arr[m] &lt; target:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return -1
+</code></pre>
+<br>
+<hr>
+<h2 id="3-recursion">3. Recursion</h2>
+<ul>
+<li>Recursive Algorithm
+<ul>
+<li>Concept : Recursion is when a function calls itself directly or indirectly until a base condition is met</li>
+<li>Algorithm Steps
+<ul>
+<li>Base case -&gt; stops recursion</li>
+<li>Recursive Case -&gt; function calls itself with a smaller input</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Not efficient, often replaced with DP or iteration to optimize</li>
+</ul>
+</li>
+<li>When to use
+<ul>
+<li>Divide and conquer : Problems naturally defined in terms of subproblems
+<ul>
+<li>Merge Sort, Quick Sort, Binary Search Tree traversal</li>
+</ul>
+</li>
+<li>Tree/graph traversals (DFS)</li>
+<li>Backtracking (maze, N-queens)</li>
+<li>Mathematical Decisions (factorial)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="5-dynamic-programming">5. Dynamic Programming</h2>
+<ul>
+<li>Dynamic Programming
+<ul>
+<li>Concept :
+<ul>
+<li>a method to solve complex problems by breaking them into smaller overlapping subproblmes, solving each subproblem once, and storing the results for resuse.</li>
+<li>basically, Divide &amp; Conquer + Memoization (caching)</li>
+<li>Memoization (Top-down)
+<ul>
+<li>Start with the original problem</li>
+<li>Recursively solve subproblems</li>
+<li>Store results in a cache so repeated calls don&rsquo;t recompute</li>
+</ul>
+</li>
+<li>Tabulation (Bottom-up)
+<ul>
+<li>Start solving from the smallest subproblems</li>
+<li>Build a DP table iteratively until reaching the final solution</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Algorithm Steps
+<ul>
+<li>Identify if it&rsquo;s a DP problem</li>
+<li>Define the state
+<ul>
+<li>What does dp[i] (or dp[i][j]) represent</li>
+</ul>
+</li>
+<li>Define the recurrence relation
+<ul>
+<li>Express the big problem in terms of smaller ones.</li>
+</ul>
+</li>
+<li>Decide on Top-Down or Bottom-Up approach</li>
+</ul>
+</li>
+<li>Examples
+<ul>
+<li>Longest Increasing Subsequence</li>
+<li>Longest Common Subsequences</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># Top-down (memoization)
+memo = {}
+
+def fibonacci(n: int) -&gt; int:
+    if n&lt;3:
+        memo[n] = 1
+    elif n in memo:
+        return memo[n]
+    else:
+        memo[n] = fibonacci(n-1) + fibonacci(n-2)
+    return memo[n]
+
+print(fibonacci(5))
+</code></pre>
+<pre><code class="language-python"># Bottom-Up (Tabulation)
+
+def fibonacci_tab(n:int) -&gt; int:
+    dp = [0] * (n+1)
+    dp[1] = 1
+    dp[2] = 1
+
+    for i in range(3, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+
+print(fibonacci_tab(5))
+</code></pre>
+<h2 id="6-graph-algorithm">6. Graph Algorithm</h2>
+<ul>
+<li>
+<p>Depth First Search (traversal)</p>
+<ul>
+<li>Concept : DFS explores a graph by going as deep as possible along each branch before backtracking</li>
+<li>Algorithm Steps (Stack or Recurive)
+<ul>
+<li>Initialize a set/array visited to keep track of visited nodes</li>
+<li>Start DFS from the given source node s</li>
+<li>Mark the current node as visited</li>
+<li>Process the current node</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Time Complexity : O(V+E)</li>
+<li>Space Complexity : O(v)</li>
+</ul>
+</li>
+<li>Key Application Areas:
+<ul>
+<li>Graph Traversal: Visiting every vertex (node) in a graph structure.</li>
+<li>Pathfinding / Maze Exploration: Searching for a specific path or finding the exit in a maze.</li>
+<li>Combinations &amp; Permutations: Exploring all possible cases or arrangements in a set.</li>
+<li>Backtracking: Solving problems by trying out possible cases and &ldquo;returning&rdquo; (backtracking) if a path leads to a dead end.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Breadth First Search (traversal)</p>
+<ul>
+<li>Concept : BFS explores a graph level by level (neighbors first, then their neighbors)</li>
+<li>Algorithm Steps
+<ul>
+<li>Initialize an empth queue and a visited set.</li>
+<li>Enque the starting node and mark it visited</li>
+<li>While the queue is not empty,
+<ul>
+<li>Dequeue a node from the front of the queue</li>
+<li>Process it (print)</li>
+<li>For each neighbor, if the neighbor is not visited, mark it visited and enqueue it</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Complexity
+<ul>
+<li>Time Complexity: O(V+E)</li>
+<li>Space Complexity: O(V)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

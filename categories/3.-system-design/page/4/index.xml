@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. System Design on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/3.-system-design/</link>
+    <description>Recent content in 3. System Design on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 May 2025 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Search Engine 03 | Indexing</title>
+      <link>http://localhost:1313/__draft/9.-study/search-engine-03--indexing/</link>
+      <pubDate>Wed, 27 Dec 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/search-engine-03--indexing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NPP :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;large-scale distributed search engine&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;incremental indexing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;distributed serving (partition by doc_key)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GINA-B (GINA Batch)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;NBS (Npp Build Server, write, w/o replica)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;NSS (Npp Search Server, read, w/ replica)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://pages.oss.navercorp.com/search-engine/docs/assets/img/concepts-terms_service-components.1b93c3ff.png&#34; alt=&#34;overview&#34;&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-document-input-manager-gina-b-gina-batch&#34;&gt;1. Document Input Manager (GINA-B, GINA Batch)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GINAB :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;request CRUD of docs to refining system&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;store refined docs into DDBS&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-document-db-server-ddbs&#34;&gt;2. Document DB Server (DDBS)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DDBS :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Refined Doc Storage Server&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A large number of documents can be distributed in shards to multiple servers&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Search Engine 00 | Overview</title>
+      <link>http://localhost:1313/__draft/9.-study/search-engine-00--overview/</link>
+      <pubDate>Thu, 21 Dec 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/search-engine-00--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Search Engine System Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Collecting System&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;collect articles from various media outlets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Refining System&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;preprocess collected docs for indexing system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Indexing System&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creates an index in a format that search engines can understand&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Serving System&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;returns a set of documents matching the given query&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;References&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NPP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://oss.navercorp.com/dongsu-an/newbie-tutoring/issues/2&#34;&gt;Search Service Platform Wiki - 서비스 구축 시작하기 &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://oss.navercorp.com/Kick/admin-tool/wiki&#34;&gt;Kick/admin-tool - wiki&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-collecting&#34;&gt;1. Collecting&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;collecting : Collect docs to show from
+&lt;ul&gt;
+&lt;li&gt;(1) Web Crawler&lt;/li&gt;
+&lt;li&gt;(2) DB (Blog, Cafe)&lt;/li&gt;
+&lt;li&gt;(3) Open API (Youtube, Twitter)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-refining-data-processing&#34;&gt;2. Refining (Data Processing)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Refining : process various unstructed data into structured data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-indexing&#34;&gt;3. Indexing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Indexing : index structured (refined) docs by&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Faiss | Overview</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--faiss/</link>
+      <pubDate>Sat, 16 Dec 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--faiss/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Overview&lt;/li&gt;
+&lt;li&gt;Basic - Brutforce : compare query with all vectors&lt;/li&gt;
+&lt;li&gt;IVF - Inverted File : pruning with IVF and compression with SQ
+&lt;ul&gt;
+&lt;li&gt;IVF (Inverted File)&lt;/li&gt;
+&lt;li&gt;SQ (Scalar Quantization) : float32 -&amp;gt; uint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1--overview&#34;&gt;1.  Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Faiss is a library for efficient similarity search and clustering of dense vectors.
+&lt;ul&gt;
+&lt;li&gt;contains algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in RAM.&lt;/li&gt;
+&lt;li&gt;contains supporting code for evaluation and parameter tuning.&lt;/li&gt;
+&lt;li&gt;written in C++ with complete wrappers for Python/numpy.&lt;/li&gt;
+&lt;li&gt;Some of the most useful algorithms are implemented on the GPU.&lt;/li&gt;
+&lt;li&gt;developed primarily at Meta&amp;rsquo;s &lt;a href=&#34;https://ai.facebook.com/&#34;&gt;Fundamental AI Research&lt;/a&gt; group.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-basics---bruteforce&#34;&gt;2. Basics - Bruteforce&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create simple index that compares input query with all vectors
+&lt;ul&gt;
+&lt;li&gt;w/ memory issues&lt;/li&gt;
+&lt;li&gt;w/o pruning and SQ (no training)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Prepare embedded vectors
+embs = np.random.rand(100000, 512)
+# build the faiss-index-inner-product
+indexflat = faiss.IndexFlatIP(np.shape(embs)[-1])
+index = faiss.IndexIDMap2(indexflat)
+# add vectors to the index
+faiss.normalize_L2(embs)  # to make cos-sim index
+index.add_with_ids(embs, ids)  # pylint: disable=no-value-for-parameter
+# Set up GPU and gpu-index
+res = faiss.StandardGpuResources()  # use a single GPU
+index_gpu = faiss.index_cpu_to_gpu(res, 0, index)
+
+# Prepare input vector
+vec = np.random.rand(1, 512) # shape should be in (n,d) format
+# search similar indices
+distances, indices = index_gpu.search(title_vec, 20) # find 20 nearest neighbors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-ivf---inverted-file&#34;&gt;3. IVF - Inverted File&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create IVF (Inverted File) index : search by clustering and inverted file
+&lt;ul&gt;
+&lt;li&gt;clustering : split (clustering) all vector space into k-cluster
+&lt;ul&gt;
+&lt;li&gt;improve search performance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Inverted File :
+&lt;ul&gt;
+&lt;li&gt;provides a quantization index (centroid of each cluster) for each vector to be added.&lt;/li&gt;
+&lt;li&gt;compare distances between query and vectors in target cluster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Prepare embedded vectors
+embs = np.random.rand(100000, 512)
+# IVF index
+num_cluster = 100
+quantizer = faiss.IndexFlatL2(np.shape(embs)[-1])  # set metrics to clac distance in cluster
+index = faiss.IndexIVFFlat(quantizer, np.shape(embs)[-1], num_cluster)
+index.train(embs[:100000])
+index.add(embs)
+
+# Prepare input vector
+vec = np.random.rand(1, 512) # shape should be in (n,d) format
+# search similar indices
+distances, indices = app.index_gpu.search(title_vec, 20) # find 20 nearest neighbors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Faiss</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vuejs/</link>
+      <pubDate>Thu, 16 Nov 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--vuejs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-quick-start&#34;&gt;1. Quick Start&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;requirements&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;creating a vue app&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using vue from cdn&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python $10 | Collaboration</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-10/</link>
+      <pubDate>Tue, 10 Oct 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-10/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Python community has established best practices to maximize the maintainability of code over time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Even if you’re working on your own, chances are you’ll be using code written by someone else via the standard library or open source packages.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It’s important to understand the mechanisms that make it easy to collaborate with other Python programmers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-82-know-where-to-find-community-built-modules&#34;&gt;Item 82. Know Where to Find Community-Built Modules&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The Python Package Index (PyPI) contains a wealth of common packages that are built and maintained by the Python community.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CS #09 | Distributed Computing</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--distributed-computing/</link>
+      <pubDate>Mon, 18 Sep 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--distributed-computing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-map-reduce&#34;&gt;1. Map Reduce&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction&lt;/li&gt;
+&lt;li&gt;Methods&lt;/li&gt;
+&lt;li&gt;Result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>IR #1 | Search Engine Basic</title>
+      <link>http://localhost:1313/machine-learning/misc/ir-01--search-engine-basic/</link>
+      <pubDate>Tue, 01 Aug 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/misc/ir-01--search-engine-basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-terminologies&#34;&gt;1. Terminologies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;SERP : Search Engine Result Page&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | k8s</title>
+      <link>http://localhost:1313/system-architecture/4.-model-serving/cheatsheet--k8s/</link>
+      <pubDate>Mon, 31 Jul 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/4.-model-serving/cheatsheet--k8s/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes (k8s)  : is an open-source system for automating deployment, scaling, and management of containerized applications&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simply a container orchestration tool like docker swarm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kubernetes Cluster : set of worker machines (nodes)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nodes : host the Pods that are the components of the application workload&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pod : the smallest deployable units&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pod&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kubectl&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-pod&#34;&gt;1. Pod&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pods : are the smallest deployable units of computing that you can create and manage in Kubernetes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #9 | Testing and Debugging</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-09/</link>
+      <pubDate>Fri, 21 Apr 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-09/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;With Python, you ultimately don’t know if the functions your program calls will be defined at runtime, even when their existence is evident in the source code.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This dynamic behavior is both a blessing and a curse.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-75-use-repr-strings-for-debugging-output&#34;&gt;Item 75. Use &lt;code&gt;repr&lt;/code&gt; Strings for Debugging Output&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Calling &lt;code&gt;print&lt;/code&gt; on built-in Python types produces the human readable string version of a value, which hides type information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Calling &lt;code&gt;repr&lt;/code&gt;on built-in Python types produces the printable string version of a value. These repr strings can often be passed to the &lt;code&gt;eval&lt;/code&gt;built-in function to get back the original value.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #7 | Concurrency and Parallelism</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-07/</link>
+      <pubDate>Thu, 13 Apr 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-07/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Concurrency enables a computer to do many different things &lt;strong&gt;seemingly at the same time.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Parallelism, in contrast, involves &lt;strong&gt;actually doing many different things at the same time.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python makes it easy to write concurrent programs in a variety of styles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Threads support a relatively small amount of concurrency,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Coroutines enable vast numbers of concurrent functions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Subprocesses can also be used to do parallel work through system calls,&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-52-use-subprocess-to-manage-child-process&#34;&gt;Item 52. Use &lt;code&gt;subprocess&lt;/code&gt; to Manage Child Process&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use the &lt;code&gt;subprocess&lt;/code&gt; module to run child processes and manage their input and output streams&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #8 | Robustness and Performance</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-06/</link>
+      <pubDate>Mon, 10 Apr 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-06/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Metaclasses are often mentioned in lists of Python&amp;rsquo;s features, but few understand what the accomplish in practice.&lt;/li&gt;
+&lt;li&gt;The name metaclass vaguely implies a concept above and beyond a class&lt;/li&gt;
+&lt;li&gt;metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-44-use-plain-attributes-instead-of-setter-and-getter-methods&#34;&gt;Item 44. Use Plain Attributes Instead of Setter and Getter Methods&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Define new class interfaces using simple public attributes and &lt;strong&gt;avoid defining setter and getter methods&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #8 | Robustness and Performance</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-08/</link>
+      <pubDate>Mon, 10 Apr 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-08/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-65-take-advantage-of-each-block-in-tryexceptelsefinally&#34;&gt;Item 65. Take Advantage of Each BLock in &lt;code&gt;try/except/else/finally&lt;/code&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;try/finally&lt;/code&gt; compound statement lets you run clean up code regardless of whether exceptions were raised in the &lt;code&gt;try&lt;/code&gt;block&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;else&lt;/code&gt; block helps you minimize the amount of code in &lt;code&gt;try&lt;/code&gt;blocks and visually distinguish the success case from the &lt;code&gt;try/except&lt;/code&gt; blocks&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NLP #9 | Retrieval Augmented Generation</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-9--rag/</link>
+      <pubDate>Fri, 07 Apr 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-9--rag/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic Concept&lt;/strong&gt; :
+&lt;ul&gt;
+&lt;li&gt;LLMs struggle to provide up-to-date information or specific domain knowledge that isn’t included in their training data.&lt;/li&gt;
+&lt;li&gt;RAG addresses these limitations by combining &lt;em&gt;knowledge retrieval&lt;/em&gt; with &lt;em&gt;language generation&lt;/em&gt; in a unified framework.&lt;/li&gt;
+&lt;li&gt;The core idea behind RAG is to retrieve necessary knowledge from external databases and utilize it to answer questions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Key Components of RAG&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Query Encoder&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;A language model that understands the user’s question.&lt;/li&gt;
+&lt;li&gt;It encodes the given question into a vector representation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge Retriever&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Based on the encoded query, it searches for relevant information from an external knowledge base.&lt;/li&gt;
+&lt;li&gt;For example, it may retrieve paragraphs or excerpts from large collections of documents like Wikipedia, news articles, or domain-specific books.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge-Augmented Generator&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;A language model that uses the retrieved knowledge to generate answers to the question.&lt;/li&gt;
+&lt;li&gt;It functions similarly to a standard LLM but incorporates the retrieved knowledge as additional input to produce more accurate and detailed responses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Overall Steps&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;When a user submits a question, the query encoder converts it into an interpretable format&lt;/li&gt;
+&lt;li&gt;The knowledge retriever uses the encoded question to search for relevant information in an external knowledge base.&lt;/li&gt;
+&lt;li&gt;The retrieved knowledge is passed to the knowledge-augmented generator.&lt;/li&gt;
+&lt;li&gt;The generator produces an answer by leveraging the retrieved information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-latent-semantic-analysis-lsa&#34;&gt;1. Latent Semantic Analysis (LSA)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-lda&#34;&gt;2. LDA&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-topic-modeling&#34;&gt;3. Topic Modeling&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>AI Powered Search | #2 Working with natural language</title>
+      <link>http://localhost:1313/__draft/9.-study/ai-powered-search-02/</link>
+      <pubDate>Fri, 31 Mar 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/ai-powered-search-02/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In the first chapter, we provided a &lt;strong&gt;high-level overview&lt;/strong&gt; of what it means to build an Al-powered search system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Before we dive into those &lt;strong&gt;hands-on examples&lt;/strong&gt; and specific &lt;strong&gt;implementations&lt;/strong&gt;,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;in this chapter that we &lt;strong&gt;first establish a shared (basis) mental model&lt;/strong&gt; for the higher level problems we&amp;rsquo;re trying to solve.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Specifically, when it comes to intelligent search, we have to deal with &lt;strong&gt;many complexities and nuances&lt;/strong&gt; in natural language&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #5 | Classes and Interfaces</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-05/</link>
+      <pubDate>Mon, 13 Mar 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-05/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;As an OOP language, Python supports a full range of features, such as inheritance, polymorphism, and encapsulation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python’s classes and inheritance make it easy to express a program’s intended behaviors with objects.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They allow you to improve and expand functionality over time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They provide flexibility in an environment of changing requirements.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-37-compose-classes-instead-of-nesting-many-levels-of-build-in-types&#34;&gt;Item 37. Compose Classes Instead of Nesting Many Levels of Build-in Types&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid &lt;strong&gt;making dictionaries with values that are dictionaries, long tuples, or complex nestings of other build-in types&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #4 | Comprehensions and Generators</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-04/</link>
+      <pubDate>Thu, 16 Feb 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-04/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-27-use-comprehensions-instead-of-map-and-filter&#34;&gt;Item 27. Use Comprehensions Instead of &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;filter&lt;/code&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #3 | Functions</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-03/</link>
+      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-03/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Functions in Python have a variety of extra features that make a programmer’s life easier.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some are similar to capabilities in other programming languages, but many are unique to Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;These extras can make a function’s purpose more obvious.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;They can eliminate noise and clarify the intention of callers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They can significantly reduce subtle bugs that are difficult to find.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-19-never-unpack-more-than-three-variables-when-functions-return-multiple-values&#34;&gt;Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #2 | Lists and Dictionaries</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-02/</link>
+      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-02/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-11-know-how-to-slice-sequences&#34;&gt;Item 11. Know How to Slice Sequences&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Effective Python #1 | Pythonic Thinking</title>
+      <link>http://localhost:1313/language/2.-python/effective-python-01/</link>
+      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/2.-python/effective-python-01/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;item-1-know-which-version-of-python-youre-using&#34;&gt;Item 1. Know Which Version of Python You’re Using&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This book also provides some examples in the syntax of Python 3.8 (released in October 2019)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #4 | Matrix Decompositions</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml12--classification-with-svm/</link>
+      <pubDate>Tue, 13 Dec 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml12--classification-with-svm/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;4-matrix-decompositions&#34;&gt;4. Matrix Decompositions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;41-determinant-and-trace&#34;&gt;4.1 Determinant and Trace&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;42-eigenvalues-and-eigenvectors&#34;&gt;4.2 Eigenvalues and Eigenvectors&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Intro :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;43-cholesky-decomposition&#34;&gt;4.3 Cholesky Decomposition&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;44-eigendecomposition-and-diagonalization-115&#34;&gt;4.4 Eigendecomposition and Diagonalization (115)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;35-orthonormal-basis&#34;&gt;3.5 Orthonormal Basis&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;36-orthogonal-complement&#34;&gt;3.6 Orthogonal Complement&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;47-matrix-phylogency-134&#34;&gt;4.7 Matrix Phylogency (134)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;T&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;310-summary&#34;&gt;3.10 Summary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;4.1) Detterminant and Trace&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

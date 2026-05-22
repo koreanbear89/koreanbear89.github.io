@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <title>
         Effective Python #4 | Comprehensions and Generators - Lab.Koreanbear|한국곰연구소
       </title>
@@ -20,40 +20,44 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+    <meta name="description" content="
+Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
 This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided." />
-    <meta name="generator" content="Hugo 0.121.2 with theme pure" />
+Item 27. Use Comprehensions Instead of map and filter List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.
+" />
+    <meta name="generator" content="Hugo 0.149.1 with theme pure" />
     <title>Effective Python #4 | Comprehensions and Generators - Lab.Koreanbear|한국곰연구소</title>
     
     
-    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.be627ecd35738958a04c60fe5c31d5410949a5e53a29e404dda965a1eb8160c8.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.cc594716968e94b5563a146aea1df7e7f754c7e26754143a88110f383e0d9008.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="Effective Python #4 | Comprehensions and Generators" />
-<meta property="og:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+    <meta property="og:url" content="http://localhost:1313/language/1.-python/effective-python-04/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #4 | Comprehensions and Generators">
+  <meta property="og:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
 This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://koreanbear89.github.io/language/1.-python/effective-python-04/" /><meta property="article:section" content="Language" />
-<meta property="article:published_time" content="2023-02-16T09:00:00+00:00" />
-<meta property="article:modified_time" content="2023-02-16T09:00:00+00:00" />
+Item 27. Use Comprehensions Instead of map and filter List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-02-16T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-16T09:00:00+00:00">
 
-<meta itemprop="name" content="Effective Python #4 | Comprehensions and Generators">
-<meta itemprop="description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+  <meta itemprop="name" content="Effective Python #4 | Comprehensions and Generators">
+  <meta itemprop="description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
 This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided."><meta itemprop="datePublished" content="2023-02-16T09:00:00+00:00" />
-<meta itemprop="dateModified" content="2023-02-16T09:00:00+00:00" />
-<meta itemprop="wordCount" content="1259">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Effective Python #4 | Comprehensions and Generators"/>
-<meta name="twitter:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
+Item 27. Use Comprehensions Instead of map and filter List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.">
+  <meta itemprop="datePublished" content="2023-02-16T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-02-16T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1414">
+  <meta itemprop="keywords" content="1. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #4 | Comprehensions and Generators">
+  <meta name="twitter:description" content="Introduction Python provides a special syntax, called comprehensions, for succinctly iterating through these types (list, dict, set) and creating derivative data structures
 This style of processing is extended to functions with generators, which enable a stream of values to be incrementally returned by a function.
-Item 27. Use Comprehensions Instead of map and filter Comprehensions support multiple levels of loops and multiple conditions per loop level.
-Comprehensions with more than two control subexpressions are very difficult to read and should be avoided."/>
+Item 27. Use Comprehensions Instead of map and filter List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -91,7 +95,7 @@ Comprehensions with more than two control subexpressions are very difficult to r
            
           
           <a id="avatar" href="/" target="_self">
-            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
           </a>
           <a href="/" target="_self">
             <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
@@ -135,76 +139,50 @@ Comprehensions with more than two control subexpressions are very difficult to r
 
       <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
         <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
+              <li class="menu-item menu-item-home">
                 <a href="/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-home"></i>
+                        <i class=" fas fa-home"></i>
                   <span class="menu-title">Home</span>
                 </a>
-            </li>
-            <li class="menu-item menu-item-about">
+              </li>
+              <li class="menu-item menu-item-about">
                 <a href="/about/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-user-alt"></i>
+                        <i class=" fas fa-user-alt"></i>
                   <span class="menu-title">About</span>
                 </a>
-            </li>
-            <li class="menu-item menu-item-mathematics">
-                <a href="/mathematics/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-square-root-alt"></i>
-                  <span class="menu-title">Mathematics</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-research">
-                <a href="/research/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-book-open"></i>
-                  <span class="menu-title">Research</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-engineering">
-                <a href="/engineering/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-cog"></i>
-                  <span class="menu-title">Engineering</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-language">
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
                 <a href="/language/">
-
-                    
-                    
-
-                    
-                    <i class=" fas fa-language"></i>
+                        <i class=" fas fa-language"></i>
                   <span class="menu-title">Language</span>
                 </a>
-            </li>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
         </ul>
       </nav>
     </div>
   </header>
+
+
 
     <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
   <div class="slimContent">
@@ -234,28 +212,21 @@ Comprehensions with more than two control subexpressions are very difficult to r
                   
                   
                   <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
-                  <span class="category-list-count">12</span></li>
+                  <span class="category-list-count">13</span></li>
                   
               
         </ul><hr>
 
 
 
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Research</h5>
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
               
               
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
-                  <span class="category-list-count">13</span></li>
-
-                  
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
-                  <span class="category-list-count">14</span></li>
+                  <span class="category-list-count">15</span></li>
 
                   
               
@@ -268,22 +239,8 @@ Comprehensions with more than two control subexpressions are very difficult to r
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/4.-image-processing">4. Image Processing</a>
-                  <span class="category-list-count">4</span></li>
-
-                  
-              
-                  
-                  
                   <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
-                  <span class="category-list-count">8</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/6.-recommendation-system">6. Recommendation System</a>
-                  <span class="category-list-count">2</span></li>
+                  <span class="category-list-count">12</span></li>
 
                   
               
@@ -294,11 +251,18 @@ Comprehensions with more than two control subexpressions are very difficult to r
 
                   
               
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
         </ul><hr>
 
 
 
-        <ul style="margin-bottom:25px;"  class="category-list"><h5>Engineering</h5>
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
               
               
               
@@ -307,20 +271,41 @@ Comprehensions with more than two control subexpressions are very difficult to r
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
-                  <span class="category-list-count">4</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/2.-backend">2. Backend</a>
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">7</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">0</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
                   <span class="category-list-count">2</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/3.-frontend">3. Frontend</a>
+                  <li class="category-list-item"><a href="/categories/5.-monitoring">5. Monitoring</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-visualization">8. Visualization</a>
                   <span class="category-list-count">1</span></li>
 
                   
@@ -328,21 +313,7 @@ Comprehensions with more than two control subexpressions are very difficult to r
                   
                   
                   <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
-                  <span class="category-list-count">17</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">9</span></li>
-
-                  
-              
-                  
-                  
-                  <li class="category-list-item"><a href="/categories/9.-study">9. Study</a>
-                  <span class="category-list-count">13</span></li>
+                  <span class="category-list-count">20</span></li>
 
                   
               
@@ -355,25 +326,30 @@ Comprehensions with more than two control subexpressions are very difficult to r
               
               
                   
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
               
                   
                   
                   <li class="category-list-item"><a href="/categories/1.-python">1. Python</a>
-                  <span class="category-list-count">19</span></li>
+                  <span class="category-list-count">18</span></li>
 
                   
               
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-scala">2. Scala</a>
-                  <span class="category-list-count">2</span></li>
+                  <span class="category-list-count">6</span></li>
 
                   
               
                   
                   
-                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
-                  <span class="category-list-count">6</span></li>
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">8</span></li>
 
                   
               
@@ -423,7 +399,7 @@ Comprehensions with more than two control subexpressions are very difficult to r
         
 <span class="article-date">
   <i class="icon icon-calendar-check"></i>&nbsp;
-<a href="https://koreanbear89.github.io/language/1.-python/effective-python-04/" class="article-date">
+<a href="http://localhost:1313/language/1.-python/effective-python-04/" class="article-date">
   <time datetime="2023-02-16 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-02-16</time>
 </a>
 </span>
@@ -453,46 +429,42 @@ Comprehensions with more than two control subexpressions are very difficult to r
 <h2 id="item-27-use-comprehensions-instead-of-map-and-filter">Item 27. Use Comprehensions Instead of <code>map</code> and <code>filter</code></h2>
 <ol>
 <li>
+<p>List comprehensions are clearer than the map and filter built-in functions because they don’t require lambda expressions.</p>
+</li>
+<li>
+<p>List comprehensions allow you to easily skip items from the input list, a behavior that map doesn’t support without help from filter.</p>
+</li>
+<li>
+<p>Dictionaries and sets may also be created using comprehensions.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-28-avoid-more-than-two-control-subexpressions-in-comprehensions-">Item 28: Avoid More Than Two Control Subexpressions in Comprehensions ****</h2>
+<ul>
+<li>
 <p>Comprehensions support multiple levels of loops and multiple conditions per loop level.</p>
 </li>
 <li>
-<p>Comprehensions with more than two control subexpressions are very difficult to read and should be avoided. =&gt; Use normal <code>if</code> and <code>for</code> statements and write a helper function (Item30)</p>
+<p>Comprehensions with more than two (&gt;2) control subexpressions are very difficult to read and should be avoided.</p>
+<ul>
+<li>
+<p>two conditions, two loops, or one condition and one loop</p>
 </li>
-</ol>
+<li>
+<p>Use normal <code>if</code> and <code>for</code> statements and write a helper function (Item30)</p>
+</li>
+</ul>
+</li>
+</ul>
 <pre><code class="language-python"># multiple levels of looping
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 flat = [x for row in matrix for x in row]
 
 # multiple if conditions 
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 b = [x for x in a if x &gt; 4 if x % 2 == 0]
 c = [x for x in a if x &gt; 4 and x % 2 == 0]
-</code></pre>
-<br>
-<hr>
-<h2 id="item-28-avoid-more-than-two-control-subexpressions-in-comprehensions">Item 28: Avoid More Than Two Control Subexpressions in Comprehensions</h2>
-<ol>
-<li>
-<p>Functions that return None to indicate special meaning are error prone because None and other values (e.g., zero, the empty string) all evaluate to False in conditional expressions.</p>
-</li>
-<li>
-<p>Raise exceptions to indicate special situations instead of returning None. Expect the calling code to handle exceptions properly when they’re documented</p>
-</li>
-<li>
-<p>Type annotations can be used to make it clear that a function will never return the value None, even in special situations.</p>
-</li>
-</ol>
-<pre><code class="language-python"># before
-def careful_divide(a, b):
-    try:
-        return a / b
-    except ZeroDivisionError:
-        return None
-# after
-def careful_divide(a, b):
-    try:
-        return a / b
-    except ZeroDivisionError as e:
-        raise ValueError('Invalid inputs')
 </code></pre>
 <br>
 <hr>
@@ -642,7 +614,7 @@ def normalize_defensive(numbers):
 value = [len(x) for x in open('my_file.txt')] 
 print(value) # &gt;&gt;&gt; [100, 57, 15, 1, 12, 75, 5, 86, 89, 11]
 
-# after
+# after : generator expressions using ()
 it = (len(x) for x in open('my_file.txt'))
 print(it) # &gt;&gt;&gt; &lt;generator object &lt;genexpr&gt; at 0x108993dd0&gt;
 print(next(it)) # &gt;&gt;&gt; 100
@@ -715,13 +687,52 @@ def animate_composed():
 <p>The <code>itertools</code> functions fall into three main categories for working with iterators and generators</p>
 <ul>
 <li>
-<p>linking iterators together</p>
+<p><strong>Linking iterators together</strong></p>
+<ul>
+<li>
+<p><code>chain</code> : Use chain to combine multiple iterators into a single sequential iterator</p>
 </li>
 <li>
-<p>filtering items they output</p>
+<p><code>repeat</code>: Use repeat to output a single value forever, or use the second parameter to specify a maximum number of times</p>
 </li>
 <li>
-<p>producting combinations of items</p>
+<p><code>tee</code>: Use tee to split a single iterator into the number of parallel iterators specified by the second parameter.</p>
+</li>
+<li>
+<p><code>zip_longest</code>: This variant of the zip built-in function returns a placeholder value when an iterator is exhausted, which may happen if iterators have different lengths</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Filtering items they output</strong></p>
+<ul>
+<li>
+<p><code>takewhile</code> : returns items from an iterator until a predicate function returns False for an item</p>
+</li>
+<li>
+<p><code>dropwhile</code>: returns items from an iterator until a predicate function returns False for an item</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Producting combinations of items</strong></p>
+<ul>
+<li>
+<p><code>accumulate</code>: folds an item from the iterator into a running value by applying a function that takes two parameters.</p>
+</li>
+<li>
+<p><code>product</code>: returns the Cartesian product of items from one or more iterators</p>
+<ul>
+<li><code>itertools.product([1, 2], ['a', 'b'])</code> =&gt; <code>[(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]</code></li>
+</ul>
+</li>
+<li>
+<p><code>permutations</code> : returns the unique ordered permutations of length N with items from an iterator</p>
+</li>
+<li>
+<p><code>combinations</code>: returns the unordered combinations of length N with unrepeated items from an iterator</p>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -756,7 +767,7 @@ def animate_composed():
             <i class="icon icon-github"></i></a></li>
     <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
             <i class="icon icon-linkedin"></i></a></li>
-    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
             <i class="icon icon-rss"></i></a></li>
 </ul>
   
@@ -787,8 +798,8 @@ def animate_composed():
     })
     hljs.initHighlightingOnLoad();
 </script>
-<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
-<script src="https://koreanbear89.github.io/js/plugin.min.ba889b64780656626c83f08057000ed74aeebb8331bd2e679f2f4e37e4f98552.js"></script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.51f370e0d0e8604c70d31356f1a863f986c884e3b25c4be0cb9f9e9cb452e4b1.js"></script>
 
 <script>
     (function (window) {
@@ -800,13 +811,13 @@ def animate_composed():
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
-            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 <script>
     tocbot.init({
@@ -820,7 +831,6 @@ def animate_composed():
         hasInnerContainers: true,
     });
 </script>
-
 
 
   </body>

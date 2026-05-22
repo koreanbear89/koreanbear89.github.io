@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        LM #1 | Language Model Architecture - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Summary Language Modeling : the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+Natural Language Generation : produces natural lanugage output
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>LM #1 | Language Model Architecture - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/machine-learning/5.-natural-language/lm-1--architecture/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="LM #1 | Language Model Architecture">
+  <meta property="og:description" content="Summary Language Modeling : the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+Natural Language Generation : produces natural lanugage output">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2020-04-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2020-04-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="LM #1 | Language Model Architecture">
+  <meta itemprop="description" content="Summary Language Modeling : the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+Natural Language Generation : produces natural lanugage output">
+  <meta itemprop="datePublished" content="2020-04-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-04-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1281">
+  <meta itemprop="keywords" content="5. Natural Language">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LM #1 | Language Model Architecture">
+  <meta name="twitter:description" content="Summary Language Modeling : the task of predicting the next word or character in a document that can be used in downstream tasks like:
+Machine Translation : By comparing two sentences with a language model, and return the more natural sentence
+Spell Correction : Correct spelling by choosing a more natural vocabulary
+Speech Recognition : Correct the recognition result with more natural words
+Natural Language Generation : produces natural lanugage output">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black main-center theme-black main-center theme-black main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/8.-agentic-system">8. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-python">3. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-scala">4. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/5.-natural-language/lm-1--architecture/"
+    >LM #1 | Language Model Architecture</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/machine-learning/5.-natural-language/lm-1--architecture/" class="article-date">
+  <time datetime="2020-04-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-04-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/5.-natural-language/"> 5. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/5.-natural-language/lm-1--architecture/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p><strong>Language Modeling</strong> :  the task of predicting the next word or character in a document that can be used in downstream tasks like:</p>
+<ol>
+<li>
+<p>Machine Translation : By comparing two sentences with a language model, and return the more natural sentence</p>
+</li>
+<li>
+<p>Spell Correction : Correct spelling by choosing a more natural vocabulary</p>
+</li>
+<li>
+<p>Speech Recognition : Correct the recognition result with more natural words</p>
+</li>
+<li>
+<p>Natural Language Generation : produces natural lanugage output</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Model Overview</p>
+<ul>
+<li>
+<p>LSTM based models</p>
+</li>
+<li>
+<p>Transformer - Standard in 2025</p>
+<ul>
+<li>
+<p>Architecture : Decoder only</p>
+</li>
+<li>
+<p>Layer Normalization : Pre-layer normalization</p>
+</li>
+<li>
+<p>Positional Embedding: Rotary Positional Embedding (RoPE)</p>
+</li>
+<li>
+<p>Mixture of Experts (MoE)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-seq2seq-learning-with-neural-networks-2014">1. <a href="https://arxiv.org/abs/1409.3215">Seq2Seq Learning with Neural Networks (2014)</a></h2>
+<ul>
+<li><strong>Introduction</strong> : DNNs work well but they cannot be used to map sequences to sequences. Authors present a general end-to-end approach to sequence learning.</li>
+<li><strong>Method</strong> : Simply using a multilayered LSTM to map the input sequence to a fixed dim vector (context vector) and then another deep LSTM to decode the target sequence from the vector</li>
+</ul>
+<center><video width="60%" height="auto" loop autoplay controls>
+  <source src="/figures/2021-04-13-fig1.mp4" type="video/mp4">
+</video></center>
+<br>
+<hr>
+<h2 id="2-attention--neural-machine-translation-by-jointly-learning-to-align-and-translate-2014">2. <a href="https://arxiv.org/abs/1409.0473">Attention : Neural Machine Translation by Jointly Learning to Align and Translate (2014)</a></h2>
+<ul>
+<li>
+<p>Introduction : A potential issue with the encoder-decoder approach is that a NN needs to be able to compress all the necessary information of a source sentence into a fixed-length vector (context vector).</p>
+</li>
+<li>
+<p>Method : Rather than using fixed-length context vector (last hidden state value of encoder), we can use encoder&rsquo;s each state with current state to generate dynamic context vector</p>
+<ol>
+<li>Attention Weight : Simply adding (FC + Softmax) to encoder  output, we can get weight values of each input words for output at time step $t$.</li>
+<li>Dynamic Context Vector : We can get context vector for each timestep $c_t$ by calculating weighted sum of $h_i$ (hidden state of encoder) and $s_i$ (attention weight, softmax).</li>
+<li><strong>Teacher Forcing</strong> : If model made wrong prediction $y_t$ for time step $t$.  This causes the model to be trained in the wrong way for time step $t+1$.  So we passed GT as the next input for timestep $t$ to decoder rather than wrong prediction.</li>
+</ol>
+</li>
+</ul>
+<center><video width="60%" height="auto" loop autoplay controls>
+  <source src="/figures/2021-04-13-fig2.mp4" type="video/mp4">
+</video></center>
+<br>
+<hr>
+<h2 id="3-transformer--attention-is-all-you-need-2017">3. <a href="https://arxiv.org/abs/1706.03762">Transformer : Attention Is All You Need (2017)</a></h2>
+<ul>
+<li>
+<p>Introduction :</p>
+<ul>
+<li>
+<p>propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.</p>
+</li>
+<li>
+<p>Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Method : Self-attention is an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence.</p>
+<ul>
+<li>
+<p><strong>Encoder</strong> : Self Attention Layer (Scaled Dot-product Attention) + Feed Forward NN</p>
+<ol>
+<li>Word Embedding : word to 512-dim vector</li>
+<li>Generate query, key, value vector of $i_{th}$ word : $q_i, k_i, v_i$ by simply multiplying trainable weights, $W_Q, W_K, W_V$</li>
+<li>Attention Score,  $softmax(s_{ij})$ : by calculating $s_{ij} = q_i \cdot k_j$ we can get score between $i_{th}$ word and other $j_{th}$ words. and scale the dot products by $\frac{1}{\sqrt{d}}$
+<ul>
+<li>We suspect that for large values of d_k, the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients</li>
+</ul>
+</li>
+<li>Weighted Sum : $output_1 = S_{11} v_1 + S_{12}v_2 + S_{13}v_3&hellip;$</li>
+</ol>
+</li>
+<li>
+<p><strong>Decoder</strong> : Almost same architercture with Encoder</p>
+<ol>
+<li>In the decoder, the self-attention layer is only allowed to attend to earlier positions in the output sequence . This is done by masking future positions (setting them to <code>-inf</code>) before the softmax step in the self-attention calculation.</li>
+<li>above diffrence makes attention score changed like this : $s_{ij} = q_i \cdot k_j (i&lt;j)$</li>
+<li>The decoder stack outputs a vector of floats. And we turn that into a word by the final Linear layer which is followed by a Softmax Layer.</li>
+</ol>
+</li>
+<li>
+<p><strong>Positional Encoding</strong> : no recurrence and no convolution in model, in order for the model to make use of the order of the sequence =&gt; we must inject some information about the relative or absolute position of the tokens in the sequence. (5. RoPE in details)</p>
+<ul>
+<li>
+<p>Simple indexing : just created a new vector where every entry is its index number. =&gt; exploding gradients, unstable training</p>
+</li>
+<li>
+<p>Normalized indexing : Just divide everything by the largest integer so all of the values are in [0,1]</p>
+</li>
+<li>
+<p>binarized indexing : Instead of writing say 35 for the 35th element, we could instead represent it via its binary form 100011. =&gt; Our binary vectors come from a discrete function, and not a discretization of a continuous function</p>
+</li>
+<li>
+<p><strong>Sinusoidal Positional Encoding</strong> : find a way to make the binary vector a discretization of something continuous. (Vanilla transformer)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>References:</p>
+<ul>
+<li><a href="https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms">neural networks - What exactly are keys, queries, and values in attention mechanisms? - Cross Validated</a></li>
+<li><a href="https://blog.promedius.ai/transformer/">Transformer said, Attention is all you need.</a></li>
+<li><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Master Positional Encoding : Part1</a></li>
+</ul>
+</li>
+<li>
+<p>Appendix1. Where does <strong>query, key, value</strong> comes from :</p>
+<ul>
+<li>The key/value/query concept is analogous to retrieval systems. For example, when you search for videos on Youtube, the search engine will map your <strong>query</strong> (text in the search bar) against a set of <strong>keys</strong> (video title, description, etc.) associated with candidate videos in their database, then present you the best matched videos (<strong>values</strong>).</li>
+<li>The attention operation can be thought of as a retrieval process as well.</li>
+</ul>
+</li>
+</ul>
+<center>
+<img width=50% src='https://nlpinkorean.github.io/images/transformer/self-attention-output.png'>
+  <p> <i>Self-Attention Layer</i> </p>
+</center>
+<center>
+<img width=32% src='https://miro.medium.com/max/1280/1*pS2_ywtYRO7hIRoj0XpHBQ.png'><img width=32% src='https://miro.medium.com/max/1280/1*UqZpS0ZUOW3p0MTixPyqoQ.png'>
+  <p> <i>Handcrafted Positional Encoding</i> </p>
+</center>
+<br>
+<hr>
+<h2 id="4-on-layer-normalization-in-the-transformer-architecture--pre-ln-2020">4. <a href="https://arxiv.org/pdf/2002.04745">On Layer Normalization in the Transformer Architecture : Pre-LN (2020)</a></h2>
+<ul>
+<li>Abstract
+<ul>
+<li>This paper investigates the impact of Layer Normalization (LayerNorm) placement in Transformer architectures</li>
+<li>Traditionally applied after the residual connection (Post-LN), the authors propose an alternative—applying it before the sub-layer (Pre-LN)</li>
+<li>They show that Pre-LN Transformers are more stable during training, especially for deep networks, and converge faster without requiring warm-up or gradient clipping</li>
+</ul>
+</li>
+<li>Method : LayerNorm is applied <strong>before</strong> the multi-head attention and feed-forward sub-layers, rather than after the residual connection.
+<ul>
+<li>Mathematical Intuition : consider backpropagation. The gradient in Pre-LN is more directly connected to x^{(l)}, because the residual is untouched by non-linearities or normalization:
+<ul>
+<li><strong>Post-LN:</strong>  $x^{(l+1)} = \mathcal{LN}(x^{(l)} +\mathcal{F}(x^{(l)}))$</li>
+<li><strong>Pre-LN:</strong> $x^{(l+1)} = x^{(l)} + \mathcal{F}(\mathcal{LN}(x^{(l)}))$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Conclustion
+<ul>
+<li>Pre-LN Transformers offer a simple but effective modification to the standard architecture, addressing gradient vanishing issues and facilitating the training of deeper models.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="5-enhanced-transformer-with-rotary-position-embedding-2021">5. <a href="https://arxiv.org/pdf/2104.09864">Enhanced Transformer with Rotary Position Embedding (2021)</a></h2>
+<ul>
+<li>
+<p>Abstract : introduces Rotary Positional Embedding (RoPE), a novel method for encoding positional information in Transformer models.</p>
+</li>
+<li>
+<p><strong>Background1. Position Embedding</strong></p>
+<ul>
+<li>The self-attention first incorporates position information $m$ to the word embeddings $x_i$ and transforms them into queries, keys, and value representations.
+<ul>
+<li>$ q_m= f_q(x_m,m)$,</li>
+<li>$k_n = f_k(x_n,n)$,</li>
+<li>$ v_n = f_v(x_n,n)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Background2. Absolute Position Embedding (2017)</strong></p>
+<ul>
+<li>A typical choice of $f$ for  $q, k, v$ is returned by simply adding positional information $p_i$ before weighting attention
+<ul>
+<li>$f_{t:t∈{q,k,v}}(x_i,i) := W_{t:t∈{q,k,v}}(x_i + p_i),$</li>
+</ul>
+</li>
+<li>Vaswani et al.(2017) have proposed to generate $p_i$ using sinusoidal function
+<ul>
+<li>Lack of relative positional information : absolute position does not help the model to under stand relative distances between tokens</li>
+<li>Poor generalization to longer sequences</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Background3. Relative Position Embedding (2018)</strong></p>
+<ul>
+<li>Replace the absolute position embedding $p_n$ with its sinusoid-encoded relative counterpart $p_{m−n}$ (the distance between position m and n)
+<ul>
+<li>Heavy and complex : require modifying the self-attention mechanism by adding relative position bias terms</li>
+<li>Lack of absolute position information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Method. Rotary Position Embedding (proposed)</strong></p>
+<ol>
+<li>Instead of adding positional encodings, RoPE applies rotations (matrix transform) to the token embeddings by multiplying $e^{im \theta}$ (comes from Euler&rsquo;s formula) :
+<ul>
+<li>$f_q(x_m,m) = (W_q x_m)e^{imθ} $</li>
+<li>$f_k(x_n,n) = (W_k x_n)e^{inθ} $</li>
+</ul>
+</li>
+<li>Applying RoPE to self-attention (inner product of q and k) :
+<ul>
+<li>$q^⊺_mk_n = (R^d _{Θ,m} W_q x_m)^⊺(R^d _{Θ,n}W_k x_n) = x^⊺W_qR^d _{Θ,n−m}W_kx_n$</li>
+</ul>
+</li>
+<li>Now, relative position can be naturally formulated using vector production in self attention, with absolution position information being encoded through a rotation matrix.</li>
+</ol>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>RoPE provides an efficient and effective means of encoding relative positional information in Transformer models.</li>
+<li>It enhances performance on various tasks and maintains robustness across sequence lengths.</li>
+</ul>
+</li>
+</ul>
+<center>
+<img width=60% src='https://production-media.paperswithcode.com/methods/Screen_Shot_2021-08-10_at_10.38.41_AM.png'>
+</center>
+<br>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

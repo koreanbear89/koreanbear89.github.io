@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1. Python on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/1.-python/</link>
+    <description>Recent content in 1. Python on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+        <atom:link href="http://localhost:1313/categories/1.-python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/__draft/9.-others/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/__draft/9.-others/set-up-mac/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot;
+date: 2022-05-22 09:00:13
+categories: [2. Linux, Favorites]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;어플리케이션 별 단축키 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;automount-해제&#34;&gt;Automount 해제&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;diskutil info -all&lt;/code&gt; 로 Volume UUID 와 type 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo vi /etc/fstab&lt;/code&gt; 맨 아래에 아래와 같이 추가&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

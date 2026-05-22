@@ -2,253 +2,1109 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>9. Study on Lab.Koreanbear|한국곰연구소</title>
-    <link>https://koreanbear89.github.io/categories/9.-study/</link>
+    <link>http://localhost:1313/categories/9.-study/</link>
     <description>Recent content in 9. Study on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Mar 2023 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Dec 2023 09:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://koreanbear89.github.io/categories/9.-study/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://localhost:1313/categories/9.-study/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>CheatSheet | VIM</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</link>
-      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</guid>
-      <description>1. Setup vim Install Vundle
-git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim color scheme setup
-Jellybean color scheme official install
-And simply add line color jellybean in .vimrc
-mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim write .vimrc
-wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc
-Added Plugin &#39;preservim/nerdcommenter&#39;
-install plugins in vimrc
-:PluginInstall Shell
-# install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+      <title>Langchain #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/langchain-%231--overview/</link>
+      <pubDate>Sun, 15 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/langchain-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview
+&lt;ul&gt;
+&lt;li&gt;LLMChain&lt;/li&gt;
+&lt;li&gt;Simple Sequential Chain&lt;/li&gt;
+&lt;li&gt;Sequential Chain&lt;/li&gt;
+&lt;li&gt;Parallel Chain&lt;/li&gt;
+&lt;li&gt;Conditional Chain&lt;/li&gt;
+&lt;li&gt;Router Chain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;llmchain&#34;&gt;LLMChain&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Chain to run queries against LLMs
+&lt;ul&gt;
+&lt;li&gt;components: Prompt + LLM + OutputParser&lt;/li&gt;
+&lt;li&gt;Deprecated since 0.1.17&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Use below instead of LLMChain (Deprecated)
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import PromptTemplate
+from langchain_openai import OpenAI
+
+prompt_template = &amp;quot;Tell me a {adjective} joke&amp;quot;
+prompt = PromptTemplate(
+    input_variables=[&amp;quot;adjective&amp;quot;], template=prompt_template
+)
+llm = OpenAI()
+chain = prompt | llm | StrOutputParser()
+
+chain.invoke(&amp;quot;your adjective here&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sequentialchain&#34;&gt;SequentialChain&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple chain where the output of one step feed directly into next.
+&lt;ul&gt;
+&lt;li&gt;Sequential chain does not support any kind of branching or conditioning&lt;/li&gt;
+&lt;li&gt;just an extension of simple LLMChain where the output of the current component serves as an input to the next component&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;chain = prompt1 | llm2 | parser1 | prompt2 | llm2 | parser2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;parallelchain&#34;&gt;ParallelChain&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A type of chain that allows parallel running of more than one sub-chains.
+&lt;ul&gt;
+&lt;li&gt;Each sub-chain has its own input and output.&lt;/li&gt;
+&lt;li&gt;All sub-chains are executed simultaneously.&lt;/li&gt;
+&lt;li&gt;Wait until all sub-chains are executed completely&lt;/li&gt;
+&lt;li&gt;Combine the output of all sub-chains.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from langchain_core.runnables import RunnableParallel
+
+parallel_chain = RunnableParallel({
+    &amp;quot;facts&amp;quot;: fact_prompt | llm | parser,
+    &amp;quot;definition&amp;quot;: definition_prompt | llm | parser,
+    &amp;quot;use_case&amp;quot;: usecase_prompt | llm | parser
+})
+result = parallel_chain.invoke({&amp;quot;topic&amp;quot;: &amp;quot;AI&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;conditionalchain&#34;&gt;ConditionalChain&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Depending on if the condition is satisfied, we execute the sub-chain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+def is_long_text(input: dict) -&amp;gt; bool:
+    return len(input[&amp;quot;text&amp;quot;].split()) &amp;gt; 50
+
+summary_chain = summary_prompt | llm | parser
+extend_chain = extend_prompt | llm | parser
+
+conditional_chain = RunnableBranch(
+    (lambda x : is_long_text(x), summary_chain),
+    extend_chain
+)
+
+
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
-      <title>Scala #0 | Setup</title>
-      <link>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</link>
-      <pubDate>Wed, 01 Jan 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</guid>
-      <description>Introduction Install
-Install | The Scala Programming Language Components (commands)
-scalac : the scala compiler
-scala : the scala REPL and script runner
-scala-cli: scala CLI, interactive toolkit for scala
-sbt: build tool
-amm : Ammonite, an enhanced REPL
-scalafmt : the scala code formatter
-Scalac (Scala Compiler) usage
-scalac HelloWorld.scala SBT (Simple Build Kit) Directory Structure : sbt Reference Manual — Directory structure
-(1) Base Directory: location of build.</description>
+      <title>LangGraph #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/langgraph-%231--overview/</link>
+      <pubDate>Sun, 15 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/langgraph-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview
+&lt;ul&gt;
+&lt;li&gt;StateGraph - Components
+&lt;ul&gt;
+&lt;li&gt;State : is the shared memory or context that persists and updates as the graph runs&lt;/li&gt;
+&lt;li&gt;Node : are the units of work (like agents, tools, or logic steps).&lt;/li&gt;
+&lt;li&gt;Edge : define how data or control flows between nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Functional Mechanism
+&lt;ul&gt;
+&lt;li&gt;Reducer : helps control how the state is updated when multiple nodes modify it (default: overwrite)&lt;/li&gt;
+&lt;li&gt;Command : a special return value that a node can produce to tell the graph how to continue execution&lt;/li&gt;
+&lt;li&gt;Subgraph : lets you group logic into reusable workflows (can act like nodes themselves)&lt;/li&gt;
+&lt;li&gt;Checkpoint : Mechanism for saving and restoring state during long-running or interruptible workflows&lt;/li&gt;
+&lt;li&gt;Streaming : Langgraph supports real-time streaming of intermediate outputs from LLMs&lt;/li&gt;
+&lt;li&gt;Concurrency(Async, Parallel) : Some graphs can run multiple nodes in parallel if their dependencies don&amp;rsquo;t overlap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;state&#34;&gt;State&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;State : is the shared memory or context that persists and updates as the graph runs&lt;/li&gt;
+&lt;li&gt;Implementation: TypedDict or Pydantic BaseModel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from typing import Any, TypedDict
+
+class State(TypedDict):
+    messages : dict[str]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;node&#34;&gt;Node&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Node : are the units of work (like agents, tools, or logic steps).&lt;/li&gt;
+&lt;li&gt;Implementation : python function&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def add_message(state: State) → dict[str, Any]
+    # return the fields to update
+    return {&amp;quot;messages&amp;quot;: &amp;quot;Message Added&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;edge&#34;&gt;Edge&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Edge : define how data or control flows between nodes&lt;/li&gt;
+&lt;li&gt;Types
+&lt;ul&gt;
+&lt;li&gt;Start Edge&lt;/li&gt;
+&lt;li&gt;Normal Edge&lt;/li&gt;
+&lt;li&gt;Conditional Edge&lt;/li&gt;
+&lt;li&gt;End edge&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Define Graph by connecting edges
+graph = StateGraph(state)
+# Start Edge
+graph.add_edge(START, first_node)
+# Conditional Edge
+graph.add_conditional_edges(
+    &amp;quot;decision_node&amp;quot;,
+    routing_funtion,
+    {&amp;quot;option_a&amp;quot;: &amp;quot;node_a&amp;quot;, &amp;quot;option_b&amp;quot;, &amp;quot;node_b&amp;quot;}
+)
+# Normal Edge
+graph.add_edge(&amp;quot;node_a&amp;quot;, &amp;quot;node_b&amp;quot;)
+# End Edg
+graph.add_edge(&amp;quot;node_b&amp;quot;, END)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wikidocs.net/293558&#34;&gt;https://wikidocs.net/293558&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #9 | Neural Architecture Search</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
-      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
-      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+      <title>Mathematics for ML #13 | Markov Decision Process</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/</link>
+      <pubDate>Fri, 13 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;13-markov-decision-process&#34;&gt;13. Markov Decision Process&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Reward Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Markov Decision Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bellman Equations&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Summary&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It’s complex to find the &lt;strong&gt;argmax&lt;/strong&gt; of long-term value functions directly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Bellman equations allow us to break down complex, long-term value functions into recursive steps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This enables us to find a reward-maximizing trajectory in an &lt;strong&gt;iterative&lt;/strong&gt; manner.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
-      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
-      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+      <title>Learning Spark #8 | Structured Streaming</title>
+      <link>http://localhost:1313/__draft/9.-study/learning-spark-8--structured-streaming/</link>
+      <pubDate>Thu, 12 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/learning-spark-8--structured-streaming/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;80-introduction&#34;&gt;8.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In earlier chapters, you learned how to use structured APIs to process very large but finite volumes of data.&lt;/li&gt;
+&lt;li&gt;However, often data arrives continuously and needs to be processed in a real-time manner&lt;/li&gt;
+&lt;li&gt;In this chapter, we will discuss how the same Structured APIs can be used for processing data streams as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;81-evolution-of-the-apache-spark-stream-processing-engine&#34;&gt;8.1 Evolution of the Apache Spark Stream Processing Engine&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Record at a time processing Model&lt;/strong&gt; : Traditional Model
+&lt;ul&gt;
+&lt;li&gt;each node continuously receives one record at a time, processes it, and then forwards the generated record(s) to the next node in the graph.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spark Streaming (DStreams)&lt;/strong&gt; : introduced the idea of micro-batch stream processing,
+&lt;ul&gt;
+&lt;li&gt;Lack of a single API for batch and stream processing&lt;/li&gt;
+&lt;li&gt;Lack of separation between logical and physical plans&lt;/li&gt;
+&lt;li&gt;Lack of native support for event-time window&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Structured Streaming&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;A single, unified programming model and interface for batch and stream processing&lt;/li&gt;
+&lt;li&gt;A broader definition of stream processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;82-the-programming-model-of-structured-streaming&#34;&gt;8.2 The Programming Model of Structured Streaming&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Structured Streaming : treating a stream as an unbounded, continuously appended table&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
-      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
-      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+      <title>Visualizer #1 | Streamlit</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/visualizer-%231--streamlit/</link>
+      <pubDate>Wed, 11 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/visualizer-%231--streamlit/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.streamlit.io/get-started&#34;&gt;Get started with Streamlit - Streamlit Docs&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Concepts&lt;/li&gt;
+&lt;li&gt;Advanced Concepts&lt;/li&gt;
+&lt;li&gt;Additional Streamlit features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-basic-concepts&#34;&gt;1. Basic Concepts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;First you sprinkle a few Streamlit commands into a normal Python script, then you run it with &lt;code&gt;streamlit run&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The app is your canvas, where you&amp;rsquo;ll draw charts, text, widgets, tables, and more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;12-data-flow&#34;&gt;1.2 Data Flow&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Streamlit apps have a unique data flow: any time something must be updated on the screen, Streamlit reruns your entire Python script from top to bottom.
+&lt;ul&gt;
+&lt;li&gt;Whenever you modify your app&amp;rsquo;s source code.&lt;/li&gt;
+&lt;li&gt;Whenever a user interacts with widgets in the app&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;13-display-and-style-data&#34;&gt;1.3 Display and style data&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt; You can pass almost anything to &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/write-magic/st.write&#34;&gt;&lt;code&gt;st.write()&lt;/code&gt;&lt;/a&gt;: text, data, Matplotlib figures, Altair charts, and more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;14-widgets&#34;&gt;1.4 Widgets&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;When you&amp;rsquo;ve got the data or model into the state that you want to explore, you can add in widgets like &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.slider&#34;&gt;&lt;code&gt;st.slider()&lt;/code&gt;&lt;/a&gt;,&lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.button&#34;&gt;&lt;code&gt;st.button()&lt;/code&gt;&lt;/a&gt; or &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/widgets/st.selectbox&#34;&gt;&lt;code&gt;st.selectbox()&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;15-layout&#34;&gt;1.5 Layout&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Streamlit makes it easy to organize your widgets in a left panel sidebar with &lt;a href=&#34;https://docs.streamlit.io/develop/api-reference/layout/st.sidebar&#34;&gt;&lt;code&gt;st.sidebar&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #3 | Least Square </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
-      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
-      <description>3.0 Least Square Inner Product : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $. Vector Norm : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$ $L_p$ Norm : $ \Vert \mathbf{x} \Vert_p = (</description>
+      <title>Learning Spark #7 | Optimizing and Tuning Spark Apps</title>
+      <link>http://localhost:1313/__draft/9.-study/learning-spark-7--optimizing-and-tuning-spark-applications/</link>
+      <pubDate>Thu, 05 Dec 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/learning-spark-7--optimizing-and-tuning-spark-applications/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;70-introduction&#34;&gt;7.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In this chapter,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;we will discuss a set of Spark configurations that enable optimizations,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;look at Spark’s family of join strategies,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;and inspect the Spark UI, looking for clues to bad behavior.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;71-optimizing-and-tuning-spark-for-efficiency&#34;&gt;7.1 Optimizing and Tuning Spark for Efficiency&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Three ways to get and set Spark properties.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Through a set of configuration files. In your deployment’s &lt;code&gt;$SPARK_HOME&lt;/code&gt; directory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt; Specify Spark configurations directly in your Spark application&lt;/p&gt;
+&lt;p&gt;or on the command line when submitting the application with spark-submit, using the &lt;code&gt;--conf&lt;/code&gt; flag&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
-      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
-      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
+      <title>Learning Spark #1 | Introduction to Apache Spark</title>
+      <link>http://localhost:1313/__draft/9.-study/learning-spark-1-overview/</link>
+      <pubDate>Tue, 22 Oct 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/learning-spark-1-overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;11-the-genesis-of-spark&#34;&gt;1.1 The Genesis of Spark&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Google :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Traditional storage systems such as RDBMSs were not able to handle the scale at which Google wanted to build and search the internet’s indexed documents.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;need for new approaches led to the creation of the Google File System (GFS), MapReduce (MR), and Bigtable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Yahoo :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hadoop Common, MapReduce, HDFS, and Apache Hadoop YARN.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;intermediate computed result is written to the local disk for the subsequent stage of its operation&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #1 | Introductions </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</link>
-      <pubDate>Tue, 07 May 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec1/</guid>
-      <description>1.1 Scalars, Vectors, Matrices, and Tensors Scalars : just a single number, italics in this book, lower-case variable name, such as $x$ (loswercase)
-Vectors : an array of numbers, in order, bold lower case name, such as $\bf x$ (bold lowercase)
-Matrices : 2-D array of numbers, with two indices, bold uppercase variable name, such as $A$ (uppercase)
-Tensors : an array of numbers arranged on a regular grid with a variable number of axes.</description>
+      <title>CheatSheet | Wordpress</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--wordpress/</link>
+      <pubDate>Mon, 30 Sep 2024 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--wordpress/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-overview&#34;&gt;1. Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;WordPress is a free and open-source Content Management System (CMS) built on a MySQL database with PHP processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-title&#34;&gt;1. Title&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-unpublished&#34;&gt;2. Unpublished&lt;/h2&gt;
+&lt;p&gt;Problem: wanna hide specific posts&lt;/p&gt;
+&lt;p&gt;Solution&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;add &amp;ldquo;published&amp;rdquo; in yaml header of each post&lt;/li&gt;
+&lt;li&gt;you can publish &amp;ldquo;unpublished&amp;rdquo; posts using &amp;ndash;unpublished option&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
+layout : post
+title : [title post]
+published : false
+...
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bundle exec jekyll serve --unpublished
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;</description>
     </item>
     
     <item>
-      <title>Statistics #6 | Models, Statistical Inference and Learning </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</link>
-      <pubDate>Sat, 02 Feb 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch6/</guid>
-      <description>6.1 Introduction Statistical Inference, or &amp;ldquo;learning&amp;rdquo; as it is called in computer science, is the process of using data to infer distribution that generated the data. 6.2 Parametric and Nonparametric Models A statistical model $\Im$ is a set of distributions (or densities or regression functions)
-Parametric model : is a set of $\Im$ that can be parameterized by a finite number of parameters
-If we assume that the data come from a Normal distribution, then It would be two-prarmeter model.</description>
+      <title>CICD #1 | Github Actions</title>
+      <link>http://localhost:1313/system-architecture/5.-operations/cicd-%231--github-actions/</link>
+      <pubDate>Thu, 01 Aug 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/5.-operations/cicd-%231--github-actions/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A continuous integration and continuous delivery (CI/CD) platform integrated directly into GitHub.
+&lt;ul&gt;
+&lt;li&gt;It enables the automation of software development workflows, including building, testing, and deploying code directly from a GitHub repository.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Key Concepts:
+&lt;ul&gt;
+&lt;li&gt;Workflows: These are automated processes defined in YAML files within the .github/workflows directory of a repository. Workflows consist of one or more jobs and are triggered by specific events, such as pushing code, creating a pull request, or on a schedule.&lt;/li&gt;
+&lt;li&gt;Events: These are specific activities within a repository that can trigger a workflow. Examples include push, pull_request, schedule, and workflow_dispatch.&lt;/li&gt;
+&lt;li&gt;Jobs: A job is a set of steps that execute on the same runner. Jobs can run in parallel or sequentially, depending on their dependencies.&lt;/li&gt;
+&lt;li&gt;Steps: A step is an individual task within a job, which can be a shell command or an &amp;ldquo;action.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Actions: Actions are reusable units of code that perform specific tasks. They can be custom-built, found on the GitHub Marketplace, or provided by third-party services.&lt;/li&gt;
+&lt;li&gt;Runners: These are servers that execute the jobs in a workflow. GitHub provides hosted runners for various operating systems (Ubuntu, Windows, macOS), or users can configure self-hosted runners for more control over the execution environment.&lt;/li&gt;
+&lt;li&gt;Capabilities: GitHub Actions can be used for a wide range of automation tasks beyond CI/CD, including:
+&lt;ul&gt;
+&lt;li&gt;Automating code quality checks and static analysis.&lt;/li&gt;
+&lt;li&gt;Publishing packages to registries.&lt;/li&gt;
+&lt;li&gt;Managing issues and pull requests, such as adding labels or assigning reviewers.&lt;/li&gt;
+&lt;li&gt;Deploying applications to various cloud platforms.&lt;/li&gt;
+&lt;li&gt;Creating custom notifications or reports.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-quick-start&#34;&gt;1. Quick Start&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You can use github actions by simply placing &lt;code&gt;.yaml&lt;/code&gt; files into the &lt;code&gt;./github/workflows&lt;/code&gt; directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo &amp;quot;🎉 The job was automatically triggered by a ${{ github.event_name }} event.&amp;quot;
+      - run: echo &amp;quot;🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!&amp;quot;
+      - run: echo &amp;quot;🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}.&amp;quot;
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo &amp;quot;💡 The ${{ github.repository }} repository has been cloned to the runner.&amp;quot;
+      - run: echo &amp;quot;🖥️ The workflow is now ready to test your code on the runner.&amp;quot;
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo &amp;quot;🍏 This job&#39;s status is ${{ job.status }}.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-docker-image&#34;&gt;2. Docker-image&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;on&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;Available events to trigger workflow  : &lt;a href=&#34;https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#release&#34;&gt;GitHub Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# GitHub displays the names of your workflows under your repository&#39;s &amp;quot;Actions&amp;quot; tab.
+name: GitHub Actions Demo
+
+# To automatically trigger a workflow, use `on` to define which events can cause the workflow to run. 
+on:
+  push:
+    branches: [&amp;quot;main&amp;quot;]
+    tags: [&amp;quot;v*&amp;quot;]  # trigger workflows when new tag is created (release)
+  pull_request:
+    branches: [&amp;quot;main&amp;quot;]  # new/following commits also trigger the workflow
+
+jobs:
+  build:
+    runs-on:
+      group: &amp;lt; ORGANIZATION_NAME &amp;gt;
+
+    steps:
+      - uses: actions/checkout@v3 # download src to CI server from remote repo
+
+      - name: Build the docker image
+        run: sh bin/run.sh build-image ${{ github.ref_name }}
+        if: github.ref_type == &#39;tag&#39; # run this step only if the workflow is triggered by tag 
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;</description>
     </item>
     
     <item>
-      <title>Statistics #5 | Convergence of Random Variable </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</link>
-      <pubDate>Wed, 30 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch5/</guid>
-      <description>5.1 Introduction The law of large numbers says that the sample average converges in proability to the expectation $ \mu = \mathbb{E}(X_i)$
-The central limit theorem says that $ \sqrt{n} (\overline{X - \mu})$ converges in distribution to a Normal distribution.
-5.2 Types of Convergence $X_n$ converges to $X$ in probability, written $X_n \xrightarrow{P}{} X$ if for every $\epsilon &amp;gt; 0$ $$ \mathbb{P}(|X_n - X| &amp;gt; \epsilon) \rightarrow 0$$
-$X_n$ converges to $X$ in distribution, written $X_n \rightsquigarrow X$ if $$ \lim_{n\rightarrow \infty} F_n(t) = F(t) $$</description>
+      <title>Java #0 | Overview</title>
+      <link>http://localhost:1313/language/misc/java-%230--overview/</link>
+      <pubDate>Thu, 11 Jul 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/java-%230--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Build Tools
+&lt;ul&gt;
+&lt;li&gt;Ant (legacy)&lt;/li&gt;
+&lt;li&gt;Maven&lt;/li&gt;
+&lt;li&gt;Gradle
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gradlew&lt;/code&gt; : exe-script for Unix&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gradlew.bat&lt;/code&gt; : exe-script for Windows&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gradle/wrapper/gradle-wrapper.jar&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gradle/wrapper/gradle-wrapper.properties&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. sub-title&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>Statistics #3 | Expectation </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</link>
-      <pubDate>Mon, 28 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch3/</guid>
-      <description>3.1 Expectation of a Random Variable The expected value, or mean, or first moment of $X$ is defined to be $$ \mathbb{E}(X) = \int xdF(x) = \begin{cases} \sum_x xf(x) &amp;amp; (\text{if X is discrete})\ \int xf(x)dx &amp;amp; ( \text{if X is continuous}) \end{cases}$$
-3.3 Variance and Covariance The variance measures the spread of a distribution $$ \sigma^2 = \mathbb{E}(X-\mu)^2 = \int (x-\mu)^2 dF(x) $$
-The covariance and correlation between $X$ and $Y$ measure how strong the linear relationship is between $X$ and $Y$ $$\text{Cov}(X,Y) = \mathbb{E}((X-\mu_X)(Y- \mu_Y ))$$</description>
+      <title>Functional Programming #9 | Parser Combinators</title>
+      <link>http://localhost:1313/language/3.-scala/functional-programming-9--parser-combinators/</link>
+      <pubDate>Thu, 04 Jul 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/functional-programming-9--parser-combinators/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This chapter covers &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Introducing parser combinators&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Designing and using APIs &lt;strong&gt;without implementations&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In this chapter,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;we’ll work through the design of a combinator library for creating parsers. (ex. JSON parsing)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Like chapters 7 and 8, this chapter is not so much about parsing as it is about providing further insight into the process of &lt;strong&gt;functional design.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This chapter will introduce a design approach we’ll call &lt;strong&gt;algebraic design.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Statistics #2 | Random Variables </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</link>
-      <pubDate>Sun, 20 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch2/</guid>
-      <description>2.1 Introduction How do we link sample spaces and events to data? Random Variable!
-A random variable is a mapping $ X : \Omega \rightarrow \mathbb{R} $ that assigns a real number $X(\omega)$ to each outcome $\omega$.
-2.2 Distribuition Functions and Probability Functions Cumulative Distribution Function (CDF) : is the function $F_x : \mathbb{R} \rightarrow [0,1] $ defined by $$F_X(x) = \mathbb{P}(X \leq x)$$
-Probability Mass Function : A Random Variable $X$ is discrete if it takes countably many values ${x_1, x_2, &amp;hellip;}$.</description>
+      <title>Broker #1 | Kafka</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/broker-%231--kafka/</link>
+      <pubDate>Wed, 01 May 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/broker-%231--kafka/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-introduction&#34;&gt;1.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Kafka is an open-source distributed event streaming platform for:
+&lt;ul&gt;
+&lt;li&gt;high-performance data pipelines,&lt;/li&gt;
+&lt;li&gt;streaming analytics,&lt;/li&gt;
+&lt;li&gt;data integration,&lt;/li&gt;
+&lt;li&gt;mission-critical applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;1.1 Kafka Cluster Components&lt;/li&gt;
+&lt;li&gt;1.2 Kafka does not delete consumed message&lt;/li&gt;
+&lt;li&gt;1.3 Consumer group rebalancing&lt;/li&gt;
+&lt;li&gt;References&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-kafka-cluster-components&#34;&gt;1.1 Kafka Cluster Components&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://media.licdn.com/dms/image/v2/D5612AQEJBjRQN6BmmQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1715599437773?e=1759968000&amp;v=beta&amp;t=0ZxkH8IwHJ0MrPvnQ3ZwlkUoAi6MBci9AiyIJE2EKeU&#34;&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt; : A Kafka cluster is a distributed system composed of multiple Kafka brokers working together to handle the storage and processing of real-time streaming data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Broker&lt;/strong&gt; : In Kafka, a broker works as a container that can hold multiple topics with different partitions. A unique integer ID is used to identify brokers in the Kafka cluster. Connection with any one of the kafka brokers in the cluster implies a connection with the whole cluster. If there is more than one broker in a cluster, the brokers need not contain the complete data associated with a particular topic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Topic &amp;amp; Partition&lt;/strong&gt; : A stream of messages that are a part of a specific category or feed name is referred to as a Kafka topic.
+&lt;ul&gt;
+&lt;li&gt;In Kafka, data is stored in the form of topics. Producers write their data to topics, and consumers read the data from these topics.&lt;/li&gt;
+&lt;li&gt;Topics in Kafka are divided into a configurable number of parts, which are known as partitions. Partitions allow several consumers to read data from a particular topic in parallel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Producer&lt;/strong&gt; : Producers in Kafka publish messages to one or more topics&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consumer &amp;amp; Consumer Group&lt;/strong&gt; : Consumers read data from the Kafka cluster. The data to be read by the consumers has to be pulled from the broker when the consumer is ready to receive the message. A consumer group in Kafka refers to a number of consumers that pull data from the same topic or same set of topics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replication&lt;/strong&gt; : Replicas are like backups for partitions in Kafka. They are used to ensure that there is no data loss in the event of a failure or a planned shutdown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-kafka-does-not-delete-consumed-message&#34;&gt;1.2 Kafka does not delete consumed message&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Kafka has consumer groups and their own offsets, so each consumer within consumer groups can read messages in serialized order, and each group can read topics in parallel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;13-consumer-group-rebalancing&#34;&gt;1.3 Consumer group rebalancing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;session.timeout.ms&lt;/code&gt;&lt;/strong&gt; (default: 10s)
+&lt;ul&gt;
+&lt;li&gt;This is the amount of time a Kafka broker waits to determine that a Kafka consumer has failed and is no longer active.&lt;/li&gt;
+&lt;li&gt;The Kafka consumer sends heartbeats to the group coordinator to prove it is still alive.&lt;/li&gt;
+&lt;li&gt;If the &lt;code&gt;session.timeout.ms&lt;/code&gt; elapses without receiving a heartbeat, the consumer group will be rebalanced, and the partitions it was handling will be reassigned to other consumers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;max.poll.interval.ms&lt;/code&gt;&lt;/strong&gt; (default: 5m)
+&lt;ul&gt;
+&lt;li&gt;This setting defines the maximum interval between consecutive &lt;code&gt;poll()&lt;/code&gt; calls by the consumer.&lt;/li&gt;
+&lt;li&gt;If the consumer does not call &lt;code&gt;poll()&lt;/code&gt; within the &lt;code&gt;max.poll.interval.ms&lt;/code&gt;, it will be considered inactive and removed from the group, triggering a rebalance of the consumer group.&lt;/li&gt;
+&lt;li&gt;If your processing task takes a long time, you may need to increase &lt;code&gt;max.poll.interval.ms&lt;/code&gt; to avoid triggering rebalancing due to lengthy processing times.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;max.poll.records&lt;/code&gt;&lt;/strong&gt; (default: 500)
+&lt;ul&gt;
+&lt;li&gt;This defines the maximum number of records (messages) returned in a single call to &lt;code&gt;poll()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Increasing this value can improve throughput by reducing the number of &lt;code&gt;poll()&lt;/code&gt; calls needed to process messages, but it can also increase memory usage if the consumer processes large batches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>Statistics #1 | Probability </title>
-      <link>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</link>
-      <pubDate>Wed, 16 Jan 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/2.-statistics/all-of-statistics-ch1/</guid>
-      <description>1.1 Introduction Probability is a mathematical language for quantifying uncertatinty 1.2 Sample Spaces and Events Sample Space $\Omega$ : is the set of possible outcomes of an experiment Events : Subsets of Ω are called Events 1.3 Probability A function $\mathbb{P}$ that assigns a real number $ \mathbb{P}(A) $ to every event $A$ is a probability distribution or a probability measure. 1.4 Probability on Finite Sample Spaces If $\Omega$ is</description>
+      <title>Scala Exercise #1</title>
+      <link>http://localhost:1313/language/3.-scala/scala-exercise-1--definitions-and-evaluations/</link>
+      <pubDate>Fri, 29 Mar 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/scala-exercise-1--definitions-and-evaluations/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-terms-and-types&#34;&gt;1. Terms And Types&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Operators and methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Actually, operators are just methods with symbolic names : &lt;code&gt;3+2 == 3.+(2)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Common Types&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Int&lt;/code&gt;: 32-bit integers&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Double&lt;/code&gt; : 64-bit floating point numbers&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Boolean&lt;/code&gt;: &lt;code&gt;true&lt;/code&gt;and &lt;code&gt;false&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;String&lt;/code&gt;: text&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2--definitions-and-evaluation&#34;&gt;2.  Definitions And Evaluation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Naming Things :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To make complex expressions morej readable we can give meaningful names to intermediate expressions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;3.14159 * 10 * 10&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pi * radius * radius&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Definitions can have parameters&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | pyTorch</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</link>
-      <pubDate>Sun, 04 Nov 2018 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</guid>
-      <description>Introduction Dataset
-Data loader
-Model
-Train
-Data Parallelism
-1. Dataset TODO import torch.utils.data as data_utl class Dataset(data_utl.Dataset): def __init_(self): # Read data and preprocess input features with labels self.features = [] self.labels = [] def __len__(self): return len(self.labels) def __getitem__(self, idx): return self.features[idx], self.labels[idx] 2. DataLoader TODO # Create Dataset using torch.utils.data.Dataset dataset = dataset.Dataset() # Split Dataset into train and validation set num_train = int(len(dataset) * 0.9) train_set, val_set = random_split(dataset, [num_train, len(dataset) - num_train]) # train_loader, val_loader batch_size = 192 * torch.</description>
+      <title>Design #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/1.-system-design/design-%231--overview/</link>
+      <pubDate>Tue, 26 Mar 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/1.-system-design/design-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview (GoF design pattern)
+&lt;ul&gt;
+&lt;li&gt;Creational Patterns - object creation
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Singleton&lt;/strong&gt; : Ensure a class has only one instance ( e.g. config manager, logger)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Factory Method&lt;/strong&gt; : Define an interface for creating objects, let subclasses decide.&lt;/li&gt;
+&lt;li&gt;Abstract Factory : Provide an interface to create famailies of related objects&lt;/li&gt;
+&lt;li&gt;Builder : Step-by-step object construction&lt;/li&gt;
+&lt;li&gt;Prototype : Clone objects instead of creating new ones from scratch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Structual Patterns - object composition
+&lt;ul&gt;
+&lt;li&gt;Adapter : Convert one interface to another&lt;/li&gt;
+&lt;li&gt;Bridge : Separate abstraction from implementation&lt;/li&gt;
+&lt;li&gt;Composite : Represent part-whole hierarchies (tree structures)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decorator&lt;/strong&gt; : Add behavior to objects dynamically&lt;/li&gt;
+&lt;li&gt;Facade : Simplified interface to a complex system&lt;/li&gt;
+&lt;li&gt;Flyweight : Optimize memory by sharing objects&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxy&lt;/strong&gt; : Control access to object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Behavioral Patterns - communication
+&lt;ul&gt;
+&lt;li&gt;Chain of Responsibility : Pass request through a chain until hanled&lt;/li&gt;
+&lt;li&gt;Command : Encapsulate requests as objects&lt;/li&gt;
+&lt;li&gt;Interpreter : Define grammar and interpret sentences&lt;/li&gt;
+&lt;li&gt;Iterator : Sequentially access elements of a collection&lt;/li&gt;
+&lt;li&gt;Mediator : Centralize communication between objects&lt;/li&gt;
+&lt;li&gt;Memento : Capture and restore an obejct&amp;rsquo;s state&lt;/li&gt;
+&lt;li&gt;Observer : One-to-many dependency&lt;/li&gt;
+&lt;li&gt;State : Allow object behavior to change with internal state&lt;/li&gt;
+&lt;li&gt;Strategy : Define a family of algorithms, interchangeable at runtime&lt;/li&gt;
+&lt;li&gt;Template Method : Define algorithm skeleton, let subclasses fill steps&lt;/li&gt;
+&lt;li&gt;Visitor : Separate algorithm from the object structure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Modern/Enterprise Patterns (GoF extensions)
+&lt;ul&gt;
+&lt;li&gt;Dependency Injection : Invert control of dependencies&lt;/li&gt;
+&lt;li&gt;Repository Pattern : Abstract database access&lt;/li&gt;
+&lt;li&gt;Model View Controller (MVC) : Separate UI, logic, and data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Publish-Subscribe (Pub/Sub)&lt;/strong&gt; : Decouple event producers and consumers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;!---
+
+## Message Queue
+- Concepts :  A communication pattern where messages are placed in a queue and then delivered to consumers.
+  - Producers : put messages into the queue.
+  - Consumers : take messages from the queue.
+  - Each message is consumed by only one consumer (unlike pub-sub, where many can receive).
+- Characteristics:
+  - Asynchronous : Producers don&#39;t wait for consumers to process messages.
+  - Load balancing : If multiple consumers listen to the queue, the workload is spread among them.
+  - Persistence : Queue often store messages durably until consumed
+  - Decoupling : Producers and consumers don&#39;t need to know each other.
+- Usage:
+  - Background job processing
+  - Load balancing across multiple workers
+- Implementations:
+  - RabbitMQ, Amazon SQS, Redis Lists
+
+&lt;br&gt;
+
+---&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;decorator&#34;&gt;Decorator&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Concepts: a structural design pattern that allows behavior to be added to individual objects dynamically without modifying their class
+&lt;ul&gt;
+&lt;li&gt;It wraps an existing object inside another object that implements the same interfacce and extends its behavior&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Characteristics:
+&lt;ul&gt;
+&lt;li&gt;Adds functionality at runtime, not via inheritance&lt;/li&gt;
+&lt;li&gt;Each decorator implements the same interface as the object it decorates&lt;/li&gt;
+&lt;li&gt;Can be stacked or combined, where multiple decorators wrap the same base object&lt;/li&gt;
+&lt;li&gt;Promotes the Open/Closed Principle - open for extension, closed for modification.&lt;/li&gt;
+&lt;li&gt;May lead to complex object chains if overused.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Usage:
+&lt;ul&gt;
+&lt;li&gt;GUI components (adding scrollbars, borders, etc.)&lt;/li&gt;
+&lt;li&gt;I/O stream handling (e.g., Java’s BufferedReader, DataInputStream)&lt;/li&gt;
+&lt;li&gt;Middleware or request handlers (adding logging, auth, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;publish-subscribe-pubsub&#34;&gt;Publish-Subscribe (Pub/Sub)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Concepts :
+&lt;ul&gt;
+&lt;li&gt;Messaging pattern where senders (publishers) don&amp;rsquo;t send message directly to receivers (subscribers).&lt;/li&gt;
+&lt;li&gt;Instead, messages go through a brocker (or topic)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Characteristics:
+&lt;ul&gt;
+&lt;li&gt;Publishers publish messages to a topic&lt;/li&gt;
+&lt;li&gt;Subscribers subscribe to a topic to receive relevant messages&lt;/li&gt;
+&lt;li&gt;Publishers and subscribers are decoupled - they don&amp;rsquo;t need to know about each other&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Usage
+&lt;ul&gt;
+&lt;li&gt;useful for scalable, event-driven systems liek real-time notifications, logging, streaming data pipelines&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Implementations :
+&lt;ul&gt;
+&lt;li&gt;Kafka, Redis Pub/Sub, Google Pub/Sub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Git</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</link>
-      <pubDate>Sat, 29 Sep 2018 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</guid>
-      <description>Introduction Pull Request Summary
-Fork repo to your own repo
-clone, set remote
-git remote add &amp;lt;remote_name&amp;gt; &amp;lt;URL&amp;gt; Generate branch
-git checkout -b &amp;lt;feature/issue_number&amp;gt; Add, Commit, Push
-git push &amp;lt;remote_name&amp;gt; &amp;lt;branch_name&amp;gt; Pull Request
-Code Review
-Merge
-Squash and Merge : squash multiple commits into a new commit
-Rebase and Merge : multiple commits will be merged
-Fetch upstream
-Fetch upstream in local master branch
-remove branch &amp;lt;feature/issue_number&amp;gt;
-1. Setup Git Environment # (1) create new git $ git init # in the working dir, generates .</description>
+      <title>Workflow #1 | Airflow</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/workflow-%231--airflow/</link>
+      <pubDate>Tue, 26 Mar 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/workflow-%231--airflow/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Airflow components&lt;/li&gt;
+&lt;li&gt;Architecture Diagrams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-airflow-components&#34;&gt;1. Airflow Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Airflow’s architecture consists of multiple components.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) components required for a bare-minimum Airflow installation,&lt;/li&gt;
+&lt;li&gt;(2) an optional component to achieve better Airflow extensibility, performance, and scalability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Required components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/scheduler.html&#34;&gt;scheduler&lt;/a&gt;, which handles both triggering scheduled workflows, and submitting &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html&#34;&gt;Tasks&lt;/a&gt; to the executor to run.
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/executor/index.html&#34;&gt;executor&lt;/a&gt;, is a configuration property of the &lt;em&gt;scheduler&lt;/em&gt;, not a separate component and runs within the scheduler process.&lt;/li&gt;
+&lt;li&gt;There are several executors available out of the box, and you can also write your own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A &lt;em&gt;webserver&lt;/em&gt;, which presents a handy user interface to inspect, trigger and debug the behaviour of DAGs and tasks.&lt;/li&gt;
+&lt;li&gt;A folder of &lt;em&gt;DAG files&lt;/em&gt;, which is read by the &lt;em&gt;scheduler&lt;/em&gt; to figure out what tasks to run and when to run them.&lt;/li&gt;
+&lt;li&gt;A &lt;em&gt;metadata database&lt;/em&gt;, which airflow components use to store state of workflows and tasks.
+&lt;ul&gt;
+&lt;li&gt;Setting up a metadata database is described in &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html&#34;&gt;Set up a Database Backend&lt;/a&gt; and is required for Airflow to work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optional components&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #6 | Dimensionality Reduction</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</link>
-      <pubDate>Fri, 23 Jun 2017 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</guid>
-      <description>Introduction 1. UMAP Introduction : a fairly flexible non-linear dimension reduction algorithm Usage : 2-dim representation of given high dimensional dataset Parameters : Basic UMAP Parameters — umap 0.5 documentation n_neighbors min_dist: controls how tightly UMAP is allowed to pack points together. It provides the minimum distance apart that points are allowed to be in the low dimensional representation n_components : allows the user to determine the dimensionality of the reduced dimension space we will be embedding the data into.</description>
+      <title>Scala Exercise #1 | Terms and Types</title>
+      <link>http://localhost:1313/language/3.-scala/scala-exercise-0--terms-and-types-/</link>
+      <pubDate>Fri, 22 Mar 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/scala-exercise-0--terms-and-types-/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-references&#34;&gt;3. References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.scala-exercises.org/scala_tutorial/terms_and_types&#34;&gt;Scala Tutorial | Terms And Types&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #6 | Clustering</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</link>
-      <pubDate>Thu, 22 Jun 2017 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</guid>
-      <description>Introduction Major Clustering Algorithm
-(1) Distribution Based Clustering : EM Algorithm
-(2) Centroid Based Clustering : K-means
-(3) Conectivity Based Models
-(4) Density Based Models : DBSCAN
-Spark built-in Clustering
-1. Distribution based Clustering Data points are grouped based on the probability of belonging to a gaussian distrib. 2. Centroid Based Clustering An iterative algorithm in which data is organized into clusters based on how close data points are in the centre (centroid) of clusgters 2.</description>
+      <title>Language | Overview</title>
+      <link>http://localhost:1313/language/misc/language--overview/</link>
+      <pubDate>Fri, 19 Jan 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/language--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Categorization
+&lt;ul&gt;
+&lt;li&gt;Compiled Language : converted directly into machine code that the processor can execute
+&lt;ul&gt;
+&lt;li&gt;faster and more efficient&lt;/li&gt;
+&lt;li&gt;need a build step, you need to rebuild the program every time you need to make a change&lt;/li&gt;
+&lt;li&gt;ex) C, C++, Haskell, Rust, Go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Interpreted Language : interpreters run through a program line by line and execute each command
+&lt;ul&gt;
+&lt;li&gt;ex) Python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #4 | Evaluation Metrics</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</link>
-      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</guid>
-      <description>Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, and P/N in the back indicates the predicted value of the model. Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s point of view, excluding the modeler&amp;rsquo;s subjectivity. For example, the predictive value of having cancer is a negative, but for the model,</description>
+      <title>CheatSheet | Hbase</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hbase/</link>
+      <pubDate>Mon, 15 Jan 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--hbase/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hbase : Hadoop database, a distributed, scalable, big data store&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Architecture / Components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Master Server (&lt;code&gt;HMaster&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Region Server&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Zookeeper&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When shoud I use Hbase?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Make sure you have enough data : more than hundreds of millions or billions of rows. If not using traditional RDBMS migh be a better choice&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make sure you can live without all extra features that an RDBMS provides (e.g., typed columns, secondary indexes, transactions, advanced query languages, etc.)&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #1 | Activation Functions</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</link>
-      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</guid>
-      <description>Introduction Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
-Non-Linearity : Functions that do not satisfy the following linearity.
-$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$ Why Non-Linearity ? : because composites of linear functions are linear again
-if output $f(x)$ of neuron is linear form like $wx + b$,
-Even if the depth of the layer increases, it is just modeling another linear function $f(f(f(.</description>
+      <title>InfluxDB #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/db-%232--influxdb/</link>
+      <pubDate>Thu, 04 Jan 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/db-%232--influxdb/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Time Series DB (TSDB) : a DB optimized for time-stamped or time series data.
+&lt;ul&gt;
+&lt;li&gt;ex) server metrics, network data, sensor data, &amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-data-elements&#34;&gt;1. Data Elements&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-md&#34;&gt;| _time                | _measurement | location | scientist | _field | _value |
+| -------------------- | ------------ | -------- | --------- | ------ | ------ |
+| 2019-08-18T00:00:00Z | census       | klamath  | anderson  | bees   | 23     |
+| 2019-08-18T00:00:00Z | census       | portland | mullen    | ants   | 30     |
+| 2019-08-18T00:06:00Z | census       | klamath  | anderson  | bees   | 28     |
+| 2019-08-18T00:06:00Z | census       | portland | mullen    | ants   | 32     |
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Timestamp (&lt;code&gt;_time&lt;/code&gt;) :&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Linux</title>
-      <link>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</link>
-      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</guid>
-      <description>chmod $ chmod -R [777] FOLDER_NAME conda # show the list of envs $ conda info --envs # Create conda ENV using specific python version $ conda create --name myenv python=3.5 # Create conda ENV using the existing ENV $ conda create --name myclone --clone myenv # Remove activated #!/usr/bin/env $ conda remove --name myenv --all # Backup conda env $ conda env export &amp;gt; [filename].yaml # create conda env from yaml file $ conda env create -f [filename].</description>
+      <title>Hbase #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/db-%231--hbase/</link>
+      <pubDate>Tue, 02 Jan 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/db-%231--hbase/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Base Paper: &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf&#34;&gt;A Distributed Storage System for Structured Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Contents:
+&lt;ul&gt;
+&lt;li&gt;Data Model(21-33)&lt;/li&gt;
+&lt;li&gt;Schema Design(34-35)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reference Guide : &lt;a href=&#34;https://hbase.apache.org/book.html&#34;&gt;https://hbase.apache.org/book.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;21-conceptual-view&#34;&gt;21. Conceptual View&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cells in this table that appear to be &lt;strong&gt;empty do not take space,&lt;/strong&gt; or in fact exist, in HBase. This is what makes HBase &amp;ldquo;sparse.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A tabular view is not the only possible way to look at data in HBase, or even the most accurate. The following represents the same information as a multi-dimensional map. This is only a mock-up for illustrative purposes and may not be strictly accurate.&lt;/p&gt;</description>
     </item>
     
   </channel>

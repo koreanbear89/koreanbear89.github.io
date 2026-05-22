@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        ML Basic #4 | Evaluation Metrics - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.
+Positive and Negative should be interpreted as predicted values from the model&rsquo;s POV, excluding the modeler&rsquo;s subjectivity.
+For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative). It is intuitive to read from the back due to the word order difference between English and Korean.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>ML Basic #4 | Evaluation Metrics - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="ML Basic #4 | Evaluation Metrics">
+  <meta property="og:description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.
+Positive and Negative should be interpreted as predicted values from the model’s POV, excluding the modeler’s subjectivity.
+For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative). It is intuitive to read from the back due to the word order difference between English and Korean.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2017-01-03T09:00:13+00:00">
+    <meta property="article:modified_time" content="2017-01-03T09:00:13+00:00">
+
+  <meta itemprop="name" content="ML Basic #4 | Evaluation Metrics">
+  <meta itemprop="description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.
+Positive and Negative should be interpreted as predicted values from the model’s POV, excluding the modeler’s subjectivity.
+For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative). It is intuitive to read from the back due to the word order difference between English and Korean.">
+  <meta itemprop="datePublished" content="2017-01-03T09:00:13+00:00">
+  <meta itemprop="dateModified" content="2017-01-03T09:00:13+00:00">
+  <meta itemprop="wordCount" content="559">
+  <meta itemprop="keywords" content="1. Machine Learning">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ML Basic #4 | Evaluation Metrics">
+  <meta name="twitter:description" content="Introduction Confusion Matrix : is composed of four elements: TP, TN, FP, and FN. T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.
+Positive and Negative should be interpreted as predicted values from the model’s POV, excluding the modeler’s subjectivity.
+For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative). It is intuitive to read from the back due to the word order difference between English and Korean.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/"
+    >ML Basic #4 | Evaluation Metrics</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/" class="article-date">
+  <time datetime="2017-01-03 09:00:13 &#43;0000 UTC" itemprop="datePublished">2017-01-03</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-machine-learning/"> 1. Machine Learning </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Confusion Matrix : is composed of four elements: TP, TN, FP, and FN.
+<ul>
+<li>
+<p>T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.</p>
+</li>
+<li>
+<p>Positive and Negative should be interpreted as predicted values from the model&rsquo;s POV, excluding the modeler&rsquo;s subjectivity.</p>
+<ul>
+<li>For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative).</li>
+</ul>
+</li>
+<li>
+<p>It is <strong>intuitive to read from the back</strong> due to the word order difference between English and Korean.</p>
+<ul>
+<li>
+<p>TP (True Positive) : The prediction of the model is <strong>postive</strong> and it is <strong>true</strong> (answer is positive)</p>
+</li>
+<li>
+<p>TN (True Negative) : The prediction of the model is <strong>negative</strong> and it is <strong>true</strong> (answer is negative)</p>
+</li>
+<li>
+<p>FP (False Positive) : The prediction of the model is <strong>postive</strong> and it is <strong>False</strong> (answer is negative)</p>
+</li>
+<li>
+<p>FN (False Negative) : The prediction of the model is <strong>negative</strong> and it is <strong>False</strong> (answer is positive)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Even if there are multiple classes, it is not very different. For example, in the case of the apple class:</p>
+<ul>
+<li>TP is 7, TN is 1+3+2+3, FP is 8+9, and FN is 1+3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+<image width=40%; align="center" ; src='https://miro.medium.com/max/1000/1*yH2SM0DIUQlEiveK42NnBg.png'></p>
+<br>
+<hr>
+<h2 id="1-true-positive-rate-tpr-sensitivity-recall">1. True Positive Rate (TPR, Sensitivity, Recall)</h2>
+<ul>
+<li>
+<p>The probability of a positive prediction, conditioned on truly being positive.</p>
+<ul>
+<li>Ex1. Proportion of predicted cancer among patients who actually had cancer</li>
+</ul>
+</li>
+</ul>
+<p>$$ \frac{TP}{P} = \frac{TP}{TP+FN} $$</p>
+<br>
+<hr>
+<h2 id="2-true-negative-rate-tnr-specificity">2. True Negative Rate (TNR, Specificity)</h2>
+<ul>
+<li>The probability of a negative prediction, conditioned on truly being negative.
+<ul>
+<li>Ex2. Proportion of predicted normal out of actual normal people</li>
+</ul>
+</li>
+</ul>
+<p>$$ \frac{TN}{N} = \frac{TN}{TN+FP} $$</p>
+<br>
+<hr>
+<h2 id="3-false-positive-rate-fpr-fall-out">3. False Positive Rate (FPR, Fall-out)</h2>
+<ul>
+<li>The false positive rate is calculated as the ratio between the number of negative events wrongly categorized as positive (false positives) and the total number of actual negative events (regardless of classification).</li>
+</ul>
+<p>$$ FPR = \frac{FP}{N} = 1-TNR = 1-Specificity $$</p>
+<br>
+<hr>
+<h2 id="3-positive-predictive-value-ppv-precision">3. Positive Predictive Value (PPV, Precision)</h2>
+<ul>
+<li>
+<p>The probability of a true positive prediction, among every positive predictions</p>
+<ul>
+<li>
+<p>The ratio of truely cancer among predicted cancer</p>
+</li>
+<li>
+<p>If &ldquo;Sentivity&rdquo; is from the point of view of the answer (label), &ldquo;Precision&rdquo; is the interpretation from the point of view of the model</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$ \frac{TP}{TP+FP} $$</p>
+<br>
+<hr>
+<h2 id="5-f1-score">5. F1-Score</h2>
+<ul>
+<li>F1-Score : The harmonic average of Precision and Recall (harmonic average : the more unbalanced the value used for average calculation, the more the penalty is applied so that the average is calculated closer to the smaller value)
+<ul>
+<li><strong>Micro (Averaged) F1</strong> : is calculated by considering the total TP, total FP and total FN of the model. It does not consider each class individually, It calculates the metrics globally.</li>
+<li><strong>Macro (Averaged) F1</strong> : calculates metrics for each class individually and then takes unweighted mean of the measures.</li>
+<li><strong>Weighted F1</strong>: it takes a weighted mean of the measures. The weights for each class are the total number of samples of that class.</li>
+</ul>
+</li>
+<li>Reference
+<ul>
+<li><a href="https://gaussian37.github.io/ml-concept-ml-evaluation/">Metrics in Machine Learning - gaussian37</a></li>
+</ul>
+</li>
+</ul>
+<p>$$ 2 \times \frac{Precision \times Recall}{Precision + Recall } $$</p>
+<!--
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" src="/figures/2017-01-03-fig1.png">
+</p>
+-->
+<br>
+<hr>
+<h2 id="6-roc-receiver-operating-characteristic-curve">6. ROC (Receiver Operating Characteristic) Curve</h2>
+<ul>
+<li>
+<p>ROC curve : A graph that shows how well a classifier separates two classes</p>
+<ul>
+<li>
+<p>Visualization of changes in Recall(TPR) and Fall-out(FPR) by threshold</p>
+<ul>
+<li>
+<ol>
+<li>The model outputs probabilities (not just labels)</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>You pick a thresh to decide if something is positive or negative</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>For each possible thresh, you calculate TPR and FPR</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Plots TPR(y-axis) against FPR(x-axis) for all thresholds.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!--
+- Threshold 를 바꿔가며 Recall (TPR) 과 Fall-out (FPR, FP/(FP+TN)) 의 변화를 시각화한것
+- x축, FPR은 실제 정상인 중에 암이 있다고 예측한 비율 (FP/N)
+- y축, TPR은 실제 암인 환자중에 암이 있다고 예측한 비율 (TP/P)
+- 즉, test data에 대하여 threshold를 0~1로 바꿔가며, (FPR,TPR) 의 좌표를 구하고 이를 그래프위에 나타내면 ROC커브.
+-->
+<br>
+<hr>
+<!--
+
+## 6. AUC (Area under Curve)
+
+- ROC Curve 는 그래프이기에 명확한 수치로 비교하기 어렵고 때문에 그래프 아래의 면적값을 계산
+
+<br>
+
+---
+
+## 7. Precision-Recall Curve
+
+- precision 과 recall은 상호 보완적인 metric으로 두개를 동시에 보아야함.
+
+- 예로, 영상에 10명의 사람이 있는데 이중 모델이 5개 물체를 검출해냈고 그중 4개가 사람이 맞으면 Precision은 0.8, Recall은 0.4.
+
+- 그러나 일반적으로 이 둘은 Trade-Off의 관계에 있음. 가령, 이것저것 다 검출하고 보는 검출기의 경우 recall은 높으나 precision은 낮을것이고, 굉장히 strict 하게 검출하는 검출기의 경우 precision은 높으나 Recall은 낮을수밖에.
+
+- 그래서 ROC 처럼 Precision-Recall도 Curve를 그려 함께 비교하는것이 일반적임
+
+<br>
+
+---
+
+## 8. AP or mAP
+
+- Computer Vision 분야에서 Object Detection 알고리즘의 성능 평가에 주로 사용되는 metric으로 AUC의 Recall-Precision 버전이라고 생각하면 될 듯
+
+$$ AP = \int_0^1 p(r)dr $$
+
+- Interpolated AP : Recall Precision 그래프의 넓이를 계산하는게 일반적이나, 계산의 편리성을 위하여 0부터 1까지 0.1간격으로 열한개 recall값의 maximum precision value를 average 하여 11로 나누어 사용하기도 함.
+
+$$ AP = \frac{1}{11} (P_r(0) + P_r(0.1) + P_r(0.2) + ... + P_r(1.0)) $$
+
+- 만일 검출하고자하는 물체 클래스가 여러개인 경우 각 클래스당 AP 를 구한 다음 이 AP들의 평균을 계산한 mAP를 사용하기도 함.
+
+- Area를 계산할때 True/False를 판단하는 기준으로 IoU (교집합/합집합)을 주로 사용하는데 AP_50, AP_75 와 같이 뒤에 붙은 숫자는 일반적으로 IoU의 threshold를 의미함. 가령 AP_50의 경우 IoU가 0.5 d이상인 경우만 검출에 성공했다고 하는 경우.
+
+- Recall은 0~1 사이의 값을 갖으므로, Recall Precision 그래프를 $\frac{1}{n}$ 크기의 작은 사각형으로 나누어 넓이를 계산하면 아래와 같고, 이는 각 recall값 n에 대한 precision 값의 평균과 같다.
+
+$$ Area = \sum (\frac{1}{n} \times P(n)), \quad AP = \frac{1}{n} {\sum P(n)}$$
+
+<br>
+-->
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

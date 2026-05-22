@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Effective Python #7 | Concurrency and Parallelism - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Concurrency enables a computer to do many different things seemingly at the same time.
+Parallelism, in contrast, involves actually doing many different things at the same time.
+Python makes it easy to write concurrent programs in a variety of styles.
+Threads support a relatively small amount of concurrency,
+Coroutines enable vast numbers of concurrent functions.
+Subprocesses can also be used to do parallel work through system calls,
+Item 52. Use subprocess to Manage Child Process Use the subprocess module to run child processes and manage their input and output streams
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Effective Python #7 | Concurrency and Parallelism - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/2.-python/effective-python-07/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #7 | Concurrency and Parallelism">
+  <meta property="og:description" content="Introduction Concurrency enables a computer to do many different things seemingly at the same time.
+Parallelism, in contrast, involves actually doing many different things at the same time.
+Python makes it easy to write concurrent programs in a variety of styles.
+Threads support a relatively small amount of concurrency,
+Coroutines enable vast numbers of concurrent functions.
+Subprocesses can also be used to do parallel work through system calls,
+Item 52. Use subprocess to Manage Child Process Use the subprocess module to run child processes and manage their input and output streams">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-04-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-04-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="Effective Python #7 | Concurrency and Parallelism">
+  <meta itemprop="description" content="Introduction Concurrency enables a computer to do many different things seemingly at the same time.
+Parallelism, in contrast, involves actually doing many different things at the same time.
+Python makes it easy to write concurrent programs in a variety of styles.
+Threads support a relatively small amount of concurrency,
+Coroutines enable vast numbers of concurrent functions.
+Subprocesses can also be used to do parallel work through system calls,
+Item 52. Use subprocess to Manage Child Process Use the subprocess module to run child processes and manage their input and output streams">
+  <meta itemprop="datePublished" content="2023-04-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-04-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1617">
+  <meta itemprop="keywords" content="2. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #7 | Concurrency and Parallelism">
+  <meta name="twitter:description" content="Introduction Concurrency enables a computer to do many different things seemingly at the same time.
+Parallelism, in contrast, involves actually doing many different things at the same time.
+Python makes it easy to write concurrent programs in a variety of styles.
+Threads support a relatively small amount of concurrency,
+Coroutines enable vast numbers of concurrent functions.
+Subprocesses can also be used to do parallel work through system calls,
+Item 52. Use subprocess to Manage Child Process Use the subprocess module to run child processes and manage their input and output streams">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/2.-python/effective-python-07/"
+    >Effective Python #7 | Concurrency and Parallelism</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/2.-python/effective-python-07/" class="article-date">
+  <time datetime="2023-04-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-04-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-python/"> 2. Python </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/2.-python/effective-python-07/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>Concurrency enables a computer to do many different things <strong>seemingly at the same time.</strong></p>
+</li>
+<li>
+<p>Parallelism, in contrast, involves <strong>actually doing many different things at the same time.</strong></p>
+</li>
+<li>
+<p>Python makes it easy to write concurrent programs in a variety of styles.</p>
+<ul>
+<li>
+<p>Threads support a relatively small amount of concurrency,</p>
+</li>
+<li>
+<p>Coroutines enable vast numbers of concurrent functions.</p>
+</li>
+<li>
+<p>Subprocesses can also be used to do parallel work through system calls,</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-52-use-subprocess-to-manage-child-process">Item 52. Use <code>subprocess</code> to Manage Child Process</h2>
+<ol>
+<li>
+<p>Use the <code>subprocess</code> module to run child processes and manage their input and output streams</p>
+</li>
+<li>
+<p>Child processes run in parallel with the Python interpreter, enabling you to maximize your usage of CPU cores.</p>
+</li>
+<li>
+<p>Use the <code>run</code> convenience function for simple usage, and the <code>Popen</code> class for advanced usage like UNIX style pipelines</p>
+</li>
+<li>
+<p>Use the <code>timeout</code> parameter of the <code>communicate</code> method to avoid dead-locks and hanging child process.</p>
+</li>
+</ol>
+<pre><code class="language-python">import subprocess
+result = subprocess.run(
+    ['echo', 'Hello from the child!'],
+    capture_output=True,
+    encoding='utf-8'
+)
+</code></pre>
+<pre><code class="language-python">import subprocess
+import time
+
+# Create 10 subprocesses
+procs = [subprocess.Popen([&quot;sleep&quot;, &quot;1&quot;]) for _ in range(10)]
+
+for proc in procs:
+    try:
+        # &quot;communicate&quot; waits for the child proc to finish and retrieve its stdout.&quot;
+        proc.communicate(timeout=0.1)
+    except subprocess.TimeoutExpired:
+        proc.terminate()
+        proc.wait()
+    print(&quot;Exit status&quot;, proc.poll())
+</code></pre>
+<blockquote>
+<ul>
+<li>
+<p>The <code>subprocess</code>module lets you run and control other programs. Anything you can start with the command line on the computer, can be run and controlled with this module.</p>
+</li>
+<li>
+<p>The <code>multiprocessing</code> module lets you divide tasks written in python over multiple processes to help improve performance. It provides an API very similar to the <code>threading</code>module;</p>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h2 id="item-53-use-threads-for-blocking-io-avoid-for-parallelism">Item 53. Use Threads for Blocking I/O, Avoid for Parallelism</h2>
+<ul>
+<li>
+<p>CPython runs a python program in two steps.</p>
+<ul>
+<li>
+<p>It parses and comiles the source text into bytecode, a low-level representation of the program as 8-bit instructions</p>
+</li>
+<li>
+<p>Then, CPython runs the bytecode using a stack-based interpreter</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Global Interpreter Lock (GIL), is a mutex (or a lock) that allows only one thread to hold the control of the Python interpreter.</p>
+<ul>
+<li>
+<p>The GIL has an important negative side effect.</p>
+</li>
+<li>
+<p>With programs written in languages like C++ or Java, having multiple threads of execution</p>
+</li>
+<li>
+<p>Although Python supports multiple threads of execution, the GIL causes only one of them to ever make forward progress at a time.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Given these limitations, why does Python support threads at all? There are two good reasons.</p>
+<ul>
+<li>Python supports threads is to deal with blocking I/O (includes things like reading and writing files)</li>
+</ul>
+</li>
+<li>
+<p>Things to Remember</p>
+<ol>
+<li>
+<p><strong>Python threads can&rsquo;t run in parallel on multiple CPU cores beacuse of the global interpreter lock (GIL)</strong></p>
+</li>
+<li>
+<p>Python threads are still useful despite the GIL, because they provide an easy way to do multiple things <strong>seemingly at the same time</strong>.</p>
+</li>
+<li>
+<p>Use Python threads to make multiple system calls in parallel. This allows you to do blocking I/O at the same time as computation.</p>
+</li>
+<li>
+<p>Blocking I/O includes things like reading and writing files, interacting with networks, communicating with devices like displays, and so on.</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-python"># CPU-Bounded program w/o multi-threads
+import time 
+def factorize(number):
+    for i in range(1,number+1):
+        if number%i == 0:
+            yield i
+
+numbers = [2139079, 1214759, 1516637, 1852285]
+start = time.time()
+for number in numbers:
+    list(factorize(number))
+print (f&quot;Took {time.time()-start}&quot;) # &gt;&gt; 0.89
+
+# CPU-Bounded program w/ multi-threading
+from threading import Thread
+class FactorizeThread(Thread):
+    def __init__(self, number):
+        super().__init__()
+        self.number = number
+    def run(self):
+        self.factors = list(factorize(self.number))
+
+start = time.time()
+threads = []
+for number in numbers:
+    thread = FactorizeThread(number)
+    thread.start()
+    threads.append(thread)
+for thread in threads:
+    thread.join()
+print (f&quot;Took {time.time()-start}&quot;) # &gt;&gt; 0.96 : takes even longer than running in serial.
+</code></pre>
+<blockquote>
+<ul>
+<li>
+<p>There are many other ways to deal with blocking I/O besides using threads, such as the asyncio</p>
+<ul>
+<li>
+<p>But those options might require extra work in refactoring your code to fit a different moder of  execution</p>
+</li>
+<li>
+<p>Using threads is the simplest way to do blocking I/O in parallel with minimal changes to your program.</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h2 id="item-54-use-lock-to-prevent-data-races-in-threads">Item 54. Use <code>Lock</code> to Prevent Data Races in Threads</h2>
+<ol>
+<li>
+<p>Even though Python has a global interpreter lock, you&rsquo;re still responsible for protecting against data races between the threads in your programs.</p>
+</li>
+<li>
+<p>Your programs will corrupt their data structures if you allow multiple thread to modify the same objects without mutual-exclusion locks</p>
+</li>
+<li>
+<p>Use the <code>Lock</code>class from the <code>threading</code> built-in module to enforce your program&rsquo;s invariants between multiple threads.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item55-use-queue-to-coordinate-work-beetween-threads">Item55. Use <code>Queue</code> to Coordinate Work Beetween Threads</h2>
+<ol>
+<li>
+<p>Pipelines are a great way to organize sequences of work, especially I/O-bound programs, that run concurrently using multiple Python threads.</p>
+</li>
+<li>
+<p>Be aware of the many problems in building concurrent pipelines:busy waiting, how to tell workers to stop, and potential memory explosion</p>
+</li>
+<li>
+<p>The <code>Queue</code> class has all the facilities you need to build robust pipelines: blocking operations, buffer sizes, and joining.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item56-know-how-to-recognize-when-concurrency-is-necessary">Item56. Know How to Recognize When Concurrency Is Necessary</h2>
+<ol>
+<li>
+<p>A program often grows to require multiple concurrent lines of execution as its scope and complexity increases</p>
+</li>
+<li>
+<p>The most common types of concurrency coordination are fan-out  and fan-in</p>
+<ul>
+<li>
+<p>fan-out : generating new units of concurrency</p>
+</li>
+<li>
+<p>fan-in : waiting for existing units of concurrency to complete</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Python has many different way of achieving fan-out and fan-in.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item57-avoid-creating-new-thread-instances-for-on-demand-fan-out">Item57. Avoid Creating New <code>Thread</code> Instances for On-demand Fan-out</h2>
+<ul>
+<li>
+<p>Threads have many downsides: They&rsquo;re costly to start and run. if you need a lot of them, they each require a significant amount of memory, and they require special tools like <code>Lock</code> instances for coordination.</p>
+</li>
+<li>
+<p>Threads do not provide a built-in way to raise exceptions back in the code that started a thread or that is waiting for one to finish, which makes them difficult to debug.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-58-understand-how-using-queue-for-concurrency-requires-refactoring">Item 58. Understand How Using <code>Queue</code> for Concurrency Requires Refactoring</h2>
+<ul>
+<li>
+<p>Using <code>Queue</code> instances with a fixed number of worker threads improves the scalabilty of fan-out and fan-in using threads</p>
+</li>
+<li>
+<p>It takes a significant amount of work to refactor existing code to use <code>Queue</code>, especially when multiple stages of a pipeline are required.</p>
+</li>
+<li>
+<p>Using <code>Queue</code> fundamentally limits the total amount of I/O parallelism a program can leverage compared to alternative approaches provided by other built-in Python featrues and modules</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-59-consider-threadpoolexecutor-when-threads-are-necessary-for-concurrency">Item 59. Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</h2>
+<ul>
+<li>
+<p><code>ThreadPoolExecutor</code> enables simple I/O parallelism with limited refactoring, easily avoiding the cost of thread startup each time fan-out concurrency is required.</p>
+</li>
+<li>
+<p>Although <code>ThreadPoolExecutor</code> eliminates the potential memory blow-up issues of using threads directly, it also limits I/O parallelism by requiring <code>max_workers</code> to be speified upfront.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-60-acheive-highly-concurrent-io-with-coroutines">Item 60. Acheive Highly Concurrent I/O with Coroutines</h2>
+<ul>
+<li>
+<p>Functions that are defined using the <code>async</code> keyword are called coroutines. A caller receive the result of a dependent coroutine by using the <code>await</code> keyword.</p>
+</li>
+<li>
+<p>Coroutines provide an efficient way to run tens of thousands of functions seemingly at the same time.</p>
+</li>
+<li>
+<p>Coroutines can use fan-out and fan-in in order to parallelize I/O, while also overcoming all of the problems associated with doing I/O in threads.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-61-know-how-to-port-threaded-io-to-asyncio">Item 61. Know How to Port Threaded I/O to asyncio</h2>
+<ul>
+<li>
+<p>Python provides asynchronous versions of <code>for</code> loops, with statements, generators, comprehensions, and library helper functions that can be used as drop in replacements in coroutines.</p>
+</li>
+<li>
+<p>The asyncio built-in module makes it straightforward to port existing code that uses threads and blocking I/O over to coroutines and asyncronous I/O</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-62-mix-threads-and-coroutines-to-ease-the-transition-to-asyncio">Item 62. Mix Threads and Coroutines to Ease the Transition to asyncio</h2>
+<ul>
+<li>
+<p>The awaitable <code>run_in_executor</code> method of the asyncio event loop enables coroutines to run synchronous functions in <code>ThreadPoolExecutor</code> pools Thos facilitates top-down migrations to asyncio</p>
+</li>
+<li>
+<p>the <code>run_until_complete</code> method of the asyncio event loop enables synchronous code to run a coroutine until it finishes. The <code>asyncio.run_coroutine_threadsafe</code> function provides the same functionality across thread boundaries. Together these help with bottom-up migrations to asyncio.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-63-avoid-blocking-the-asyncio-event-loop-to-maximize-responsiveness">Item 63. Avoid Blocking the <code>asyncio</code> Event Loop to Maximize Responsiveness</h2>
+<ul>
+<li>
+<p>Making system calls in coroutines (including blocking I/O and starting threads) can reduce program responsiveness and increase the perception of latency</p>
+</li>
+<li>
+<p>Pass the <code>debug=Ture</code> parameter to <code>asyncio.run</code> in order to detect when certain coroutines are preventing the event loop from reacting quickly.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-64-consider-concurrentfutures-for-true-parallelism">Item 64. Consider <code>concurrent.futures</code> for True Parallelism</h2>
+<ul>
+<li>
+<p>Introduction</p>
+<ul>
+<li>
+<p>Even after optimizing your code, your program’s execution may still be too slow :</p>
+<ul>
+<li>
+<p>GIL prevents true parallelism in threads, so that option is out.</p>
+</li>
+<li>
+<p>Rewrite performance-critical code as an extension module using the C language =&gt; high cost</p>
+</li>
+<li>
+<p>The <code>multiprocessing</code>built-in module (<code>concurrent.futures.ProcessPoolExecutor</code>)</p>
+<ul>
+<li>
+<p>These child processes are separate from the main interpreter, so their global interpreter locks are also separate.</p>
+</li>
+<li>
+<p>The overhead of using multiprocessing via ProcessPoolExecutor is high because of all of the serialization and deserialization that must happen between the parent and child processes.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What the <code>ProcessPoolExecutor</code> actually does</p>
+<ul>
+<li>
+<p>It takes each item from the input data to <code>map</code>.</p>
+</li>
+<li>
+<p>It serializes the item into binary data by using the pickle module</p>
+</li>
+<li>
+<p>It copies the serialized data from the main interpreter process to a child interpreter process over a local socket.</p>
+</li>
+<li>
+<p>It deserializes the data back into Python objects, using pickle in the child process.</p>
+</li>
+<li>
+<p>It imports the Python module containing the target function.</p>
+</li>
+<li>
+<p>It runs the function on the input data in parallel with other child processes.</p>
+</li>
+<li>
+<p>It serializes the result back into binary data.</p>
+</li>
+<li>
+<p>It copies that binary data back through the socket.</p>
+</li>
+<li>
+<p>It deserializes the binary data back into Python objects in the parent process.</p>
+</li>
+<li>
+<p>It merges the results from multiple children into a single list to return.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Things to Remember</p>
+<ul>
+<li>
+<p>Moving CPU botttlenecks to C-extension modules can be an effective way to improve performance while maximizing your investment in Python code. However, doing so has a high cost and may introduce bugs.</p>
+</li>
+<li>
+<p>The multiprocessing module provides powerful tools that can parallelize certain types of Python computation with minimal effort.</p>
+</li>
+<li>
+<p>The power of <code>multiprocessing</code> is best accessed through the <code>concurrent.futures</code> built-in module and its simple <code>ProcessPoolExecutor</code> classs.</p>
+</li>
+<li>
+<p>Avoid the advanced (and complicated parts of the <code>multiprocessing</code> module until you&rsquo;ve exhausted all other options</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">from concurrent.futures import ProcessPoolExecutor
+
+NUMBERS = [...]
+def main():
+    pool = ProcessPoolExecutor(max_workes=2)
+    results = list(pool.map(..., NUMBERS)
+
+</code></pre>
+<br>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

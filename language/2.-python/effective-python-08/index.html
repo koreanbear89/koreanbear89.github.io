@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Effective Python #8 | Robustness and Performance - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.
+Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.
+Item 65. Take Advantage of Each BLock in try/except/else/finally The try/finally compound statement lets you run clean up code regardless of whether exceptions were raised in the tryblock
+The else block helps you minimize the amount of code in tryblocks and visually distinguish the success case from the try/except blocks
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Effective Python #8 | Robustness and Performance - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/2.-python/effective-python-08/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #8 | Robustness and Performance">
+  <meta property="og:description" content="Introduction Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.
+Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.
+Item 65. Take Advantage of Each BLock in try/except/else/finally The try/finally compound statement lets you run clean up code regardless of whether exceptions were raised in the tryblock
+The else block helps you minimize the amount of code in tryblocks and visually distinguish the success case from the try/except blocks">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-04-10T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-04-10T09:00:00+00:00">
+
+  <meta itemprop="name" content="Effective Python #8 | Robustness and Performance">
+  <meta itemprop="description" content="Introduction Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.
+Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.
+Item 65. Take Advantage of Each BLock in try/except/else/finally The try/finally compound statement lets you run clean up code regardless of whether exceptions were raised in the tryblock
+The else block helps you minimize the amount of code in tryblocks and visually distinguish the success case from the try/except blocks">
+  <meta itemprop="datePublished" content="2023-04-10T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-04-10T09:00:00+00:00">
+  <meta itemprop="wordCount" content="854">
+  <meta itemprop="keywords" content="2. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #8 | Robustness and Performance">
+  <meta name="twitter:description" content="Introduction Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.
+Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.
+Item 65. Take Advantage of Each BLock in try/except/else/finally The try/finally compound statement lets you run clean up code regardless of whether exceptions were raised in the tryblock
+The else block helps you minimize the amount of code in tryblocks and visually distinguish the success case from the try/except blocks">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/2.-python/effective-python-08/"
+    >Effective Python #8 | Robustness and Performance</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/2.-python/effective-python-08/" class="article-date">
+  <time datetime="2023-04-10 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-04-10</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-python/"> 2. Python </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/2.-python/effective-python-08/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>Python has built-in features and modules that aid in hardening your programs so they are robust in a wide variety of situations.</p>
+</li>
+<li>
+<p>Python includes many of the algorithms and data structures you need to achieve high performance with minimal effort.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-65-take-advantage-of-each-block-in-tryexceptelsefinally">Item 65. Take Advantage of Each BLock in <code>try/except/else/finally</code></h2>
+<ol>
+<li>
+<p>The <code>try/finally</code> compound statement lets you run clean up code regardless of whether exceptions were raised in the <code>try</code>block</p>
+</li>
+<li>
+<p>The <code>else</code> block helps you minimize the amount of code in <code>try</code>blocks and visually distinguish the success case from the <code>try/except</code> blocks</p>
+</li>
+<li>
+<p>An <code>else</code> block can be used to perform additional actions after a successful <code>try</code> block but before common cleanup in a <code>finally</code>block.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-66-use-contextlib-and-with-statements-for-reusable-tryfinally-behavior">Item 66. Use <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> Behavior.</h2>
+<ol>
+<li>
+<p>The <code>with</code> statement allows you to reuse logic from <code>try/finally</code> blocks and reduce visual noise.</p>
+</li>
+<li>
+<p>The <code>contextlib</code> built-in module provides a <code>contextmanager</code> decorator that makes it easy to use your own functions in <code>with</code> statements.</p>
+</li>
+<li>
+<p>The value yielded by context managers is supplied to the <code>as</code> part or the with statement. It&rsquo;s useful for letting your code directly access the cause of a special context.</p>
+</li>
+</ol>
+<pre><code class="language-python"># 1) w/o with
+f = open(&quot;memo.txt&quot;, &quot;r&quot;)
+try:
+    # Do something
+finally:
+    f.close()
+
+# 2) w/ with
+with open(&quot;memo.txt&quot;, &quot;r&quot;) as f:
+    # Do something ...
+
+# 3) w/ context manager
+from contextlib import contextmanager
+@contextmanager
+def managed_resource(*args, **kwargs):
+    resource = acquire_resource(*args, **kwargs)
+    try:
+        yield resource
+    finally:
+        release_resource(resource)
+
+with managed_resource(timeout=100) as resource:
+    # Do something...
+</code></pre>
+<br>
+<hr>
+<h2 id="item-67-use-datetime-instead-of-time-for-local-clocks">Item 67. Use <code>datetime</code> Instead of <code>time</code> for Local Clocks</h2>
+<ol>
+<li>
+<p>Avoid using the <code>time</code> module for translating between different time zones</p>
+</li>
+<li>
+<p>Use the <code>datetime</code> built-in module along with the <code>pytz</code> community module to reliable convert between times in different time zones</p>
+</li>
+<li>
+<p>Always represent time in UTC and do coversions to local tiem as the very final step before presentation</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-68-make-pickle-reliable-with-copyreg">Item 68. Make <code>pickle</code> Reliable with <code>copyreg</code></h2>
+<ol>
+<li>
+<p>The <code>pickle</code> built-in module is useful only for serializaing and desrializaing objects between trusted programs</p>
+</li>
+<li>
+<p>Deserializing previously pickled objects may break if the classes involved have changed over time</p>
+</li>
+<li>
+<p>Use the <code>copyreg</code> built-in module with <code>pickle</code> to ensure backward compatibility for serialized objetcs</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item69-use-decimal-when-precision-is-paramount">Item69. Use <code>decimal</code> When Precision Is Paramount</h2>
+<ol>
+<li>
+<p>Python has built-in types and classes in modules that can represent practically every type of numerical value.</p>
+</li>
+<li>
+<p>The <code>Decimal</code>class is ideal for situations that require high precision and control over rounding behavior, such as computations of monetary values.</p>
+</li>
+<li>
+<p>Pass <code>str</code>instances to the <code>Decimal</code>constructor instead of <code>float</code> instances if it&rsquo;s important to compute exact answers and not floating point approximations.</p>
+</li>
+</ol>
+<pre><code class="language-python">from decimal import Decimal
+print(Decimal(&quot;1.45&quot;) = 1.45
+print(Decimal(1.45) = 1.44999999999..
+</code></pre>
+<br>
+<hr>
+<h2 id="item70-profile-before-optimizing">Item70. Profile Before Optimizing</h2>
+<ul>
+<li>
+<p>It’s important to profile Python programs before optimizing because the sources of slowdowns are often obscure.</p>
+</li>
+<li>
+<p>Use the cProfile module instead of the profile module because it provides more accurate profiling information.</p>
+</li>
+<li>
+<p>The Profile object’s runcall method provides everything you need to profile a tree of function calls in isolation.</p>
+</li>
+<li>
+<p>The Stats object lets you select and print the subset of profiling information you need to see to understand your program’s performance.</p>
+</li>
+</ul>
+<pre><code class="language-python">from cProfile import Profile
+profiler = Profile()
+profiler.runcall(test)
+
+from pstats import Stats
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats('cumulative')
+stats.print_stats()
+
+&quot;&quot;&quot;
+Ordered by: cumulative time
+
+ncalls tottime percall cumtime percall filename:lineno(function)
+     1  0.000  0.000  0.017  0.017  main.py:35(&lt;lambda&gt;)
+     1  0.002  0.002  0.017  0.017  main.py:10(insertion_sort)
+ 10000  0.003  0.000  0.015  0.000  main.py:110(insert_value)
+ 10000  0.008  0.000  0.008  0.000  30003 function calls in 0.017 seconds
+ 10000  0.004  0.000  0.004  0.000  {built-in method _bisect.bisect_left}
+&quot;&quot;&quot;
+</code></pre>
+<br>
+<hr>
+<h2 id="item-71-prefer-deque-for-producer-consumer---queue">Item 71. Prefer <code>deque</code> for Producer-Consumer   Queue</h2>
+<ul>
+<li>The <code>list</code>type can be used as a FIFO queue by having the producer call <code>append</code>to add items and the consumer call <code>pop(0)</code>to receive items. However, this may cause problems because the performance of <code>pop(0)</code>degrades superlinearly as the queue length increases</li>
+<li>The <code>deque</code>class from the <code>collections</code>built-in module takes constant time, regardless of length, for <code>append</code>and <code>popleft</code>, making it ideal for FIFO queues.</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-72-consider-searching-sorted-sequences-with-bisect">Item 72. Consider Searching Sorted Sequences with <code>bisect</code></h2>
+<ul>
+<li>
+<p>Searching sorted data contained in a <code>list</code>taskes linear time using the <code>index</code>method or a <code>for</code>loop with simple comparisons.</p>
+</li>
+<li>
+<p>The bisect built-in module’s bisect_left function takes logarithmic time to search for values in sorted lists, which can be orders of magnitude faster than other approaches.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-73-know-how-to-use-heapq-for-priority-queue">Item 73. Know How to Use <code>heapq</code> for Priority Queue</h2>
+<ul>
+<li>Priority queues allow you to process items in order of importance instead of in first-in, first-out order.</li>
+<li>If you try to use <code>list</code>operations to implement a priority queue, your program&rsquo;s performance will degrade superlinearly as the queue grows.</li>
+<li>The <code>heapq</code>built-in module provides all of the functions you need to implement a priority queue that scales efficiently</li>
+<li>To use <code>heapq</code> the items being prioritized must have a natural sort order, which requires special methods like <code>__lt__</code>to be defined for classes.</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-74-consider-memoryviewand-bytearrayfor-zero-copy-interactions-with-bytes">Item 74. Consider <code>memoryview</code>and <code>bytearray</code>for Zero-Copy Interactions with <code>bytes</code></h2>
+<ul>
+<li>
+<p>The <code>memoryview</code>built-in type provides a zero-copy interface for reading and writing slices of objects that support Python&rsquo;s high performance buffer protocol.</p>
+</li>
+<li>
+<p>The bytearray built-in type provides a mutable bytes-like type that can be used for zero-copy data reads with functions like <code>socket.recv_from</code></p>
+</li>
+<li>
+<p>A <code>memoryview</code> can wrap a <code>bytearray</code>, allowing for received data to be spliced into an arbitrary buffer location without copying costs.</p>
+</li>
+</ul>
+<br>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        NLP #1 | Text Preprocessing - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Summary Tokenization Lemmatization and Stemming Stopword Regular Expression Text Preprocessing Tools for Korean Text 1. Tokenization Tokenization : dividing a given corpus into tokens, which are units defined for a specific purpose.
+Sentence Tokenization : The unit of the token is a sentence.
+A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as &lsquo;Ph.D.&rsquo; Word Tokenization : The criterion of the token is a word.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>NLP #1 | Text Preprocessing - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-1--text-preprocessing/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="NLP #1 | Text Preprocessing">
+  <meta property="og:description" content="Summary Tokenization Lemmatization and Stemming Stopword Regular Expression Text Preprocessing Tools for Korean Text 1. Tokenization Tokenization : dividing a given corpus into tokens, which are units defined for a specific purpose.
+Sentence Tokenization : The unit of the token is a sentence.
+A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as ‘Ph.D.’ Word Tokenization : The criterion of the token is a word.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="machine-learning">
+    <meta property="article:published_time" content="2021-01-05T09:00:00+00:00">
+    <meta property="article:modified_time" content="2021-01-05T09:00:00+00:00">
+
+  <meta itemprop="name" content="NLP #1 | Text Preprocessing">
+  <meta itemprop="description" content="Summary Tokenization Lemmatization and Stemming Stopword Regular Expression Text Preprocessing Tools for Korean Text 1. Tokenization Tokenization : dividing a given corpus into tokens, which are units defined for a specific purpose.
+Sentence Tokenization : The unit of the token is a sentence.
+A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as ‘Ph.D.’ Word Tokenization : The criterion of the token is a word.">
+  <meta itemprop="datePublished" content="2021-01-05T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2021-01-05T09:00:00+00:00">
+  <meta itemprop="wordCount" content="848">
+  <meta itemprop="keywords" content="3. Natural Language">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NLP #1 | Text Preprocessing">
+  <meta name="twitter:description" content="Summary Tokenization Lemmatization and Stemming Stopword Regular Expression Text Preprocessing Tools for Korean Text 1. Tokenization Tokenization : dividing a given corpus into tokens, which are units defined for a specific purpose.
+Sentence Tokenization : The unit of the token is a sentence.
+A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as ‘Ph.D.’ Word Tokenization : The criterion of the token is a word.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/machine-learning/3.-natural-language/nlp-1--text-preprocessing/"
+    >NLP #1 | Text Preprocessing</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-1--text-preprocessing/" class="article-date">
+  <time datetime="2021-01-05 09:00:00 &#43;0000 UTC" itemprop="datePublished">2021-01-05</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-natural-language/"> 3. Natural Language </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/machine-learning/3.-natural-language/nlp-1--text-preprocessing/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Tokenization</li>
+<li>Lemmatization and Stemming</li>
+<li>Stopword</li>
+<li>Regular Expression</li>
+<li>Text Preprocessing Tools for Korean Text</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-tokenization">1. Tokenization</h2>
+<ul>
+<li>
+<p><strong>Tokenization</strong> : dividing a given corpus into tokens, which are units defined for a specific purpose.</p>
+<ul>
+<li>
+<p><strong>Sentence Tokenization</strong> : The unit of the token is a sentence.</p>
+<ul>
+<li>A dot (.) usually serves as a boundary between sentences, but It is often used as abbreivation, such as &lsquo;Ph.D.&rsquo;</li>
+</ul>
+</li>
+<li>
+<p><strong>Word Tokenization</strong> : The criterion of the token is a word.</p>
+<ul>
+<li>In English, word tokens can be distinguished by cutting them by space (&quot; &ldquo;), but in Korean, this is not the case.</li>
+</ul>
+</li>
+<li>
+<p><strong>Subword Tokenizer (Morpheme Tokenization)</strong> : the standard of the token is a morpheme. In the case of Korean, morpheme tokenization is preferred for the following reasons:</p>
+<ol>
+<li>Postposition (조사) : various postpositions are attached directly without spaces and are easily recognized as different words. ex) &lsquo;그는&rsquo;, &lsquo;그가&rsquo;</li>
+<li>Inaccurate spacing : Compared to English, spacing tends to be poor</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="11-byte-pair-encoding-bpe">1.1 Byte Pair Encoding (BPE)</h4>
+<ul>
+<li>
+<p>Out of vocabulary : When a word that’s not in the training set occurs in real data, this causes a OOV problem.</p>
+</li>
+<li>
+<p>BPE : is a simple form of data compression algorithm in which the most common pair of consecutive bytes of data is replaced with a byte that does not occur in that data.</p>
+<ul>
+<li>
+<p>Ex) Suppose we have data <code>aaabdaaabac</code> which needs to be encoded (compressed).</p>
+<ul>
+<li>
+<p>The byte pair <code>aa</code> occurs most often, so we will replace it with <code>Z</code> as Z does not occur in our data. So we now have <code>ZabdZabac</code> where <code>Z = aa</code>.</p>
+</li>
+<li>
+<p>The next common byte pair is <code>ab</code> so let’s replace it with <code>Y</code>. We now have <code>ZYdZYac</code> where <code>Z = aa</code> and <code>Y = ab</code>.</p>
+</li>
+<li>
+<p>We can use recursive byte pair encoding to encode <code>ZY</code> as <code>X</code>. Our data has now transformed into <code>XdXac</code> where <code>X = ZY, Y = ab,</code> and <code>Z = aa</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="12-word-piece-tokenization">1.2 Word Piece Tokenization</h4>
+<ul>
+<li>
+<p>Word Piece Tokenization : is similar to BPE in that it recognizes frequently occurring strings as tokens. However, the criterion for merging was frequency in BPE, Wordpiece proceeds merging by likelihood.</p>
+<ul>
+<li>
+<p>Ex) <code>Jet makers feud over seat width with big orders at stake</code> =&gt; Word Piece Tokenization =&gt;<code>_J et _makers _fe ud _over _seat _width _with _big _orders _at _stake</code></p>
+<ul>
+<li>
+<p><code>&quot;_&quot;</code> is space for input sentence</p>
+</li>
+<li>
+<p><code>&quot; &quot;</code> for separate tokens</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="13-sentencepiece">1.3 SentencePiece</h4>
+<ul>
+<li><strong>SentencePiece</strong> : an open-source subword tokenizer by Google that operates directly on the raw input stream — no pre-tokenization (no language-specific word splitting) is required. This makes it language-agnostic and especially well-suited to Korean, Japanese, and Chinese where word boundaries are not marked by spaces.
+<ul>
+<li>Spaces are preserved by replacing them with the meta character <code>▁</code> (U+2581) before encoding, so detokenization is lossless: a simple replace of <code>▁</code> with <code>&quot; &quot;</code> recovers the original text.</li>
+<li>Supports two training algorithms:
+<ul>
+<li><strong>BPE</strong> : same merge-by-frequency rule as section 1.1.</li>
+<li><strong>Unigram LM</strong> (default) : starts from a large seed vocabulary and iteratively prunes pieces that least hurt the corpus likelihood under a unigram model. Produces a probabilistic vocabulary that can sample multiple segmentations of the same input (useful for subword regularization).</li>
+</ul>
+</li>
+<li>Used by T5, ALBERT, mBART, XLNet, and most multilingual transformers.</li>
+<li>Ex) <code>Hello world</code> → <code>▁He llo ▁world</code> (each token may start with <code>▁</code> to mark a leading space).</li>
+</ul>
+</li>
+</ul>
+<br>
+<!---
+### 1.4 Python Packages
+
+1. NLTK : for english
+2. KoNLPY :  for korean
+3. transformers
+
+```python
+from konlpy.tag import Okt
+okt = Okt()
+target = "오늘 아침 서울 기온 영하 12도로 어제보다 무려 6도나 낮았는데요"
+print(okt.morphs()) # >> ['오늘', '아침', '서울', '기온', '영하', '12', '도로', ...
+print(okt.pos()) # >> [('오늘', 'Noun'), ('아침', 'Noun'), ('서울', 'Noun') ...
+print(okt.nouns()) # >> ['오늘', '아침', '서울', '기온', '영하', '도로', ...
+```
+
+<br>
+--->
+<br>
+<hr>
+<h2 id="2-lemmatization-and-stemming">2. Lemmatization and Stemming</h2>
+<ul>
+<li><strong>Lemmatization</strong> : Reduces the vocabulary size by mapping words in different surface forms to their canonical root (lemma). e.g. the lemma of &ldquo;am&rdquo;, &ldquo;are&rdquo;, &ldquo;is&rdquo; is &ldquo;be&rdquo;.</li>
+<li><strong>Stemming</strong> : Cuts off word endings according to a fixed set of rules (rule-based). The most well-known is the Porter algorithm, available as <code>nltk.stem.PorterStemmer</code>.</li>
+</ul>
+<br>
+<hr>
+<h2 id="3-stopword">3. Stopword</h2>
+<ul>
+<li><strong>Stopword</strong> : Frequently occurring words (e.g. &ldquo;I&rdquo;, &ldquo;my&rdquo;, &ldquo;me&rdquo;, &ldquo;the&rdquo;, &ldquo;a&rdquo;) that contribute little to semantic analysis and are typically removed. You can also define a custom list.</li>
+</ul>
+<pre><code class="language-python">from nltk.corpus import stopwords
+print(stopwords.words('english')[:10]) # &gt;&gt; ['i', 'me', 'my', 'myself' ... 
+</code></pre>
+<br>
+<hr>
+<h2 id="4-regular-expression">4. Regular Expression</h2>
+<ul>
+<li>Regular Expression : A pattern syntax used to describe strings that follow specific rules.</li>
+<li>In Python, regular expressions are available through the <code>re</code> module, as shown below.</li>
+</ul>
+<pre><code class="language-python">import re
+text = &quot;&quot;&quot;100 John  PROF
+                    101 James STUD
+                    102 Mac   STUD&quot;&quot;&quot;
+# '\s' matches whitespace; '+' means one or more occurrences.
+re.split('\s+', text) # &gt;&gt; ['100', 'John', 'PROF', '101', 'James', 'STUD'..
+</code></pre>
+<ul>
+<li>RegexpTokenizer : Regex-based tokenization is also possible via <code>nltk.tokenize.RegexpTokenizer</code> or <code>pyspark.ml.feature.RegexTokenizer</code>.</li>
+</ul>
+<pre><code class="language-python">from nltk.tokenize import RegexpTokenizer
+tokenizer=RegexpTokenizer(&quot;[\s]+&quot;, gaps=True)
+print(tokenizer.tokenize(&quot;Don't be fooled by the dark sounding name&quot;)
+# &gt;&gt; [&quot;Don't&quot;, 'be', 'fooled', 'by', 'the', 'dark', ...
+</code></pre>
+<br>
+<hr>
+<h2 id="5-text-preprocessing-tools-for-korean-text">5. Text Preprocessing Tools for Korean Text</h2>
+<ul>
+<li>PyKoSpacing (pykospacing) : Package for correcting Korean word spacing.</li>
+<li>Py-Hanspell (hanspell) : Package for Korean spell-checking.</li>
+<li>SOYNLP (soynlp) : POS tagging and unsupervised word tokenization — useful for neologisms and out-of-dictionary words not registered in a morphological analyzer.</li>
+<li>Customized KoNLPy : Lets you use KoNLPy with user-defined words added to the morphological analyzer.</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

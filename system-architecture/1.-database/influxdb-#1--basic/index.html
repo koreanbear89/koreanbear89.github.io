@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        InfluxDB #1 | Overview - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Time Series DB (TSDB) : a DB optimized for time-stamped or time series data. ex) server metrics, network data, sensor data, &hellip; 1. Data Elements | _time | _measurement | location | scientist | _field | _value | | -------------------- | ------------ | -------- | --------- | ------ | ------ | | 2019-08-18T00:00:00Z | census | klamath | anderson | bees | 23 | | 2019-08-18T00:00:00Z | census | portland | mullen | ants | 30 | | 2019-08-18T00:06:00Z | census | klamath | anderson | bees | 28 | | 2019-08-18T00:06:00Z | census | portland | mullen | ants | 32 | Timestamp (_time) :
+" />
+    <meta name="generator" content="Hugo 0.149.0 with theme pure" />
+    <title>InfluxDB #1 | Overview - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.815f6603d72f12bb7d6aa6663fc1c1d6da56359e0a1b4f72660996aba767e0b7.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/system-architecture/1.-database/influxdb-%231--basic/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="InfluxDB #1 | Overview">
+  <meta property="og:description" content="Introduction Time Series DB (TSDB) : a DB optimized for time-stamped or time series data. ex) server metrics, network data, sensor data, … 1. Data Elements | _time | _measurement | location | scientist | _field | _value | | -------------------- | ------------ | -------- | --------- | ------ | ------ | | 2019-08-18T00:00:00Z | census | klamath | anderson | bees | 23 | | 2019-08-18T00:00:00Z | census | portland | mullen | ants | 30 | | 2019-08-18T00:06:00Z | census | klamath | anderson | bees | 28 | | 2019-08-18T00:06:00Z | census | portland | mullen | ants | 32 | Timestamp (_time) :">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="system-architecture">
+    <meta property="article:published_time" content="2024-01-04T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-01-04T09:00:00+00:00">
+
+  <meta itemprop="name" content="InfluxDB #1 | Overview">
+  <meta itemprop="description" content="Introduction Time Series DB (TSDB) : a DB optimized for time-stamped or time series data. ex) server metrics, network data, sensor data, … 1. Data Elements | _time | _measurement | location | scientist | _field | _value | | -------------------- | ------------ | -------- | --------- | ------ | ------ | | 2019-08-18T00:00:00Z | census | klamath | anderson | bees | 23 | | 2019-08-18T00:00:00Z | census | portland | mullen | ants | 30 | | 2019-08-18T00:06:00Z | census | klamath | anderson | bees | 28 | | 2019-08-18T00:06:00Z | census | portland | mullen | ants | 32 | Timestamp (_time) :">
+  <meta itemprop="datePublished" content="2024-01-04T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-01-04T09:00:00+00:00">
+  <meta itemprop="wordCount" content="410">
+  <meta itemprop="keywords" content="1. Database">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="InfluxDB #1 | Overview">
+  <meta name="twitter:description" content="Introduction Time Series DB (TSDB) : a DB optimized for time-stamped or time series data. ex) server metrics, network data, sensor data, … 1. Data Elements | _time | _measurement | location | scientist | _field | _value | | -------------------- | ------------ | -------- | --------- | ------ | ------ | | 2019-08-18T00:00:00Z | census | klamath | anderson | bees | 23 | | 2019-08-18T00:00:00Z | census | portland | mullen | ants | 30 | | 2019-08-18T00:06:00Z | census | klamath | anderson | bees | 28 | | 2019-08-18T00:06:00Z | census | portland | mullen | ants | 32 | Timestamp (_time) :">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-machine-learning">2. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-computer-vision">3. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-natural-language">5. Natural Language</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/7.-vision-language">7. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-database">1. Database</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-python">3. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-scala">4. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/system-architecture/1.-database/influxdb-%231--basic/"
+    >InfluxDB #1 | Overview</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/system-architecture/1.-database/influxdb-%231--basic/" class="article-date">
+  <time datetime="2024-01-04 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-01-04</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-database/"> 1. Database </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/system-architecture/1.-database/influxdb-%231--basic/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Time Series DB (TSDB) : a DB optimized for time-stamped or time series data.
+<ul>
+<li>ex) server metrics, network data, sensor data, &hellip;</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-data-elements">1. Data Elements</h2>
+<pre><code class="language-md">| _time                | _measurement | location | scientist | _field | _value |
+| -------------------- | ------------ | -------- | --------- | ------ | ------ |
+| 2019-08-18T00:00:00Z | census       | klamath  | anderson  | bees   | 23     |
+| 2019-08-18T00:00:00Z | census       | portland | mullen    | ants   | 30     |
+| 2019-08-18T00:06:00Z | census       | klamath  | anderson  | bees   | 28     |
+| 2019-08-18T00:06:00Z | census       | portland | mullen    | ants   | 32     |
+</code></pre>
+<ul>
+<li>
+<p>Timestamp (<code>_time</code>) :</p>
+<ul>
+<li>All data stored in influxDB has a <code>_time</code> column that stores timestamps.</li>
+</ul>
+</li>
+<li>
+<p>Measurement (<code>_measurement</code>) :</p>
+<ul>
+<li>acts as a container for tags, fields, and timestamps (as &lsquo;Table&rsquo; in RDBMS)</li>
+</ul>
+</li>
+<li>
+<p>Tags (<code>location</code>, <code>scientist</code>):</p>
+<ul>
+<li>Tags are indexed
+<ul>
+<li>Tags are optional. You don&rsquo;t need tags in your data structure. But InfluxDB indexes tags, the query engine doesn&rsquo;t need to scan every record in a bucket to locate a tag value.</li>
+</ul>
+</li>
+<li>tag key : location, scientist in sample data</li>
+<li>tag value : The tag key location has two tag values : klamath and portland</li>
+<li>tag set : The collection of tag key value pairs
+<ul>
+<li><code>location=klamath, scientis=anderson</code> &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Field (<code>_field</code>) :</p>
+<ul>
+<li>field key : the name of the field</li>
+<li>field value : strings, floats, integers, or booleans.</li>
+<li>field set : A collection of field key-value pairs associated with a timestamp. The sample data includes two field sets:
+<ul>
+<li><code>census bees=23i,ants=30i 1566086400000000000</code></li>
+<li><code>census bees=28i,ants=32i 1566086760000000000</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Series</p>
+<ul>
+<li>series key : is a unique combinaion of measurement, tag set, and field key.</li>
+<li>series (value) : includes timestamps and field values for a given series key</li>
+</ul>
+</li>
+<li>
+<p>Point</p>
+<ul>
+<li>includes the series key, a field value, and a timestamp
+<ul>
+<li><code>2019-08-18T00:00:00Z census ants 30 portland mullen</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Bucket</p>
+<ul>
+<li>combines the concept of database and a retention period</li>
+</ul>
+</li>
+<li>
+<p>Organization</p>
+<ul>
+<li>a workspace for a group of users : All dashboards, tasks, buckets, and users belong to an organization</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="2-write-data---best-practicies">2. Write Data - Best Practicies</h2>
+<ul>
+<li><strong>2.4 Handle duplicate data points</strong>
+<ul>
+<li>InfluxDB identifies unique data points by their measurement, tag set, and timestamp</li>
+<li>To preserve duplicate points
+<ul>
+<li>(1) Add an arbitraty tag with unique values so InfluxDB reads the dups as unique</li>
+<li>(2) Increment the timestamp : by a nanosecond to enforce the uniqueness of each point.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.influxdata.com/time-series-database/">Time series database (TSDB) explained | InfluxData</a></li>
+<li><a href="https://docs.influxdata.com/influxdb/cloud/reference/key-concepts/data-elements/#timestamp">InfluxDB data elements | InfluxDB Cloud (TSM) Documentation</a></li>
+<li><a href="https://docs.influxdata.com/influxdb/cloud/write-data/">Write data to InfluxDB | InfluxDB Cloud (TSM) Documentation</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.61b81a55e6f5fc0ed07e513381c46849929d4e89f95d72c54f3f7ec9624af40c.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+  </body>
+</html>

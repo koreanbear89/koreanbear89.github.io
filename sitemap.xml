@@ -3,182 +3,385 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml01-introduction/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/python-4--concurrency-and-parallelism/</loc>
+    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml01--introduction/</loc>
     <lastmod>2022-01-18T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/python-5-3rd-party-modules/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/python-5--3rd-party-modules/</loc>
     <lastmod>2021-01-12T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/python-4.1-asyncio/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-1--text-preprocessing/</loc>
+    <lastmod>2021-01-05T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/2.-python/python-4--asyncio/</loc>
     <lastmod>2019-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv01-image-classification/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv01--image-classification/</loc>
     <lastmod>2016-07-02T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/python-2-built-in-modules/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/python-2--built-in-modules/</loc>
     <lastmod>2016-02-02T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/python-1-basic/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/python-1--basic/</loc>
     <lastmod>2016-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-2-text-representation/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-2--text-representation/</loc>
     <lastmod>2021-01-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv02-object-detection/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv02--object-detection/</loc>
     <lastmod>2016-07-22T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-3-language-modeling/</loc>
-    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv03-image-segmentation/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv03--image-segmentation/</loc>
     <lastmod>2017-07-23T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv04-image-synthesis/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv04--image-synthesis/</loc>
     <lastmod>2017-07-25T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-5-text-segmentation/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-5--text-segmentation/</loc>
     <lastmod>2021-11-18T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv05-image-style-transfer/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv05--image-style-transfer/</loc>
     <lastmod>2018-04-26T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06-probability-and-distributions/</loc>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml06--probability-and-distributions/</loc>
     <lastmod>2022-06-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/5.-natural-language/nlp-6-text-summarization/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/nlp-6--text-summarization/</loc>
     <lastmod>2021-06-28T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv06-image-retrieval/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv06--image-retrieval/</loc>
     <lastmod>2018-06-14T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv07-video-classification/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv07--video-classification/</loc>
     <lastmod>2018-11-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08-when-models-meet-data/</loc>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml08--when-models-meet-data/</loc>
     <lastmod>2022-08-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv08-pose-estimation/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv08--pose-estimation/</loc>
     <lastmod>2019-08-07T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09-linear-regression/</loc>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml09--linear-regression/</loc>
     <lastmod>2022-09-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/3.-computer-vision/cv09-3d-object-detection/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/cv09--3d-object-detection/</loc>
     <lastmod>2020-10-06T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10-dimensionality-reduction-and-pca/</loc>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml10--dimensionality-reduction-and-pca/</loc>
     <lastmod>2022-10-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/9.-cheatsheets/</loc>
-    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-1--architecture/</loc>
+    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-2--pretraining/</loc>
+    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/</loc>
+    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-4--enhancing/</loc>
+    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/</loc>
+    <lastmod>2024-07-04T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-6--quantization/</loc>
+    <lastmod>2025-07-04T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/3.-natural-language/</loc>
+    <lastmod>2025-07-04T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/categories/</loc>
-    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <lastmod>2025-07-04T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-k8s/</loc>
-    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/</loc>
+    <lastmod>2025-07-04T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/</loc>
+    <lastmod>2025-07-04T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/3.-modeling/</loc>
+    <lastmod>2024-12-15T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/langgraph-%231--overview/</loc>
+    <lastmod>2024-12-15T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/</loc>
+    <lastmod>2024-12-15T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/3.-mathematics-for-ml/</loc>
+    <lastmod>2024-12-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/mathematics/</loc>
+    <lastmod>2024-12-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/</loc>
+    <lastmod>2024-12-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/visualizer-%231--streamlit/</loc>
+    <lastmod>2024-12-11T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/__draft/</loc>
+    <lastmod>2024-12-05T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/2.-backend/</loc>
+    <lastmod>2024-12-05T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/__draft/9.-study/learning-spark-7--optimizing-and-tuning-spark-applications/</loc>
+    <lastmod>2024-12-05T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/__draft/9.-study/learning-spark-1-overview/</loc>
+    <lastmod>2024-10-22T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--github-actions/</loc>
+    <lastmod>2024-08-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/cheatsheets/</loc>
+    <lastmod>2024-08-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/2.-data-ingestion/</loc>
+    <lastmod>2024-05-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/2.-data-ingestion/broker-%231--kafka/</loc>
+    <lastmod>2024-05-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/1.-system-design/</loc>
+    <lastmod>2024-03-26T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/1.-system-design/design-%231--overview/</loc>
+    <lastmod>2024-03-26T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/2.-data-ingestion/workflow-%231--airflow/</loc>
+    <lastmod>2024-03-26T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/categories/1.-database/</loc>
+    <lastmod>2024-01-04T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/2.-data-ingestion/db-%232--influxdb/</loc>
+    <lastmod>2024-01-04T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/2.-data-ingestion/db-%231--hbase/</loc>
+    <lastmod>2024-01-02T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/4.-model-serving/cheatsheet--k8s/</loc>
     <lastmod>2023-07-31T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,21 +395,14 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/</loc>
-    <lastmod>2023-07-31T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/9.-study/</loc>
+    <loc>https://koreanbear89.github.io/categories/2.-python/</loc>
     <lastmod>2023-03-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-05/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/effective-python-05/</loc>
     <lastmod>2023-03-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -220,112 +416,77 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/1.-python/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/effective-python-04/</loc>
     <lastmod>2023-02-16T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-04/</loc>
-    <lastmod>2023-02-16T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-03/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/effective-python-03/</loc>
     <lastmod>2023-02-06T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-02/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/effective-python-02/</loc>
     <lastmod>2023-01-25T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/1.-python/effective-python-01/</loc>
+    <loc>https://koreanbear89.github.io/language/2.-python/effective-python-01/</loc>
     <lastmod>2023-01-09T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/3.-mathematics-for-ml/</loc>
-    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/mathematics/</loc>
-    <lastmod>2022-10-13T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/2.-backend/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/4.-model-serving/be-%231--network/</loc>
     <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/2.-backend/be-#1-network/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/</loc>
     <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-glusterfs/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--glusterfs/</loc>
     <lastmod>2022-03-25T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/5.-natural-language/</loc>
-    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/research/</loc>
-    <lastmod>2021-11-18T09:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/9.-others/</loc>
+    <loc>https://koreanbear89.github.io/categories/misc/</loc>
     <lastmod>2021-11-15T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/9.-others/shell-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/misc/shelloverview/</loc>
     <lastmod>2021-11-15T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-jupyter/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--jupyter/</loc>
     <lastmod>2021-10-21T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-regex/</loc>
+    <loc>https://koreanbear89.github.io/language/misc/regexoverview/</loc>
     <lastmod>2021-08-02T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -339,14 +500,14 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-nginx/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--nginx/</loc>
     <lastmod>2021-07-26T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/9.-others/html-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/misc/html--snippet/</loc>
     <lastmod>2021-06-09T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -360,71 +521,113 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-spark/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%234--write/</loc>
+    <lastmod>2020-12-15T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%233--processing/</loc>
+    <lastmod>2020-12-14T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%232--read/</loc>
+    <lastmod>2020-12-13T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/3.-modeling/engine--spark-%231--overview/</loc>
     <lastmod>2020-12-12T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pyspark/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--pyspark/</loc>
     <lastmod>2020-12-11T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-docker/</loc>
+    <loc>https://koreanbear89.github.io/language/misc/sql--basic/</loc>
+    <lastmod>2020-12-06T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--docker/</loc>
     <lastmod>2020-11-10T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/3.-computer-vision/</loc>
+    <loc>https://koreanbear89.github.io/categories/2.-computer-vision/</loc>
     <lastmod>2020-10-06T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-hdfs/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--hdfs/</loc>
     <lastmod>2020-03-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-vim/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--vim/</loc>
     <lastmod>2020-01-26T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/2.-scala/</loc>
+    <loc>https://koreanbear89.github.io/categories/3.-scala/</loc>
+    <lastmod>2020-01-02T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/3.-scala/scala-1--basic/</loc>
+    <lastmod>2020-01-02T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/language/3.-scala/scala-0--setup/</loc>
     <lastmod>2020-01-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/2.-scala/scala-0-setup/</loc>
-    <lastmod>2020-01-01T09:00:00+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/categories/1.-computer-science/</loc>
+    <lastmod>2019-09-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/categories/2.-machine-learning/</loc>
-    <lastmod>2019-12-11T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/language/1.-computer-science/cs02--algorithm/</loc>
+    <lastmod>2019-09-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</loc>
-    <lastmod>2019-12-11T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/language/1.-computer-science/cs01--data-structure/</loc>
+    <lastmod>2019-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -514,63 +717,84 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-pytorch/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--pytorch/</loc>
     <lastmod>2018-11-04T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-git/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--git/</loc>
     <lastmod>2018-09-29T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml06-dimensionality-reduction/</loc>
-    <lastmod>2017-06-23T09:00:13+00:00</lastmod>
+    <loc>https://koreanbear89.github.io/categories/1.-machine-learning/</loc>
+    <lastmod>2018-06-22T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml06-clustering/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml06--conventional-models/</loc>
+    <lastmod>2018-06-22T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml07--clustering/</loc>
     <lastmod>2017-06-22T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml04-evalutaion-metrics/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/</loc>
     <lastmod>2017-01-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/research/2.-machine-learning/ml01-activation-funtions/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml03--optimization/</loc>
+    <lastmod>2016-12-03T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml02--loss-funtions/</loc>
+    <lastmod>2016-12-02T09:00:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml01--activation-funtions/</loc>
     <lastmod>2016-12-01T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-cheatsheets/cheatsheet-linux/</loc>
+    <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--linux/</loc>
     <lastmod>2016-03-03T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/language/9.-others/latex-snippet/</loc>
+    <loc>https://koreanbear89.github.io/language/misc/latex--snippet/</loc>
     <lastmod>2016-01-01T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/engineering/9.-others/set-up-mac/</loc>
+    <loc>https://koreanbear89.github.io/__draft/misc/set-up-mac/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

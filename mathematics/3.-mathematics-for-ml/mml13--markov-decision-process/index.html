@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Mathematics for ML #13 | Markov Decision Process - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+13. Markov Decision Process Contents
+Markov Process
+Markov Reward Process
+Markov Decision Process
+Bellman Equations
+Summary
+Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.
+It’s complex to find the argmax of long-term value functions directly.
+The Bellman equations allow us to break down complex, long-term value functions into recursive steps.
+This enables us to find a reward-maximizing trajectory in an iterative manner.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Mathematics for ML #13 | Markov Decision Process - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Mathematics for ML #13 | Markov Decision Process">
+  <meta property="og:description" content="13. Markov Decision Process Contents
+Markov Process
+Markov Reward Process
+Markov Decision Process
+Bellman Equations
+Summary
+Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.
+It’s complex to find the argmax of long-term value functions directly.
+The Bellman equations allow us to break down complex, long-term value functions into recursive steps.
+This enables us to find a reward-maximizing trajectory in an iterative manner.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mathematics">
+    <meta property="article:published_time" content="2024-12-13T09:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-13T09:00:00+00:00">
+
+  <meta itemprop="name" content="Mathematics for ML #13 | Markov Decision Process">
+  <meta itemprop="description" content="13. Markov Decision Process Contents
+Markov Process
+Markov Reward Process
+Markov Decision Process
+Bellman Equations
+Summary
+Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.
+It’s complex to find the argmax of long-term value functions directly.
+The Bellman equations allow us to break down complex, long-term value functions into recursive steps.
+This enables us to find a reward-maximizing trajectory in an iterative manner.">
+  <meta itemprop="datePublished" content="2024-12-13T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-13T09:00:00+00:00">
+  <meta itemprop="wordCount" content="828">
+  <meta itemprop="keywords" content="3. Mathematics for ML">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mathematics for ML #13 | Markov Decision Process">
+  <meta name="twitter:description" content="13. Markov Decision Process Contents
+Markov Process
+Markov Reward Process
+Markov Decision Process
+Bellman Equations
+Summary
+Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.
+It’s complex to find the argmax of long-term value functions directly.
+The Bellman equations allow us to break down complex, long-term value functions into recursive steps.
+This enables us to find a reward-maximizing trajectory in an iterative manner.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/"
+    >Mathematics for ML #13 | Markov Decision Process</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/" class="article-date">
+  <time datetime="2024-12-13 09:00:00 &#43;0000 UTC" itemprop="datePublished">2024-12-13</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-mathematics-for-ml/"> 3. Mathematics for ML </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/mathematics/3.-mathematics-for-ml/mml13--markov-decision-process/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="13-markov-decision-process">13. Markov Decision Process</h2>
+<ul>
+<li>
+<p>Contents</p>
+<ul>
+<li>
+<p>Markov Process</p>
+</li>
+<li>
+<p>Markov Reward Process</p>
+</li>
+<li>
+<p>Markov Decision Process</p>
+</li>
+<li>
+<p>Bellman Equations</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>
+<p>Let’s find a trajectory (a sequence of states and actions) that maximizes the reward in a given MDP.</p>
+</li>
+<li>
+<p>It’s complex to find the <strong>argmax</strong> of long-term value functions directly.</p>
+</li>
+<li>
+<p>The Bellman equations allow us to break down complex, long-term value functions into recursive steps.</p>
+</li>
+<li>
+<p>This enables us to find a reward-maximizing trajectory in an <strong>iterative</strong> manner.</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="131-markov-process">13.1 Markov Process</h3>
+<ul>
+<li>
+<p><strong>Markov process</strong> is a type of stochastic (random) process that satisfies the <strong>Markov property</strong>.</p>
+<ul>
+<li>Markov Property  : The future state depends only on the current state, not on the sequence of events that preceded it.</li>
+</ul>
+</li>
+<li>
+<p>Key Features:</p>
+<ul>
+<li>
+<p><strong>Memoryless</strong>: The process has no “memory” of past states.</p>
+</li>
+<li>
+<p><strong>State transitions</strong>: It moves from one state to another based on certain probabilities.</p>
+</li>
+<li>
+<p><strong>State space</strong>: The set of all possible states.</p>
+</li>
+<li>
+<p><strong>Transition probability</strong>: The chance of moving from one state to another.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Ex) Let’s say the weather can be <strong>Sunny</strong> or <strong>Rainy</strong>. A Markov process might define the following:</p>
+<ul>
+<li>
+<p>If it’s <strong>Sunny</strong> today, there’s an 80% chance it’ll be Sunny tomorrow and 20% chance of Rain.</p>
+</li>
+<li>
+<p>If it’s <strong>Rainy</strong> today, there’s a 50% chance it’ll be Sunny tomorrow and 50% chance of Rain.</p>
+</li>
+<li>
+<p>This process doesn’t care how long it’s been Sunny or Rainy—just what the current state is.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Markov Chain</strong> : A Markov process with discrete time steps and a finite (or countable) state space.</p>
+</li>
+</ul>
+<center>
+<img width=70% src='https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/3_markov-decision-process.png'>
+  <p> <i>Markov Process Example</i> </p>
+</center>
+<br>
+<hr>
+<h3 id="132-markov-reward-process">13.2 Markov Reward Process</h3>
+<ul>
+<li>
+<p><strong>Markov Reward Process (MRP)</strong> is a <strong>Markov process</strong> with <strong>rewards</strong> added. It’s a mathematical framework used to model situations where outcomes are partly random and partly under the control of a reward structure.</p>
+</li>
+<li>
+<p>Components</p>
+<ol>
+<li>
+<p><strong>States (S)</strong> – A finite set of possible situations.</p>
+</li>
+<li>
+<p><strong>Transition probabilities (P)</strong> – The probability of moving from one state to another.</p>
+</li>
+<li>
+<p><strong>Reward function (R)</strong> – The expected immediate reward received after entering a state.</p>
+</li>
+<li>
+<p><strong>Discount factor (γ)</strong> – A number between 0 and 1 that represents how much future rewards are worth compared to immediate rewards.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Return $G_t$ : the total (summation of) discounted reward from time-step $t$</p>
+</li>
+</ul>
+<p>$$
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} \dots  = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
+$$</p>
+<ul>
+<li>
+<p>Value Function : tells us the <strong>expected total future reward</strong> from each state.</p>
+<ul>
+<li>
+<p>represent value of each state</p>
+</li>
+<li>
+<p>This equation tells us the value of being in a state <em>s</em> as the immediate reward $R(s)$ plus the expected value of future states.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$
+V(s) = R(s) + \gamma \sum_{s{\prime}} P(s{\prime}|s) V(s{\prime})
+$$</p>
+<center>
+<img width=70% src='https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/5_markov-decision-process.png'>
+  <p> <i>Markov Reward Process Example</i> </p>
+</center>
+<br>
+<hr>
+<h3 id="133-markov-decision-process">13.3 Markov Decision Process</h3>
+<ul>
+<li>
+<p>Markov Decision Process : is a MRP with action added. A framework used to describe <strong>an agent</strong> that makes <strong>sequential decisions</strong> in a <strong>stochastic (random) environment</strong>, where the <strong>goal</strong> is to <strong>maximize cumulative rewards over time</strong>.</p>
+</li>
+<li>
+<p>Components</p>
+<ul>
+<li>
+<p><strong>States (S)</strong>: What situation the agent is currently in</p>
+</li>
+<li>
+<p><strong>Actions (A)</strong>: What choices the agent can make</p>
+</li>
+<li>
+<p><strong>Transitions (P)</strong>: What the world does in response (random but governed by probabilities)</p>
+</li>
+<li>
+<p><strong>Rewards (R)</strong>: What the agent gets (positive or negative feedback)</p>
+</li>
+<li>
+<p><strong>Policy (π)</strong>: A strategy that maps states to actions</p>
+</li>
+<li>
+<p><strong>Discount Factor (γ)</strong>: A way to value the future compared to now</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>State Value Function</strong> : the expected return starting from states $s$, and then following the policy</p>
+</li>
+</ul>
+<p>$$
+V_\pi(s) = \mathbb{E}_\pi \left[ G_t \mid S_t = s\right]
+$$</p>
+<ul>
+<li>
+<p><strong>Action Value Function</strong> : the expected return (total future reward) starting from <strong>state</strong> s, taking <strong>action</strong> a, and then following policy $\pi$ thereafter.</p>
+<ul>
+<li>tells you how good it is to <strong>take a specific action</strong> in a specific state, assuming you act according to some policy afterward.</li>
+</ul>
+</li>
+</ul>
+<p>$$
+Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid S_t = s, A_t = a \right]
+$$</p>
+<br>
+<hr>
+<h3 id="bellman-equation">Bellman Equation</h3>
+<ul>
+<li>
+<p>Value Functions (from above)</p>
+<ul>
+<li>
+<p>While the <strong>state-value function</strong> $V^\pi(s)$ gives the value of just being in a state,</p>
+</li>
+<li>
+<p>the <strong>action-value function</strong> $Q^\pi(s, a)$ evaluates the <strong>value of a specific decision</strong>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Bellman Equation</strong> : is a <strong>recursive formula</strong> that decomposes the value function into two components</p>
+<ol>
+<li>
+<p>The immediate reword $R_{t+1}$</p>
+</li>
+<li>
+<p>Discounted value of the future state $γ.v(S_{t+1})$</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Bellman Equation for the State-Value Function $V^\pi(s)$</strong></p>
+<ul>
+<li>The value of state $s$ under policy $\pi$ is the <strong>expected reward</strong> for taking an action a in that state, plus the <strong>discounted value</strong> of the next state $s{\prime}$, <strong>assuming you follow policy</strong> $\pi$ thereafter.</li>
+</ul>
+</li>
+</ul>
+<p>$$
+V_\pi(s) = E[R_{t+1} + \gamma V_\pi(S_{t+1}) | S_t = s]
+$$</p>
+<ul>
+<li>
+<p><strong>Bellman Equation for the Action-Value Function</strong> $Q^\pi(s, a)$</p>
+<ul>
+<li>The value of taking action a in state $s$ is the <strong>immediate reward</strong> plus the <strong>discounted expected value</strong> of the actions in the next state, again following policy $\pi$.</li>
+</ul>
+<p>$$
+Q^\pi(s, a) = R(s, a) + \gamma \sum_{s^{\prime}} P(s^{\prime}|s, a) \sum_{a^{\prime}} \pi(a^{\prime}|s^{\prime}) Q^\pi(s^{\prime}, a^{\prime})
+$$</p>
+</li>
+<li>
+<p><strong>Why Bellman Equations Matter:</strong></p>
+<ul>
+<li>
+<p>Bellman Equations allow us to break down complex, long-term value calculations into recursive steps.</p>
+</li>
+<li>
+<p>Make it possible to use many iterative RL algorithms</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h3 id="references">References</h3>
+<ul>
+<li>
+<p><a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#">Part 1: Key Concepts in RL — Spinning Up documentation</a></p>
+</li>
+<li>
+<p><a href="https://sumniya.tistory.com/3">[Ch.2] Markov Decision Process | sumniya</a></p>
+</li>
+<li>
+<p><a href="https://builtin.com/machine-learning/markov-decision-process">Understanding the Markov Decision Process (MDP) | Built In</a></p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

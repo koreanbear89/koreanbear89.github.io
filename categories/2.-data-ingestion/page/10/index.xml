@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2. Data Ingestion on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/2.-data-ingestion/</link>
+    <description>Recent content in 2. Data Ingestion on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 May 2024 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/2.-data-ingestion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ML Basic #5 | Training Techniques</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml05--training-techniques/</link>
+      <pubDate>Fri, 15 Jun 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml05--training-techniques/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-how-to-tune-batch-size&#34;&gt;1. How to tune Batch Size&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Small batch를 사용하는 것이 generalization 측면에서 더 좋은 영향을 끼친다고 알려져있고 적은 메모리에도 network을 올릴 수 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Large Batch를 사용하면 학습과정에서의 loss, train_acc 등의 fluctuation을 줄일 수 있고, gpu를 활용한 parallel computation resource 를 줄일 수 있어 더 빠르게 학습이 가능함. 즉 1개 데이터의 loss로 100번 backprop 하는 것 보다 100개 data의 loss로 1번 backprop 하는게 계산효율이 좋다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Structure and Algorithm</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--ds-and-algorithm/</link>
+      <pubDate>Sat, 09 Jun 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--ds-and-algorithm/</guid>
+      <description>&lt;h2 id=&#34;3-time-complexity&#34;&gt;3. Time Complexity&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;n&amp;lt;1,000,000, the expected time complexity is $O(n)$ or $O(nlogn)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;n&amp;lt;10,000, the expected time complexity is $O(n^2)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;n&amp;lt;500, the expected time complexity is $O(n^3)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5-prefix-sums&#34;&gt;5. Prefix sums&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;There is a simple yet powerful technique that allows for the fast calculation of sums of elements in given slice.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Its main idea uses prefix sums which are defined as the consecutive totals of the first 0,1,2, &amp;hellip; n elements of an array&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Dimensionality Reduction</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml06--dimensionality-reduction/</link>
+      <pubDate>Fri, 23 Jun 2017 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml06--dimensionality-reduction/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-umap&#34;&gt;1. UMAP&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : a fairly flexible non-linear dimension reduction algorithm&lt;/li&gt;
+&lt;li&gt;Usage :
+&lt;ul&gt;
+&lt;li&gt;2-dim representation of given high dimensional dataset&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Parameters : &lt;a href=&#34;https://umap-learn.readthedocs.io/en/latest/parameters.html&#34;&gt;Basic UMAP Parameters — umap 0.5 documentation&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;n_neighbors&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;min_dist&lt;/code&gt;: controls how tightly UMAP is allowed to pack points together. It provides the minimum distance apart that points are allowed to be in the low dimensional representation&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;n_components&lt;/code&gt; : allows the user to determine the dimensionality of the reduced dimension space we will be embedding the data into.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;metric&lt;/code&gt; : controls how distance is computed in the ambient space of the input data (euclidean, cosine, hamming, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #6 | Clustering</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml06--clustering/</link>
+      <pubDate>Thu, 22 Jun 2017 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml06--clustering/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Major Clustering Algorithm&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Distribution Based Clustering : EM Algorithm&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Centroid Based Clustering  : K-means&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Conectivity Based Models&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Density Based Models  : DBSCAN&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spark built-in Clustering&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-distribution-based-clustering&#34;&gt;1. Distribution based Clustering&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Data points are grouped based on the probability of belonging to a gaussian distrib.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-centroid-based-clustering&#34;&gt;2. Centroid Based Clustering&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;An iterative algorithm in which data is organized into clusters based on how close data points are in the centre (centroid) of clusgters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;21-k-means&#34;&gt;2.1 K-Means&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : assigns data points to clusters based on the shortest distance to the centroids of the cluster&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #4 | Evaluation Metrics</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/</link>
+      <pubDate>Tue, 03 Jan 2017 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml04--evalutaion-metrics/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Confusion Matrix : is composed of four elements: TP, TN, FP, and FN.
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;T/F in the front indicates whether the model answered correctly, P/N in the back indicates the predicted value of the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Positive and Negative should be interpreted as predicted values from the model&amp;rsquo;s POV, excluding the modeler&amp;rsquo;s subjectivity.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For example, the predictive value of having cancer is a negative, but for the model, it is only closer to 1 (positive) than 0 (negative).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is &lt;strong&gt;intuitive to read from the back&lt;/strong&gt; due to the word order difference between English and Korean.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #3 | Optimization</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml03--optimization/</link>
+      <pubDate>Sat, 03 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml03--optimization/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Optimizer : updates the weight parameters to minimize the loss function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-gradient-descent&#34;&gt;1. Gradient Descent&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction : calculate the gradient $\frac{\partial c}{\partial w} $ of cost function for weight w, and update the weights using calcuated gradient&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- $$ w_{new} = w - \alpha \frac{\partial c}{\partial w}$$ --&gt;
+&lt;p&gt;$$ \theta_{new} = \theta - \eta \bigtriangledown J (\theta;x,y)$$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Batch Gradient Descent : use the entire dataset to compute gradient of the cost function for each iteration&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #2 | Loss Functions</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml02--loss-funtions/</link>
+      <pubDate>Fri, 02 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml02--loss-funtions/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Loss Function : a function that evaluate how well the algorithm models the target dataset
+&lt;ul&gt;
+&lt;li&gt;MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.&lt;/li&gt;
+&lt;li&gt;Cross Entropy : 확률론적 관점에서 CE는 Multinomial Distrib 의 negative log-likelihood와 같다. 즉, CE는 Multinomial Distrib. 의 MLE와 같다.&lt;/li&gt;
+&lt;li&gt;MSE : 확률론적 관점에서 MSE는 Gaussian Distrib 의 negative log-likelihood와 같다. 즉, MSE는 Gaussian Distrib. 의 MLE와 같다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-mean-squared-error-mse&#34;&gt;1. Mean Squared Error (MSE)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;introduction : easily computable quantity that measures the average of the squares of the errors.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #1 | Activation Functions</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml01--activation-funtions/</link>
+      <pubDate>Thu, 01 Dec 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml01--activation-funtions/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Activation Function : is a function to induce non-linearity into the output of the neuron for the given input.
+&lt;ul&gt;
+&lt;li&gt;Non-Linearity : Functions that do not satisfy the following linearity.
+&lt;ul&gt;
+&lt;li&gt;$ f(x+y) = f(x)+f(y), \quad f(\alpha x) = \alpha f(x)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Why Non-Linearity ?  : because composites of linear functions are linear again
+&lt;ul&gt;
+&lt;li&gt;if output $f(x)$ of neuron  is  linear form like  $wx + b$,&lt;/li&gt;
+&lt;li&gt;Even if the depth of the layer increases, it is just modeling another linear function  $f(f(f(..(x)) = w&amp;rsquo;x+b&#39;$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Role of bias :  It&amp;rsquo;s similar to the constant b of a linear function y=ax+b. It allow you to move the line up and down to fit the prediction with the data better.
+&lt;ul&gt;
+&lt;li&gt;Without $b$, the line always goes through the origin (0,0) and you may get a poorer fit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sigmoid--logistic-1960s&#34;&gt;1. Sigmoid / Logistic (1960s)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Advantages :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Basic #0 | Terminology</title>
+      <link>http://localhost:1313/machine-learning/1.-machine-learning/ml00--terminologies/</link>
+      <pubDate>Tue, 01 Nov 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/1.-machine-learning/ml00--terminologies/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Generative Model: likelihood를 활용하거나 Posterior 를 활용하여 Data Distribution을 Modeling 하여 Decision Boundary를 찾고자 하는 방법론, 오박사스타일. GMM&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to set up Ubuntu 16.04 for ML </title>
+      <link>http://localhost:1313/__draft/misc/how-to-set-up-ubuntu-16.04-for-ml/</link>
+      <pubDate>Mon, 20 Jun 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/how-to-set-up-ubuntu-16.04-for-ml/</guid>
+      <description>&lt;h2 id=&#34;1-windows와-ubuntu에-사용할-파티션-나누기&#34;&gt;1. Windows와 Ubuntu에 사용할 파티션 나누기&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;컴퓨터관리 - 저장 - 디스크관리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-멀티부팅을-위한-윈도우의-빠른시작기능-해제&#34;&gt;2. 멀티부팅을 위한 윈도우의 빠른시작기능 해제&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;제어판 - 전원옵션 - 전원단추 작동설정 - 현재 사용할 수 없는 설정 변경 - 빠른시작켜기 해제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Linux</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--linux/</link>
+      <pubDate>Thu, 03 Mar 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--linux/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;chmod&#34;&gt;chmod&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ chmod -R [777] FOLDER_NAME
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;conda&#34;&gt;conda&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# show the list of envs
+$ conda info --envs
+# Create conda ENV using specific python version
+$ conda create --name myenv python=3.5
+# Create conda ENV using the existing ENV
+$ conda create --name myclone --clone myenv
+# Remove activated #!/usr/bin/env
+$ conda remove --name myenv --all
+
+# Backup conda env
+$ conda env export &amp;gt; [filename].yaml
+# create conda env from yaml file
+$ conda env create -f [filename].yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cron&#34;&gt;cron&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# *(m) *(h) *(d) *(m) *(w)
+$ crontab -e
+
+# run every minute
+* * * * * /home/script/test.sh
+
+# run every 10min
+0/10 * * * * 
+# run every day
+0 0 * * * 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;curl&#34;&gt;curl&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# -s, --silent
+$ curl -s URL 
+
+# -X, --request &amp;lt;command&amp;gt; Specify request command to use
+$ curl -X GET URL 
+$ curl -X POST URL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;date&#34;&gt;date&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;li&gt;input format =&amp;gt; YYYY-MM-DD HH:MM:SS&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;envsubst&#34;&gt;envsubst&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;changes ${VARNAME} in string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;apt-get install gettext-base&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# put /opt/nginx.conf and redirection output to /etc/ngix...
+$ envsubst &amp;lt; /opt/nginx.conf &amp;gt; /etc/nginx/conf.d/default.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;kill&#34;&gt;kill&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# kill sends signal to process (-15:quit, -9:force quit)
+$ kill -15 PID 
+$ kill -9 PID
+
+# pkill quit process bt name
+$ pkill -f PROCESS_NAME
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ls&#34;&gt;ls&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# the number of directories in working directory
+$ ls -l | grep ^d | wc -l
+# the number of files in working directory
+$ ls -l | grep ^- | wc -l
+# the number of files in working directory
+$ ls ./ | wc -l
+
+# print all the files in dir
+ls | gawk &amp;quot;BEGIN {\&amp;quot;pwd\&amp;quot; | getline cwd} {printf(\&amp;quot;%s/%s\n\&amp;quot;, cwd, \$0)}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ln&#34;&gt;ln&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Symbolic Link
+$ ln -s ${SYM_SRC} ${SYM_DST} 
+# Hard Link
+$ ln ${HARD_SRC} ${HARD_DST}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ps&#34;&gt;ps&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# show all processes
+ps aux | grep PROCESS_NAME
+# show the list of process, you can find Process ID using command below
+$ ps -ef | grep python
+# show the number of processes
+$ ps -ef | grep -ic palantir
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;screen&#34;&gt;screen&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create new session with name
+$ screen -S name
+# Create new session
+$ Ctrl+a+c
+# Move to next session
+$ Ctrl+a+a
+# Move to previous session
+$ Ctrl+a+n
+
+# quit the current screen session
+$ Ctrl+d
+# Detach current screen session
+$ Ctrl+a+d
+# Detach screen from remote
+$ screen -d &amp;lt;SCREENID&amp;gt;
+
+# connect to specific screen session using ID
+$ screen -r &amp;lt;SCREENID&amp;gt;
+# connect to specific screen session using name
+$ screen -r name
+
+# show the list of screen sessions
+$ screen -ls
+# kill the screen session using SCREENID
+$ screen -X -S SCREENID quit
+
+
+# split the screen 
+$ Ctrl+a+|
+# split the screen
+$ Ctrl+a+S
+# Resize the screen pane
+$ Ctrl+a+: # to commmand mode
+$ resize 30% 
+# save layout
+$ Ctrl+a+:
+$ layout save default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ssh&#34;&gt;ssh&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# start ssh connection to remote server
+$ ssh koreanbear@192.168.0.1
+# start ssh connection to remote server using private key
+$ ssh -i ~/Desktop/key.pem koreanbear@192.168.0.1
+# copy test.txt from local PC to remote server
+$ scp ./test.txt koreanbear@192.168.0.1:~/Desktop
+$ rsync options source destination
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tar&#34;&gt;tar&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# tar
+$ tar -cvf &amp;lt;FILENAME.tar&amp;gt; &amp;lt;DIRNAME&amp;gt;
+# untar
+$ tar -xvf &amp;lt;FILENAME.tar&amp;gt;
+# tar.gz
+$ tar -zcvf &amp;lt;FILENAME.tar.gz&amp;gt; &amp;lt;DIRNAME&amp;gt;
+# untar.gz 
+$ tar -zxvf &amp;lt;FILENAME.tar.gz&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tmux&#34;&gt;tmux&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Components:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> CheatSheet | LaTex</title>
+      <link>http://localhost:1313/language/misc/latex--snippet/</link>
+      <pubDate>Fri, 01 Jan 2016 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/latex--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-matrix&#34;&gt;1. Matrix&lt;/h2&gt;
+&lt;p&gt;$$
+\begin{pmatrix}1 &amp;amp; 2 &amp;amp; 3 \4 &amp;amp; 5 &amp;amp; 6 \7 &amp;amp; 8 &amp;amp; 9 \end{pmatrix} \begin{bmatrix}a &amp;amp; b &amp;amp; c \d &amp;amp; e &amp;amp; f \g &amp;amp; h &amp;amp; i \end{bmatrix} \begin{pmatrix} a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \ a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \ \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \ a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n} \end{pmatrix}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-latex&#34;&gt;\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 3 \\
+4 &amp;amp; 5 &amp;amp; 6 \\
+7 &amp;amp; 8 &amp;amp; 9
+\end{pmatrix}
+
+\begin{bmatrix}
+a &amp;amp; b &amp;amp; c \\
+d &amp;amp; e &amp;amp; f \\
+g &amp;amp; h &amp;amp; i
+\end{bmatrix}
+
+\begin{pmatrix}
+a_{1,1} &amp;amp; a_{1,2} &amp;amp; \cdots &amp;amp; a_{1,n} \\
+a_{2,1} &amp;amp; a_{2,2} &amp;amp; \cdots &amp;amp; a_{2,n} \\
+\vdots  &amp;amp; \vdots  &amp;amp; \ddots &amp;amp; \vdots  \\
+a_{m,1} &amp;amp; a_{m,2} &amp;amp; \cdots &amp;amp; a_{m,n}
+\end{pmatrix}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Conventional Computer Vision</title>
+      <link>http://localhost:1313/__draft/4.-image-processing/2015-11-19-conventional-cv/</link>
+      <pubDate>Thu, 19 Nov 2015 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/4.-image-processing/2015-11-19-conventional-cv/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo
+&lt;ul&gt;
+&lt;li&gt;RANSAC darkprogrammer: compare with MSE&lt;/li&gt;
+&lt;li&gt;Morphological&lt;/li&gt;
+&lt;li&gt;Adaptive Threshold&lt;/li&gt;
+&lt;li&gt;OpenCV video writer 가 문제가 생기는 경우 파일 사이즈를 잘못입력했을 확률이 큼&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;1hough-transform&#34;&gt;1.Hough Transform&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The classical Hough transform was concerned with the identification of lines in the image, but later the Hough transform has been extended to identifying positions of arbitrary shapes, most commonly circles or ellipses.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/__draft/misc/set-up-mac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/set-up-mac/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;title: &amp;quot;Cheat Sheet | Mac OS Setup&amp;quot;
+date: 2022-05-22 09:00:13
+categories: [2. Linux, Favorites]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;어플리케이션 별 단축키 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;시스템 환경설정 &amp;gt; 키보드 &amp;gt; 단축키 &amp;gt; 앱단축키&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;automount-해제&#34;&gt;Automount 해제&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;diskutil info -all&lt;/code&gt; 로 Volume UUID 와 type 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo vi /etc/fstab&lt;/code&gt; 맨 아래에 아래와 같이 추가&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

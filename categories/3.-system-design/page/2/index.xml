@@ -2,236 +2,1177 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3. System Design on Lab.Koreanbear|한국곰연구소</title>
-    <link>https://koreanbear89.github.io/categories/3.-system-design/</link>
+    <link>http://localhost:1313/categories/3.-system-design/</link>
     <description>Recent content in 3. System Design on Lab.Koreanbear|한국곰연구소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 04 Nov 2018 09:00:00 +0000</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 May 2025 09:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://koreanbear89.github.io/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://localhost:1313/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Effective Python | #3 Functions</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</link>
-      <pubDate>Mon, 06 Feb 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-03/</guid>
-      <description>Introduction Functions in Python have a variety of extra features that make a programmer’s life easier.
-Some are similar to capabilities in other programming languages, but many are unique to Python. These extras can make a function’s purpose more obvious.
-They can eliminate noise and clarify the intention of callers.
-They can significantly reduce subtle bugs that are difficult to find.
-Item 19. Never Unpack More Than Three Variables When Functions Return Multiple Values You can have functions return multiple values by putting them in a tuple and having the caller take advantage of Python’s unpacking syntax.</description>
+      <title>NLP #7 | Text Retrieval</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/nlp-7--text-retrieval/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/nlp-7--text-retrieval/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Text Retrieval : the process of obtaining units of textual information such as documents by matching a user&amp;rsquo;s search terms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;dpr--deep-passage-retrieval-for-open-domain-question-answering-facebook-2020&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2004.04906&#34;&gt;DPR : Deep Passage Retrieval for Open Domain Question Answering (Facebook, 2020)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction:
+&lt;ul&gt;
+&lt;li&gt;Retrieval in open-domain QA is usually implemented using TF-IDF or BM25&lt;/li&gt;
+&lt;li&gt;In this paper, we train a better dense embedding model using only pairs of questions and passages (or answers) without additional pretraining
+&lt;ul&gt;
+&lt;li&gt;the embedding is optimized for maximizing inner products of the question and relevant passage vectors, with an objective comparing all pairs of questions and passages in a batch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods :
+&lt;ul&gt;
+&lt;li&gt;Passage Encoder $E_P$ : which maps any text passage to a D-dim real-valued vectors and builds an index for all the M passages that we will use for retrieval.&lt;/li&gt;
+&lt;li&gt;Query encoder $E_Q$ that maps the input question to a D-dimensional vector, and retrieves k passages of which vectors
+are the closest to the question vector
+&lt;ul&gt;
+&lt;li&gt;used two independent BERT (Devlin et al., 2019), and take the representation at the [CLS} token as the output, so D=768.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Similarity : defined similarity between the question and the passage using the dot product of their vectors:
+&lt;ul&gt;
+&lt;li&gt;$sim(q, p) = E_Q(q)^T E_P(p)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Result
+&lt;ul&gt;
+&lt;li&gt;We demonstrated that dense retrieval can outperform and potentially replace the traditional sparse retrieval component in open-domain question answering.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>Effective Python | #2 Lists and Dictionaries</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</link>
-      <pubDate>Wed, 25 Jan 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-02/</guid>
-      <description>Introduction In Python, the most common way to automate repetitive tasks is by using a sequence of values stored in a list type.
-A natural complement to lists is the dict type, which stores lookup keys mapped to corresponding values (in what is often called an associative array or a hash table
-Item 11. Know How to Slice Sequences Avoid being verbose when slicing: Don’t supply 0 for the start index or the length of the sequence for the end index.</description>
+      <title>MLCV #7 | Action Classification</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv07--video-classification/</link>
+      <pubDate>Sat, 03 Nov 2018 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv07--video-classification/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Action Classification : The task classfying an action in video sequences according to its spatio-temporal content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Benchmark Set&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UCF-101 : is an action recognition data set of realistic action videos, collected from YouTube, having 101 action categories.&lt;/li&gt;
+&lt;li&gt;HMDB-51&lt;/li&gt;
+&lt;li&gt;Kinetics : has 400 human action classes with more than 400 examples for each class, each from a unique YouTube video.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CNN + RNNs&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;3D Convolutional Networks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ResNeXt-101 : 6GFLOPs for 112x112x16&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Two Stream Network (RGB + Optical Flow)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Effective Python | #1 Pythonic Thinking</title>
-      <link>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</link>
-      <pubDate>Mon, 09 Jan 2023 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/9.-study/effective-python-01/</guid>
-      <description>Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
-Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
-This book also provides some examples in the syntax of Python 3.</description>
+      <title>Mathematics for ML #8 | Introduction Part.II</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml08--when-models-meet-data/</link>
+      <pubDate>Sat, 13 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml08--when-models-meet-data/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;8-when-models-meet-data&#34;&gt;8. When Models Meet Data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In the first part of the book, we introduced the mathematics that form the foundations of many machine learning methods&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The second part of the book introduces four pillars of machine learning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Regression (Chapter 9)&lt;/li&gt;
+&lt;li&gt;Dimensionality reduction (Chapter 10)&lt;/li&gt;
+&lt;li&gt;Density estimation (Chapter 11)&lt;/li&gt;
+&lt;li&gt;Classification (Chapter 12)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;81-data-models-and-learning&#34;&gt;8.1 Data, Models, and Learning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Three major components of a machine learning system: &lt;strong&gt;data&lt;/strong&gt;, &lt;strong&gt;models&lt;/strong&gt;, and &lt;strong&gt;learning&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Good models : should perform well on unseen data.&lt;/li&gt;
+&lt;li&gt;There are two different senses in which we use the phrase “machine learning algorithm”: training and prediction.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8.1.1 Data as Vectors&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | GlusterFS</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</link>
-      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-glusterfs/</guid>
-      <description>1. Introduction GlusterFS : is a Scalable Network Filesystem Brick : is the basic unit of storage in GlusterFS, Volume : is a logical collection of bricks. Create volume with bricks from several nodes (peer) And mount volume to the specific location to use volume like virtual Storage References Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack # install GlusterFS on CentOS sudo yum install centos-release-gluster sudo yum install glusterfs-server sudo systemctl start glusterd # start daemon sudo systemctl enable glusterd # restart daemon when reboot the machine # Configure Gluster Volume gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer gluster pool list # show gluster peers # Create Volume sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force # run only on the master # ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force # Start Volume sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master sudo mount.</description>
+      <title>MLCV #8 | Pose Estimation</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv08--pose-estimation/</link>
+      <pubDate>Wed, 07 Aug 2019 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv08--pose-estimation/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks :
+&lt;ul&gt;
+&lt;li&gt;Pose Estimation : The task aims to detect the locations of human anatomical keypoints (e.g., elbow, wrist, etc)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-deep-pose-2014&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/pdf/1312.4659&#34;&gt;Deep Pose (2014)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : The first major paper that applied Deep Learning to Human pose estimation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Method :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DNN-based regression&lt;/strong&gt; : Alexnet backend (7 layers) with an extra final layer that outputs 2k joint coordinates (where $k$ is the number of joints).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cascade of pose regressors&lt;/strong&gt; : refinement of the predictions using cascaded regressors.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Shell | Snippet </title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</link>
-      <pubDate>Mon, 15 Nov 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/shell-snippet/</guid>
-      <description>Introduction &amp;ldquo;#!&amp;rdquo;, defines shell to run script like #!/bin/sh
-/bin/sh is not anymore bash, dash (Ubuntu&amp;gt;6.06)
-$ ls -al /bin/sh lrwxrwxrwx 1 root root 4 6M 30 19:44 /bin/sh -&amp;gt; dash Operators &amp;lt; : input redirection, to redirect the input given &amp;gt; : output redirection, overwriting an already existing file or creates a new file if not exist. &amp;gt;&amp;gt; : output redirection, appends an already existing file or creates a new file if not exist.</description>
+      <title>Mathematics for ML #9 | Linear Regression</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml09--linear-regression/</link>
+      <pubDate>Tue, 13 Sep 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml09--linear-regression/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;9-linear-regression&#34;&gt;9. Linear Regression&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In the following, we will apply the mathematical concepts from previous chapters, to solve linear regression (curve fitting) problems.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In regression, we aim to find a function $f$ that maps inputs $x∈R^D$ to corresponding function values $f(x)∈R.$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;We are given a set of training inputs $x_n$ and corresponding noisy observations $y_n=f(x_n) + \epsilon$,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;where $\epsilon$ is an i.i.d random variable that describes measurement and observation noise =&amp;gt; simply zero-mean Gaussian noise (not further in this chapter)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then the task is to infer the function $f$ that generated the data and generalizes well to function values at new input locations.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Jupyter</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</link>
-      <pubDate>Thu, 21 Oct 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-jupyter/</guid>
-      <description>1. Setup Jupyter-Lab $ conda install -c conda-forge jupyter jupyterlab nbconvert # nodejs&amp;gt;12.0.0 needed $ conda install -c conda-forge nodejs $ conda install -c conda-forge/label/gcc7 nodejs $ conda install -c conda-forge/label/cf201901 nodejs $ conda install -c conda-forge/label/cf202003 nodejs # v13.10 $ conda update nodejs # v16.13 # if above not workconda uninstall --force nodejs $ conda uninstall --force nodejs # remove all $ conda install nodejs -c conda-forge --repodata-fn=repodata.json $ pip install jupyterlab-unfold # theme $ pip install theme-darcular # do not need new node version $ conda install -c conda-forge theme-darcula $ jupyter labextension install @arbennett/base16-nord # theme Add conda environment to jupyter # Create conda environment $ conda create --name &amp;quot;myenv&amp;quot; python=3.</description>
+      <title>MLCV #9 | 3D Object Detection</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv09--3d-object-detection/</link>
+      <pubDate>Tue, 06 Oct 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv09--3d-object-detection/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tasks&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3D object detection : classifies the object category and estimates oriented 3D bounding boxes of physical objects from 3D sensor data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Applications&lt;/strong&gt; : By extending prediction to 3D, one can capture an object’s size, position and orientation in the world, leading to a variety of applications in robotics, self-driving vehicles, image retrieval, and augmented reality&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Benchmarks&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cvlibs.net/datasets/kitti/index.php&#34;&gt;KITTI (car, cyclist, pedestrian easy, mod, hard)&lt;/a&gt; : for autonomous driving&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scan-net.org/changelog.html&#34;&gt;ScanNet&lt;/a&gt; : for indoor scene understanding task&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://rgbd.cs.princeton.edu/&#34;&gt;SUN-RGBD&lt;/a&gt; : Scene Understanding Benchmarks&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ycbbenchmarks.com/&#34;&gt;YCB-V&lt;/a&gt;  : 21 objects from the YCB dataset captured in 92 videos with 133,827 frames.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Approches&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Regex</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</link>
-      <pubDate>Mon, 02 Aug 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-regex/</guid>
-      <description>Introduction reference. https://www.dataquest.io/wp-content/uploads/2019/03/python-regular-expressions-cheat-sheet.pdf # including kor/eng/num/- &amp;quot;[가-힣|a-z|0-9|\-]+&amp;quot; 1. Special Characters ^ | Matches the expression to its right at the start of a string. It matches every such instance before each \n in the string. $ | Matches the expression to its</description>
+      <title>Mathematcs for ML #10 | Dimensionality Reduction with PCA</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml10--dimensionality-reduction-and-pca/</link>
+      <pubDate>Thu, 13 Oct 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml10--dimensionality-reduction-and-pca/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-dimensionality-reduction-with-pca&#34;&gt;10. Dimensionality Reduction with PCA&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Introduction&lt;/strong&gt; : Working directly with high-dimensional data comes with some difficulties
+&lt;ul&gt;
+&lt;li&gt;It is hard to analyze,&lt;/li&gt;
+&lt;li&gt;interpretation is difficult,&lt;/li&gt;
+&lt;li&gt;visualization is nearly impossible,&lt;/li&gt;
+&lt;li&gt;and storage of the data vectors can be expensive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In this chapter&lt;/strong&gt;, we derive PCA from first principles, drawing on our understanding of
+&lt;ul&gt;
+&lt;li&gt;basis and basis change (Sections 2.6.1 and 2.7.2),&lt;/li&gt;
+&lt;li&gt;projections (Section 3.8),&lt;/li&gt;
+&lt;li&gt;eigenvalues (Section 4.2),&lt;/li&gt;
+&lt;li&gt;Gaussian distributions (Section 6.5),&lt;/li&gt;
+&lt;li&gt;and constrained optimization (Section 7.2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;101-problem-setting&#34;&gt;10.1 Problem Setting&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt; : is to find projections $\hat{x_n}$ of data points $x_n$ that are as similar to the original data points as possible, but which have a significantly lower intrinsic dimensionality.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Nginx</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</link>
-      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-nginx/</guid>
-      <description>Introduction Nginx : light-weight Web server
-generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer Reverse Proxy
-Proxy server : is a server that acts as an intermediary between a client and the server
-Load balancing : Proxies distribute requests to a group of servers,
-Encryption : Proxies encrypt the data to keep it from being read during transfer.
-Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time</description>
+      <title>Mathematics for ML #11 | Density Estimation with Gaussian Mixture Models</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/</link>
+      <pubDate>Sun, 13 Nov 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml11--density-estimation-with-gmm/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;11-density-estimation-with-gaussian-mixture-models&#34;&gt;11. Density Estimation with Gaussian Mixture Models&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Introduction&lt;/strong&gt; : We often aim to represent data in some way.
+&lt;ul&gt;
+&lt;li&gt;In density estimation, we represent the data compactly using a density from a parametric family, (e.g., a Gaussian or Beta distrib)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In this chapter&lt;/strong&gt;, we will focus on Gaussian Mixture Models, where the basic distributions are Gaussians.
+&lt;ul&gt;
+&lt;li&gt;For a given dataset, we aim to maximize the likelhood of the model params to train the GMM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;111-gaussian-mixture-model&#34;&gt;11.1 Gaussian Mixture Model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Gaussian Mixture Model : a density model where we combine a fininte  number of $K$ Gaussian Distrib.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+p(x|\theta) = \sum_k{\pi_k N(x|\mu_k, \Sigma_k)}
+$$&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>HTML | Snippet</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</link>
-      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/html-snippet/</guid>
-      <description>
-HTTP request using ajax &amp;lt;script&amp;gt; $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;, method : &amp;quot;GET&amp;quot;, datatype : &amp;quot;JSON&amp;quot;}) .done(function(data) { alert(&#39;Done&#39;);}) .fail(function(xhr, status, error){alert(&#39;Failed&#39;);}); }); &amp;lt;/script&amp;gt; </description>
+      <title>LM #1 | Language Model Architecture</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-1--architecture/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-1--architecture/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Language Modeling&lt;/strong&gt; :  the task of predicting the next word or character in a document that can be used in downstream tasks like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Machine Translation : By comparing two sentences with a language model, and return the more natural sentence&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spell Correction : Correct spelling by choosing a more natural vocabulary&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Speech Recognition : Correct the recognition result with more natural words&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Natural Language Generation : produces natural lanugage output&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Hanwoong Kim</title>
-      <link>https://koreanbear89.github.io/about/</link>
-      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/about/</guid>
-      <description></description>
+      <title>MLCV #12 | Video Summarization</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv12--video-summarization/</link>
+      <pubDate>Thu, 29 Jul 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv12--video-summarization/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Video summarization : is the process of distilling a raw video into a more compact form without losing much information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Can be categorized into two forms :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Static Video Summarization&lt;/strong&gt; (key framing, storyboard) : Static video summaries are composed of a set of keyframes extracted from the original video&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;storyboards are not restricted by timing or synchronization issues and, therefore, they offer more flexibility in terms of data organization for browsing and navigation purposes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Video Summarization&lt;/strong&gt; (video skimming ) : dynamic video summaries are composed of a set of shots (fragments) and are produced taking into account the similarity or domain-specific relationships among all video shots.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Python #5 | 3rd-Party Modules</title>
-      <link>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</link>
-      <pubDate>Tue, 12 Jan 2021 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/2.-languages/python-5-3rd-party-modules/</guid>
-      <description>Introduction Matplotlib Interface
-pyplot interface : Rely on pyplot to automatically create and manage the figures and axes, and use pyplot functions for plotting. (MATLAB-like interface)
-object-oriented interface : Explicitly create figures and axes, and call methods on them
-import matplotlib.pyplot as plt import numpy as np # pyplot interface (MATLAB-like, rely on pyplot) x = np.linspace(0,2,100) plt.plot(x,x**2) # Recommended) object-oriented interface (create figures and axes manually) fig, ax = plt.</description>
+      <title>LM #2 | Language Model Pretraining</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-2--pretraining/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-2--pretraining/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pretraining Tasks Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Masked LM : simply mask some of the input tokens at random and then predict those masked tokens&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Next Sentence Prediction: train a model that understands sentence relationships, by a binarized next sentence prediction task.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-bert--pre-training-of-deep-bidirectional-transformers-for-language-understanding-google-2018&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/abs/1810.04805&#34;&gt;BERT : Pre-training of Deep Bidirectional Transformers for Language Understanding (Google, 2018)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt; : introduce a new language representation model called BERT, that is designed to pretrain deep bi-directional  representations from unlabeled text by jointly conditioning on both left and right context in all layers.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Spark</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</link>
-      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-spark/</guid>
-      <description>1. Introduction 1.1 Terminologies
-Job : A piece of code that reads some input (HDFS or local), performs some computation and writes output.
-Stages : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.
-Tasks : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).</description>
+      <title>LM #3 | Language Model Fine-tuning</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-3--finetuning/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-3--finetuning/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview (SFT)
+&lt;ul&gt;
+&lt;li&gt;LoRA
+&lt;ul&gt;
+&lt;li&gt;LoRA&lt;/li&gt;
+&lt;li&gt;QLoRA&lt;/li&gt;
+&lt;li&gt;DoRA&lt;/li&gt;
+&lt;li&gt;LoRA+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;PO (Preference Optimization)
+&lt;ul&gt;
+&lt;li&gt;RLHF (reinforcement learning from human feedback)&lt;/li&gt;
+&lt;li&gt;RLAIF&lt;/li&gt;
+&lt;li&gt;DPO ( direct preference optimization)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sft--training-language-models-to-follow-instructions-with-human-feedback-2022&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2203.02155&#34;&gt;SFT : Training language models to follow instructions with human feedback (2022)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction
+&lt;ul&gt;
+&lt;li&gt;Large language models (LLMs) are powerful but often fail to follow human instructions reliably. Simply scaling models doesn’t solve this.&lt;/li&gt;
+&lt;li&gt;The paper proposes an alignment-focused training method where a base model is first &lt;strong&gt;fine-tuned on human-written responses (SFT)&lt;/strong&gt;, then optimized to match human preferences using RLHF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Supervised Fine-Tuning (SFT)&lt;/strong&gt;: Human labelers write ideal responses to prompts. And fine-tune the base GPT-3 model on this data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training Reward Model&lt;/strong&gt;: Multiple model outputs are shown to human evaluators. Evaluators rank them, and train a reword model to predict those rankings (human preferred output).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reinforcement Learning (PPO)&lt;/strong&gt;: The SFT model is further tuned using &lt;strong&gt;Proximal Policy Optimization (PPO)&lt;/strong&gt; to maximize the reward model’s score.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion : InstructGPT models trained via this pipeline:&lt;strong&gt;Follow instructions better&lt;/strong&gt; than GPT-3.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;llamafactory--unified-efficient-fine-tuning-of-100-language-models&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2403.13372&#34;&gt;LlamaFactory : Unified Efficient Fine-Tuning of 100+ Language Models&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract : LlamaFactory is a unified framework that streamlines efficient fine‑tuning across 100+ LLMs&lt;/li&gt;
+&lt;li&gt;Introduction
+&lt;ul&gt;
+&lt;li&gt;With the proliferation of open-source LLMs, efficient adaptation is crucial. However, implementing fine‑tuning across varying architectures remains labor-intensive.&lt;/li&gt;
+&lt;li&gt;LlamaFactory consolidates diverse efficient fine‑tuning algorithms—ranging from LoRA variants to advanced optimizers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Efficient Fine-Tuning Techniques:
+&lt;ul&gt;
+&lt;li&gt;Efficient Optimization
+&lt;ul&gt;
+&lt;li&gt;Freeze-tuning (Houlsby et al., 2019) : involves freezing a majority of params while finetuning the remaining parameters in a small subset of decoder layers&lt;/li&gt;
+&lt;li&gt;GaLore (Zhao et al., 2024) : projects gradients into a lower-dimensional space, facilitating full-parameter learning in a memory efficient manner.&lt;/li&gt;
+&lt;li&gt;BAdam (Luo et al.,2024) : leverages block coordinate descent (BCD) to efficiently optimize the extensive parameters.&lt;/li&gt;
+&lt;li&gt;LoRA (Hu et al., 2022) : freezes all pre-trained weights and introduces a pair of trainable low-rank matrices to the designated layer (attention layer)&lt;/li&gt;
+&lt;li&gt;QLoRA (Dettmers et al., 2023) : LoRA combined with quantization, which additionally reduces the memory usage&lt;/li&gt;
+&lt;li&gt;DoRA (Liu et al., 2024) : breaks down pre-trained weights into magnitude and direction components and updates directional components for enhanced performance&lt;/li&gt;
+&lt;li&gt;LoRA+ (Hayou et al., 2024) : is proposed to overcome the sub-optimality of LoRA.&lt;/li&gt;
+&lt;li&gt;PiSSA (Meng et al., 2024) : initializes adapters with the principal components of the pre-trained weights for faster convergence.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Efficient Computation
+&lt;ul&gt;
+&lt;li&gt;Mixed Precision Training (Micikevicius et al., 2018) : Drawing insights from the examination of the input-output (IO) expenses of the attention layer&lt;/li&gt;
+&lt;li&gt;Flash attention (Dao et al., 2022) : introduces a hardware-friendly approach to enhance attention computation.&lt;/li&gt;
+&lt;li&gt;S2 attention (Chenet al., 2024b) : tackles the challenge of extended context with shifted sparse attention, thereby diminishing memory usage in fine-tuning long-context LLMs&lt;/li&gt;
+&lt;li&gt;Various quantization strategies (Dettmers et al., 2022a; Frantar et al., 2023; Lin et al., 2023; Egiazarian et al., 2024) : decrease memory requirements in large language models (LLMs) by utilizing lower-precision representations for weights&lt;/li&gt;
+&lt;li&gt;Unsloth (Han and Han, 2023) incorporates Triton for implementing the backward propagation of LoRA, which reduces floating-point operations (FLOPs) during gradient descent and leads to expedited LoRA training.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Llama Factory Framework
+&lt;ul&gt;
+&lt;li&gt;LLAMAFACTORY consists of three main modules:
+&lt;ul&gt;
+&lt;li&gt;Model Loader, manipulates various model architectures for fine-tuning, supporting both LLMs and vision language models (VLMs).&lt;/li&gt;
+&lt;li&gt;Data Worker, processes data from different tasks through a well-designed pipeline, supporting both single-turn and multi-turn dialogues.&lt;/li&gt;
+&lt;li&gt;Trainer, applies efficient fine-tuning techniques to different training approaches, supporting pretraining, instruction tuning and preference optimization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion : LlamaFactory enables efficient, scalable fine‑tuning across diverse LLMs, validated empirically via strong performance in language modeling and text generation tasks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;freeze-tuning--parameter-efficient-transfer-learning-for-nlp-houlsby-et-al-2019&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/1902.00751&#34;&gt;Freeze-Tuning : Parameter-Efficient Transfer Learning for NLP (Houlsby et al., 2019)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract:
+&lt;ul&gt;
+&lt;li&gt;The paper proposes &lt;em&gt;adapter modules&lt;/em&gt; as a parameter-efficient alternative to full fine-tuning of large pretrained models like BERT.&lt;/li&gt;
+&lt;li&gt;Instead of updating all model weights, small bottleneck layers (adapters) are inserted into each layer and only these are trained for new tasks.&lt;/li&gt;
+&lt;li&gt;This significantly reduces the number of trainable parameters while maintaining comparable performance to full fine-tuning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;Transfer learning with large pretrained language models has achieved strong results across NLP tasks, but fine-tuning them fully for each task is resource-intensive and parameter-inefficient, especially when many tasks are involved.&lt;/li&gt;
+&lt;li&gt;The authors argue for a more efficient approach where most model parameters remain frozen and  they propose using adapters, small additional modules, to enable task-specific adaptation with minimal new parameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods :
+&lt;ul&gt;
+&lt;li&gt;The authors design lightweight &lt;em&gt;adapter layers&lt;/em&gt; that are inserted within each layer of a pretrained transformer.
+&lt;ul&gt;
+&lt;li&gt;consist of a down-projection to a small dimension, a non-linearity, and an up-projection back to the original size, followed by a residual connection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;During training on a new task, only the adapter parameters are updated, the original model weights remain fixed.&lt;/li&gt;
+&lt;li&gt;This approach allows each task to have its own set of adapters while sharing the main backbone, drastically reducing storage and computation costs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion : The experiments show that adapter-based tuning achieves near state-of-the-art performance on various NLP tasks with a fraction of task-specific parameters (around 3% per task).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;lora-low-rank-adaptation-of-large-language-models-hu-et-al-2022&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2106.09685&#34;&gt;LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2022)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract :
+&lt;ul&gt;
+&lt;li&gt;Instead of updating all model params, LoRA injects trainable low-rank matrices into certain layers (e.g., attention layers), drastically reducing the number of trainable parameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;Large pre-trained models have become standard in NLP, but fine-tuning them requires updating billions of parameters, which is resource-intensive and often infeasible for smaller organizations.&lt;/li&gt;
+&lt;li&gt;Existing parameter-efficient tuning methods still involve adding many new parameters. LoRA introduces a new solution &lt;strong&gt;by decomposing weight updates into low-rank representations&lt;/strong&gt;, significantly reducing the need for large-scale parameter updates and making adaptation more efficient and scalable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods : 
+&lt;ul&gt;
+&lt;li&gt;LoRA freezes the original model weights and injects small trainable matrices into the architecture (typically the attention layers).&lt;/li&gt;
+&lt;li&gt;Specifically, it approximates weight updates as a product of two smaller matrices (low-rank decomposition), effectively reducing the parameter count.&lt;/li&gt;
+&lt;li&gt;This method allows for fast adaptation to new tasks while maintaining the original model’s knowledge and minimizing extra memory and computation cost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion:
+&lt;ul&gt;
+&lt;li&gt;LoRA shows that low-rank adaptation can match or even surpass full fine-tuning performance on various tasks while training orders of magnitude fewer parameters.&lt;/li&gt;
+&lt;li&gt;This makes LLMs more accessible, easier to personalize, and more practical for real-world deployment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;qlora-efficient-finetuning-of-quantized-llms-dettmers-et-al-2023&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2305.14314&#34;&gt;QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract :
+&lt;ul&gt;
+&lt;li&gt;QLoRA uses 4-bit quantization to reduce memory requirements and integrates LoRA (low-rank adapters) for parameter-efficient fine-tuning.&lt;/li&gt;
+&lt;li&gt;This approach allows large models to be trained on single GPUs without compromising performance and achieves comparable or better results than full fine-tuning at a fraction of the cost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction:
+&lt;ul&gt;
+&lt;li&gt;Existing parameter-efficient methods like LoRA reduce the number of trainable parameters but still need high-precision storage for base model weights, making them memory-intensive.&lt;/li&gt;
+&lt;li&gt;QLoRA &lt;strong&gt;addresses this by quantizing the base model to 4-bit precision,&lt;/strong&gt; significantly reducing memory footprint, and using low-rank updates for fine-tuning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods :
+&lt;ol&gt;
+&lt;li&gt;applies 4-bit NormalFloat (NF4) quantization to the frozen base model weights, drastically cutting memory use.&lt;/li&gt;
+&lt;li&gt;attaches small trainable low-rank adapters (as in LoRA) to certain layers.&lt;/li&gt;
+&lt;li&gt;During training, only these adapters are updated, while the quantized base remains fixed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion
+&lt;ul&gt;
+&lt;li&gt;demonstrates that it is possible to fine-tune LLMs using significantly less memory and compute without sacrificing accuracy.&lt;/li&gt;
+&lt;li&gt;The method achieves strong performance on various benchmarks and enables practical fine-tuning of models with tens of billions of parameters on a single GPU.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;dora--weight-decomposed-low-rank-adapdation-liu-et-al-2024&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2402.09353&#34;&gt;DoRA : Weight-Decomposed Low-Rank Adapdation (Liu et al., 2024)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract :
+&lt;ul&gt;
+&lt;li&gt;Instead of adding explicit low-rank matrices (as in LoRA), DoRA decomposes the original weight matrices into magnitude and direction, learning only the directional component while keeping the magnitude fixed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;Scaling up LLMs has led to a need for more efficient fine-tuning techniques.&lt;/li&gt;
+&lt;li&gt;Existing methods like LoRA inject low-rank matrices into pre-trained weights but can still suffer from overfitting or suboptimal updates.&lt;/li&gt;
+&lt;li&gt;DoRA is proposed to address these limitations by rethinking how model weights are adapted: Focusing on updating only the direction of weights while freezing their norms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods:
+&lt;ul&gt;
+&lt;li&gt;DoRA decomposes each weight matrix $W$ into a norm (magnitude) and a normalized directional component $W&amp;rsquo;$, such that $W = ||W|| \cdot W’$.&lt;/li&gt;
+&lt;li&gt;During adaptation, only $W&amp;rsquo;$ is updated using a low-rank matrix, while $||W||$ is kept fixed from the pre-trained model.
+&lt;ul&gt;
+&lt;li&gt;This reduces the risk of introducing harmful perturbations and keeps the weight scale stable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The approach is implemented similarly to LoRA, but with explicit norm-direction separation, and reuses efficient low-rank optimization structures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion
+&lt;ul&gt;
+&lt;li&gt;DoRA demonstrates that focusing on directional updates leads to better performance than standard low-rank adaptation.&lt;/li&gt;
+&lt;li&gt;It achieves higher accuracy across benchmarks and better generalization, with minimal additional parameter cost. &#39;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;lora-efficient-low-rank-adaptation-of-large-models-hayou-et-al-2024&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2402.12354&#34;&gt;LoRA+: Efficient Low Rank Adaptation of Large Models (Hayou et al., 2024)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract :
+&lt;ul&gt;
+&lt;li&gt;The key limitation in the original LoRA method: using the same learning rate for both adapter matrices &lt;strong&gt;A&lt;/strong&gt; and &lt;strong&gt;B&lt;/strong&gt; leads to inefficient feature learning&lt;/li&gt;
+&lt;li&gt;Authors propose LoRA+, which sets different learning rates (using a higher rate for &lt;strong&gt;B&lt;/strong&gt; relative to &lt;strong&gt;A&lt;/strong&gt; ) to overcome this issue.&lt;/li&gt;
+&lt;li&gt;Empirical results show LoRA+ enhances fine-tuning speed (up to 2× faster) and accuracy (1–2% gain), with no additional computational cost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;LLMs are central to modern NLP, but full fine-tuning is resource-intensive.&lt;/li&gt;
+&lt;li&gt;While effective in reducing costs, standard LoRA uses the same learning rate for both &lt;strong&gt;A&lt;/strong&gt; and &lt;strong&gt;B&lt;/strong&gt;, which becomes suboptimal for wide networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Methods :
+&lt;ul&gt;
+&lt;li&gt;Equal learning rates of two matrices in LoRA lead to one matrix under-updating, hindering feature learning → To address this, a higher learning rate for &lt;strong&gt;B&lt;/strong&gt; (relative to &lt;strong&gt;A&lt;/strong&gt;) is derived (e.g., η_B ≫ η_A)&lt;/li&gt;
+&lt;li&gt;Implements two separate learning rates, η_A and η_B, with a fixed, large ratio (λ = η_B / η_A).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion:
+&lt;ul&gt;
+&lt;li&gt;LoRA+ offers a principled enhancement over LoRA by applying different learning rates to the adapter matrices&lt;/li&gt;
+&lt;li&gt;It delivers meaningful benefits in both performance and efficiency without added overhead, making it a practical upgrade for fine-tuning large models.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;dpo-direct-preference-optimization-rafael-et-al-2023&#34;&gt;&lt;a href=&#34;https://arxiv.org/abs/2305.18290&#34;&gt;DPO: Direct Preference Optimization (Rafael et al., 2023)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Abstract :
+&lt;ul&gt;
+&lt;li&gt;The paper introduces DPO, a simple and effective method for aligning LLMs with human preferences without reinforcement learning.&lt;/li&gt;
+&lt;li&gt;Unlike RLHF, DPO directly optimizes the model to prefer responses that humans rate higher, using only preference data and log probabilities. (Binary Cross Entropy)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;Traditional RLHF pipelines are complex: they require training a separate reward model and performing reinforcement learning (often PPO).&lt;/li&gt;
+&lt;li&gt;DPO aims to simplify this process by deriving a closed-form objective that connects the preference data directly to model training.&lt;/li&gt;
+&lt;li&gt;The authors show that this objective implicitly performs the same preference alignment as RLHF but with fewer components and hyperparameters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Method :
+&lt;ul&gt;
+&lt;li&gt;DPO starts with pairwise human preference data — pairs of responses (preferred, dispreferred).&lt;/li&gt;
+&lt;li&gt;Computes the log-probability ratio between these two responses under the model and a reference model.&lt;/li&gt;
+&lt;li&gt;The loss encourages the model to increase the probability of preferred responses relative to dispreferred ones according to a temperature parameter $\beta$&lt;/li&gt;
+&lt;li&gt;This directly optimizes model parameters via standard supervised learning — no reward model, no policy optimization step.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conclusion:
+&lt;ul&gt;
+&lt;li&gt;DPO achieves performance comparable to RLHF while being simpler, more stable, and computationally cheaper.&lt;/li&gt;
+&lt;li&gt;It eliminates the need for a separate reward model or reinforcement learning loop, making preference-based fine-tuning more practical.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--
+$$\mathcal{L}{\text{DPO}} = -\log \sigma\left( \beta [\log \pi\theta(y^+|x) - \log \pi_\theta(y^-|x)] - \log \pi_{\text{ref}}(y^+|x) + \log \pi_{\text{ref}}(y^-|x) \right)$$
+--&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Docker</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</link>
-      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-docker/</guid>
-      <description>Introduction Contents
-Install docker ∑in centos
-Frequently used docker commands
-FIle sharing in docker (bind, volume)
-Dockerfile instruction
-Docker compose
-Docker swarm
-Glossary
-swarm : almost same with word &amp;ldquo;cluster&amp;rdquo; node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node. service : A unit of modules in project, a basic distribution unit, stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.</description>
+      <title>LM #4 | Language Model Enhancing</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-4--enhancing/</link>
+      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-4--enhancing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Overview : Techniques that improve the performance of large language models
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RAG&lt;/strong&gt; (Retrieval Augmented Generation)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Improved factual accuracy&lt;/strong&gt;: The model can refer to real documents rather than relying solely on its pretraining.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Smaller models can perform better&lt;/strong&gt;: Because the knowledge can be retrieved, the model doesn&amp;rsquo;t need to memorize everything.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Domain adaptation&lt;/strong&gt;: You can add specialized knowledge (e.g., company manuals, legal docs) without retraining the LLM.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reduced hallucinations&lt;/strong&gt;: More grounded responses since they&amp;rsquo;re based on actual sources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-retrieval-augmented-generation-for-knowledge-intensive-nlp-tasks-2020&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/abs/2005.11401&#34;&gt;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (2020)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Summary : RAG literally (1) retrieves the top-k documents for a given query, (2) augments the latent vector by concatenating the original input x with the retrieved passage z, and (3) generates the final output.&lt;/li&gt;
+&lt;li&gt;Abstract
+&lt;ul&gt;
+&lt;li&gt;Background. LLMs have been shown to store factual knowledge in their parameters, and achieve SOTA results when fine-tuned on down-stream NLP tasks.&lt;/li&gt;
+&lt;li&gt;Problem Def.  However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures.&lt;/li&gt;
+&lt;li&gt;Contrib. We explore a general-purpose fine-tuning recipe for RAG ? models which combine pre-trained parametric and non-parametric memory for language generation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Method : We explore RAG models, which use the input sequence $x$ to retrieve text documents $z$ and use them as additional context when generating the target sequence $y$.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Retrieval (DPR) :&lt;/strong&gt; returns top-K distributions over text passages given a query $x$
+&lt;ul&gt;
+&lt;li&gt;To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generator $p_\theta(y_i | x, z, y_{1:i-1})$ :&lt;/strong&gt; generates a current token based on a context of the previous tokens  $y_{1:i-1}$ , the original input $x$ and a retrived passage $z$
+&lt;ul&gt;
+&lt;li&gt;could be modelled using any encoder-decoder.&lt;/li&gt;
+&lt;li&gt;To combine the input $x$ with the retrieved content $z$ when generating from BART, we simply concatenate them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;
+&lt;img width=70% src=&#39;https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb382620-ad44-444f-b148-3b5460405bcc_1072x334.png&#39;&gt;
+  &lt;p&gt; &lt;i&gt;RAG overview&lt;/i&gt; &lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | Hadoop</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</link>
-      <pubDate>Tue, 03 Mar 2020 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-hdfs/</guid>
-      <description>Introduction Hadoop : A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
-Based on Java
-Save data in Google File System (2003) and process this big data with Map Reduce (2004)
-Modules :
-Hadoop Distributed File System : A distributed file system that provides high-throughput access to application data
-Hadoop YARN : A framework for job scheduling and cluster resource management</description>
+      <title>LM #5 | Prompt Engineering</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-5--prompt-engineering/</link>
+      <pubDate>Thu, 04 Jul 2024 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-5--prompt-engineering/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;New Tasks without Extensive Training
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Zero‑Shot Prompting&lt;/strong&gt; : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Few‑Shot Prompting&lt;/strong&gt; : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Prompt Engineer (APE)&lt;/strong&gt; : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reasoning and Logic
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chain-of-Thought (CoT)&lt;/strong&gt; : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Chain of Thought Prompting&lt;/strong&gt; : automatically instruct LLMs with a &amp;ldquo;Let’s think step-by-step&amp;rdquo; prompt to generate reasoning chains.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-Consistency&lt;/strong&gt; : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tree of Thoughts&lt;/strong&gt; : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &amp;ldquo;thoughts&amp;rdquo;. Each thought represents a coherent language sequence moving toward the final solution.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph of Thoughts&lt;/strong&gt; : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self Refine Prompting&lt;/strong&gt; : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduce Hallucination
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Retrieval Augmented Generation (RAG)&lt;/strong&gt; : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ReAct Prompting&lt;/strong&gt; : enables LLMs to generate reasoning traces and task-specific actions concurrently&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chain of Verification&lt;/strong&gt; : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Others
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Prompt Engineer (APE)&lt;/strong&gt;: sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;a-systematic-survey-of-prompt-engineering-in-large-language-models--techniques-and-applications&#34;&gt;&lt;a href=&#34;https://arxiv.org/pdf/2402.07927&#34;&gt;A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Abstract&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>CheatSheet | VIM</title>
-      <link>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</link>
-      <pubDate>Sun, 26 Jan 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/engineering/1.-cheatsheets/cheatsheet-vim/</guid>
-      <description>1. Setup vim Install Vundle
-git clone [GitHub - VundleVim/Vundle.vim: Vundle, the plug-in manager for Vim](https://github.com/VundleVim/Vundle.vim.git) ~/.vim/bundle/Vundle.vim color scheme setup
-Jellybean color scheme official install
-And simply add line color jellybean in .vimrc
-mkdir -p ~/.vim/colors cd ~/.vim/colors curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim write .vimrc
-wget https://raw.githubusercontent.com/jjeaby/jscript/master/.vimrc
-Added Plugin &#39;preservim/nerdcommenter&#39;
-install plugins in vimrc
-:PluginInstall Shell
-# install Vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim # setup jellybean color scheme mkdir -p ~/.vim/colors cd ~/.</description>
+      <title>LM #9 | Quantization</title>
+      <link>http://localhost:1313/machine-learning/3.-natural-language/lm-9--quantization/</link>
+      <pubDate>Fri, 04 Jul 2025 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/3.-natural-language/lm-9--quantization/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Quantization : is the process of reducing the precision of model weights and/or activations (e.g., FP16 → INT8/INT4) to make LLMs smaller, faster, and cheaper to run.
+&lt;ul&gt;
+&lt;li&gt;Lower VRAM / RAM usage (e.g., 120B FP16 → ~240 GB → INT4 ~30 GB)&lt;/li&gt;
+&lt;li&gt;Faster inference (less memory bandwidth &amp;amp; cache pressure)&lt;/li&gt;
+&lt;li&gt;Enables larger models on smaller hardware&lt;/li&gt;
+&lt;li&gt;Cheaper to serve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Taxonomies :
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Post Training Quantization (PTQ)&lt;/strong&gt; : Quantize a pre-trained model without additional training.
+&lt;ul&gt;
+&lt;li&gt;Pros: Fast, no training needed&lt;/li&gt;
+&lt;li&gt;Cons: Accuracy drop for extreme quantization (INT2/INT3/INT4)&lt;/li&gt;
+&lt;li&gt;Methods:
+&lt;ul&gt;
+&lt;li&gt;RTN (Round-To-Nearest) : Simple, fast, lower accuracy.&lt;/li&gt;
+&lt;li&gt;GPTQ : Blockwise quantization with error compensation; popular for INT4.&lt;/li&gt;
+&lt;li&gt;AWQ (Activation-aware Weight Quantization) : Preserves outlier channels → better for very large models.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quantization Aware Training (QAT)&lt;/strong&gt; : Simulate quantization during training or finetuning. You train the model with “fake quantization nodes” inserted in forward pass.
+&lt;ul&gt;
+&lt;li&gt;Pros: Best accuracy under very low bits&lt;/li&gt;
+&lt;li&gt;Cons: Slower, needs GPU training, harder to set up&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training-time Quantization&lt;/strong&gt; (e.g. MXFP4, FP4) : Model is trained directly in low precision
+&lt;ul&gt;
+&lt;li&gt;Pros: Lowest memory use during training&lt;/li&gt;
+&lt;li&gt;Cons: Requires special kernels / hardware support&lt;/li&gt;
+&lt;li&gt;Methods:
+&lt;ul&gt;
+&lt;li&gt;MXFP4 (mixed 4-bit floating point) → used in GPT-OSS&lt;/li&gt;
+&lt;li&gt;NF4 (Normal Float 4) → QLoRA&lt;/li&gt;
+&lt;li&gt;FP8 training (H100/A100)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Related Works
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/NVIDIA/Model-Optimizer&#34;&gt;NVIDIA/Model-Optimizer (ModelOpt)&lt;/a&gt;: a library comprising state-of-the-art model optimization techniques including quantization, distillation, pruning, speculative decoding and sparsity to accelerate models.
+&lt;ul&gt;
+&lt;li&gt;For PTQ, QAT, Pruning, Distillation, Speculative Decoding, &amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>ML Basic #9 | Neural Architecture Search</title>
-      <link>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</link>
-      <pubDate>Wed, 11 Dec 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/research/2.-machine-learning/ml09-neural-architecture-search/</guid>
-      <description>0. Introduction Neural Architecture Search : A technique for automating the design of Artificial Neural Network 1. NAS : Neural Architecture Search (Google, 2017) Introduction : Neural Nets are still hard to design. And this paper presents a gradient-based method for finding good architectures. Methods : use RNN controller which returns HyperParams of Conv in the order of (FH &amp;gt; FW &amp;gt; SH &amp;gt; SW &amp;gt; NF , Fig4) to</description>
+      <title>CS #03 | Patterns</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs03--patterns/</link>
+      <pubDate>Thu, 14 May 2026 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs03--patterns/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Total 23 topics
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Array/String&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Two Pointers&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Sliding Window&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Matrix&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Hashmap&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Intervals&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Stack&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Linked List&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Binarytree&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Binary Tree General&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Binary Tree BFS&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Binary Search Tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graph&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Graph General&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Graph BFS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Trie&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Backtracking : DFS (Recursive) + Pruning&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Divide &amp;amp; Conquer&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Kadane&amp;rsquo;s Algorithm&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Binary Search&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Heap&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Bit Manipulation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Math&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DP&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 1D DP&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Multidimensional DP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-Title&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-Title&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-Title&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #5 | Singular Value Decomposition</title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</link>
-      <pubDate>Mon, 29 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec5/</guid>
-      <description>5.1 Singular Value decomposition (SVD) singular value decomposition (SVD) : is a factorization of a real or complex matrix that generalizes the eigendecomposition (EVD) of a square normal matrix to any $m \times n$ matrix via an extension of the polar decomposition. $$ A = U \Sigma V^T$$ $A \in \mathbb{R}^{m \times n}$ : A given rectangular matrix $U \in \mathbb{R}^{m\times m} $ : matrices with orthonormal columns, providing an</description>
+      <title>Design #2 | Agentic System</title>
+      <link>http://localhost:1313/system-architecture/1.-system-design/design-%232--agentic-system/</link>
+      <pubDate>Wed, 13 May 2026 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/1.-system-design/design-%232--agentic-system/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Agent Orchestraion&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Langgraph: Graph based agent orchestration&lt;/li&gt;
+&lt;li&gt;CrewAI: Role based agent orchestration&lt;/li&gt;
+&lt;li&gt;Google ADK: Code-first, model-agnostic agent framework; tightly integrated with Gemini and Vertex AI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LLM&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;API providers: OpenAI, Anthropic, Bedrock, Vertex AI&lt;/li&gt;
+&lt;li&gt;Self-hosted: vLLM, Ollama&lt;/li&gt;
+&lt;li&gt;Gateway / routing: LiteLLM, OpenRouter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Retrieval (RAG)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;search API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tool execution&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCP servers&lt;/li&gt;
+&lt;li&gt;Sandboxed runtime: e2b, Modal, Daytona&lt;/li&gt;
+&lt;li&gt;Browser / computer-use runners&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory / state&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Short-term: Redis&lt;/li&gt;
+&lt;li&gt;Long-term: Postgres, vector store&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Prompt cache&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #4 | Eigen Decomposition </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</link>
-      <pubDate>Sun, 07 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec4/</guid>
-      <description>4.0 Introduction Goal : We want to get a diagonalized matrix $D$ of a given matrix $A$ in the form of $ D = V^{-1}AV$ for some reasons such as computation resource. The above diagonalization process is also called eigendecomposition ($A = VDV^{-1}$) because we can find the followings from above equation, $VD=AV$ $D$ is a diagonal matrix with eigenvalues in diagonal entries $V$ is a matrix whose column vectors</description>
+      <title>APFS | Overview</title>
+      <link>http://localhost:1313/__draft/misc/apfs--overview/</link>
+      <pubDate>Wed, 07 May 2025 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/apfs--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;apfs-components&#34;&gt;APFS Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;physical storage (SSD)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;container&lt;/strong&gt; : Physical partition of storage (like partitions in window)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Volumes :&lt;/strong&gt; Logical partition of container (sharing free spaces)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Preboot volume:&lt;/em&gt; This volume is unencrypted and contains data needed for booting each system volume in the container.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;VM volume:&lt;/em&gt; This volume is unencrypted and is used by macOS for storing encrypted swap files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Recovery volume:&lt;/em&gt; This volume is unencrypted and must be available without unlocking a system volume to start up in recoveryOS.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #3 | Least Square </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</link>
-      <pubDate>Mon, 01 Jul 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec3/</guid>
-      <description>3.0 Least Square Inner Product : Given $ \mathbf{u,v} \in \mathbb{R}^n$, we can consider $ \mathbf{u,v} $ as $n \times 1$ matrices. The number $\mathbf{u^Tv}$ is called inner product or dot product, and it is written as $ \mathbf{u \cdot v} $. Vector Norm : The length or magnitude of $\mathbf{v}$, can be calculated as $ \sqrt{ \mathbf{v} \cdot \mathbf{v} }$ $L_p$ Norm : $ \Vert \mathbf{x} \Vert_p = (</description>
+      <title>IR #2 | CTR Prediction</title>
+      <link>http://localhost:1313/machine-learning/misc/ir-02--ctr-prediction/</link>
+      <pubDate>Sat, 01 Feb 2025 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/misc/ir-02--ctr-prediction/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Problem Definition&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;aims to predict the probability of a user clicking on an ad or an item (recommendation sys.)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Feature Interaction Modeling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sequential Behavior Modeling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Integrate feature interaction and sequential recommendation Model&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Challenges&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the input features (e.g., the user id, user age, item id, item category) are usually sparse and high-dimensional&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;an effective prediction relies on high-order combinatorial features&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Gender=Male, Age=10, ProductCategory=VideoGame&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Feature Interaction&lt;/strong&gt; : combine features that describe the current interaction and generate high-order feature combinations relevant to the prediction task.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Linear Algebra for ML #2 | Linear System &amp; Linear Transform </title>
-      <link>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</link>
-      <pubDate>Wed, 08 May 2019 09:00:13 +0000</pubDate>
-      
-      <guid>https://koreanbear89.github.io/mathematics/1.-linear-algebra/linear-algebra-for-ml-lec2/</guid>
-      <description>2.1 Linear Equation and Linear System Linear Equation is an equation that can be written in the form $$ a_1x_1 + &amp;hellip;. a_nx_n = b $$ The above equation can be written as $ \textbf{a}^T \textbf{x} = b $. Linear System is a collection of one or more linear equations Identity Matrix : $I$ is a square matrix whose diagonal entries are all 1&amp;rsquo;s and all the other entries are</description>
+      <title>Agent #1 | Overview</title>
+      <link>http://localhost:1313/machine-learning/5.-agentic-system/agent-1--overview/</link>
+      <pubDate>Thu, 30 Jan 2025 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/5.-agentic-system/agent-1--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Taxonomy
+&lt;ul&gt;
+&lt;li&gt;System Architecture
+&lt;ul&gt;
+&lt;li&gt;Single Agent system&lt;/li&gt;
+&lt;li&gt;Multiple Agent coordination&lt;/li&gt;
+&lt;li&gt;Human-Agent collaboration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Agent Architecture
+&lt;ul&gt;
+&lt;li&gt;Reasoning&lt;/li&gt;
+&lt;li&gt;Profile&lt;/li&gt;
+&lt;li&gt;Memory&lt;/li&gt;
+&lt;li&gt;Planning&lt;/li&gt;
+&lt;li&gt;Action&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Applications&lt;/li&gt;
+&lt;li&gt;Evaluation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-a-survey-on-large-language-model-based-autonomous-agents-2023&#34;&gt;1. &lt;a href=&#34;https://arxiv.org/pdf/2308.11432&#34;&gt;A Survey on Large Language Model based Autonomous Agents (2023)&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Abstract&lt;/strong&gt; : The paper surveys the emerging paradigm of LLM-based autonomous agents, which extend large language models beyond passive text generation to active systems capable of reasoning, planning, memory, tool use, and interaction with environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Introduction&lt;/strong&gt; :
+&lt;ul&gt;
+&lt;li&gt;Definition : An LLM-based autonomous agent is a system where an LLM acts as the central controller, orchestrating perception, reasoning, memory, and actions to achieve goals with minimal human intervention.&lt;/li&gt;
+&lt;li&gt;Motivation : Traditional AI systems are task-specific and rigid, while LLMs show strong general reasoning and language capabilities. Combining LLMs with external tools and environments leads to autonomous agents that can: (1) Understand goals, (2)Plan multi-step actions, (3) Interact with tools and environments, (4) Adapt through feedback and memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent Construction (Agent Architecture Design)&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reasoning&lt;/strong&gt; : LLM acts as the central reasoning and decision-making engine&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Profile&lt;/strong&gt; : The purpose of the profiling module is to identify the role of the agent. This is basically prompt engineering as agent identity which defines - goals, constraints, personality, system prompt.
+&lt;ul&gt;
+&lt;li&gt;Handcrafting Method : agent profiles are manually specified.&lt;/li&gt;
+&lt;li&gt;LLM Generation Method : agent profiles are automatically generated based on LLMs.&lt;/li&gt;
+&lt;li&gt;Dataset Alignment Method: in this method, the agent profiles are obtained from real-world datasets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt; : The memory module stores information perceived from the environment and leverages the recoreded memories to facilitate future actions. This section provides a comprehensive overview of the memory module focusing on its :
+&lt;ul&gt;
+&lt;li&gt;Structures :  short-term memory is analogous to the input information within the context window constrained by the transformer architecture. Longterm memory resembles the external vector storage that agents can rapidly query and retrieve from as needed.
+&lt;ul&gt;
+&lt;li&gt;Unified Memory (short-term memory in prompt) : only simulates the human short-term memory, which is usually realized by in-context learning, and the memory information is directly written into the prompts.&lt;/li&gt;
+&lt;li&gt;Hybrid Memory (short &amp;amp; long term memory) : The short-term memory temporarily buffers recent perceptions, while long-term memory consolidates important information over time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Formats : Natural Languages, Embeddings, Databases&lt;/li&gt;
+&lt;li&gt;Operations : Memory Reading, Memory Writing, Memory Reflections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Planning&lt;/strong&gt; : the memory and planning modules place the agent into a dynamic environment, enabling it to recall past behaviors and plan future actions.
+&lt;ul&gt;
+&lt;li&gt;Planning without Feedback:
+&lt;ul&gt;
+&lt;li&gt;Single-path Reasoning : the final task is decomposed into several intermediate steps&lt;/li&gt;
+&lt;li&gt;Multi-path Reasoning : the reasoning steps for generating the final plans are organized into a tree-like structure.&lt;/li&gt;
+&lt;li&gt;External Planner : effectively generating plans for domain-specific problems remains highly challenging. To address this challenge, researchers turn to external planners.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Planning with Feedback:
+&lt;ul&gt;
+&lt;li&gt;Environmental Feedback : This feedback is obtained from the objective world or virtual environment.&lt;/li&gt;
+&lt;li&gt;Human Feedback : directly interacting with humans is also a very intuitive strategy to enhance the agent planning capability.&lt;/li&gt;
+&lt;li&gt;Model Feedback : utilization of internal feedback from the agents themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Action&lt;/strong&gt; : The action module is responsible for translating the agent’s decisions into specific outputs.
+&lt;ul&gt;
+&lt;li&gt;Action Goal
+&lt;ul&gt;
+&lt;li&gt;Task Completion : The actions are aimed at accomplishing specific tasks&lt;/li&gt;
+&lt;li&gt;Communication : with the other agents or real humans for sharing information&lt;/li&gt;
+&lt;li&gt;Environment Exploration : explore unfamiliar environments to expand its perception&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Action Production : Different from ordinary LLMs, where the model input and output are directly associated, the agent may take actions via different strategies and sources.
+&lt;ul&gt;
+&lt;li&gt;Action via Memory Recollection :  the action is generated by extracting information from the agent memory according to the current task.&lt;/li&gt;
+&lt;li&gt;Action via Plan Following : In this strategy, the agent takes actions following its pre-generated plans.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Action Space : refers to the set of possible actions that can be performed by the agent.
+&lt;ul&gt;
+&lt;li&gt;external tools : APIs, DB &amp;amp; KB, External Models&lt;/li&gt;
+&lt;li&gt;internal knowledge of the LLMs : Planning, Conversation, Common Sense Understanding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Action Impact : refers to the consequences of an agent’s actions.
+&lt;ul&gt;
+&lt;li&gt;Changing Environments.&lt;/li&gt;
+&lt;li&gt;Altering Internal States&lt;/li&gt;
+&lt;li&gt;Triggering New Actions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent Applications&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;This section provides a succinct summary of previous studies, categorizing them according to their applications in three distinct areas: social science, natural science, and engineering.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agent Evaluation&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Subjective methods : Human annotation, Turing Test,&lt;/li&gt;
+&lt;li&gt;Objective methods : Task success metrics (acc, err rate), Human similarity metrics, Efficiency metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;2the-rise-and-potential-of-large-language-model-based-agents&#34;&gt;2.The Rise and Potential of Large Language Model Based Agents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction :
+&lt;ul&gt;
+&lt;li&gt;LLMs are evolving from language models into autonomous agents capable of reasoning, planning, and acting.&lt;/li&gt;
+&lt;li&gt;LLM-based agents integrate models, memory, tools, and interaction to solve complex tasks.&lt;/li&gt;
+&lt;li&gt;Their rapid development highlights both significant potential and critical challenges in reliability and scalability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Construction of LLM based Agents
+&lt;ul&gt;
+&lt;li&gt;Brain : Natural Language Interaction, Knowledge, Memory, Reasoning and Plain&lt;/li&gt;
+&lt;li&gt;Perception : Textual, Visual, Auditory, Other input&lt;/li&gt;
+&lt;li&gt;Action : Textual Output, Tool Using, Embodied Action&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Agents in Practice : Harnessing AI for good
+&lt;ul&gt;
+&lt;li&gt;Single-Agent Applications
+&lt;ul&gt;
+&lt;li&gt;Perform autonomous task execution using LLM reasoning and tool use.&lt;/li&gt;
+&lt;li&gt;Applied in task-oriented, creative, and long-term lifecycle scenarios.&lt;/li&gt;
+&lt;li&gt;Limited by reasoning reliability, environment understanding, and robustness.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Multi-Agent Systems
+&lt;ul&gt;
+&lt;li&gt;Multiple agents collaborate or compete to solve complex tasks.&lt;/li&gt;
+&lt;li&gt;Enable role specialization, distributed reasoning, and emergent behavior.&lt;/li&gt;
+&lt;li&gt;Face challenges in coordination, communication overhead, and alignment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Human-Agent Systems
+&lt;ul&gt;
+&lt;li&gt;Humans guide agents through instructions or feedback loops.&lt;/li&gt;
+&lt;li&gt;Agents act as assistants or partners in decision-making and creativity.&lt;/li&gt;
+&lt;li&gt;Practical value emerges from effective human–agent interaction rather than full autonomy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

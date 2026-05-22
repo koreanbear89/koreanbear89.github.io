@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Effective Python #8 | Robustness and Performance - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Metaclasses are often mentioned in lists of Python&rsquo;s features, but few understand what the accomplish in practice. The name metaclass vaguely implies a concept above and beyond a class metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined Item 44. Use Plain Attributes Instead of Setter and Getter Methods Define new class interfaces using simple public attributes and avoid defining setter and getter methods.
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Effective Python #8 | Robustness and Performance - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/2.-python/effective-python-06/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #8 | Robustness and Performance">
+  <meta property="og:description" content="Introduction Metaclasses are often mentioned in lists of Python’s features, but few understand what the accomplish in practice. The name metaclass vaguely implies a concept above and beyond a class metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined Item 44. Use Plain Attributes Instead of Setter and Getter Methods Define new class interfaces using simple public attributes and avoid defining setter and getter methods.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-04-10T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-04-10T09:00:00+00:00">
+
+  <meta itemprop="name" content="Effective Python #8 | Robustness and Performance">
+  <meta itemprop="description" content="Introduction Metaclasses are often mentioned in lists of Python’s features, but few understand what the accomplish in practice. The name metaclass vaguely implies a concept above and beyond a class metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined Item 44. Use Plain Attributes Instead of Setter and Getter Methods Define new class interfaces using simple public attributes and avoid defining setter and getter methods.">
+  <meta itemprop="datePublished" content="2023-04-10T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-04-10T09:00:00+00:00">
+  <meta itemprop="wordCount" content="704">
+  <meta itemprop="keywords" content="2. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #8 | Robustness and Performance">
+  <meta name="twitter:description" content="Introduction Metaclasses are often mentioned in lists of Python’s features, but few understand what the accomplish in practice. The name metaclass vaguely implies a concept above and beyond a class metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined Item 44. Use Plain Attributes Instead of Setter and Getter Methods Define new class interfaces using simple public attributes and avoid defining setter and getter methods.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">16</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/2.-python/effective-python-06/"
+    >Effective Python #8 | Robustness and Performance</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/2.-python/effective-python-06/" class="article-date">
+  <time datetime="2023-04-10 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-04-10</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/2.-python/"> 2. Python </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/2.-python/effective-python-06/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Metaclasses are often mentioned in lists of Python&rsquo;s features, but few understand what the accomplish in practice.</li>
+<li>The name metaclass vaguely implies a concept above and beyond a class</li>
+<li>metaclasses let you intercept Python’s class statement and provide special behavior each time a class is defined</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-44-use-plain-attributes-instead-of-setter-and-getter-methods">Item 44. Use Plain Attributes Instead of Setter and Getter Methods</h2>
+<ol>
+<li>
+<p>Define new class interfaces using simple public attributes and <strong>avoid defining setter and getter methods</strong>.</p>
+</li>
+<li>
+<p>Use <strong><code>@property</code> to define speical behavior</strong> when attr are accesed on your objects, if necessary.</p>
+</li>
+<li>
+<p>Follow the rule of least surprise and avoid odd side effects in your <code>@property</code> methods.</p>
+</li>
+<li>
+<p>Ensure that @property methods are fast; for slow or complex work (especially involving I/O or causing side effects)  use normal methods instead.</p>
+</li>
+</ol>
+<pre><code class="language-python"># Before : Using these setters and getters is simple, but not Pythonic
+class OldResistor:
+    def __init__(self, ohms):
+        self._ohms = ohms
+
+    def get_ohms(self, name):
+        return self._ohms
+
+    def set_ohms(self, ohms):
+        self._ohms = ohms
+</code></pre>
+<pre><code class="language-python"># After : You should always start your implementations with simple public attributes 
+class Resistor:
+    def __init__(self, ohms):
+        self.ohms = ohms
+        self.voltage = 0
+        self.current = 0 
+</code></pre>
+<pre><code class="language-python"># After2 : If you need special behavior of getter/setter methods, migrate to the @property decorator and its corresponding setter attribute
+class BoundedResistance(Resistor):
+    def __init__(self, ohms):
+        super().__init__(ohms)
+
+    @property
+    def ohms(self):
+        return self._ohms
+
+    @ohms.setter
+    def ohms(self, ohms):
+        if ohms &lt;= 0:
+            raise ValueError(f&quot;ohms must be &gt;0; got {ohms}&quot;)
+         self._ohms = ohms
+</code></pre>
+<br>
+<hr>
+<h2 id="item-45-consider-property-instead-of-refactoring-attributes">Item 45. Consider <code>@property</code> Instead of Refactoring Attributes</h2>
+<ol>
+<li>
+<p>Use <code>@property</code> to give existing instance attributes new functionality</p>
+</li>
+<li>
+<p>Make incremental progress toward better data models by using <code>@property</code></p>
+</li>
+<li>
+<p>Consider refactoring a class and all call sites when you find yourself using @property too heavily</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-46-use-descriptors-for-reusable-property-methods">Item 46. Use Descriptors for Reusable <code>@property</code> Methods</h2>
+<ol>
+<li>
+<p>Reuse the behavior and validation of <code>@property</code> methods by defining your own descriptor classes.</p>
+</li>
+<li>
+<p>Use <code>WeakKeyDictionary</code> to ensure that your descriptor classes don’t cause memory leaks.</p>
+</li>
+<li>
+<p>Don’t get bogged down trying to understand exactly how <code>__getattribute__</code> uses the descriptor protocol for getting and setting attributes.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item47-use-__getattr__-__getattribute__-and-__setattr__-for-lazy-attributes">Item47. Use <code>__getattr__</code>, <code>__getattribute__</code>, and <code>__setattr__</code> for Lazy Attributes</h2>
+<ol>
+<li>
+<p>Use <code>__getattr__</code> and <code>__setattr__</code> to lazily load and save attributes for an object.</p>
+</li>
+<li>
+<p>Understand that <code>__getattr__</code> only gets called when accessing a missing attribute, whereas <code>__getattribute__</code> gets called every time any attribute is accessed.</p>
+</li>
+<li>
+<p>Avoid infinite recursion in <code>__getattribute__</code> and <code>__setattr__</code> by using methods from super() (i.e., the object class) to access
+instance attributes.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item48-validate-subclasses-with-__init_subclass__">Item48. Validate Subclasses with <code>__init_subclass__</code></h2>
+<ol>
+<li>
+<p>The <code>__new__</code> method of metaclasses is run after the class statement’s entire body has been processed.</p>
+</li>
+<li>
+<p>Metaclasses can be used to inspect or modify a class after it’s defined but before it’s created, but they’re often more heavy weight than what you need.</p>
+</li>
+<li>
+<p>Use <code>__init_subclass__</code> to ensure that subclasses are well formed at the time they are defined, before objects of their type are constructed.</p>
+</li>
+<li>
+<p>Be sure to call <code>super().__init_subclass__</code> from within your class’s <code>__init_subclass__</code> definition to enable validation in multiple layers of classes and multiple inheritance.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item49-register-class-existence-with-__init_subclass__">Item49. Register Class Existence with <code>__init_subclass__</code></h2>
+<ul>
+<li>
+<p>Class registration is a helpful pattern for building modular python programs</p>
+</li>
+<li>
+<p>Metaclasses let you run registration code automatically each time a base class is subclassed in a program.</p>
+</li>
+<li>
+<p>Using metaclasses for class registration helps you avoid errors by ensuring that you never miss a registration call.</p>
+</li>
+<li>
+<p>Prefer <code>__init_subclass__</code> over standard metaclass machinery because it’s clearer and easier for beginners to understand.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item50-annotate-class-attributes-with-__set_name__">Item50. Annotate Class Attributes with <code>__set_name__</code></h2>
+<ul>
+<li>
+<p>Metaclasses enable you to modify a class’s attributes before the class is fully defined.</p>
+</li>
+<li>
+<p>Descriptors and metaclasses make a powerful combination for declarative behavior and runtime introspection.</p>
+</li>
+<li>
+<p>Define <code>__set_name__</code> on your descriptor classes to allow them to take into account their surrounding class and its property names.</p>
+</li>
+<li>
+<p>Avoid memory leaks and the weakref built-in module by having descriptors store data they manipulate directly within a class’s instance dictionary.</p>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item51-prefer-class-decorators-over-metaclasses-for-composable-class-extensions">Item51. Prefer Class Decorators Over Metaclasses for Composable Class Extensions</h2>
+<ul>
+<li>
+<p>A class decorator is a simple function that receives a class instance as a parameter and returns either a new class or a modified version of th eoriginal class</p>
+</li>
+<li>
+<p>Class decorators are useful when you want to modify every method or attribute of a class with minimal boilerplate</p>
+</li>
+<li>
+<p>Metaclasses can&rsquo;t be composed together easily, while many class decorators can be used to extend the same class without conflicts.</p>
+</li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

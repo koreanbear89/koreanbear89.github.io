@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3. System Design on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/3.-system-design/</link>
+    <description>Recent content in 3. System Design on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 May 2025 09:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/3.-system-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | Airflow</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--airflow/</link>
+      <pubDate>Fri, 09 Dec 2022 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--airflow/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-templates-referene-jinja&#34;&gt;1. Templates referene (Jinja)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://jinja.pocoo.org/docs/dev/&#34;&gt;Jinja Templating&lt;/a&gt; : Airflow leverages the power of Jinja Templating and this can be a powerful tool to use in combination with &lt;a href=&#34;https://airflow.apache.org/docs/apache-airflow/2.4.2/templates-ref.html#templates-ref&#34;&gt;macros&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Macros : a way to expose objects to your templates and live under the &lt;code&gt;macros&lt;/code&gt; namespace in your templates.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;macros.datetime&lt;/code&gt; : The standard lib’s &lt;a href=&#34;https://docs.python.org/3/library/datetime.html#datetime.datetime&#34; title=&#34;(in Python v3.10)&#34;&gt;&lt;code&gt;datetime.datetime&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;macros.timedelta&lt;/code&gt; : The standard lib’s &lt;a href=&#34;https://docs.python.org/3/library/datetime.html#datetime.timedelta&#34; title=&#34;(in Python v3.10)&#34;&gt;&lt;code&gt;datetime.timedelta&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;macros.dateutil&lt;/code&gt; : A reference to the &lt;code&gt;dateutil&lt;/code&gt; package&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;macros.time&lt;/code&gt; : The standard lib’s &lt;a href=&#34;https://docs.python.org/3/library/time.html#module-time&#34; title=&#34;(in Python v3.10)&#34;&gt;&lt;code&gt;time&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS | React</title>
+      <link>http://localhost:1313/language/misc/js-%232--react/</link>
+      <pubDate>Tue, 20 Sep 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/js-%232--react/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;React is a declarative, efficient, and flexible JavaScript library for building user interfaces.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-getting-started-with-react&#34;&gt;1. Getting Started with React&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;requirements&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node.js &amp;gt; 13 LTS : &lt;code&gt;node -v&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;npm (Node Package Manager) : &lt;code&gt;npm -v&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;npx : &lt;code&gt;npx -v&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create React App :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;npm install -g create-react-app&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;npx create-react-app &amp;lt;APP_NAME&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run React App : &lt;code&gt;npm start&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-component&#34;&gt;2. Component&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lifecycle : Each component has several “lifecycle methods” that you can override to run code at particular times in the process.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS #1 | Basic</title>
+      <link>http://localhost:1313/language/misc/js-%231--basic/</link>
+      <pubDate>Mon, 19 Sep 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/js-%231--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;JavaScript (Mocha, LiveScript, JScript, ECMAScript)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;JavaScript is not interpreted Java. Java is interpreted Java. JavaScript is a different language.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;JavaScript supports object-oriented programming with object prototypes and classes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-data-types&#34;&gt;1. Data types&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type&#34;&gt;Number&lt;/a&gt;: used for all number values (integer and floating point) except for &lt;em&gt;very&lt;/em&gt; big integers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type&#34;&gt;BigInt&lt;/a&gt;: used for arbitrarily large integers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type&#34;&gt;String&lt;/a&gt;: used to store text.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type&#34;&gt;Boolean&lt;/a&gt;: &lt;code&gt;true&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt; — usually used for conditional logic.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type&#34;&gt;Symbol&lt;/a&gt;: used for creating unique identifiers that won&amp;rsquo;t collide.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MongoDB #1 |Basic </title>
+      <link>http://localhost:1313/system-architecture/2.-data-ingestion/db-%233--mongodb/</link>
+      <pubDate>Thu, 04 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/2.-data-ingestion/db-%233--mongodb/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-quick-start-mongodb&#34;&gt;1. Quick Start MongoDB&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;todo&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Get Client
+from pymongo import MongoClient
+client = MongoClient(host=&#39;localhost&#39;, port=2017)
+print(client.list_database_names())
+
+# Get DB
+db = client[&#39;mydb&#39;]
+
+# Get Collection
+collection = db[&#39;myCol&#39;] # db.myCol
+db.list_collection_names() # show collections in db
+
+# inser data
+data = {&amp;quot;author&amp;quot;: &amp;quot;Mike&amp;quot;,&amp;quot;text&amp;quot;: &amp;quot;My first blog post!&amp;quot;,&amp;quot;tags&amp;quot;: [&amp;quot;mongodb&amp;quot;, &amp;quot;python&amp;quot;, &amp;quot;pymongo&amp;quot;],}
+post_id = collection.insert_one(post).inserted_id
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>BE #2 | Web Service</title>
+      <link>http://localhost:1313/system-architecture/4.-model-serving/be-%232--web-service/</link>
+      <pubDate>Tue, 02 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/4.-model-serving/be-%232--web-service/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Web Server&lt;/strong&gt; : provides &lt;strong&gt;staticBE&lt;/strong&gt; contents (like html, css, javascript) to client&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Web Application Server (WAS)&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provides &lt;strong&gt;dynamic&lt;/strong&gt; contents (that needs to be processed in app or DB)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Then, why do we use additional web server? =&amp;gt; Of course, you can use only WAS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;However, as it also have to handle dynamic logics (like DB lookup), delegating static parts to the web server and separating functions can prevent server load and increase efficiency.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BE #1 | Network</title>
+      <link>http://localhost:1313/system-architecture/4.-model-serving/be-%231--network/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/4.-model-serving/be-%231--network/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Protocol (HTTP)&lt;/li&gt;
+&lt;li&gt;API (REST, RPC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-protocol&#34;&gt;1. Protocol&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP (HyperText Transfer Protocol) : functions as a request-response protocol in the client-server model,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Request Methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET, POST, PUT, DELETE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Response Messages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;2xx : successful&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3xx : redirection&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4xx : client error&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5xx : server error&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Other Protocols : MQTT, CoAP (low-level, low-energy protocol)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-api-application-programming-interface&#34;&gt;2. API (Application Programming Interface)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;interface : a connection between two pieces of electronic equipment, or between a person and a computer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Processing | Normalization </title>
+      <link>http://localhost:1313/machine-learning/misc/data-processing--normalization/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/misc/data-processing--normalization/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Normalization
+&lt;ul&gt;
+&lt;li&gt;Min-Max Normalization&lt;/li&gt;
+&lt;li&gt;Z-score Normalization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-min-max-normalization&#34;&gt;1. Min-Max Normalization&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;$ \hat{x} = \frac{x - x_{min}}{x_{max}-x_{min}}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-z-score-normalization&#34;&gt;2. Z-Score Normalization&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>DB #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/1.-system-design/db-%231--overview/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/1.-system-design/db-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DB types&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Relational DB (SQL):&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Document DB (noSQL) :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mongoDB, hbase&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Time Series DB (TSDB):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;influxDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Graph DB:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Interview</title>
+      <link>http://localhost:1313/interview/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/interview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-python&#34;&gt;3. Python&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Q. Effective Python Item24 : Use None and Docstrings to Specify Dynamic Default Arguments&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def decode(data, default={}):
+    try:
+        return json.loads(data)
+    except ValueError:
+        return default
+
+foo = decode(&#39;bad data&#39;)
+foo[&#39;stuff&#39;] = 5
+bar = decode(&#39;also bad&#39;)
+bar[&#39;meep&#39;] = 1
+print(foo) # &amp;gt;&amp;gt; {&#39;stuff&#39;: 5, &#39;meep&#39;: 1}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Q. Effective Python Item40 : What&amp;rsquo;s the role of &lt;code&gt;super&lt;/code&gt; in python?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Design Pattern 01 | The Need for ML Design Patterns</title>
+      <link>http://localhost:1313/__draft/9.-study/ml-design-pattern--%2301/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/ml-design-pattern--%2301/</guid>
+      <description>&lt;br&gt;
+&lt;h1 id=&#34;1-머신러닝-디자인-패턴의-필요성&#34;&gt;1. 머신러닝 디자인 패턴의 필요성&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;디자인 패턴은 일반적으로 발생하는 문제에 대한 모범 사례와 솔루션을 추려낸 패턴을 가리키는 공학용어다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;전문가의 지식과 경험을 모든 실무자가 따를 수 있는 조언으로 가공한 것이기도 하다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ML Design Pattern 05 | Design Patterns for Resilient Serving</title>
+      <link>http://localhost:1313/__draft/9.-study/ml-design-pattern--%2305/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/9.-study/ml-design-pattern--%2305/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;ch5-탄력성-디자인-패턴&#34;&gt;CH.5 탄력성 디자인 패턴&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;머신러닝 모델의 목적은 학습시키지 않은 실제 데이터를 추론하는데 사용하는 것이다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;따라서 모델을 학습시킨 후에는 일단 일반적으로 프로덕션 환경에 배포하고, 수신된 요청에 대한 응답으로 예측을 수행한다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STUDY</title>
+      <link>http://localhost:1313/study/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/study/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Mathematics
+&lt;ul&gt;
+&lt;li&gt;Linear algebra&lt;/li&gt;
+&lt;li&gt;Probability&lt;/li&gt;
+&lt;li&gt;Statistics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Programming &amp;amp; Languages
+&lt;ul&gt;
+&lt;li&gt;Effective Python Review&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Data Engineering
+&lt;ul&gt;
+&lt;li&gt;airflow, hadoop, hbase, spark,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Title</title>
+      <link>http://localhost:1313/language/3.-scala/template/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/3.-scala/template/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;51-strict-and-nonstrict-functions&#34;&gt;5.1 Strict and nonstrict functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Title</title>
+      <link>http://localhost:1313/template/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/template/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+    &lt;img width=&#34;70%&#34; src=&#34;https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2019-08-01_SVD/pic_SVD_restore.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt; Figure. Partial reconstruction of matrix using SVD &lt;a href=&#34;https://angeloyeo.github.io/2019/08/01/SVD.html&#34;&gt;[reference]&lt;/a&gt;&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-sub-title&#34;&gt;1. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-sub-title&#34;&gt;2. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-sub-title&#34;&gt;3. Sub-TItle&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>VL01 | Vision Language Pretraining</title>
+      <link>http://localhost:1313/machine-learning/4.-vision-language/vl01--vision-language-understanding/</link>
+      <pubDate>Mon, 01 Aug 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/4.-vision-language/vl01--vision-language-understanding/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Tasks
+&lt;ul&gt;
+&lt;li&gt;Vision Language Pretraining (VLP) : aims to improve performance of downstream vision and language tasks by pretraining the model on large-scale image-text pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;clip--learning-transferable-visual-models-from-natural-language-supervision-2021&#34;&gt;CLIP : Learning Transferable Visual Models From Natural Language Supervision (2021)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;introduction :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Pre-training methods which learn directly from raw text have revolutionized NLP over the last few years&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Could scalable pre-training methods which learn directly from web text result in a similar breakthrough in computer vision?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #4 | Matrix Decompositions</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml07--continuous-optimization-/</link>
+      <pubDate>Wed, 13 Jul 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml07--continuous-optimization-/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;4-matrix-decompositions&#34;&gt;4. Matrix Decompositions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;41-determinant-and-trace&#34;&gt;4.1 Determinant and Trace&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;42-eigenvalues-and-eigenvectors&#34;&gt;4.2 Eigenvalues and Eigenvectors&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Intro :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;43-cholesky-decomposition&#34;&gt;4.3 Cholesky Decomposition&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;44-eigendecomposition-and-diagonalization-115&#34;&gt;4.4 Eigendecomposition and Diagonalization (115)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;35-orthonormal-basis&#34;&gt;3.5 Orthonormal Basis&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;36-orthogonal-complement&#34;&gt;3.6 Orthogonal Complement&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;47-matrix-phylogency-134&#34;&gt;4.7 Matrix Phylogency (134)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;T&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;310-summary&#34;&gt;3.10 Summary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;4.1) Detterminant and Trace&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #4 | Matrix Decompositions</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml05--vector-calculus/</link>
+      <pubDate>Fri, 13 May 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml05--vector-calculus/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;4-matrix-decompositions&#34;&gt;4. Matrix Decompositions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;41-determinant-and-trace&#34;&gt;4.1 Determinant and Trace&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;In&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;42-eigenvalues-and-eigenvectors&#34;&gt;4.2 Eigenvalues and Eigenvectors&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Intro :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;43-cholesky-decomposition&#34;&gt;4.3 Cholesky Decomposition&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;44-eigendecomposition-and-diagonalization-115&#34;&gt;4.4 Eigendecomposition and Diagonalization (115)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;35-orthonormal-basis&#34;&gt;3.5 Orthonormal Basis&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;36-orthogonal-complement&#34;&gt;3.6 Orthogonal Complement&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;47-matrix-phylogency-134&#34;&gt;4.7 Matrix Phylogency (134)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;T&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;310-summary&#34;&gt;3.10 Summary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;4.1) Detterminant and Trace&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Leet Code</title>
+      <link>http://localhost:1313/__draft/misc/leet-code/</link>
+      <pubDate>Mon, 18 Apr 2022 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/leet-code/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;two-sum&#34;&gt;Two Sum&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash map&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Solution:
+   def twoSum(self, nums: List[int], target: int) -&amp;gt; List[int]:
+        # (1) generate empty hash map
+        hash_map = {}
+        # (2) iterate along the num in nums
+        for i,num in enumerate(nums):
+            # (2.1) get required number for each given num
+            req = target - num
+            # (2.2) if req in hash_map, return
+            if req in hash_map:
+                return [i, hash_map[req]]
+            # (2.3) else, add number in hash map
+            hash_map[num] = i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;maximum-subarray&#34;&gt;Maximum Subarray&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;kadane algorithm : 현재 인덱스 까지의 최대 부분합을 계산해두자
+&lt;ul&gt;
+&lt;li&gt;A[n] 까지의 maximum sub-array는 다음 둘 중 하나이다
+&lt;ul&gt;
+&lt;li&gt;A[n]&lt;/li&gt;
+&lt;li&gt;A[n-1] 까지의 maximum sub-array + A[n]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Solution(object):
+    def maxSubArray(self, nums):
+        local_max = global_max = nums[0]
+
+        for num in nums[1:]:
+            # 이전의 최댓값 + 자기 자신 or 자기 자신중 최댓 값 구하기
+            local_max = max(num, local_max+num)
+            # 최종 결과 갱신
+            global_max = max(global_max, local_max)
+
+        return global_max
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mathematics for ML #4 | Matrix Decompositions</title>
+      <link>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml04--matrix-decompositions/</link>
+      <pubDate>Wed, 13 Apr 2022 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/mathematics/3.-mathematics-for-ml/mml04--matrix-decompositions/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;4-matrix-decompositions&#34;&gt;4. Matrix Decompositions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In Chapters 2 and 3, we studied ways to manipulate and measure vectors, projections of vectors, and linear mappings. Mappings and transformations of vectors can be conveniently described as operations performed by matrices&lt;/li&gt;
+&lt;li&gt;Moreover, data is often represented in matrix form as well.
+&lt;ul&gt;
+&lt;li&gt;In this chapter, we present three aspects of matrices:
+&lt;ul&gt;
+&lt;li&gt;howto summarize matrices,&lt;/li&gt;
+&lt;li&gt;how matrices can be decomposed,&lt;/li&gt;
+&lt;li&gt;how these decompositions can be used for matrix approximations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;50%&#34; align=&#34;center&#34; src=&#34;http://localhost:1313/figures/2022-03-14-fig4_1.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | GlusterFS</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--glusterfs/</link>
+      <pubDate>Fri, 25 Mar 2022 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--glusterfs/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GlusterFS : is a Scalable Network Filesystem
+&lt;ul&gt;
+&lt;li&gt;Brick : is the basic unit of storage in GlusterFS,&lt;/li&gt;
+&lt;li&gt;Volume : is a logical collection of bricks.
+&lt;ul&gt;
+&lt;li&gt;Create volume with bricks from several nodes (peer)&lt;/li&gt;
+&lt;li&gt;And mount volume to the specific location to use volume like virtual Storage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;References
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://thenewstack.io/tutorial-create-a-docker-swarm-with-persistent-storage-using-glusterfs/&#34;&gt;Tutorial: Create a Docker Swarm with Persistent Storage Using GlusterFS – The New Stack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install GlusterFS on CentOS
+sudo yum install centos-release-gluster
+sudo yum install glusterfs-server
+sudo systemctl start glusterd # start daemon
+sudo systemctl enable glusterd # restart daemon when reboot the machine
+
+# Configure Gluster Volume
+gluster peer probe &amp;lt;HOST_NAME&amp;gt; # connect HOST as peer
+gluster pool list # show gluster peers
+
+# Create Volume
+sudo mkdir -p /&amp;lt;BRICK_DIR&amp;gt; # run on all machines
+sudo gluster volume create &amp;lt;VOLUME_NAME&amp;gt; replica &amp;lt;N&amp;gt; &amp;lt;HOST1&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST2&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; &amp;lt;HOST3&amp;gt;:&amp;lt;BRICK_DIR&amp;gt; force  # run only on the master
+# ex) sudo gluster volume create gluster_pvs replica 4 &amp;lt;HOSTNAME&amp;gt;:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs pgsca2x0351:/home1/&amp;lt;USER&amp;gt;/whome/__oss/gs_pvs &amp;lt;HOSTNAME&amp;gt;:/home1/irteam/whome/__oss/gs_pvs pgsca2x0353:/home1/irteam/whome/__oss/gs_pvs force 
+
+# Start Volume
+sudo gluster volume start &amp;lt;VOLUME_NAME&amp;gt; # run only on the master
+sudo mount.glusterfs localhost:/&amp;lt;VOLUME_NAME&amp;gt; &amp;lt;MOUNT_LOCATION&amp;gt; # run on all machines
+# ex) sudo mount.glusterfs localhost:/gluster_pvs /home1/&amp;lt;USER&amp;gt;/mnt_gluster
+
+# Manage Gluster Volumes
+gluster volume info # show information of volume and bricks 
+gluster volume stop &amp;lt;VOLUME_NAME&amp;gt;
+gluster volume delete &amp;lt;VOLUME_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

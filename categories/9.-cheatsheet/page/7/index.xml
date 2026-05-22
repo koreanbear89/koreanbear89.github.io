@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>9. CheatSheet on Lab.Koreanbear|한국곰연구소</title>
+    <link>http://localhost:1313/categories/9.-cheatsheet/</link>
+    <description>Recent content in 9. CheatSheet on Lab.Koreanbear|한국곰연구소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 26 Jul 2021 09:00:13 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/categories/9.-cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CheatSheet | Nginx</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--nginx/</link>
+      <pubDate>Mon, 26 Jul 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--nginx/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nginx : light-weight Web server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;generally used as HTTP Web Server, Reverse Proxy Server, Load Balancer &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reverse Proxy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proxy server : is a server that acts as an intermediary between a client and the server&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Load balancing : Proxies distribute requests to a group of servers,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Encryption : Proxies encrypt the data to keep it from being read during transfer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Caching : Proxies speed up access to information by storing the results of user requests in the server’s cache for a specified time&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #11 | Image Similarity</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv11--image-similarity/</link>
+      <pubDate>Thu, 15 Jul 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv11--image-similarity/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h2 id=&#34;1-structural-similarity-index-measure&#34;&gt;1. &lt;a href=&#34;https://scikit-image.org/docs/dev/auto_examples/transform/plot_ssim.html&#34;&gt;Structural Similarity Index Measure&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Introduction : When comparing images, previous method like MSE or PSNR, is not highly indicative of visual perceived similarity. Structural similarity aims to address this shortcoming by taking texture (luminance, contrast, structure) into account.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Methods : The SSIM is calculated on &lt;strong&gt;various windows of an image&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Luminance : using mean value ,  $ l(x,y) = \frac{2\mu_x \mu_y}{\mu_x^2 + \mu_y^2} $&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contrast : using standard deviation value,  $c(x,y) = \frac{2\sigma_x \sigma_y}{\sigma_x^2 + \sigma_y^2} $&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | HTML</title>
+      <link>http://localhost:1313/language/misc/html--snippet/</link>
+      <pubDate>Wed, 09 Jun 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/html--snippet/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;http-request-using-ajax&#34;&gt;HTTP request using ajax&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script&amp;gt;
+  $.ajax({url: &amp;quot;&amp;lt;HOST_URL&amp;gt;&amp;quot;,
+          method : &amp;quot;GET&amp;quot;,
+          datatype : &amp;quot;JSON&amp;quot;})
+  .done(function(data) { alert(&#39;Done&#39;);})
+  .fail(function(xhr, status, error){alert(&#39;Failed&#39;);});
+  });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hanwoong Kim</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;!-- pure/layout/default/about.html 수정 --&gt;</description>
+    </item>
+    
+    <item>
+      <title>Search System</title>
+      <link>http://localhost:1313/machine-learning/misc/210503-search-system/</link>
+      <pubDate>Mon, 03 May 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/misc/210503-search-system/</guid>
+      <description>&lt;h2 id=&#34;1-serving-system&#34;&gt;1. Serving System&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;User&lt;/strong&gt; : 사용자가 웹 브라우저를 통해 https로 요청을 넣으면 NXS가 html로 응답&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NXS&lt;/strong&gt; : 통검서버, 사용자의 요청에 html로 웹 결과를 제공 (relay, (이를 브라우저가 해석해서 예쁘게 보여줌)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Web Development | #1 WSGI</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--web_wsgi/</link>
+      <pubDate>Sun, 31 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--web_wsgi/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flask (python)&lt;/strong&gt;: WSGI application을 작성하기 위한 프레임워크. 내부적으로 werkzeug 라고 하는 test용 웹 서버를 갖고있어 홀로 구동이 가능하나 일반적으로 wsgi server를 붙여 사용.  (1 user만 가능하므로 실서비스에 부적합)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MLCV #10 | Face Recognition</title>
+      <link>http://localhost:1313/machine-learning/2.-computer-vision/cv10--face-recognition/</link>
+      <pubDate>Tue, 26 Jan 2021 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/2.-computer-vision/cv10--face-recognition/</guid>
+      <description>&lt;h2 id=&#34;0-introduction&#34;&gt;0. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Face Recognition :  is a technology capable of matching a human face from a image or a video frame against a database of faces, typically employed to authenticate users through ID verification services, works by pinpointing and measuring facial features from a given image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;subtasks&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Face detection&lt;/strong&gt; : is the task of detecting faces in a photo or video&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Face Identification&lt;/strong&gt; : is to identify a person based on the image of a face. This face image has to be compared with all the registered persons (one-to-many matching).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Face Verification (authentication)&lt;/strong&gt; : is concerned with validating a claimed identity based on the image of a face, and either accepting or rejecting the identity claim (one-to-one matching)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Terminology&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CS | Web HTTP</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--web/</link>
+      <pubDate>Tue, 26 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--web/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP는 Web상에서 정보를 주고받기위한 프로토콜로, Client 와 Server 사이에서 이루어지는 요청/응답(request/response) 규약이다.&lt;/li&gt;
+&lt;li&gt;주로 HTML 문서를 주고받는데 사용되며,
+&lt;ul&gt;
+&lt;li&gt;Request : 클라이언트인 웹 브라우저가 HTTP를 통하여 서버로부터 웹페이지(HTML)나 그림 정보를 요청하면,&lt;/li&gt;
+&lt;li&gt;Response : 서버는 이 요청에 응답하여 필요한 정보를 해당 사용자에게 전달하게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;h2 id=&#34;request&#34;&gt;Request&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GET&lt;/strong&gt; : 서버로부터 정보를 조회하기 위해 설계된 method.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Recommendation System</title>
+      <link>http://localhost:1313/machine-learning/misc/210115-recommendation-system/</link>
+      <pubDate>Thu, 14 Jan 2021 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/machine-learning/misc/210115-recommendation-system/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Recommender system : is a subclass of information filtering sys that seeks to predict the &amp;ldquo;rating&amp;rdquo; or &amp;ldquo;preference&amp;rdquo; a user would give to an item.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Content Based Filtering&lt;/strong&gt; : 사용자가 특정 아이템을 선호하는 경우 그 아이템과 비슷한 콘텐츠를 가진 다른 아이템을 추천해주는 방식 (e.g. 마블영화를 본 사용자에게 다른 마블영화를 추천)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Collaborative Filtering&lt;/strong&gt; : 다수의 사용자 집단의 행동을 분석하고 이와 유사한 행동패턴의 사용자에게 같은 제품을 추천 (20대 게임을 좋아하는 남성들은 이런 컨텐츠를 즐겨찾아본다.)
+&lt;ul&gt;
+&lt;li&gt;User-based : 유저의 행위를 분석하여 유저간 유사도를 측정, 유사도가 높은 다른 유저들의 선호 아이템을 바탕으로 추천&lt;/li&gt;
+&lt;li&gt;Item-based : user based 방법은 선호도 파악이 어려운 새로운 유저와 선호도가 분산되는 오래된 유저에 대한 추천품질이 하락 =&amp;gt; 따라서 제품간의 유사도를 측정하여 어떤 아이템을 선호하면 유사한 다른 아이템을 추천&lt;/li&gt;
+&lt;li&gt;Cold-Start : 분석에 사용할 데이터가 부족한 서비스 초기에는 추천결과가 부정확한 문제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>DataBase</title>
+      <link>http://localhost:1313/language/1.-computer-science/cs09--201224-database/</link>
+      <pubDate>Wed, 23 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/language/1.-computer-science/cs09--201224-database/</guid>
+      <description>&lt;h2 id=&#34;1-relational-database&#34;&gt;1. Relational Database&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RDB&lt;/strong&gt; is a digital database based on the relational model of data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RDBMS&lt;/strong&gt; : A software system used to maintain relational databases is a relational DB management system : &amp;ldquo;software system that enables users to define, create, maintain and control access to the database&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Many relational database systems have an option of using the SQL (Structured Query Language) for querying and maintaining the database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img class=&#34;post-fig&#34; width=&#34;40%&#34; align=&#34;center&#34; src=&#34; https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Relational_database_terms.svg/2880px-Relational_database_terms.svg.png&#34;&gt;
+&lt;/p&gt;
+&lt;center&gt;Figure 1. Relational Database&lt;/center&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Engine | Spark #5 - Submit</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%235--submit/</link>
+      <pubDate>Tue, 15 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%235--submit/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;40-introduction&#34;&gt;4.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Write
+&lt;ul&gt;
+&lt;li&gt;4.1 options&lt;/li&gt;
+&lt;li&gt;4.2 partitioning&lt;/li&gt;
+&lt;li&gt;4.3 bucketing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;41-options&#34;&gt;4.1. Options&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.option(&amp;quot;maxRecordsPerFile&amp;quot;, 100)&lt;/code&gt; : set the max number of records per file
+&lt;ul&gt;
+&lt;li&gt;The last number from the name of created files like &lt;code&gt;c000&lt;/code&gt;, &lt;code&gt;c001&lt;/code&gt;, &lt;code&gt;c002&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;42-partitioning&#34;&gt;4.2 Partitioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt; : In HDFS, physical partitions are called as Block (Default block size is 128MB), Spark creates one partition for every block of a file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partitioning&lt;/strong&gt; : Dividing the dataset into multiple pars across the cluster.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #4 | Write</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%234--write/</link>
+      <pubDate>Tue, 15 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%234--write/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;40-introduction&#34;&gt;4.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Write
+&lt;ul&gt;
+&lt;li&gt;4.1 options&lt;/li&gt;
+&lt;li&gt;4.2 partitioning&lt;/li&gt;
+&lt;li&gt;4.3 bucketing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;41-options&#34;&gt;4.1. Options&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.option(&amp;quot;maxRecordsPerFile&amp;quot;, 100)&lt;/code&gt; : set the max number of records per file
+&lt;ul&gt;
+&lt;li&gt;The last number from the name of created files like &lt;code&gt;c000&lt;/code&gt;, &lt;code&gt;c001&lt;/code&gt;, &lt;code&gt;c002&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;42-partitioning&#34;&gt;4.2 Partitioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt; : In HDFS, physical partitions are called as Block (Default block size is 128MB), Spark creates one partition for every block of a file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Partitioning&lt;/strong&gt; : Dividing the dataset into multiple pars across the cluster.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #3 | Processing</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%233--processing/</link>
+      <pubDate>Mon, 14 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%233--processing/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;30-introduction&#34;&gt;3.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;3.1 Basic Manipulation&lt;/li&gt;
+&lt;li&gt;3.2 Duplicates&lt;/li&gt;
+&lt;li&gt;3.3 Null&lt;/li&gt;
+&lt;li&gt;3.4 Filter&lt;/li&gt;
+&lt;li&gt;3.5 Group&lt;/li&gt;
+&lt;li&gt;3.6 Join&lt;/li&gt;
+&lt;li&gt;3.7 UDF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;31-basic-manipulation&#34;&gt;3.1 Basic Manipulation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;32-duplicates&#34;&gt;3.2 Duplicates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;drop_duplicates(subset=[&amp;quot;COLUMN&amp;quot;])&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;Returns a new Dataset with duplicate rows removed, considering only the subset of columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;distinct()&lt;/code&gt; :
+&lt;ul&gt;
+&lt;li&gt;returns the distinct rows of DataFrame.&lt;/li&gt;
+&lt;li&gt;takes no args and thus all columns are taken into account when dropping dups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;df.join(df.exceptAll(df.distinct()))&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;leave duplicates and remove distinct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;33-null&#34;&gt;3.3 Null&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;df.dropna(how=&amp;quot;any&amp;quot;, thresh=None, subset=[&amp;quot;COLUMN1&amp;quot;])&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;34-filter&#34;&gt;3.4 Filter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Filtering&lt;/li&gt;
+&lt;li&gt;Pushdown Filtering
+&lt;ul&gt;
+&lt;li&gt;General workflow : read data from file system, filtering on memory&lt;/li&gt;
+&lt;li&gt;Pushdown workflow : read necessary data from file sys, not on memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// single condition
+df.filter(df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;)
+df.filter(df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20)
+// multiple conditions
+df.filter((df(&amp;quot;PRED&amp;quot;) === &amp;quot;Entertainment&amp;quot;) &amp;amp;&amp;amp; (df(&amp;quot;VIDEO_PLAY_TIME&amp;quot;) &amp;gt; 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;35-group&#34;&gt;3.5 Group&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;groupBy&lt;/code&gt; : Groups the DF using the specified columns, so we can run aggregation on them. returns &lt;code&gt;GroupdedData&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_set())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.agg(collect_list())&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() // Returns the count of rows for each group.
+  .mean() // Returns the mean of values for each group.
+  .max() // Returns the maximum of values for each group.
+  .min() // Returns the minimum of values for each group.
+  .sum() // Returns the total for values for each group.
+  .avg() // Returns the average for values for each group.
+  .agg() // Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() // This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;36-join&#34;&gt;3.6 Join&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Inner join : essentially removes anything that is not common in both tables. It returns all data that has a match under the join condition(&lt;code&gt;on&lt;/code&gt; expression is true) from both sides of the table&lt;/li&gt;
+&lt;li&gt;Outer join : allows us to include in the result rows of one table for which there are no matching rows round in another table&lt;/li&gt;
+&lt;li&gt;Left join : all rows of the left table remain unchanged, regardless of whether there is a match in the right table or not. When a id match is found in the right table, it will be returned or null otherwise&lt;/li&gt;
+&lt;li&gt;Right join : performs the same task as the left join, but for the right table.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;37-udf&#34;&gt;3.7 UDF&lt;/h2&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #2 | Read</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%232--read/</link>
+      <pubDate>Sun, 13 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%232--read/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;20-introduction&#34;&gt;2.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;Read&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;21-read&#34;&gt;2.1 Read&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;22-read-streaming&#34;&gt;2.2 Read Streaming&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | spark</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--spark/</link>
+      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--spark/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-read&#34;&gt;2. Read&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-do-something&#34;&gt;3. Do something&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-do-something&#34;&gt;4. Do something&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-do-something&#34;&gt;5. Do something&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-do-something&#34;&gt;6. Do something&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;7-do-something&#34;&gt;7. Do something&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;8-partitioning--bucketing&#34;&gt;8. Partitioning / Bucketing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;coalesce&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;repartition&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;repartitionByRange&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;partitionBy()&lt;/code&gt; : partition the data based on one or multiple column values while writing DF to disk/file system&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;bucketBy()&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-write&#34;&gt;9. Write&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;todo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark #1 | Overview</title>
+      <link>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%231--overview/</link>
+      <pubDate>Sat, 12 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/3.-modeling/engine--spark-%231--overview/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;10-introduction&#34;&gt;1.0 Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contents
+&lt;ul&gt;
+&lt;li&gt;1.1 Spark Components&lt;/li&gt;
+&lt;li&gt;1.2 How spark works&lt;/li&gt;
+&lt;li&gt;1.9 Terminologies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;11-spark-components&#34;&gt;1.1 Spark Components&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Spark Driver&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;separate process to execute user applications&lt;/li&gt;
+&lt;li&gt;creates SparkContext to schedule jobs execution and negotiate with cluster manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Executors&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;run tasks scheduled by driver&lt;/li&gt;
+&lt;li&gt;store computation results in memory, on disk or off-heap&lt;/li&gt;
+&lt;li&gt;interact with storage systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cluster Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Mesos : a general cluster manager that can also run Hadoop MapReduce and service applications.&lt;/li&gt;
+&lt;li&gt;Hadoop YARN : the resource manager in Hadoop.&lt;/li&gt;
+&lt;li&gt;Spark Standalone : a simple cluster manager included with Spark that makes it easy to set up&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;12-how-spark-works&#34;&gt;1.2 How Spark works?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spark has a small code base and the system is divided in various layer.&lt;/li&gt;
+&lt;li&gt;Each layers has some responsibilities. The layers are independent of each other
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interpreter&lt;/strong&gt; : The first layer is the interpreter, Spark uses a Scala interpreter, with some modifications. As you enter your code in spark console (creating RDD’s and applying operators), Spark creates a operator graph.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG Scheduler&lt;/strong&gt; : When the user runs an action (like collect), the Graph is submitted to a DAG Scheduler. The DAG scheduler divides operator graph into (map and reduce) stages. A stage is comprised of tasks based on partitions of the input data. The DAG scheduler pipelines operators together to optimize the graph. For ex, Many map operators can be scheduled in a single stage. This optimization is key to Sparks performance. The final result of a DAG scheduler is a set of stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Task Schedular&lt;/strong&gt; : The stages are passed on to the Task Scheduler. The task scheduler launches tasks via cluster manager. (Spark Standalone/Yarn/Mesos). The task scheduler doesn’t know about dependencies among stages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;19-terminologies&#34;&gt;1.9 Terminologies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Job&lt;/strong&gt; : A piece of code that reads some input (HDFS or local), performs some computation and writes output.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stages&lt;/strong&gt; : Jobs are divided into stages. Stages are classified as a Map or reduce stages. Stages are divided based on computational boundaries, all computations cannot be Updated in a single Stage. It happens over many stages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tasks&lt;/strong&gt; : Each stage has some tasks. One task is executed on one partition of data on one executor (machine).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DAG&lt;/strong&gt; : DAG stands for Directed Acyclic Graph, in the present context its a DAG of operators.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Executor&lt;/strong&gt; : The process responsible for executing a task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Master&lt;/strong&gt; : The machine on which the Driver program runs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slave&lt;/strong&gt; : The machine on which the Executor program runs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | pyspark</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pyspark/</link>
+      <pubDate>Fri, 11 Dec 2020 09:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--pyspark/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(1) Initialization &amp;amp; Configuration&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(2) Read data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(3) Data processing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(4) Write&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(5) Visualization&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(6) Logging&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-initialization--configuration&#34;&gt;1. Initialization &amp;amp; Configuration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkContext&lt;/code&gt; : provides connection to Spark with the ability to create RDDs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SQLContext&lt;/code&gt; : procides connection to Spark with the ability to run SQL queries on data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SparkSession&lt;/code&gt; : all encompassing context which includes coverage for &lt;code&gt;SparkContext&lt;/code&gt;, &lt;code&gt;SQLContext&lt;/code&gt; and HiveContext&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pyspark
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql import SQLContext
+
+# create a SparkSession instance with the name &#39;appname&#39; 
+spark = SparkSession.builder.appName(&amp;quot;appname&amp;quot;).getOrCreate()
+# create a SparkContext instance which allows the Spark Application to access 
+sc = SparkContext.getOrCreate()
+# create a SQLContext instance to access the SQL query engine built on top of Spark
+sqlContext = SQLContext(spark)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-read-data&#34;&gt;2. Read data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read dataframe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# read (csv, json, text, parquet)
+df = spark.read.csv(&#39;PATH_CSV&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Exploration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Prints out the schema in the tree format.
+df.printSchema()
+# To get the number of rows
+df.count()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-data-processing&#34;&gt;3. Data processing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic Manipulation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create a column
+df = df.withColumn(&#39;column_new&#39;, F.lit(&#39;abc&#39;)) #  with the defalut value &#39;abc&#39;
+df = df.withColumn(&#39;column_new&#39;, 2*F.col(&#39;exisisting column&#39;)) #  using an existing column
+
+# Change Column Name
+df.withColumnRenamed(&amp;quot;column_ori&amp;quot;, &amp;quot;column_new&amp;quot;)
+
+# add index column
+from pyspark.sql.functions import monotonically_increasing_id 
+df_index = df.select(&amp;quot;*&amp;quot;).withColumn(&amp;quot;id&amp;quot;, monotonically_increasing_id())
+
+# remove column
+df.drop(&amp;quot;column_drop&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;filtering&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# filter (=where)
+df.filter(df.column_float.between(7.5,8.2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;grouping (&lt;code&gt;groupBy&lt;/code&gt;)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# grouped data : GroupBy allows you to group rows together based off some column value
+df.groupBy(&amp;quot;column_name&amp;quot;)
+  .count() # Returns the count of rows for each group.
+  .mean() # Returns the mean of values for each group.
+  .max() # Returns the maximum of values for each group.
+  .min() # Returns the minimum of values for each group.
+  .sum() # Returns the total for values for each group.
+  .avg() # Returns the average for values for each group.
+  .agg() # Using agg() function, we can calculate more than one aggregate at a time.
+  .pivot() # This function is used to Pivot the DataFrame
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Join&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Use union, if scheme of dfs are same.
+df1.join(df2, on=&#39;column&#39;, how=&#39;inner&#39;)
+
+# Drop duplicate rows using dropDuplicates(), otherwise df_new will also have duplicate rows
+df2 = df2.dropDuplicates(([&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;])) # rows with same KEY but diff ID will remain
+
+# update df1 with df2 using outer join
+df_new = (
+    df1.alias(&amp;quot;a&amp;quot;)
+         .join(df2.alias(&amp;quot;b&amp;quot;), &amp;quot;KEY&amp;quot;, how=&amp;quot;outer&amp;quot;)
+         .select(&amp;quot;KEY&amp;quot;, F.coalesce(&amp;quot;b.col1&amp;quot;, &amp;quot;a.col1&amp;quot;).alias(&amp;quot;col1&amp;quot;) )
+    )
+
+
+# update df1 with df2 using outer join
+cols = [&amp;quot;TITLE&amp;quot;, &amp;quot;NAME&amp;quot;, &amp;quot;URL&amp;quot;, &amp;quot;THUMBNAIL&amp;quot;, &amp;quot;DATE&amp;quot;]
+df_new = df.alias(&amp;quot;a&amp;quot;)
+           .join(df2.alias(&amp;quot;b&amp;quot;), [&amp;quot;KEY&amp;quot;, &amp;quot;ID&amp;quot;], how=&amp;quot;outer&amp;quot;)
+           .select(&amp;quot;KEY&amp;quot;,&amp;quot;ID&amp;quot;, *(F.coalesce(&amp;quot;b.&amp;quot; + col, &amp;quot;a.&amp;quot; + col).alias(col) for col in cols))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Union&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SQL | Basic</title>
+      <link>http://localhost:1313/language/misc/sql--basic/</link>
+      <pubDate>Sun, 06 Dec 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/language/misc/sql--basic/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Structured Query Language :  SQL is a domain-specific language used in programming and designed for managing data held in a RDBMS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Purpose&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DB design, modeling, managing
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CREATE&lt;/code&gt;, &lt;code&gt;ALTER&lt;/code&gt;, &lt;code&gt;DROP&lt;/code&gt;, &lt;code&gt;INSERT&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Data Analysis
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SELECT&lt;/code&gt;, &lt;code&gt;FROM&lt;/code&gt;, &lt;code&gt;WHERE&lt;/code&gt;,&lt;code&gt;JOIN&lt;/code&gt;,&lt;code&gt;HAVING&lt;/code&gt;,&lt;code&gt;GROUP BY&lt;/code&gt;,&lt;code&gt;ORDER BY&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-selectfrom&#34;&gt;1. SELECT/FROM&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;/* selecte certain column */
+SELECT column1, column2, ...
+FROM table_name;
+
+/* select all columns using wildcard */
+SELECT *
+FROM table_name;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-where&#34;&gt;2. WHERE&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt; The &lt;code&gt;WHERE&lt;/code&gt; clause is used to filter records&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;/* filter columns with certain condition */
+WHERE [column_name] BETWEEN [condition1] AND [condition2]
+/* filter with pattern (%, _) */
+WHERE [column_name] LIKE &#39;pattern&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-case&#34;&gt;3. CASE&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CASE&lt;/code&gt; : evaluates a list of conditions and returns one of multiple possible result expressions.
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://learn.microsoft.com/en-us/sql/t-sql/language-elements/case-transact-sql?view=sql-server-ver16&#34;&gt;CASE (Transact-SQL) - SQL Server | Microsoft Learn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT *,
+    CASE WHEN [column_name] BETWEEN 0.00 AND 0.25 THEN &#39;Q1&#39;
+         WHEN [column_name] BETWEEN 0.25 AND 0.50 THEN &#39;Q2&#39;
+         WHEN [column_name] BETWEEN 0.50 AND 0.75 THEN &#39;Q3&#39;
+         WHEN [column_name] BETWEEN 0.75 AND 1.00 THEN &#39;Q4&#39;
+         END AS quaritle
+FROM [table_name]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-window-functions&#34;&gt;4. Window Functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ROW_NUMBER&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;/* return the value of rank (row number) ordered by [column_to_sort] in partition of [column_to_group] */
+ROW_NUMBER() OVER(PARTITION BY [column_to_group] ORDER BY [column_to_sort] DESC)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-group-by&#34;&gt;5. GROUP BY&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GROUP BY&lt;/code&gt;: is used to aggregate rows that have the same values in one or more columns
+&lt;ul&gt;
+&lt;li&gt;collapses multiple rows into groups, and then you can apply aggregate functions
+&lt;ul&gt;
+&lt;li&gt;e.g. &lt;code&gt;COUNT&lt;/code&gt;, &lt;code&gt;SUM&lt;/code&gt;, &lt;code&gt;AVG&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT col1, col2, col3, COUNT(*)
+FROM my_table
+GROUP BY col1, col2, col3
+/* You can reference SELECT column positions by number in GROUP BY*/
+GROUP BY 1, 2, 3;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;9-null&#34;&gt;9. Null&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;IFNULL(COLUMN, &amp;quot;alternative&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>CheatSheet | Docker</title>
+      <link>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--docker/</link>
+      <pubDate>Tue, 10 Nov 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/system-architecture/9.-cheatsheets/cheatsheet--docker/</guid>
+      <description>&lt;br&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Contents&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install docker in centos&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Frequently used docker commands&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;FIle sharing in docker (bind, volume)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dockerfile instruction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker compose&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker swarm&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Glossary&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;swarm : almost same with word &amp;ldquo;cluster&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;node (manager/worker) : A unit of server in a cluster. You can run swarm commands only on the manager node.&lt;/li&gt;
+&lt;li&gt;service :  A unit of modules in project, a basic distribution unit,&lt;/li&gt;
+&lt;li&gt;stack : You can think of it as a unit of a project, and containers grouped into one stack basically belong to the same overlay network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-install-docker-in-centos&#34;&gt;1. Install docker in centOS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/install/centos/&#34;&gt;Install Docker Engine on CentOS | Docker Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# (1) Set up the repository
+$ sudo yum install -y yum-utils
+$ sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+# (2) Install Docker Engine
+$ sudo yum install docker-ce docker-ce-cli containerd.io
+$ sudo yum install docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io docker-compose-plugin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/install/linux-postinstall/&#34;&gt;Post-installation steps for Linux | Docker Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# (3) Create the docker group.
+# $ sudo groupadd docker
+
+# (4)Add your user to the docker group.
+# sudo usermod -aG docker &amp;lt;USER&amp;gt;
+$ sudo /usr/sbin/usermod -aG docker &amp;lt;USER&amp;gt;
+$ sudo /usr/sbin/usermod -aG docker &amp;lt;USER_SU&amp;gt;
+
+# (5) Run and Stop docker before change root directory
+$ sudo systemctl start docker
+$ sudo systemctl stop docker
+
+# (5) change root directory (storage for default docker directory is not enough)
+# add {&amp;quot;data-root&amp;quot;: &amp;quot;/home1/&amp;lt;USER&amp;gt;/docker-data&amp;quot;} in /etc/docker/daemon.json
+$ sudo vim /etc/docker/daemon.json
+
+# (6) Run docker
+$ sudo systemctl start docker
+# if got permission error for /var/run/docker.sock
+$ sudo chmod 666 /var/run/docker.sock
+# check root directory
+$ docker info | grep Root
+$ docker run hello-world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-install-colima-for-mac&#34;&gt;1. Install Colima for Mac&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2024.08 (Sonoma 14.5)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install docker client
+brew install docker
+brew install docker-buildx
+brew install docker-compose
+
+
+# Error Solution for &amp;quot;docker-credential-osxkeychain : excutable file not found&amp;quot;&amp;quot;
+brew install docker-credential-helper
+
+# Install Colima
+brew install qemu
+brew install colima
+
+# Start colima
+colima start \
+  --profile default \
+  --activate \
+  --arch aarch64 \
+  --cpu 4 \
+  --memory 8 \
+  --disk 40 \
+  --mount ${HOME}:w \
+  --mount-inotify \
+  --ssh-agent \
+  --vm-type vz \
+  --vz-rosetta \
+  --verbose
+
+
+# Setup Docker context
+docker context use colima
+
+# Run colima when restart Mac
+brew services start colima
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-frequently-used-docker-commands&#34;&gt;2. Frequently used Docker Commands&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/engine/examples/running_ssh_service/&#34;&gt;Dockerize an SSH service&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker --version # check docker version
+$ docker build -t [TAG] . # build using Dockerfile in cwd
+$ docker images # show docker images
+$ docker ps -a # show docker containers
+$ docker ps --format &#39;{{.Names}}&#39;
+$ docker rm -f [CONTAINER_NAME] # remove docker container
+$ docker rmi [IMAGE_NAME] # remove docker image
+
+$ docker run --dit --rm -p 22:22 --name [CONTAINER_NAME] -v [SRC]:[DST] [IMAGE_NAME] # run docker container
+$ ctrl p q # exit without removing container
+$ docker attach [CONTAINER_NAME]] # attach to docker container
+$ docker exec -u 0 -it [CONTAINER_NAME] bash # exec on root 
+
+$ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+$ docker push [REPOSITORY[:TAG]]
+
+$ docker container prune # prune docker container
+$ docker image prune # prune docker images
+$ docker system prune -a # remove all building cache
+
+$ docker logs -f &amp;lt;CONTAINER_NAME&amp;gt; --tail=1000 2&amp;gt;&amp;amp;1 | grep complete # show logs in container
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-file-sharing-in-docker-container&#34;&gt;3. File sharing in docker container&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bind-mount : are files mounted from your host machine (the one that runs your docker daemon) onto your container.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>WEB #1 | Overview</title>
+      <link>http://localhost:1313/__draft/misc/web01--overview/</link>
+      <pubDate>Mon, 31 Aug 2020 09:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/__draft/misc/web01--overview/</guid>
+      <description>&lt;h2&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Frontend : 웹, 앱, 모바일 등 어플리케이션 내의 사용자 인터페이스 관련 개발 분야&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Static Components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;CSS (Style Sheet)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dynamic Components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Javascript (Script Programming Language)&lt;/li&gt;
+&lt;li&gt;Template Engine (Jinja2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Backend&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web server
+&lt;ul&gt;
+&lt;li&gt;uvicorn&lt;/li&gt;
+&lt;li&gt;nginx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Web Framework
+&lt;ul&gt;
+&lt;li&gt;Python Django&lt;/li&gt;
+&lt;li&gt;Python Flask&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        CS #01 | Data Structure - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction Linear Data Structure Array Linked List Stack Queue Non-Linear Data Structure Tree Heap Hash Graph Data Types vs Data Structures Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool) Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently. 1. Array Definition : A data structure that stores a collection of elements (usually of the same type) in contiguous memory locations. Characteristics Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c&#43;&#43;) Same data type : All elements must be of the same type Contiguous memory : Elements are stored next to each other in memory, which makes access very fast Index-based access : Elements are accessed using indices Operations Access, O(1) : the memory address can be calculated directly Update, O(1) : arr[i] = x Traversal, O(n) : loop through array Insertion/Deletion, O(n) : elements may need to be shifted Advantages Very fast random access (by indexing) Easy to use and implement Disadvantages Fixed size (cannot grow/shrink easily) Costly insertion and deletion (need shifting) Wasted memory if array is allocated larger than needed arr = [1, 2, 3, 4] print(arr[0]) # Access arr[2] = 99 # Update [print(x) for x in arr] # Traversal 2. Linked List Definition : a data structure where elements (called nodes) are connected using pointers (links). Each node contains data (the value) and pointer (reference) to the next node in the list Characteristics : Dynamic size : Can easily grow or shrink at runtime Non-contiguous memory : Nodes can be stored anywhere in memory Pointer based navigation : Accessing an element requires following pointers from the head node Operations Access, O(n) : must traverse from head Update, O(1) : if node is known node.data=x Traversal, O(n) Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot Advantages Dynamic size Efficient insertions/deletions (no shifting required like arrays) Disadvantages No random access (must traverse sequentially) Extra memory overhead (storing pointers) Cache unfriendly (nodes not stored contiguously) class Node: def __init__(self, data): self.data = data self.next = None # Cread nodes head = Node(10) head.next = Node(20) head.next.next = Node(30) # Traverse current = head while current: print(current.data) current = current.next 3. Stack Definition : a linear data structure that follows the LIFO (Last In, First Out) principles Characteristics LIFO : Last inserted elements is the first one removed Restricted Access : Only the top elemnet can be accessed, added, or removed Can be implemented using arrays or linked lists. Operations Push, O(1) Pop, O(1) Traversal, O(n) Advantages Simple to use and efficient for undo/redo, recursion, parsing, backtracking Fast operations (all O(1) for push,pop) Disadvantages Limited access (only top elements is available) FIxed size if implemented using an array (unless dynamically resized) Real-world Uses Undo/Redo in text editors Browser history (back button) stack = [] # push stack.append(10) stack.append(20) stack.append(30) # pop top = stack.pop() 4. Queue Definition : a linear data structure that follows FIFO (First In, First Out) principles Characteristics FIFO : First Inserted element is the first one removed Front : where elements are removed Rear : where elements are added Operations Enqueue, O(1) Dequeue, O(1) Traversal, O(n) Advantages Maintains order of processing Simple to implement Disadvantages Random access is not allowed Real-World uses Printers Customer Services Lines &quot;&quot;&quot; # double ended queue It is highly efficient O(1). While a standard list&#39;s list.pop(0) takes time because it shifts all remaining elements, deque is implemented as a doubly linked list and performs this instantly. &quot;&quot;&quot; from collections import deque queue = deque() # Enqueue queue.append(10) queue.append(20) queue.append(30) # Dequeue front = queue.popleft() 5. Tree Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges A tree starts swith a special node called the root Each node can have child nodes (subtrees) Nodes without children are called leaves Characteristics Hierarchical structure Root node at the top : every other node has exactly one parent Edges connect nodes Operations Insertion : Depends on tree type Deletion : More complex Traversal &amp; Search O(logn) : Visit nodes in a specific order, efficient in BST BFS (Breadth First Search) : Level order using queue (from collections import deque) DFS (Depth First Search) : Preorder, Inorder, Postorder Preorder : root -&gt; left -&gt; right Inorder : left -&gt; root -&gt; right Postorder : left -&gt; right -&gt; root Advantages Represent hierarchical data naturally Enable fast search, insert, delete, in balanced trees O(logn) Disadvantages More complex to implement than linear structures Performance can degrade if tree becomes unbalanced Real-World Uses File Systems (folders, subfolders) Database (B-trees) API responses AI/ML (decision trees) Variants Binary Search Tree (BST) : left &lt; root &lt; right inorder traversal → sorted array # Binary Tree class Node: def __init__(self, data): self.data = data self.left = None self.right = None # Create nodes root = Node(10) root.left = Node(5) root.right = Node(20) # Traversal (preorder) - recursive def preorder(node): if node: print(node.data) preorder(node.left) preorder(node.right) # Traversal (inorder) - recursive def inorder(node): if node: inorder(node.left) print(node.data) inorder(node.right) preorder(root) inorder(root) 6. Heap Definition : Special complete binary tree that satisfies the heap propery Max Heap : Every parent node is greater than or equal to its children Min Heap : Every parent node is less than or equal to its children Characteristics Complete Binary Tree : All levels are filled, except possibly the last Heap Property : Parent node compares consistently with children Efficient operations : Insertions and deletions keep the tree balanced Operations Insert, O(logn): new element bubbled up to restore heap property To maintain the complete binary tree structure Insert the new element at the next available position And then, restore the heap property Delete, O(logn): root removed, last element moved to root, then bubbled down Heapify, O(n) : build heap from an array Advantages Guarantees fast access to min/max element Useful for priority-based tasks Efficient for sorting (Heap Sort) Disadvantages Not good for fast searching arbitrary elements (only root is fast) Requires extra work to maintain heap property after insertions/deletions Real world Uses Heap sort : efficient O(nlogn) sorting import heapq # Create a min-heap heap = [] heapq.heappush(heap, 20) heapq.heappush(heap, 5) heapq.heappush(heap, 15) print(heap) #[5, 20, 15] # pop (remove smalles element) print(heapq.heappop(heap)) 7. Hash Map Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys. Characteristics Key-Value Mapping : Each unique key maps to a value Hash Function : Converts a key into an index Collision Handling : Two different keys may hash to the same index. Dynamic Resizing : Often grows when load factor (items/buckets) gets too high Operations Insert, O(1) average, O(n) worst-case Search, O(1) average, O(n) worst-case Delete, O(1) Traversal, O(n) Advantages Extremely fast lookups on average, O(1) Great for dictionaries, caches, symbol tables. Flexible keys (can be strings, numbers, tuples) Disadvantages Collisions degrade performance Unordered (no natural order of keys) Requires a good hash function to avoid clustering (Hbase) When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket) A hash function takes a key and converts it into a number. That number is then mapped into the hash table&rsquo;s array index e.g. using modulo : hash(&ldquo;apple&rdquo;) → 9324983 → store at index(bucket) No.3 Real world Uses Databases (Indexing with hash-based indexes) # create a hash table hash = {} # Insert hash[&quot;apple&quot;] = 10 hash[&quot;banana&quot;] = 20 # Search print(hash[&quot;apple&quot;] # Delete del hash[&quot;apple&quot;] # Traverse for key, value in hash.items(): print(key, value) 8. Graph Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes Characteristics Vertices : represents entities Edges : represent relationships between vertices Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B) Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally Cycles vs Acyclic Operations Traversal Insert/Delete veritices and edges, O(1) to O(V^2) Search DFS (Depth First Search) : Explore deeply first stack or recursive() and [visited] To explore all possible paths and record the characteristics of each path BFS (Breadth First Search) : Explore level by level. with queue (collections.deque) and [visited] When the graph size is extremely large Advantages Very flexible, can model complex relationships Efficient algorithms exist for pathfinding, connectivity, shortest paths Disadvantages More complex than trees or arrays. Some operations can be expensive or large graphs Real world Uses Social networks Recommendation Engines from collections import defaultdict class Graph: def __init__(self): self.graph = defaultdict(list) def add_edge(self, u, v): self.graph[u].append(v) def bfs(self, start): visited = set() queue = [start] while queue: node = queue.pop(0) if node not in visited: print(node, end=&quot; &quot;) visited.add(node) queue.extend(self.graph[node]) g = Graph() g.add_edge(0, 1) g.add_edge(0, 2) g.add_edge(1, 2) g.add_edge(2, 0) g.add_edge(2, 3) g.bfs(2) # 2, 0, 3, 1 " />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>CS #01 | Data Structure - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="https://koreanbear89.github.io/language/1.-computer-science/cs01--data-structure/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="CS #01 | Data Structure">
+  <meta property="og:description" content="Introduction Linear Data Structure Array Linked List Stack Queue Non-Linear Data Structure Tree Heap Hash Graph Data Types vs Data Structures Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool) Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently. 1. Array Definition : A data structure that stores a collection of elements (usually of the same type) in contiguous memory locations. Characteristics Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c&#43;&#43;) Same data type : All elements must be of the same type Contiguous memory : Elements are stored next to each other in memory, which makes access very fast Index-based access : Elements are accessed using indices Operations Access, O(1) : the memory address can be calculated directly Update, O(1) : arr[i] = x Traversal, O(n) : loop through array Insertion/Deletion, O(n) : elements may need to be shifted Advantages Very fast random access (by indexing) Easy to use and implement Disadvantages Fixed size (cannot grow/shrink easily) Costly insertion and deletion (need shifting) Wasted memory if array is allocated larger than needed arr = [1, 2, 3, 4] print(arr[0]) # Access arr[2] = 99 # Update [print(x) for x in arr] # Traversal 2. Linked List Definition : a data structure where elements (called nodes) are connected using pointers (links). Each node contains data (the value) and pointer (reference) to the next node in the list Characteristics : Dynamic size : Can easily grow or shrink at runtime Non-contiguous memory : Nodes can be stored anywhere in memory Pointer based navigation : Accessing an element requires following pointers from the head node Operations Access, O(n) : must traverse from head Update, O(1) : if node is known node.data=x Traversal, O(n) Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot Advantages Dynamic size Efficient insertions/deletions (no shifting required like arrays) Disadvantages No random access (must traverse sequentially) Extra memory overhead (storing pointers) Cache unfriendly (nodes not stored contiguously) class Node: def __init__(self, data): self.data = data self.next = None # Cread nodes head = Node(10) head.next = Node(20) head.next.next = Node(30) # Traverse current = head while current: print(current.data) current = current.next 3. Stack Definition : a linear data structure that follows the LIFO (Last In, First Out) principles Characteristics LIFO : Last inserted elements is the first one removed Restricted Access : Only the top elemnet can be accessed, added, or removed Can be implemented using arrays or linked lists. Operations Push, O(1) Pop, O(1) Traversal, O(n) Advantages Simple to use and efficient for undo/redo, recursion, parsing, backtracking Fast operations (all O(1) for push,pop) Disadvantages Limited access (only top elements is available) FIxed size if implemented using an array (unless dynamically resized) Real-world Uses Undo/Redo in text editors Browser history (back button) stack = [] # push stack.append(10) stack.append(20) stack.append(30) # pop top = stack.pop() 4. Queue Definition : a linear data structure that follows FIFO (First In, First Out) principles Characteristics FIFO : First Inserted element is the first one removed Front : where elements are removed Rear : where elements are added Operations Enqueue, O(1) Dequeue, O(1) Traversal, O(n) Advantages Maintains order of processing Simple to implement Disadvantages Random access is not allowed Real-World uses Printers Customer Services Lines &#34;&#34;&#34; # double ended queue It is highly efficient O(1). While a standard list&#39;s list.pop(0) takes time because it shifts all remaining elements, deque is implemented as a doubly linked list and performs this instantly. &#34;&#34;&#34; from collections import deque queue = deque() # Enqueue queue.append(10) queue.append(20) queue.append(30) # Dequeue front = queue.popleft() 5. Tree Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges A tree starts swith a special node called the root Each node can have child nodes (subtrees) Nodes without children are called leaves Characteristics Hierarchical structure Root node at the top : every other node has exactly one parent Edges connect nodes Operations Insertion : Depends on tree type Deletion : More complex Traversal &amp; Search O(logn) : Visit nodes in a specific order, efficient in BST BFS (Breadth First Search) : Level order using queue (from collections import deque) DFS (Depth First Search) : Preorder, Inorder, Postorder Preorder : root -&gt; left -&gt; right Inorder : left -&gt; root -&gt; right Postorder : left -&gt; right -&gt; root Advantages Represent hierarchical data naturally Enable fast search, insert, delete, in balanced trees O(logn) Disadvantages More complex to implement than linear structures Performance can degrade if tree becomes unbalanced Real-World Uses File Systems (folders, subfolders) Database (B-trees) API responses AI/ML (decision trees) Variants Binary Search Tree (BST) : left &lt; root &lt; right inorder traversal → sorted array # Binary Tree class Node: def __init__(self, data): self.data = data self.left = None self.right = None # Create nodes root = Node(10) root.left = Node(5) root.right = Node(20) # Traversal (preorder) - recursive def preorder(node): if node: print(node.data) preorder(node.left) preorder(node.right) # Traversal (inorder) - recursive def inorder(node): if node: inorder(node.left) print(node.data) inorder(node.right) preorder(root) inorder(root) 6. Heap Definition : Special complete binary tree that satisfies the heap propery Max Heap : Every parent node is greater than or equal to its children Min Heap : Every parent node is less than or equal to its children Characteristics Complete Binary Tree : All levels are filled, except possibly the last Heap Property : Parent node compares consistently with children Efficient operations : Insertions and deletions keep the tree balanced Operations Insert, O(logn): new element bubbled up to restore heap property To maintain the complete binary tree structure Insert the new element at the next available position And then, restore the heap property Delete, O(logn): root removed, last element moved to root, then bubbled down Heapify, O(n) : build heap from an array Advantages Guarantees fast access to min/max element Useful for priority-based tasks Efficient for sorting (Heap Sort) Disadvantages Not good for fast searching arbitrary elements (only root is fast) Requires extra work to maintain heap property after insertions/deletions Real world Uses Heap sort : efficient O(nlogn) sorting import heapq # Create a min-heap heap = [] heapq.heappush(heap, 20) heapq.heappush(heap, 5) heapq.heappush(heap, 15) print(heap) #[5, 20, 15] # pop (remove smalles element) print(heapq.heappop(heap)) 7. Hash Map Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys. Characteristics Key-Value Mapping : Each unique key maps to a value Hash Function : Converts a key into an index Collision Handling : Two different keys may hash to the same index. Dynamic Resizing : Often grows when load factor (items/buckets) gets too high Operations Insert, O(1) average, O(n) worst-case Search, O(1) average, O(n) worst-case Delete, O(1) Traversal, O(n) Advantages Extremely fast lookups on average, O(1) Great for dictionaries, caches, symbol tables. Flexible keys (can be strings, numbers, tuples) Disadvantages Collisions degrade performance Unordered (no natural order of keys) Requires a good hash function to avoid clustering (Hbase) When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket) A hash function takes a key and converts it into a number. That number is then mapped into the hash table’s array index e.g. using modulo : hash(“apple”) → 9324983 → store at index(bucket) No.3 Real world Uses Databases (Indexing with hash-based indexes) # create a hash table hash = {} # Insert hash[&#34;apple&#34;] = 10 hash[&#34;banana&#34;] = 20 # Search print(hash[&#34;apple&#34;] # Delete del hash[&#34;apple&#34;] # Traverse for key, value in hash.items(): print(key, value) 8. Graph Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes Characteristics Vertices : represents entities Edges : represent relationships between vertices Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B) Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally Cycles vs Acyclic Operations Traversal Insert/Delete veritices and edges, O(1) to O(V^2) Search DFS (Depth First Search) : Explore deeply first stack or recursive() and [visited] To explore all possible paths and record the characteristics of each path BFS (Breadth First Search) : Explore level by level. with queue (collections.deque) and [visited] When the graph size is extremely large Advantages Very flexible, can model complex relationships Efficient algorithms exist for pathfinding, connectivity, shortest paths Disadvantages More complex than trees or arrays. Some operations can be expensive or large graphs Real world Uses Social networks Recommendation Engines from collections import defaultdict class Graph: def __init__(self): self.graph = defaultdict(list) def add_edge(self, u, v): self.graph[u].append(v) def bfs(self, start): visited = set() queue = [start] while queue: node = queue.pop(0) if node not in visited: print(node, end=&#34; &#34;) visited.add(node) queue.extend(self.graph[node]) g = Graph() g.add_edge(0, 1) g.add_edge(0, 2) g.add_edge(1, 2) g.add_edge(2, 0) g.add_edge(2, 3) g.bfs(2) # 2, 0, 3, 1">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2019-08-01T09:00:00+00:00">
+    <meta property="article:modified_time" content="2019-08-01T09:00:00+00:00">
+
+  <meta itemprop="name" content="CS #01 | Data Structure">
+  <meta itemprop="description" content="Introduction Linear Data Structure Array Linked List Stack Queue Non-Linear Data Structure Tree Heap Hash Graph Data Types vs Data Structures Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool) Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently. 1. Array Definition : A data structure that stores a collection of elements (usually of the same type) in contiguous memory locations. Characteristics Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c&#43;&#43;) Same data type : All elements must be of the same type Contiguous memory : Elements are stored next to each other in memory, which makes access very fast Index-based access : Elements are accessed using indices Operations Access, O(1) : the memory address can be calculated directly Update, O(1) : arr[i] = x Traversal, O(n) : loop through array Insertion/Deletion, O(n) : elements may need to be shifted Advantages Very fast random access (by indexing) Easy to use and implement Disadvantages Fixed size (cannot grow/shrink easily) Costly insertion and deletion (need shifting) Wasted memory if array is allocated larger than needed arr = [1, 2, 3, 4] print(arr[0]) # Access arr[2] = 99 # Update [print(x) for x in arr] # Traversal 2. Linked List Definition : a data structure where elements (called nodes) are connected using pointers (links). Each node contains data (the value) and pointer (reference) to the next node in the list Characteristics : Dynamic size : Can easily grow or shrink at runtime Non-contiguous memory : Nodes can be stored anywhere in memory Pointer based navigation : Accessing an element requires following pointers from the head node Operations Access, O(n) : must traverse from head Update, O(1) : if node is known node.data=x Traversal, O(n) Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot Advantages Dynamic size Efficient insertions/deletions (no shifting required like arrays) Disadvantages No random access (must traverse sequentially) Extra memory overhead (storing pointers) Cache unfriendly (nodes not stored contiguously) class Node: def __init__(self, data): self.data = data self.next = None # Cread nodes head = Node(10) head.next = Node(20) head.next.next = Node(30) # Traverse current = head while current: print(current.data) current = current.next 3. Stack Definition : a linear data structure that follows the LIFO (Last In, First Out) principles Characteristics LIFO : Last inserted elements is the first one removed Restricted Access : Only the top elemnet can be accessed, added, or removed Can be implemented using arrays or linked lists. Operations Push, O(1) Pop, O(1) Traversal, O(n) Advantages Simple to use and efficient for undo/redo, recursion, parsing, backtracking Fast operations (all O(1) for push,pop) Disadvantages Limited access (only top elements is available) FIxed size if implemented using an array (unless dynamically resized) Real-world Uses Undo/Redo in text editors Browser history (back button) stack = [] # push stack.append(10) stack.append(20) stack.append(30) # pop top = stack.pop() 4. Queue Definition : a linear data structure that follows FIFO (First In, First Out) principles Characteristics FIFO : First Inserted element is the first one removed Front : where elements are removed Rear : where elements are added Operations Enqueue, O(1) Dequeue, O(1) Traversal, O(n) Advantages Maintains order of processing Simple to implement Disadvantages Random access is not allowed Real-World uses Printers Customer Services Lines &#34;&#34;&#34; # double ended queue It is highly efficient O(1). While a standard list&#39;s list.pop(0) takes time because it shifts all remaining elements, deque is implemented as a doubly linked list and performs this instantly. &#34;&#34;&#34; from collections import deque queue = deque() # Enqueue queue.append(10) queue.append(20) queue.append(30) # Dequeue front = queue.popleft() 5. Tree Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges A tree starts swith a special node called the root Each node can have child nodes (subtrees) Nodes without children are called leaves Characteristics Hierarchical structure Root node at the top : every other node has exactly one parent Edges connect nodes Operations Insertion : Depends on tree type Deletion : More complex Traversal &amp; Search O(logn) : Visit nodes in a specific order, efficient in BST BFS (Breadth First Search) : Level order using queue (from collections import deque) DFS (Depth First Search) : Preorder, Inorder, Postorder Preorder : root -&gt; left -&gt; right Inorder : left -&gt; root -&gt; right Postorder : left -&gt; right -&gt; root Advantages Represent hierarchical data naturally Enable fast search, insert, delete, in balanced trees O(logn) Disadvantages More complex to implement than linear structures Performance can degrade if tree becomes unbalanced Real-World Uses File Systems (folders, subfolders) Database (B-trees) API responses AI/ML (decision trees) Variants Binary Search Tree (BST) : left &lt; root &lt; right inorder traversal → sorted array # Binary Tree class Node: def __init__(self, data): self.data = data self.left = None self.right = None # Create nodes root = Node(10) root.left = Node(5) root.right = Node(20) # Traversal (preorder) - recursive def preorder(node): if node: print(node.data) preorder(node.left) preorder(node.right) # Traversal (inorder) - recursive def inorder(node): if node: inorder(node.left) print(node.data) inorder(node.right) preorder(root) inorder(root) 6. Heap Definition : Special complete binary tree that satisfies the heap propery Max Heap : Every parent node is greater than or equal to its children Min Heap : Every parent node is less than or equal to its children Characteristics Complete Binary Tree : All levels are filled, except possibly the last Heap Property : Parent node compares consistently with children Efficient operations : Insertions and deletions keep the tree balanced Operations Insert, O(logn): new element bubbled up to restore heap property To maintain the complete binary tree structure Insert the new element at the next available position And then, restore the heap property Delete, O(logn): root removed, last element moved to root, then bubbled down Heapify, O(n) : build heap from an array Advantages Guarantees fast access to min/max element Useful for priority-based tasks Efficient for sorting (Heap Sort) Disadvantages Not good for fast searching arbitrary elements (only root is fast) Requires extra work to maintain heap property after insertions/deletions Real world Uses Heap sort : efficient O(nlogn) sorting import heapq # Create a min-heap heap = [] heapq.heappush(heap, 20) heapq.heappush(heap, 5) heapq.heappush(heap, 15) print(heap) #[5, 20, 15] # pop (remove smalles element) print(heapq.heappop(heap)) 7. Hash Map Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys. Characteristics Key-Value Mapping : Each unique key maps to a value Hash Function : Converts a key into an index Collision Handling : Two different keys may hash to the same index. Dynamic Resizing : Often grows when load factor (items/buckets) gets too high Operations Insert, O(1) average, O(n) worst-case Search, O(1) average, O(n) worst-case Delete, O(1) Traversal, O(n) Advantages Extremely fast lookups on average, O(1) Great for dictionaries, caches, symbol tables. Flexible keys (can be strings, numbers, tuples) Disadvantages Collisions degrade performance Unordered (no natural order of keys) Requires a good hash function to avoid clustering (Hbase) When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket) A hash function takes a key and converts it into a number. That number is then mapped into the hash table’s array index e.g. using modulo : hash(“apple”) → 9324983 → store at index(bucket) No.3 Real world Uses Databases (Indexing with hash-based indexes) # create a hash table hash = {} # Insert hash[&#34;apple&#34;] = 10 hash[&#34;banana&#34;] = 20 # Search print(hash[&#34;apple&#34;] # Delete del hash[&#34;apple&#34;] # Traverse for key, value in hash.items(): print(key, value) 8. Graph Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes Characteristics Vertices : represents entities Edges : represent relationships between vertices Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B) Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally Cycles vs Acyclic Operations Traversal Insert/Delete veritices and edges, O(1) to O(V^2) Search DFS (Depth First Search) : Explore deeply first stack or recursive() and [visited] To explore all possible paths and record the characteristics of each path BFS (Breadth First Search) : Explore level by level. with queue (collections.deque) and [visited] When the graph size is extremely large Advantages Very flexible, can model complex relationships Efficient algorithms exist for pathfinding, connectivity, shortest paths Disadvantages More complex than trees or arrays. Some operations can be expensive or large graphs Real world Uses Social networks Recommendation Engines from collections import defaultdict class Graph: def __init__(self): self.graph = defaultdict(list) def add_edge(self, u, v): self.graph[u].append(v) def bfs(self, start): visited = set() queue = [start] while queue: node = queue.pop(0) if node not in visited: print(node, end=&#34; &#34;) visited.add(node) queue.extend(self.graph[node]) g = Graph() g.add_edge(0, 1) g.add_edge(0, 2) g.add_edge(1, 2) g.add_edge(2, 0) g.add_edge(2, 3) g.bfs(2) # 2, 0, 3, 1">
+  <meta itemprop="datePublished" content="2019-08-01T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-08-01T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1507">
+  <meta itemprop="keywords" content="1. Computer Science">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CS #01 | Data Structure">
+  <meta name="twitter:description" content="Introduction Linear Data Structure Array Linked List Stack Queue Non-Linear Data Structure Tree Heap Hash Graph Data Types vs Data Structures Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool) Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently. 1. Array Definition : A data structure that stores a collection of elements (usually of the same type) in contiguous memory locations. Characteristics Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c&#43;&#43;) Same data type : All elements must be of the same type Contiguous memory : Elements are stored next to each other in memory, which makes access very fast Index-based access : Elements are accessed using indices Operations Access, O(1) : the memory address can be calculated directly Update, O(1) : arr[i] = x Traversal, O(n) : loop through array Insertion/Deletion, O(n) : elements may need to be shifted Advantages Very fast random access (by indexing) Easy to use and implement Disadvantages Fixed size (cannot grow/shrink easily) Costly insertion and deletion (need shifting) Wasted memory if array is allocated larger than needed arr = [1, 2, 3, 4] print(arr[0]) # Access arr[2] = 99 # Update [print(x) for x in arr] # Traversal 2. Linked List Definition : a data structure where elements (called nodes) are connected using pointers (links). Each node contains data (the value) and pointer (reference) to the next node in the list Characteristics : Dynamic size : Can easily grow or shrink at runtime Non-contiguous memory : Nodes can be stored anywhere in memory Pointer based navigation : Accessing an element requires following pointers from the head node Operations Access, O(n) : must traverse from head Update, O(1) : if node is known node.data=x Traversal, O(n) Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot Advantages Dynamic size Efficient insertions/deletions (no shifting required like arrays) Disadvantages No random access (must traverse sequentially) Extra memory overhead (storing pointers) Cache unfriendly (nodes not stored contiguously) class Node: def __init__(self, data): self.data = data self.next = None # Cread nodes head = Node(10) head.next = Node(20) head.next.next = Node(30) # Traverse current = head while current: print(current.data) current = current.next 3. Stack Definition : a linear data structure that follows the LIFO (Last In, First Out) principles Characteristics LIFO : Last inserted elements is the first one removed Restricted Access : Only the top elemnet can be accessed, added, or removed Can be implemented using arrays or linked lists. Operations Push, O(1) Pop, O(1) Traversal, O(n) Advantages Simple to use and efficient for undo/redo, recursion, parsing, backtracking Fast operations (all O(1) for push,pop) Disadvantages Limited access (only top elements is available) FIxed size if implemented using an array (unless dynamically resized) Real-world Uses Undo/Redo in text editors Browser history (back button) stack = [] # push stack.append(10) stack.append(20) stack.append(30) # pop top = stack.pop() 4. Queue Definition : a linear data structure that follows FIFO (First In, First Out) principles Characteristics FIFO : First Inserted element is the first one removed Front : where elements are removed Rear : where elements are added Operations Enqueue, O(1) Dequeue, O(1) Traversal, O(n) Advantages Maintains order of processing Simple to implement Disadvantages Random access is not allowed Real-World uses Printers Customer Services Lines &#34;&#34;&#34; # double ended queue It is highly efficient O(1). While a standard list&#39;s list.pop(0) takes time because it shifts all remaining elements, deque is implemented as a doubly linked list and performs this instantly. &#34;&#34;&#34; from collections import deque queue = deque() # Enqueue queue.append(10) queue.append(20) queue.append(30) # Dequeue front = queue.popleft() 5. Tree Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges A tree starts swith a special node called the root Each node can have child nodes (subtrees) Nodes without children are called leaves Characteristics Hierarchical structure Root node at the top : every other node has exactly one parent Edges connect nodes Operations Insertion : Depends on tree type Deletion : More complex Traversal &amp; Search O(logn) : Visit nodes in a specific order, efficient in BST BFS (Breadth First Search) : Level order using queue (from collections import deque) DFS (Depth First Search) : Preorder, Inorder, Postorder Preorder : root -&gt; left -&gt; right Inorder : left -&gt; root -&gt; right Postorder : left -&gt; right -&gt; root Advantages Represent hierarchical data naturally Enable fast search, insert, delete, in balanced trees O(logn) Disadvantages More complex to implement than linear structures Performance can degrade if tree becomes unbalanced Real-World Uses File Systems (folders, subfolders) Database (B-trees) API responses AI/ML (decision trees) Variants Binary Search Tree (BST) : left &lt; root &lt; right inorder traversal → sorted array # Binary Tree class Node: def __init__(self, data): self.data = data self.left = None self.right = None # Create nodes root = Node(10) root.left = Node(5) root.right = Node(20) # Traversal (preorder) - recursive def preorder(node): if node: print(node.data) preorder(node.left) preorder(node.right) # Traversal (inorder) - recursive def inorder(node): if node: inorder(node.left) print(node.data) inorder(node.right) preorder(root) inorder(root) 6. Heap Definition : Special complete binary tree that satisfies the heap propery Max Heap : Every parent node is greater than or equal to its children Min Heap : Every parent node is less than or equal to its children Characteristics Complete Binary Tree : All levels are filled, except possibly the last Heap Property : Parent node compares consistently with children Efficient operations : Insertions and deletions keep the tree balanced Operations Insert, O(logn): new element bubbled up to restore heap property To maintain the complete binary tree structure Insert the new element at the next available position And then, restore the heap property Delete, O(logn): root removed, last element moved to root, then bubbled down Heapify, O(n) : build heap from an array Advantages Guarantees fast access to min/max element Useful for priority-based tasks Efficient for sorting (Heap Sort) Disadvantages Not good for fast searching arbitrary elements (only root is fast) Requires extra work to maintain heap property after insertions/deletions Real world Uses Heap sort : efficient O(nlogn) sorting import heapq # Create a min-heap heap = [] heapq.heappush(heap, 20) heapq.heappush(heap, 5) heapq.heappush(heap, 15) print(heap) #[5, 20, 15] # pop (remove smalles element) print(heapq.heappop(heap)) 7. Hash Map Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys. Characteristics Key-Value Mapping : Each unique key maps to a value Hash Function : Converts a key into an index Collision Handling : Two different keys may hash to the same index. Dynamic Resizing : Often grows when load factor (items/buckets) gets too high Operations Insert, O(1) average, O(n) worst-case Search, O(1) average, O(n) worst-case Delete, O(1) Traversal, O(n) Advantages Extremely fast lookups on average, O(1) Great for dictionaries, caches, symbol tables. Flexible keys (can be strings, numbers, tuples) Disadvantages Collisions degrade performance Unordered (no natural order of keys) Requires a good hash function to avoid clustering (Hbase) When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket) A hash function takes a key and converts it into a number. That number is then mapped into the hash table’s array index e.g. using modulo : hash(“apple”) → 9324983 → store at index(bucket) No.3 Real world Uses Databases (Indexing with hash-based indexes) # create a hash table hash = {} # Insert hash[&#34;apple&#34;] = 10 hash[&#34;banana&#34;] = 20 # Search print(hash[&#34;apple&#34;] # Delete del hash[&#34;apple&#34;] # Traverse for key, value in hash.items(): print(key, value) 8. Graph Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes Characteristics Vertices : represents entities Edges : represent relationships between vertices Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B) Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally Cycles vs Acyclic Operations Traversal Insert/Delete veritices and edges, O(1) to O(V^2) Search DFS (Depth First Search) : Explore deeply first stack or recursive() and [visited] To explore all possible paths and record the characteristics of each path BFS (Breadth First Search) : Explore level by level. with queue (collections.deque) and [visited] When the graph size is extremely large Advantages Very flexible, can model complex relationships Efficient algorithms exist for pathfinding, connectivity, shortest paths Disadvantages More complex than trees or arrays. Some operations can be expensive or large graphs Real world Uses Social networks Recommendation Engines from collections import defaultdict class Graph: def __init__(self): self.graph = defaultdict(list) def add_edge(self, u, v): self.graph[u].append(v) def bfs(self, start): visited = set() queue = [start] while queue: node = queue.pop(0) if node not in visited: print(node, end=&#34; &#34;) visited.add(node) queue.extend(self.graph[node]) g = Graph() g.add_edge(0, 1) g.add_edge(0, 2) g.add_edge(1, 2) g.add_edge(2, 0) g.add_edge(2, 3) g.bfs(2) # 2, 0, 3, 1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="https://koreanbear89.github.io/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+    
+      
+        <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">5</span></li>
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">6</span></li>
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machine Learning</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">11</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/cheatsheets">CheatSheets</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+              
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-python">2. Python</a>
+                  <span class="category-list-count">10</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-scala">3. Scala</a>
+                  <span class="category-list-count">2</span></li>
+
+                  
+                  
+              
+                  
+                  
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/misc">Misc</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+    
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/1.-computer-science/cs01--data-structure/"
+    >CS #01 | Data Structure</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://koreanbear89.github.io/language/1.-computer-science/cs01--data-structure/" class="article-date">
+  <time datetime="2019-08-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2019-08-01</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/1.-computer-science/"> 1. Computer Science </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/1.-computer-science/cs01--data-structure/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Linear Data Structure
+<ul>
+<li>Array</li>
+<li>Linked List</li>
+<li>Stack</li>
+<li>Queue</li>
+</ul>
+</li>
+<li>Non-Linear Data Structure
+<ul>
+<li>Tree</li>
+<li>Heap</li>
+<li>Hash</li>
+<li>Graph</li>
+</ul>
+</li>
+<li>Data Types vs Data Structures
+<ul>
+<li>Data Type defines the kind of values a variable can hold and the operations that can be performed on those values (int, float, char, bool)</li>
+<li>Data Structure is a way of organizing and storing data in memory so that it can be accessed and manipulated efficiently.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="1-array">1. Array</h2>
+<ul>
+<li>Definition :  A data structure that stores a <strong>collection of elements</strong> (usually of the same type) in <strong>contiguous memory locations</strong>.</li>
+<li>Characteristics
+<ul>
+<li>Fixed size : Once created the size of an array cannot be changed (in low-level languages like c/c++)</li>
+<li>Same data type : All elements must be of the same type</li>
+<li>Contiguous memory : Elements are stored next to each other in memory, which makes access very fast</li>
+<li>Index-based access : Elements are accessed using indices</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Access, O(1) : the memory address can be calculated directly</li>
+<li>Update, O(1) : <code>arr[i] = x</code></li>
+<li>Traversal, O(n) : loop through array</li>
+<li>Insertion/Deletion, O(n) : elements may need to be shifted</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Very fast random access (by indexing)</li>
+<li>Easy to use and implement</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li><strong>Fixed size (cannot grow/shrink easily)</strong></li>
+<li>Costly insertion and deletion (need shifting)</li>
+<li>Wasted memory if array  is allocated larger than needed</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">arr = [1, 2, 3, 4]
+print(arr[0]) # Access
+arr[2] = 99 # Update
+[print(x) for x in arr] # Traversal
+</code></pre>
+<br>
+<hr>
+<h2 id="2-linked-list">2. Linked List</h2>
+<ul>
+<li>Definition : a data structure where elements (called <strong>nodes</strong>) are connected using <strong>pointers (links)</strong>.
+<ul>
+<li>Each node contains data (the value) and pointer (reference) to the next node in the list</li>
+</ul>
+</li>
+<li>Characteristics :
+<ul>
+<li>Dynamic size : Can easily grow or shrink at runtime</li>
+<li>Non-contiguous memory : Nodes can be stored anywhere in memory</li>
+<li>Pointer based navigation : Accessing an element requires following pointers from the head node</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Access, O(n) : must traverse from head</li>
+<li>Update, O(1) : if node is known <code>node.data=x</code></li>
+<li>Traversal, O(n)</li>
+<li>Insertion/Deletion, O(1) if position is known, otherwise O(n) to find the spot</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li><strong>Dynamic size</strong></li>
+<li>Efficient insertions/deletions (no shifting required like arrays)</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>No random access (must traverse sequentially)</li>
+<li>Extra memory overhead (storing pointers)</li>
+<li>Cache unfriendly (nodes not stored contiguously)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+# Cread nodes
+head = Node(10)
+head.next = Node(20)
+head.next.next = Node(30)
+
+# Traverse
+current = head
+while current:
+    print(current.data)
+    current = current.next
+</code></pre>
+<br>
+<hr>
+<h2 id="3-stack">3. Stack</h2>
+<ul>
+<li>Definition : a linear data structure that follows the LIFO (Last In, First Out) principles</li>
+<li>Characteristics
+<ul>
+<li>LIFO : Last inserted elements is the first one removed</li>
+<li>Restricted Access : Only the top elemnet can be accessed, added, or removed</li>
+<li>Can be implemented using arrays or linked lists.</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Push, O(1)</li>
+<li>Pop, O(1)</li>
+<li>Traversal, O(n)</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Simple to use and efficient for undo/redo, recursion, parsing, backtracking</li>
+<li>Fast operations (all O(1) for push,pop)</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Limited access (only top elements is available)</li>
+<li>FIxed size if implemented using an array (unless dynamically resized)</li>
+</ul>
+</li>
+<li>Real-world Uses
+<ul>
+<li>Undo/Redo in text editors</li>
+<li>Browser history (back button)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">stack = []
+# push
+stack.append(10)
+stack.append(20)
+stack.append(30)
+# pop
+top = stack.pop()
+</code></pre>
+<br>
+<hr>
+<h2 id="4-queue">4. Queue</h2>
+<ul>
+<li>Definition : a linear data structure that follows FIFO (First In, First Out) principles</li>
+<li>Characteristics
+<ul>
+<li>FIFO : First Inserted element is the first one removed</li>
+<li>Front : where elements are removed</li>
+<li>Rear : where elements are added</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Enqueue, O(1)</li>
+<li>Dequeue, O(1)</li>
+<li>Traversal, O(n)</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Maintains order of processing</li>
+<li>Simple to implement</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Random access is not allowed</li>
+</ul>
+</li>
+<li>Real-World uses
+<ul>
+<li>Printers</li>
+<li>Customer Services Lines</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">
+&quot;&quot;&quot;
+# double ended queue
+It is highly efficient O(1). While a standard list's list.pop(0) takes time because it shifts
+all remaining elements, deque is implemented as a doubly linked list and performs this instantly.
+
+&quot;&quot;&quot;
+
+from collections import deque
+
+queue = deque()
+# Enqueue
+queue.append(10)
+queue.append(20)
+queue.append(30)
+# Dequeue
+front = queue.popleft()
+</code></pre>
+<br>
+<hr>
+<h2 id="5-tree">5. Tree</h2>
+<ul>
+<li>Definition : A tree is a non-linear hierarchical data structure consisting of nodes and connected by edges
+<ul>
+<li>A tree starts swith a special node called the root</li>
+<li>Each node can have child nodes (subtrees)</li>
+<li>Nodes without children are called leaves</li>
+</ul>
+</li>
+<li>Characteristics
+<ul>
+<li>Hierarchical structure</li>
+<li>Root node at the top : every other node has exactly one parent</li>
+<li>Edges connect nodes</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Insertion : Depends on tree type</li>
+<li>Deletion : More complex</li>
+<li>Traversal &amp; Search O(logn) : Visit nodes in a specific order, efficient in BST
+<ul>
+<li><strong>BFS (Breadth First Search)</strong> : Level order
+<ul>
+<li>using queue (<code>from collections import deque</code>)</li>
+</ul>
+</li>
+<li><strong>DFS (Depth First Search)</strong> : Preorder, Inorder, Postorder
+<ul>
+<li>Preorder : root -&gt; left -&gt; right</li>
+<li>Inorder : left -&gt; root -&gt; right</li>
+<li>Postorder : left -&gt; right -&gt; root</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Represent hierarchical data naturally</li>
+<li>Enable fast search, insert, delete, in balanced trees O(logn)</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>More complex to implement than linear structures</li>
+<li>Performance can degrade if tree becomes unbalanced</li>
+</ul>
+</li>
+<li>Real-World Uses
+<ul>
+<li>File Systems (folders, subfolders)</li>
+<li>Database (B-trees)</li>
+<li>API responses</li>
+<li>AI/ML (decision trees)</li>
+</ul>
+</li>
+<li><strong>Variants</strong>
+<ul>
+<li>Binary Search Tree (BST) : left &lt; root &lt; right
+<ul>
+<li>inorder traversal → sorted array</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># Binary Tree
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+# Create nodes
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+
+# Traversal (preorder) - recursive
+def preorder(node):
+    if node:
+        print(node.data)
+        preorder(node.left)
+        preorder(node.right)
+
+# Traversal (inorder) - recursive
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.data)
+        inorder(node.right)
+
+preorder(root)
+inorder(root)
+
+</code></pre>
+<br>
+<hr>
+<h2 id="6-heap">6. Heap</h2>
+<ul>
+<li>Definition : Special complete binary tree that satisfies the heap propery
+<ul>
+<li>Max Heap : Every parent node is greater than or equal to its children</li>
+<li>Min Heap : Every parent node is less than or equal to its children</li>
+</ul>
+</li>
+<li>Characteristics
+<ul>
+<li>Complete Binary Tree : All levels are filled, except possibly the last</li>
+<li>Heap Property : Parent node compares consistently with children</li>
+<li>Efficient operations : Insertions and deletions keep the tree balanced</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Insert, O(logn): new element bubbled up to restore heap property
+<ul>
+<li>To maintain the complete binary tree structure
+<ul>
+<li>Insert the new element at the next available position</li>
+<li>And then, restore the heap property</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Delete, O(logn): root removed, last element moved to root, then bubbled down</li>
+<li>Heapify, O(n) : build heap from an array</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Guarantees fast access to min/max element</li>
+<li>Useful for priority-based tasks</li>
+<li>Efficient for sorting (Heap Sort)</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Not good for fast searching arbitrary elements (only root is fast)</li>
+<li>Requires extra work to maintain heap property after insertions/deletions</li>
+</ul>
+</li>
+<li>Real world Uses
+<ul>
+<li>Heap sort : efficient O(nlogn) sorting</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">import heapq
+# Create a min-heap
+heap = []
+heapq.heappush(heap, 20)
+heapq.heappush(heap, 5)
+heapq.heappush(heap, 15)
+print(heap) #[5, 20, 15]
+
+# pop (remove smalles element)
+print(heapq.heappop(heap))
+
+</code></pre>
+<br>
+<hr>
+<h2 id="7-hash-map">7. Hash Map</h2>
+<ul>
+<li>Definition : A data structure that stores key-value pairs and provides fast access to values based on their keys.</li>
+<li>Characteristics
+<ul>
+<li>Key-Value Mapping : Each unique key maps to a value</li>
+<li>Hash Function : Converts a key into an index</li>
+<li>Collision Handling : Two different keys may hash to the same index.</li>
+<li>Dynamic Resizing : Often grows when load factor (items/buckets) gets too high</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Insert, O(1) average, O(n) worst-case</li>
+<li>Search, O(1) average, O(n) worst-case</li>
+<li>Delete, O(1)</li>
+<li>Traversal, O(n)</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Extremely fast lookups on average, O(1)</li>
+<li>Great for dictionaries, caches, symbol tables.</li>
+<li>Flexible keys (can be strings, numbers, tuples)</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Collisions degrade performance</li>
+<li>Unordered (no natural order of keys)</li>
+<li>Requires a good hash function to avoid clustering (Hbase)
+<ul>
+<li>When the hash function does not distribute keys evenly across the table, many keys end up in the same region (or in the same bucket)</li>
+<li>A hash function takes a key and converts it into a number. That number is then mapped into the hash table&rsquo;s array index
+<ul>
+<li>e.g. using modulo : hash(&ldquo;apple&rdquo;) → 9324983 → store at index(bucket) No.3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Real world Uses
+<ul>
+<li>Databases (Indexing with hash-based indexes)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python"># create a hash table
+hash = {}
+# Insert
+hash[&quot;apple&quot;] = 10
+hash[&quot;banana&quot;] = 20
+# Search
+print(hash[&quot;apple&quot;]
+# Delete
+del hash[&quot;apple&quot;]
+# Traverse
+for key, value in hash.items():
+    print(key, value)
+</code></pre>
+<br>
+<hr>
+<h2 id="8-graph">8. Graph</h2>
+<ul>
+<li>Definition : A non-linear data structure consisting of a set of nodes (vertices) and a set of edges that connect pairs of nodes</li>
+<li>Characteristics
+<ul>
+<li>Vertices : represents entities</li>
+<li>Edges : represent relationships between vertices</li>
+<li>Directed vs Undirected : Edges have a direction (A → B) vs edges are two way (A - B)</li>
+<li>Weighted vs Unweighted : Edges have cost and weights vs All edges treated equally</li>
+<li>Cycles vs Acyclic</li>
+</ul>
+</li>
+<li>Operations
+<ul>
+<li>Traversal</li>
+<li>Insert/Delete veritices and edges, O(1) to O(V^2)</li>
+<li>Search
+<ul>
+<li>DFS (Depth First Search) : Explore deeply first
+<ul>
+<li>stack or recursive() and [visited]</li>
+<li>To explore all possible paths and record the characteristics of each path</li>
+</ul>
+</li>
+<li>BFS (Breadth First Search) : Explore level by level.
+<ul>
+<li>with queue (collections.deque) and [visited]</li>
+<li>When the graph size is extremely large</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Advantages
+<ul>
+<li>Very flexible, can model complex relationships</li>
+<li>Efficient algorithms exist for pathfinding, connectivity, shortest paths</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>More complex than trees or arrays.</li>
+<li>Some operations can be expensive or large graphs</li>
+</ul>
+</li>
+<li>Real world Uses
+<ul>
+<li>Social networks</li>
+<li>Recommendation Engines</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+
+    def bfs(self, start):
+        visited = set()
+        queue = [start]
+        while queue:
+            node = queue.pop(0)
+            if node not in visited:
+                print(node, end=&quot; &quot;)
+                visited.add(node)
+                queue.extend(self.graph[node])
+g = Graph()
+g.add_edge(0, 1)
+g.add_edge(0, 2)
+g.add_edge(1, 2)
+g.add_edge(2, 0)
+g.add_edge(2, 3)
+g.bfs(2)  # 2, 0, 3, 1
+
+</code></pre>
+<br>
+<hr>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="https://koreanbear89.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://koreanbear89.github.io/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="https://koreanbear89.github.io/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/koreanbear89.github.io\/',
+            CONTENT_URL: 'https:\/\/koreanbear89.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://koreanbear89.github.io/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>

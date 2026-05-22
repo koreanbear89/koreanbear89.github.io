@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+        Effective Python #1 | Pythonic Thinking - Lab.Koreanbear|한국곰연구소
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="
+Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.8 (released in October 2019)
+" />
+    <meta name="generator" content="Hugo 0.161.1 with theme pure" />
+    <title>Effective Python #1 | Pythonic Thinking - Lab.Koreanbear|한국곰연구소</title>
+    
+    
+    <link rel="stylesheet" href="http://localhost:1313/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:url" content="http://localhost:1313/language/3.-python/effective-python-01/">
+  <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
+  <meta property="og:title" content="Effective Python #1 | Pythonic Thinking">
+  <meta property="og:description" content="Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.8 (released in October 2019)">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="language">
+    <meta property="article:published_time" content="2023-01-09T09:00:00+00:00">
+    <meta property="article:modified_time" content="2023-01-09T09:00:00+00:00">
+
+  <meta itemprop="name" content="Effective Python #1 | Pythonic Thinking">
+  <meta itemprop="description" content="Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.8 (released in October 2019)">
+  <meta itemprop="datePublished" content="2023-01-09T09:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-01-09T09:00:00+00:00">
+  <meta itemprop="wordCount" content="1380">
+  <meta itemprop="keywords" content="3. Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Effective Python #1 | Pythonic Thinking">
+  <meta name="twitter:description" content="Introduction The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.
+Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability. Item 1. Know Which Version of Python You’re Using Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).
+This book also provides some examples in the syntax of Python 3.8 (released in October 2019)">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+
+
+
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          
+           
+          
+          <a id="avatar" href="/" target="_self">
+            <img class=" img-rotate" src="http://localhost:1313/fa-igloo.png" width="200" height="200">
+          </a>
+          <a href="/" target="_self">
+            <h2 id="name" class="hidden-xs hidden-sm">Lab.Koreanbear</h2>
+          </a>
+          
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Seoul, Korea</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+              <li class="menu-item menu-item-home">
+                <a href="/">
+                        <i class=" fas fa-home"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-about">
+                <a href="/about/">
+                        <i class=" fas fa-user-alt"></i>
+                  <span class="menu-title">About</span>
+                </a>
+              </li>
+                
+                
+              <li class="menu-item menu-item-language">
+                <a href="/language/">
+                        <i class=" fas fa-language"></i>
+                  <span class="menu-title">Language</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-mathematics">
+                <a href="/mathematics/">
+                        <i class=" fas fa-square-root-alt"></i>
+                  <span class="menu-title">Mathematics</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-machine-learning">
+                <a href="/machine-learning/">
+                        <i class=" fas fa-brain"></i>
+                  <span class="menu-title">Machine Learning</span>
+                </a>
+              </li>
+              <li class="menu-item menu-item-system-architecture">
+                <a href="/system-architecture/">
+                        <i class=" fas fa-cog"></i>
+                  <span class="menu-title">System Architecture</span>
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    
+    <div class="widget-body">
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Mathematics</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-linear-algebra">1. Linear Algebra</a>
+                  <span class="category-list-count">6</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-statistics">2. Statistics</a>
+                  <span class="category-list-count">11</span></li>
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-mathematics-for-ml">3. Mathematics for ML</a>
+                  <span class="category-list-count">13</span></li>
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Machien Learning</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-machine-learning">1. Machine Learning</a>
+                  <span class="category-list-count">15</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
+                  <span class="category-list-count">13</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-vision-language">4. Vision Language</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-agentic-system">5. Agentic System</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>System Architecture</h5>
+              
+              
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-system-design">1. System Design</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/2.-data-ingestion">2. Data Ingestion</a>
+                  <span class="category-list-count">5</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-modeling">3. Modeling</a>
+                  <span class="category-list-count">8</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-model-serving">4. Model Serving</a>
+                  <span class="category-list-count">3</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/5.-operations">5. Operations</a>
+                  <span class="category-list-count">1</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-cheatsheets">9. CheatSheets</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+        <ul style="margin-bottom:25px;"  class="category-list"><h5>Language</h5>
+              
+              
+              
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/1.-computer-science">1. Computer Science</a>
+                  <span class="category-list-count">12</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/3.-python">3. Python</a>
+                  <span class="category-list-count">18</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/4.-scala">4. Scala</a>
+                  <span class="category-list-count">6</span></li>
+
+                  
+              
+                  
+                  
+                  <li class="category-list-item"><a href="/categories/9.-others">9. Others</a>
+                  <span class="category-list-count">9</span></li>
+
+                  
+              
+        </ul><hr>
+
+
+
+
+
+
+    </div>
+</div>
+
+  </div>
+</aside>
+
+    
+    
+
+
+  
+  <div class="sidebar-toc-all">
+  <aside class="sidebar sidebar-toc show" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  
+    <div class="slimContent">
+      <h4 class="toc-title">Contents</h4>
+      <nav id="toc" class="js-toc toc" >
+      </nav>
+    </div>
+  </aside>
+</div>
+
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/language/3.-python/effective-python-01/"
+    >Effective Python #1 | Pythonic Thinking</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="http://localhost:1313/language/3.-python/effective-python-01/" class="article-date">
+  <time datetime="2023-01-09 09:00:00 &#43;0000 UTC" itemprop="datePublished">2023-01-09</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a href="/categories/3.-python/"> 3. Python </a>
+</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/language/3.-python/effective-python-01/#comments"
+            class="article-comment-link">Comments</a></span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <br>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>The Pythonic style isn’t regimented or enforced by the compiler. It has emerged over time through experience using the language and working with others.</p>
+<ul>
+<li>Python programmers prefer to be explicit, to choose simple over complex, and to maximize readability.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-1-know-which-version-of-python-youre-using">Item 1. Know Which Version of Python You’re Using</h2>
+<ol>
+<li>
+<p>Throughout this book, the majority of example code is in the syntax of Python 3.7 (released in June 2018).</p>
+</li>
+<li>
+<p>This book also provides some examples in the syntax of Python 3.8 (released in October 2019)</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-2-follow-the-pep-8-style-guide-">Item 2. Follow the PEP 8 Style Guide ****</h2>
+<ol>
+<li>
+<p>Always follow the Python Enhancement Proposal #8 (PEP 8) style guide when writing Python code.</p>
+</li>
+<li>
+<p>Sharing a common style with the larger Python community facili-
+tates collaboration with others.</p>
+</li>
+<li>
+<p>Using a consistent style makes it easier to modify your own code later.</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>Whitespace</strong></p>
+<ul>
+<li>
+<p>In a file, functions and classes should be separated by two blank lines.</p>
+</li>
+<li>
+<p>In a class, methods should be separated by one blank line.</p>
+</li>
+<li>
+<p>In a dictionary, put no whitespace between each key and colon, and put a single space before the corresponding value if it fits on the same line.</p>
+</li>
+<li>
+<p>For type annotations, ensure that there is no separation between the variable name and the colon, and use a space before the type information.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Naming</strong></p>
+<ul>
+<li>
+<p>Functions, variables, and attributes should be in <code>lowercase_underscore</code> format.</p>
+</li>
+<li>
+<p>Protected instance attributes should be in <code>_leading_underscore</code> format.</p>
+</li>
+<li>
+<p>Private instance attributes should be in <code>__double_leading_underscore</code> format.</p>
+</li>
+<li>
+<p>Classes (including exceptions) should be in <code>CapitalizedWord</code> format.</p>
+</li>
+<li>
+<p>Module-level constants should be in <code>ALL_CAPS</code> format.</p>
+</li>
+<li>
+<p>Instance methods in classes should use <code>self</code>, which refers to the object, as the name of the first parameter.</p>
+</li>
+<li>
+<p>Class methods should use <code>cls</code>, which refers to the class, as the name of the first parameter</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Imports</strong></p>
+<ul>
+<li>Always use absolute names for modules when importing them, not names relative to the current module’s own path. For example, to import the foo module from within the bar package, you should use <code>from bar import foo</code>, not just import foo.</li>
+<li>If you must do relative imports, use the explicit syntax <code>from . import foo</code>.    </li>
+<li>Imports should be in sections in the following order: standard library modules, third-party modules, your own modules. Each subsection should have imports in alphabetical order.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="item-3-know-the-differences-between-bytes-and-str">Item 3. Know the Differences Between bytes and str</h2>
+<ol>
+<li>
+<p>bytes contains sequences of 8-bit values, and str contains sequences of Unicode code points.</p>
+<ul>
+<li>
+<p><code>str.encode()</code> : convert Unicode data to binary data</p>
+</li>
+<li>
+<p><code>bytes.decode()</code> : convert binary data to Unicode data</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-python">a = b'h\x65llo'
+print(list(a)) # [104, 101, 108, 108, 111]
+print(a) # b'hello'
+
+a = 'a\u0300 propos'
+print(list(a)) # ['a', '`', ' ', 'p', 'r', 'o', 'p', 'o', 's']
+print(a) # à propos
+</code></pre>
+<ol start="2">
+<li>Use helper functions to ensure that the inputs you operate on are the type of character sequence that you expect (8-bit values, UTF-8-encoded strings, Unicode code points, etc).</li>
+</ol>
+<pre><code class="language-python"># always returns a str
+def to_str(bytes_or_str):
+    if isinstance(bytes_or_str, bytes):
+        value = bytes_or_str.decode('utf-8')
+    else:
+        value = bytes_or_str
+    return value  # Instance of str
+
+# always returns a bytes
+def to_bytes(bytes_or_str):
+    if isinstance(bytes_or_str, str):
+        value = bytes_or_str.encode('utf-8')
+    else:
+        value = bytes_or_str
+    return value  # Instance of bytes
+</code></pre>
+<ol start="3">
+<li>
+<p>bytes and str instances can’t be used together with operators (like &gt;, ==, +, and %).</p>
+</li>
+<li>
+<p>If you want to read or write binary data to/from a file, always open the file using a binary mode (like &lsquo;rb&rsquo; or &lsquo;wb&rsquo;).</p>
+</li>
+<li>
+<p>If you want to read or write Unicode data to/from a file, be careful about your system’s default text encoding. Explicitly pass the encoding parameter to open if you want to avoid surprises.</p>
+<ul>
+<li><code>UnicodeDecodeError: 'utf-8' codec can't decode byte ...</code> : the file was opened in read text mode (&lsquo;r&rsquo;)
+instead of read binary mode (&lsquo;rb&rsquo;). When a handle is in text mode, it uses the system’s default text encoding (utf-8) to interpret binary data</li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item4-prefer-interpolated-f-strings-over-c-style-format-strings-and-strformat-">Item4. Prefer Interpolated F-Strings Over C-style Format Strings and str.format ****</h2>
+<ol>
+<li>
+<p>C-style format strings that use the % operator suffer from a variety of gotchas and verbosity problems.</p>
+</li>
+<li>
+<p>The str.format method introduces some useful concepts in its formatting specifiers mini language, but it otherwise repeats the mistakes of C-style format strings and should be avoided.</p>
+</li>
+<li>
+<p>F-strings are a new syntax for formatting values into strings that solves the biggest problems with C-style format strings.</p>
+</li>
+<li>
+<p>F-strings are succinct yet powerful because they allow for arbitrary Python expressions to be directly embedded within format specifiers.</p>
+</li>
+<li>
+<p>Use lazy formatting in logging - <code>Use %s formatting in logging functions</code></p>
+<ul>
+<li>Particularly for logging in often called functions using the second over the first can be a serious speed improvement.</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-python"># f-string : creates the full string first and passes it into the logging function to see if it will be used.
+logging.debug(f&quot;Some debug extra logging {other_var}&quot;)
+# lazy formatting : all arguments are passed into the logging function, that checks if the string is needed and only creates it if it is needed.
+logging.debug(&quot;Some debug extra logging %s&quot;, other_var)
+</code></pre>
+<br>
+<hr>
+<h2 id="item5-write-helper-functions-instead-of-complex-expressions">Item5. Write Helper Functions Instead of Complex Expressions</h2>
+<ol>
+<li>
+<p>Python’s syntax makes it easy to write single-line expressions that are overly complicated and difficult to read.</p>
+</li>
+<li>
+<p>Move complex expressions into helper functions, especially if you need to use the same logic repeatedly.</p>
+</li>
+<li>
+<p>An if/else expression provides a more readable alternative to using the Boolean operators or and and in expressions.</p>
+</li>
+</ol>
+<pre><code class="language-python"># before
+red = my_values.get('red', [''])[0] or 0
+green = my_values.get('green', [''])[0] or 0
+opacity = my_values.get('opacity', [''])[0] or 0
+
+# after
+def get_first_int(values, key, default=0):
+    found = values.get(key, [''])
+    if found[0]:
+        return int(found[0])
+    return default
+</code></pre>
+<br>
+<hr>
+<h2 id="item6-prefer-multiple-assignment-unpacking-over-indexing">Item6. Prefer Multiple Assignment Unpacking Over Indexing</h2>
+<ol>
+<li>
+<p>Python has special syntax called unpacking for assigning multiple values in a single statement.</p>
+</li>
+<li>
+<p>Unpacking is generalized in Python and can be applied to any iterable, including many levels of iterables within iterables.</p>
+</li>
+<li>
+<p>Reduce visual noise and increase code clarity by using unpacking to avoid explicitly indexing into sequences.</p>
+</li>
+</ol>
+<pre><code class="language-python">item = ('Peanut butter', 'Jelly')
+first, second = item  # Unpacking
+</code></pre>
+<br>
+<hr>
+<h2 id="item7-prefer-enumerate-over-range">Item7. Prefer enumerate Over range</h2>
+<ol>
+<li>
+<p>enumerate provides concise syntax for looping over an iterator and getting the index of each item from the iterator as you go</p>
+</li>
+<li>
+<p>Prefer enumerate instead of looping over a range and indexing into a sequence.</p>
+</li>
+<li>
+<p>You can supply a second parameter to enumerate to specify the number from which to begin counting (zero is the default).</p>
+</li>
+</ol>
+<pre><code class="language-python"># before
+for i in range(len(flavor_list)):
+    flavor = flavor_list[i]
+    print(f'{i + 1}: {flavor}')
+
+# after
+for i, flavor in enumerate(flavor_list, 1):
+    print(f'{i}: {flavor}')
+</code></pre>
+<br>
+<hr>
+<h2 id="item-8-use-zip-to-process-iterators-in-parallel-">Item 8. Use zip to Process Iterators in Parallel ****</h2>
+<ol>
+<li>
+<p>The zip built-in function can be used to iterate over multiple iterators in parallel.</p>
+</li>
+<li>
+<p><strong><code>zip</code> creates a lazy generator that produces tuples, so it can be used on infinitely long inputs.</strong></p>
+</li>
+<li>
+<p><strong><code>zip</code> truncates its output silently to the shortest iterator if you supply it with iterators of different lengths.</strong></p>
+</li>
+<li>
+<p>Use the zip_longest function from the itertools built-in module if you want to use zip on iterators of unequal lengths without truncation.</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-9-avoid-else-blocks-after-for-and-while-loops">Item 9: Avoid else Blocks After for and while Loops</h2>
+<ol>
+<li>
+<p>Python has special syntax that allows else blocks to immediately follow for and while loop interior blocks.</p>
+</li>
+<li>
+<p>The else block after a loop runs only if the loop body did not encounter a break statement.</p>
+</li>
+<li>
+<p>Avoid using else blocks after loops because their behavior isn’t intuitive and can be confusing</p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="item-10-prevent-repetition-with-assignment-expressions-">Item 10: Prevent Repetition with Assignment Expressions ****</h2>
+<ol>
+<li>
+<p>Assignment expressions use the walrus operator (:=) to both assign and evaluate variable names in a single expression, thus reducing repetition.</p>
+</li>
+<li>
+<p>When an assignment expression is a subexpression of a larger expression, it must be surrounded with parentheses.</p>
+</li>
+<li>
+<p>Although <strong>switch/case statements and do/while loops are not available in Python,</strong> <strong>their functionality can be emulated much more clearly by using assignment expressions.</strong></p>
+</li>
+</ol>
+<pre><code class="language-python">fresh_fruit = {'apple': 10, 'banana': 8, 'lemon': 5}
+
+# before
+count = fresh_fruit.get('lemon', 0)
+if count:
+    make_lemonade(count)
+else:
+    out_of_stock()
+
+# after
+if count := fresh_fruit.get('lemon', 0):
+    make_lemonade(count)
+else:
+    out_of_stock()
+
+</code></pre>
+<pre><code class="language-python"># switch/case
+if (count := fresh_fruit.get('banana', 0)) &gt;= 2:
+    pieces = slice_bananas(count)
+    to_enjoy = make_smoothies(pieces)
+elif (count := fresh_fruit.get('apple', 0)) &gt;= 4:
+    to_enjoy = make_cider(count)
+elif count := fresh_fruit.get('lemon', 0):
+    to_enjoy = make_lemonade(count)
+else:
+    to_enjoy = 'Nothing'
+</code></pre>
+<pre><code class="language-python"># do/while
+# before
+bottles = []
+fresh_fruit = pick_fruit()
+while fresh_fruit:
+    for fruit, count in fresh_fruit.items():
+        batch = make_juice(fruit, count)
+        bottles.extend(batch)
+        fresh_fruit = pick_fruit() # repetitive
+
+bottles = []
+while fresh_fruit := pick_fruit():
+    for fruit, count in fresh_fruit.items():
+        batch = make_juice(fruit, count)
+        bottles.extend(batch)
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+
+    </div>
+  </article>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-right">
+            
+            
+            
+            
+        </ul>
+        <div class="bar-right">
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/koreanbear89" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/hanwoong-kim-95b5a7130/" target="_blank" title="linkedin" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-linkedin"></i></a></li>
+    <li><a href="http://localhost:1313/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="http://localhost:1313/js/application.min.e4989ab4dc212027af8773861b05b6bc333a1217f6b0a1b3377a3a3dbd454483.js"></script>
+<script src="http://localhost:1313/js/plugin.min.55cc3498567c2081a6895075033d3f95a086b09c2dbbf31cc4bc3bba415f0bd6.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'http:\/\/localhost:1313\/',
+            CONTENT_URL: 'http:\/\/localhost:1313\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="http://localhost:1313/js/insight.min.716b0c6a00b68ccc31a2b65345f3412f4246ffa94a90f8e25d525528b4504f9937880692bbe619023233caba5d0a17ebe23d7cfb57cd3a88f23ea337ad5e4d00.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+
+
+  </body>
+</html>
