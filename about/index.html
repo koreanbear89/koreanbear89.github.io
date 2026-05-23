@@ -498,6 +498,7 @@
     .project-preview-ai,
     .project-preview-briefing,
     .project-preview-shopping,
+    .project-preview-ads,
     .project-preview-tv {
         left: -130px;
         width: 840px;
@@ -538,6 +539,9 @@
         font-style: italic;
         margin: 0;
     }
+    .project-preview-body > .project-preview-role {
+        margin-bottom: 8px;
+    }
     .project-preview-section {
         margin-top: 9px;
     }
@@ -574,7 +578,7 @@
     }
     .project-preview-clinical-footer img {
         display: block;
-        width: 150px;
+        width: 130px;
         max-width: 70%;
         height: auto;
     }
@@ -591,16 +595,22 @@
     .project-preview-golf .project-preview-poster img {
         max-height: 460px;
     }
+    .project-preview-ai,
     .project-preview-briefing {
         grid-template-columns: 1fr 285px;
     }
+    .project-preview-ads {
+        grid-template-columns: 1fr 360px;
+    }
     .project-preview-ai,
-    .project-preview-briefing {
+    .project-preview-briefing,
+    .project-preview-ads {
         background: #fff;
         border-color: #ddd;
     }
     .project-preview-ai .project-preview-poster,
-    .project-preview-briefing .project-preview-poster {
+    .project-preview-briefing .project-preview-poster,
+    .project-preview-ads .project-preview-poster {
         align-items: center;
     }
     .project-preview-ai .project-preview-poster img,
@@ -613,9 +623,15 @@
         border-radius: 10px;
         background: linear-gradient(135deg, #3182ff, #76d7ed, #2fcf72);
     }
+    .project-preview-ads .project-preview-poster img {
+        width: 94%;
+        max-height: 430px;
+        border-radius: 10px;
+    }
     .project-preview-ai .project-preview-section b,
     .project-preview-briefing .project-preview-section b,
     .project-preview-shopping .project-preview-section b,
+    .project-preview-ads .project-preview-section b,
     .project-preview-tv .project-preview-section b {
         color: #0b6b3a;
     }
@@ -634,6 +650,7 @@
     .project-preview-ai .project-preview-tags span,
     .project-preview-briefing .project-preview-tags span,
     .project-preview-shopping .project-preview-tags span,
+    .project-preview-ads .project-preview-tags span,
     .project-preview-tv .project-preview-tags span {
         background: #e8f4ec;
         color: #0b6b3a;
@@ -652,6 +669,7 @@
         .project-preview-ai,
         .project-preview-briefing,
         .project-preview-shopping,
+        .project-preview-ads,
         .project-preview-tv {
             display: none;
         }
@@ -660,6 +678,7 @@
         .project-item-ai .project-title,
         .project-item-briefing .project-title,
         .project-item-shopping .project-title,
+        .project-item-ads .project-title,
         .project-item-tv .project-title {
             border-bottom: none;
             cursor: default;
@@ -669,6 +688,7 @@
         .project-item-ai .project-title:hover,
         .project-item-briefing .project-title:hover,
         .project-item-shopping .project-title:hover,
+        .project-item-ads .project-title:hover,
         .project-item-tv .project-title:hover {
             color: inherit;
             border-bottom-color: transparent;
@@ -678,6 +698,7 @@
         .project-item-ai .project-title:focus-within,
         .project-item-briefing .project-title:focus-within,
         .project-item-shopping .project-title:focus-within,
+        .project-item-ads .project-title:focus-within,
         .project-item-tv .project-title:focus-within {
             outline: none;
         }
@@ -694,7 +715,7 @@
 				<h1 itemprop="name" style="margin: 0 0 4px 0; line-height: 1.2">
 					<a href="/about/">Hanwoong Kim</a>
 				</h1>
-				<div class="article-meta" style="margin: 0"> AI Engineer @ NAVER · Seongnam, South Korea </div>
+				<div class="article-meta" style="margin: 0"> AI Engineer, NAVER · Seongnam, Korea </div>
 			</div>
 		</div>
 		<div class="article-entry marked-body js-toc-content" itemprop="articleBody">
@@ -740,7 +761,7 @@ Currently exploring AI agents and their practical applications.
 <h2 id="projects">Projects</h2>
 
     
-    <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 1.5em">
+    <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.5em">
         <img class="img-circle" src="/about_nav.png" width="60" height="60" style="flex-shrink: 0">
         <div style="flex: 1; min-width: 0">
             <p class=about_p style="margin-bottom: 0"><i>AI Engineer, Naver – Agentic Search</i></p>
@@ -749,20 +770,20 @@ Currently exploring AI agents and their practical applications.
                     <div class="project-preview project-preview-ai" tabindex="0">
                         <div class="project-preview-header">
                             <strong>AI Tab — Multi-Agent System for Vertical-Domain AI Features</strong>
-                            <p class="project-preview-role">NAVER Agentic Search</p>
                         </div>
                         <div class="project-preview-poster">
                             <img src="/figures/portfolio-ai-tab.gif?v=3" alt="Naver AI tab interaction showing an AI-generated answer">
                         </div>
                         <div class="project-preview-body">
-                            <p>An AI-powered search experience that routes user intent to specialized domain agents and delivers tool-grounded answers inside NAVER Search.</p>
+                            <p class="project-preview-role">NAVER Agentic Search</p>
+                            <p>An agentic search system that routes user intent to specialized domain agents and delivers tool-grounded answers inside NAVER Search.</p>
 
                             <div class="project-preview-section">
                                 <b>Objective</b>
                                 <ul>
-                                    <li>Route complex search intents to specialized AI agents for vertical-domain tasks</li>
                                     <li>Help users complete search tasks with grounded, conversational answers</li>
-                                    <li>Build a unified agent experience as an alternative to Integrated Search</li>
+                                    <li>Route complex search intents to specialized AI agents for vertical-domain tasks</li>
+                                    <li>Build a next-generation Integrated Search powered by AI agents</li>
                                 </ul>
                             </div>
 
@@ -777,7 +798,7 @@ Currently exploring AI agents and their practical applications.
                             <div class="project-preview-section">
                                 <b>Contributions</b>
                                 <ul>
-                                    <li>Developed core modeling and orchestration components for a multi-agent system powering vertical-domain AI features, from system design through production deployment</li>
+                                    <li>Developed core modeling and orchestration components for a multi-agent system, from system design through production deployment</li>
                                 </ul>
                             </div>
 
@@ -796,23 +817,23 @@ Currently exploring AI agents and their practical applications.
                         <li>Design of multi-agent systems for vertical domain applications</li>
                     </ul>
                 </li>
-                <li class="project-item project-item-briefing"><p class=about_p style="margin-bottom: 0"><button type="button" class="project-title">AI Briefing</button> — Information retrieval system for AI-generated briefings.</p>
+                <li class="project-item project-item-briefing"><p class=about_p style="margin-bottom: 0"><button type="button" class="project-title">AI Briefing</button> — RAG system for evidence-grounded generative briefings.</p>
                     <div class="project-preview project-preview-briefing" tabindex="0">
                         <div class="project-preview-header">
-                            <strong>AI Briefing — Information Retrieval for AI-Generated Briefings</strong>
-                            <p class="project-preview-role">NAVER Agentic Search</p>
+                            <strong>AI Briefing — RAG System for Evidence-Grounded Generative Briefings</strong>
                         </div>
                         <div class="project-preview-poster">
                             <img src="/figures/portfolio-ai-briefing.gif?v=2" alt="Naver AI briefing interaction showing an AI-generated briefing">
                         </div>
                         <div class="project-preview-body">
+                            <p class="project-preview-role">NAVER Agentic Search</p>
                             <p>An AI-powered RAG system that finds relevant evidence, synthesizes briefings, and recommends follow-up content for search experiences.</p>
 
                             <div class="project-preview-section">
                                 <b>Objective</b>
                                 <ul>
-                                    <li>Improve information access by retrieving and summarizing relevant evidence from large-scale content sources</li>
-                                    <li>Support domain-specific briefing use cases, including finance and sports, through a reusable retrieval framework</li>
+                                    <li>Improve information access for complex natural-language queries by retrieving evidence and synthesizing briefings from large-scale content sources</li>
+                                    <li>Support domain-specific briefing use cases, including finance and sports</li>
                                 </ul>
                             </div>
 
@@ -833,10 +854,9 @@ Currently exploring AI agents and their practical applications.
                             </div>
 
                             <div class="project-preview-tags">
-                                <span>Information Retrieval</span>
                                 <span>RAG</span>
                                 <span>LLM Orchestration</span>
-                                <span>SFT</span>
+                                <span>Supervised Fine-Tuning</span>
                                 <span>Preference Optimization</span>
                             </div>
                         </div>
@@ -845,8 +865,8 @@ Currently exploring AI agents and their practical applications.
                         </div>
                     </div>
                     <ul style="margin-top: 0.1em">
-                        <li>Information retrieval and RAG pipelines for AI-generated briefings</li>
-                        <li>LLM optimization using SFT and preference optimization</li>
+                        <li>RAG and generative AI pipelines for evidence-grounded briefings</li>
+                        <li>Domain-knowledge adaptation for specialized verticals, including finance and sports</li>
                     </ul>
                 </li>
             </ul>
@@ -854,10 +874,10 @@ Currently exploring AI agents and their practical applications.
     </div>
 
     
-    <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 1.5em">
+    <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.5em">
         <img class="img-circle" src="/about_nav.png" width="60" height="60" style="flex-shrink: 0">
         <div style="flex: 1; min-width: 0">
-            <p class=about_p style="margin-bottom: 0"><i>AI Engineer, Naver – Multimodal AI</i></p>
+            <p class=about_p style="margin-bottom: 0"><i>AI Engineer, Naver – Multimodal AI · Technical Research Personnel (military service fulfilled)</i></p>
             <ul style="margin-top: 0.1em">
                 <li class="project-item project-item-shopping"><p class=about_p style="margin-bottom: 0"><button type="button" class="project-title">Lens X Shopping</button> — Product segment identification for live-commerce replay sessions.</p>
                     <div class="project-preview project-preview-shopping" tabindex="0">
@@ -892,7 +912,7 @@ Currently exploring AI agents and their practical applications.
                                 <b>Contributions</b>
                                 <ul>
                                     <li>Led the project end to end, from model development and serving system design to production rollout and operation</li>
-                                    <li>Contributed to <span class="project-preview-impact">XXX% MoM GMV growth</span> in AI-powered categories</li>
+                                    <li>Contributed to <span class="project-preview-impact">significant GMV growth</span> in AI-powered categories</li>
                                 </ul>
                             </div>
 
@@ -912,10 +932,55 @@ Currently exploring AI agents and their practical applications.
                         <li>Data streaming pipeline design and operation using Spark and Kafka</li>
                     </ul>
                 </li>
-                <li><p class=about_p style="margin-bottom: 0"><b>Lens X Ads</b> — LLM-based advertising relevance and ranking system for Powerlink search ads.</p>
+                <li class="project-item project-item-ads"><p class=about_p style="margin-bottom: 0"><button type="button" class="project-title">Lens X Ads</button> — Relevance matching between queries and landing pages for Powerlink ad search.</p>
+                    <div class="project-preview project-preview-ads" tabindex="0">
+                        <div class="project-preview-header">
+                            <strong>Lens X Ads — Relevance Matching Between Queries and Landing Pages for Powerlink</strong>
+                        </div>
+                        <div class="project-preview-poster">
+                            <img src="/figures/portfolio-ads.png?v=2" alt="NAVER Powerlink search ad relevance matching example">
+                        </div>
+                        <div class="project-preview-body">
+                            <p class="project-preview-role">NAVER Smart Lens</p>
+                            <p>ADVoost, a Powerlink ad search service, analyzes advertiser landing pages to match relevant ads with user queries.</p>
+
+                            <div class="project-preview-section">
+                                <b>Objective</b>
+                                <ul>
+                                    <li>Expand Powerlink ad exposure to search queries highly relevant to advertiser landing pages</li>
+                                    <li>Prevent keyword abuse by grounding ad exposure in query–landing page relevance</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-preview-section">
+                                <b>Approaches</b>
+                                <ul>
+                                    <li>Modeled similarity between search queries and landing page content using generative AI</li>
+                                    <li>Built batch scoring pipelines for large-scale ad search matching</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-preview-section">
+                                <b>Contributions</b>
+                                <ul>
+                                    <li>Developed query–landing page relevance modeling and production batch pipelines for Powerlink ad search</li>
+                                    <li>Contributed to revenue growth through improved CTR, query coverage, and CPC efficiency</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-preview-tags">
+                                <span>Generative AI</span>
+                                <span>Relevance Matching</span>
+                                <span>Batch System Design</span>
+                            </div>
+                        </div>
+                        <div class="project-preview-footer">
+                            <img src="/figures/portfolio-naver-logo.png" alt="NAVER">
+                        </div>
+                    </div>
                     <ul style="margin-top: 0.1em">
-                        <li>LLM-based query–ad relevance modeling</li>
-                        <li>Designed and operated batch processing pipelines</li>
+                        <li>Query–landing page relevance modeling using generative AI</li>
+                        <li>Batch pipeline design and operation for a large-scale ad matching service</li>
                     </ul>
                 </li>
                 <li class="project-item project-item-tv"><p class=about_p style="margin-bottom: 0"><button type="button" class="project-title">Lens X TV</button> — Key-moment extraction for easy navigation in long-form videos.</p>
@@ -967,7 +1032,7 @@ Currently exploring AI agents and their practical applications.
                     </div>
                     <ul style="margin-top: 0.1em">
                         <li>Key-moment extraction for long-video navigation using multimodal AI</li>
-                        <li>Designed a batch processing pipeline with Airflow, Spark, and HBase</li>
+                        <li>Batch processing pipeline design and operation with Airflow, Spark, and HBase</li>
                     </ul>
                 </li>
             </ul>
@@ -1090,7 +1155,7 @@ Currently exploring AI agents and their practical applications.
                     </div>
                     <ul style="margin-top: 0.1em">
                         <li>Volumetric medical image processing for brain disease analysis</li>
-                        <li>Generative AI on medical images for clinical analysis</li>
+                        <li>Generative adversarial network modeling for medical image-based clinical analysis</li>
                     </ul>
                 </li>
             </ul>
