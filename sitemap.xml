@@ -179,14 +179,14 @@
   
   <url>
     <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/</loc>
-    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <lastmod>2024-04-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-4--enhancing/</loc>
-    <lastmod>2020-04-13T09:00:00+00:00</lastmod>
+    <lastmod>2024-04-13T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -444,6 +444,13 @@
   </url>
   
   <url>
+    <loc>https://koreanbear89.github.io/categories/2.-computer-vision/</loc>
+    <lastmod>2022-08-01T09:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://koreanbear89.github.io/system-architecture/4.-model-serving/be-%231--network/</loc>
     <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -451,7 +458,7 @@
   </url>
   
   <url>
-    <loc>https://koreanbear89.github.io/machine-learning/3.-natural-language/vl01--vision-language-understanding/</loc>
+    <loc>https://koreanbear89.github.io/machine-learning/2.-computer-vision/vl01--vision-language-understanding/</loc>
     <lastmod>2022-08-01T09:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -565,13 +572,6 @@
   <url>
     <loc>https://koreanbear89.github.io/system-architecture/cheatsheets/cheatsheet--docker/</loc>
     <lastmod>2020-11-10T09:00:13+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://koreanbear89.github.io/categories/2.-computer-vision/</loc>
-    <lastmod>2020-10-06T09:00:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

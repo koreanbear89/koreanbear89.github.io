@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-        LM #5 | Prompt Engineering - Lab.Koreanbear|한국곰연구소
+        LM #5 | Prompting and Reasoning - Lab.Koreanbear|한국곰연구소
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,7 +24,7 @@
 Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a &ldquo;Let’s think step-by-step&rdquo; prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as &ldquo;thoughts&rdquo;. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract
 " />
     <meta name="generator" content="Hugo 0.161.1 with theme pure" />
-    <title>LM #5 | Prompt Engineering - Lab.Koreanbear|한국곰연구소</title>
+    <title>LM #5 | Prompting and Reasoning - Lab.Koreanbear|한국곰연구소</title>
     
     
     <link rel="stylesheet" href="https://koreanbear89.github.io/css/style.min.7adc4abfdaecebd8a35743270308985be63ae4b2756e3e463ddc8bced25ccaa8.css">
@@ -33,7 +33,7 @@ Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Descri
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
     <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/">
   <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
-  <meta property="og:title" content="LM #5 | Prompt Engineering">
+  <meta property="og:title" content="LM #5 | Prompting and Reasoning">
   <meta property="og:description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -41,14 +41,14 @@ Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Descri
     <meta property="article:published_time" content="2024-07-04T09:00:00+00:00">
     <meta property="article:modified_time" content="2024-07-04T09:00:00+00:00">
 
-  <meta itemprop="name" content="LM #5 | Prompt Engineering">
+  <meta itemprop="name" content="LM #5 | Prompting and Reasoning">
   <meta itemprop="description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
   <meta itemprop="datePublished" content="2024-07-04T09:00:00+00:00">
   <meta itemprop="dateModified" content="2024-07-04T09:00:00+00:00">
   <meta itemprop="wordCount" content="3181">
   <meta itemprop="keywords" content="3. Natural Language">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="LM #5 | Prompt Engineering">
+  <meta name="twitter:title" content="LM #5 | Prompting and Reasoning">
   <meta name="twitter:description" content="Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Describes tasks in natural language without examples—relies purely on the model’s innate knowledge. Few‑Shot Prompting : Includes a handful of input–output demonstrations in the prompt to guide the model’s behavior. Automatic Prompt Engineer (APE) : Rather than relying on human-crafted prompts, an LLM generates a pool of candidate instructions Reasoning and Logic Chain-of-Thought (CoT) : proposal and exploration of CoT prompting, demonstrating its effectiveness in eliciting more structured and thoughtful responses from LLMs compared to traditional prompts. Automatic Chain of Thought Prompting : automatically instruct LLMs with a “Let’s think step-by-step” prompt to generate reasoning chains. Self-Consistency : a decoding strategy enhancing reasoning performance compared to greedy decoding in CoT prompting. Tree of Thoughts : extends CoT prompting by managing a tree structure of intermediate reasoning steps, known as “thoughts”. Each thought represents a coherent language sequence moving toward the final solution. Graph of Thoughts : encompass modeling the reasoning process as a directed graph, offering a modular architecture with diverse transformation operations Self Refine Prompting : enhances LLM performance by iteratively refining outputs, through a structured threestep process: generating an initial response, prompting the model to critique its own output, and refining the response based on this feedback. Reduce Hallucination Retrieval Augmented Generation (RAG) : RAG analyzes user input, crafts a targeted query, and scours a pre-built knowledge base for relevant resources. Retrieved snippets are incorporated into the original prompt, enriching it with contextual background. ReAct Prompting : enables LLMs to generate reasoning traces and task-specific actions concurrently Chain of Verification : involves a systematic four-step process including the model generate baseline responses, plan verification questions to check its work, answer the questions independently, and produce a revised response incorporating the verification Others Automatic Prompt Engineer (APE): sheds the limitations of static, hand-designed prompts by dynamically generating and selecting the most impactful prompts for specific tasks A Systematic Survey of Prompt Engineering in Large Language Models : Techniques and Applications Abstract">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -237,7 +237,7 @@ Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Descri
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
-                  <span class="category-list-count">9</span></li>
+                  <span class="category-list-count">10</span></li>
 
                   
                   
@@ -247,7 +247,7 @@ Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Descri
                   
                   
                   <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">10</span></li>
 
                   
                   
@@ -421,7 +421,7 @@ Introduction New Tasks without Extensive Training Zero‑Shot Prompting : Descri
   <a
     class="article-title"
     href="/machine-learning/3.-natural-language/lm-5--prompt-engineering/"
-    >LM #5 | Prompt Engineering</a
+    >LM #5 | Prompting and Reasoning</a
   >
 </h1>
 
@@ -1004,15 +1004,16 @@ most_common_anser # &gt;&gt; &quot;The answer is $26&quot;
   
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+            processEscapes: true
            }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>

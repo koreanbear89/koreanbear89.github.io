@@ -35,6 +35,7 @@
 &lt;li&gt;Clustering
 &lt;ul&gt;
 &lt;li&gt;K-means&lt;/li&gt;
+&lt;li&gt;HDBSCAN&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Dimensionality Reduction
@@ -42,21 +43,26 @@
 &lt;li&gt;PCA&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;RL basics&lt;/li&gt;
+&lt;li&gt;Representation Learning
+&lt;ul&gt;
+&lt;li&gt;RBM&lt;/li&gt;
+&lt;li&gt;DBN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;br&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;11-linear-regression&#34;&gt;1.1 Linear Regression&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Introduction : Models a linear relationship between input features and a continuous target variable using:&lt;/p&gt;
-&lt;p&gt;$$ \hat{y} = w^T x + b = \theta^T x \quad (\text{with } x_0 = 1) $$&lt;/p&gt;
+&lt;p&gt;Introduction :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x + b$.&lt;/li&gt;
+&lt;li&gt;Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Methods&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Objective (Ordinary Least Squares)&lt;/strong&gt; : minimize the sum of squared residuals (the vertical deviation from each point to the line).&lt;/p&gt;</description>
+&lt;p&gt;Methods&lt;/p&gt;</description>
     </item>
     
     <item>

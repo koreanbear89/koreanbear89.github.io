@@ -734,15 +734,16 @@ loss   = (loss_i + loss_t)/2
   
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+            processEscapes: true
            }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>

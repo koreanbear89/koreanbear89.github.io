@@ -152,7 +152,7 @@
     <item>
       <title>LM #3 | Language Model Fine-tuning</title>
       <link>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/</link>
-      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Apr 2024 09:00:00 +0000</pubDate>
       <guid>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-3--finetuning/</guid>
       <description>&lt;br&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -438,7 +438,7 @@ $$\mathcal{L}{\text{DPO}} = -\log \sigma\left( \beta [\log \pi\theta(y^+|x) - \l
     <item>
       <title>LM #4 | Language Model Enhancing</title>
       <link>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-4--enhancing/</link>
-      <pubDate>Mon, 13 Apr 2020 09:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Apr 2024 09:00:00 +0000</pubDate>
       <guid>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-4--enhancing/</guid>
       <description>&lt;br&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
@@ -490,7 +490,7 @@ $$\mathcal{L}{\text{DPO}} = -\log \sigma\left( \beta [\log \pi\theta(y^+|x) - \l
     </item>
     
     <item>
-      <title>LM #5 | Prompt Engineering</title>
+      <title>LM #5 | Prompting and Reasoning</title>
       <link>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/</link>
       <pubDate>Thu, 04 Jul 2024 09:00:00 +0000</pubDate>
       <guid>https://koreanbear89.github.io/machine-learning/3.-natural-language/lm-5--prompt-engineering/</guid>

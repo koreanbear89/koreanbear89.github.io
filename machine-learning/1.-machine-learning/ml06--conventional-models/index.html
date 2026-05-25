@@ -20,10 +20,8 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means Dimensionality Reduction PCA RL basics 1.1 Linear Regression Introduction : Models a linear relationship between input features and a continuous target variable using:
-$$ \hat{y} = w^T x &#43; b = \theta^T x \quad (\text{with } x_0 = 1) $$
-Methods
-Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the vertical deviation from each point to the line).
+    <meta name="description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means HDBSCAN Dimensionality Reduction PCA Representation Learning RBM DBN 1.1 Linear Regression Introduction :
+Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x &#43; b$. Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$. Methods
 " />
     <meta name="generator" content="Hugo 0.161.1 with theme pure" />
     <title>ML Basic #6 | Conventional Models - Lab.Koreanbear|한국곰연구소</title>
@@ -36,10 +34,8 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
     <meta property="og:url" content="https://koreanbear89.github.io/machine-learning/1.-machine-learning/ml06--conventional-models/">
   <meta property="og:site_name" content="Lab.Koreanbear|한국곰연구소">
   <meta property="og:title" content="ML Basic #6 | Conventional Models">
-  <meta property="og:description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means Dimensionality Reduction PCA RL basics 1.1 Linear Regression Introduction : Models a linear relationship between input features and a continuous target variable using:
-$$ \hat{y} = w^T x &#43; b = \theta^T x \quad (\text{with } x_0 = 1) $$
-Methods
-Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the vertical deviation from each point to the line).">
+  <meta property="og:description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means HDBSCAN Dimensionality Reduction PCA Representation Learning RBM DBN 1.1 Linear Regression Introduction :
+Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x &#43; b$. Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$. Methods">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="machine-learning">
@@ -47,20 +43,16 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
     <meta property="article:modified_time" content="2018-06-22T09:00:13+00:00">
 
   <meta itemprop="name" content="ML Basic #6 | Conventional Models">
-  <meta itemprop="description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means Dimensionality Reduction PCA RL basics 1.1 Linear Regression Introduction : Models a linear relationship between input features and a continuous target variable using:
-$$ \hat{y} = w^T x &#43; b = \theta^T x \quad (\text{with } x_0 = 1) $$
-Methods
-Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the vertical deviation from each point to the line).">
+  <meta itemprop="description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means HDBSCAN Dimensionality Reduction PCA Representation Learning RBM DBN 1.1 Linear Regression Introduction :
+Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x &#43; b$. Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$. Methods">
   <meta itemprop="datePublished" content="2018-06-22T09:00:13+00:00">
   <meta itemprop="dateModified" content="2018-06-22T09:00:13+00:00">
-  <meta itemprop="wordCount" content="975">
+  <meta itemprop="wordCount" content="1967">
   <meta itemprop="keywords" content="1. Machine Learning">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ML Basic #6 | Conventional Models">
-  <meta name="twitter:description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means Dimensionality Reduction PCA RL basics 1.1 Linear Regression Introduction : Models a linear relationship between input features and a continuous target variable using:
-$$ \hat{y} = w^T x &#43; b = \theta^T x \quad (\text{with } x_0 = 1) $$
-Methods
-Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the vertical deviation from each point to the line).">
+  <meta name="twitter:description" content="Introduction Regression Linear Regression Classification Logistic Regression SVM KNN Decision Tree Random Forest / Boosting Clustering K-means HDBSCAN Dimensionality Reduction PCA Representation Learning RBM DBN 1.1 Linear Regression Introduction :
+Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x &#43; b$. Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$. Methods">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -248,7 +240,7 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
                   
                   
                   <li class="category-list-item"><a href="/categories/2.-computer-vision">2. Computer Vision</a>
-                  <span class="category-list-count">9</span></li>
+                  <span class="category-list-count">10</span></li>
 
                   
                   
@@ -258,7 +250,7 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
                   
                   
                   <li class="category-list-item"><a href="/categories/3.-natural-language">3. Natural Language</a>
-                  <span class="category-list-count">11</span></li>
+                  <span class="category-list-count">10</span></li>
 
                   
                   
@@ -474,6 +466,7 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
 <li>Clustering
 <ul>
 <li>K-means</li>
+<li>HDBSCAN</li>
 </ul>
 </li>
 <li>Dimensionality Reduction
@@ -481,33 +474,36 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
 <li>PCA</li>
 </ul>
 </li>
-<li>RL basics</li>
+<li>Representation Learning
+<ul>
+<li>RBM</li>
+<li>DBN</li>
+</ul>
+</li>
 </ol>
 <br>
 <hr>
 <h2 id="11-linear-regression">1.1 Linear Regression</h2>
 <ul>
 <li>
-<p>Introduction : Models a linear relationship between input features and a continuous target variable using:</p>
-<p>$$ \hat{y} = w^T x + b = \theta^T x \quad (\text{with } x_0 = 1) $$</p>
+<p>Introduction :</p>
+<ul>
+<li>Models a linear relationship between input features and a continuous target variable using $\hat{y} = w^T x + b$.</li>
+<li>Equivalently, by augmenting the feature vector with a constant term, $\hat{y} = \theta^T \tilde{x}$, where $\tilde{x} = [1, x_1, \dots, x_d]^T$ and $\theta = [b, w_1, \dots, w_d]^T$.</li>
+</ul>
 </li>
 <li>
 <p>Methods</p>
 <ul>
-<li>
-<p><strong>Objective (Ordinary Least Squares)</strong> : minimize the sum of squared residuals (the vertical deviation from each point to the line).</p>
-<p>$$ J(\theta) = \frac{1}{2n} \sum_{i=1}^n (y_i - \theta^T x_i)^2 $$</p>
-</li>
-<li>
-<p><strong>Solving for $\theta$</strong></p>
+<li><strong>Objective</strong> : minimize the Mean Squared Error, $MSE = \frac{1}{N}\sum (y_{true} - y_{pred})^2$.</li>
+<li><strong>Closed form (Normal Equation)</strong> : directly computes optimal weights.
 <ul>
-<li><strong>Closed form (Normal Equation)</strong> : $\theta = (X^T X)^{-1} X^T y$.
-<ul>
-<li>Pros: exact, no learning-rate tuning, no iteration.</li>
-<li>Cons: $O(d^3)$ to invert $X^T X$; numerically unstable when features are collinear (singular $X^T X$). In practice use SVD or QR via <code>np.linalg.lstsq</code>, not the inverse.</li>
+<li>$w = (X^TX)^{-1}X^Ty$</li>
 </ul>
 </li>
-<li><strong>Gradient Descent</strong> : iterative; scales to large $n$ and $d$ where the closed form is infeasible.</li>
+<li><strong>Gradient Descent</strong> : iterative method; scales to large $n$ and $d$ where the closed form is infeasible.
+<ul>
+<li>$w := w - \alpha \frac{\partial Loss}{\partial w}$, where $\alpha$ is the learning rate.</li>
 </ul>
 </li>
 </ul>
@@ -516,34 +512,164 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
 <p>Discussion</p>
 <ul>
 <li>
-<p><strong>Probabilistic view</strong> : OLS is the MLE under the assumption that residuals are i.i.d. Gaussian — i.e. minimizing MSE equals maximizing the Gaussian log-likelihood. (Same derivation we used in ML02 §1.)</p>
+<p><strong>Probabilistic view</strong> : MSE is the MLE under the assumption that residuals are i.i.d. Gaussian. That is, minimizing MSE equals maximizing the Gaussian log-likelihood. (ML02 Section 1)</p>
 </li>
 <li>
-<p><strong>Regularization</strong> (penalize large weights to combat overfitting and collinearity)</p>
+<p><strong>Regularization</strong> : adds a penalty term to the loss function to keep weights small, because large weights make predictions sensitive to small input changes and can fit noise in the training data.</p>
 <ul>
-<li><strong>Ridge (L2)</strong> : $J + \lambda |w|_2^2$ — shrinks all weights toward zero; well-conditioned even with collinear features.</li>
-<li><strong>Lasso (L1)</strong> : $J + \lambda |w|_1$ — induces sparsity, useful as feature selection.</li>
-<li><strong>Elastic Net</strong> : convex combination of L1 + L2.</li>
+<li><strong>Lasso (L1)</strong> : adds $\lambda |w|_1$; applies a constant $\pm\lambda$ pull toward zero, so it can make some weights exactly zero.</li>
+<li><strong>Ridge (L2)</strong> : adds $\lambda |w|_2^2$; shrinks weights toward zero.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial w_j}\lambda |w_j|
+=
+\begin{cases}
++\lambda & \text{if } w_j > 0\\
+-\lambda & \text{if } w_j < 0
+\end{cases}
+,\quad
+\frac{\partial}{\partial w_j}\lambda w_j^2
+=
+2\lambda w_j
+</script>
+<br>
+<hr>
+<h2 id="21-logistic-regression">2.1 Logistic Regression</h2>
+<ul>
+<li>
+<p>Introduction : The name comes from the logistic function $\sigma(z) = \frac{1}{1 + e^{-z}}$, even though Logistic Regression is used for classification, not regression.</p>
+<ul>
+<li>Computes a linear score: $z = w^T x + b$.</li>
+<li>Converts the score into a probability using a sigmoid (logistic) function: $\hat{p} = P(y=1 \mid x) = \sigma(z)$.</li>
 </ul>
 </li>
 <li>
-<p><strong>Evaluation</strong> : RMSE / MAE for absolute error, $R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$ for proportion of variance explained. Always inspect residual plots — patterned residuals signal model mis-specification.</p>
+<p>Methods</p>
+<ul>
+<li>
+<p><strong>Objective</strong> : minimize Binary Cross Entropy.</p>
+<p>$$ BCE = -\frac{1}{N}\sum \left[y_{true}\log(y_{pred}) + (1-y_{true})\log(1-y_{pred})\right] $$</p>
+<ul>
+<li>BCE gets small when the model assigns high probability to the correct class, and gets large when the model is confidently wrong.
+<ul>
+<li>If $y_{true}=1$, then $BCE = -\log(y_{pred})$.</li>
+<li>If $y_{true}=0$, then $BCE = -\log(1-y_{pred})$.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gradient Descent</strong> : update the parameters iteratively to reduce the BCE loss.</p>
+<ul>
+<li>$w := w - \alpha \frac{\partial Loss}{\partial w}$ and $b := b - \alpha \frac{\partial Loss}{\partial b}$, where $\alpha$ is the learning rate.</li>
+</ul>
+</li>
+<li>
+<p><strong>Decision boundary</strong> : using threshold $0.5$, predict class $1$ if $\hat{p} \geq 0.5$, otherwise class $0$. Since $\sigma(0)=0.5$, the decision boundary is $w^T x + b = 0$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Discussion</p>
+<ul>
+<li>
+<p><strong>Log-odds view</strong> : Logistic Regression models the log-odds as a linear function of the input.</p>
+<ul>
+<li>Odds compare the probability of class $1$ against class $0$: $\frac{p}{1-p}$.</li>
+<li>ex) If $p=0.8$, then odds $= \frac{0.8}{0.2}=4$, so class $1$ is 4 times more likely than class $0$.</li>
+</ul>
+<p>$$ \log\frac{p}{1-p} = w^T x + b $$</p>
 </li>
 </ul>
 </li>
 </ul>
 <br>
 <hr>
-<h2 id="1-k-nearest-neighbors">1. K-Nearest Neighbors</h2>
+<h2 id="22-support-vector-machine-svm">2.2 Support Vector Machine (SVM)</h2>
 <ul>
 <li>
-<p>Introduction : a method that predicts a given data based on the nearest K neigbors in existing data.</p>
+<p>Introduction : finds a decision boundary that separates classes with the largest possible margin.</p>
+<ul>
+<li>The margin is the distance between the decision boundary and the closest training points.</li>
+<li>Support vectors are the closest training points that determine the margin.</li>
+</ul>
 </li>
 <li>
-<p>Method : If regression, return mean value of k nearest neibors, if classification, return the mode class of k nearest neibors ,</p>
+<p>Methods</p>
+<ul>
+<li>
+<p><strong>Objective</strong> : maximize the margin; soft-margin SVM adds a penalty for margin violations.</p>
+<ul>
+<li>Hard-margin part: margin width is $\frac{2}{\lVert w \rVert}$; maximizing it is equivalent to minimizing $\lVert w \rVert$, commonly written as $\frac{1}{2}\lVert w \rVert^2$.
+<ul>
+<li>Decision boundary: for linear SVM, the boundary is a line/hyperplane $w^T x + b = 0$.</li>
+<li>Margin boundaries: $w^T x + b = 1$ and $w^T x + b = -1$.</li>
+</ul>
+</li>
+<li>Soft-margin part: add hinge-loss penalty $C \sum_i \max(0, 1 - y_i(w^T x_i + b))$ for points that are misclassified or inside the margin.
+<ul>
+<li>Gives zero penalty to correctly classified points outside the margin, and penalizes points that are inside the margin or misclassified.</li>
+</ul>
+</li>
+</ul>
+<p>$$
+\min_{w,b} \frac{1}{2}\lVert w \rVert^2 + C \sum_i \max(0, 1 - y_i(w^T x_i + b))
+$$</p>
 </li>
 <li>
-<p>Hyperparameter : k(odd number, if k is too big, underfit, if k is too small, overfit), distance metric(L1, Manhattan, L2, Euclidean)</p>
+<p><strong>Optimization</strong> : solve the convex objective to find the optimal $w$ and $b$; classic SVMs use quadratic programming, while large-scale linear SVMs can use SGD.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Discussion</p>
+<ul>
+<li>
+<p><strong>Hard margin vs Soft margin</strong> : hard-margin SVM assumes the data is perfectly separable, while soft-margin SVM allows some margin violations using the penalty parameter $C$.</p>
+</li>
+<li>
+<p><strong>Effect of $C$</strong> : large $C$ penalizes violations strongly, so the model tries to classify training data more strictly. Small $C$ allows more violations, which can give a wider margin and better generalization.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="30%" align="center" alt="SVM margin illustration" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SVM_margin.png/1280px-SVM_margin.png?_=20181018223820">
+</p>
+<br>
+<hr>
+<h2 id="23-k-nearest-neighbors">2.3 K-Nearest Neighbors</h2>
+<ul>
+<li>
+<p>Introduction : predicts a query point by looking at the $k$ most similar training points, based on a distance metric.</p>
+</li>
+<li>
+<p>Methods</p>
+<ul>
+<li><strong>Training</strong> : no explicit training; store the training data.</li>
+<li><strong>Evaluation</strong> : compute distances from the query point to training points and select the $k$ nearest neighbors.
+<ul>
+<li><strong>Regression</strong> : return the mean value of the $k$ nearest neighbors.</li>
+<li><strong>Classification</strong> : return the majority class among the $k$ nearest neighbors.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Discussion</p>
+<ul>
+<li><strong>k</strong> : small $k$ can overfit, while large $k$ can underfit. Use an odd number for binary classification to reduce ties.</li>
+<li><strong>Distance metric</strong> : common choices include L1/Manhattan distance and L2/Euclidean distance.
+<ul>
+<li>L1 / Manhattan : sums absolute differences across features.</li>
+<li>L2 / Euclidean : straight-line distance between two points.</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <p style="text-align: center;">
@@ -551,69 +677,110 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
 </p>
 <br>
 <hr>
-<h2 id="3-logistic-regression">3. Logistic regression</h2>
+<h2 id="24-decision-tree">2.4 Decision Tree</h2>
 <ul>
 <li>
-<p>Introduction : Unlike Linear Regression, problems arise when the input/target data is categorical. Logistic Regression is better thought of as solving a classification problem rather than a regression problem.</p>
+<p>Introduction : a tree-shaped model that predicts by recursively splitting the feature space with simple if-else decision rules.</p>
 </li>
 <li>
-<p>Methods : Logistic Regression uses a sigmoid, so using MSE produces a non-convex loss surface (multiple local minima) rather than the convex quadratic we expect. Cross Entropy is therefore used as the loss, optimized with Gradient Descent.</p>
+<p>Methods</p>
+<ul>
+<li><strong>Training</strong> : greedily build the tree by choosing feature/threshold splits that reduce impurity at each node.
+<ul>
+<li>The model tries candidate thresholds for each feature and chooses the split with the largest impurity reduction.
+<ul>
+<li>Impurity measures how mixed the labels are in a node; a pure node mostly contains one class.</li>
+<li>Impurity reduction: $\Delta I = I(parent) - \frac{N_L}{N}I(left) - \frac{N_R}{N}I(right)$.</li>
+</ul>
+</li>
+<li>Gini impurity measures how mixed the classes are inside a node; $Gini=0$ means the node is perfectly pure.</li>
+<li>Classification: commonly use Gini impurity $Gini = 1 - \sum_k p_k^2$ or entropy $H = -\sum_k p_k \log p_k$.</li>
+<li>Regression: commonly use MSE reduction.</li>
+</ul>
+</li>
+<li><strong>Prediction</strong> : follow the decision rules from root to leaf.
+<ul>
+<li>Classification: return the majority class in the leaf.</li>
+<li>Regression: return the mean target value in the leaf.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Discussion</p>
+<ul>
+<li><strong>Easy to interpret</strong>, but can overfit if the tree grows too deep.</li>
+<li>Common controls include <code>max_depth</code>, <code>min_samples_split</code>, and pruning.</li>
+</ul>
 </li>
 </ul>
 <br>
 <hr>
-<!-- ## 4. Support Vector Machine (SVM)
-
-
-<br><br><br> -->
-<h2 id="4-rbm--restricted-boltzmann-machine-rbm">4. RBM : Restricted Boltzmann Machine (RBM)</h2>
+<h2 id="25-random-forest--boosting">2.5 Random Forest / Boosting</h2>
 <ul>
 <li>
-<p>Introduction : RBMs are two layered NN with generative capabilities, that have the ability to learn a prob dist over its input. RBMs can be used for dimensionality reduction, classification, regression, and so on.</p>
+<p>Introduction : ensemble tree methods combine multiple decision trees to improve generalization.</p>
 </li>
 <li>
-<p>Architecture : Two layers — one input layer and one hidden layer. Unlike a Boltzmann Machine where units in the same layer are connected, in an RBM there are no intra-layer connections (it is <em>restricted</em> in this sense).</p>
+<p>Methods</p>
+<ul>
+<li><strong>Random Forest (Bagging)</strong> : trains many trees independently on bootstrapped samples and averages/votes their predictions.
+<ul>
+<li>Bootstrap Aggregating (Bagging): sample data with replacement, train multiple models, then aggregate their predictions.</li>
+<li>Bagging trains models independently in <strong>parallel</strong>, then aggregates predictions.</li>
+<li>Reduces variance compared to a single decision tree.</li>
+</ul>
+</li>
+<li><strong>Boosting</strong> : trains trees sequentially, where each new tree focuses on errors made by previous trees.
+<ul>
+<li>Boosting trains models <strong>sequentially</strong>, where each model tries to correct previous errors.</li>
+<li>Reduces bias by gradually improving weak learners.</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
-<p>Training : Trained with Gibbs Sampling — a stochastic algorithm that draws a sequence of samples from the joint distribution of two or more random variables (Unsupervised Learning).</p>
+<p>Discussion</p>
+<ul>
+<li>Random Forest is usually more robust and easier to tune.</li>
+<li>Boosting often gives strong accuracy, but is more sensitive to hyperparameters such as number of trees, tree depth, and learning rate.</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h2 id="31-k-means">3.1 K-means</h2>
+<ul>
+<li>
+<p>Introduction : an unsupervised learning algorithm that partitions data into $k$ clusters by assigning each point to the nearest cluster center.</p>
 </li>
 <li>
-<p>The training intuition: feed the input forward, run the activations backward to reconstruct it, and minimize the difference between the reconstruction and the input — much like an autoencoder.</p>
+<p>Methods : Repeat assignment and update steps until centroids stop changing or a maximum number of iterations is reached.</p>
 <ol>
-<li>
-<p>forward : $ y_{out} = \sigma (wx + b)$</p>
-</li>
-<li>
-<p>backward (reconstruct the input) : $ y_{recon} = y_{out} x + b$</p>
-</li>
-<li>
-<p>KL Divergence can be considered as the reconstruction error: $ KL(x|y_{recon}) $</p>
-</li>
-<li>
-<p>Reduce KLD in iterative manner : common training algorithms for RBMs approximate the log-likelihood gradient given some data and perform gradient ascest on these approximations.(Gibbs Sampling)</p>
-<!-- 1. https://towardsdatascience.com/restricted-boltzmann-machines-simplified-eab1e5878976 -->
+<li><strong>Initialize</strong> : choose $k$ initial centroids.</li>
+<li><strong>Assignment step</strong> : assign each point to the nearest centroid.</li>
+<li><strong>Update step</strong> : recompute each centroid as the mean of the points assigned to it.
+<ul>
+<li>$\mu_k = \frac{1}{\lvert C_k \rvert}\sum_{x_i \in C_k}x_i$</li>
+</ul>
 </li>
 </ol>
 </li>
-</ul>
-<p><br><br><br></p>
-<h2 id="5-dbn--deep-belief-network">5. DBN : Deep Belief Network</h2>
+<li>
+<p>Discussion</p>
 <ul>
-<li>
-<p>Architecture : Multiple RBMs can also be stacked and can be fine tuned through the process of gradient descent and backpropagation.</p>
-</li>
-<li>
-<p>Train : Once the first RBM is trained, its parameters are frozen and a second RBM is trained using the hidden units of the first as input. The full DBN stack can then be fine-tuned with gradient descent and backpropagation.</p>
-</li>
-<li>
-<p>DBNs drew attention not so much because they modeled the joint probability well, but because using a DBN to pretrain another DNN mitigated overfitting and improved downstream performance.</p>
-</li>
-<li>
-<p>However, with enough data, random initialization is known to outperform DBN-based weight initialization, so DBNs are rarely used in practice today.</p>
+<li>Sensitive to the initial centroids, so K-means is often run multiple times with different initializations.</li>
+<li>Sensitive to feature scale, so standardization is often important.</li>
+<li>Works best when clusters are roughly spherical and similarly sized.</li>
+</ul>
 </li>
 </ul>
-<p><br><br><br></p>
-<h2 id="6-hdbscan-hierarchical-dbscan-2013">6. HDBSCAN (Hierarchical DBSCAN, 2013)</h2>
+<p style="text-align: center;">
+<img class="post-fig" width="50%" align="center" alt="K-means clustering illustration" src="https://towardsdatascience.com/wp-content/uploads/2022/04/15oS5b3j47zvCe43HuyUiUg.gif">
+</p>
+<br>
+<hr>
+<h2 id="32-hdbscan-hierarchical-dbscan-2013">3.2 HDBSCAN (Hierarchical DBSCAN, 2013)</h2>
 <ul>
 <li>
 <p>Introduction : HDBSCAN extends DBSCAN by converting it into a hierarchical clustering algorithm, and then using a technique to extract a flat clustering based in the stability of clusters.</p>
@@ -655,6 +822,92 @@ Objective (Ordinary Least Squares) : minimize the sum of squared residuals (the 
     &nbsp &nbsp
   <image width=30% src='https://hdbscan.readthedocs.io/en/latest/_images/how_hdbscan_works_18_1.png'>
 </center>
+<p><br><br><br></p>
+<h2 id="41-pca--principal-component-analysis">4.1 PCA : Principal Component Analysis</h2>
+<ul>
+<li>
+<p>Introduction : PCA is an unsupervised linear dimensionality reduction method.</p>
+<ul>
+<li>Principal Components : new orthogonal axes that capture the largest variance in the data.</li>
+<li>Projects high-dimensional data onto the top $k$ principal components.</li>
+</ul>
+</li>
+<li>
+<p>Methods</p>
+<ol>
+<li><strong>Standardize</strong> : center/scale features before PCA when they have different units or ranges.</li>
+<li><strong>Find principal components</strong> : find orthogonal directions that capture the largest variance.
+<ul>
+<li>Principal components are ordered by explained variance.</li>
+</ul>
+</li>
+<li><strong>Project</strong> : map the original data onto the top $k$ principal components.</li>
+</ol>
+</li>
+<li>
+<p>Discussion</p>
+<ul>
+<li><strong>Covariance matrix</strong> : summarizes how features vary together; PCA uses it to find directions where the data varies the most.</li>
+<li><strong>Eigen-decomposition</strong> : commonly used to compute PCA from the covariance matrix.
+<ul>
+<li>Eigenvectors become principal components.</li>
+<li>Eigenvalues represent explained variance.</li>
+</ul>
+</li>
+<li><strong>Eigenface</strong> : PCA applied to face images; early components capture broad variations such as lighting, pose, and face structure, while later components capture smaller details or noise.</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;">
+<img class="post-fig" width="75%" align="center" alt="PCA dimensionality reduction illustration" src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F9052057%2F8cb9faa4ace2479120fe0a326aa53253%2Fcool.gif?generation=1674492678372413&alt=media">
+</p>
+<p><br><br><br></p>
+<h2 id="51-rbm--restricted-boltzmann-machine-rbm">5.1 RBM : Restricted Boltzmann Machine (RBM)</h2>
+<ul>
+<li>
+<p>Introduction : RBMs are two layered NN with generative capabilities, that have the ability to learn a prob dist over its input. RBMs can be used for dimensionality reduction, classification, regression, and so on.</p>
+</li>
+<li>
+<p>Architecture : Two layers — one input layer and one hidden layer. Unlike a Boltzmann Machine where units in the same layer are connected, in an RBM there are no intra-layer connections (it is <em>restricted</em> in this sense).</p>
+</li>
+<li>
+<p>Training : Trained with Gibbs Sampling — a stochastic algorithm that draws a sequence of samples from the joint distribution of two or more random variables (Unsupervised Learning).</p>
+</li>
+<li>
+<p>The training intuition: feed the input forward, run the activations backward to reconstruct it, and minimize the difference between the reconstruction and the input — much like an autoencoder.</p>
+<ol>
+<li>
+<p>forward : $ y_{out} = \sigma (wx + b)$</p>
+</li>
+<li>
+<p>backward (reconstruct the input) : $ y_{recon} = y_{out} x + b$</p>
+</li>
+<li>
+<p>KL Divergence can be considered as the reconstruction error: $ KL(x|y_{recon}) $</p>
+</li>
+<li>
+<p>Reduce KLD in iterative manner : common training algorithms for RBMs approximate the log-likelihood gradient given some data and perform gradient ascest on these approximations.(Gibbs Sampling)</p>
+<!-- 1. https://towardsdatascience.com/restricted-boltzmann-machines-simplified-eab1e5878976 -->
+</li>
+</ol>
+</li>
+</ul>
+<p><br><br><br></p>
+<h2 id="52-dbn--deep-belief-network">5.2 DBN : Deep Belief Network</h2>
+<ul>
+<li>
+<p>Architecture : Multiple RBMs can also be stacked and can be fine tuned through the process of gradient descent and backpropagation.</p>
+</li>
+<li>
+<p>Train : Once the first RBM is trained, its parameters are frozen and a second RBM is trained using the hidden units of the first as input. The full DBN stack can then be fine-tuned with gradient descent and backpropagation.</p>
+</li>
+<li>
+<p>DBNs drew attention not so much because they modeled the joint probability well, but because using a DBN to pretrain another DNN mitigated overfitting and improved downstream performance.</p>
+</li>
+<li>
+<p>However, with enough data, random initialization is known to outperform DBN-based weight initialization, so DBNs are rarely used in practice today.</p>
+</li>
+</ul>
 <!--
 ## Linear Discriminant Analysis (LDA)
 
@@ -682,11 +935,7 @@ $$ \sum_{k} \pi_k = 1  \quad \text{and}  \quad 0 \leq \pi_k \leq 1$$
 
 <br><br><br>
 
-
-
-## Support Vector Machine (SVM)
-
-<br><br><br> -->
+-->
 
     </div>
     <div class="article-footer">
@@ -720,15 +969,16 @@ $$ \sum_{k} \pi_k = 1  \quad \text{and}  \quad 0 \leq \pi_k \leq 1$$
   
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+            processEscapes: true
            }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
